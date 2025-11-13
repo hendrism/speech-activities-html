@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ninth Grade Inference Practice</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --primary: #2563eb;
+      --secondary: #38bdf8;
+      --text: #0f172a;
+      --muted: #475569;
+      --shadow: rgba(15, 23, 42, 0.18);
+      --radius: 18px;
+      --width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 34px 20px;
+      text-align: center;
+      box-shadow: 0 18px 38px rgba(37, 99, 235, 0.32);
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      letter-spacing: 0.01em;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .nav-bar {
+      background: #0f172a;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.35);
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .nav-btn {
+      border: none;
+      background: rgba(148, 163, 184, 0.18);
+      color: #e2e8f0;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background: rgba(226, 232, 240, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    main {
+      max-width: var(--width);
+      margin: 28px auto 56px;
+      padding: 0 18px;
+    }
+
+    .scenario {
+      display: none;
+    }
+
+    .scenario.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scenario-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 16px 32px var(--shadow);
+      border: 2px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .scenario-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .scenario-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .scenario-context {
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(37, 99, 235, 0.24);
+      color: #1d4ed8;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .strategy-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .strategy-chip {
+      background: rgba(56, 189, 248, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.32);
+      color: #0c4a6e;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scenario-text {
+      background: rgba(148, 163, 184, 0.12);
+      border-left: 5px solid var(--secondary);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 22px;
+      font-size: 16px;
+    }
+
+    .question-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .question-card {
+      background: #ffffff;
+      border: 2px solid rgba(148, 163, 184, 0.24);
+      border-radius: 16px;
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .question-label {
+      font-weight: 700;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .prompt-hint {
+      font-size: 14px;
+      color: var(--muted);
+      background: rgba(148, 163, 184, 0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+
+    textarea {
+      width: 100%;
+      border: 2px solid rgba(148, 163, 184, 0.4);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 16px;
+      font-family: inherit;
+      min-height: 120px;
+      resize: vertical;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #f8fafc;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+      background: white;
+    }
+
+    @media (max-width: 720px) {
+      header h1 {
+        font-size: 26px;
+      }
+
+      .scenario-card {
+        padding: 20px;
+      }
+    }
+
+    @media print {
+      header, .nav-bar {
+        display: none;
+      }
+
+      main {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .scenario {
+        display: block !important;
+        page-break-before: always;
+      }
+
+      .scenario:first-of-type {
+        page-break-before: auto;
+      }
+
+      .scenario-card {
+        box-shadow: none;
+        border: none;
+        border-bottom: 3px solid rgba(148, 163, 184, 0.35);
+        border-radius: 0;
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ninth Grade Inference Practice</h1>
+    <p>
+      Read each real-life situation. Use context clues to infer what the character is thinking and feeling,
+      describe the problem and solution, and explain the cause-and-effect relationship.
+    </p>
+  </header>
+
+  <nav class="nav-bar">
+    <div class="nav-buttons">
+      <button class="nav-btn active" data-target="scenario-1">Track Tryout</button>
+      <button class="nav-btn" data-target="scenario-2">Group Chat</button>
+      <button class="nav-btn" data-target="scenario-3">Mentor Meeting</button>
+      <button class="nav-btn" data-target="scenario-4">Science Fair</button>
+      <button class="nav-btn" data-target="scenario-5">Band Solo</button>
+      <button class="nav-btn" data-target="scenario-6">Service Project</button>
+      <button class="nav-btn" data-target="scenario-7">Late Bus</button>
+      <button class="nav-btn" data-target="scenario-8">History Skit</button>
+      <button class="nav-btn" data-target="scenario-9">Robotics Fix</button>
+      <button class="nav-btn" data-target="scenario-10">Family News</button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="scenario-1" class="scenario active">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 1: The Quiet Track Tryout</h2>
+          <span class="scenario-context">Track Team • Early Spring • After School</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">🔍 Clue: Coach whispered with Maya twice.</span>
+          <span class="strategy-chip">🎯 Goal: Understand feelings without being told.</span>
+        </div>
+        <div class="scenario-text">
+          Maya joined track tryouts even though she had a stomach ache all day. During warm-ups she stayed quiet,
+          avoided eye contact, and kept pressing her hand over her abdomen. Coach called her over twice and spoke softly.
+          After the second talk, Maya sat on the bench and texted her mom.
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <div class="prompt-hint">What is happening that Coach is responding to? Use actions for evidence.</div>
+            <textarea placeholder="Explain what Coach noticed and why Maya might need help."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <div class="prompt-hint">Body language can show emotions even when no one says it out loud.</div>
+            <textarea placeholder="How might Maya be feeling? Which clues helped you decide?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="State the problem and suggest one solution for Maya or Coach."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Describe how Maya's stomach ache caused the change in the tryout."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="scenario-2" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 2: The Group Chat Apology</h2>
+          <span class="scenario-context">Friend Group • Evening • Online</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">💬 Clue: Long typing pause before sending.</span>
+          <span class="strategy-chip">🧠 Think: Emotions can be mixed (nervous + hopeful).</span>
+        </div>
+        <div class="scenario-text">
+          Tyler accidentally posted a joke in his friend group chat that was meant for his brother.
+          The joke teased Avery's new haircut, and Avery left the chat for three hours.
+          Tyler typed a long message, deleted it, and finally sent a shorter note: “I'm sorry.
+          That was meant for my brother. I get it if you're mad.” Later, Tyler texted Avery directly asking to FaceTime,
+          but Avery has not responded.
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What do Tyler's actions tell you about what he understands about the situation?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="How might Tyler feel? How might Avery feel? Use clues to support your idea."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="State the problem and suggest one way Tyler can repair the situation."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Explain how the mistaken joke caused changes in the group chat."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="scenario-3" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 3: Mentor Meeting Mix-Up</h2>
+          <span class="scenario-context">Freshman Mentoring • Lunch Period • School Library</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">⏰ Clue: Malik keeps checking the door and clock.</span>
+          <span class="strategy-chip">🤝 Focus: Relationship expectations and trust.</span>
+        </div>
+        <div class="scenario-text">
+          Malik is supposed to meet his senior mentor, Jordan, every Wednesday at lunch for homework help.
+          Jordan has missed the last two meetings without texting. Today Malik saved a table, set out both notebooks,
+          and checked the door every few minutes. When Jordan finally arrived 20 minutes late, he said,
+          “My bad. I can only stay five minutes today.” Malik quietly put his notebooks away.
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What expectation was not met? How can you tell Malik was still hopeful?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="What might Malik be feeling? Provide evidence from his actions."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="Identify the problem and suggest one way Malik or Jordan could fix it."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Explain how Jordan being late caused Malik to react the way he did."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+        <section id="scenario-4" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 4: Science Fair Morning Surprise</h2>
+          <span class="scenario-context">Science Class • Early Morning • Presentation Day</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">🧪 Clue: Project was moved without warning.</span>
+          <span class="strategy-chip">🧩 Think: How do unexpected changes affect plans?</span>
+        </div>
+        <div class="scenario-text">
+          Andre spent two weeks building a volcano model with his lab partner, Theo. They stored it on a back table.
+          When Andre arrived on presentation day, the project was in pieces. A substitute teacher put the volcano on a rolling cart and accidentally knocked off the wiring.
+          Theo was running late, so Andre rushed to reattach the battery pack while classmates began presenting. Ms. Liang walked in and said, “Andre, you’re up next. Is everything okay?” Andre nodded, but his hands shook as he tightened the wires.
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What unexpected change happened before Andre's turn? Which clues show it?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="How might Andre feel as he fixes the volcano? Use evidence from his behavior."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="Identify the problem and suggest one solution Andre or Ms. Liang could try."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Explain how the accident with the cart caused a new effect on Andre's presentation."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="scenario-5" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 5: Band Concert Surprise</h2>
+          <span class="scenario-context">School Auditorium • Evening Performance</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">🎶 Clue: Hannah is assigned a solo without warning.</span>
+          <span class="strategy-chip">❤️ Focus: How surprise affects emotions and actions.</span>
+        </div>
+        <div class="scenario-text">
+          The concert is starting in five minutes when Mr. Ellis tells Hannah, “The soloist is out with the flu.
+          You're next in line, so you'll play the solo tonight.” Hannah's hands shake as she holds her clarinet.
+          She takes three deep breaths, reviews the music quietly, and whispers, “Okay, I can do this.”
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What unexpected change happened? Which details show it was sudden?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="What feelings might Hannah have? Use evidence from her actions."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="Describe the problem and one strategy Hannah uses or could use to handle it."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Explain how the original soloist being sick caused a new effect on Hannah and the concert."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="scenario-6" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 6: Community Service Shuffle</h2>
+          <span class="scenario-context">Saturday Clean-Up • City Park • Afternoon</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">🧺 Clue: Isaiah keeps rechecking the supply list.</span>
+          <span class="strategy-chip">🤔 Goal: Connect actions to hidden thoughts.</span>
+        </div>
+        <div class="scenario-text">
+          Isaiah volunteered to lead the ninth-grade clean-up team at the park.
+          Two volunteers texted that they were “running late,” and one person left early to get smoothies.
+          Isaiah counted the rakes twice, scribbled checkmarks on his clipboard, and quietly started doing the trash pickup himself.
+          When the late volunteers arrived, Isaiah said, “We needed you twenty minutes ago.”
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What responsibilities does Isaiah have? How do his actions show the situation?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="How might Isaiah feel? Use the clues in his words and actions."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="What problem is happening? Suggest one solution Isaiah could try with the team."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Explain how the volunteers arriving late caused an effect on Isaiah and the clean-up."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="scenario-7" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 7: After-School Bus Decision</h2>
+          <span class="scenario-context">Transit Center • Weekday Evening • Rainy Weather</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">🚌 Clue: Delay announcements and family texts.</span>
+          <span class="strategy-chip">📱 Strategy: Compare options before deciding.</span>
+        </div>
+        <div class="scenario-text">
+          Jada takes the city bus home and usually watches her younger brother after school.
+          Today the bus app shows a 30-minute delay because of rain. Her brother texts, “Mom is stuck at work. Can you hurry?”
+          Jada looks at the long rideshare line, then checks her wallet and sighs.
+          She texts back, “Bus is slow. I can call neighbor Mrs. Ortiz—hold on.”
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What situation is Jada trying to solve? What clues show her responsibilities?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="How might Jada be feeling? Use evidence from her actions and texts."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="State the problem and give one solution Jada is considering or could try."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Explain how the bus delay causes different effects on Jada and her brother."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+        <section id="scenario-8" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 8: History Skit Feedback</h2>
+          <span class="scenario-context">History Class • Classroom Stage • Practice Day</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">🎭 Clue: Feedback comes right after their skit.</span>
+          <span class="strategy-chip">📝 Strategy: Listen for the main idea in comments.</span>
+        </div>
+        <div class="scenario-text">
+          Aaliyah's group performs a short skit about a civil rights protest. When they finish, Mr. Ramos says,
+          “Great teamwork. Next time, project your voice like the marchers did.” Aaliyah nods, steps to the side,
+          and practices her lines in a louder voice. She circles “speak louder” on her script while the next group sets up.
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What part of the skit did Mr. Ramos want them to change? How do you know?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="What might Aaliyah feel after hearing the feedback? Use clues from her reaction."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="Identify the performance problem and write one solution Aaliyah already started."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Explain how the feedback caused Aaliyah's next steps."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="scenario-9" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 9: Robotics Fix Under Pressure</h2>
+          <span class="scenario-context">Robotics Club • Competition Practice • Evening</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">🤖 Clue: Battery swap and team chatter.</span>
+          <span class="strategy-chip">🧠 Strategy: Notice problem-solving steps.</span>
+        </div>
+        <div class="scenario-text">
+          The robotics team is running a practice round when the robot suddenly stops moving.
+          Leo crouches down, swaps the battery, and whispers, “Please work.” The robot still doesn’t move.
+          Sam suggests taking a five-minute break, but Leo keeps checking wires. Finally he says,
+          “The motor cable is loose. I need tape.” The team cheers when the robot moves again.
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What problem happened during practice? Which clues show Leo's role?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="How might Leo feel while fixing the robot? Use evidence from what he says and does."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="State the problem and explain the solution Leo found."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Describe how the loose motor cable caused the robot to stop and how Leo's fix changed the outcome."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="scenario-10" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 10: Family Dinner News</h2>
+          <span class="scenario-context">Family Kitchen • Weeknight • After Practice</span>
+        </div>
+        <div class="strategy-bar">
+          <span class="strategy-chip">🍽️ Clue: Parents whispering before dinner.</span>
+          <span class="strategy-chip">🧩 Strategy: Connect new information to future effects.</span>
+        </div>
+        <div class="scenario-text">
+          Lila walks into the kitchen and sees her parents whispering. They invite her to sit and say,
+          “We got a letter today. Our lease is ending, and the owner is selling the building.”
+          Lila grips her backpack straps and asks, “Does that mean we have to move?” Her mom nods and says,
+          “We have two months to find a new place. We’ll look for a neighborhood close to your school.”
+        </div>
+        <div class="question-grid">
+          <div class="question-card">
+            <div class="question-label">Situational Inference</div>
+            <textarea placeholder="What news did the family share? What clues showed it was serious before they spoke?"></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Feelings / Internal Response</div>
+            <textarea placeholder="How might Lila feel about the news? Use evidence from her reaction."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Problem / Solution</div>
+            <textarea placeholder="State the problem and suggest one solution the family is planning."></textarea>
+          </div>
+          <div class="question-card">
+            <div class="question-label">Cause / Effect</div>
+            <textarea placeholder="Explain how the landlord's decision causes changes for Lila and her family."></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const scenarios = document.querySelectorAll(".scenario");
+
+    navButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+
+        navButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        scenarios.forEach((scene) => {
+          scene.classList.toggle("active", scene.id === target);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

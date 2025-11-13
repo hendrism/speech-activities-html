@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relevant Response Practice - Simple</title>
+<style>
+  :root{
+    --ink:#0f172a;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --accent:#3b82f6;
+    --accent-soft:#dbeafe;
+    --ok:#16a34a;
+    --warn:#f59e0b;
+    --err:#dc2626;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --w:980px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    font-size:18px;
+  }
+  header{
+    position:sticky;top:0;z-index:10;
+    background:var(--card);
+    border-bottom:2px solid var(--border);
+  }
+  .bar{
+    max-width:var(--w);margin:0 auto;padding:14px 16px;
+    display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;
+  }
+  h1{margin:0;font-size:20px;color:var(--accent)}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  button{
+    border:2px solid var(--border);
+    background:#f1f5f9;
+    color:var(--ink);
+    padding:8px 14px;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  button:hover{background:#e2e8f0}
+  button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  button.primary:hover{background:#2563eb}
+  main{max-width:var(--w);margin:20px auto;padding:0 16px;display:grid;grid-template-columns:270px 1fr;gap:16px}
+  .panel{
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:14px;
+    padding:14px;
+  }
+  .panel h2{margin:0 0 10px;font-size:16px;color:var(--muted)}
+  .question-box{
+    background:var(--card);
+    border:3px solid var(--accent-soft);
+    border-radius:16px;
+    padding:22px;
+  }
+  .q-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .q-idx{font-weight:700;color:var(--muted);font-size:14px}
+  .q-actions{display:flex;gap:8px;align-items:center}
+  .q-actions button{padding:6px 10px}
+  .question{
+    background:var(--accent-soft);
+    border:3px solid var(--accent);
+    border-radius:12px;
+    padding:18px;
+    font-size:24px;
+    font-weight:800;
+    color:#1e3a8a;
+    margin:12px 0 6px;
+  }
+  .examples{background:#f1f5f9;border:2px dashed var(--border);border-radius:10px;padding:12px;margin-top:8px}
+  .examples h3{margin:0 0 8px;font-size:14px;color:var(--muted)}
+  .examples ul{margin:0;padding-left:20px}
+  .examples li{margin:4px 0;font-style:italic;color:#0f172a}
+
+  textarea{
+    width:100%;min-height:110px;margin-top:12px;
+    border:2px solid var(--border);border-radius:12px;padding:14px;
+    resize:vertical;font-size:18px;font-family:inherit;
+  }
+  textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+
+  .nav-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  select{padding:8px 12px;border:2px solid var(--border);border-radius:10px;background:#fff;font-weight:600}
+  .rubric{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+  .chip{
+    display:flex;align-items:center;justify-content:center;
+    gap:6px;padding:10px;border-radius:12px;border:2px solid var(--border);cursor:pointer;
+    background:#fff;font-weight:700;text-align:center;
+  }
+  .chip.ok{border-color:#bbf7d0;background:#f0fdf4}
+  .chip.warn{border-color:#fde68a;background:#fffbeb}
+  .chip.err{border-color:#fecaca;background:#fff1f2}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-weight:700}
+  .stat span{background:#eef2ff;border:2px solid #e0e7ff;border-radius:10px;padding:6px 10px;color:#3730a3}
+  .list{max-height:60vh;overflow:auto;border-top:2px solid var(--border)}
+  .list button{display:block;width:100%;text-align:left;background:#fff;border:none;border-bottom:1px solid var(--border);padding:10px;border-radius:0}
+  .list button.active{background:#eff6ff;font-weight:800;color:#1d4ed8}
+  .sr-only{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+  @media (max-width:900px){
+    main{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <h1>💬 Relevant Response Practice - Simple</h1>
+      <div class="controls">
+        <button id="speakBtn" title="Read question aloud">🔊 Read</button>
+        <button id="shuffleBtn" class="primary" title="Shuffle order">🔀 Shuffle</button>
+        <button id="newSessionBtn" title="Reset counters">🔄 New Session</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <aside class="panel" aria-label="Question list">
+      <h2>Jump to question</h2>
+      <div class="nav-row">
+        <select id="jumpSelect" aria-label="Select question"></select>
+        <button id="prevBtn">← Previous</button>
+        <button id="nextBtn" class="primary">Next →</button>
+      </div>
+      <div class="list" id="questionList"></div>
+    </aside>
+
+    <section class="panel">
+      <div class="question-box">
+        <div class="q-header">
+          <div class="q-idx" id="qIndex">Question 1 of 24</div>
+          <div class="q-actions">
+            <button id="bigTextBtn" title="Toggle big text">🔎 A+</button>
+            <button id="copyQBtn" title="Copy question to clipboard">📋 Copy Q</button>
+          </div>
+        </div>
+
+        <div class="question" id="questionText">How are you today?</div>
+        <div class="examples">
+          <h3>Example relevant responses</h3>
+          <ul id="exampleList">
+            <li>I feel good today.</li>
+            <li>I am a little tired.</li>
+          </ul>
+        </div>
+
+        <label class="sr-only" for="responseInput">Type your response</label>
+        <textarea id="responseInput" placeholder="Type a relevant answer here..."></textarea>
+
+        <div class="rubric">
+          <button class="chip ok" id="markRelevant">✅ On topic</button>
+          <button class="chip warn" id="markNeedsMore">🟨 Needs more</button>
+          <button class="chip err" id="markOffTopic">❌ Off topic</button>
+        </div>
+
+        <div class="nav-row">
+          <button id="prevBtn2">← Previous</button>
+          <button id="randomBtn">🎲 Random</button>
+          <button id="nextBtn2" class="primary">Next →</button>
+        </div>
+
+        <div class="stat" id="stats">
+          <span id="statOn">On topic: 0</span>
+          <span id="statMore">Needs more: 0</span>
+          <span id="statOff">Off topic: 0</span>
+          <span id="statDone">Questions practiced: 0</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+// Simpler, general social questions for middle school
+const questions = [
+  { q:"How are you today?", ex:["I feel good today.","I am a little tired."] },
+  { q:"What did you eat for lunch?", ex:["I ate pizza.","I had a turkey sandwich and milk."] },
+  { q:"Who do you sit with at lunch?", ex:["I sit with Alex.","I sit with my friends at the back table."] },
+  { q:"What did you do after school yesterday?", ex:["I did my homework.","I played outside with my neighbor."] },
+  { q:"What do you like to do on weekends?", ex:["I play video games.","I visit my grandparents."] },
+  { q:"Do you have any pets?", ex:["Yes, I have a dog.","No, I do not have a pet."] },
+  { q:"What is your favorite class?", ex:["Art is my favorite class.","I like science the most."] },
+  { q:"What is your favorite snack?", ex:["I like chips.","I usually eat an apple."] },
+  { q:"Who is someone you like to talk to at school?", ex:["I talk to my friend Mia.","I like talking to my counselor."] },
+  { q:"What do you like to watch on TV or YouTube?", ex:["I watch Minecraft videos.","I like cooking shows."] },
+  { q:"Where do you like to sit on the bus?", ex:["I sit near the front.","I sit in the middle with my friend." ] },
+  { q:"What game do you like to play?", ex:["I like chess.","I like playing basketball." ] },
+  { q:"What do you do when you feel bored?", ex:["I draw in my notebook.","I listen to music." ] },
+  { q:"What makes you feel calm?", ex:["Deep breathing helps me.","Listening to quiet music helps." ] },
+  { q:"What is something that makes you laugh?", ex:["Funny cat videos.","My brother tells jokes." ] },
+  { q:"What is your favorite thing to do outside?", ex:["I ride my bike.","I like to walk at the park." ] },
+  { q:"What do you like to read?", ex:["I read graphic novels.","I like sports stories." ] },
+  { q:"What is your favorite school lunch?", ex:["I like chicken nuggets.","Taco day is my favorite." ] },
+  { q:"Who do you like to work with in class?", ex:["I work well with Jay.","I like to work with my table group." ] },
+  { q:"What helps you start your work?", ex:["I look at the directions.","I ask for help if I need it." ] },
+  { q:"What is something you want to learn this year?", ex:["I want to learn coding.","I want to get better at writing." ] },
+  { q:"Where do you like to go after school?", ex:["I go home.","Sometimes I go to the library." ] },
+  { q:"What do you like to draw?", ex:["I draw cars.","I like drawing animals." ] },
+  { q:"How do you help at home?", ex:["I feed the dog.","I take out the trash." ] }
+];
+
+// State
+let order = [...Array(questions.length).keys()];
+let idx = 0;
+let counts = {on:0, more:0, off:0, done:0};
+let big = false;
+
+// DOM
+const qText = document.getElementById('questionText');
+const qIndex = document.getElementById('qIndex');
+const exampleList = document.getElementById('exampleList');
+const responseInput = document.getElementById('responseInput');
+const statOn = document.getElementById('statOn');
+const statMore = document.getElementById('statMore');
+const statOff = document.getElementById('statOff');
+const statDone = document.getElementById('statDone');
+const jumpSelect = document.getElementById('jumpSelect');
+const qList = document.getElementById('questionList');
+
+function renderJump(){
+  jumpSelect.innerHTML='';
+  order.forEach((o,i)=>{
+    const opt=document.createElement('option');
+    opt.value=i; opt.textContent = `${i+1}. ${questions[o].q}`;
+    jumpSelect.appendChild(opt);
+  });
+}
+
+function renderList(){
+  qList.innerHTML='';
+  order.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.textContent = `${i+1}. ${questions[o].q}`;
+    if(i===idx) b.classList.add('active');
+    b.addEventListener('click',()=>{ idx=i; load(); });
+    qList.appendChild(b);
+  });
+}
+
+function load(){
+  const q = questions[order[idx]];
+  qText.textContent = q.q;
+  qIndex.textContent = `Question ${idx+1} of ${questions.length}`;
+  exampleList.innerHTML='';
+  q.ex.forEach(e=>{
+    const li=document.createElement('li'); li.textContent=e; exampleList.appendChild(li);
+  });
+  responseInput.value='';
+  jumpSelect.value = String(idx);
+  renderList();
+}
+
+function updateStats(){
+  statOn.textContent = `On topic: ${counts.on}`;
+  statMore.textContent = `Needs more: ${counts.more}`;
+  statOff.textContent = `Off topic: ${counts.off}`;
+  statDone.textContent = `Questions practiced: ${counts.done}`;
+}
+
+function next(){ idx = (idx+1) % questions.length; load(); }
+function prev(){ idx = (idx-1+questions.length) % questions.length; load(); }
+function randomOne(){ idx = Math.floor(Math.random()*questions.length); load(); }
+
+// Actions
+document.getElementById('nextBtn').addEventListener('click', next);
+document.getElementById('prevBtn').addEventListener('click', prev);
+document.getElementById('nextBtn2').addEventListener('click', next);
+document.getElementById('prevBtn2').addEventListener('click', prev);
+document.getElementById('randomBtn').addEventListener('click', randomOne);
+document.getElementById('shuffleBtn').addEventListener('click', ()=>{
+  // Fisher-Yates shuffle
+  for(let i=order.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [order[i],order[j]] = [order[j],order[i]];
+  }
+  idx = 0;
+  renderJump();
+  load();
+});
+
+document.getElementById('newSessionBtn').addEventListener('click', ()=>{
+  if(confirm('Start a new session? This will reset counters.')){
+    counts = {on:0, more:0, off:0, done:0};
+    updateStats();
+    idx = 0;
+    order = [...Array(questions.length).keys()];
+    renderJump();
+    load();
+  }
+});
+
+document.getElementById('markRelevant').addEventListener('click', ()=>{
+  counts.on++; counts.done++; updateStats(); next();
+});
+document.getElementById('markNeedsMore').addEventListener('click', ()=>{
+  counts.more++; counts.done++; updateStats(); next();
+});
+document.getElementById('markOffTopic').addEventListener('click', ()=>{
+  counts.off++; counts.done++; updateStats(); next();
+});
+
+document.getElementById('bigTextBtn').addEventListener('click', ()=>{
+  big = !big;
+  document.body.style.fontSize = big ? '20px' : '18px';
+});
+
+document.getElementById('copyQBtn').addEventListener('click', async ()=>{
+  try{
+    await navigator.clipboard.writeText(qText.textContent);
+    alert('Question copied.');
+  }catch(e){ alert('Copy failed.'); }
+});
+
+document.getElementById('speakBtn').addEventListener('click', ()=>{
+  if(!('speechSynthesis' in window)) { alert('Speech is not supported in this browser.'); return; }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(qText.textContent);
+  u.rate = 1.0; u.pitch = 1.0;
+  window.speechSynthesis.speak(u);
+});
+
+jumpSelect.addEventListener('change', (e)=>{ idx = parseInt(e.target.value,10)||0; load(); });
+
+// Keyboard: Left/Right arrows to navigate
+window.addEventListener('keydown', (e)=>{
+  if(e.target.tagName.toLowerCase()==='textarea') return;
+  if(e.key==='ArrowRight') next();
+  if(e.key==='ArrowLeft') prev();
+});
+
+// Init
+(function init(){
+  renderJump();
+  renderList();
+  load();
+  updateStats();
+})();
+</script>
+</body>
+</html>

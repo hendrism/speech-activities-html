@@ -1,0 +1,350 @@
+{
+  "id": "otherSounds",
+  "name": "Other Sounds (/k/, /g/, /sh/, /f/, /l/, /s/)",
+  "blends": {
+    "k": [
+      {
+        "text": "key",
+        "pos": "noun"
+      },
+      {
+        "text": "kite",
+        "pos": "noun"
+      },
+      {
+        "text": "kick",
+        "pos": "verb"
+      },
+      {
+        "text": "keep",
+        "pos": "verb"
+      },
+      {
+        "text": "kind",
+        "pos": "adjective"
+      },
+      {
+        "text": "book",
+        "pos": "noun"
+      },
+      {
+        "text": "pocket",
+        "pos": "noun"
+      },
+      {
+        "text": "ticket",
+        "pos": "noun"
+      },
+      {
+        "text": "bake",
+        "pos": "verb"
+      },
+      {
+        "text": "stack",
+        "pos": "verb"
+      },
+      {
+        "text": "quick",
+        "pos": "adjective"
+      },
+      {
+        "text": "rocky",
+        "pos": "adjective"
+      }
+    ],
+    "g": [
+      {
+        "text": "gate",
+        "pos": "noun"
+      },
+      {
+        "text": "game",
+        "pos": "noun"
+      },
+      {
+        "text": "go",
+        "pos": "verb"
+      },
+      {
+        "text": "give",
+        "pos": "verb"
+      },
+      {
+        "text": "good",
+        "pos": "adjective"
+      },
+      {
+        "text": "tiger",
+        "pos": "noun"
+      },
+      {
+        "text": "wagon",
+        "pos": "noun"
+      },
+      {
+        "text": "dog",
+        "pos": "noun"
+      },
+      {
+        "text": "juggle",
+        "pos": "verb"
+      },
+      {
+        "text": "hug",
+        "pos": "verb"
+      },
+      {
+        "text": "eager",
+        "pos": "adjective"
+      },
+      {
+        "text": "big",
+        "pos": "adjective"
+      }
+    ],
+    "sh": [
+      {
+        "text": "ship",
+        "pos": "noun"
+      },
+      {
+        "text": "shop",
+        "pos": "noun"
+      },
+      {
+        "text": "show",
+        "pos": "verb"
+      },
+      {
+        "text": "shine",
+        "pos": "verb"
+      },
+      {
+        "text": "shiny",
+        "pos": "adjective"
+      }
+    ],
+    "f": [
+      {
+        "text": "fan",
+        "pos": "noun"
+      },
+      {
+        "text": "fish",
+        "pos": "noun"
+      },
+      {
+        "text": "sofa",
+        "pos": "noun"
+      },
+      {
+        "text": "waffle",
+        "pos": "noun"
+      },
+      {
+        "text": "leaf",
+        "pos": "noun"
+      },
+      {
+        "text": "roof",
+        "pos": "noun"
+      },
+      {
+        "text": "fall",
+        "pos": "verb"
+      },
+      {
+        "text": "find",
+        "pos": "verb"
+      },
+      {
+        "text": "offer",
+        "pos": "verb"
+      },
+      {
+        "text": "sniff",
+        "pos": "verb"
+      },
+      {
+        "text": "stuff",
+        "pos": "verb"
+      },
+      {
+        "text": "fast",
+        "pos": "adjective"
+      },
+      {
+        "text": "puffy",
+        "pos": "adjective"
+      },
+      {
+        "text": "stiff",
+        "pos": "adjective"
+      },
+      {
+        "text": "brief",
+        "pos": "adjective"
+      }
+    ],
+    "l": [
+      {
+        "text": "light",
+        "pos": "noun"
+      },
+      {
+        "text": "lion",
+        "pos": "noun"
+      },
+      {
+        "text": "lemon",
+        "pos": "noun"
+      },
+      {
+        "text": "lunch",
+        "pos": "noun"
+      },
+      {
+        "text": "ladder",
+        "pos": "noun"
+      },
+      {
+        "text": "lizard",
+        "pos": "noun"
+      },
+      {
+        "text": "letter",
+        "pos": "noun"
+      },
+      {
+        "text": "salad",
+        "pos": "noun"
+      },
+      {
+        "text": "pillow",
+        "pos": "noun"
+      },
+      {
+        "text": "balloon",
+        "pos": "noun"
+      },
+      {
+        "text": "melon",
+        "pos": "noun"
+      },
+      {
+        "text": "dollar",
+        "pos": "noun"
+      },
+      {
+        "text": "palace",
+        "pos": "noun"
+      },
+      {
+        "text": "jelly",
+        "pos": "noun"
+      },
+      {
+        "text": "look",
+        "pos": "verb"
+      },
+      {
+        "text": "listen",
+        "pos": "verb"
+      },
+      {
+        "text": "color",
+        "pos": "verb"
+      },
+      {
+        "text": "follow",
+        "pos": "verb"
+      },
+      {
+        "text": "laugh",
+        "pos": "verb"
+      },
+      {
+        "text": "learn",
+        "pos": "verb"
+      },
+      {
+        "text": "love",
+        "pos": "verb"
+      },
+      {
+        "text": "lucky",
+        "pos": "adjective"
+      },
+      {
+        "text": "little",
+        "pos": "adjective"
+      },
+      {
+        "text": "silly",
+        "pos": "adjective"
+      },
+      {
+        "text": "yellow",
+        "pos": "adjective"
+      },
+      {
+        "text": "loud",
+        "pos": "adjective"
+      },
+      {
+        "text": "long",
+        "pos": "adjective"
+      },
+      {
+        "text": "lovely",
+        "pos": "adjective"
+      }
+    ],
+    "s": [
+      {
+        "text": "sun",
+        "pos": "noun"
+      },
+      {
+        "text": "pencil",
+        "pos": "noun"
+      },
+      {
+        "text": "bus",
+        "pos": "noun"
+      },
+      {
+        "text": "glass",
+        "pos": "noun"
+      },
+      {
+        "text": "sing",
+        "pos": "verb"
+      },
+      {
+        "text": "whistle",
+        "pos": "verb"
+      },
+      {
+        "text": "toss",
+        "pos": "verb"
+      },
+      {
+        "text": "miss",
+        "pos": "verb"
+      },
+      {
+        "text": "silly",
+        "pos": "adjective"
+      },
+      {
+        "text": "messy",
+        "pos": "adjective"
+      },
+      {
+        "text": "gross",
+        "pos": "adjective"
+      }
+    ]
+  }
+}

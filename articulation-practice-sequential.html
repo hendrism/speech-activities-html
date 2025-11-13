@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articulation Practice - Sequential Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --aps-bg: #f8fafc;
+            --aps-surface: #ffffff;
+            --aps-border: #e2e8f0;
+            --aps-ink: #0f172a;
+            --aps-muted: #475569;
+            --aps-primary: #2563eb;
+            --aps-primary-dark: #1d4ed8;
+            --aps-noun: #2563eb;
+            --aps-verb: #059669;
+            --aps-adjective: #8b5cf6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .aps-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .aps-header {
+            background: var(--aps-surface);
+            border-bottom: 1px solid var(--aps-border);
+            padding: 32px clamp(16px, 4vw, 48px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .aps-header h1 {
+            margin: 0;
+            font-size: clamp(24px, 2.4vw, 30px);
+            font-weight: 700;
+            color: var(--aps-ink);
+        }
+
+        .aps-header p {
+            margin: 8px 0 0;
+            color: var(--aps-muted);
+            max-width: 620px;
+        }
+
+        .aps-progress-badge {
+            background: var(--aps-primary);
+            color: white;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 999px;
+            letter-spacing: 0.02em;
+        }
+
+        .aps-main {
+            width: min(960px, 92vw);
+            margin: 40px auto 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .aps-panel {
+            background: var(--aps-surface);
+            border-radius: 24px;
+            padding: clamp(24px, 3vw, 36px);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .aps-panel h2 {
+            margin: 0 0 20px;
+            color: var(--aps-ink);
+        }
+
+        .aps-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .aps-panel-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .aps-category-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .aps-category-btn {
+            border: 1px solid var(--aps-border);
+            background: rgba(148, 163, 184, 0.16);
+            border-radius: 16px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--aps-ink);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .aps-category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(37, 99, 235, 0.12);
+        }
+
+        .aps-category-btn.selected {
+            background: var(--aps-primary);
+            color: white;
+            border-color: transparent;
+        }
+
+        .aps-blend-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .aps-blend-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .aps-blend-option input {
+            cursor: pointer;
+        }
+
+        .aps-word-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .aps-summary-chip {
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .aps-summary-chip.noun {
+            background: var(--aps-noun);
+        }
+
+        .aps-summary-chip.verb {
+            background: var(--aps-verb);
+        }
+
+        .aps-summary-chip.adjective {
+            background: var(--aps-adjective);
+        }
+
+        .aps-summary-note {
+            margin: 0;
+            color: var(--aps-muted);
+        }
+
+        .aps-start-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .aps-primary-btn {
+            background: var(--aps-primary);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            padding: 14px 26px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .aps-primary-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.28);
+        }
+
+        .aps-primary-btn:disabled {
+            background: rgba(148, 163, 184, 0.6);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .aps-secondary-btn,
+        .aps-tertiary-btn {
+            border-radius: 999px;
+            padding: 12px 22px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--aps-border);
+            background: white;
+            transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .aps-secondary-btn:hover,
+        .aps-tertiary-btn:hover {
+            background: rgba(148, 163, 184, 0.12);
+        }
+
+        .aps-tertiary-btn {
+            padding: 10px 20px;
+            font-size: 15px;
+        }
+
+        .aps-warning {
+            margin: 0;
+            color: #b45309;
+            font-weight: 600;
+        }
+
+        .aps-blank-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .aps-blank {
+            width: min(420px, 80vw);
+            height: 120px;
+            border-radius: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(22px, 2.6vw, 30px);
+            font-weight: 700;
+            color: white;
+            box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.25);
+        }
+
+        .aps-blank.noun {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        }
+
+        .aps-blank.verb {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+
+        .aps-blank.adjective {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+        }
+
+        .aps-blank-label {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .aps-instruction {
+            margin: 0;
+            color: var(--aps-muted);
+            font-size: 17px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .aps-word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .aps-word-btn {
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .aps-word-btn.noun {
+            background: var(--aps-noun);
+        }
+
+        .aps-word-btn.verb {
+            background: var(--aps-verb);
+        }
+
+        .aps-word-btn.adjective {
+            background: var(--aps-adjective);
+        }
+
+        .aps-word-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+        }
+
+        .aps-sentence-card {
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.18);
+            border-radius: 20px;
+            padding: 24px;
+            font-size: 20px;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .aps-sentence-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .aps-footer {
+            padding: 24px clamp(16px, 4vw, 48px) 40px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .aps-history-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .aps-history-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            background: rgba(148, 163, 184, 0.12);
+            border-radius: 16px;
+            padding: 12px 16px;
+        }
+
+        .aps-history-index {
+            font-weight: 700;
+            color: var(--aps-muted);
+        }
+
+        .aps-history-tag {
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .aps-history-tag.noun {
+            background: var(--aps-noun);
+        }
+
+        .aps-history-tag.verb {
+            background: var(--aps-verb);
+        }
+
+        .aps-history-tag.adjective {
+            background: var(--aps-adjective);
+        }
+
+        .aps-word-groups {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .aps-word-group {
+            background: rgba(148, 163, 184, 0.12);
+            border: 1px solid var(--aps-border);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .aps-word-group h3 {
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: var(--aps-ink);
+        }
+
+        .aps-word-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .aps-word-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--aps-muted);
+            background: rgba(148, 163, 184, 0.18);
+            border-radius: 12px;
+            padding: 8px 12px;
+        }
+
+        .aps-word-pos {
+            font-weight: 600;
+            color: var(--aps-ink);
+        }
+
+        @media (max-width: 640px) {
+            .aps-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .aps-word-bank {
+                flex-direction: column;
+            }
+
+            .aps-sentence-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // Data
+        const articulationWordData = {};
+
+        const dynamicWordSources = [
+            {
+                id: 'sBlends',
+                name: 'S-Blends',
+                file: 'resources/word-lists/articulation-s-blends.json'
+            },
+            {
+                id: 'rBlends',
+                name: 'R-Blends',
+                file: 'resources/word-lists/articulation-r-blends.json'
+            },
+            {
+                id: 'initialR',
+                name: 'Initial /r/',
+                file: 'resources/word-lists/articulation-initial-r.json'
+            },
+            {
+                id: 'lBlends',
+                name: 'L-Blends',
+                file: 'resources/word-lists/articulation-l-blends.json'
+            },
+            {
+                id: 'otherSounds',
+                name: 'Other Sounds (/k/, /g/, /sh/, /f/, /l/, /s/)',
+                file: 'resources/word-lists/articulation-other-sounds.json'
+            },
+            {
+                id: 'sSound',
+                name: '/s/ Sound (All Positions)',
+                file: 'resources/word-lists/s-all-positions.json'
+            },
+            {
+                id: 'shSound',
+                name: '"Sh" Sound (All Positions)',
+                file: 'resources/word-lists/sh-all-positions.json'
+            }
+        ];
+
+        const baseCategoryOrder = dynamicWordSources.map((source) => source.id);
+        const categoryOrder = [...baseCategoryOrder];
+
+        const articulationSentenceTemplates = [
+            { id: 1, page: 1, template: 'The boy saw a big', blank: { pos: 'noun' }, ending: 'in the yard.' },
+            { id: 2, page: 1, template: 'I like to', blank: { pos: 'verb' }, ending: 'at the park.' },
+            { id: 3, page: 1, template: 'The', blank: { pos: 'adjective' }, ending: 'cat sat on the mat.' },
+            { id: 4, page: 1, template: 'Mom put the', blank: { pos: 'noun' }, ending: 'on the table.' },
+            { id: 5, page: 1, template: 'Can you', blank: { pos: 'verb' }, ending: 'very fast?' },
+            { id: 6, page: 1, template: 'I found a', blank: { pos: 'adjective' }, ending: 'rock by the river.' },
+            { id: 7, page: 1, template: 'The dog wanted to', blank: { pos: 'verb' }, ending: 'all day long.' },
+            { id: 8, page: 1, template: 'We went to the', blank: { pos: 'noun' }, ending: 'to buy some candy.' },
+            { id: 9, page: 1, template: 'My dad is very', blank: { pos: 'adjective' }, ending: 'and helps me lift things.' },
+            { id: 10, page: 1, template: 'Look at the', blank: { pos: 'noun' }, ending: 'crawling on the wall!' },
+            { id: 11, page: 2, template: 'She found a', blank: { pos: 'adjective' }, ending: 'toy in the box.' },
+            { id: 12, page: 2, template: 'We need to', blank: { pos: 'verb' }, ending: 'before we go.' },
+            { id: 13, page: 2, template: 'The', blank: { pos: 'noun' }, ending: 'made a lot of noise.' },
+            { id: 14, page: 2, template: 'That was a', blank: { pos: 'adjective' }, ending: 'story you told us.' },
+            { id: 15, page: 2, template: 'Please', blank: { pos: 'verb' }, ending: 'to what I say.' },
+            { id: 16, page: 2, template: 'I saw a colorful', blank: { pos: 'noun' }, ending: 'flying in the sky.' },
+            { id: 17, page: 2, template: 'He likes to', blank: { pos: 'verb' }, ending: 'with his friends.' },
+            { id: 18, page: 2, template: 'The teacher gave us a', blank: { pos: 'adjective' }, ending: 'book to read.' },
+            { id: 19, page: 2, template: 'My sister dropped her', blank: { pos: 'noun' }, ending: 'on the floor.' },
+            { id: 20, page: 2, template: 'They want to', blank: { pos: 'verb' }, ending: 'something new today.' }
+        ];
+
+        const POS_LABELS = {
+            noun: 'Noun',
+            verb: 'Verb',
+            adjective: 'Adjective'
+        };
+
+        const POS_EMOJI = {
+            noun: '🔵',
+            verb: '🟢',
+            adjective: '🟣'
+        };
+
+        // State
+        let state = {
+            showSetup: true,
+            selectedCategory: null,
+            selectedBlends: [],
+            deck: [],
+            currentIndex: 0,
+            stage: 'prompt', // 'prompt', 'sentence', 'complete'
+            selectedWord: null,
+            sessionHistory: [],
+            loadingWordLists: false,
+            loadErrors: []
+        };
+
+        // Helper functions
+        function shuffleArray(array) {
+            const copy = [...array];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function getPosColorClass(pos) {
+            switch (pos) {
+                case 'noun': return 'noun';
+                case 'verb': return 'verb';
+                case 'adjective': return 'adjective';
+                default: return 'neutral';
+            }
+        }
+
+        function formatBlendLabel(blendKey) {
+            if (!blendKey) return '';
+            if (blendKey.length <= 3) {
+                return blendKey.toUpperCase();
+            }
+            return blendKey.charAt(0).toUpperCase() + blendKey.slice(1);
+        }
+
+        function getAvailableWords() {
+            if (!state.selectedCategory || state.selectedBlends.length === 0) return [];
+
+            const categoryData = articulationWordData[state.selectedCategory];
+            return state.selectedBlends.flatMap((blend) => {
+                const words = categoryData.blends[blend] || [];
+                return words.map((word, index) => ({
+                    ...word,
+                    id: `${blend}-${index}-${word.text}`
+                }));
+            });
+        }
+
+        function getWordsByPos() {
+            const words = getAvailableWords();
+            return words.reduce(
+                (acc, word) => {
+                    if (!acc[word.pos]) {
+                        acc[word.pos] = [];
+                    }
+                    acc[word.pos].push(word);
+                    return acc;
+                },
+                { noun: [], verb: [], adjective: [] }
+            );
+        }
+
+        function buildSentence(sentence, word) {
+            const start = sentence.template.trim();
+            const inserted = word.text;
+            const ending = sentence.ending.trim();
+            return `${start} ${inserted} ${ending}`.replace(/\s+/g, ' ').trim();
+        }
+
+        function normalizeWordEntry(entry) {
+            if (typeof entry === 'string') {
+                return { text: entry, pos: 'noun' };
+            }
+
+            if (!entry || !entry.text) {
+                return null;
+            }
+
+            const allowedPos = ['noun', 'verb', 'adjective'];
+            const normalizedPos = (entry.pos || 'noun').toLowerCase();
+            return {
+                text: entry.text,
+                pos: allowedPos.includes(normalizedPos) ? normalizedPos : 'noun'
+            };
+        }
+
+        function transformWordListToBlends(wordList) {
+            if (!wordList) {
+                return {};
+            }
+
+            const processedBlends = {};
+
+            if (wordList.blends && typeof wordList.blends === 'object') {
+                Object.entries(wordList.blends).forEach(([blendKey, entries]) => {
+                    const words = Array.isArray(entries) ? entries : [];
+                    const normalized = words.map(normalizeWordEntry).filter(Boolean);
+                    if (normalized.length > 0) {
+                        processedBlends[blendKey] = normalized;
+                    }
+                });
+                return processedBlends;
+            }
+
+            const positions = wordList.positions && typeof wordList.positions === 'object'
+                ? wordList.positions
+                : {};
+
+            Object.entries(positions).forEach(([positionKey, entries]) => {
+                const words = Array.isArray(entries) ? entries : [];
+                const normalized = words.map(normalizeWordEntry).filter(Boolean);
+                if (normalized.length > 0) {
+                    processedBlends[positionKey] = normalized;
+                }
+            });
+
+            return processedBlends;
+        }
+
+        function registerDynamicCategory(id, name, blends) {
+            if (!blends || Object.keys(blends).length === 0) {
+                return;
+            }
+
+            articulationWordData[id] = {
+                name,
+                blends
+            };
+
+            if (!categoryOrder.includes(id)) {
+                categoryOrder.push(id);
+            }
+        }
+
+        async function loadExternalWordLists() {
+            state.loadingWordLists = true;
+            render();
+
+            dynamicWordSources.forEach((source) => {
+                if (articulationWordData[source.id]) {
+                    delete articulationWordData[source.id];
+                }
+            });
+            categoryOrder.length = 0;
+            categoryOrder.push(...baseCategoryOrder);
+
+            const results = await Promise.allSettled(
+                dynamicWordSources.map(async (source) => {
+                    try {
+                        const response = await fetch(source.file, { cache: 'no-store' });
+                        if (!response.ok) {
+                            throw new Error(`status ${response.status}`);
+                        }
+                        const data = await response.json();
+                        return { source, data };
+                    } catch (err) {
+                        const listLabel = source.name || source.file;
+                        const reason = err?.message ? err.message : 'unknown error';
+                        throw new Error(`Could not load ${listLabel}: ${reason}`);
+                    }
+                })
+            );
+
+            const errors = [];
+
+            results.forEach((result) => {
+                if (result.status === 'fulfilled') {
+                    const { source, data } = result.value;
+                    const categoryId = source.id || data.id;
+                    const categoryName = source.name || data.name || data.description || 'Custom Word List';
+                    const blends = transformWordListToBlends(data);
+                    registerDynamicCategory(categoryId, categoryName, blends);
+                } else {
+                    errors.push(result.reason?.message || String(result.reason));
+                }
+            });
+
+            state.loadingWordLists = false;
+            state.loadErrors = errors;
+
+            // If the currently selected category was removed or isn't present, reset selection.
+            if (state.selectedCategory && !articulationWordData[state.selectedCategory]) {
+                state.selectedCategory = null;
+                state.selectedBlends = [];
+            }
+
+            render();
+        }
+
+        // Event handlers
+        function handleCategorySelect(category) {
+            if (!articulationWordData[category]) {
+                return;
+            }
+            state.selectedCategory = category;
+            state.selectedBlends = [];
+            render();
+        }
+
+        function handleBlendToggle(blend) {
+            if (state.selectedBlends.includes(blend)) {
+                state.selectedBlends = state.selectedBlends.filter(item => item !== blend);
+            } else {
+                state.selectedBlends.push(blend);
+            }
+            render();
+        }
+
+        function handleSelectAll() {
+            if (!state.selectedCategory) return;
+            state.selectedBlends = Object.keys(articulationWordData[state.selectedCategory].blends);
+            render();
+        }
+
+        function handleClearAll() {
+            state.selectedBlends = [];
+            render();
+        }
+
+        function startSession() {
+            if (!state.selectedCategory || state.selectedBlends.length === 0) return;
+
+            const wordsByPos = getWordsByPos();
+            const eligibleSentences = articulationSentenceTemplates.filter(
+                (sentence) => (wordsByPos[sentence.blank.pos] || []).length > 0
+            );
+
+            if (eligibleSentences.length === 0) return;
+
+            const randomized = shuffleArray(eligibleSentences).slice(0, Math.max(20, eligibleSentences.length));
+
+            state.deck = randomized;
+            state.currentIndex = 0;
+            state.stage = 'prompt';
+            state.selectedWord = null;
+            state.sessionHistory = [];
+            state.showSetup = false;
+            render();
+        }
+
+        function handleWordSelect(word) {
+            state.selectedWord = word;
+            state.stage = 'sentence';
+            render();
+        }
+
+        function handleRechoose() {
+            state.selectedWord = null;
+            state.stage = 'prompt';
+            render();
+        }
+
+        function handleNextSentence() {
+            const currentSentence = state.deck[state.currentIndex];
+            if (!currentSentence || !state.selectedWord) return;
+
+            state.sessionHistory.push({
+                sentenceId: currentSentence.id,
+                word: state.selectedWord,
+                sentence: buildSentence(currentSentence, state.selectedWord)
+            });
+
+            if (state.currentIndex === state.deck.length - 1) {
+                state.stage = 'complete';
+                render();
+                return;
+            }
+
+            state.currentIndex++;
+            state.selectedWord = null;
+            state.stage = 'prompt';
+            render();
+        }
+
+        function resetSession() {
+            state.showSetup = true;
+            state.deck = [];
+            state.currentIndex = 0;
+            state.stage = 'prompt';
+            state.selectedWord = null;
+            state.sessionHistory = [];
+            render();
+        }
+
+        // Render functions
+        function renderSetup() {
+            const categoryData = state.selectedCategory ? articulationWordData[state.selectedCategory] : null;
+            const wordsByPos = getWordsByPos();
+            const availableWords = getAvailableWords();
+            const categoryButtonsHtml = categoryOrder
+                .filter((categoryId) => articulationWordData[categoryId])
+                .map((categoryId) => {
+                    const categoryInfo = articulationWordData[categoryId];
+                    const label = categoryInfo?.name || categoryId;
+                    return `
+                        <button
+                            type="button"
+                            class="aps-category-btn ${state.selectedCategory === categoryId ? 'selected' : ''}"
+                            onclick="handleCategorySelect('${categoryId}')"
+                        >
+                            ${label}
+                        </button>
+                    `;
+                })
+                .join('');
+
+            const categoryButtonsContent = categoryButtonsHtml
+                ? categoryButtonsHtml
+                : (!state.loadingWordLists
+                    ? '<p class="aps-warning">No categories available. Please reload the page.</p>'
+                    : '');
+
+            const blendGroupsHtml = categoryData
+                ? Object.entries(categoryData.blends || {})
+                    .map(([blendKey, entries]) => {
+                        const words = Array.isArray(entries) ? entries : [];
+                        if (words.length === 0) {
+                            return '';
+                        }
+                        const wordsHtml = words
+                            .map((word) => {
+                                const label = POS_LABELS[word.pos] || (word.pos ? word.pos.toUpperCase() : '');
+                                return `
+                                    <li>
+                                        <span>${word.text}</span>
+                                        ${label ? `<span class="aps-word-pos">${label}</span>` : ''}
+                                    </li>
+                                `;
+                            })
+                            .join('');
+                        return `
+                            <div class="aps-word-group">
+                                <h3>${formatBlendLabel(blendKey)}</h3>
+                                <ul class="aps-word-list">
+                                    ${wordsHtml}
+                                </ul>
+                            </div>
+                        `;
+                    })
+                    .filter(Boolean)
+                    .join('')
+                : '';
+
+            const loadingMessage = state.loadingWordLists
+                ? '<p class="aps-warning" style="text-align:center;">Loading word lists…</p>'
+                : '';
+
+            const errorMessage = state.loadErrors.length > 0
+                ? `<div class="aps-warning" style="text-align:center; margin-top: 12px;">
+                        ${state.loadErrors.map(err => `⚠️ ${err}`).join('<br>')}
+                   </div>`
+                : '';
+
+            return `
+                <div class="aps-container">
+                    <header class="aps-header">
+                        <div>
+                            <h1>🗣️ Articulation Practice - Sequential Builder</h1>
+                            <p>Choose target blends to build a randomized practice deck with more than 20 sentences.</p>
+                        </div>
+                    </header>
+
+                    <main class="aps-main">
+                        <section class="aps-panel">
+                            <h2>Select Target Category</h2>
+                            <div class="aps-category-buttons">
+                                ${categoryButtonsContent}
+                            </div>
+                            ${loadingMessage}
+                            ${errorMessage}
+                        </section>
+
+                        ${categoryData ? `
+                            <section class="aps-panel">
+                                <div class="aps-panel-header">
+                                    <h2>Select Specific Blends</h2>
+                                    <div class="aps-panel-actions">
+                                        <button type="button" class="aps-secondary-btn" onclick="handleSelectAll()">
+                                            Select All ${categoryData.name}
+                                        </button>
+                                        <button type="button" class="aps-tertiary-btn" onclick="handleClearAll()">
+                                            Clear
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="aps-blend-list">
+                                    ${Object.keys(categoryData.blends).map(blend => `
+                                        <label class="aps-blend-option">
+                                            <input
+                                                type="checkbox"
+                                                ${state.selectedBlends.includes(blend) ? 'checked' : ''}
+                                                onchange="handleBlendToggle('${blend}')"
+                                            />
+                                            <span>${blend.toUpperCase()}</span>
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            </section>
+                        ` : ''}
+
+                        ${categoryData && blendGroupsHtml ? `
+                            <section class="aps-panel">
+                                <h2>Words in ${categoryData.name}</h2>
+                                <div class="aps-word-groups">
+                                    ${blendGroupsHtml}
+                                </div>
+                            </section>
+                        ` : ''}
+
+                        ${state.selectedBlends.length > 0 ? `
+                            <section class="aps-panel">
+                                <h2>Available Words</h2>
+                                <div class="aps-word-summary">
+                                    <div class="aps-summary-chip noun">
+                                        🔵 Nouns: ${wordsByPos.noun.length}
+                                    </div>
+                                    <div class="aps-summary-chip verb">
+                                        🟢 Verbs: ${wordsByPos.verb.length}
+                                    </div>
+                                    <div class="aps-summary-chip adjective">
+                                        🟣 Adjectives: ${wordsByPos.adjective.length}
+                                    </div>
+                                </div>
+                                <p class="aps-summary-note">
+                                    We'll include sentences that match the available word types so every prompt has a valid option.
+                                </p>
+                            </section>
+                        ` : ''}
+
+                        <section class="aps-panel aps-start-panel">
+                            <button
+                                type="button"
+                                class="aps-primary-btn"
+                                onclick="startSession()"
+                                ${state.selectedBlends.length === 0 || availableWords.length === 0 ? 'disabled' : ''}
+                            >
+                                Start Practice
+                            </button>
+                            ${state.selectedBlends.length > 0 && availableWords.length === 0 ? `
+                                <p class="aps-warning">Add blends that include nouns, verbs, or adjectives to continue.</p>
+                            ` : ''}
+                        </section>
+                    </main>
+                </div>
+            `;
+        }
+
+        function renderPractice() {
+            const currentSentence = state.deck[state.currentIndex];
+            const wordsByPos = getWordsByPos();
+
+            if (state.stage === 'complete') {
+                return `
+                    <div class="aps-container">
+                        <header class="aps-header">
+                            <div>
+                                <h1>🎉 Articulation Session Complete</h1>
+                                <p>Review the sentences you practiced or jump back to set up a new set.</p>
+                            </div>
+                        </header>
+                        <main class="aps-main">
+                            <section class="aps-panel">
+                                <h2>Practiced Sentences</h2>
+                                <ul class="aps-history-list">
+                                    ${state.sessionHistory.map((entry, index) => `
+                                        <li class="aps-history-item">
+                                            <span class="aps-history-index">${index + 1}.</span>
+                                            <span>${entry.sentence}</span>
+                                            <span class="aps-history-tag ${getPosColorClass(entry.word.pos)}">
+                                                ${POS_EMOJI[entry.word.pos]} ${entry.word.text}
+                                            </span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </section>
+                            <section class="aps-panel aps-start-panel">
+                                <button type="button" class="aps-primary-btn" onclick="resetSession()">
+                                    Build a New Deck
+                                </button>
+                            </section>
+                        </main>
+                    </div>
+                `;
+            }
+
+            if (!currentSentence) {
+                return `
+                    <div class="aps-container">
+                        <main class="aps-main">
+                            <section class="aps-panel">
+                                <p>Please restart the activity to begin.</p>
+                                <button type="button" class="aps-primary-btn" onclick="resetSession()">
+                                    Back to Setup
+                                </button>
+                            </section>
+                        </main>
+                    </div>
+                `;
+            }
+
+            const totalSentences = state.deck.length;
+            const progress = `${state.currentIndex + 1} / ${totalSentences}`;
+            const sentencePos = currentSentence.blank.pos;
+            const currentWords = wordsByPos[sentencePos] || [];
+
+            return `
+                <div class="aps-container">
+                    <header class="aps-header">
+                        <div>
+                            <h1>🗣️ Articulation Practice - Sequential Builder</h1>
+                            <p>Match the highlighted word type, reveal the sentence, then practice it aloud before moving on.</p>
+                        </div>
+                        <div class="aps-progress-badge">${progress}</div>
+                    </header>
+
+                    <main class="aps-main">
+                        ${state.stage === 'prompt' ? `
+                            <section class="aps-panel">
+                                <div class="aps-blank-card">
+                                    <div class="aps-blank ${getPosColorClass(sentencePos)}">
+                                        <span class="aps-blank-label">
+                                            ${POS_EMOJI[sentencePos]} ${POS_LABELS[sentencePos]}
+                                        </span>
+                                    </div>
+                                    <p class="aps-instruction">
+                                        Pick a ${POS_LABELS[sentencePos]?.toLowerCase()} from the bank to reveal the sentence.
+                                    </p>
+                                </div>
+                            </section>
+
+                            <section class="aps-panel">
+                                <h2>Word Bank</h2>
+                                ${currentWords.length === 0 ? `
+                                    <p class="aps-warning">No words available. Return to setup and include blends with this word type.</p>
+                                ` : `
+                                    <div class="aps-word-bank">
+                                        ${currentWords.map(word => `
+                                            <button
+                                                type="button"
+                                                class="aps-word-btn ${getPosColorClass(word.pos)}"
+                                                onclick='handleWordSelect(${JSON.stringify(word)})'
+                                            >
+                                                ${word.text}
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                `}
+                            </section>
+                        ` : ''}
+
+                        ${state.stage === 'sentence' && state.selectedWord ? `
+                            <section class="aps-panel">
+                                <h2>Practice Sentence</h2>
+                                <div class="aps-sentence-card">
+                                    <p>${buildSentence(currentSentence, state.selectedWord)}</p>
+                                    <div class="aps-sentence-actions">
+                                        <button type="button" class="aps-tertiary-btn" onclick="handleRechoose()">
+                                            Pick a different word
+                                        </button>
+                                        <button type="button" class="aps-primary-btn" onclick="handleNextSentence()">
+                                            Next Sentence →
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                        ` : ''}
+                    </main>
+
+                    <footer class="aps-footer">
+                        <button type="button" class="aps-secondary-btn" onclick="resetSession()">
+                            Restart Setup
+                        </button>
+                    </footer>
+                </div>
+            `;
+        }
+
+        function render() {
+            const app = document.getElementById('app');
+            app.innerHTML = state.showSetup ? renderSetup() : renderPractice();
+        }
+
+        // Initial render
+        render();
+        loadExternalWordLists();
+    </script>
+</body>
+</html>

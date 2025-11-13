@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Short Stories & Predictions — Interactive Worksheet</title>
+<style>
+  :root {
+    --w: 1100px;
+    --accent: #7c3aed;
+    --bg: #f8fafc;
+    --ink: #0b1021;
+    --ok: #2e7d32;
+    --err: #c62828;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); margin: 0; }
+  header { background: white; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 5; }
+  .bar { max-width: var(--w); margin: 0 auto; padding: 12px 16px; display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; }
+  .bar h1 { font-size: 18px; margin: 0; }
+  .bar .controls button, .bar .controls label { margin-left: 6px; }
+  main { max-width: var(--w); margin: 18px auto 60px; padding: 0 16px; }
+  .slide {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 18px 20px; box-shadow: 0 2px 6px rgba(0,0,0,.04);
+    display: none;
+  }
+  .slide.active { display: block; }
+  h2 { margin: 6px 0 12px; font-size: 22px; }
+  p.lead { font-size: 16px; margin: 8px 0 14px; }
+  .nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; }
+  button {
+    border: 1px solid #cbd5e1; background: #f8fafc; padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 14px;
+  }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .choices { display: grid; gap: 8px; margin-top: 10px; }
+  .choice {
+    border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; background: #fbfdff;
+  }
+  .choice.correct.marked { border-color: var(--ok); background: #f0faf2; }
+  .choice.incorrect.marked { border-color: var(--err); background: #fff5f5; }
+  .feedback { font-size: 14px; margin-top: 8px; display: none; }
+  .feedback.show { display: block; }
+  .pager { text-align: center; margin: 10px 0 0; font-size: 14px; }
+  .toggle { font-size: 14px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+  .story { background: #fcfdff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; line-height: 1.45; }
+  .prediction-box { margin-top: 10px; }
+  textarea.pred { width: 100%; min-height: 70px; padding: 8px; font-size: 15px; }
+  .meta { font-size: 13px; color: var(--muted); }
+  .hc body, .hc .slide { background: #fff; color: #000 }
+  .hc .choice { background: #fff; }
+  @media print {
+    header, .nav, .pager, .toggle, #toggleAll { display: none; }
+    .slide { display: block !important; page-break-inside: avoid; margin-bottom: 12px; }
+    .choice { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <h1>Short Stories & Predictions — Interactive Worksheet</h1>
+      <div class="pager" id="pager">Slide 1 of 12</div>
+      <div class="controls">
+        <button id="checkAll" class="primary">Check all</button>
+        <button id="reset">Reset</button>
+        <button id="print">Print</button>
+        <label><input type="checkbox" id="toggleAll"> Show choices for all</label>
+        <label><input type="checkbox" id="contrast"> High contrast</label>
+      </div>
+    </div>
+  </header>
+
+  <main id="slides">
+    <!-- Slide 1 -->
+    <section class="slide active" data-type="info">
+      <h2>Predicting from a Short Story</h2>
+      <p class="lead">Read each short paragraph. Make a prediction about what will likely happen next or what a character will probably do. By default, choices are hidden so you can think independently first. You can reveal the 4 choices for any story (or all stories) and check your answer.</p>
+      <ul class="meta">
+        <li>Use the text box to type your prediction.</li>
+        <li>Click “Show choices for this story” if you want multiple-choice support.</li>
+        <li>Click “Check” to get feedback when choices are visible.</li>
+      </ul>
+      <div class="nav">
+        <span></span>
+        <button class="primary next">Start</button>
+      </div>
+    </section>
+
+    <!-- Slide 2: brief tip -->
+    <section class="slide" data-type="info">
+      <h2>Prediction Tips</h2>
+      <div class="story">
+        Look for clues: goals, problems, and cause-and-effect. Ask: “Given what I know, what is the most reasonable next step?”
+      </div>
+      <p class="meta">You can keep predictions short. One sentence is fine.</p>
+      <div class="nav">
+        <button class="prev">Previous</button>
+        <button class="primary next">Begin stories</button>
+      </div>
+    </section>
+  </main>
+
+<script>
+const stories = [
+  {
+    title: "Story 1",
+    text: "Maya stared at the dark clouds rolling over the soccer field as warm-up time ran out. She had left her rain jacket in the car because the morning was sunny, and now a stiff wind pushed the team flags flat against their poles. The referee glanced at the sky and called captains to midfield.",
+    question: "What is most likely to happen next?",
+    choices: [
+      "The referee delays or stops the game due to incoming rain.",
+      "The coach cancels the rest of the season immediately.",
+      "The sun returns and the temperature jumps to 95°F.",
+      "Maya leaves the field to take a nap on the bench."
+    ],
+    answer: 0
+  },
+  {
+    title: "Story 2",
+    text: "After two weeks of tinkering, Luis finally tightened the last bolt on his skateboard. He placed the old, cracked wheel next to a brand-new set he had just installed. With a helmet buckled and elbow pads on, he rolled the board a few inches and listened carefully.",
+    question: "What will Luis most likely do next?",
+    choices: [
+      "Hide the skateboard under his bed and forget about it.",
+      "Test the board in the driveway to see if it rides smoothly.",
+      "Sell the board without trying it once.",
+      "Remove the new wheels to put the old ones back on."
+    ],
+    answer: 1
+  },
+  {
+    title: "Story 3",
+    text: "In the school garden, Ms. Carter pointed to the tomato plants, their leaves drooping in the afternoon sun. The watering can was empty, and the hose lay coiled by the spigot. Jamal checked the soil with his finger and frowned—it was dry an inch down.",
+    question: "What will probably happen next?",
+    choices: [
+      "Jamal waters the tomato plants using the hose.",
+      "Jamal uproots the plants and throws them away.",
+      "Ms. Carter locks the garden and bans everyone for a month.",
+      "The class paints the leaves to make them look greener."
+    ],
+    answer: 0
+  },
+  {
+    title: "Story 4",
+    text: "Tasha slid her violin case onto the chair and opened the music folder. A sticky note from her teacher read, “Focus on measures 12–16.” She had stumbled there in rehearsal, rushing the tempo whenever the melody climbed.",
+    question: "What is Tasha most likely to do next?",
+    choices: [
+      "Practice measures 12–16 slowly with a metronome.",
+      "Throw away the violin and take up the tuba tonight.",
+      "Skip to the last page because it looks easier.",
+      "Turn off the lights and go to sleep immediately."
+    ],
+    answer: 0
+  },
+  {
+    title: "Story 5",
+    text: "During the science fair, Priya’s volcano model sat on the table with a funnel, baking soda, and a bottle of vinegar. A crowd gathered as the judge approached, clipboard in hand. Priya checked the time on her phone and took a steady breath.",
+    question: "What will likely happen next?",
+    choices: [
+      "Priya combines the ingredients to demonstrate the eruption.",
+      "Priya cancels the experiment and switches to astronomy.",
+      "The judge takes the volcano home as a souvenir.",
+      "The crowd silently leaves without watching."
+    ],
+    answer: 0
+  },
+  {
+    title: "Story 6",
+    text: "Owen reread the final line of his email to the principal. He had corrected the grammar twice and confirmed the meeting time with his teacher. The cursor hovered over the “Send” button.",
+    question: "What is Owen most likely to do next?",
+    choices: [
+      "Click “Send” to confirm the meeting officially.",
+      "Delete the email and throw away his computer.",
+      "Mail a handwritten letter instead of using email.",
+      "Change the meeting to last year’s date."
+    ],
+    answer: 0
+  },
+  {
+    title: "Story 7",
+    text: "The bus lurched to a stop outside the museum. Ms. Rivera lifted a paper bag with nametags and divided the class into groups. Theo unfolded the map he printed the night before with a list of exhibits he didn’t want to miss.",
+    question: "What will probably happen next?",
+    choices: [
+      "The class enters the museum and begins the tour.",
+      "The bus drives to a different state by accident.",
+      "Theo burns the map and refuses to go inside.",
+      "Ms. Rivera cancels the field trip permanently."
+    ],
+    answer: 0
+  },
+  {
+    title: "Story 8",
+    text: "At the library, Noor stacked three books about marine animals on the counter. The librarian scanned each one and slid a due-date receipt across. Noor glanced at the poster about the underwater photography exhibit next week.",
+    question: "What is Noor most likely to do next?",
+    choices: [
+      "Check out the books and plan to return for the exhibit.",
+      "Throw the books in the trash before leaving.",
+      "Go home and delete her library card.",
+      "Demand to borrow the entire library for a year."
+    ],
+    answer: 0
+  },
+  {
+    title: "Story 9",
+    text: "During basketball practice, Kai missed three free throws in a row. Coach Patel walked over, placed a cone at the line, and reminded Kai to bend his knees and follow through. Kai nodded and took a slow breath.",
+    question: "What will likely happen next?",
+    choices: [
+      "Kai adjusts his form and takes another free throw.",
+      "Kai quits the team and sells his shoes on the spot.",
+      "Coach Patel cancels all future practices.",
+      "The hoop disappears into thin air."
+    ],
+    answer: 0
+  },
+  {
+    title: "Story 10",
+    text: "Grandma set a mixing bowl on the counter and handed Erin a wooden spoon. Flour dusted the cookbook page where the chocolate chip recipe was open. Erin cracked an egg and watched the yolk slide into the bowl.",
+    question: "What is the most reasonable prediction?",
+    choices: [
+      "They will mix the ingredients and bake cookies.",
+      "They will decide to build a birdhouse instead.",
+      "They will throw the batter away untouched.",
+      "They will freeze the cookbook for later."
+    ],
+    answer: 0
+  }
+];
+
+const slidesEl = document.getElementById('slides');
+
+function makeChoice(name, idx, label) {
+  const wrap = document.createElement('label');
+  wrap.className = 'choice';
+  wrap.innerHTML = `<input type="radio" name="${name}" value="${idx}" style="margin-right:8px"> ${String.fromCharCode(97+idx)}) ${label}`;
+  return wrap;
+}
+
+function buildStorySlides() {
+  stories.forEach((q, i) => {
+    const s = document.createElement('section');
+    s.className = 'slide';
+    s.dataset.type = 'q';
+    s.dataset.index = i;
+    const name = `q${i}`;
+
+    s.innerHTML = `
+      <h2>${q.title}</h2>
+      <div class="story">${q.text}</div>
+      <p class="meta" style="margin-top:8px;">Prompt: ${q.question}</p>
+
+      <div class="prediction-box">
+        <label class="meta" for="pred_${i}">Your prediction (free response):</label>
+        <textarea id="pred_${i}" class="pred" placeholder="Write one or two sentences predicting what happens next..."></textarea>
+      </div>
+
+      <div style="margin-top:8px;">
+        <label class="toggle"><input type="checkbox" id="reveal_${i}"> Show choices for this story</label>
+      </div>
+
+      <div class="choices" id="choices_${i}" style="display:none;"></div>
+      <div class="feedback" id="fb_${i}"></div>
+
+      <div class="nav">
+        <button class="prev">Previous</button>
+        <div>
+          <button class="checkOne" data-i="${i}">Check</button>
+          <button class="primary next">Next</button>
+        </div>
+      </div>
+    `;
+
+    // Build choices
+    const choices = s.querySelector(`#choices_${i}`);
+    q.choices.forEach((c, j) => choices.appendChild(makeChoice(name, j, c)));
+
+    // Reveal toggle (default hidden)
+    const reveal = s.querySelector(`#reveal_${i}`);
+    reveal.addEventListener('change', (e)=>{
+      choices.style.display = e.target.checked ? 'grid' : 'none';
+      // clear feedback if hiding choices
+      if (!e.target.checked) {
+        s.querySelectorAll('.choice').forEach(c => c.classList.remove('marked','correct','incorrect'));
+        const r = s.querySelector(`input[name="${name}"]:checked`);
+        if (r) r.checked = false;
+        const fb = s.querySelector(`#fb_${i}`);
+        fb.classList.remove('show');
+        fb.textContent = "";
+      }
+    });
+
+    // Check one
+    s.querySelector('.checkOne').addEventListener('click', () => gradeOne(i));
+
+    slidesEl.appendChild(s);
+  });
+}
+buildStorySlides();
+
+// navigation
+let cur = 0;
+const slides = () => Array.from(document.querySelectorAll('.slide'));
+function show(n) {
+  const list = slides();
+  cur = Math.max(0, Math.min(n, list.length - 1));
+  list.forEach((el, i) => el.classList.toggle('active', i === cur));
+  document.getElementById('pager').textContent = `Slide ${cur + 1} of ${list.length}`;
+}
+slidesEl.addEventListener('click', (e) => {
+  if (e.target.classList.contains('next')) show(cur + 1);
+  if (e.target.classList.contains('prev')) show(cur - 1);
+});
+
+// grading
+function gradeOne(i) {
+  const q = stories[i];
+  const name = `q${i}`;
+  const reveal = document.getElementById(`reveal_${i}`);
+  const fb = document.getElementById(`fb_${i}`);
+  const choiceBoxes = document.querySelectorAll(`#choices_${i} .choice`);
+
+  // Only grade if choices are revealed
+  if (!reveal.checked) {
+    fb.textContent = "Reveal choices to check a multiple-choice answer. Your free-response prediction isn't auto-graded.";
+    fb.className = "feedback show";
+    return;
+  }
+
+  const sel = document.querySelector(`input[name="${name}"]:checked`);
+  choiceBoxes.forEach((box) => box.classList.remove('marked','correct','incorrect'));
+  if (!sel) {
+    fb.textContent = "Pick an answer, then click Check.";
+    fb.className = "feedback show";
+    return;
+  }
+  const ok = Number(sel.value) === q.answer;
+  sel.closest('.choice').classList.add('marked', ok ? 'correct' : 'incorrect');
+  fb.textContent = ok ? "Correct" : `Not quite - correct answer is ${(String.fromCharCode(97 + q.answer))}) ${q.choices[q.answer]}`;
+  fb.className = "feedback show";
+}
+
+function gradeAll() {
+  let correct = 0;
+  let total = 0;
+  stories.forEach((_, i) => {
+    const reveal = document.getElementById(`reveal_${i}`);
+    if (!reveal.checked) return; // only count items using choices
+    total++;
+    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+    const boxes = document.querySelectorAll(`#choices_${i} .choice`);
+    boxes.forEach((box, idx) => {
+      box.classList.remove('marked','correct','incorrect');
+      if (sel && Number(sel.value) === idx) {
+        box.classList.add('marked', idx === stories[i].answer ? 'correct' : 'incorrect');
+      }
+    });
+    const fb = document.getElementById(`fb_${i}`);
+    if (sel) {
+      const ok = Number(sel.value) === stories[i].answer;
+      if (ok) correct++;
+      fb.textContent = ok ? "Correct" : `Not quite - correct answer is ${(String.fromCharCode(97 + stories[i].answer))}) ${stories[i].choices[stories[i].answer]}`;
+      fb.className = "feedback show";
+    } else {
+      fb.textContent = "Unanswered (choices are shown)";
+      fb.className = "feedback show";
+    }
+  });
+  if (total === 0) {
+    alert("No stories have choices revealed. Reveal choices to compute a score, or keep using free-response only.");
+  } else {
+    alert(`Score (for stories with choices shown): ${correct} of ${total}`);
+  }
+}
+
+// header controls
+document.getElementById('checkAll').addEventListener('click', gradeAll);
+document.getElementById('reset').addEventListener('click', () => {
+  if (!confirm('Clear all predictions and answers?')) return;
+  document.querySelectorAll('textarea.pred').forEach(t => t.value = '');
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('.feedback').forEach(fb => fb.classList.remove('show'));
+  document.querySelectorAll('.choice').forEach(c => c.classList.remove('marked','correct','incorrect'));
+  document.querySelectorAll('[id^="reveal_"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('[id^="choices_"]').forEach(div => div.style.display = 'none');
+  document.getElementById('toggleAll').checked = false;
+  show(0);
+});
+document.getElementById('print').addEventListener('click', () => window.print());
+document.getElementById('contrast').addEventListener('change', (e)=>{
+  document.documentElement.classList.toggle('hc', e.target.checked);
+});
+
+// Global "show choices for all"
+document.getElementById('toggleAll').addEventListener('change', (e)=>{
+  const on = e.target.checked;
+  stories.forEach((_, i) => {
+    const cb = document.getElementById(`reveal_${i}`);
+    const box = document.getElementById(`choices_${i}`);
+    cb.checked = on;
+    box.style.display = on ? 'grid' : 'none';
+    if (!on) {
+      // clear per-story feedback when hiding
+      const fb = document.getElementById(`fb_${i}`);
+      fb.classList.remove('show'); fb.textContent = "";
+      document.querySelectorAll(`#choices_${i} .choice`).forEach(c => c.classList.remove('marked','correct','incorrect'));
+      const r = document.querySelector(`input[name="q${i}"]:checked`);
+      if (r) r.checked = false;
+    }
+  });
+});
+
+// init
+function initSlides(){
+  // Slides 1–2 already in HTML; add 10 story slides below them
+  const totalSlides = 2 + stories.length;
+  document.getElementById('pager').textContent = `Slide 1 of ${totalSlides}`;
+}
+initSlides();
+show(0);
+</script>
+</body>
+</html>

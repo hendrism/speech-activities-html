@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Builder - Elementary Level</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #4facfe;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .level-badge {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #00f2fe;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .instructions {
+            background: #e6f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #4facfe;
+            font-size: 16px;
+        }
+
+        .word-selector {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .word-selector label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #333;
+        }
+
+        .word-selector select {
+            font-size: 16px;
+            padding: 8px 15px;
+            border: 2px solid #4facfe;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .word-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .word-title {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .definition {
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.6;
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .definition strong {
+            color: #ffd93d;
+        }
+
+        .sentence-input-section {
+            margin: 30px 0;
+        }
+
+        .sentence-label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .sentence-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .sentence-textarea:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        }
+
+        .help-section {
+            margin-top: 20px;
+        }
+
+        .help-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .help-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .hint-btn {
+            background: #ffd93d;
+            color: #333;
+        }
+
+        .hint-btn:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+        }
+
+        .example-btn {
+            background: #6bcf7f;
+            color: white;
+        }
+
+        .example-btn:hover {
+            background: #7de68f;
+            transform: translateY(-2px);
+        }
+
+        .starter-btn {
+            background: #ff6b9d;
+            color: white;
+        }
+
+        .starter-btn:hover {
+            background: #ff85b0;
+            transform: translateY(-2px);
+        }
+
+        .help-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .help-content {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+            font-size: 16px;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hint-content {
+            background: #fff9e6;
+            border-left: 4px solid #ffd93d;
+        }
+
+        .example-content {
+            background: #e8f8ec;
+            border-left: 4px solid #6bcf7f;
+        }
+
+        .starter-content {
+            background: #ffe8f0;
+            border-left: 4px solid #ff6b9d;
+        }
+
+        .starter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .starter-option {
+            padding: 12px 15px;
+            background: white;
+            border: 2px solid #ff6b9d;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .starter-option:hover {
+            background: #ff6b9d;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .check-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 14px 40px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .check-btn:hover {
+            background: #00f2fe;
+            transform: translateY(-2px);
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+            font-size: 16px;
+        }
+
+        .feedback.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .feedback.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+
+        .feedback.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 30px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .reset-btn:hover {
+            background: #5a6268;
+        }
+
+        .progress-tracker {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Sentence Builder Activity</h1>
+
+        <div class="level-badge">
+            <span class="badge">Elementary Level</span>
+        </div>
+
+        <div class="instructions">
+            <strong>Instructions:</strong> Read the word and what it means. Then, write your own sentence using the word. Your sentence should show that you understand the word. Need help? Click the help buttons below!
+        </div>
+
+        <div class="progress-tracker">
+            <div class="progress-text">Progress: <span id="progressText">0 of 20 completed</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="word-selector">
+            <label for="wordSelect">Choose a word:</label>
+            <select id="wordSelect"></select>
+        </div>
+
+        <div class="word-card">
+            <div class="word-title" id="currentWord"></div>
+            <div class="definition" id="currentDefinition"></div>
+        </div>
+
+        <div class="sentence-input-section">
+            <label class="sentence-label" for="sentenceInput">
+                ✍️ Write your sentence using the word:
+            </label>
+            <textarea
+                id="sentenceInput"
+                class="sentence-textarea"
+                placeholder="Type your sentence here..."
+            ></textarea>
+
+            <div class="help-section">
+                <div class="help-buttons">
+                    <button class="help-btn hint-btn" onclick="toggleHelp('hint')">
+                        💡 Show Hint
+                    </button>
+                    <button class="help-btn example-btn" onclick="toggleHelp('example')">
+                        📖 Show Example
+                    </button>
+                    <button class="help-btn starter-btn" onclick="toggleHelp('starter')">
+                        🚀 Sentence Starters
+                    </button>
+                </div>
+
+                <div class="help-content hint-content" id="hintContent"></div>
+                <div class="help-content example-content" id="exampleContent"></div>
+                <div class="help-content starter-content" id="starterContent"></div>
+            </div>
+        </div>
+
+        <button class="check-btn" onclick="checkSentence()">✓ Submit Sentence</button>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="reset-btn" onclick="nextWord()">→ Next Word</button>
+    </div>
+
+    <script>
+        const words = [
+            {
+                word: "Curious",
+                definition: "Wanting to learn or know about something",
+                hint: "Think about when you ask lots of questions because you want to find out more.",
+                example: "I was curious about how birds fly, so I read a book about it.",
+                starters: [
+                    "I am curious about...",
+                    "She was curious when...",
+                    "Curious people like to...",
+                    "My friend is curious about..."
+                ]
+            },
+            {
+                word: "Brave",
+                definition: "Having courage; not being afraid to do something difficult or scary",
+                hint: "Think about someone who does something even though they might be scared.",
+                example: "The brave firefighter ran into the burning building to save the cat.",
+                starters: [
+                    "A brave person can...",
+                    "I felt brave when...",
+                    "She was brave because...",
+                    "The brave girl..."
+                ]
+            },
+            {
+                word: "Cheerful",
+                definition: "Happy and showing it; in a good mood",
+                hint: "Think about someone who is smiling and happy.",
+                example: "My cheerful friend always makes me laugh with her funny jokes.",
+                starters: [
+                    "The cheerful boy...",
+                    "I feel cheerful when...",
+                    "She was cheerful because...",
+                    "A cheerful person..."
+                ]
+            },
+            {
+                word: "Discover",
+                definition: "To find something for the first time",
+                hint: "Think about finding something new or learning something you didn't know before.",
+                example: "We were excited to discover a family of rabbits living in our backyard.",
+                starters: [
+                    "I discovered...",
+                    "We will discover...",
+                    "When I discover something...",
+                    "Scientists discover..."
+                ]
+            },
+            {
+                word: "Imagine",
+                definition: "To create pictures or ideas in your mind",
+                hint: "Think about using your brain to picture things that aren't real or aren't there.",
+                example: "I like to imagine that I am a superhero flying through the sky.",
+                starters: [
+                    "I imagine that...",
+                    "Can you imagine...",
+                    "She imagined...",
+                    "It's fun to imagine..."
+                ]
+            },
+            {
+                word: "Generous",
+                definition: "Willing to give and share with others",
+                hint: "Think about someone who likes to share their things and help others.",
+                example: "My generous neighbor gave me cookies she baked for my birthday.",
+                starters: [
+                    "A generous person...",
+                    "He was generous when...",
+                    "Being generous means...",
+                    "The generous teacher..."
+                ]
+            },
+            {
+                word: "Ordinary",
+                definition: "Normal or regular; nothing special",
+                hint: "Think about something that happens every day or is very common.",
+                example: "It was just an ordinary day at school until the surprise assembly.",
+                starters: [
+                    "An ordinary day includes...",
+                    "It was ordinary until...",
+                    "Ordinary things are...",
+                    "On an ordinary morning..."
+                ]
+            },
+            {
+                word: "Precious",
+                definition: "Very valuable or special; worth a lot",
+                hint: "Think about something you love a lot or treasure, like a special toy or photo.",
+                example: "The teddy bear my grandmother gave me is precious to me.",
+                starters: [
+                    "My most precious...",
+                    "The precious jewel...",
+                    "Something precious to me is...",
+                    "This is precious because..."
+                ]
+            },
+            {
+                word: "Careful",
+                definition: "Paying close attention to avoid mistakes or danger",
+                hint: "Think about being extra cautious when doing something important or tricky.",
+                example: "Be careful when crossing the street so you don't get hurt.",
+                starters: [
+                    "I am careful when...",
+                    "You should be careful...",
+                    "The careful student...",
+                    "Being careful helps..."
+                ]
+            },
+            {
+                word: "Ancient",
+                definition: "Very, very old; from a long time ago",
+                hint: "Think about things from thousands of years ago, like dinosaurs or pyramids.",
+                example: "We learned about ancient Egypt and the pyramids in history class.",
+                starters: [
+                    "Ancient people...",
+                    "The ancient castle...",
+                    "In ancient times...",
+                    "Ancient objects are..."
+                ]
+            },
+            {
+                word: "Enormous",
+                definition: "Extremely large or huge",
+                hint: "Think about something much bigger than normal, like a giant or whale.",
+                example: "The enormous elephant was the biggest animal I saw at the zoo.",
+                starters: [
+                    "The enormous...",
+                    "I saw an enormous...",
+                    "Something enormous is...",
+                    "An enormous wave..."
+                ]
+            },
+            {
+                word: "Delicious",
+                definition: "Tasting very good; yummy",
+                hint: "Think about your favorite food and how it tastes.",
+                example: "The delicious pizza had my favorite toppings: cheese and pepperoni.",
+                starters: [
+                    "The delicious...",
+                    "I think... is delicious because...",
+                    "A delicious meal...",
+                    "My mom made delicious..."
+                ]
+            },
+            {
+                word: "Grateful",
+                definition: "Feeling thankful for something",
+                hint: "Think about when someone does something nice for you and you want to say thank you.",
+                example: "I am grateful to my teacher for helping me learn to read better.",
+                starters: [
+                    "I am grateful for...",
+                    "She felt grateful when...",
+                    "Being grateful means...",
+                    "I'm grateful that..."
+                ]
+            },
+            {
+                word: "Cozy",
+                definition: "Warm, comfortable, and snug",
+                hint: "Think about being wrapped in a warm blanket on a cold day.",
+                example: "My cozy bed has soft blankets and fluffy pillows.",
+                starters: [
+                    "The cozy...",
+                    "I feel cozy when...",
+                    "A cozy place is...",
+                    "On cozy winter nights..."
+                ]
+            },
+            {
+                word: "Swift",
+                definition: "Moving very fast or quickly",
+                hint: "Think about things that move super fast, like a cheetah or race car.",
+                example: "The swift rabbit hopped quickly across the field to escape the fox.",
+                starters: [
+                    "The swift...",
+                    "Swift animals can...",
+                    "I was swift when...",
+                    "A swift runner..."
+                ]
+            },
+            {
+                word: "Gloomy",
+                definition: "Dark and sad; not bright or happy",
+                hint: "Think about a rainy, cloudy day when everything looks gray.",
+                example: "The gloomy weather made me want to stay inside and read a book.",
+                starters: [
+                    "The gloomy day...",
+                    "I felt gloomy when...",
+                    "Gloomy clouds...",
+                    "On gloomy mornings..."
+                ]
+            },
+            {
+                word: "Sturdy",
+                definition: "Strong and solid; hard to break",
+                hint: "Think about something built really well that won't fall apart easily.",
+                example: "My dad built a sturdy treehouse that can hold four kids safely.",
+                starters: [
+                    "The sturdy...",
+                    "A sturdy bridge...",
+                    "Sturdy things are...",
+                    "We need something sturdy to..."
+                ]
+            },
+            {
+                word: "Peaceful",
+                definition: "Calm and quiet; without fighting or noise",
+                hint: "Think about a quiet, relaxing place where everything is calm.",
+                example: "The peaceful park had birds singing and a gentle breeze blowing.",
+                starters: [
+                    "A peaceful place...",
+                    "I feel peaceful when...",
+                    "The peaceful afternoon...",
+                    "Peaceful means..."
+                ]
+            },
+            {
+                word: "Accomplish",
+                definition: "To finish or complete something successfully",
+                hint: "Think about finishing a hard task or reaching a goal.",
+                example: "I was proud to accomplish my goal of reading ten books this month.",
+                starters: [
+                    "I will accomplish...",
+                    "She accomplished...",
+                    "To accomplish this, I...",
+                    "People can accomplish..."
+                ]
+            },
+            {
+                word: "Confident",
+                definition: "Feeling sure about yourself and your abilities",
+                hint: "Think about believing in yourself and knowing you can do something.",
+                example: "After practicing for weeks, I felt confident about my piano recital.",
+                starters: [
+                    "I feel confident when...",
+                    "The confident speaker...",
+                    "Being confident helps...",
+                    "She was confident that..."
+                ]
+            }
+        ];
+
+        let currentWordIndex = 0;
+        let completedWords = new Set();
+
+        function loadWord(index) {
+            currentWordIndex = index;
+            const word = words[index];
+
+            document.getElementById('currentWord').textContent = word.word;
+            document.getElementById('currentDefinition').innerHTML = `<strong>What it means:</strong> ${word.definition}`;
+
+            // Load help content
+            document.getElementById('hintContent').innerHTML = `<strong>💡 Hint:</strong> ${word.hint}`;
+            document.getElementById('exampleContent').innerHTML = `<strong>📖 Example Sentence:</strong> ${word.example}`;
+
+            let startersHTML = '<strong>🚀 Choose a sentence starter:</strong><div class="starter-options">';
+            word.starters.forEach(starter => {
+                startersHTML += `<div class="starter-option" onclick="useStarter('${starter.replace(/'/g, "\\'")}')">${starter}</div>`;
+            });
+            startersHTML += '</div>';
+            document.getElementById('starterContent').innerHTML = startersHTML;
+
+            // Reset input and hide help
+            document.getElementById('sentenceInput').value = '';
+            hideAllHelp();
+            document.getElementById('feedback').style.display = 'none';
+
+            updateProgress();
+        }
+
+        function hideAllHelp() {
+            document.querySelectorAll('.help-content').forEach(el => el.style.display = 'none');
+        }
+
+        function toggleHelp(type) {
+            const contentId = type + 'Content';
+            const element = document.getElementById(contentId);
+
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+            } else {
+                hideAllHelp();
+                element.style.display = 'block';
+            }
+        }
+
+        function useStarter(starter) {
+            const textarea = document.getElementById('sentenceInput');
+            textarea.value = starter + ' ';
+            textarea.focus();
+            document.getElementById('starterContent').style.display = 'none';
+        }
+
+        function checkSentence() {
+            const sentence = document.getElementById('sentenceInput').value.trim();
+            const word = words[currentWordIndex].word.toLowerCase();
+            const feedback = document.getElementById('feedback');
+
+            if (!sentence) {
+                feedback.textContent = '⚠️ Please write a sentence before clicking submit.';
+                feedback.className = 'feedback warning';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            const sentenceLower = sentence.toLowerCase();
+            const containsWord = sentenceLower.includes(word);
+
+            if (!containsWord) {
+                feedback.textContent = `⚠️ Your sentence needs to have the word "${words[currentWordIndex].word}" in it. Try again!`;
+                feedback.className = 'feedback warning';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            const wordCount = sentence.split(/\s+/).length;
+            if (wordCount < 4) {
+                feedback.textContent = '⚠️ Try to write a longer sentence (at least 4 words).';
+                feedback.className = 'feedback info';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            const endsWithPunctuation = /[.!?]$/.test(sentence.trim());
+            if (!endsWithPunctuation) {
+                feedback.textContent = '💡 Good job! Remember to add a period, exclamation mark, or question mark at the end!';
+                feedback.className = 'feedback info';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            // Success!
+            completedWords.add(currentWordIndex);
+            feedback.textContent = `✅ Great work! Your sentence is perfect! "${sentence}"`;
+            feedback.className = 'feedback success';
+            feedback.style.display = 'block';
+
+            updateProgress();
+        }
+
+        function nextWord() {
+            const currentIndex = parseInt(document.getElementById('wordSelect').value);
+            const nextIndex = (currentIndex + 1) % words.length;
+            document.getElementById('wordSelect').value = nextIndex;
+            loadWord(nextIndex);
+        }
+
+        function updateProgress() {
+            const completed = completedWords.size;
+            const total = words.length;
+            const percentage = (completed / total) * 100;
+
+            document.getElementById('progressText').textContent = `${completed} of ${total} completed`;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        // Initialize word selector
+        const select = document.getElementById('wordSelect');
+        words.forEach((word, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${index + 1}. ${word.word}`;
+            select.appendChild(option);
+        });
+
+        // Event listener for word selection
+        select.addEventListener('change', function() {
+            loadWord(parseInt(this.value));
+        });
+
+        // Load first word
+        loadWord(0);
+    </script>
+</body>
+</html>

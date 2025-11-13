@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articulation Practice - Drag & Drop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .activity-header {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .activity-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .sound-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .header-controls button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .header-controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .icon-btn {
+            background: #667eea;
+            color: white;
+        }
+
+        .warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .setup-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .setup-container h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .setup-container h3 {
+            color: #333;
+            margin: 20px 0 15px;
+            font-size: 1.3em;
+        }
+
+        .category-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .category-btn {
+            padding: 20px;
+            border: 3px solid #ddd;
+            border-radius: 12px;
+            background: white;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .category-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .blend-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .select-all-btn, .deselect-all-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .select-all-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .deselect-all-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .blend-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .blend-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .blend-checkbox input {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .blend-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .blend-count {
+            color: #666;
+            font-size: 0.9em;
+            margin-left: 5px;
+        }
+
+        .start-section {
+            text-align: center;
+            padding: 30px;
+            background: #f0f4ff;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .selection-summary {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .start-btn {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2196F3;
+        }
+
+        .instructions p {
+            margin: 10px 0;
+            color: #1565c0;
+        }
+
+        .content-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .content-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .word-bank-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .word-bank-group {
+            margin-bottom: 20px;
+        }
+
+        .pos-header {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .pos-header.noun {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .pos-header.verb {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .pos-header.adjective {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            min-height: 50px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .word-card {
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: move;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .word-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .word-card.noun {
+            background: #2196F3;
+            color: white;
+        }
+
+        .word-card.verb {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .word-card.adjective {
+            background: #9c27b0;
+            color: white;
+        }
+
+        .empty-bank-message {
+            color: #999;
+            font-style: italic;
+            padding: 10px;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .page-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover {
+            background: #f0f4ff;
+        }
+
+        .page-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .sentence-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .sentences-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sentence-row {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sentence-row.current-sentence {
+            background: #fff9e6;
+            border: 3px solid #ffc107;
+        }
+
+        .sentence-row.dimmed {
+            opacity: 0.5;
+        }
+
+        .sentence-number {
+            font-weight: 600;
+            color: #667eea;
+            min-width: 30px;
+        }
+
+        .sentence-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .sentence-text {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .sentence-blank {
+            min-width: 150px;
+            padding: 12px 20px;
+            border: 3px dashed #ddd;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sentence-blank.noun {
+            border-color: #2196F3;
+        }
+
+        .sentence-blank.verb {
+            border-color: #4CAF50;
+        }
+
+        .sentence-blank.adjective {
+            border-color: #9c27b0;
+        }
+
+        .sentence-blank.filled {
+            border-style: solid;
+        }
+
+        .sentence-blank.filled.noun {
+            background: #2196F3;
+            color: white;
+        }
+
+        .sentence-blank.filled.verb {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .sentence-blank.filled.adjective {
+            background: #9c27b0;
+            color: white;
+        }
+
+        .sentence-blank.drag-over {
+            background: #fff9e6;
+            transform: scale(1.05);
+        }
+
+        .sentence-blank.wrong-pos {
+            background: #ffebee;
+            animation: shake 0.3s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .blank-label {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .completion-message {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // Data
+        const articulationWordData = {
+            sBlends: {
+                name: 'S-Blends',
+                blends: {
+                    sp: [
+                        { text: 'spoon', pos: 'noun' },
+                        { text: 'spider', pos: 'noun' },
+                        { text: 'spot', pos: 'noun' },
+                        { text: 'spin', pos: 'verb' },
+                        { text: 'spill', pos: 'verb' },
+                        { text: 'speak', pos: 'verb' }
+                    ],
+                    st: [
+                        { text: 'stool', pos: 'noun' },
+                        { text: 'store', pos: 'noun' },
+                        { text: 'stop', pos: 'verb' },
+                        { text: 'strong', pos: 'adjective' },
+                        { text: 'smart', pos: 'adjective' }
+                    ],
+                    sn: [
+                        { text: 'snake', pos: 'noun' },
+                        { text: 'snack', pos: 'noun' },
+                        { text: 'snap', pos: 'verb' }
+                    ],
+                    sk: [
+                        { text: 'skate', pos: 'noun' },
+                        { text: 'skip', pos: 'verb' }
+                    ],
+                    sl: [
+                        { text: 'sled', pos: 'noun' },
+                        { text: 'sleep', pos: 'verb' },
+                        { text: 'sleepy', pos: 'adjective' },
+                        { text: 'slow', pos: 'adjective' }
+                    ],
+                    sw: [{ text: 'swim', pos: 'verb' }],
+                    sm: [
+                        { text: 'smoke', pos: 'noun' },
+                        { text: 'small', pos: 'adjective' },
+                        { text: 'smooth', pos: 'adjective' }
+                    ]
+                }
+            },
+            rBlends: {
+                name: 'R-Blends',
+                blends: {
+                    fr: [
+                        { text: 'fries', pos: 'noun' },
+                        { text: 'frog', pos: 'noun' },
+                        { text: 'fruit', pos: 'noun' },
+                        { text: 'freeze', pos: 'verb' },
+                        { text: 'fresh', pos: 'adjective' },
+                        { text: 'friendly', pos: 'adjective' }
+                    ],
+                    cr: [
+                        { text: 'crown', pos: 'noun' },
+                        { text: 'crab', pos: 'noun' },
+                        { text: 'crayon', pos: 'noun' },
+                        { text: 'crash', pos: 'verb' },
+                        { text: 'crawl', pos: 'verb' },
+                        { text: 'crazy', pos: 'adjective' },
+                        { text: 'crunchy', pos: 'adjective' }
+                    ],
+                    tr: [
+                        { text: 'tree', pos: 'noun' },
+                        { text: 'truck', pos: 'noun' },
+                        { text: 'train', pos: 'noun' },
+                        { text: 'trip', pos: 'verb' },
+                        { text: 'try', pos: 'verb' }
+                    ],
+                    br: [
+                        { text: 'bread', pos: 'noun' },
+                        { text: 'brush', pos: 'noun' },
+                        { text: 'break', pos: 'verb' },
+                        { text: 'bring', pos: 'verb' },
+                        { text: 'brown', pos: 'adjective' },
+                        { text: 'brave', pos: 'adjective' }
+                    ],
+                    gr: [
+                        { text: 'grass', pos: 'noun' },
+                        { text: 'grapes', pos: 'noun' },
+                        { text: 'grow', pos: 'verb' },
+                        { text: 'grab', pos: 'verb' },
+                        { text: 'green', pos: 'adjective' },
+                        { text: 'great', pos: 'adjective' }
+                    ],
+                    pr: [
+                        { text: 'prize', pos: 'noun' },
+                        { text: 'prince', pos: 'noun' },
+                        { text: 'practice', pos: 'verb' },
+                        { text: 'pretty', pos: 'adjective' },
+                        { text: 'proud', pos: 'adjective' }
+                    ],
+                    dr: [
+                        { text: 'drum', pos: 'noun' },
+                        { text: 'dress', pos: 'noun' },
+                        { text: 'dragon', pos: 'noun' },
+                        { text: 'drive', pos: 'verb' },
+                        { text: 'draw', pos: 'verb' },
+                        { text: 'drink', pos: 'verb' }
+                    ]
+                }
+            },
+            lBlends: {
+                name: 'L-Blends',
+                blends: {
+                    fl: [
+                        { text: 'flag', pos: 'noun' },
+                        { text: 'flower', pos: 'noun' },
+                        { text: 'fly', pos: 'verb' },
+                        { text: 'flat', pos: 'adjective' }
+                    ],
+                    cl: [
+                        { text: 'clock', pos: 'noun' },
+                        { text: 'cloud', pos: 'noun' },
+                        { text: 'climb', pos: 'verb' },
+                        { text: 'clean', pos: 'adjective' }
+                    ],
+                    bl: [
+                        { text: 'block', pos: 'noun' },
+                        { text: 'blanket', pos: 'noun' },
+                        { text: 'blow', pos: 'verb' },
+                        { text: 'blue', pos: 'adjective' },
+                        { text: 'black', pos: 'adjective' }
+                    ],
+                    gl: [
+                        { text: 'glass', pos: 'noun' },
+                        { text: 'glove', pos: 'noun' },
+                        { text: 'glow', pos: 'verb' },
+                        { text: 'glad', pos: 'adjective' }
+                    ],
+                    pl: [
+                        { text: 'plate', pos: 'noun' },
+                        { text: 'plant', pos: 'noun' },
+                        { text: 'play', pos: 'verb' },
+                        { text: 'plan', pos: 'verb' }
+                    ],
+                    sl: [
+                        { text: 'sled', pos: 'noun' },
+                        { text: 'slide', pos: 'noun' },
+                        { text: 'sleep', pos: 'verb' },
+                        { text: 'slow', pos: 'adjective' }
+                    ]
+                }
+            },
+            otherSounds: {
+                name: 'Other Sounds',
+                blends: {
+                    k: [
+                        { text: 'key', pos: 'noun' },
+                        { text: 'kite', pos: 'noun' },
+                        { text: 'kick', pos: 'verb' },
+                        { text: 'kind', pos: 'adjective' }
+                    ],
+                    g: [
+                        { text: 'gate', pos: 'noun' },
+                        { text: 'game', pos: 'noun' },
+                        { text: 'go', pos: 'verb' },
+                        { text: 'good', pos: 'adjective' }
+                    ],
+                    sh: [
+                        { text: 'ship', pos: 'noun' },
+                        { text: 'show', pos: 'verb' },
+                        { text: 'shiny', pos: 'adjective' }
+                    ],
+                    f: [
+                        { text: 'fan', pos: 'noun' },
+                        { text: 'fish', pos: 'noun' },
+                        { text: 'fall', pos: 'verb' },
+                        { text: 'fast', pos: 'adjective' }
+                    ],
+                    l: [
+                        { text: 'lion', pos: 'noun' },
+                        { text: 'lunch', pos: 'noun' },
+                        { text: 'look', pos: 'verb' },
+                        { text: 'lucky', pos: 'adjective' }
+                    ],
+                    s: [
+                        { text: 'sun', pos: 'noun' },
+                        { text: 'sing', pos: 'verb' },
+                        { text: 'silly', pos: 'adjective' }
+                    ]
+                }
+            }
+        };
+
+        const sentenceTemplates = [
+            { id: 1, page: 1, template: 'The boy saw a big', blank: { pos: 'noun' }, ending: 'in the yard.' },
+            { id: 2, page: 1, template: 'I like to', blank: { pos: 'verb' }, ending: 'at the park.' },
+            { id: 3, page: 1, template: 'The', blank: { pos: 'adjective' }, ending: 'cat sat on the mat.' },
+            { id: 4, page: 1, template: 'Mom put the', blank: { pos: 'noun' }, ending: 'on the table.' },
+            { id: 5, page: 1, template: 'Can you', blank: { pos: 'verb' }, ending: 'very fast?' },
+            { id: 6, page: 1, template: 'I found a', blank: { pos: 'adjective' }, ending: 'rock by the river.' },
+            { id: 7, page: 1, template: 'The dog wanted to', blank: { pos: 'verb' }, ending: 'all day long.' },
+            { id: 8, page: 1, template: 'We went to the', blank: { pos: 'noun' }, ending: 'to buy some candy.' },
+            { id: 9, page: 1, template: 'My dad is very', blank: { pos: 'adjective' }, ending: 'and helps me lift things.' },
+            { id: 10, page: 1, template: 'Look at the', blank: { pos: 'noun' }, ending: 'crawling on the wall!' },
+            { id: 11, page: 2, template: 'She found a', blank: { pos: 'adjective' }, ending: 'toy in the box.' },
+            { id: 12, page: 2, template: 'We need to', blank: { pos: 'verb' }, ending: 'before we go.' },
+            { id: 13, page: 2, template: 'The', blank: { pos: 'noun' }, ending: 'made a lot of noise.' },
+            { id: 14, page: 2, template: 'That was a', blank: { pos: 'adjective' }, ending: 'story you told us.' },
+            { id: 15, page: 2, template: 'Please', blank: { pos: 'verb' }, ending: 'to what I say.' },
+            { id: 16, page: 2, template: 'I saw a colorful', blank: { pos: 'noun' }, ending: 'flying in the sky.' },
+            { id: 17, page: 2, template: 'He likes to', blank: { pos: 'verb' }, ending: 'with his friends.' },
+            { id: 18, page: 2, template: 'The teacher gave us a', blank: { pos: 'adjective' }, ending: 'book to read.' },
+            { id: 19, page: 2, template: 'My sister dropped her', blank: { pos: 'noun' }, ending: 'on the floor.' },
+            { id: 20, page: 2, template: 'They want to', blank: { pos: 'verb' }, ending: 'something new today.' }
+        ];
+
+        // State
+        let state = {
+            showSetup: true,
+            selectedCategory: null,
+            selectedBlends: [],
+            availableWords: [],
+            sentences: [],
+            currentPage: 1,
+            currentSentenceIndex: 0,
+            draggedWord: null,
+            isComplete: false
+        };
+
+        // Functions
+        function getSelectedWords() {
+            if (!state.selectedCategory || state.selectedBlends.length === 0) return [];
+
+            const categoryData = articulationWordData[state.selectedCategory];
+            let words = [];
+
+            state.selectedBlends.forEach(blend => {
+                if (categoryData.blends[blend]) {
+                    words = words.concat(categoryData.blends[blend]);
+                }
+            });
+
+            return words.map((word, index) => ({ ...word, id: index + 1 }));
+        }
+
+        function initializeActivity() {
+            const words = getSelectedWords();
+            const shuffled = [...words].sort(() => Math.random() - 0.5);
+            state.availableWords = shuffled;
+
+            state.sentences = sentenceTemplates.map(sent => ({
+                ...sent,
+                filledWord: null
+            }));
+            state.isComplete = false;
+        }
+
+        function startActivity() {
+            if (state.selectedBlends.length === 0) return;
+            state.showSetup = false;
+            initializeActivity();
+            render();
+        }
+
+        function resetActivity() {
+            state = {
+                showSetup: true,
+                selectedCategory: null,
+                selectedBlends: [],
+                availableWords: [],
+                sentences: [],
+                currentPage: 1,
+                currentSentenceIndex: 0,
+                draggedWord: null,
+                isComplete: false
+            };
+            render();
+        }
+
+        function handleCategorySelect(category) {
+            state.selectedCategory = category;
+            state.selectedBlends = [];
+            render();
+        }
+
+        function handleBlendToggle(blend) {
+            if (state.selectedBlends.includes(blend)) {
+                state.selectedBlends = state.selectedBlends.filter(b => b !== blend);
+            } else {
+                state.selectedBlends.push(blend);
+            }
+            render();
+        }
+
+        function handleSelectAll() {
+            if (!state.selectedCategory) return;
+            state.selectedBlends = Object.keys(articulationWordData[state.selectedCategory].blends);
+            render();
+        }
+
+        function handleDeselectAll() {
+            state.selectedBlends = [];
+            render();
+        }
+
+        function handleDragStart(word) {
+            state.draggedWord = word;
+        }
+
+        function handleDrop(sentence, element) {
+            if (!state.draggedWord || sentence.filledWord) return;
+
+            if (state.draggedWord.pos !== sentence.blank.pos) {
+                element.classList.add('wrong-pos');
+                setTimeout(() => {
+                    element.classList.remove('wrong-pos');
+                }, 500);
+                return;
+            }
+
+            const sentenceIndex = state.sentences.findIndex(s => s.id === sentence.id);
+            state.sentences[sentenceIndex].filledWord = state.draggedWord;
+            state.availableWords = state.availableWords.filter(w => w.id !== state.draggedWord.id);
+
+            const allFilled = state.sentences.every(s => s.filledWord !== null);
+            state.isComplete = allFilled;
+
+            state.draggedWord = null;
+            render();
+        }
+
+        function handleRemoveWord(sentence) {
+            if (!sentence.filledWord) return;
+
+            state.availableWords.push(sentence.filledWord);
+            state.availableWords.sort((a, b) => a.id - b.id);
+
+            const sentenceIndex = state.sentences.findIndex(s => s.id === sentence.id);
+            state.sentences[sentenceIndex].filledWord = null;
+            state.isComplete = false;
+
+            render();
+        }
+
+        function getCurrentPageSentences() {
+            return state.sentences.filter(s => s.page === state.currentPage);
+        }
+
+        function handlePageChange(page) {
+            state.currentPage = page;
+            const firstIndexOfPage = state.sentences.findIndex(s => s.page === page);
+            if (firstIndexOfPage !== -1) {
+                state.currentSentenceIndex = firstIndexOfPage;
+            }
+            render();
+        }
+
+        function handleNextSentence() {
+            const pageSentences = getCurrentPageSentences();
+            const firstIndexOfPage = state.sentences.findIndex(s => s.page === state.currentPage);
+            const currentIndexInPage = state.currentSentenceIndex - firstIndexOfPage;
+
+            if (currentIndexInPage < pageSentences.length - 1) {
+                state.currentSentenceIndex++;
+                render();
+            }
+        }
+
+        function handlePrevSentence() {
+            const firstIndexOfPage = state.sentences.findIndex(s => s.page === state.currentPage);
+            if (state.currentSentenceIndex > firstIndexOfPage) {
+                state.currentSentenceIndex--;
+                render();
+            }
+        }
+
+        function isPageComplete(page) {
+            const pageSentences = state.sentences.filter(s => s.page === page);
+            return pageSentences.every(s => s.filledWord !== null);
+        }
+
+        // Render functions
+        function renderSetup() {
+            const categories = ['sBlends', 'rBlends', 'lBlends', 'otherSounds'];
+            const categoryLabels = {
+                sBlends: 'S-Blends',
+                rBlends: 'R-Blends',
+                lBlends: 'L-Blends',
+                otherSounds: '/k/, /g/, /sh/, /f/'
+            };
+
+            return `
+                <div class="activity-header">
+                    <div class="header-content">
+                        <h1>🗣️ Articulation Practice - Setup</h1>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="setup-container">
+                        <h2>Select Target Sounds</h2>
+                        <h3>Choose a category:</h3>
+                        <div class="category-buttons">
+                            ${categories.map(cat => `
+                                <button
+                                    class="category-btn ${state.selectedCategory === cat ? 'selected' : ''}"
+                                    onclick="handleCategorySelect('${cat}')"
+                                >
+                                    ${categoryLabels[cat]}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        ${state.selectedCategory ? `
+                            <div class="blend-selection">
+                                <h3>Select specific blends:</h3>
+                                <div class="blend-controls">
+                                    <button onclick="handleSelectAll()" class="select-all-btn">
+                                        Select All ${articulationWordData[state.selectedCategory].name}
+                                    </button>
+                                    <button onclick="handleDeselectAll()" class="deselect-all-btn">
+                                        Deselect All
+                                    </button>
+                                </div>
+                                <div class="blend-checkboxes">
+                                    ${Object.keys(articulationWordData[state.selectedCategory].blends).map(blend => `
+                                        <label class="blend-checkbox">
+                                            <input
+                                                type="checkbox"
+                                                ${state.selectedBlends.includes(blend) ? 'checked' : ''}
+                                                onchange="handleBlendToggle('${blend}')"
+                                            />
+                                            <span class="blend-label">/${blend}/</span>
+                                            <span class="blend-count">
+                                                (${articulationWordData[state.selectedCategory].blends[blend].length} words)
+                                            </span>
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        ${state.selectedBlends.length > 0 ? `
+                            <div class="start-section">
+                                <p class="selection-summary">
+                                    Selected: ${state.selectedBlends.map(b => `/${b}/`).join(', ')}
+                                    (${getSelectedWords().length} total words)
+                                </p>
+                                <button onclick="startActivity()" class="start-btn">
+                                    Start Activity
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderActivity() {
+            const soundLabel = state.selectedCategory
+                ? `${articulationWordData[state.selectedCategory].name}: ${state.selectedBlends.map(b => `/${b}/`).join(', ')}`
+                : 'Mixed Sounds';
+
+            const pageSentences = getCurrentPageSentences();
+            const firstIndexOfPage = state.sentences.findIndex(s => s.page === state.currentPage);
+            const currentIndexInPage = state.currentSentenceIndex - firstIndexOfPage;
+
+            return `
+                <div class="activity-header">
+                    <div class="header-content">
+                        <h1>🗣️ Articulation Practice</h1>
+                        <div class="sound-badge">${soundLabel}</div>
+                        <div class="header-controls">
+                            <button onclick="resetActivity()" class="warning">
+                                🔄 Reset Activity
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-content">
+                    <div class="instructions">
+                        <p>📝 Drag words from the word bank into the sentences. Words must match the part of speech (noun, verb, or adjective).</p>
+                        <p><strong>After filling all sentences, read them out loud to practice your sounds!</strong></p>
+                    </div>
+
+                    <div class="content-layout">
+                        <div class="word-bank-section">
+                            <h3>Word Bank</h3>
+                            ${['noun', 'verb', 'adjective'].map(pos => {
+                                const words = state.availableWords.filter(w => w.pos === pos);
+                                const labels = { noun: '🔵 Nouns', verb: '🟢 Verbs', adjective: '🟣 Adjectives' };
+                                return `
+                                    <div class="word-bank-group">
+                                        <h4 class="pos-header ${pos}">${labels[pos]}</h4>
+                                        <div class="word-bank">
+                                            ${words.length > 0 ? words.map(word => `
+                                                <div
+                                                    class="word-card ${word.pos}"
+                                                    draggable="true"
+                                                    ondragstart="handleDragStart(${JSON.stringify(word).replace(/"/g, '&quot;')})"
+                                                >
+                                                    ${word.text}
+                                                </div>
+                                            `).join('') : '<div class="empty-bank-message">All used!</div>'}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        <div class="sentences-section">
+                            <div class="pagination-controls">
+                                <button
+                                    onclick="handlePageChange(1)"
+                                    class="page-btn ${state.currentPage === 1 ? 'active' : ''}"
+                                >
+                                    Page 1 ${isPageComplete(1) ? '✓' : ''}
+                                </button>
+                                <button
+                                    onclick="handlePageChange(2)"
+                                    class="page-btn ${state.currentPage === 2 ? 'active' : ''}"
+                                >
+                                    Page 2 ${isPageComplete(2) ? '✓' : ''}
+                                </button>
+                            </div>
+
+                            <div class="sentence-controls">
+                                <h3>Fill in the Blanks (${currentIndexInPage + 1} / ${pageSentences.length})</h3>
+                                <div class="nav-buttons">
+                                    <button
+                                        onclick="handlePrevSentence()"
+                                        ${state.currentSentenceIndex === firstIndexOfPage ? 'disabled' : ''}
+                                        class="nav-btn"
+                                    >
+                                        ← Previous
+                                    </button>
+                                    <button
+                                        onclick="handleNextSentence()"
+                                        ${currentIndexInPage === pageSentences.length - 1 ? 'disabled' : ''}
+                                        class="nav-btn"
+                                    >
+                                        Next →
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="sentences-list">
+                                ${pageSentences.map((sentence, pageIndex) => {
+                                    const globalIndex = state.sentences.findIndex(s => s.id === sentence.id);
+                                    const isCurrent = globalIndex === state.currentSentenceIndex;
+                                    return `
+                                        <div class="sentence-row ${isCurrent ? 'current-sentence' : 'dimmed'}">
+                                            <span class="sentence-number">${pageIndex + 1}.</span>
+                                            <div class="sentence-content">
+                                                <span class="sentence-text">${sentence.template}</span>
+                                                <div
+                                                    class="sentence-blank ${sentence.blank.pos} ${sentence.filledWord ? 'filled' : ''}"
+                                                    ondragover="event.preventDefault()"
+                                                    ondragenter="event.currentTarget.classList.add('drag-over')"
+                                                    ondragleave="event.currentTarget.classList.remove('drag-over')"
+                                                    ondrop="event.preventDefault(); event.currentTarget.classList.remove('drag-over'); handleDrop(${JSON.stringify(sentence).replace(/"/g, '&quot;')}, event.currentTarget)"
+                                                    onclick="handleRemoveWord(${JSON.stringify(sentence).replace(/"/g, '&quot;')})"
+                                                >
+                                                    ${sentence.filledWord
+                                                        ? `<span class="filled-word">${sentence.filledWord.text}</span>`
+                                                        : `<span class="blank-label">${sentence.blank.pos}</span>`
+                                                    }
+                                                </div>
+                                                <span class="sentence-text">${sentence.ending}</span>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+
+                            ${state.isComplete ? `
+                                <div class="completion-message">
+                                    <p>🎉 Great job! Now read all your sentences out loud to practice your sounds!</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function render() {
+            const app = document.getElementById('app');
+            app.innerHTML = state.showSetup ? renderSetup() : renderActivity();
+        }
+
+        // Initial render
+        render();
+    </script>
+</body>
+</html>

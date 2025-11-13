@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Double Bubble Compare & Contrast</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --primary: #6366f1;
+      --secondary: #0ea5e9;
+      --muted: #475569;
+      --success: #10b981;
+      --radius: 18px;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: #0f172a;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 680px;
+      font-size: 16px;
+      opacity: 0.92;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 30px auto 60px;
+      padding: 0 18px;
+    }
+
+    .topic-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .topic-btn {
+      border: 2px solid rgba(79, 70, 229, 0.2);
+      background: white;
+      color: var(--primary);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .topic-btn:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .topic-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 8px 18px rgba(79, 70, 229, 0.25);
+    }
+
+    .activity-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+      border: 2px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .activity-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .activity-header h2 {
+      margin: 0;
+      font-size: 22px;
+      color: var(--primary);
+    }
+
+    .info-chip {
+      background: rgba(14, 165, 233, 0.12);
+      color: #0e7490;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .instructions {
+      background: rgba(56, 189, 248, 0.12);
+      border: 2px solid rgba(56, 189, 248, 0.28);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 22px;
+      color: #0c4a6e;
+      font-size: 15px;
+    }
+
+    .word-bank {
+      background: rgba(124, 58, 237, 0.08);
+      border: 2px dashed rgba(124, 58, 237, 0.3);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .word-bank strong {
+      color: #5b21b6;
+    }
+
+    .double-bubble {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .bubble-column {
+      background: rgba(148, 163, 184, 0.12);
+      border-radius: 18px;
+      border: 2px solid rgba(148, 163, 184, 0.3);
+      padding: 16px;
+      min-height: 200px;
+      position: relative;
+    }
+
+    .bubble-column.similar {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .column-title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .column-title span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .drop-zone {
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 12px;
+      border: 2px dashed rgba(148, 163, 184, 0.4);
+      padding: 12px;
+      min-height: 160px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .drop-zone.drag-over {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    .card-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 12px;
+      border: 2px solid rgba(79, 70, 229, 0.18);
+      padding: 10px 12px;
+      font-size: 15px;
+      cursor: grab;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .info-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(79, 70, 229, 0.18);
+    }
+
+    .info-card.dragging {
+      opacity: 0.5;
+      transform: scale(1.03);
+    }
+
+    .info-card.placed {
+      border-color: var(--success);
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .emoji-tag {
+      font-size: 20px;
+      width: 28px;
+      text-align: center;
+    }
+
+    .feedback {
+      background: rgba(16, 185, 129, 0.12);
+      border: 2px solid rgba(16, 185, 129, 0.3);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: #065f46;
+      margin-bottom: 24px;
+      display: none;
+    }
+
+    .feedback.error {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.35);
+      color: #991b1b;
+    }
+
+    .tools {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .tools button {
+      border: 2px solid rgba(79, 70, 229, 0.25);
+      background: white;
+      color: var(--primary);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tools button:hover {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .tools button.primary {
+      background: var(--primary);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.25);
+    }
+
+    .writing-frame {
+      background: rgba(148, 163, 184, 0.12);
+      border-radius: 14px;
+      border: 2px solid rgba(148, 163, 184, 0.25);
+      padding: 18px;
+    }
+
+    .writing-frame h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .sentence-frame {
+      display: grid;
+      gap: 12px;
+    }
+
+    .sentence-frame textarea {
+      min-height: 90px;
+      font-size: 15px;
+    }
+
+    .activity-body {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+    }
+
+    .card-bank-panel {
+      width: 260px;
+      background: rgba(99, 102, 241, 0.08);
+      border: 2px solid rgba(99, 102, 241, 0.25);
+      border-radius: 18px;
+      padding: 16px;
+      position: sticky;
+      top: 120px;
+      box-shadow: 0 12px 24px rgba(79, 70, 229, 0.12);
+    }
+
+    .card-bank-panel h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .card-bank-panel p {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin: 0 0 12px;
+    }
+
+    .bubble-wrapper {
+      flex: 1;
+      min-width: 0;
+    }
+
+    @media (max-width: 900px) {
+      .activity-body {
+        flex-direction: column;
+      }
+
+      .card-bank-panel {
+        position: static;
+        width: 100%;
+      }
+
+      .double-bubble {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Double Bubble Compare & Contrast</h1>
+    <p>Move each idea into the correct bubble. Then use the sentence frame to explain how the two items are alike and different.</p>
+  </header>
+
+  <main>
+    <div class="topic-nav" id="topicNav"></div>
+
+    <section class="activity-card">
+      <div class="activity-header">
+        <h2 id="activityTitle">Texting vs Talking</h2>
+        <span class="info-chip" id="contextTag">Daily Communication</span>
+      </div>
+
+      <div class="instructions">
+        ✦ Drag each card into the matching bubble.<br />
+        ✦ Use the emojis and big labels to help you keep track.<br />
+        ✦ Similar ideas belong in the middle bubble. Unique ideas go near the matching emoji.<br />
+        ✦ Double-click a card to send it back to the idea bank.
+      </div>
+
+      <div class="word-bank">
+        <strong>Helpful Words:</strong> both, also, same, alike, however, but, unlike, different, while
+      </div>
+
+      <div class="activity-body">
+        <aside class="card-bank-panel">
+          <h3>Idea Cards</h3>
+          <p>Drag each card into a bubble. Double-click a card to send it back here.</p>
+          <div class="card-stack" id="cardBank"></div>
+        </aside>
+
+        <div class="bubble-wrapper">
+          <div class="double-bubble">
+            <div class="bubble-column">
+              <div class="column-title">
+                <span id="leftEmoji">📱</span>
+                <strong id="leftTitle">Texting</strong>
+                <span>Only for this side</span>
+              </div>
+              <div class="drop-zone" data-zone="left" id="leftZone">
+                <div class="card-stack"></div>
+              </div>
+            </div>
+
+            <div class="bubble-column similar">
+              <div class="column-title">
+                <span>🤝</span>
+                <strong>Both</strong>
+                <span>Shared ideas</span>
+              </div>
+              <div class="drop-zone" data-zone="middle" id="middleZone">
+                <div class="card-stack"></div>
+              </div>
+            </div>
+
+            <div class="bubble-column">
+              <div class="column-title">
+                <span id="rightEmoji">☎️</span>
+                <strong id="rightTitle">Talking</strong>
+                <span>Only for this side</span>
+              </div>
+              <div class="drop-zone" data-zone="right" id="rightZone">
+                <div class="card-stack"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback" id="feedbackBox">
+            <strong id="feedbackTitle">Great job!</strong>
+            <p id="feedbackText">All cards are in the right bubbles.</p>
+          </div>
+
+          <div class="tools">
+            <button class="primary" id="checkBtn">✓ Check My Bubbles</button>
+            <button id="showAnswersBtn">👀 Show One Hint</button>
+            <button id="resetBtn">🔄 Reset Cards</button>
+          </div>
+
+          <div class="writing-frame">
+            <h3>Compare & Contrast Paragraph Frame</h3>
+            <div class="sentence-frame">
+              <textarea id="similarText" placeholder="Both ______ and ______ are alike because ..."></textarea>
+              <textarea id="differenceText" placeholder="They are different because ..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const activities = [
+      {
+        title: "Apples vs Oranges",
+        context: "Simple Foods",
+        left: { label: "Apples", emoji: "🍎" },
+        right: { label: "Oranges", emoji: "🍊" },
+        cards: [
+          { text: "Skin is usually red or green", zone: "left" },
+          { text: "Crunchy when you bite", zone: "left" },
+          { text: "Bright orange peel", zone: "right" },
+          { text: "Comes apart in slices", zone: "right" },
+          { text: "Grow on trees", zone: "middle" },
+          { text: "Make healthy snacks", zone: "middle" }
+        ]
+      },
+      {
+        title: "Sneakers vs Sandals",
+        context: "Everyday Shoes",
+        left: { label: "Sneakers", emoji: "👟" },
+        right: { label: "Sandals", emoji: "🩴" },
+        cards: [
+          { text: "Cover the whole foot", zone: "left" },
+          { text: "Great for running or sports", zone: "left" },
+          { text: "Open design keeps feet cool", zone: "right" },
+          { text: "Easy to slip on and off", zone: "right" },
+          { text: "Worn on your feet", zone: "middle" },
+          { text: "Come in many colors", zone: "middle" }
+        ]
+      },
+      {
+        title: "Notebook vs Tablet",
+        context: "Tools for Notes",
+        left: { label: "Notebook", emoji: "📓" },
+        right: { label: "Tablet", emoji: "💻" },
+        cards: [
+          { text: "Uses paper pages", zone: "left" },
+          { text: "Needs a pen or pencil", zone: "left" },
+          { text: "Needs to be charged", zone: "right" },
+          { text: "Uses a touchscreen", zone: "right" },
+          { text: "Used for taking notes", zone: "middle" },
+          { text: "Easy to carry to class", zone: "middle" }
+        ]
+      },
+      {
+        title: "Texting vs Talking",
+        context: "Daily Communication",
+        left: { label: "Texting", emoji: "📱" },
+        right: { label: "Talking", emoji: "☎️" },
+        cards: [
+          { text: "Uses typed words", zone: "left" },
+          { text: "Can send quietly", zone: "left" },
+          { text: "Shows voice tone", zone: "right" },
+          { text: "Happens in real time", zone: "right" },
+          { text: "Share information quickly", zone: "middle" },
+          { text: "Used to plan with friends", zone: "middle" }
+        ]
+      },
+      {
+        title: "Streaming vs Cable TV",
+        context: "Entertainment Choices",
+        left: { label: "Streaming", emoji: "📱" },
+        right: { label: "Cable TV", emoji: "📺" },
+        cards: [
+          { text: "Watch on apps or smart TVs", zone: "left" },
+          { text: "Pick shows anytime", zone: "left" },
+          { text: "Live channels on a schedule", zone: "right" },
+          { text: "Works without internet", zone: "right" },
+          { text: "Costs money each month", zone: "middle" },
+          { text: "Offers movies or shows", zone: "middle" }
+        ]
+      },
+      {
+        title: "City Bus vs Ride Share",
+        context: "Getting Around Town",
+        left: { label: "City Bus", emoji: "🚌" },
+        right: { label: "Ride Share", emoji: "🚗" },
+        cards: [
+          { text: "Follows a set route", zone: "left" },
+          { text: "Many riders together", zone: "left" },
+          { text: "Picks you up directly", zone: "right" },
+          { text: "Price changes with time", zone: "right" },
+          { text: "Travel across the city", zone: "middle" },
+          { text: "Must follow safety rules", zone: "middle" }
+        ]
+      },
+      {
+        title: "Community College vs Trade School",
+        context: "After High School Paths",
+        left: { label: "Community College", emoji: "🎓" },
+        right: { label: "Trade School", emoji: "🛠️" },
+        cards: [
+          { text: "Includes general classes", zone: "left" },
+          { text: "Can transfer to a university", zone: "left" },
+          { text: "Focuses on one skill", zone: "right" },
+          { text: "Finishes in under two years", zone: "right" },
+          { text: "Teach job skills", zone: "middle" },
+          { text: "Cost less than university", zone: "middle" }
+        ]
+      },
+      {
+        title: "Part-Time Job vs Volunteer Work",
+        context: "Building Experience",
+        left: { label: "Part-Time Job", emoji: "💼" },
+        right: { label: "Volunteer Work", emoji: "🤝" },
+        cards: [
+          { text: "Earns a paycheck", zone: "left" },
+          { text: "Schedule set by a manager", zone: "left" },
+          { text: "Helps for free", zone: "right" },
+          { text: "Choose when to help", zone: "right" },
+          { text: "Need to be on time", zone: "middle" },
+          { text: "Work with other people", zone: "middle" }
+        ]
+      }
+    ];
+
+    let draggedCard = null;
+    let currentIndex = 0;
+
+    const nav = document.getElementById("topicNav");
+    const titleEl = document.getElementById("activityTitle");
+    const contextEl = document.getElementById("contextTag");
+    const leftTitleEl = document.getElementById("leftTitle");
+    const rightTitleEl = document.getElementById("rightTitle");
+    const leftEmojiEl = document.getElementById("leftEmoji");
+    const rightEmojiEl = document.getElementById("rightEmoji");
+    const leftZone = document.getElementById("leftZone").querySelector(".card-stack");
+    const middleZone = document.getElementById("middleZone").querySelector(".card-stack");
+    const rightZone = document.getElementById("rightZone").querySelector(".card-stack");
+    const bank = document.getElementById("cardBank");
+    const feedbackBox = document.getElementById("feedbackBox");
+    const feedbackTitle = document.getElementById("feedbackTitle");
+    const feedbackText = document.getElementById("feedbackText");
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const showHintBtn = document.getElementById("showAnswersBtn");
+
+    function buildNav() {
+      activities.forEach((activity, index) => {
+        const btn = document.createElement("button");
+        btn.className = "topic-btn";
+        btn.innerHTML = `${activity.left.emoji}<span>${activity.title}</span>`;
+        btn.addEventListener("click", () => loadActivity(index));
+        nav.appendChild(btn);
+      });
+    }
+
+    function clearZones() {
+      [leftZone, middleZone, rightZone, bank].forEach(zone => zone.innerHTML = "");
+      feedbackBox.style.display = "none";
+      feedbackBox.classList.remove("error");
+    }
+
+    function createCard(card, index) {
+      const cardEl = document.createElement("div");
+      cardEl.className = "info-card";
+      cardEl.draggable = true;
+      cardEl.dataset.zone = card.zone;
+      cardEl.dataset.index = index;
+      cardEl.innerHTML = `<span class="emoji-tag">📌</span><span>${card.text}</span>`;
+
+      cardEl.addEventListener("dragstart", (e) => {
+        draggedCard = cardEl;
+        cardEl.classList.add("dragging");
+        e.dataTransfer.effectAllowed = "move";
+      });
+
+      cardEl.addEventListener("dragend", () => {
+        draggedCard = null;
+        cardEl.classList.remove("dragging");
+      });
+
+      cardEl.addEventListener("dblclick", () => {
+        bank.appendChild(cardEl);
+        cardEl.classList.remove("placed", "incorrect");
+      });
+
+      return cardEl;
+    }
+
+    function setupDropZones() {
+      document.querySelectorAll(".drop-zone").forEach(zone => {
+        zone.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          zone.classList.add("drag-over");
+        });
+
+        zone.addEventListener("dragleave", () => zone.classList.remove("drag-over"));
+
+        zone.addEventListener("drop", () => {
+          if (draggedCard) {
+            zone.classList.remove("drag-over");
+            zone.querySelector(".card-stack").appendChild(draggedCard);
+            draggedCard.classList.remove("incorrect");
+            draggedCard.classList.add("placed");
+          }
+        });
+      });
+
+      bank.addEventListener("dragover", (e) => e.preventDefault());
+      bank.addEventListener("drop", () => {
+        if (draggedCard) {
+          bank.appendChild(draggedCard);
+          draggedCard.classList.remove("incorrect", "placed");
+        }
+      });
+    }
+
+    function loadActivity(index) {
+      currentIndex = index;
+      const activity = activities[index];
+      clearZones();
+
+      document.querySelectorAll(".topic-btn").forEach((btn, i) => {
+        btn.classList.toggle("active", i === index);
+      });
+
+      titleEl.textContent = activity.title;
+      contextEl.textContent = activity.context;
+      leftTitleEl.textContent = activity.left.label;
+      leftEmojiEl.textContent = activity.left.emoji;
+      rightTitleEl.textContent = activity.right.label;
+      rightEmojiEl.textContent = activity.right.emoji;
+      document.getElementById("similarText").placeholder = `Both ${activity.left.label} and ${activity.right.label} are alike because ...`;
+      document.getElementById("differenceText").placeholder = `${activity.left.label} and ${activity.right.label} are different because ...`;
+      document.getElementById("similarText").value = "";
+      document.getElementById("differenceText").value = "";
+
+      const shuffled = [...activity.cards].sort(() => Math.random() - 0.5);
+      shuffled.forEach((card, i) => {
+        bank.appendChild(createCard(card, i));
+      });
+    }
+
+    function checkAnswers() {
+      const activity = activities[currentIndex];
+      const cardZones = {
+        left: Array.from(leftZone.children),
+        middle: Array.from(middleZone.children),
+        right: Array.from(rightZone.children)
+      };
+
+      let correct = 0;
+      let total = activity.cards.length;
+      let mistakes = [];
+
+      ["left", "middle", "right"].forEach(zoneName => {
+        cardZones[zoneName].forEach(cardEl => {
+          const expected = cardEl.dataset.zone;
+          if (expected === zoneName) {
+            cardEl.classList.remove("incorrect");
+            correct++;
+          } else {
+            cardEl.classList.add("incorrect");
+            const message = `“${cardEl.innerText.trim()}” belongs under ${zoneLabel(expected, activity)}.`;
+            if (!mistakes.includes(message)) mistakes.push(message);
+          }
+        });
+      });
+
+      if (correct === total) {
+        feedbackTitle.textContent = "Great job!";
+        feedbackText.textContent = "All cards are in the correct bubbles.";
+        feedbackBox.classList.remove("error");
+      } else {
+        feedbackTitle.textContent = "Keep going!";
+        feedbackText.innerHTML = mistakes.join("<br>");
+        feedbackBox.classList.add("error");
+      }
+
+      feedbackBox.style.display = "block";
+    }
+
+    function zoneLabel(zone, activity) {
+      if (zone === "left") return activity.left.label;
+      if (zone === "right") return activity.right.label;
+      return "Both";
+    }
+
+    function showHint() {
+      const activity = activities[currentIndex];
+      const zonesToCheck = [leftZone, middleZone, rightZone];
+      const placedCards = zonesToCheck.flatMap(zone => Array.from(zone.children));
+      const misplaced = placedCards.filter(card => card.dataset.zone !== card.parentElement.parentElement.dataset.zone);
+
+      if (misplaced.length > 0) {
+        const hintCard = misplaced[0];
+        hintCard.classList.add("incorrect");
+        feedbackBox.classList.add("error");
+        feedbackTitle.textContent = "Hint:";
+        feedbackText.textContent = `Try moving “${hintCard.innerText.trim()}” to ${zoneLabel(hintCard.dataset.zone, activity)}.`;
+        feedbackBox.style.display = "block";
+        return;
+      }
+
+      const bankCards = Array.from(bank.children);
+      if (bankCards.length > 0) {
+        const hint = bankCards[0];
+        feedbackBox.classList.add("error");
+        feedbackTitle.textContent = "Hint:";
+        feedbackText.textContent = `Place “${hint.innerText.trim()}” in ${zoneLabel(hint.dataset.zone, activity)}.`;
+        feedbackBox.style.display = "block";
+      } else {
+        feedbackBox.classList.remove("error");
+        feedbackTitle.textContent = "Nice work!";
+        feedbackText.textContent = "No hints needed right now.";
+        feedbackBox.style.display = "block";
+      }
+    }
+
+    function resetCards() {
+      loadActivity(currentIndex);
+      feedbackBox.style.display = "none";
+      document.getElementById("similarText").value = "";
+      document.getElementById("differenceText").value = "";
+    }
+
+    buildNav();
+    setupDropZones();
+    loadActivity(0);
+
+    checkBtn.addEventListener("click", checkAnswers);
+    resetBtn.addEventListener("click", resetCards);
+    showHintBtn.addEventListener("click", showHint);
+  </script>
+</body>
+</html>

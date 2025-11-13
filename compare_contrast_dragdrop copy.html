@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare & Contrast - Interactive Drag & Drop Worksheet</title>
+<style>
+  :root {
+    --w: 1200px;
+    --accent: #8b5cf6;
+    --bg: #f8fafc;
+    --ink: #0b1021;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #d97706;
+    --blue: #0ea5e9;
+    --green: #10b981;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.5;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 2px solid #e5e7eb; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 16px 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto auto; 
+    gap: 15px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 20px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 8px; 
+    align-items: center; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 24px auto; 
+    padding: 0 20px; 
+  }
+  
+  .activity-container {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+  }
+  
+  .activity-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .activity-header h2 {
+    color: var(--accent);
+    font-size: 24px;
+    margin: 0 0 8px;
+  }
+  
+  .comparison-topic {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  
+  .instructions {
+    background: #f0f9ff;
+    border: 2px solid #0ea5e9;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .instructions p {
+    margin: 0;
+    color: #0c4a6e;
+    font-weight: 500;
+  }
+  
+  .workspace {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .item-bank {
+    background: #fffbeb;
+    border: 3px dashed #f59e0b;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 400px;
+  }
+  
+  .item-bank h3 {
+    color: #92400e;
+    margin: 0 0 12px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .comparison-zones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .drop-zone {
+    min-height: 300px;
+    border: 3px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .drop-zone h3 {
+    text-align: center;
+    margin: 0 0 12px;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .similarities-zone {
+    background: #f0fdf4;
+    border-color: var(--green);
+  }
+  
+  .similarities-zone h3 {
+    background: var(--green);
+    color: white;
+  }
+  
+  .differences-zone {
+    background: #fef2f2;
+    border-color: var(--blue);
+  }
+  
+  .differences-zone h3 {
+    background: var(--blue);
+    color: white;
+  }
+  
+  .drop-zone.drag-over {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .similarities-zone.drag-over {
+    border-color: #15803d;
+    background: #dcfce7;
+  }
+  
+  .differences-zone.drag-over {
+    border-color: #0284c7;
+    background: #dbeafe;
+  }
+  
+  .draggable-item {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: move;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .draggable-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .draggable-item.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+  }
+  
+  .draggable-item.placed {
+    border-color: #10b981;
+    background: #f0fdf4;
+  }
+  
+  .draggable-item.incorrect {
+    border-color: #ef4444;
+    background: #fef2f2;
+  }
+  
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #7c3aed;
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.danger {
+    background: var(--err);
+    color: white;
+    border-color: var(--err);
+  }
+  
+  .controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+    display: none;
+  }
+  
+  .feedback.show {
+    display: block;
+  }
+  
+  .feedback.success {
+    background: #f0fdf4;
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: #fef2f2;
+    border-color: var(--err);
+    color: #991b1b;
+  }
+  
+  .progress-indicator {
+    text-align: center;
+    margin: 16px 0;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  
+  .activity-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .activity-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  
+  .activity-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .completion-celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .celebration-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    animation: celebrationPop 0.6s ease-out;
+  }
+  
+  .celebration-content h3 {
+    color: var(--ok);
+    font-size: 28px;
+    margin: 0 0 16px;
+  }
+  
+  @keyframes celebrationPop {
+    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  
+  @keyframes confetti {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
+  }
+  
+  @media (max-width: 768px) {
+    .workspace {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .comparison-zones {
+      grid-template-columns: 1fr;
+    }
+    
+    .item-bank {
+      order: -1;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      text-align: center;
+    }
+    
+    .controls {
+      justify-content: center;
+    }
+  }
+  
+  .empty-zone-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
+    pointer-events: none;
+  }
+  
+  .zone-content {
+    min-height: 200px;
+    position: relative;
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>Compare & Contrast - Interactive Drag & Drop</h1>
+      <div class="progress-indicator" id="progressIndicator">Activity 1 of 5</div>
+      <div class="controls">
+        <button id="checkAnswers" class="primary">✓ Check Answers</button>
+        <button id="resetActivity">🔄 Reset</button>
+        <button id="nextActivity" class="success" style="display:none;">Next Activity →</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="activity-selector" id="activitySelector">
+      <button class="activity-btn active" data-activity="0">Cats vs Dogs</button>
+      <button class="activity-btn" data-activity="1">Summer vs Winter</button>
+      <button class="activity-btn" data-activity="2">Books vs Movies</button>
+      <button class="activity-btn" data-activity="3">City vs Country</button>
+      <button class="activity-btn" data-activity="4">Email vs Letters</button>
+    </div>
+
+    <div class="activity-container">
+      <div class="activity-header">
+        <h2>Compare and Contrast</h2>
+        <div class="comparison-topic" id="comparisonTopic">Cats vs Dogs</div>
+      </div>
+
+      <div class="instructions">
+        <p><strong>Instructions:</strong> Drag the statements from the bank on the left into the correct columns. Put statements that are true for BOTH items in "Similarities" and statements that are different between the items in "Differences".</p>
+      </div>
+
+      <div class="workspace">
+        <div class="item-bank">
+          <h3>📝 Drag Items Here</h3>
+          <div id="itemBank">
+            <!-- Items will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="comparison-zones">
+          <div class="drop-zone similarities-zone" data-zone="similarities">
+            <h3>🤝 Similarities</h3>
+            <div class="zone-content" id="similaritiesZone">
+              <div class="empty-zone-message">Drag items that are the same for both here</div>
+            </div>
+          </div>
+
+          <div class="drop-zone differences-zone" data-zone="differences">
+            <h3>🔄 Differences</h3>
+            <div class="zone-content" id="differencesZone">
+              <div class="empty-zone-message">Drag items that are different here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feedback" id="feedback">
+        <p id="feedbackText"></p>
+      </div>
+    </div>
+  </main>
+
+  <div class="completion-celebration" id="completionCelebration">
+    <div class="celebration-content">
+      <h3>🎉 Fantastic Work!</h3>
+      <p>You've successfully completed this compare and contrast activity!</p>
+      <button class="primary" onclick="closeCelebration()">Continue</button>
+    </div>
+  </div>
+
+<script>
+const activities = [
+  {
+    topic: "Cats vs Dogs",
+    items: [
+      { text: "Have fur", type: "similarity" },
+      { text: "Are pets", type: "similarity" },
+      { text: "Need food and water daily", type: "similarity" },
+      { text: "Can be trained", type: "similarity" },
+      { text: "Make different sounds", type: "difference" },
+      { text: "Cats purr, dogs bark", type: "difference" },
+      { text: "Dogs need daily walks", type: "difference" },
+      { text: "Cats use litter boxes", type: "difference" },
+      { text: "Dogs are more social with strangers", type: "difference" },
+      { text: "Cats are more independent", type: "difference" }
+    ]
+  },
+  {
+    topic: "Summer vs Winter",
+    items: [
+      { text: "Both have 3 months", type: "similarity" },
+      { text: "People wear different clothes in each", type: "difference" },
+      { text: "Have 24 hours in each day", type: "similarity" },
+      { text: "Different outdoor activities", type: "difference" },
+      { text: "Summer is hot, winter is cold", type: "difference" },
+      { text: "Both have holidays", type: "similarity" },
+      { text: "Different sports are popular", type: "difference" },
+      { text: "School schedules change", type: "difference" },
+      { text: "Both occur every year", type: "similarity" },
+      { text: "Daylight hours are very different", type: "difference" }
+    ]
+  },
+  {
+    topic: "Books vs Movies",
+    items: [
+      { text: "Tell stories", type: "similarity" },
+      { text: "Can be entertaining", type: "similarity" },
+      { text: "Have characters and plots", type: "similarity" },
+      { text: "Movies have visual effects", type: "difference" },
+      { text: "Books use only words", type: "difference" },
+      { text: "Movies are usually 1-3 hours long", type: "difference" },
+      { text: "Books can take days to finish", type: "difference" },
+      { text: "Can be fiction or non-fiction", type: "similarity" },
+      { text: "Movies have soundtracks", type: "difference" },
+      { text: "Books let you imagine characters", type: "difference" }
+    ]
+  },
+  {
+    topic: "City vs Country",
+    items: [
+      { text: "People live in both places", type: "similarity" },
+      { text: "Both have homes and families", type: "similarity" },
+      { text: "Cities have more traffic", type: "difference" },
+      { text: "Country has more nature", type: "difference" },
+      { text: "Different job opportunities", type: "difference" },
+      { text: "Both need electricity and water", type: "similarity" },
+      { text: "Transportation options differ", type: "difference" },
+      { text: "Population density is different", type: "difference" },
+      { text: "Both have schools", type: "similarity" },
+      { text: "Cost of living varies", type: "difference" }
+    ]
+  },
+  {
+    topic: "Email vs Letters",
+    items: [
+      { text: "Both send messages", type: "similarity" },
+      { text: "Can communicate with people far away", type: "similarity" },
+      { text: "Email is instant", type: "difference" },
+      { text: "Letters take days to arrive", type: "difference" },
+      { text: "Both can be personal or business", type: "similarity" },
+      { text: "Email needs internet", type: "difference" },
+      { text: "Letters use paper and stamps", type: "difference" },
+      { text: "Both have sender and receiver", type: "similarity" },
+      { text: "Letters can be kept physically", type: "difference" },
+      { text: "Email can include attachments", type: "difference" }
+    ]
+  }
+];
+
+let currentActivity = 0;
+let draggedElement = null;
+
+function initializeActivity(activityIndex) {
+  currentActivity = activityIndex;
+  const activity = activities[activityIndex];
+  
+  // Update topic display
+  document.getElementById('comparisonTopic').textContent = activity.topic;
+  
+  // Clear previous items
+  document.getElementById('itemBank').innerHTML = '';
+  document.getElementById('similaritiesZone').innerHTML = '<div class="empty-zone-message">Drag items that are the same for both here</div>';
+  document.getElementById('differencesZone').innerHTML = '<div class="empty-zone-message">Drag items that are different here</div>';
+  
+  // Shuffle items for variety
+  const shuffledItems = [...activity.items].sort(() => Math.random() - 0.5);
+  
+  // Create draggable items
+  shuffledItems.forEach((item, index) => {
+    const itemElement = document.createElement('div');
+    itemElement.className = 'draggable-item';
+    itemElement.draggable = true;
+    itemElement.textContent = item.text;
+    itemElement.dataset.type = item.type;
+    itemElement.dataset.index = index;
+    
+    // Add drag event listeners
+    itemElement.addEventListener('dragstart', handleDragStart);
+    itemElement.addEventListener('dragend', handleDragEnd);
+    
+    document.getElementById('itemBank').appendChild(itemElement);
+  });
+  
+  // Update progress indicator
+  document.getElementById('progressIndicator').textContent = `Activity ${activityIndex + 1} of ${activities.length}`;
+  
+  // Update activity selector
+  document.querySelectorAll('.activity-btn').forEach((btn, index) => {
+    btn.classList.toggle('active', index === activityIndex);
+  });
+  
+  // Hide feedback and reset buttons
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('nextActivity').style.display = 'none';
+  
+  // Hide empty zone messages when items are present
+  updateEmptyMessages();
+}
+
+function handleDragStart(e) {
+  draggedElement = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', e.target.outerHTML);
+}
+
+function handleDragEnd(e) {
+  e.target.classList.remove('dragging');
+  draggedElement = null;
+}
+
+function setupDropZones() {
+  const dropZones = document.querySelectorAll('.drop-zone');
+  
+  dropZones.forEach(zone => {
+    zone.addEventListener('dragover', handleDragOver);
+    zone.addEventListener('drop', handleDrop);
+    zone.addEventListener('dragenter', handleDragEnter);
+    zone.addEventListener('dragleave', handleDragLeave);
+  });
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+}
+
+function handleDragEnter(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+
+function handleDragLeave(e) {
+  if (!e.currentTarget.contains(e.relatedTarget)) {
+    e.currentTarget.classList.remove('drag-over');
+  }
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  
+  if (draggedElement) {
+    const zoneContent = e.currentTarget.querySelector('.zone-content');
+    
+    // Remove from previous location
+    draggedElement.remove();
+    
+    // Add to new location
+    zoneContent.appendChild(draggedElement);
+    
+    // Update empty messages
+    updateEmptyMessages();
+    
+    // Add placed styling
+    draggedElement.classList.add('placed');
+    draggedElement.classList.remove('incorrect');
+  }
+}
+
+function updateEmptyMessages() {
+  const similaritiesZone = document.getElementById('similaritiesZone');
+  const differencesZone = document.getElementById('differencesZone');
+  
+  // Show/hide empty messages based on content
+  const simMessage = similaritiesZone.querySelector('.empty-zone-message');
+  const diffMessage = differencesZone.querySelector('.empty-zone-message');
+  const simItems = similaritiesZone.querySelectorAll('.draggable-item');
+  const diffItems = differencesZone.querySelectorAll('.draggable-item');
+  
+  if (simMessage) simMessage.style.display = simItems.length > 0 ? 'none' : 'block';
+  if (diffMessage) diffMessage.style.display = diffItems.length > 0 ? 'none' : 'block';
+}
+
+function checkAnswers() {
+  const similaritiesZone = document.getElementById('similaritiesZone');
+  const differencesZone = document.getElementById('differencesZone');
+  
+  const simItems = similaritiesZone.querySelectorAll('.draggable-item');
+  const diffItems = differencesZone.querySelectorAll('.draggable-item');
+  
+  let correct = 0;
+  let total = 0;
+  let feedback = [];
+  
+  // Check similarities
+  simItems.forEach(item => {
+    total++;
+    if (item.dataset.type === 'similarity') {
+      correct++;
+      item.classList.remove('incorrect');
+      item.classList.add('placed');
+    } else {
+      item.classList.add('incorrect');
+      feedback.push(`"${item.textContent}" belongs in Differences`);
+    }
+  });
+  
+  // Check differences
+  diffItems.forEach(item => {
+    total++;
+    if (item.dataset.type === 'difference') {
+      correct++;
+      item.classList.remove('incorrect');
+      item.classList.add('placed');
+    } else {
+      item.classList.add('incorrect');
+      feedback.push(`"${item.textContent}" belongs in Similarities`);
+    }
+  });
+  
+  // Show feedback
+  const feedbackEl = document.getElementById('feedback');
+  const feedbackText = document.getElementById('feedbackText');
+  
+  if (correct === total && total === activities[currentActivity].items.length) {
+    // Perfect score!
+    feedbackEl.className = 'feedback success show';
+    feedbackText.innerHTML = `
+      <strong>🎉 Excellent work!</strong><br>
+      You correctly sorted all ${total} items! You have a great understanding of similarities and differences between ${activities[currentActivity].topic.toLowerCase()}.
+    `;
+    
+    // Show celebration
+    showCelebration();
+    
+    // Show next button if not on last activity
+    if (currentActivity < activities.length - 1) {
+      document.getElementById('nextActivity').style.display = 'inline-block';
+    }
+  } else {
+    feedbackEl.className = 'feedback error show';
+    feedbackText.innerHTML = `
+      <strong>Score: ${correct} out of ${total}</strong><br>
+      ${feedback.length > 0 ? 'Try moving these items:<br>• ' + feedback.join('<br>• ') : ''}
+      ${total < activities[currentActivity].items.length ? '<br>Don\'t forget to place all items from the bank!' : ''}
+    `;
+  }
+}
+
+function resetActivity() {
+  // Move all items back to bank
+  const allItems = document.querySelectorAll('.draggable-item');
+  const itemBank = document.getElementById('itemBank');
+  
+  allItems.forEach(item => {
+    item.classList.remove('placed', 'incorrect');
+    itemBank.appendChild(item);
+  });
+  
+  // Clear zones and restore empty messages
+  document.getElementById('similaritiesZone').innerHTML = '<div class="empty-zone-message">Drag items that are the same for both here</div>';
+  document.getElementById('differencesZone').innerHTML = '<div class="empty-zone-message">Drag items that are different here</div>';
+  
+  // Hide feedback
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('nextActivity').style.display = 'none';
+}
+
+function showCelebration() {
+  document.getElementById('completionCelebration').style.display = 'flex';
+  
+  // Create confetti effect
+  createConfetti();
+}
+
+function closeCelebration() {
+  document.getElementById('completionCelebration').style.display = 'none';
+}
+
+function createConfetti() {
+  const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#a8e6cf'];
+  
+  for (let i = 0; i < 30; i++) {
+    const confetti = document.createElement('div');
+    confetti.style.position = 'fixed';
+    confetti.style.left = Math.random() * window.innerWidth + 'px';
+    confetti.style.top = '-10px';
+    confetti.style.width = '10px';
+    confetti.style.height = '10px';
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.pointerEvents = 'none';
+    confetti.style.borderRadius = '50%';
+    confetti.style.zIndex = '1001';
+    confetti.style.animation = `confetti ${2 + Math.random() * 3}s ease-out forwards`;
+    
+    document.body.appendChild(confetti);
+    
+    setTimeout(() => confetti.remove(), 5000);
+  }
+}
+
+// Event listeners
+document.getElementById('checkAnswers').addEventListener('click', checkAnswers);
+document.getElementById('resetActivity').addEventListener('click', resetActivity);
+document.getElementById('nextActivity').addEventListener('click', () => {
+  if (currentActivity < activities.length - 1) {
+    initializeActivity(currentActivity + 1);
+  }
+});
+
+// Activity selector buttons
+document.getElementById('activitySelector').addEventListener('click', (e) => {
+  if (e.target.classList.contains('activity-btn')) {
+    const activityIndex = parseInt(e.target.dataset.activity);
+    initializeActivity(activityIndex);
+  }
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  setupDropZones();
+  initializeActivity(0);
+});
+
+// Add some extra CSS for the confetti animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes confetti {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(calc(100vh + 10px)) rotate(720deg); opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>

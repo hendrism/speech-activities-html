@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Prompts - Speech Therapy Activity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .navbar-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .topic-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .topic-btn:hover {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .topic-btn.active {
+            background-color: #764ba2;
+            color: white;
+            border-color: #764ba2;
+        }
+        
+        .topic-btn.positive {
+            background-color: #e8f5e9;
+            border-color: #4caf50;
+        }
+        
+        .topic-btn.positive:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .topic-btn.positive.active {
+            background-color: #2e7d32;
+            border-color: #2e7d32;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .story-card {
+            display: none;
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .story-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .story-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .story-number.positive {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+        }
+        
+        .story-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .story-text {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .story-text.positive {
+            border-left-color: #4caf50;
+        }
+        
+        .prompt-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .prompt-section.positive {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+        }
+        
+        .prompt-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .prompt-text {
+            font-size: 26px;
+            color: white;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 15px;
+        }
+        
+        .nav-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .prev-btn {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+        
+        .prev-btn:hover:not(:disabled) {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .next-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .story-helper {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 2px dashed #ddd;
+        }
+        
+        .helper-toggle {
+            width: 100%;
+            padding: 15px;
+            background-color: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #667eea;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .helper-toggle:hover {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .helper-toggle.positive {
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+        
+        .helper-toggle.positive:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .helper-content {
+            display: none;
+            margin-top: 20px;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .helper-content.show {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .question-group {
+            margin-bottom: 25px;
+        }
+        
+        .question-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .question-label.positive {
+            color: #4caf50;
+        }
+        
+        .story-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+            min-height: 40px;
+        }
+        
+        .story-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .story-input.positive:focus {
+            border-color: #4caf50;
+        }
+        
+        .helper-hint {
+            font-size: 13px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .story-card {
+                padding: 30px;
+            }
+            
+            .story-text {
+                font-size: 18px;
+                padding: 20px;
+            }
+            
+            .prompt-text {
+                font-size: 22px;
+            }
+            
+            .story-helper {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-title">Choose a Topic:</div>
+        <button class="topic-btn" onclick="goToStory(0)">Waiting</button>
+        <button class="topic-btn positive" onclick="goToStory(1)">Something Worked Out</button>
+        <button class="topic-btn" onclick="goToStory(2)">Getting Complicated</button>
+        <button class="topic-btn positive" onclick="goToStory(3)">Figured It Out</button>
+        <button class="topic-btn" onclick="goToStory(4)">Forgetting</button>
+        <button class="topic-btn positive" onclick="goToStory(5)">Got Lucky</button>
+        <button class="topic-btn" onclick="goToStory(6)">Making a Mess</button>
+        <button class="topic-btn positive" onclick="goToStory(7)">Helped Someone</button>
+        <button class="topic-btn" onclick="goToStory(8)">Wrong Assumption</button>
+        <button class="topic-btn positive" onclick="goToStory(9)">Beat a Challenge</button>
+        <button class="topic-btn" onclick="goToStory(10)">Not Paying Attention</button>
+        <button class="topic-btn positive" onclick="goToStory(11)">Funny Moment</button>
+        <button class="topic-btn" onclick="goToStory(12)">Argument</button>
+        <button class="topic-btn" onclick="goToStory(13)">Needing Help</button>
+        <button class="topic-btn" onclick="goToStory(14)">Miscommunication</button>
+    </div>
+
+    <div class="container">
+        <div class="story-card active" data-story="0">
+            <span class="story-number">Story 1 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    Last month I ordered a package online and it said it would arrive Tuesday. Tuesday came - nothing. Wednesday, Thursday, still nothing. I checked the tracking and it said "delivered" but I never got it. Turned out the delivery guy left it at the house next door. My neighbor brought it over three days later.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you were waiting for something</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(0)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-0">
+                    <div class="question-group">
+                        <label class="question-label">What were you waiting for?</label>
+                        <input type="text" class="story-input" placeholder="A package, a person, a game to download...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">When did this happen?</label>
+                        <input type="text" class="story-input" placeholder="Last week, last month, during summer...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How long did you have to wait?</label>
+                        <input type="text" class="story-input" placeholder="A few hours, three days, a whole week...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened while you were waiting?</label>
+                        <textarea class="story-input" rows="2" placeholder="I kept checking, I got annoyed, I forgot about it..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did it end?</label>
+                        <textarea class="story-input" rows="2" placeholder="It finally came, I found it, I gave up..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()" disabled>← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="1">
+            <span class="story-number positive">Story 2 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text positive">
+                    I thought I failed my math test. Got it back and I got a B. Turns out the stuff I studied the most was actually on the test. My friend asked me to explain one of the problems because I got it right and he didn't.
+                </div>
+            </div>
+            
+            <div class="prompt-section positive">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time something worked out better than you expected</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle positive" onclick="toggleHelper(1)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-1">
+                    <div class="question-group">
+                        <label class="question-label positive">What were you worried about?</label>
+                        <input type="text" class="story-input positive" placeholder="A test, a game, meeting someone...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What did you think would happen?</label>
+                        <input type="text" class="story-input positive" placeholder="I thought I'd fail, lose, mess up...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What actually happened?</label>
+                        <textarea class="story-input positive" rows="2" placeholder="I did better than I thought, it went well..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">How did you feel?</label>
+                        <input type="text" class="story-input positive" placeholder="Relieved, surprised, happy...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">Did anything else good happen because of it?</label>
+                        <textarea class="story-input positive" rows="2" placeholder="Someone complimented me, I felt more confident..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="2">
+            <span class="story-number">Story 3 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was making breakfast and cracked an egg into the pan. Shell got in there. I tried to fish it out with my finger and burned myself. Then I used a spoon and accidentally flipped the whole egg onto the floor. Ended up eating cereal.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time something simple became complicated</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(2)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-2">
+                    <div class="question-group">
+                        <label class="question-label">What were you trying to do?</label>
+                        <input type="text" class="story-input" placeholder="Make food, fix something, get ready...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What went wrong first?</label>
+                        <input type="text" class="story-input" placeholder="Something broke, spilled, didn't work...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened when you tried to fix it?</label>
+                        <textarea class="story-input" rows="2" placeholder="Made it worse, another problem started..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did it end?</label>
+                        <textarea class="story-input" rows="2" placeholder="I gave up, found another way, someone helped..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="3">
+            <span class="story-number positive">Story 4 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text positive">
+                    My controller stopped working during a game. I was getting mad. Then I remembered my dad showing me how to reset electronics. Held down the buttons for ten seconds and it worked again. Felt pretty smart.
+                </div>
+            </div>
+            
+            <div class="prompt-section positive">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you figured something out on your own</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle positive" onclick="toggleHelper(3)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-3">
+                    <div class="question-group">
+                        <label class="question-label positive">What was the problem?</label>
+                        <input type="text" class="story-input positive" placeholder="Something wasn't working, broken, stuck...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What did you try first?</label>
+                        <input type="text" class="story-input positive" placeholder="Restarted it, read instructions, looked online...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What helped you figure it out?</label>
+                        <textarea class="story-input positive" rows="2" placeholder="I remembered something, tried a different way, took it apart..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">How did you feel when it worked?</label>
+                        <input type="text" class="story-input positive" placeholder="Proud, relieved, smart...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="4">
+            <span class="story-number">Story 5 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    My phone died during lunch and I forgot where I was supposed to meet my friend after school. I went to the usual spot but he wasn't there. Walked around for 15 minutes checking different places. Finally found him at the library - turns out he'd told me that morning but I forgot.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you forgot something important</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(4)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-4">
+                    <div class="question-group">
+                        <label class="question-label">What did you forget?</label>
+                        <input type="text" class="story-input" placeholder="Homework, where to meet someone, an appointment...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">When did you realize you forgot?</label>
+                        <input type="text" class="story-input" placeholder="At school, when I got there, too late...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did you do?</label>
+                        <textarea class="story-input" rows="2" placeholder="Tried to remember, called someone, looked for it..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did it turn out?</label>
+                        <textarea class="story-input" rows="2" placeholder="I figured it out, someone helped, I got in trouble..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="5">
+            <span class="story-number positive">Story 6 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text positive">
+                    I left my lunch at home and had no money. Was ready to just not eat. Then my friend split his sandwich with me. Later someone else gave me their extra chips. Turned out okay.
+                </div>
+            </div>
+            
+            <div class="prompt-section positive">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you got lucky or things worked out</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle positive" onclick="toggleHelper(5)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-5">
+                    <div class="question-group">
+                        <label class="question-label positive">What was going wrong?</label>
+                        <input type="text" class="story-input positive" placeholder="I forgot something, lost something, was in trouble...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What lucky thing happened?</label>
+                        <textarea class="story-input positive" rows="2" placeholder="Someone helped me, I found it, the teacher didn't notice..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">Who or what helped?</label>
+                        <input type="text" class="story-input positive" placeholder="A friend, good timing, found it just in time...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">How did you feel after?</label>
+                        <input type="text" class="story-input positive" placeholder="Relieved, grateful, lucky...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="6">
+            <span class="story-number">Story 7 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was carrying a stack of books to my locker and couldn't see over them. Hit the corner of a wall, books went everywhere. People had to step over them in the hallway. I was picking them up and one kid accidentally kicked one further down the hall. Took forever to get them all.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you dropped something or made a mess</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(6)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-6">
+                    <div class="question-group">
+                        <label class="question-label">What were you carrying or doing?</label>
+                        <input type="text" class="story-input" placeholder="Carrying books, food, drinks, cleaning something...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What caused you to drop it or make a mess?</label>
+                        <input type="text" class="story-input" placeholder="Tripped, couldn't see, hit something, lost grip...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened next?</label>
+                        <textarea class="story-input" rows="2" placeholder="It went everywhere, people saw, I tried to clean it up..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did you clean it up or fix it?</label>
+                        <textarea class="story-input" rows="2" placeholder="I picked it up, someone helped, I got supplies..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="7">
+            <span class="story-number positive">Story 8 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text positive">
+                    This kid dropped all his stuff getting off the bus. I helped him pick it up. He said thanks. Next week he saved me a seat when the bus was crowded. That was cool.
+                </div>
+            </div>
+            
+            <div class="prompt-section positive">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you helped someone out</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle positive" onclick="toggleHelper(7)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-7">
+                    <div class="question-group">
+                        <label class="question-label positive">Who needed help?</label>
+                        <input type="text" class="story-input positive" placeholder="A friend, family member, stranger...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What was their problem?</label>
+                        <input type="text" class="story-input positive" placeholder="Dropped something, didn't understand, needed a hand...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">How did you help?</label>
+                        <textarea class="story-input positive" rows="2" placeholder="I picked it up, explained it, showed them how..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What happened after?</label>
+                        <input type="text" class="story-input positive" placeholder="They thanked me, they helped me later, it felt good...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="8">
+            <span class="story-number">Story 9 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I thought we had a substitute teacher so I didn't do my homework. Walked into class feeling relaxed and our regular teacher was there. She started collecting homework. I panicked and said I left it at home. She said I could bring it tomorrow but I'd lose points. Had to actually do it that night.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you made a wrong assumption</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(8)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-8">
+                    <div class="question-group">
+                        <label class="question-label">What did you think was going to happen?</label>
+                        <input type="text" class="story-input" placeholder="Thought we had a sub, school was cancelled, someone wouldn't be there...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">Why did you think that?</label>
+                        <input type="text" class="story-input" placeholder="Someone said so, I heard wrong, I assumed...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What was actually happening?</label>
+                        <textarea class="story-input" rows="2" placeholder="Regular teacher was there, school was normal, they showed up..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did you do?</label>
+                        <textarea class="story-input" rows="2" placeholder="Had to quickly fix it, made an excuse, felt embarrassed..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="9">
+            <span class="story-number positive">Story 10 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text positive">
+                    I was trying to beat this really hard level in a game. Kept dying at the same spot. Finally changed my strategy and tried something different. Worked on the third try. Beat the whole level after that. Posted about it and my friends were impressed.
+                </div>
+            </div>
+            
+            <div class="prompt-section positive">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you beat a challenge or did something hard</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle positive" onclick="toggleHelper(9)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-9">
+                    <div class="question-group">
+                        <label class="question-label positive">What was the challenge?</label>
+                        <input type="text" class="story-input positive" placeholder="Hard level, difficult homework, learning something new...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What made it hard?</label>
+                        <input type="text" class="story-input positive" placeholder="Kept failing, didn't understand it, took forever...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What did you do to beat it?</label>
+                        <textarea class="story-input positive" rows="2" placeholder="Practiced, tried a new strategy, asked for tips..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">How did it feel when you succeeded?</label>
+                        <input type="text" class="story-input positive" placeholder="Amazing, proud, wanted to tell everyone...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="10">
+            <span class="story-number">Story 11 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was playing basketball in the driveway and the ball bounced weird and rolled into the street. I ran after it without looking. A car had to brake hard and honked at me. The driver looked mad. I grabbed the ball and felt really stupid. My mom saw from the window and came out to yell at me.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you weren't paying attention</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(10)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-10">
+                    <div class="question-group">
+                        <label class="question-label">What were you doing?</label>
+                        <input type="text" class="story-input" placeholder="Playing, walking, thinking about something else...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What were you supposed to be paying attention to?</label>
+                        <input type="text" class="story-input" placeholder="Where I was going, what someone said, traffic...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened because you weren't paying attention?</label>
+                        <textarea class="story-input" rows="2" placeholder="Almost got hurt, bumped into something, missed something important..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened after?</label>
+                        <textarea class="story-input" rows="2" placeholder="Someone yelled at me, I felt stupid, I was more careful..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="11">
+            <span class="story-number positive">Story 12 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text positive">
+                    I tripped walking into class and my backpack flew open. Everything spilled out. Everyone saw. But then people started laughing with me not at me. Even I started laughing. Someone made a joke about it and it became this running thing for the rest of the day. Actually made some new friends from it.
+                </div>
+            </div>
+            
+            <div class="prompt-section positive">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about something funny or embarrassing that happened</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle positive" onclick="toggleHelper(11)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-11">
+                    <div class="question-group">
+                        <label class="question-label positive">Where were you?</label>
+                        <input type="text" class="story-input positive" placeholder="At school, at home, with friends...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">What happened?</label>
+                        <textarea class="story-input positive" rows="2" placeholder="I tripped, said something weird, wore the wrong thing..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">Did people laugh?</label>
+                        <input type="text" class="story-input positive" placeholder="Yeah but it was okay, I laughed too, they thought it was funny...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label positive">How did it end up?</label>
+                        <textarea class="story-input positive" rows="2" placeholder="We all laughed, became a joke, made friends from it..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="12">
+            <span class="story-number">Story 13 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    My brother and I were arguing about whose turn it was to take out the trash. We both insisted we'd done it last time. It got loud. My dad came in and checked the chore chart on the fridge. Turns out it was my turn. I had to take it out and apologize.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you had an argument or disagreement</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(12)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-12">
+                    <div class="question-group">
+                        <label class="question-label">Who were you arguing with?</label>
+                        <input type="text" class="story-input" placeholder="My brother/sister, friend, parent...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What was the argument about?</label>
+                        <input type="text" class="story-input" placeholder="Whose turn, who was right, what to do...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened during the argument?</label>
+                        <textarea class="story-input" rows="2" placeholder="We both got mad, raised voices, wouldn't listen..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did it get resolved?</label>
+                        <textarea class="story-input" rows="2" placeholder="Someone proved they were right, we compromised, someone made us stop..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="13">
+            <span class="story-number">Story 14 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I tried to fix my bike chain because it kept slipping. Looked easy on YouTube. Got the chain off but couldn't get it back on right. Made it worse. Took it to my neighbor who actually knows about bikes. He fixed it in two minutes and showed me what I was doing wrong.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you needed help with something</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(13)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-13">
+                    <div class="question-group">
+                        <label class="question-label">What did you need help with?</label>
+                        <input type="text" class="story-input" placeholder="Homework, fixing something, understanding something...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did you try on your own first?</label>
+                        <input type="text" class="story-input" placeholder="Looked it up, tried to fix it, read instructions...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">Who helped you?</label>
+                        <input type="text" class="story-input" placeholder="Parent, friend, teacher, neighbor...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did they help?</label>
+                        <textarea class="story-input" rows="2" placeholder="Showed me how, explained it, fixed it for me..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="14">
+            <span class="story-number">Story 15 of 15</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was supposed to meet my dad at the front entrance after school but went to the side entrance where he usually parks. Waited there for ten minutes. He was calling my phone but I had it on silent. Finally checked my messages and had to run around the building. He was annoyed because we were late for my dentist appointment.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time there was a miscommunication or mix-up</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(14)">
+                    <span>📝 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-14">
+                    <div class="question-group">
+                        <label class="question-label">What was supposed to happen?</label>
+                        <input type="text" class="story-input" placeholder="Meet somewhere, bring something, be somewhere at a time...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What got mixed up?</label>
+                        <input type="text" class="story-input" placeholder="Wrong place, wrong time, wrong information...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">When did you realize there was a mix-up?</label>
+                        <textarea class="story-input" rows="2" placeholder="When I got there, when I checked my phone, when they called..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did you fix it?</label>
+                        <textarea class="story-input" rows="2" placeholder="Called them, went to the right place, explained what happened..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()" disabled>Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        const totalStories = 15;
+
+        function updateDisplay() {
+            document.querySelectorAll('.story-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-story="${currentStory}"]`).classList.add('active');
+            
+            document.querySelectorAll('.topic-btn').forEach((btn, index) => {
+                btn.classList.toggle('active', index === currentStory);
+            });
+            
+            const prevBtn = document.querySelector('.story-card.active .prev-btn');
+            const nextBtn = document.querySelector('.story-card.active .next-btn');
+            
+            if (prevBtn) prevBtn.disabled = currentStory === 0;
+            if (nextBtn) nextBtn.disabled = currentStory === totalStories - 1;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStory() {
+            if (currentStory < totalStories - 1) {
+                currentStory++;
+                updateDisplay();
+            }
+        }
+
+        function previousStory() {
+            if (currentStory > 0) {
+                currentStory--;
+                updateDisplay();
+            }
+        }
+
+        function goToStory(index) {
+            currentStory = index;
+            updateDisplay();
+        }
+
+        function toggleHelper(storyIndex) {
+            const helper = document.getElementById(`helper-${storyIndex}`);
+            const toggleIcon = event.currentTarget.querySelector('.toggle-icon');
+            
+            if (helper.classList.contains('show')) {
+                helper.classList.remove('show');
+                toggleIcon.textContent = '▼';
+            } else {
+                helper.classList.add('show');
+                toggleIcon.textContent = '▲';
+            }
+        }
+
+        updateDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading Comprehension - Where & When Questions</title>
+<style>
+  :root {
+    --w: 1000px;
+    --accent: #2563eb;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #10b981;
+    --err: #ef4444;
+    --warning: #f59e0b;
+    --purple: #8b5cf6;
+    --blue: #0ea5e9;
+    --green: #22c55e;
+    --orange: #ea580c;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.8;
+    font-size: 18px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 4px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 25px; 
+    display: grid; 
+    grid-template-columns: 1fr auto auto; 
+    gap: 25px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 28px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 800;
+  }
+  
+  .progress-info {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    min-width: 200px;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 15px; 
+    align-items: center; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 25px; 
+  }
+  
+  .story-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-bottom: 35px;
+    background: white;
+    border: 3px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  
+  .story-btn {
+    padding: 18px 12px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 3px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .story-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+  }
+  
+  .story-btn.completed {
+    background: var(--ok);
+    border-color: var(--ok);
+    color: white;
+  }
+  
+  .story-btn.completed::after {
+    content: "✓";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: white;
+    color: var(--ok);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    border: 3px solid var(--ok);
+  }
+  
+  .activity-container {
+    background: white;
+    border: 3px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    margin-bottom: 35px;
+  }
+  
+  .story-header {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+  
+  .story-title {
+    color: var(--accent);
+    font-size: 32px;
+    margin: 0 0 20px;
+    font-weight: 800;
+  }
+  
+  .activity-toggle {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .toggle-btn {
+    padding: 16px 32px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 3px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .toggle-btn.active {
+    background: var(--purple);
+    color: white;
+    border-color: var(--purple);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+  }
+  
+  .story-text {
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    border: 3px solid #0ea5e9;
+    border-radius: 16px;
+    padding: 35px;
+    margin-bottom: 35px;
+    font-size: 22px;
+    line-height: 2.0;
+    text-align: left;
+  }
+  
+  .story-text p {
+    margin: 0 0 25px;
+  }
+  
+  .story-text p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .activity-section {
+    display: none;
+  }
+  
+  .activity-section.active {
+    display: block;
+  }
+  
+  .questions-section {
+    margin-top: 35px;
+  }
+  
+  .question-item {
+    background: #f8fafc;
+    border: 3px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .question-number {
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 800;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .question-number.where-when {
+    background: var(--orange);
+  }
+  
+  .question-number.literal-inferential {
+    background: var(--green);
+  }
+  
+  .question-text {
+    font-size: 24px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  
+  .choices {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  
+  .choice-option {
+    background: white;
+    border: 3px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+  }
+  
+  .choice-option:hover {
+    border-color: var(--purple);
+    background: #faf5ff;
+    transform: translateY(-2px);
+  }
+  
+  .choice-option.selected {
+    border-color: var(--accent);
+    background: #eff6ff;
+    border-width: 4px;
+  }
+  
+  .choice-option.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+    border-width: 4px;
+  }
+  
+  .choice-option.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+    border-width: 4px;
+  }
+  
+  .choice-icon {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .choice-icon img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+  }
+  
+  .choice-icon.empty {
+    border: 2px dashed #cbd5e1;
+    background: #f9fafb;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .choice-icon.empty:hover {
+    border-color: var(--accent);
+    background: #eff6ff;
+  }
+  
+  .choice-icon.empty::after {
+    content: "📷";
+    font-size: 24px;
+    opacity: 0.5;
+  }
+  
+  .choice-text {
+    flex: 1;
+  }
+  
+  .icon-assign-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    z-index: 5;
+  }
+  
+  .question-item.edit-mode .icon-assign-btn {
+    display: flex;
+  }
+  
+  button {
+    border: 3px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 16px 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #1d4ed8;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+  
+  .check-button {
+    display: block;
+    margin: 20px auto;
+    padding: 18px 40px;
+    font-size: 20px;
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 3px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 25px;
+    display: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .feedback.show {
+    display: block;
+    animation: slideIn 0.4s ease-out;
+  }
+  
+  .feedback.success {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border-color: var(--err);
+    color: #991b1b;
+  }
+  
+  /* Icon Management Panel */
+  .icon-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    border-left: 3px solid #e2e8f0;
+    box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+  }
+  
+  .icon-panel.open {
+    right: 0;
+  }
+  
+  .icon-panel-header {
+    padding: 25px;
+    border-bottom: 2px solid #e2e8f0;
+    background: var(--accent);
+    color: white;
+  }
+  
+  .icon-panel-header h3 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    font-weight: 800;
+  }
+  
+  .icon-panel-content {
+    padding: 25px;
+  }
+  
+  .upload-section {
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .upload-section:hover {
+    border-color: var(--accent);
+    background: #eff6ff;
+  }
+  
+  .upload-section.dragover {
+    border-color: var(--accent);
+    background: #eff6ff;
+    transform: scale(1.02);
+  }
+  
+  .upload-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+  }
+  
+  .upload-text {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .upload-subtext {
+    font-size: 14px;
+    color: var(--gray);
+  }
+  
+  .icon-library {
+    margin-bottom: 30px;
+  }
+  
+  .icon-library h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--accent);
+  }
+  
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+  }
+  
+  .icon-item {
+    aspect-ratio: 1;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .icon-item:hover {
+    border-color: var(--accent);
+    transform: scale(1.05);
+  }
+  
+  .icon-item.selected {
+    border-color: var(--accent);
+    border-width: 3px;
+    background: #eff6ff;
+  }
+  
+  .icon-item img {
+    max-width: 60px;
+    max-height: 60px;
+    object-fit: contain;
+  }
+  
+  .icon-delete {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: var(--err);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .icon-item:hover .icon-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .panel-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+  }
+  
+  .celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .celebration-content {
+    background: white;
+    padding: 50px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 500px;
+    animation: celebrationBounce 0.8s ease-out;
+  }
+  
+  .celebration-content h3 {
+    color: var(--ok);
+    font-size: 36px;
+    margin: 0 0 25px;
+    font-weight: 800;
+  }
+  
+  .celebration-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes celebrationBounce {
+    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+    50% { transform: scale(1.05) rotate(-5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  
+  @media (max-width: 768px) {
+    .story-selector {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      padding: 20px;
+    }
+    
+    .story-btn {
+      padding: 15px 8px;
+      font-size: 14px;
+      min-height: 70px;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .story-text {
+      font-size: 20px;
+      padding: 25px;
+    }
+    
+    .question-text {
+      font-size: 22px;
+    }
+    
+    .choice-option {
+      font-size: 18px;
+      padding: 18px;
+    }
+    
+    .activity-toggle {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .toggle-btn {
+      padding: 14px 24px;
+      font-size: 16px;
+    }
+    
+    .icon-panel {
+      width: 100vw;
+      right: -100vw;
+    }
+    
+    .choice-option {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>📖 Reading Stories</h1>
+      <div class="progress-info" id="progressInfo">Story 1 of 10</div>
+      <div class="controls">
+        <button id="manageIcons" class="primary">🎨 Manage Icons</button>
+        <button id="editMode" class="warning">✏️ Edit Icons</button>
+        <button id="resetActivity" class="warning">🔄 Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="story-selector" id="storySelector">
+      <!-- Story buttons will be generated -->
+    </div>
+
+    <div class="activity-container">
+      <div class="story-header">
+        <h2 class="story-title" id="storyTitle">Story Title</h2>
+      </div>
+
+      <div class="activity-toggle">
+        <button class="toggle-btn active" data-activity="where-when">🌍 Where & When Questions</button>
+        <button class="toggle-btn" data-activity="literal-inferential">🤔 Reading Questions</button>
+      </div>
+
+      <div class="story-text" id="storyText">
+        <!-- Story content will be populated here -->
+      </div>
+
+      <!-- Where & When Questions Section -->
+      <div class="activity-section active" id="whereWhenSection">
+        <div class="questions-section" id="whereWhenQuestions">
+          <!-- Where & When questions will be populated here -->
+        </div>
+      </div>
+
+      <!-- Literal & Inferential Questions Section -->
+      <div class="activity-section" id="literalInferentialSection">
+        <div class="questions-section" id="literalInferentialQuestions">
+          <!-- Literal & Inferential questions will be populated here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Icon Management Panel -->
+  <div class="icon-panel" id="iconPanel">
+    <div class="icon-panel-header">
+      <h3>🎨 Icon Manager</h3>
+      <p>Upload and assign icons to answer choices</p>
+    </div>
+    
+    <div class="icon-panel-content">
+      <div class="upload-section" id="uploadSection">
+        <div class="upload-icon">📷</div>
+        <div class="upload-text">Upload New Icon</div>
+        <div class="upload-subtext">Click or drag image files here<br>PNG, JPG, GIF supported</div>
+        <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+      </div>
+      
+      <div class="icon-library">
+        <h4>Your Icon Library</h4>
+        <div class="icon-grid" id="iconGrid">
+          <!-- Icons will be populated here -->
+        </div>
+      </div>
+      
+      <div class="panel-actions">
+        <button id="closePanel" class="primary" style="flex: 1;">✓ Done</button>
+        <button id="clearIcons" class="warning">🗑️ Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="celebration" id="celebration">
+    <div class="celebration-content">
+      <h3>🎉 Great Job!</h3>
+      <p id="celebrationText">You finished all the questions!</p>
+      <button class="primary" onclick="closeCelebration()">Keep Reading!</button>
+    </div>
+  </div>
+
+<script>
+const stories = [
+  {
+    title: "At the Park",
+    text: `Tom went to the park on Saturday morning. He brought his red ball with him. Tom played on the swings and slides. He met his friend Sam at the playground. They had fun together until lunch time. Tom went home happy.`,
+    whereWhenQuestions: [
+      {
+        question: "Where did Tom go?",
+        choices: [
+          { text: "To the park", icon: null },
+          { text: "To school", icon: null },
+          { text: "To the store", icon: null }
+        ],
+        correct: 0
+      },
+      {
+        question: "When did Tom go to the park?",
+        choices: [
+          { text: "Sunday morning", icon: null },
+          { text: "Saturday morning", icon: null },
+          { text: "Friday night", icon: null }
+        ],
+        correct: 1
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "Who did Tom meet at the playground?",
+        choices: [
+          { text: "His mom", icon: null },
+          { text: "His friend Sam", icon: null },
+          { text: "His teacher", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "How do you think Tom felt when he went home?",
+        choices: [
+          { text: "Sad and tired", icon: null },
+          { text: "Happy and good", icon: null },
+          { text: "Angry and upset", icon: null }
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    title: "Making Breakfast",
+    text: `Mom made pancakes in the kitchen this morning. She mixed flour and eggs in a big bowl. The pancakes smelled really good. Dad came to help her flip them. The whole family ate breakfast together. Everyone smiled and talked.`,
+    whereWhenQuestions: [
+      {
+        question: "Where did Mom make the pancakes?",
+        choices: [
+          { text: "In the bedroom", icon: null },
+          { text: "In the kitchen", icon: null },
+          { text: "In the yard", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "When did Mom make the pancakes?",
+        choices: [
+          { text: "This morning", icon: null },
+          { text: "Last night", icon: null },
+          { text: "This afternoon", icon: null }
+        ],
+        correct: 0
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "What did Mom mix in the bowl?",
+        choices: [
+          { text: "Flour and eggs", icon: null },
+          { text: "Milk and cookies", icon: null },
+          { text: "Bread and butter", icon: null }
+        ],
+        correct: 0
+      },
+      {
+        question: "How did the family feel at breakfast?",
+        choices: [
+          { text: "They felt good together", icon: null },
+          { text: "They felt angry", icon: null },
+          { text: "They felt scared", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "The Pet Store",
+    text: `Lisa went to the pet store on Tuesday. She wanted to buy food for her cat. The store had many animals. Lisa saw puppies, birds, and fish. She bought cat food and a new toy. Lisa hurried home to feed her hungry cat.`,
+    whereWhenQuestions: [
+      {
+        question: "Where did Lisa go?",
+        choices: [
+          { text: "To the pet store", icon: null },
+          { text: "To the library", icon: null },
+          { text: "To the doctor", icon: null }
+        ],
+        correct: 0
+      },
+      {
+        question: "When did Lisa go to the store?",
+        choices: [
+          { text: "On Monday", icon: null },
+          { text: "On Tuesday", icon: null },
+          { text: "On Wednesday", icon: null }
+        ],
+        correct: 1
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "What did Lisa want to buy?",
+        choices: [
+          { text: "A new dog", icon: null },
+          { text: "Food for her cat", icon: null },
+          { text: "A bird cage", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "Why did Lisa hurry home?",
+        choices: [
+          { text: "Her cat was hungry", icon: null },
+          { text: "She was late for work", icon: null },
+          { text: "It was raining", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "The Birthday Party",
+    text: `Jake had a birthday party in his backyard yesterday. Many friends came to celebrate. They played games and ate cake. The cake was chocolate with white frosting. Jake opened his presents with a big smile. Everyone sang Happy Birthday to him.`,
+    whereWhenQuestions: [
+      {
+        question: "Where was the birthday party?",
+        choices: [
+          { text: "At school", icon: null },
+          { text: "In his backyard", icon: null },
+          { text: "At the park", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "When was the birthday party?",
+        choices: [
+          { text: "Yesterday", icon: null },
+          { text: "Tomorrow", icon: null },
+          { text: "Next week", icon: null }
+        ],
+        correct: 0
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "What kind of cake did they eat?",
+        choices: [
+          { text: "Vanilla cake", icon: null },
+          { text: "Chocolate cake", icon: null },
+          { text: "Strawberry cake", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "How did Jake feel about his presents?",
+        choices: [
+          { text: "He was very happy", icon: null },
+          { text: "He was disappointed", icon: null },
+          { text: "He was worried", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "Going to School",
+    text: `Maria walks to school every morning at 8 o'clock. She carries her backpack and lunch box. Maria meets her friend Rosa on the way. They walk together and talk about their homework. The school bell rings when they arrive. Maria waves goodbye to Rosa at her classroom.`,
+    whereWhenQuestions: [
+      {
+        question: "Where does Maria go every morning?",
+        choices: [
+          { text: "To school", icon: null },
+          { text: "To the park", icon: null },
+          { text: "To the store", icon: null }
+        ],
+        correct: 0
+      },
+      {
+        question: "When does Maria walk to school?",
+        choices: [
+          { text: "At 7 o'clock", icon: null },
+          { text: "At 8 o'clock", icon: null },
+          { text: "At 9 o'clock", icon: null }
+        ],
+        correct: 1
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "Who does Maria meet on the way?",
+        choices: [
+          { text: "Her teacher", icon: null },
+          { text: "Her friend Rosa", icon: null },
+          { text: "Her mom", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "What do Maria and Rosa probably talk about?",
+        choices: [
+          { text: "Their homework and school", icon: null },
+          { text: "Cooking dinner", icon: null },
+          { text: "Watching TV", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "At the Doctor",
+    text: `Ben went to the doctor's office on Friday afternoon. He had a sore throat and felt sick. The doctor was very kind and gentle. She looked in Ben's throat with a small light. The doctor gave Ben some medicine to feel better. Ben's mom thanked the doctor.`,
+    whereWhenQuestions: [
+      {
+        question: "Where did Ben go?",
+        choices: [
+          { text: "To the doctor's office", icon: null },
+          { text: "To school", icon: null },
+          { text: "To the movies", icon: null }
+        ],
+        correct: 0
+      },
+      {
+        question: "When did Ben go to the doctor?",
+        choices: [
+          { text: "Monday morning", icon: null },
+          { text: "Friday afternoon", icon: null },
+          { text: "Sunday evening", icon: null }
+        ],
+        correct: 1
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "What was wrong with Ben?",
+        choices: [
+          { text: "He had a broken arm", icon: null },
+          { text: "He had a sore throat", icon: null },
+          { text: "He had a headache", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "How did Ben probably feel about the doctor?",
+        choices: [
+          { text: "He felt safe with her", icon: null },
+          { text: "He was very scared", icon: null },
+          { text: "He was angry at her", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "The Library Visit",
+    text: `Anna went to the library on Wednesday. She wanted to find books about animals. The librarian helped her look on the shelves. Anna found three books about cats and dogs. She checked out the books and sat down to read. Anna loved learning about her favorite animals.`,
+    whereWhenQuestions: [
+      {
+        question: "Where did Anna go on Wednesday?",
+        choices: [
+          { text: "To the library", icon: null },
+          { text: "To the zoo", icon: null },
+          { text: "To the store", icon: null }
+        ],
+        correct: 0
+      },
+      {
+        question: "When did Anna go to the library?",
+        choices: [
+          { text: "On Tuesday", icon: null },
+          { text: "On Wednesday", icon: null },
+          { text: "On Thursday", icon: null }
+        ],
+        correct: 1
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "What kind of books did Anna want?",
+        choices: [
+          { text: "Books about cars", icon: null },
+          { text: "Books about animals", icon: null },
+          { text: "Books about cooking", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "How did Anna feel about reading?",
+        choices: [
+          { text: "She loved it", icon: null },
+          { text: "She was bored", icon: null },
+          { text: "She was confused", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "Helping Grandma",
+    text: `Tim visited his grandma's house every Sunday. Today he helped her in the garden. They planted flowers and watered the plants. Grandma showed Tim how to pull the weeds. Tim worked hard and got dirty hands. Grandma made him cookies as a thank you.`,
+    whereWhenQuestions: [
+      {
+        question: "Where did Tim help his grandma?",
+        choices: [
+          { text: "In the kitchen", icon: null },
+          { text: "In the garden", icon: null },
+          { text: "In the garage", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "When does Tim visit his grandma?",
+        choices: [
+          { text: "Every Sunday", icon: null },
+          { text: "Every Monday", icon: null },
+          { text: "Every Friday", icon: null }
+        ],
+        correct: 0
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "What did they do in the garden?",
+        choices: [
+          { text: "They planted flowers", icon: null },
+          { text: "They built a fence", icon: null },
+          { text: "They painted a wall", icon: null }
+        ],
+        correct: 0
+      },
+      {
+        question: "Why do you think Grandma made Tim cookies?",
+        choices: [
+          { text: "To thank him for helping", icon: null },
+          { text: "Because it was his birthday", icon: null },
+          { text: "Because she was hungry", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "The Rain Day",
+    text: `It rained all day on Thursday. Sue could not play outside. She stayed in her room and drew pictures. Sue drew her family and her dog. She used many bright colors. When the rain stopped, Sue showed her pictures to everyone.`,
+    whereWhenQuestions: [
+      {
+        question: "Where did Sue stay when it rained?",
+        choices: [
+          { text: "Outside", icon: null },
+          { text: "In her room", icon: null },
+          { text: "At school", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "When did it rain all day?",
+        choices: [
+          { text: "On Tuesday", icon: null },
+          { text: "On Wednesday", icon: null },
+          { text: "On Thursday", icon: null }
+        ],
+        correct: 2
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "What did Sue draw pictures of?",
+        choices: [
+          { text: "Cars and trucks", icon: null },
+          { text: "Her family and her dog", icon: null },
+          { text: "Trees and flowers", icon: null }
+        ],
+        correct: 1
+      },
+      {
+        question: "How did Sue feel about her pictures?",
+        choices: [
+          { text: "She was proud of them", icon: null },
+          { text: "She didn't like them", icon: null },
+          { text: "She threw them away", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "The Ice Cream Truck",
+    text: `The ice cream truck came to Mike's street at 3 o'clock today. Mike heard the music and ran outside. Many kids were already waiting in line. Mike bought a chocolate ice cream cone. He ate it quickly before it melted. All the kids smiled and laughed together.`,
+    whereWhenQuestions: [
+      {
+        question: "Where did the ice cream truck come?",
+        choices: [
+          { text: "To Mike's street", icon: null },
+          { text: "To the school", icon: null },
+          { text: "To the park", icon: null }
+        ],
+        correct: 0
+      },
+      {
+        question: "When did the ice cream truck come?",
+        choices: [
+          { text: "At 2 o'clock", icon: null },
+          { text: "At 3 o'clock", icon: null },
+          { text: "At 4 o'clock", icon: null }
+        ],
+        correct: 1
+      }
+    ],
+    literalInferentialQuestions: [
+      {
+        question: "What kind of ice cream did Mike buy?",
+        choices: [
+          { text: "Vanilla", icon: null },
+          { text: "Strawberry", icon: null },
+          { text: "Chocolate", icon: null }
+        ],
+        correct: 2
+      },
+      {
+        question: "Why did Mike eat his ice cream quickly?",
+        choices: [
+          { text: "So it wouldn't melt", icon: null },
+          { text: "Because he was hungry", icon: null },
+          { text: "Because his mom called him", icon: null }
+        ],
+        correct: 0
+      }
+    ]
+  }
+];
+
+// Storage keys for persistence
+const ICONS_STORAGE_KEY = 'reading_comp_icons';
+const ASSIGNMENTS_STORAGE_KEY = 'reading_comp_assignments';
+
+// State variables
+let currentStory = 0;
+let currentActivity = 'where-when';
+let completedStories = new Set();
+let whereWhenAnswers = {};
+let literalInferentialAnswers = {};
+let editMode = false;
+let selectedIcon = null;
+let assigningTo = null;
+
+// Icon management
+function loadStoredIcons() {
+  const stored = localStorage.getItem(ICONS_STORAGE_KEY);
+  return stored ? JSON.parse(stored) : {};
+}
+
+function saveIcons(icons) {
+  localStorage.setItem(ICONS_STORAGE_KEY, JSON.stringify(icons));
+}
+
+function loadStoredAssignments() {
+  const stored = localStorage.getItem(ASSIGNMENTS_STORAGE_KEY);
+  return stored ? JSON.parse(stored) : {};
+}
+
+function saveAssignments(assignments) {
+  localStorage.setItem(ASSIGNMENTS_STORAGE_KEY, JSON.stringify(assignments));
+}
+
+function getAssignmentKey(storyIndex, section, questionIndex, choiceIndex) {
+  return `${storyIndex}-${section}-${questionIndex}-${choiceIndex}`;
+}
+
+function initializePage() {
+  createStorySelector();
+  loadStory(0);
+  setupEventListeners();
+  setupIconManagement();
+  loadIconLibrary();
+  applyStoredAssignments();
+}
+
+function createStorySelector() {
+  const selector = document.getElementById('storySelector');
+  stories.forEach((story, index) => {
+    const btn = document.createElement('button');
+    btn.className = `story-btn ${index === 0 ? 'active' : ''}`;
+    btn.dataset.story = index;
+    btn.textContent = `Story ${index + 1}`;
+    selector.appendChild(btn);
+  });
+}
+
+function loadStory(index) {
+  currentStory = index;
+  whereWhenAnswers = {};
+  literalInferentialAnswers = {};
+  const story = stories[index];
+  
+  document.getElementById('storyTitle').textContent = story.title;
+  document.getElementById('storyText').innerHTML = story.text.split('. ').map(sentence => 
+    sentence.trim() ? `<p>${sentence.trim()}${sentence.endsWith('.') ? '' : '.'}</p>` : ''
+  ).join('');
+  
+  updateStorySelector();
+  loadWhereWhenQuestions(story.whereWhenQuestions);
+  loadLiteralInferentialQuestions(story.literalInferentialQuestions);
+  updateProgressInfo();
+  
+  // Reset activity toggle
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.activity === currentActivity);
+  });
+  
+  showActivity(currentActivity);
+  applyStoredAssignments();
+}
+
+function updateStorySelector() {
+  document.querySelectorAll('.story-btn').forEach((btn, index) => {
+    btn.classList.remove('active');
+    if (index === currentStory) {
+      btn.classList.add('active');
+    }
+    if (completedStories.has(index)) {
+      btn.classList.add('completed');
+    }
+  });
+}
+
+function loadWhereWhenQuestions(questions) {
+  const container = document.getElementById('whereWhenQuestions');
+  container.innerHTML = '';
+  
+  questions.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question-item';
+    if (editMode) questionDiv.classList.add('edit-mode');
+    
+    questionDiv.innerHTML = `
+      <div class="question-number where-when">Question ${index + 1}</div>
+      
+      <div class="question-text">${question.question}</div>
+      
+      <div class="choices">
+        ${question.choices.map((choice, choiceIndex) => {
+          const assignmentKey = getAssignmentKey(currentStory, 'where-when', index, choiceIndex);
+          const assignments = loadStoredAssignments();
+          const iconId = assignments[assignmentKey];
+          const icons = loadStoredIcons();
+          const iconSrc = iconId && icons[iconId] ? icons[iconId] : null;
+          
+          return `<div class="choice-option" data-section="where-when" data-question="${index}" data-choice="${choiceIndex}">
+            <div class="choice-icon ${iconSrc ? '' : 'empty'}" data-assignment-key="${assignmentKey}">
+              ${iconSrc ? `<img src="${iconSrc}" alt="Choice icon">` : ''}
+            </div>
+            <div class="choice-text">${choice.text}</div>
+            <button class="icon-assign-btn" data-assignment-key="${assignmentKey}">🎨</button>
+          </div>`;
+        }).join('')}
+      </div>
+      
+      <button class="check-button primary" onclick="checkWhereWhenAnswer(${index})">Check My Answer</button>
+      
+      <div class="feedback" id="whereWhenFeedback_${index}"></div>
+    `;
+    
+    container.appendChild(questionDiv);
+  });
+  
+  setupChoiceEventListeners('where-when');
+}
+
+function loadLiteralInferentialQuestions(questions) {
+  const container = document.getElementById('literalInferentialQuestions');
+  container.innerHTML = '';
+  
+  questions.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question-item';
+    if (editMode) questionDiv.classList.add('edit-mode');
+    
+    questionDiv.innerHTML = `
+      <div class="question-number literal-inferential">Question ${index + 1}</div>
+      
+      <div class="question-text">${question.question}</div>
+      
+      <div class="choices">
+        ${question.choices.map((choice, choiceIndex) => {
+          const assignmentKey = getAssignmentKey(currentStory, 'literal-inferential', index, choiceIndex);
+          const assignments = loadStoredAssignments();
+          const iconId = assignments[assignmentKey];
+          const icons = loadStoredIcons();
+          const iconSrc = iconId && icons[iconId] ? icons[iconId] : null;
+          
+          return `<div class="choice-option" data-section="literal-inferential" data-question="${index}" data-choice="${choiceIndex}">
+            <div class="choice-icon ${iconSrc ? '' : 'empty'}" data-assignment-key="${assignmentKey}">
+              ${iconSrc ? `<img src="${iconSrc}" alt="Choice icon">` : ''}
+            </div>
+            <div class="choice-text">${choice.text}</div>
+            <button class="icon-assign-btn" data-assignment-key="${assignmentKey}">🎨</button>
+          </div>`;
+        }).join('')}
+      </div>
+      
+      <button class="check-button primary" onclick="checkLiteralInferentialAnswer(${index})">Check My Answer</button>
+      
+      <div class="feedback" id="literalInferentialFeedback_${index}"></div>
+    `;
+    
+    container.appendChild(questionDiv);
+  });
+  
+  setupChoiceEventListeners('literal-inferential');
+}
+
+function setupChoiceEventListeners(section) {
+  // Choice selection
+  document.querySelectorAll(`[data-section="${section}"] .choice-option`).forEach(option => {
+    option.addEventListener('click', function() {
+      if (!editMode) {
+        const questionIndex = this.dataset.question;
+        document.querySelectorAll(`[data-section="${section}"][data-question="${questionIndex}"]`).forEach(opt => 
+          opt.classList.remove('selected'));
+        this.classList.add('selected');
+      }
+    });
+  });
+  
+  // Icon assignment buttons
+  document.querySelectorAll(`[data-section="${section}"] .icon-assign-btn`).forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      assigningTo = this.dataset.assignmentKey;
+      document.getElementById('iconPanel').classList.add('open');
+    });
+  });
+  
+  // Empty icon click in edit mode
+  document.querySelectorAll(`[data-section="${section}"] .choice-icon.empty`).forEach(icon => {
+    icon.addEventListener('click', function(e) {
+      if (editMode) {
+        e.stopPropagation();
+        assigningTo = this.dataset.assignmentKey;
+        document.getElementById('iconPanel').classList.add('open');
+      }
+    });
+  });
+}
+
+function applyStoredAssignments() {
+  const assignments = loadStoredAssignments();
+  const icons = loadStoredIcons();
+  
+  Object.keys(assignments).forEach(assignmentKey => {
+    const iconId = assignments[assignmentKey];
+    if (iconId && icons[iconId]) {
+      const iconElement = document.querySelector(`[data-assignment-key="${assignmentKey}"]`);
+      if (iconElement) {
+        iconElement.innerHTML = `<img src="${icons[iconId]}" alt="Choice icon">`;
+        iconElement.classList.remove('empty');
+      }
+    }
+  });
+}
+
+function showActivity(activityType) {
+  currentActivity = activityType;
+  document.querySelectorAll('.activity-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.activity === activityType);
+  });
+  
+  if (activityType === 'where-when') {
+    document.getElementById('whereWhenSection').classList.add('active');
+  } else {
+    document.getElementById('literalInferentialSection').classList.add('active');
+  }
+}
+
+function setupIconManagement() {
+  const uploadSection = document.getElementById('uploadSection');
+  const fileInput = document.getElementById('fileInput');
+  const iconPanel = document.getElementById('iconPanel');
+  
+  // Upload section click
+  uploadSection.addEventListener('click', () => {
+    fileInput.click();
+  });
+  
+  // File input change
+  fileInput.addEventListener('change', handleFileUpload);
+  
+  // Drag and drop
+  uploadSection.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadSection.classList.add('dragover');
+  });
+  
+  uploadSection.addEventListener('dragleave', (e) => {
+    if (!uploadSection.contains(e.relatedTarget)) {
+      uploadSection.classList.remove('dragover');
+    }
+  });
+  
+  uploadSection.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadSection.classList.remove('dragover');
+    handleFileUpload({ target: { files: e.dataTransfer.files } });
+  });
+  
+  // Panel controls
+  document.getElementById('closePanel').addEventListener('click', () => {
+    iconPanel.classList.remove('open');
+    selectedIcon = null;
+    assigningTo = null;
+  });
+  
+  document.getElementById('clearIcons').addEventListener('click', () => {
+    if (confirm('This will delete all your uploaded icons. Are you sure?')) {
+      localStorage.removeItem(ICONS_STORAGE_KEY);
+      localStorage.removeItem(ASSIGNMENTS_STORAGE_KEY);
+      loadIconLibrary();
+      loadStory(currentStory); // Refresh the current story
+    }
+  });
+}
+
+function handleFileUpload(e) {
+  const files = Array.from(e.target.files);
+  files.forEach(file => {
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const iconId = 'icon_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        const icons = loadStoredIcons();
+        icons[iconId] = event.target.result;
+        saveIcons(icons);
+        loadIconLibrary();
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+  
+  // Clear the input
+  e.target.value = '';
+}
+
+function loadIconLibrary() {
+  const iconGrid = document.getElementById('iconGrid');
+  const icons = loadStoredIcons();
+  
+  iconGrid.innerHTML = '';
+  
+  Object.keys(icons).forEach(iconId => {
+    const iconItem = document.createElement('div');
+    iconItem.className = 'icon-item';
+    iconItem.dataset.iconId = iconId;
+    iconItem.innerHTML = `
+      <img src="${icons[iconId]}" alt="Icon">
+      <button class="icon-delete" onclick="deleteIcon('${iconId}')">×</button>
+    `;
+    
+    iconItem.addEventListener('click', () => selectIcon(iconId));
+    iconGrid.appendChild(iconItem);
+  });
+}
+
+function selectIcon(iconId) {
+  // Clear previous selection
+  document.querySelectorAll('.icon-item').forEach(item => item.classList.remove('selected'));
+  
+  // Select new icon
+  document.querySelector(`[data-icon-id="${iconId}"]`).classList.add('selected');
+  selectedIcon = iconId;
+  
+  // If we're assigning to a choice, do it now
+  if (assigningTo) {
+    assignIcon(assigningTo, iconId);
+    document.getElementById('iconPanel').classList.remove('open');
+    assigningTo = null;
+    selectedIcon = null;
+  }
+}
+
+function assignIcon(assignmentKey, iconId) {
+  const assignments = loadStoredAssignments();
+  const icons = loadStoredIcons();
+  
+  if (iconId && icons[iconId]) {
+    assignments[assignmentKey] = iconId;
+    saveAssignments(assignments);
+    
+    // Update the UI
+    const iconElement = document.querySelector(`[data-assignment-key="${assignmentKey}"]`);
+    if (iconElement) {
+      iconElement.innerHTML = `<img src="${icons[iconId]}" alt="Choice icon">`;
+      iconElement.classList.remove('empty');
+    }
+  }
+}
+
+function deleteIcon(iconId) {
+  if (confirm('Delete this icon? It will be removed from any answer choices using it.')) {
+    const icons = loadStoredIcons();
+    delete icons[iconId];
+    saveIcons(icons);
+    
+    // Remove assignments using this icon
+    const assignments = loadStoredAssignments();
+    Object.keys(assignments).forEach(key => {
+      if (assignments[key] === iconId) {
+        delete assignments[key];
+      }
+    });
+    saveAssignments(assignments);
+    
+    loadIconLibrary();
+    loadStory(currentStory); // Refresh to remove deleted icons
+  }
+}
+
+function toggleEditMode() {
+  editMode = !editMode;
+  const editBtn = document.getElementById('editMode');
+  
+  if (editMode) {
+    editBtn.textContent = '✓ Done Editing';
+    editBtn.className = 'success';
+    document.querySelectorAll('.question-item').forEach(item => item.classList.add('edit-mode'));
+  } else {
+    editBtn.textContent = '✏️ Edit Icons';
+    editBtn.className = 'warning';
+    document.querySelectorAll('.question-item').forEach(item => item.classList.remove('edit-mode'));
+  }
+}
+
+function checkWhereWhenAnswer(questionIndex) {
+  const selected = document.querySelector(`[data-section="where-when"][data-question="${questionIndex}"].selected`);
+  const feedback = document.getElementById(`whereWhenFeedback_${questionIndex}`);
+  const question = stories[currentStory].whereWhenQuestions[questionIndex];
+  
+  if (!selected) {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please pick an answer first!</strong>';
+    return;
+  }
+  
+  const choiceIndex = parseInt(selected.dataset.choice);
+  const isCorrect = choiceIndex === question.correct;
+  
+  whereWhenAnswers[questionIndex] = {
+    selected: choiceIndex,
+    correct: isCorrect
+  };
+  
+  // Mark all choices
+  document.querySelectorAll(`[data-section="where-when"][data-question="${questionIndex}"]`).forEach((option, index) => {
+    option.classList.remove('correct', 'incorrect');
+    if (index === question.correct) {
+      option.classList.add('correct');
+    } else if (option.classList.contains('selected') && !isCorrect) {
+      option.classList.add('incorrect');
+    }
+  });
+  
+  if (isCorrect) {
+    feedback.className = 'feedback success show';
+    feedback.innerHTML = '<strong>🎉 That\'s right!</strong> Great job finding the answer!';
+  } else {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Not quite.</strong> Look for the answer in the story. The correct answer is shown in green.';
+  }
+  
+  checkStoryCompletion();
+}
+
+function checkLiteralInferentialAnswer(questionIndex) {
+  const selected = document.querySelector(`[data-section="literal-inferential"][data-question="${questionIndex}"].selected`);
+  const feedback = document.getElementById(`literalInferentialFeedback_${questionIndex}`);
+  const question = stories[currentStory].literalInferentialQuestions[questionIndex];
+  
+  if (!selected) {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please pick an answer first!</strong>';
+    return;
+  }
+  
+  const choiceIndex = parseInt(selected.dataset.choice);
+  const isCorrect = choiceIndex === question.correct;
+  
+  literalInferentialAnswers[questionIndex] = {
+    selected: choiceIndex,
+    correct: isCorrect
+  };
+  
+  // Mark all choices
+  document.querySelectorAll(`[data-section="literal-inferential"][data-question="${questionIndex}"]`).forEach((option, index) => {
+    option.classList.remove('correct', 'incorrect');
+    if (index === question.correct) {
+      option.classList.add('correct');
+    } else if (option.classList.contains('selected') && !isCorrect) {
+      option.classList.add('incorrect');
+    }
+  });
+  
+  if (isCorrect) {
+    feedback.className = 'feedback success show';
+    feedback.innerHTML = '<strong>🎉 Excellent!</strong> You understood the story well!';
+  } else {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Not quite.</strong> Think about what the story tells us. The correct answer is shown in green.';
+  }
+  
+  checkStoryCompletion();
+}
+
+function checkStoryCompletion() {
+  const story = stories[currentStory];
+  const totalWhereWhen = story.whereWhenQuestions.length;
+  const totalLiteralInferential = story.literalInferentialQuestions.length;
+  
+  const whereWhenCompleted = Object.keys(whereWhenAnswers).length === totalWhereWhen && 
+                             Object.values(whereWhenAnswers).filter(answer => answer.correct).length === totalWhereWhen;
+  
+  const literalInferentialCompleted = Object.keys(literalInferentialAnswers).length === totalLiteralInferential && 
+                                     Object.values(literalInferentialAnswers).filter(answer => answer.correct).length === totalLiteralInferential;
+  
+  if (whereWhenCompleted && literalInferentialCompleted) {
+    completedStories.add(currentStory);
+    updateStorySelector();
+    setTimeout(showCelebration, 1000);
+  }
+}
+
+function showCelebration() {
+  const celebration = document.getElementById('celebration');
+  const celebrationText = document.getElementById('celebrationText');
+  
+  celebrationText.textContent = `You answered all questions correctly! You're a great reader!`;
+  celebration.style.display = 'flex';
+}
+
+function closeCelebration() {
+  document.getElementById('celebration').style.display = 'none';
+}
+
+function resetActivity() {
+  whereWhenAnswers = {};
+  literalInferentialAnswers = {};
+  
+  // Clear all selections and feedback
+  document.querySelectorAll('.choice-option').forEach(choice => {
+    choice.classList.remove('selected', 'correct', 'incorrect');
+  });
+  document.querySelectorAll('.feedback').forEach(fb => fb.classList.remove('show'));
+  
+  // Remove from completed set
+  completedStories.delete(currentStory);
+  updateStorySelector();
+}
+
+function updateProgressInfo() {
+  const progressInfo = document.getElementById('progressInfo');
+  const completedCount = completedStories.size;
+  progressInfo.textContent = `Story ${currentStory + 1} of ${stories.length} • Completed: ${completedCount}`;
+}
+
+function setupEventListeners() {
+  // Story selector
+  document.getElementById('storySelector').addEventListener('click', (e) => {
+    if (e.target.classList.contains('story-btn')) {
+      const storyIndex = parseInt(e.target.dataset.story);
+      loadStory(storyIndex);
+    }
+  });
+  
+  // Activity toggle
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showActivity(btn.dataset.activity);
+    });
+  });
+  
+  // Control buttons
+  document.getElementById('manageIcons').addEventListener('click', () => {
+    document.getElementById('iconPanel').classList.add('open');
+  });
+  
+  document.getElementById('editMode').addEventListener('click', toggleEditMode);
+  document.getElementById('resetActivity').addEventListener('click', resetActivity);
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+</body>
+</html>

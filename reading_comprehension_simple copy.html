@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading Comprehension - Main Ideas & Vocabulary</title>
+<style>
+  :root {
+    --w: 1200px;
+    --accent: #3b82f6;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #10b981;
+    --err: #ef4444;
+    --warning: #f59e0b;
+    --purple: #8b5cf6;
+    --gray: #64748b;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+    flex-wrap: wrap;
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+  
+  .story-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .story-btn {
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: 3px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .story-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .activity-container {
+    background: white;
+    border: 3px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .story-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .story-title {
+    color: var(--accent);
+    font-size: 32px;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  
+  .activity-toggle {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .toggle-btn {
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: 3px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .toggle-btn.active {
+    background: var(--purple);
+    color: white;
+    border-color: var(--purple);
+  }
+  
+  .story-text {
+    background: #f8fafc;
+    border: 3px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    line-height: 1.8;
+    text-align: left;
+  }
+  
+  .highlight {
+    background: #fef3c7;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  
+  .activity-section {
+    display: none;
+  }
+  
+  .activity-section.active {
+    display: block;
+  }
+  
+  /* Main Idea & Details Activity */
+  .main-idea-activity {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .choices-bank {
+    background: #fffbeb;
+    border: 4px dashed var(--warning);
+    border-radius: 12px;
+    padding: 25px;
+    min-height: 350px;
+  }
+  
+  .choices-bank h3 {
+    color: #92400e;
+    margin: 0 0 20px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+  }
+  
+  .drop-zones {
+    display: grid;
+    gap: 25px;
+  }
+  
+  .drop-zone {
+    min-height: 150px;
+    border: 4px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .drop-zone h3 {
+    text-align: center;
+    margin: 0 0 20px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .main-idea-zone {
+    background: #fef2f2;
+    border-color: var(--err);
+  }
+  
+  .main-idea-zone h3 {
+    background: var(--err);
+    color: white;
+  }
+  
+  .details-zone {
+    background: #f0f9ff;
+    border-color: var(--accent);
+  }
+  
+  .details-zone h3 {
+    background: var(--accent);
+    color: white;
+  }
+  
+  .drop-zone.drag-over {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .main-idea-zone.drag-over {
+    border-color: #dc2626;
+    background: #fee2e2;
+  }
+  
+  .details-zone.drag-over {
+    border-color: #2563eb;
+    background: #dbeafe;
+  }
+  
+  .draggable-choice {
+    background: white;
+    border: 3px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    cursor: move;
+    transition: all 0.2s ease;
+    font-size: 18px;
+    line-height: 1.4;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-weight: 500;
+  }
+  
+  .draggable-choice:hover {
+    border-color: var(--purple);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  
+  .draggable-choice.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+  }
+  
+  .draggable-choice.placed {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .draggable-choice.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+  
+  /* Vocabulary Activity */
+  .vocab-activity {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .vocab-word {
+    background: #f8fafc;
+    border: 3px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .vocab-word-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .vocab-sentence {
+    background: white;
+    border: 3px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    font-size: 20px;
+    line-height: 1.7;
+  }
+  
+  .vocab-target {
+    background: #ddd6fe;
+    color: #5b21b6;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  
+  .vocab-question {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  
+  .vocab-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 3px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .vocab-help-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+  }
+  
+  .hint-box {
+    background: #fef3c7;
+    border: 3px solid var(--warning);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+  }
+  
+  .hint-box.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .hint-box h4 {
+    color: #92400e;
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .multiple-choice {
+    display: none;
+    margin-top: 25px;
+  }
+  
+  .multiple-choice.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .choice-option {
+    background: white;
+    border: 3px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  
+  .choice-option:hover {
+    border-color: var(--purple);
+    background: #f8fafc;
+  }
+  
+  .choice-option.selected {
+    border-color: var(--accent);
+    background: #eff6ff;
+  }
+  
+  .choice-option.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .choice-option.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+  
+  button {
+    border: 3px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #2563eb;
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+  
+  button.danger {
+    background: var(--err);
+    color: white;
+    border-color: var(--err);
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 3px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 25px;
+    display: none;
+    font-size: 18px;
+  }
+  
+  .feedback.show {
+    display: block;
+  }
+  
+  .feedback.success {
+    background: #f0fdf4;
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: #fef2f2;
+    border-color: var(--err);
+    color: #991b1b;
+  }
+  
+  .empty-zone-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gray);
+    font-style: italic;
+    text-align: center;
+    pointer-events: none;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  
+  .zone-content {
+    min-height: 100px;
+    position: relative;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @media (max-width: 768px) {
+    .main-idea-activity {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .choices-bank {
+      order: -1;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+    }
+    
+    .controls {
+      justify-content: center;
+    }
+    
+    .vocab-help-section {
+      flex-direction: column;
+    }
+    
+    .story-btn {
+      padding: 12px 20px;
+      font-size: 16px;
+    }
+    
+    .toggle-btn {
+      padding: 12px 20px;
+      font-size: 16px;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>📚 Reading Practice</h1>
+      <div class="controls">
+        <button id="resetActivity" class="warning">🔄 Reset</button>
+        <button id="nextStory" class="success" style="display:none;">Next Story →</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="story-selector" id="storySelector">
+      <!-- Story buttons will be generated -->
+    </div>
+
+    <div class="activity-container">
+      <div class="story-header">
+        <h2 class="story-title" id="storyTitle">Story Title</h2>
+      </div>
+
+      <div class="activity-toggle">
+        <button class="toggle-btn active" data-activity="main-idea">📝 Main Idea & Details</button>
+        <button class="toggle-btn" data-activity="vocabulary">📖 Words</button>
+      </div>
+
+      <div class="story-text" id="storyText">
+        <!-- Story content will be populated here -->
+      </div>
+
+      <!-- Main Idea & Details Activity -->
+      <div class="activity-section active" id="mainIdeaSection">
+        <div class="main-idea-activity">
+          <div class="choices-bank">
+            <h3>📝 Drag These</h3>
+            <div id="choicesBank">
+              <!-- Choices will be populated here -->
+            </div>
+          </div>
+
+          <div class="drop-zones">
+            <div class="drop-zone main-idea-zone" data-zone="main-idea">
+              <h3>🎯 Main Idea</h3>
+              <div class="zone-content" id="mainIdeaZone">
+                <div class="empty-zone-message">What is the story mostly about?</div>
+              </div>
+            </div>
+
+            <div class="drop-zone details-zone" data-zone="details">
+              <h3>📋 Details</h3>
+              <div class="zone-content" id="detailsZone">
+                <div class="empty-zone-message">Drag 2 things that happened</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button id="checkMainIdea" class="primary" style="margin-top: 25px;">✓ Check My Work</button>
+        <div class="feedback" id="mainIdeaFeedback">
+          <p id="mainIdeaFeedbackText"></p>
+        </div>
+      </div>
+
+      <!-- Vocabulary Activity -->
+      <div class="activity-section" id="vocabularySection">
+        <div class="vocab-activity" id="vocabActivity">
+          <!-- Vocabulary words will be populated here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+const stories = [
+  {
+    title: "Making Cookies",
+    text: "Sam wanted to make cookies for his mom's birthday. He found a recipe and got all the ingredients from the kitchen. Sam mixed flour, sugar, and eggs in a big bowl. He rolled the dough into small balls and put them on a cookie sheet. After 15 minutes in the oven, the cookies were ready. His mom loved the surprise!",
+    mainIdea: "Sam made cookies for his mom's birthday",
+    details: [
+      "He got ingredients from the kitchen",
+      "He mixed flour, sugar, and eggs"
+    ],
+    foils: [
+      "Sam's mom was very old",
+      "The kitchen was very messy"
+    ],
+    vocabulary: [
+      {
+        word: "ingredients",
+        sentence: "He found a recipe and got all the ingredients from the kitchen.",
+        question: "What are ingredients?",
+        hint1: "Sam needed these things to make cookies.",
+        hint2: "These are the different foods you mix together.",
+        choices: [
+          "things you need to make food",
+          "tools for cooking",
+          "places to store food"
+        ],
+        correct: 0
+      },
+      {
+        word: "recipe",
+        sentence: "He found a recipe and got all the ingredients from the kitchen.",
+        question: "What is a recipe?",
+        hint1: "This told Sam how to make cookies.",
+        hint2: "This has steps to follow when cooking.",
+        choices: [
+          "directions for making food",
+          "a type of cookie",
+          "a cooking tool"
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "The Lost Cat",
+    text: "Maria heard a cat crying outside her house. She looked around and saw a small orange cat under her porch. The cat looked hungry and scared. Maria gave it some water and cat food. She made posters with the cat's picture and put them around the neighborhood. Three days later, the cat's owner called Maria to say thank you. The cat was safely back home.",
+    mainIdea: "Maria helped find the owner of a lost cat",
+    details: [
+      "She found a cat under her porch",
+      "She made posters with the cat's picture"
+    ],
+    foils: [
+      "Maria wanted to keep the cat",
+      "The cat was very expensive"
+    ],
+    vocabulary: [
+      {
+        word: "neighborhood",
+        sentence: "She made posters with the cat's picture and put them around the neighborhood.",
+        question: "What is a neighborhood?",
+        hint1: "This is where Maria put up posters.",
+        hint2: "This is the area around your house where other people live.",
+        choices: [
+          "the houses and streets near where you live",
+          "a place to buy things",
+          "a room in your house"
+        ],
+        correct: 0
+      },
+      {
+        word: "posters",
+        sentence: "She made posters with the cat's picture and put them around the neighborhood.",
+        question: "What are posters?",
+        hint1: "Maria made these to help find the cat's owner.",
+        hint2: "These have pictures and words on paper.",
+        choices: [
+          "big papers with pictures and words",
+          "small books about cats",
+          "boxes to hold things"
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "The School Play",
+    text: "Emma was nervous about being in the school play. She had to memorize many lines and practice every day after school. On the night of the play, Emma felt scared when she saw all the people in the audience. But when the play started, she remembered all her lines perfectly. Everyone clapped loudly when the play ended. Emma felt proud of herself for doing such a good job.",
+    mainIdea: "Emma was nervous but did well in the school play",
+    details: [
+      "She practiced every day after school",
+      "She remembered all her lines perfectly"
+    ],
+    foils: [
+      "Emma forgot to wear her costume",
+      "The play was about animals"
+    ],
+    vocabulary: [
+      {
+        word: "memorize",
+        sentence: "She had to memorize many lines and practice every day after school.",
+        question: "What does memorize mean?",
+        hint1: "Emma had to do this with her lines for the play.",
+        hint2: "This means to remember something without looking.",
+        choices: [
+          "learn something by heart so you remember it",
+          "write something down on paper",
+          "read something very quickly"
+        ],
+        correct: 0
+      },
+      {
+        word: "audience",
+        sentence: "On the night of the play, Emma felt scared when she saw all the people in the audience.",
+        question: "What is an audience?",
+        hint1: "These people made Emma feel scared.",
+        hint2: "These people came to watch the play.",
+        choices: [
+          "people who watch a show or performance",
+          "people who act in a play",
+          "people who work at the school"
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "Planting a Garden",
+    text: "Jake decided to plant a small garden in his backyard. He bought seeds for tomatoes and carrots at the store. Jake dug holes in the dirt and planted the seeds carefully. He watered them every morning before school. After a few weeks, tiny green plants started to grow. Jake was excited to see his first vegetables growing in his very own garden.",
+    mainIdea: "Jake planted a garden and watched it grow",
+    details: [
+      "He bought tomato and carrot seeds",
+      "He watered the plants every morning"
+    ],
+    foils: [
+      "Jake's backyard was very small",
+      "The seeds cost a lot of money"
+    ],
+    vocabulary: [
+      {
+        word: "planted",
+        sentence: "Jake dug holes in the dirt and planted the seeds carefully.",
+        question: "What does planted mean?",
+        hint1: "This is what Jake did with the seeds.",
+        hint2: "This means putting seeds in the ground.",
+        choices: [
+          "put seeds in the soil so they can grow",
+          "picked up seeds from the ground",
+          "threw seeds away in the trash"
+        ],
+        correct: 0
+      },
+      {
+        word: "vegetables",
+        sentence: "Jake was excited to see his first vegetables growing in his very own garden.",
+        question: "What are vegetables?",
+        hint1: "Tomatoes and carrots are examples of these.",
+        hint2: "These are healthy foods that grow in gardens.",
+        choices: [
+          "healthy foods like carrots and tomatoes",
+          "tools for working in the garden",
+          "animals that live in gardens"
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    title: "The New Bike",
+    text: "Lisa saved her allowance for three months to buy a new bike. When she finally had enough money, her dad took her to the bike store. Lisa picked out a red bike with a basket on the front. The store worker helped adjust the seat to fit Lisa perfectly. On the ride home, Lisa felt so happy pedaling her new bike. She couldn't wait to ride it to school the next day.",
+    mainIdea: "Lisa saved money and bought a new bike",
+    details: [
+      "She saved her allowance for three months",
+      "She picked a red bike with a basket"
+    ],
+    foils: [
+      "Lisa's old bike was broken",
+      "The bike store was very far away"
+    ],
+    vocabulary: [
+      {
+        word: "allowance",
+        sentence: "Lisa saved her allowance for three months to buy a new bike.",
+        question: "What is an allowance?",
+        hint1: "Lisa got this money regularly and saved it.",
+        hint2: "This is money parents give to kids each week.",
+        choices: [
+          "money parents give kids regularly",
+          "money you find on the ground",
+          "money you earn from a job"
+        ],
+        correct: 0
+      },
+      {
+        word: "adjust",
+        sentence: "The store worker helped adjust the seat to fit Lisa perfectly.",
+        question: "What does adjust mean?",
+        hint1: "The worker did this to make the seat fit Lisa.",
+        hint2: "This means to change something to make it better.",
+        choices: [
+          "change something to make it fit better",
+          "break something so it doesn't work",
+          "clean something to make it shiny"
+        ],
+        correct: 0
+      }
+    ]
+  }
+];
+
+let currentStory = 0;
+let currentActivity = 'main-idea';
+let draggedElement = null;
+
+function initializePage() {
+  createStorySelector();
+  loadStory(0);
+  setupEventListeners();
+}
+
+function createStorySelector() {
+  const selector = document.getElementById('storySelector');
+  stories.forEach((story, index) => {
+    const btn = document.createElement('button');
+    btn.className = `story-btn ${index === 0 ? 'active' : ''}`;
+    btn.dataset.story = index;
+    btn.textContent = `Story ${index + 1}`;
+    selector.appendChild(btn);
+  });
+}
+
+function loadStory(index) {
+  currentStory = index;
+  const story = stories[index];
+  
+  document.getElementById('storyTitle').textContent = story.title;
+  document.getElementById('storyText').textContent = story.text;
+  
+  updateStorySelector();
+  loadMainIdeaActivity();
+  loadVocabularyActivity();
+  
+  // Reset activity toggle
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.activity === currentActivity);
+  });
+  
+  showActivity(currentActivity);
+}
+
+function updateStorySelector() {
+  document.querySelectorAll('.story-btn').forEach((btn, index) => {
+    btn.classList.toggle('active', index === currentStory);
+  });
+}
+
+function loadMainIdeaActivity() {
+  const story = stories[currentStory];
+  const bank = document.getElementById('choicesBank');
+  bank.innerHTML = '';
+  
+  // Clear zones
+  document.getElementById('mainIdeaZone').innerHTML = '<div class="empty-zone-message">What is the story mostly about?</div>';
+  document.getElementById('detailsZone').innerHTML = '<div class="empty-zone-message">Drag 2 things that happened</div>';
+  
+  // Create all choices (main idea + details + foils) and shuffle
+  const allChoices = [
+    { text: story.mainIdea, type: 'main-idea' },
+    ...story.details.map(detail => ({ text: detail, type: 'detail' })),
+    ...story.foils.map(foil => ({ text: foil, type: 'foil' }))
+  ].sort(() => Math.random() - 0.5);
+  
+  allChoices.forEach((choice, index) => {
+    const element = document.createElement('div');
+    element.className = 'draggable-choice';
+    element.draggable = true;
+    element.textContent = choice.text;
+    element.dataset.type = choice.type;
+    element.dataset.index = index;
+    
+    element.addEventListener('dragstart', handleDragStart);
+    element.addEventListener('dragend', handleDragEnd);
+    
+    bank.appendChild(element);
+  });
+  
+  setupDropZones();
+  document.getElementById('mainIdeaFeedback').classList.remove('show');
+}
+
+function loadVocabularyActivity() {
+  const story = stories[currentStory];
+  const container = document.getElementById('vocabActivity');
+  container.innerHTML = '';
+  
+  story.vocabulary.forEach((vocabItem, index) => {
+    const vocabDiv = document.createElement('div');
+    vocabDiv.className = 'vocab-word';
+    vocabDiv.innerHTML = `
+      <div class="vocab-word-title">Word ${index + 1}: "${vocabItem.word}"</div>
+      
+      <div class="vocab-sentence">
+        ${vocabItem.sentence.replace(vocabItem.word, `<span class="vocab-target">${vocabItem.word}</span>`)}
+      </div>
+      
+      <div class="vocab-question">${vocabItem.question}</div>
+      
+      <textarea class="vocab-input" id="vocab_${index}" placeholder="What do you think this word means?"></textarea>
+      
+      <div class="vocab-help-section">
+        <button class="warning" onclick="showHint(${index}, 1)">💡 I need help</button>
+        <button class="warning" onclick="showHint(${index}, 2)" style="display:none;" id="hint2Btn_${index}">💡 More help</button>
+        <button class="primary" onclick="checkVocabAnswer(${index})">✓ Check Answer</button>
+      </div>
+      
+      <div class="hint-box" id="hint1_${index}">
+        <h4>💡 Hint 1:</h4>
+        <p>${vocabItem.hint1}</p>
+      </div>
+      
+      <div class="hint-box" id="hint2_${index}">
+        <h4>💡 Hint 2:</h4>
+        <p>${vocabItem.hint2}</p>
+      </div>
+      
+      <div class="multiple-choice" id="choices_${index}">
+        <h4>Choose the best answer:</h4>
+        ${vocabItem.choices.map((choice, choiceIndex) => 
+          `<div class="choice-option" data-vocab="${index}" data-choice="${choiceIndex}">${choice}</div>`
+        ).join('')}
+        <button class="primary" onclick="checkMultipleChoice(${index})" style="margin-top: 15px;">Check My Choice</button>
+      </div>
+      
+      <div class="feedback" id="vocabFeedback_${index}"></div>
+    `;
+    
+    container.appendChild(vocabDiv);
+  });
+  
+  // Add event listeners for multiple choice
+  document.querySelectorAll('.choice-option').forEach(option => {
+    option.addEventListener('click', function() {
+      const vocabIndex = this.dataset.vocab;
+      document.querySelectorAll(`[data-vocab="${vocabIndex}"]`).forEach(opt => opt.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+
+function showActivity(activityType) {
+  currentActivity = activityType;
+  document.querySelectorAll('.activity-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.activity === activityType);
+  });
+  
+  if (activityType === 'main-idea') {
+    document.getElementById('mainIdeaSection').classList.add('active');
+  } else {
+    document.getElementById('vocabularySection').classList.add('active');
+  }
+}
+
+// Drag and Drop functionality
+function handleDragStart(e) {
+  draggedElement = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragEnd(e) {
+  e.target.classList.remove('dragging');
+  draggedElement = null;
+}
+
+function setupDropZones() {
+  const dropZones = document.querySelectorAll('.drop-zone');
+  
+  dropZones.forEach(zone => {
+    zone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+    });
+    
+    zone.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    });
+    
+    zone.addEventListener('dragleave', (e) => {
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        e.currentTarget.classList.remove('drag-over');
+      }
+    });
+    
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      
+      if (draggedElement) {
+        const zoneContent = e.currentTarget.querySelector('.zone-content');
+        const zoneType = e.currentTarget.dataset.zone;
+        
+        // Check if it's the details zone and already has 2 items
+        if (zoneType === 'details') {
+          const currentItems = zoneContent.querySelectorAll('.draggable-choice');
+          if (currentItems.length >= 2) {
+            alert('The Details box can only hold 2 items. Remove one first.');
+            return;
+          }
+        }
+        
+        // Check if it's the main idea zone and already has 1 item
+        if (zoneType === 'main-idea') {
+          const currentItems = zoneContent.querySelectorAll('.draggable-choice');
+          if (currentItems.length >= 1) {
+            alert('The Main Idea box can only hold 1 item. Remove it first.');
+            return;
+          }
+        }
+        
+        draggedElement.remove();
+        zoneContent.appendChild(draggedElement);
+        updateEmptyMessages();
+        draggedElement.classList.add('placed');
+        draggedElement.classList.remove('incorrect');
+      }
+    });
+  });
+}
+
+function updateEmptyMessages() {
+  ['mainIdeaZone', 'detailsZone'].forEach(zoneId => {
+    const zone = document.getElementById(zoneId);
+    const message = zone.querySelector('.empty-zone-message');
+    const items = zone.querySelectorAll('.draggable-choice');
+    if (message) message.style.display = items.length > 0 ? 'none' : 'block';
+  });
+}
+
+function checkMainIdea() {
+  const mainIdeaZone = document.getElementById('mainIdeaZone');
+  const detailsZone = document.getElementById('detailsZone');
+  
+  const mainIdeaItems = mainIdeaZone.querySelectorAll('.draggable-choice');
+  const detailItems = detailsZone.querySelectorAll('.draggable-choice');
+  
+  let correct = 0;
+  let total = 0;
+  let feedback = [];
+  
+  // Check main idea (should have exactly 1, and it should be correct)
+  if (mainIdeaItems.length === 0) {
+    feedback.push("Put one sentence in the Main Idea box.");
+  } else if (mainIdeaItems.length > 1) {
+    feedback.push("The Main Idea box should only have one sentence.");
+  } else {
+    total++;
+    const item = mainIdeaItems[0];
+    if (item.dataset.type === 'main-idea') {
+      correct++;
+      item.classList.remove('incorrect');
+      item.classList.add('placed');
+    } else {
+      item.classList.add('incorrect');
+      feedback.push("That sentence is not the main idea.");
+    }
+  }
+  
+  // Check details (should have exactly 2, and they should all be correct)
+  if (detailItems.length < 2) {
+    feedback.push(`Put 2 detail sentences in the Details box. You have ${detailItems.length}.`);
+  } else {
+    detailItems.forEach(item => {
+      total++;
+      if (item.dataset.type === 'detail') {
+        correct++;
+        item.classList.remove('incorrect');
+        item.classList.add('placed');
+      } else {
+        item.classList.add('incorrect');
+        if (item.dataset.type === 'main-idea') {
+          feedback.push("The main idea goes in the Main Idea box.");
+        } else {
+          feedback.push("That sentence is not a detail from the story.");
+        }
+      }
+    });
+  }
+  
+  // Show feedback
+  const feedbackEl = document.getElementById('mainIdeaFeedback');
+  const feedbackText = document.getElementById('mainIdeaFeedbackText');
+  
+  if (correct === 3 && total === 3) {
+    feedbackEl.className = 'feedback success show';
+    feedbackText.innerHTML = `
+      <strong>🎉 Great job!</strong><br>
+      You found the main idea and both details correctly!
+    `;
+  } else {
+    feedbackEl.className = 'feedback error show';
+    feedbackText.innerHTML = `
+      <strong>You got ${correct} out of 3 correct</strong><br>
+      ${feedback.length > 0 ? feedback.join('<br>') : ''}
+      <br><em>Remember: The main idea tells what the whole story is about.</em>
+    `;
+  }
+}
+
+// Vocabulary functions
+function showHint(vocabIndex, hintNumber) {
+  const hintBox = document.getElementById(`hint${hintNumber}_${vocabIndex}`);
+  hintBox.classList.add('show');
+  
+  if (hintNumber === 1) {
+    document.getElementById(`hint2Btn_${vocabIndex}`).style.display = 'inline-block';
+  } else if (hintNumber === 2) {
+    document.getElementById(`choices_${vocabIndex}`).classList.add('show');
+  }
+}
+
+function checkVocabAnswer(vocabIndex) {
+  const input = document.getElementById(`vocab_${vocabIndex}`);
+  const feedback = document.getElementById(`vocabFeedback_${vocabIndex}`);
+  const story = stories[currentStory];
+  const vocabItem = story.vocabulary[vocabIndex];
+  const correctAnswer = vocabItem.choices[vocabItem.correct];
+  
+  if (input.value.trim() === '') {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please write your answer first!</strong>';
+    return;
+  }
+  
+  feedback.className = 'feedback success show';
+  feedback.innerHTML = `
+    <strong>Your answer:</strong> "${input.value}"<br>
+    <strong>Good answer:</strong> "${correctAnswer}"<br>
+    <em>Nice work! Talk to your teacher about your answer.</em>
+  `;
+}
+
+function checkMultipleChoice(vocabIndex) {
+  const selected = document.querySelector(`[data-vocab="${vocabIndex}"].selected`);
+  const feedback = document.getElementById(`vocabFeedback_${vocabIndex}`);
+  const story = stories[currentStory];
+  const vocabItem = story.vocabulary[vocabIndex];
+  
+  if (!selected) {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please pick an answer first!</strong>';
+    return;
+  }
+  
+  const choiceIndex = parseInt(selected.dataset.choice);
+  const isCorrect = choiceIndex === vocabItem.correct;
+  
+  document.querySelectorAll(`[data-vocab="${vocabIndex}"]`).forEach(option => {
+    const optionIndex = parseInt(option.dataset.choice);
+    if (optionIndex === vocabItem.correct) {
+      option.classList.add('correct');
+    } else if (option.classList.contains('selected') && !isCorrect) {
+      option.classList.add('incorrect');
+    }
+  });
+  
+  if (isCorrect) {
+    feedback.className = 'feedback success show';
+    feedback.innerHTML = '<strong>🎉 Correct!</strong> You figured out what the word means!';
+  } else {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = `<strong>Not quite.</strong> The right answer is shown in green.`;
+  }
+}
+
+function resetActivity() {
+  if (currentActivity === 'main-idea') {
+    loadMainIdeaActivity();
+  } else {
+    loadVocabularyActivity();
+  }
+}
+
+function setupEventListeners() {
+  // Story selector
+  document.getElementById('storySelector').addEventListener('click', (e) => {
+    if (e.target.classList.contains('story-btn')) {
+      const storyIndex = parseInt(e.target.dataset.story);
+      loadStory(storyIndex);
+    }
+  });
+  
+  // Activity toggle
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showActivity(btn.dataset.activity);
+    });
+  });
+  
+  // Control buttons
+  document.getElementById('checkMainIdea').addEventListener('click', checkMainIdea);
+  document.getElementById('resetActivity').addEventListener('click', resetActivity);
+  document.getElementById('nextStory').addEventListener('click', () => {
+    if (currentStory < stories.length - 1) {
+      loadStory(currentStory + 1);
+    }
+  });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+</body>
+</html>

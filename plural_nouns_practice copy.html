@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plural Nouns Practice - Fill in the Blanks</title>
+<style>
+  :root {
+    --w: 1000px;
+    --accent: #7c3aed;
+    --bg: #faf8ff;
+    --ink: #1e1b4b;
+    --ok: #16a34a;
+    --err: #dc2626;
+    --warning: #ea580c;
+    --blue: #2563eb;
+    --purple: #8b5cf6;
+    --gray: #64748b;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+  }
+  
+  .progress-info {
+    font-weight: 600;
+    color: var(--purple);
+    font-size: 16px;
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+  
+  .noun-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .mode-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  
+  .mode-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .mode-label {
+    font-weight: 700;
+    color: var(--purple);
+  }
+  
+  .mode-btn {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .mode-btn:hover {
+    background: #ede9fe;
+    border-color: var(--purple);
+  }
+  
+  .mode-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  
+  .noun-btn {
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .noun-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .practice-container {
+    background: white;
+    border: 3px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .noun-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .noun-title {
+    color: var(--accent);
+    font-size: 28px;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  
+  .sentence-pair {
+    margin-bottom: 40px;
+  }
+  
+  .sentence-container {
+    background: #f8fafc;
+    border: 3px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .sentence-label {
+    background: var(--blue);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    text-transform: uppercase;
+  }
+  
+  .sentence-text {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .singular-noun {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  
+  .blank-input {
+    background: #fff7ed;
+    border: 3px solid #ea580c;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--warning);
+    min-width: 120px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  .blank-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  }
+  
+  .blank-input.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+    color: var(--ok);
+  }
+  
+  .blank-input.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+    color: var(--err);
+  }
+  
+  .image-placeholder {
+    width: 120px;
+    height: 120px;
+    border: 3px dashed #cbd5e1;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    background: #f8fafc;
+    color: var(--gray);
+    font-size: 14px;
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .support-section {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .hint-btn {
+    background: var(--warning);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 8px;
+  }
+  
+  .hint-btn:hover {
+    background: #c2410c;
+    transform: translateY(-2px);
+  }
+  
+  .hint-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .hint-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .hint-message {
+    display: none;
+    margin: 10px auto 20px;
+    max-width: 520px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 2px solid #ea580c;
+    background: #fff7ed;
+    color: #c2410c;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .hint-message.show {
+    display: block;
+  }
+  
+  .multiple-choice {
+    display: none;
+    margin-top: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .multiple-choice.show {
+    display: block;
+    animation: slideDown 0.4s ease;
+  }
+  
+  .choice-option {
+    background: white;
+    border: 3px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .choice-option:hover {
+    border-color: var(--purple);
+    background: #faf5ff;
+    transform: translateY(-2px);
+  }
+  
+  .choice-option.selected {
+    border-color: var(--accent);
+    background: #ede9fe;
+  }
+  
+  .choice-option.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+    color: var(--ok);
+  }
+  
+  .choice-option.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+    color: var(--err);
+  }
+  
+  .check-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 20px;
+  }
+  
+  .check-btn:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 3px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .feedback.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .feedback.success {
+    background: #f0fdf4;
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: #fef2f2;
+    border-color: var(--err);
+    color: #991b1b;
+  }
+  
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 20px;
+  }
+  
+  .nav-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .nav-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+  }
+  
+  .nav-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  button:not(.mode-btn) {
+    border: 3px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  button:not(.mode-btn):hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #6d28d9;
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @media (max-width: 768px) {
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+    }
+    
+    .controls {
+      justify-content: center;
+    }
+    
+    .sentence-text {
+      font-size: 20px;
+    }
+    
+    .blank-input {
+      font-size: 20px;
+      min-width: 100px;
+    }
+    
+    .navigation {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .noun-selector {
+      gap: 6px;
+    }
+    
+    .noun-btn {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+    
+    .mode-controls {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .mode-group {
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>📝 Plural Nouns Practice</h1>
+      <div class="progress-info" id="progressInfo">Item 1 of 25</div>
+      <div class="controls">
+        <button id="addImageBtn" class="primary">📷 Add Image</button>
+        <button id="resetItem" class="warning">🔄 Reset</button>
+        <button id="nextItem" class="success" style="display:none;">Next Item →</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="mode-controls" id="modeControls">
+      <div class="mode-group">
+        <span class="mode-label">Practice:</span>
+        <button class="mode-btn active" data-mode="all">All Nouns</button>
+        <button class="mode-btn" data-mode="regular">Regular Only</button>
+        <button class="mode-btn" data-mode="irregular">Irregular Only</button>
+      </div>
+      <div class="mode-group">
+        <span class="mode-label">Jump To:</span>
+        <button class="mode-btn" data-random="all">🎲 Any</button>
+        <button class="mode-btn" data-random="regular">🎲 Regular</button>
+        <button class="mode-btn" data-random="irregular">🎲 Irregular</button>
+      </div>
+    </div>
+    
+    <div class="noun-selector" id="nounSelector">
+      <!-- Noun buttons will be generated -->
+    </div>
+
+    <div class="practice-container">
+      <div class="noun-header">
+        <h2 class="noun-title" id="nounTitle">Mouse</h2>
+      </div>
+
+      <div class="sentence-pair">
+        <!-- Image area (hidden by default) -->
+        <div class="image-placeholder" id="imagePlaceholder" style="display: none;">
+          [Add picture here]<br>
+          <small>Click to upload image</small>
+        </div>
+
+        <!-- Singular sentence -->
+        <div class="sentence-container">
+          <div class="sentence-label">Singular (One)</div>
+          <p class="sentence-text" id="singularSentence">
+            I saw one <span class="singular-noun">mouse</span> in the kitchen.
+          </p>
+        </div>
+
+        <!-- Plural sentence with blank -->
+        <div class="sentence-container">
+          <div class="sentence-label">Plural (Many)</div>
+          <p class="sentence-text" id="pluralSentence">
+            I saw lots of <input type="text" class="blank-input" id="pluralInput" placeholder="?"> in the kitchen.
+          </p>
+        </div>
+      </div>
+
+      <div class="support-section">
+        <div class="hint-buttons">
+          <button class="hint-btn" id="showHintBtn">💡 I Need Help</button>
+          <button class="hint-btn" id="moreHelpBtn" disabled>✨ I Need More Help</button>
+        </div>
+        <div class="hint-message" id="hintMessage"></div>
+        <button class="check-btn" id="checkAnswerBtn">✓ Check My Answer</button>
+        
+        <div class="multiple-choice" id="multipleChoice">
+          <h3 style="color: var(--purple); margin-bottom: 20px;">Choose the correct plural form:</h3>
+          <div id="choiceOptions">
+            <!-- Multiple choice options will be populated -->
+          </div>
+          <button class="check-btn" id="checkChoiceBtn">Check My Choice</button>
+        </div>
+
+        <div class="feedback" id="feedback">
+          <p id="feedbackText"></p>
+        </div>
+      </div>
+
+      <div class="navigation">
+        <button class="nav-btn" id="prevBtn">⬅ Previous</button>
+        <button class="nav-btn" id="nextBtn">Next ➡</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Hidden file input for image upload -->
+  <input type="file" id="imageInput" accept="image/*" style="display: none;">
+
+<script>
+const nounData = [
+  {
+    singular: "mouse",
+    plural: "mice",
+    type: "Irregular",
+    sentence: "I saw one [noun] in the kitchen.",
+    pluralSentence: "I saw many [noun] in the kitchen.",
+    foils: ["mouses", "mousies"],
+    color: "#ef4444"
+  },
+  {
+    singular: "child",
+    plural: "children", 
+    type: "Irregular",
+    sentence: "The [noun] played in the park.",
+    foils: ["childs", "childes"],
+    color: "#8b5cf6"
+  },
+  {
+    singular: "foot",
+    plural: "feet",
+    type: "Irregular", 
+    sentence: "My [noun] hurt after the long walk.",
+    foils: ["foots", "feets"],
+    color: "#06b6d4"
+  },
+  {
+    singular: "goose",
+    plural: "geese",
+    type: "Irregular",
+    sentence: "A [noun] swam in the pond.",
+    pluralSentence: "Several [noun] swam in the pond.",
+    foils: ["gooses", "goosies"],
+    color: "#10b981"
+  },
+  {
+    singular: "tooth",
+    plural: "teeth",
+    type: "Irregular",
+    sentence: "I lost a [noun] today.",
+    pluralSentence: "I lost some [noun] today.",
+    foils: ["tooths", "toothes"],
+    color: "#f59e0b"
+  },
+  {
+    singular: "sheep",
+    plural: "sheep",
+    type: "Irregular",
+    sentence: "The farmer has one [noun].",
+    pluralSentence: "The farmer has many [noun].",
+    foils: ["sheeps", "sheepes"],
+    color: "#84cc16"
+  },
+  {
+    singular: "man",
+    plural: "men",
+    type: "Irregular",
+    sentence: "The [noun] walked to work.",
+    foils: ["mans", "manes"],
+    color: "#06b6d4"
+  },
+  {
+    singular: "woman",
+    plural: "women",
+    type: "Irregular",
+    sentence: "The [noun] smiled at me.",
+    foils: ["womans", "womanes"],
+    color: "#ec4899"
+  },
+  {
+    singular: "person",
+    plural: "people",
+    type: "Irregular",
+    sentence: "One [noun] stood in line.",
+    pluralSentence: "Many [noun] stood in line.",
+    foils: ["persons", "peoples"],
+    color: "#8b5cf6"
+  },
+  {
+    singular: "deer",
+    plural: "deer",
+    type: "Irregular",
+    sentence: "A [noun] ran through the forest.",
+    pluralSentence: "Several [noun] ran through the forest.",
+    foils: ["deers", "deeres"],
+    color: "#84cc16"
+  },
+  {
+    singular: "fish",
+    plural: "fish",
+    type: "Irregular",
+    sentence: "The [noun] swam in the lake.",
+    pluralSentence: "Many [noun] swam in the lake.",
+    foils: ["fishs", "fishes"],
+    color: "#06b6d4"
+  },
+  {
+    singular: "ox",
+    plural: "oxen",
+    type: "Irregular",
+    sentence: "The [noun] pulled the cart.",
+    foils: ["oxs", "oxes"],
+    color: "#92400e"
+  },
+  {
+    singular: "cat",
+    plural: "cats",
+    type: "Regular",
+    sentence: "The [noun] slept on my bed.",
+    foils: ["cates", "catses"],
+    color: "#3b82f6"
+  },
+  {
+    singular: "dog",
+    plural: "dogs", 
+    type: "Regular",
+    sentence: "My [noun] loves to play fetch.",
+    pluralSentence: "My [noun] love to play fetch.",
+    foils: ["doges", "dogges"],
+    color: "#f97316"
+  },
+  {
+    singular: "book",
+    plural: "books",
+    type: "Regular",
+    sentence: "I read a good [noun] yesterday.",
+    pluralSentence: "I read some good [noun] yesterday.",
+    foils: ["bookes", "bookies"],
+    color: "#6366f1"
+  },
+  {
+    singular: "box",
+    plural: "boxes",
+    type: "Regular",
+    sentence: "The [noun] was very heavy.",
+    pluralSentence: "The [noun] were very heavy.",
+    foils: ["boxs", "boxies"],
+    color: "#ec4899"
+  },
+  {
+    singular: "bus",
+    plural: "buses",
+    type: "Regular", 
+    sentence: "The yellow [noun] arrived late.",
+    foils: ["buss", "busies"],
+    color: "#14b8a6"
+  },
+  {
+    singular: "dish",
+    plural: "dishes",
+    type: "Regular",
+    sentence: "Mom washed every [noun].",
+    pluralSentence: "Mom washed all the [noun].",
+    foils: ["dishs", "dishies"],
+    color: "#a855f7"
+  },
+  {
+    singular: "car",
+    plural: "cars",
+    type: "Regular",
+    sentence: "The [noun] drove down the street.",
+    foils: ["cares", "carses"],
+    color: "#dc2626"
+  },
+  {
+    singular: "tree",
+    plural: "trees",
+    type: "Regular",
+    sentence: "The [noun] grew very tall.",
+    foils: ["treses", "treeses"],
+    color: "#16a34a"
+  },
+  {
+    singular: "house",
+    plural: "houses",
+    type: "Regular",
+    sentence: "The [noun] had a red door.",
+    pluralSentence: "The [noun] had red doors.",
+    foils: ["housen", "housies"],
+    color: "#ca8a04"
+  },
+  {
+    singular: "glass",
+    plural: "glasses",
+    type: "Regular",
+    sentence: "The [noun] broke on the floor.",
+    foils: ["glasss", "glassen"],
+    color: "#0ea5e9"
+  },
+  {
+    singular: "watch",
+    plural: "watches",
+    type: "Regular",
+    sentence: "My [noun] shows the correct time.",
+    pluralSentence: "My [noun] show the correct time.",
+    foils: ["watchs", "watchen"],
+    color: "#8b5cf6"
+  },
+  {
+    singular: "baby",
+    plural: "babies",
+    type: "Regular",
+    sentence: "The [noun] cried loudly.",
+    foils: ["babys", "babyses"],
+    color: "#f472b6"
+  },
+  {
+    singular: "city",
+    plural: "cities",
+    type: "Regular",
+    sentence: "The [noun] has many buildings.",
+    pluralSentence: "The [noun] have many buildings.",
+    foils: ["citys", "cityses"],
+    color: "#64748b"
+  },
+  {
+    singular: "leaf",
+    plural: "leaves",
+    type: "Irregular",
+    sentence: "A bright [noun] landed on the porch.",
+    pluralSentence: "Bright [noun] landed on the porch.",
+    foils: ["leafs", "leaveses"],
+    color: "#22c55e"
+  },
+  {
+    singular: "loaf",
+    plural: "loaves",
+    type: "Irregular",
+    sentence: "A warm [noun] sat on the table.",
+    pluralSentence: "Warm [noun] sat on the table.",
+    foils: ["loafs", "loavies"],
+    color: "#f97316"
+  },
+  {
+    singular: "wolf",
+    plural: "wolves",
+    type: "Irregular",
+    sentence: "A gray [noun] howled at night.",
+    pluralSentence: "Gray [noun] howled at night.",
+    foils: ["wolfs", "wolfes"],
+    color: "#0ea5e9"
+  },
+  {
+    singular: "knife",
+    plural: "knives",
+    type: "Irregular",
+    sentence: "A sharp [noun] is on the counter.",
+    pluralSentence: "Sharp [noun] are on the counter.",
+    foils: ["knifes", "knivies"],
+    color: "#ef4444"
+  },
+  {
+    singular: "shelf",
+    plural: "shelves",
+    type: "Irregular",
+    sentence: "A wooden [noun] held many books.",
+    pluralSentence: "Wooden [noun] held many books.",
+    foils: ["shelfs", "shelvies"],
+    color: "#8b5cf6"
+  },
+  {
+    singular: "elf",
+    plural: "elves",
+    type: "Irregular",
+    sentence: "An [noun] helped wrap the gifts.",
+    pluralSentence: "Many [noun] helped wrap the gifts.",
+    foils: ["elfs", "elvies"],
+    color: "#ec4899"
+  },
+  {
+    singular: "thief",
+    plural: "thieves",
+    type: "Irregular",
+    sentence: "A sneaky [noun] stole the jewels.",
+    pluralSentence: "Sneaky [noun] stole the jewels.",
+    foils: ["thiefs", "thievs"],
+    color: "#06b6d4"
+  },
+  {
+    singular: "life",
+    plural: "lives",
+    type: "Irregular",
+    sentence: "One [noun] was saved by the firefighters.",
+    pluralSentence: "Many [noun] were saved by the firefighters.",
+    foils: ["lifes", "lifves"],
+    color: "#facc15"
+  },
+  {
+    singular: "cactus",
+    plural: "cacti",
+    type: "Irregular",
+    sentence: "A tall [noun] grew in the desert.",
+    pluralSentence: "Tall [noun] grew in the desert.",
+    foils: ["cactuses", "cacties"],
+    color: "#10b981"
+  },
+  {
+    singular: "fungus",
+    plural: "fungi",
+    type: "Irregular",
+    sentence: "A strange [noun] grew on the log.",
+    pluralSentence: "Strange [noun] grew on the log.",
+    foils: ["funguses", "fungies"],
+    color: "#a855f7"
+  },
+  {
+    singular: "fairy",
+    plural: "fairies",
+    type: "Regular",
+    sentence: "A tiny [noun] sat on the flower.",
+    pluralSentence: "Tiny [noun] sat on the flower.",
+    foils: ["fairys", "fairries"],
+    color: "#f472b6"
+  },
+  {
+    singular: "cherry",
+    plural: "cherries",
+    type: "Regular",
+    sentence: "A ripe [noun] topped the sundae.",
+    pluralSentence: "Ripe [noun] topped the sundae.",
+    foils: ["cherrys", "cherryes"],
+    color: "#e11d48"
+  },
+  {
+    singular: "puppy",
+    plural: "puppies",
+    type: "Regular",
+    sentence: "A playful [noun] chewed the toy.",
+    pluralSentence: "Playful [noun] chewed the toys.",
+    foils: ["puppys", "puppyes"],
+    color: "#0ea5e9"
+  },
+  {
+    singular: "monkey",
+    plural: "monkeys",
+    type: "Regular",
+    sentence: "The [noun] swung from the tree.",
+    pluralSentence: "The [noun] swung from the trees.",
+    foils: ["monkies", "monkeyses"],
+    color: "#22d3ee"
+  },
+  {
+    singular: "toy",
+    plural: "toys",
+    type: "Regular",
+    sentence: "This [noun] makes noise.",
+    pluralSentence: "These [noun] make noise.",
+    foils: ["toyies", "toies"],
+    color: "#6366f1"
+  },
+  {
+    singular: "flower",
+    plural: "flowers",
+    type: "Regular",
+    sentence: "A pink [noun] bloomed in the garden.",
+    pluralSentence: "Pink [noun] bloomed in the garden.",
+    foils: ["floweres", "flours"],
+    color: "#ec4899"
+  },
+  {
+    singular: "sandwich",
+    plural: "sandwiches",
+    type: "Regular",
+    sentence: "A turkey [noun] sat on the plate.",
+    pluralSentence: "Turkey [noun] sat on the plates.",
+    foils: ["sandwichs", "sandwichies"],
+    color: "#fb7185"
+  },
+  {
+    singular: "beach",
+    plural: "beaches",
+    type: "Regular",
+    sentence: "The [noun] was crowded today.",
+    pluralSentence: "The [noun] were crowded today.",
+    foils: ["beachs", "beches"],
+    color: "#38bdf8"
+  },
+  {
+    singular: "hero",
+    plural: "heroes",
+    type: "Regular",
+    sentence: "A brave [noun] saved the day.",
+    pluralSentence: "Brave [noun] saved the day.",
+    foils: ["heros", "heroies"],
+    color: "#7c3aed"
+  },
+  {
+    singular: "potato",
+    plural: "potatoes",
+    type: "Regular",
+    sentence: "A baked [noun] was on my plate.",
+    pluralSentence: "Baked [noun] were on my plate.",
+    foils: ["potatos", "potatoess"],
+    color: "#f97316"
+  },
+  {
+    singular: "tomato",
+    plural: "tomatoes",
+    type: "Regular",
+    sentence: "A red [noun] grew on the vine.",
+    pluralSentence: "Red [noun] grew on the vine.",
+    foils: ["tomatos", "tomatoeses"],
+    color: "#ef4444"
+  },
+  {
+    singular: "echo",
+    plural: "echoes",
+    type: "Regular",
+    sentence: "An [noun] bounced off the canyon walls.",
+    pluralSentence: "Many [noun] bounced off the canyon walls.",
+    foils: ["echos", "echoies"],
+    color: "#a855f7"
+  },
+  {
+    singular: "piano",
+    plural: "pianos",
+    type: "Regular",
+    sentence: "A grand [noun] stands on the stage.",
+    pluralSentence: "Grand [noun] stand on the stage.",
+    foils: ["pianoes", "pianoses"],
+    color: "#1d4ed8"
+  },
+  {
+    singular: "photo",
+    plural: "photos",
+    type: "Regular",
+    sentence: "A favorite [noun] hangs on the fridge.",
+    pluralSentence: "Favorite [noun] hang on the fridge.",
+    foils: ["photoes", "photoses"],
+    color: "#f59e0b"
+  },
+  {
+    singular: "story",
+    plural: "stories",
+    type: "Regular",
+    sentence: "This [noun] has a happy ending.",
+    pluralSentence: "These [noun] have happy endings.",
+    foils: ["storys", "storyes"],
+    color: "#2563eb"
+  }
+];
+
+let currentItem = 0;
+let currentListIndex = 0;
+let selectedChoice = null;
+let activeIndices = [];
+let currentMode = 'all';
+let hintStage = 0;
+
+function setPracticeMode(mode, options = {}) {
+  currentMode = mode;
+  
+  if (mode === 'regular') {
+    activeIndices = nounData
+      .map((noun, index) => ({ noun, index }))
+      .filter(item => item.noun.type === 'Regular')
+      .map(item => item.index);
+  } else if (mode === 'irregular') {
+    activeIndices = nounData
+      .map((noun, index) => ({ noun, index }))
+      .filter(item => item.noun.type === 'Irregular')
+      .map(item => item.index);
+  } else {
+    activeIndices = nounData.map((_, index) => index);
+  }
+  
+  if (activeIndices.length === 0) {
+    document.getElementById('nounSelector').innerHTML = '';
+    document.getElementById('nounTitle').textContent = 'No nouns available';
+    document.getElementById('singularSentence').innerHTML = '';
+    document.getElementById('pluralSentence').innerHTML = '';
+    document.getElementById('progressInfo').textContent = 'Item 0 of 0';
+    return;
+  }
+  
+  currentListIndex = 0;
+  refreshNounSelector();
+  updateModeButtons();
+  
+  if (options.skipLoad) {
+    return;
+  }
+  
+  loadItem(0);
+}
+
+function updateModeButtons() {
+  document.querySelectorAll('.mode-btn[data-mode]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === currentMode);
+  });
+}
+
+function goToRandom(target) {
+  if (target === 'regular' || target === 'irregular') {
+    setPracticeMode(target, { skipLoad: true });
+  } else {
+    setPracticeMode('all', { skipLoad: true });
+  }
+  
+  if (activeIndices.length === 0) {
+    return;
+  }
+  
+  const randomIndex = Math.floor(Math.random() * activeIndices.length);
+  loadItem(randomIndex);
+}
+
+function initializePage() {
+  setPracticeMode('all');
+  setupEventListeners();
+}
+
+function refreshNounSelector() {
+  const selector = document.getElementById('nounSelector');
+  selector.innerHTML = '';
+
+  activeIndices.forEach((nounIndex, position) => {
+    const noun = nounData[nounIndex];
+    const btn = document.createElement('button');
+    btn.className = `noun-btn ${position === currentListIndex ? 'active' : ''}`;
+    btn.dataset.position = position;
+    btn.textContent = `${position + 1}`;
+    btn.title = `${noun.singular} → ${noun.plural}`;
+    selector.appendChild(btn);
+  });
+}
+
+function loadItem(listPosition) {
+  if (activeIndices.length === 0) {
+    return;
+  }
+  currentListIndex = listPosition;
+  currentItem = activeIndices[listPosition];
+  const noun = nounData[currentItem];
+  hintStage = 0;
+  selectedChoice = null;
+  
+  // Update title and type
+  document.getElementById('nounTitle').textContent = noun.singular.charAt(0).toUpperCase() + noun.singular.slice(1);
+  
+  // Update sentences
+  const singularSentence = noun.sentence.split('[noun]').join(`<span class="singular-noun">${noun.singular}</span>`);
+  const pluralTemplate = noun.pluralSentence || noun.sentence;
+  const blankInput = '<input type="text" class="blank-input" id="pluralInput" placeholder="?">';
+  let pluralSentence = pluralTemplate;
+  
+  if (pluralSentence.includes('[noun]')) {
+    pluralSentence = pluralSentence.split('[noun]').join(blankInput);
+  } else {
+    pluralSentence = `${pluralSentence} ${blankInput}`;
+  }
+  
+  document.getElementById('singularSentence').innerHTML = singularSentence;
+  document.getElementById('pluralSentence').innerHTML = pluralSentence;
+  
+  // Update progress
+  document.getElementById('progressInfo').textContent = `Item ${listPosition + 1} of ${activeIndices.length}`;
+  
+  // Update selector
+  document.querySelectorAll('.noun-btn').forEach((btn) => {
+    const position = parseInt(btn.dataset.position, 10);
+    btn.classList.toggle('active', position === listPosition);
+  });
+  
+  // Reset UI elements
+  resetUI();
+  
+  // Re-setup input listener for new input element
+  setupInputListener();
+}
+
+function resetUI() {
+  hintStage = 0;
+  const input = document.getElementById('pluralInput');
+  if (input) {
+    input.value = '';
+    input.classList.remove('correct', 'incorrect');
+  }
+  const hintMessage = document.getElementById('hintMessage');
+  hintMessage.classList.remove('show');
+  hintMessage.textContent = '';
+  const primaryHintBtn = document.getElementById('showHintBtn');
+  primaryHintBtn.textContent = '💡 I Need Help';
+  primaryHintBtn.disabled = false;
+  const secondaryHintBtn = document.getElementById('moreHelpBtn');
+  secondaryHintBtn.textContent = '✨ I Need More Help';
+  secondaryHintBtn.disabled = true;
+  document.getElementById('multipleChoice').classList.remove('show');
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('nextItem').style.display = 'none';
+  selectedChoice = null;
+  
+  // Reset image area
+  const placeholder = document.getElementById('imagePlaceholder');
+  placeholder.style.display = 'none';
+  placeholder.innerHTML = '[Add picture here]<br><small>Click to upload image</small>';
+  placeholder.style.border = '3px dashed #cbd5e1';
+  placeholder.style.background = '#f8fafc';
+  
+  // Update navigation buttons
+  document.getElementById('prevBtn').disabled = currentListIndex === 0;
+  document.getElementById('nextBtn').disabled = currentListIndex === activeIndices.length - 1;
+}
+
+function showTypeHint() {
+  if (hintStage >= 1) return;
+  
+  hintStage = 1;
+  const noun = nounData[currentItem];
+  const hintMessage = document.getElementById('hintMessage');
+  const typeHint = noun.type === 'Irregular'
+    ? 'Hint: This is an irregular plural. The word changes its form when you make it plural.'
+    : 'Hint: This is a regular plural. Add -s or -es to make it plural.';
+  hintMessage.textContent = typeHint;
+  hintMessage.classList.add('show');
+  
+  const primaryHintBtn = document.getElementById('showHintBtn');
+  primaryHintBtn.textContent = '✓ Hint Shown';
+  primaryHintBtn.disabled = true;
+  document.getElementById('moreHelpBtn').disabled = false;
+}
+
+function showChoiceHint() {
+  if (hintStage >= 2) return;
+  
+  hintStage = 2;
+  const noun = nounData[currentItem];
+  
+  // Create multiple choice options
+  const choices = [noun.plural, ...noun.foils].sort(() => Math.random() - 0.5);
+  const choiceContainer = document.getElementById('choiceOptions');
+  choiceContainer.innerHTML = '';
+  
+  choices.forEach((choice) => {
+    const option = document.createElement('div');
+    option.className = 'choice-option';
+    option.textContent = choice;
+    option.dataset.choice = choice;
+    option.addEventListener('click', () => selectChoice(option, choice));
+    choiceContainer.appendChild(option);
+  });
+  
+  document.getElementById('multipleChoice').classList.add('show');
+  const secondaryHintBtn = document.getElementById('moreHelpBtn');
+  secondaryHintBtn.textContent = '✓ Choices Shown';
+  secondaryHintBtn.disabled = true;
+}
+
+function selectChoice(element, choice) {
+  document.querySelectorAll('.choice-option').forEach(opt => opt.classList.remove('selected'));
+  element.classList.add('selected');
+  selectedChoice = choice;
+}
+
+function checkAnswer() {
+  const input = document.getElementById('pluralInput');
+  const userAnswer = input.value.trim().toLowerCase();
+  const correctAnswer = nounData[currentItem].plural.toLowerCase();
+  const isCorrect = userAnswer === correctAnswer;
+  
+  input.classList.remove('correct', 'incorrect');
+  input.classList.add(isCorrect ? 'correct' : 'incorrect');
+  
+  showFeedback(isCorrect, 'text');
+}
+
+function checkChoice() {
+  if (!selectedChoice) {
+    showFeedback(false, 'choice', 'Please select an answer first!');
+    return;
+  }
+  
+  const isCorrect = selectedChoice.toLowerCase() === nounData[currentItem].plural.toLowerCase();
+  
+  // Mark choices
+  document.querySelectorAll('.choice-option').forEach(option => {
+    option.classList.remove('correct', 'incorrect');
+    if (option.dataset.choice === nounData[currentItem].plural) {
+      option.classList.add('correct');
+    } else if (option.classList.contains('selected') && !isCorrect) {
+      option.classList.add('incorrect');
+    }
+  });
+  
+  // Fill in the text input with the selected choice
+  const input = document.getElementById('pluralInput');
+  input.value = selectedChoice;
+  input.classList.remove('correct', 'incorrect');
+  input.classList.add(isCorrect ? 'correct' : 'incorrect');
+  
+  showFeedback(isCorrect, 'choice');
+}
+
+function showFeedback(isCorrect, source, customMessage = null) {
+  const feedback = document.getElementById('feedback');
+  const feedbackText = document.getElementById('feedbackText');
+  const noun = nounData[currentItem];
+  
+  feedback.classList.remove('success', 'error');
+  
+  if (customMessage) {
+    feedback.classList.add('error');
+    feedbackText.innerHTML = `<strong>${customMessage}</strong>`;
+  } else if (isCorrect) {
+    feedback.classList.add('success');
+    feedbackText.innerHTML = `
+      <strong>🎉 Excellent!</strong><br>
+      The plural of "${noun.singular}" is "${noun.plural}".
+      ${noun.type === 'Irregular' ? ' This is an irregular plural!' : ' Just add -s or -es!'}
+    `;
+    document.getElementById('nextItem').style.display = 'inline-block';
+  } else {
+    feedback.classList.add('error');
+    feedbackText.innerHTML = `
+      <strong>Not quite right.</strong><br>
+      The correct plural of "${noun.singular}" is "<strong>${noun.plural}</strong>".
+      ${noun.type === 'Irregular' ? ' This is an irregular plural - it changes form!' : ' Remember the rule for regular plurals!'}
+    `;
+  }
+  
+  feedback.classList.add('show');
+}
+
+function setupEventListeners() {
+  // Noun selector
+  document.getElementById('nounSelector').addEventListener('click', (e) => {
+    if (e.target.classList.contains('noun-btn')) {
+      const itemIndex = parseInt(e.target.dataset.position, 10);
+      if (!Number.isNaN(itemIndex)) {
+        loadItem(itemIndex);
+      }
+    }
+  });
+  
+  // Hint button
+  document.getElementById('showHintBtn').addEventListener('click', showTypeHint);
+  document.getElementById('moreHelpBtn').addEventListener('click', showChoiceHint);
+  
+  // Check buttons
+  document.getElementById('checkAnswerBtn').addEventListener('click', checkAnswer);
+  document.getElementById('checkChoiceBtn').addEventListener('click', checkChoice);
+  
+  // Navigation
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (currentListIndex > 0) loadItem(currentListIndex - 1);
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (currentListIndex < activeIndices.length - 1) loadItem(currentListIndex + 1);
+  });
+  
+  // Control buttons
+  document.getElementById('resetItem').addEventListener('click', () => loadItem(currentListIndex));
+  document.getElementById('nextItem').addEventListener('click', () => {
+    if (currentListIndex < activeIndices.length - 1) {
+      loadItem(currentListIndex + 1);
+    }
+  });
+  
+  // Mode controls
+  const modeControls = document.getElementById('modeControls');
+  if (modeControls) {
+    modeControls.addEventListener('click', (e) => {
+      const button = e.target.closest('button');
+      if (!button) return;
+      
+      if (button.dataset.mode) {
+        setPracticeMode(button.dataset.mode);
+      } else if (button.dataset.random) {
+        goToRandom(button.dataset.random);
+      }
+    });
+  }
+  
+  // Image upload
+  document.getElementById('addImageBtn').addEventListener('click', () => {
+    document.getElementById('imageInput').click();
+  });
+  
+  document.getElementById('imagePlaceholder').addEventListener('click', () => {
+    document.getElementById('imageInput').click();
+  });
+  
+  document.getElementById('imageInput').addEventListener('change', handleImageUpload);
+  
+  // Initial input setup
+  setupInputListener();
+}
+
+function setupInputListener() {
+  const input = document.getElementById('pluralInput');
+  if (input) {
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkAnswer();
+      }
+    });
+    
+    input.addEventListener('input', () => {
+      input.classList.remove('correct', 'incorrect');
+      document.getElementById('feedback').classList.remove('show');
+    });
+  }
+}
+
+function handleImageUpload(e) {
+  const file = e.target.files[0];
+  if (file && file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const placeholder = document.getElementById('imagePlaceholder');
+      placeholder.innerHTML = `<img src="${event.target.result}" style="max-width: 100%; max-height: 100%; border-radius: 8px;">`;
+      placeholder.style.border = '3px solid var(--ok)';
+      placeholder.style.background = '#f0fdf4';
+      placeholder.style.display = 'flex'; // Show the image area
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+</body>
+</html>

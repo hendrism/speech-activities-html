@@ -1,0 +1,2976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fall Reading Stories</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #fef5e7, #fdebd0);
+            min-height: 100vh;
+        }
+        h1 {
+            color: #d35400;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .level-selector {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e74c3c;
+            text-align: center;
+        }
+        .level-label {
+            display: block;
+            color: #c0392b;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .level-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .level-btn:hover {
+            background: #c0392b;
+        }
+        .level-btn.active {
+            background: #922b21;
+            transform: scale(1.05);
+        }
+        .navigation {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            text-align: center;
+        }
+        .nav-btn {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover {
+            background: #e67e22;
+        }
+        .nav-btn.active {
+            background: #d35400;
+            transform: scale(1.1);
+        }
+        .question-toggle {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #9b59b6;
+            text-align: center;
+        }
+        .toggle-btn {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .toggle-btn:hover {
+            background: #8e44ad;
+        }
+        .toggle-btn.active {
+            background: #6c3483;
+            transform: scale(1.05);
+        }
+        .toggle-label {
+            display: block;
+            color: #6c3483;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .story {
+            background: white;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            display: none;
+        }
+        .story.active {
+            display: block;
+        }
+        h2 {
+            color: #e67e22;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 10px;
+        }
+        .story-text {
+            line-height: 1.8;
+            font-size: 1.1em;
+            color: #2c3e50;
+            background: #fef9f3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+        }
+        .question-text {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+        .help-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .help-btn:hover {
+            background: #2980b9;
+        }
+        .help-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        .choices {
+            margin-top: 15px;
+            display: none;
+        }
+        .choice {
+            background: white;
+            border: 2px solid #3498db;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .choice:hover {
+            background: #ebf5fb;
+            transform: translateX(5px);
+        }
+        .choice.correct {
+            background: #d5f4e6;
+            border-color: #27ae60;
+            font-weight: bold;
+        }
+        .choice.incorrect {
+            background: #fadbd8;
+            border-color: #e74c3c;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.correct {
+            background: #d5f4e6;
+            color: #27ae60;
+            display: block;
+        }
+        .feedback.incorrect {
+            background: #fadbd8;
+            color: #e74c3c;
+            display: block;
+        }
+        .retelling-section {
+            margin: 20px 0;
+        }
+        .retelling-prompt {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+        }
+        .retelling-label {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .sentence-starter {
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+        .retelling-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            margin-top: 8px;
+            resize: vertical;
+            min-height: 60px;
+        }
+        .retelling-input:focus {
+            outline: none;
+            border-color: #2e7d32;
+            background: #f1f8e9;
+        }
+        .next-btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .next-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .next-btn:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        .next-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍂 Fall Reading Stories 🍁</h1>
+    
+    <div class="level-selector">
+        <span class="level-label">Reading Level:</span>
+        <button class="level-btn active" onclick="setLevel(1)">Level 1</button>
+        <button class="level-btn" onclick="setLevel(2)">Level 2</button>
+    </div>
+    
+    <div class="navigation" id="navigation"></div>
+    
+    <div class="question-toggle">
+        <span class="toggle-label">Question Type:</span>
+        <button class="toggle-btn active" onclick="setQuestionType('basic')">Basic Questions</button>
+        <button class="toggle-btn" onclick="setQuestionType('infer')">Inference Questions</button>
+        <button class="toggle-btn" onclick="setQuestionType('retelling')">Retelling</button>
+    </div>
+    
+    <div id="stories-container"></div>
+    
+    <div class="next-btn-container">
+        <button class="next-btn" id="next-btn" onclick="nextStory()">Next Story →</button>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        let questionType = 'basic';
+        let currentLevel = parseInt(localStorage.getItem('readingLevel')) || 1;
+        
+        const storiesLevel1 = [
+            {
+                title: "Apple Picking Day",
+                text: [
+                    "Liam and his mom go to the apple farm.",
+                    "They see big red apples on the trees.",
+                    "Liam picks apples and puts them in a basket.",
+                    "The air feels cool and smells sweet.",
+                    "They eat warm apple pie when they get home."
+                ],
+                retellingPrompts: [
+                    "Liam and his mom went to",
+                    "They picked",
+                    "The farm had",
+                    "When they got home, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who goes to the farm?",
+                        correct: "Liam and his mom",
+                        wrong: ["Liam and his dad", "Mia and her class", "Emma and her sister"]
+                    },
+                    {
+                        q: "What do they pick?",
+                        correct: "Apples",
+                        wrong: ["Pumpkins", "Leaves", "Corn"]
+                    },
+                    {
+                        q: "Where do they go?",
+                        correct: "The apple farm",
+                        wrong: ["The pumpkin patch", "The park", "The school"]
+                    },
+                    {
+                        q: "When do they go apple picking?",
+                        correct: "During the day",
+                        wrong: ["At night", "In the winter", "In the morning before sunrise"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does the air smell sweet?",
+                        correct: "Because of the apples",
+                        wrong: ["Because of flowers", "Because of the grass", "Because someone is baking"]
+                    },
+                    {
+                        q: "How does Liam probably feel at the farm?",
+                        correct: "Happy and excited",
+                        wrong: ["Sad and bored", "Angry and upset", "Scared and worried"]
+                    },
+                    {
+                        q: "What season is it in the story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Summer", "Winter", "Spring"]
+                    },
+                    {
+                        q: "Why do they make apple pie at home?",
+                        correct: "They picked fresh apples to use",
+                        wrong: ["They bought apples at the store", "They don't like apples", "They wanted to make cookies"]
+                    }
+                ]
+            },
+            {
+                title: "The Pumpkin Patch",
+                text: [
+                    "Mia and her class visit the pumpkin patch.",
+                    "She looks for a small, round pumpkin.",
+                    "Her friend finds a big, lumpy one.",
+                    "They ride on a hay wagon together.",
+                    "Everyone laughs and waves to the farmer."
+                ],
+                retellingPrompts: [
+                    "Mia's class went to",
+                    "Mia wanted to find",
+                    "They rode on",
+                    "Everyone was"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who goes to the pumpkin patch?",
+                        correct: "Mia and her class",
+                        wrong: ["Mia and her mom", "Caleb and his dad", "Carlos and his family"]
+                    },
+                    {
+                        q: "What does Mia look for?",
+                        correct: "A small, round pumpkin",
+                        wrong: ["A big, lumpy pumpkin", "Red apples", "Yellow leaves"]
+                    },
+                    {
+                        q: "Where do they ride?",
+                        correct: "On a hay wagon",
+                        wrong: ["On a bus", "On a big slide", "In a corn maze"]
+                    },
+                    {
+                        q: "When do they visit?",
+                        correct: "During a school day",
+                        wrong: ["After school", "At night", "In the summer"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do they ride on a hay wagon?",
+                        correct: "To get around the pumpkin patch",
+                        wrong: ["Because they are tired", "Because it's raining", "Because they can't walk"]
+                    },
+                    {
+                        q: "How does Mia feel on this trip?",
+                        correct: "Happy and excited",
+                        wrong: ["Sad and lonely", "Angry and frustrated", "Sleepy and bored"]
+                    },
+                    {
+                        q: "Why does everyone wave to the farmer?",
+                        correct: "To be friendly and say thank you",
+                        wrong: ["Because they are leaving", "Because they need help", "Because they are angry"]
+                    },
+                    {
+                        q: "What will they probably do with the pumpkins?",
+                        correct: "Carve them or decorate for fall",
+                        wrong: ["Throw them away", "Plant them", "Give them back"]
+                    }
+                ]
+            },
+            {
+                title: "Leaves Falling Down",
+                text: [
+                    "Caleb walks in the park with his dad.",
+                    "The trees have red, orange, and yellow leaves.",
+                    "He kicks the leaves and watches them fly.",
+                    "They take a picture by a tall tree.",
+                    "The wind makes the leaves dance."
+                ],
+                retellingPrompts: [
+                    "Caleb and his dad were at",
+                    "The leaves were",
+                    "Caleb played with",
+                    "They took a picture"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who walks in the park?",
+                        correct: "Caleb and his dad",
+                        wrong: ["Caleb and his mom", "Liam and his mom", "Evan and his friends"]
+                    },
+                    {
+                        q: "What color are the leaves?",
+                        correct: "Red, orange, and yellow",
+                        wrong: ["Green and brown", "Purple and pink", "Only red"]
+                    },
+                    {
+                        q: "Where do they take a picture?",
+                        correct: "By a tall tree",
+                        wrong: ["At the apple farm", "On a hay wagon", "In the corn maze"]
+                    },
+                    {
+                        q: "When do the leaves fall?",
+                        correct: "In the fall",
+                        wrong: ["In the spring", "In the summer", "In the winter"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why are the leaves red, orange, and yellow?",
+                        correct: "It's fall and leaves change colors",
+                        wrong: ["Someone painted them", "The trees are sick", "It's always like that"]
+                    },
+                    {
+                        q: "How does Caleb feel in the park?",
+                        correct: "Happy and playful",
+                        wrong: ["Sad and upset", "Angry and mean", "Scared and nervous"]
+                    },
+                    {
+                        q: "Why do they take a picture?",
+                        correct: "To remember the beautiful day",
+                        wrong: ["Because the camera is broken", "Because they have to", "Because they are lost"]
+                    },
+                    {
+                        q: "Why does the wind make the leaves dance?",
+                        correct: "The wind blows them around",
+                        wrong: ["The leaves are alive", "Someone is shaking the trees", "It's magic"]
+                    }
+                ]
+            },
+            {
+                title: "Hot Chocolate Time",
+                text: [
+                    "Emma feels cold after school.",
+                    "Her sister makes hot chocolate with marshmallows.",
+                    "They sit on the couch under a blanket.",
+                    "They watch the rain fall outside.",
+                    "The drink warms their hands and hearts."
+                ],
+                retellingPrompts: [
+                    "Emma came home from school and",
+                    "Her sister made",
+                    "They sat together and",
+                    "The hot chocolate made them feel"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who makes the hot chocolate?",
+                        correct: "Emma's sister",
+                        wrong: ["Emma's mom", "Emma's dad", "Emma's brother"]
+                    },
+                    {
+                        q: "What do they drink?",
+                        correct: "Hot chocolate with marshmallows",
+                        wrong: ["Warm apple cider", "Cold milk", "Orange juice"]
+                    },
+                    {
+                        q: "Where do they sit?",
+                        correct: "On the couch under a blanket",
+                        wrong: ["At the kitchen table", "In the park", "On a hay wagon"]
+                    },
+                    {
+                        q: "When do they drink hot chocolate?",
+                        correct: "After school",
+                        wrong: ["Before school", "During lunch", "At midnight"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does Emma feel cold?",
+                        correct: "It's a cold, rainy day",
+                        wrong: ["She has a fever", "The house is broken", "She forgot her coat at school"]
+                    },
+                    {
+                        q: "Why do they sit under a blanket?",
+                        correct: "To stay warm and cozy",
+                        wrong: ["To hide from someone", "Because there are no chairs", "Because they are sleepy"]
+                    },
+                    {
+                        q: "How do Emma and her sister feel?",
+                        correct: "Warm, cozy, and happy",
+                        wrong: ["Cold and sad", "Angry and upset", "Bored and lonely"]
+                    },
+                    {
+                        q: "Why does the drink warm their hearts?",
+                        correct: "They feel happy and loved together",
+                        wrong: ["The chocolate is too hot", "Their hearts are actually cold", "They are sick"]
+                    }
+                ]
+            },
+            {
+                title: "Raking the Yard",
+                text: [
+                    "Mr. Lee and his students rake the school yard.",
+                    "The leaves make a giant pile.",
+                    "Everyone jumps into the pile and laughs.",
+                    "They take turns using the rake.",
+                    "The yard looks clean when they finish."
+                ],
+                retellingPrompts: [
+                    "Mr. Lee's students helped",
+                    "They made a big pile of",
+                    "Everyone had fun",
+                    "At the end, the yard"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who rakes the yard?",
+                        correct: "Mr. Lee and his students",
+                        wrong: ["Mr. Lee and his family", "The farmer", "Carlos and his brother"]
+                    },
+                    {
+                        q: "What do they jump into?",
+                        correct: "A pile of leaves",
+                        wrong: ["A pile of pumpkins", "A pile of apples", "A pile of snow"]
+                    },
+                    {
+                        q: "Where do they rake?",
+                        correct: "The school yard",
+                        wrong: ["The apple farm", "The park", "The corn maze"]
+                    },
+                    {
+                        q: "When is the yard clean?",
+                        correct: "When they finish",
+                        wrong: ["Before they start", "In the morning", "Never"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do they rake the yard?",
+                        correct: "To clean up the fallen leaves",
+                        wrong: ["Because Mr. Lee is mean", "To find something lost", "Because they are bored"]
+                    },
+                    {
+                        q: "How do the students feel about raking?",
+                        correct: "Happy and having fun",
+                        wrong: ["Sad and upset", "Angry and frustrated", "Scared and worried"]
+                    },
+                    {
+                        q: "Why do they jump in the leaf pile?",
+                        correct: "For fun and because it looks soft",
+                        wrong: ["Because they fell down", "Because Mr. Lee told them to", "Because they are fighting"]
+                    },
+                    {
+                        q: "What season is it in this story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Spring", "Summer", "Winter"]
+                    }
+                ]
+            },
+            {
+                title: "Football Game Fun",
+                text: [
+                    "Carlos goes to a football game with his family.",
+                    "He cheers for the red team.",
+                    "They eat popcorn and drink warm cider.",
+                    "The players run fast across the field.",
+                    "It gets dark when the game ends."
+                ],
+                retellingPrompts: [
+                    "Carlos and his family went to",
+                    "Carlos cheered for",
+                    "They ate and drank",
+                    "The game ended when"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who goes to the game?",
+                        correct: "Carlos and his family",
+                        wrong: ["Carlos and his class", "Carlos alone", "Mr. Lee and his students"]
+                    },
+                    {
+                        q: "What color is Carlos's team?",
+                        correct: "Red",
+                        wrong: ["Blue", "Green", "Yellow"]
+                    },
+                    {
+                        q: "Where do they watch the game?",
+                        correct: "At a football field",
+                        wrong: ["At home on TV", "At the school", "At the park"]
+                    },
+                    {
+                        q: "When does it get dark?",
+                        correct: "When the game ends",
+                        wrong: ["Before the game starts", "At halftime", "In the morning"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does it get dark during the game?",
+                        correct: "The game lasts until evening",
+                        wrong: ["There's a storm", "The lights broke", "Someone turned off the sun"]
+                    },
+                    {
+                        q: "How does Carlos feel at the game?",
+                        correct: "Excited and happy",
+                        wrong: ["Sad and bored", "Angry and upset", "Scared and nervous"]
+                    },
+                    {
+                        q: "Why do they eat popcorn and drink cider?",
+                        correct: "It's part of the fun at games",
+                        wrong: ["They didn't eat breakfast", "The store was out of food", "They have to"]
+                    },
+                    {
+                        q: "What time of day does the game end?",
+                        correct: "Evening or night",
+                        wrong: ["Morning", "Noon", "Afternoon"]
+                    }
+                ]
+            },
+            {
+                title: "Scarecrow in the Garden",
+                text: [
+                    "A scarecrow stands tall in the garden.",
+                    "It wears a hat and an old plaid shirt.",
+                    "The wind moves its arms a little bit.",
+                    "Crows fly away when they see it.",
+                    "The farmer smiles at his good work."
+                ],
+                retellingPrompts: [
+                    "There was a scarecrow in",
+                    "The scarecrow wore",
+                    "When birds came close, they",
+                    "The farmer was happy because"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who made the scarecrow?",
+                        correct: "The farmer",
+                        wrong: ["Mr. Lee", "Carlos", "Liam's mom"]
+                    },
+                    {
+                        q: "What does the scarecrow wear?",
+                        correct: "A hat and an old plaid shirt",
+                        wrong: ["A crown and a cape", "An orange sweater", "A football uniform"]
+                    },
+                    {
+                        q: "Where does it stand?",
+                        correct: "In the garden",
+                        wrong: ["In the corn maze", "At the pumpkin patch", "In the park"]
+                    },
+                    {
+                        q: "When do the crows fly away?",
+                        correct: "When they see the scarecrow",
+                        wrong: ["When it rains", "When it gets dark", "In the morning"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why did the farmer make the scarecrow?",
+                        correct: "To scare birds away from the garden",
+                        wrong: ["To have a friend", "Because he was bored", "To sell it"]
+                    },
+                    {
+                        q: "Why do the crows fly away?",
+                        correct: "They think it's a real person",
+                        wrong: ["They are going to find food", "They don't like gardens", "The farmer chased them"]
+                    },
+                    {
+                        q: "How does the farmer feel?",
+                        correct: "Proud and happy with his work",
+                        wrong: ["Sad and lonely", "Angry and upset", "Scared and worried"]
+                    },
+                    {
+                        q: "Why can the wind move the scarecrow's arms?",
+                        correct: "They're made of light, soft materials",
+                        wrong: ["The scarecrow is alive", "The arms are broken", "The farmer moves them"]
+                    }
+                ]
+            },
+            {
+                title: "Fall Festival",
+                text: [
+                    "Nora's family goes to the fall festival downtown.",
+                    "She eats caramel apples and popcorn.",
+                    "Her brother rides the big slide.",
+                    "They dance to the music and play games.",
+                    "The lights shine when the sun goes down."
+                ],
+                retellingPrompts: [
+                    "Nora's family went to",
+                    "Nora ate",
+                    "Her brother",
+                    "They had fun"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who goes to the festival?",
+                        correct: "Nora's family",
+                        wrong: ["Nora's class", "Nora and her friends", "Nora alone"]
+                    },
+                    {
+                        q: "What does Nora eat?",
+                        correct: "Caramel apples and popcorn",
+                        wrong: ["Hot chocolate and marshmallows", "Pumpkin pie", "Apple pie"]
+                    },
+                    {
+                        q: "Where is the festival?",
+                        correct: "Downtown",
+                        wrong: ["At the school", "At the apple farm", "In the park"]
+                    },
+                    {
+                        q: "When do the lights shine?",
+                        correct: "When the sun goes down",
+                        wrong: ["In the morning", "At noon", "Never"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do they go to the festival?",
+                        correct: "To have fun and celebrate fall",
+                        wrong: ["Because they have to", "Because they are lost", "Because it's raining"]
+                    },
+                    {
+                        q: "How does Nora feel at the festival?",
+                        correct: "Happy and excited",
+                        wrong: ["Sad and bored", "Angry and mean", "Tired and sleepy"]
+                    },
+                    {
+                        q: "Why do the lights shine when the sun goes down?",
+                        correct: "So people can see in the dark",
+                        wrong: ["Because someone turned them on by accident", "To scare people", "Because it's Christmas"]
+                    },
+                    {
+                        q: "What time of day do they probably leave?",
+                        correct: "Evening or nighttime",
+                        wrong: ["Early morning", "Noon", "Right after lunch"]
+                    }
+                ]
+            },
+            {
+                title: "The Corn Maze",
+                text: [
+                    "Evan and his friends go in the corn maze.",
+                    "The corn is taller than they are!",
+                    "They follow signs to find the way out.",
+                    "They laugh when they get lost.",
+                    "At the end, they eat pumpkin donuts."
+                ],
+                retellingPrompts: [
+                    "Evan and his friends went into",
+                    "The corn was really",
+                    "When they got lost, they",
+                    "After the maze, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who goes in the maze?",
+                        correct: "Evan and his friends",
+                        wrong: ["Evan and his family", "Evan and his class", "Evan and his sister"]
+                    },
+                    {
+                        q: "What do they eat?",
+                        correct: "Pumpkin donuts",
+                        wrong: ["Apple pie", "Caramel apples", "Hot chocolate"]
+                    },
+                    {
+                        q: "Where do they walk?",
+                        correct: "In a corn maze",
+                        wrong: ["In the park", "At the football field", "In the garden"]
+                    },
+                    {
+                        q: "When do they laugh?",
+                        correct: "When they get lost",
+                        wrong: ["When they find the exit", "Before they go in", "When they eat donuts"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do they laugh when lost?",
+                        correct: "They're having fun and not worried",
+                        wrong: ["They are scared", "They think it's funny to be mean", "They want to go home"]
+                    },
+                    {
+                        q: "How do Evan and his friends feel?",
+                        correct: "Happy and playful",
+                        wrong: ["Sad and scared", "Angry and upset", "Bored and sleepy"]
+                    },
+                    {
+                        q: "Why is the corn taller than them?",
+                        correct: "Corn grows very tall and they are children",
+                        wrong: ["The corn is magic", "They are lying down", "The corn is on a hill"]
+                    },
+                    {
+                        q: "Why do they eat donuts at the end?",
+                        correct: "As a treat or reward for finishing",
+                        wrong: ["Because they have to", "Because they didn't eat breakfast", "Because the donuts are free"]
+                    }
+                ]
+            },
+            {
+                title: "Sweater Weather",
+                text: [
+                    "Lila puts on her favorite orange sweater.",
+                    "The morning air feels cool.",
+                    "She walks to the bus stop with her friends.",
+                    "They see fog on the grass.",
+                    "Soon, the sun shines through the clouds."
+                ],
+                retellingPrompts: [
+                    "Lila put on her",
+                    "She walked to",
+                    "The morning was",
+                    "Then the sun"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who wears a sweater?",
+                        correct: "Lila",
+                        wrong: ["Nora", "Emma", "Mia"]
+                    },
+                    {
+                        q: "What does the air feel like?",
+                        correct: "Cool",
+                        wrong: ["Hot", "Warm", "Freezing cold"]
+                    },
+                    {
+                        q: "Where is Lila going?",
+                        correct: "To the bus stop",
+                        wrong: ["To the apple farm", "To the football game", "To the festival"]
+                    },
+                    {
+                        q: "When does the sun shine?",
+                        correct: "Soon, through the clouds",
+                        wrong: ["Never", "At night", "Before the fog"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does Lila wear a sweater?",
+                        correct: "Because the air is cool outside",
+                        wrong: ["Because her mom told her to", "Because she spilled on her shirt", "Because it's her birthday"]
+                    },
+                    {
+                        q: "How does Lila probably feel?",
+                        correct: "Happy and ready for school",
+                        wrong: ["Sad and upset", "Angry and mean", "Scared and worried"]
+                    },
+                    {
+                        q: "Why is there fog on the grass?",
+                        correct: "The cool morning air makes fog",
+                        wrong: ["Someone sprayed water", "It's smoke", "The grass is on fire"]
+                    },
+                    {
+                        q: "What season is it in this story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Summer", "Winter", "Spring"]
+                    }
+                ]
+            },
+            {
+                title: "Grandpa's Leaf Pile",
+                text: [
+                    "Maya helps her grandpa rake leaves in his yard.",
+                    "They fill five big bags with brown leaves.",
+                    "Grandpa makes one special pile for fun.",
+                    "Maya runs and jumps right into it.",
+                    "They both laugh and drink apple cider together."
+                ],
+                retellingPrompts: [
+                    "Maya and her grandpa",
+                    "They filled bags with",
+                    "Grandpa made a special pile and",
+                    "Afterwards, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who helps rake the leaves?",
+                        correct: "Maya and her grandpa",
+                        wrong: ["Maya and her dad", "Maya and her teacher", "Maya and her brother"]
+                    },
+                    {
+                        q: "What do they put in bags?",
+                        correct: "Brown leaves",
+                        wrong: ["Red apples", "Pumpkins", "Acorns"]
+                    },
+                    {
+                        q: "Where are they working?",
+                        correct: "In Grandpa's yard",
+                        wrong: ["At the school", "At the park", "At the farm"]
+                    },
+                    {
+                        q: "When do they drink cider?",
+                        correct: "After they finish",
+                        wrong: ["Before they start", "While they rake", "Never"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does Grandpa make a special pile?",
+                        correct: "So Maya can have fun jumping in it",
+                        wrong: ["Because he made a mistake", "To burn the leaves", "Because the bags are full"]
+                    },
+                    {
+                        q: "How does Maya feel with her grandpa?",
+                        correct: "Happy and loved",
+                        wrong: ["Sad and lonely", "Angry and frustrated", "Bored and tired"]
+                    },
+                    {
+                        q: "Why are the leaves brown?",
+                        correct: "They are old and have fallen",
+                        wrong: ["Someone painted them", "They are dirty", "They are sick"]
+                    },
+                    {
+                        q: "What season is it in this story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Spring", "Summer", "Winter"]
+                    }
+                ]
+            },
+            {
+                title: "Making Fall Crafts",
+                text: [
+                    "Jade and her mom make fall crafts at the table.",
+                    "They glue colorful leaves onto white paper.",
+                    "Jade draws a smiling scarecrow with crayons.",
+                    "Her mom hangs the art on the refrigerator.",
+                    "Jade feels proud of her beautiful work."
+                ],
+                retellingPrompts: [
+                    "Jade and her mom made",
+                    "They used leaves and",
+                    "Jade drew",
+                    "Her mom put the art"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who makes crafts?",
+                        correct: "Jade and her mom",
+                        wrong: ["Jade and her teacher", "Jade and her sister", "Jade alone"]
+                    },
+                    {
+                        q: "What do they glue on the paper?",
+                        correct: "Colorful leaves",
+                        wrong: ["Pumpkin seeds", "Stickers", "Cotton balls"]
+                    },
+                    {
+                        q: "Where does Mom hang the art?",
+                        correct: "On the refrigerator",
+                        wrong: ["On the door", "In Jade's room", "In the garage"]
+                    },
+                    {
+                        q: "When does Jade feel proud?",
+                        correct: "After finishing her work",
+                        wrong: ["Before starting", "At breakfast", "The next day"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do they use fall leaves?",
+                        correct: "To make crafts with fall colors",
+                        wrong: ["Because they can't find paper", "Because leaves are free", "Because they are messy"]
+                    },
+                    {
+                        q: "How does Jade feel about her craft?",
+                        correct: "Happy and proud",
+                        wrong: ["Sad and disappointed", "Angry and upset", "Embarrassed and shy"]
+                    },
+                    {
+                        q: "Why does Mom hang it on the fridge?",
+                        correct: "To show she's proud and display it",
+                        wrong: ["Because there's no room elsewhere", "To cover something up", "Because Jade asked her to"]
+                    },
+                    {
+                        q: "What did Jade draw?",
+                        correct: "A smiling scarecrow",
+                        wrong: ["A turkey", "A snowman", "A flower"]
+                    }
+                ]
+            },
+            {
+                title: "Squirrels Getting Ready",
+                text: [
+                    "Owen watches squirrels run around his backyard.",
+                    "They collect acorns and hide them in the ground.",
+                    "One squirrel climbs up a big oak tree.",
+                    "Owen's dog barks, and the squirrels run away.",
+                    "His mom says the squirrels are getting ready for winter."
+                ],
+                retellingPrompts: [
+                    "Owen saw squirrels",
+                    "The squirrels were collecting",
+                    "When the dog barked, the squirrels",
+                    "Owen's mom said they are preparing for"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who watches the squirrels?",
+                        correct: "Owen",
+                        wrong: ["Owen's mom", "Owen's dog", "Owen's dad"]
+                    },
+                    {
+                        q: "What do the squirrels collect?",
+                        correct: "Acorns",
+                        wrong: ["Leaves", "Flowers", "Rocks"]
+                    },
+                    {
+                        q: "Where does Owen see them?",
+                        correct: "In his backyard",
+                        wrong: ["At the park", "At school", "At the store"]
+                    },
+                    {
+                        q: "When do the squirrels run away?",
+                        correct: "When the dog barks",
+                        wrong: ["When it gets dark", "When it rains", "In the morning"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do squirrels hide acorns?",
+                        correct: "To save food for winter",
+                        wrong: ["To play a game", "Because they don't like them", "To plant trees"]
+                    },
+                    {
+                        q: "How do the squirrels feel when the dog barks?",
+                        correct: "Scared and nervous",
+                        wrong: ["Happy and excited", "Angry and mean", "Sleepy and tired"]
+                    },
+                    {
+                        q: "What season is it now?",
+                        correct: "Fall or autumn",
+                        wrong: ["Winter", "Spring", "Summer"]
+                    },
+                    {
+                        q: "Why do they need to get ready for winter?",
+                        correct: "Food will be hard to find when it's cold",
+                        wrong: ["They are going on vacation", "They want to build a house", "They are bored"]
+                    }
+                ]
+            },
+            {
+                title: "Rainy Day Boots",
+                text: [
+                    "Sofia puts on her yellow rain boots.",
+                    "She splashes in puddles on the sidewalk.",
+                    "The rain makes everything smell fresh and clean.",
+                    "She finds a big puddle near the tree.",
+                    "Her mom takes a picture of Sofia's happy face."
+                ],
+                retellingPrompts: [
+                    "Sofia wore her",
+                    "She splashed in",
+                    "The rain made everything",
+                    "Her mom took"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who wears the rain boots?",
+                        correct: "Sofia",
+                        wrong: ["Sofia's mom", "Sofia's sister", "Sofia's friend"]
+                    },
+                    {
+                        q: "What color are the boots?",
+                        correct: "Yellow",
+                        wrong: ["Red", "Blue", "Green"]
+                    },
+                    {
+                        q: "Where does Sofia splash?",
+                        correct: "In puddles on the sidewalk",
+                        wrong: ["In the swimming pool", "In the bathtub", "At the beach"]
+                    },
+                    {
+                        q: "When does her mom take a picture?",
+                        correct: "When Sofia looks happy",
+                        wrong: ["Before going outside", "At bedtime", "During breakfast"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does Sofia wear rain boots?",
+                        correct: "To keep her feet dry in the rain",
+                        wrong: ["Because they match her dress", "Because her shoes are lost", "Because it's sunny"]
+                    },
+                    {
+                        q: "How does Sofia feel about the puddles?",
+                        correct: "Happy and playful",
+                        wrong: ["Sad and scared", "Angry and upset", "Bored and tired"]
+                    },
+                    {
+                        q: "Why does everything smell fresh?",
+                        correct: "Because the rain cleans the air",
+                        wrong: ["Because someone is baking", "Because of flowers", "Because of soap"]
+                    },
+                    {
+                        q: "Why does Mom take a picture?",
+                        correct: "To remember Sofia's happy moment",
+                        wrong: ["Because the camera is new", "Because she has to", "Because it's picture day"]
+                    }
+                ]
+            },
+            {
+                title: "Baking Pumpkin Bread",
+                text: [
+                    "Tyler and his dad bake pumpkin bread together.",
+                    "They mix flour, eggs, and pumpkin in a big bowl.",
+                    "The kitchen smells sweet and spicy.",
+                    "Tyler helps pour the mix into the pan.",
+                    "They eat warm bread with butter when it's done."
+                ],
+                retellingPrompts: [
+                    "Tyler and his dad",
+                    "They mixed",
+                    "The kitchen smelled",
+                    "When the bread was ready, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who bakes the bread?",
+                        correct: "Tyler and his dad",
+                        wrong: ["Tyler and his mom", "Tyler alone", "Tyler and his grandpa"]
+                    },
+                    {
+                        q: "What do they bake?",
+                        correct: "Pumpkin bread",
+                        wrong: ["Apple pie", "Cookies", "Cake"]
+                    },
+                    {
+                        q: "Where do they bake?",
+                        correct: "In the kitchen",
+                        wrong: ["In the backyard", "At school", "At the store"]
+                    },
+                    {
+                        q: "When do they eat the bread?",
+                        correct: "When it's done baking",
+                        wrong: ["Before baking it", "The next day", "Never"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does it smell sweet and spicy?",
+                        correct: "Because of the pumpkin and spices",
+                        wrong: ["Because of flowers", "Because something is burning", "Because of soap"]
+                    },
+                    {
+                        q: "How does Tyler feel while baking?",
+                        correct: "Happy and excited",
+                        wrong: ["Sad and bored", "Angry and upset", "Scared and worried"]
+                    },
+                    {
+                        q: "Why do they use pumpkin?",
+                        correct: "It's a fall ingredient for baking",
+                        wrong: ["It's the only thing they have", "Because it's green", "Because Dad said so"]
+                    },
+                    {
+                        q: "Why do they eat it with butter?",
+                        correct: "It makes the warm bread taste better",
+                        wrong: ["Because they have to", "Because they don't like bread", "Because it's cold"]
+                    }
+                ]
+            },
+            {
+                title: "Visiting the Corn Field",
+                text: [
+                    "Aria and her aunt walk through a tall corn field.",
+                    "The corn rustles and whispers in the breeze.",
+                    "They see a red barn in the distance.",
+                    "Aria picks up a dried corn husk from the ground.",
+                    "Her aunt tells her stories about growing up on a farm."
+                ],
+                retellingPrompts: [
+                    "Aria and her aunt visited",
+                    "The corn",
+                    "They could see",
+                    "Aria's aunt told her"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who visits the corn field?",
+                        correct: "Aria and her aunt",
+                        wrong: ["Aria and her mom", "Aria and her class", "Aria alone"]
+                    },
+                    {
+                        q: "What does Aria pick up?",
+                        correct: "A dried corn husk",
+                        wrong: ["A pumpkin", "An apple", "A leaf"]
+                    },
+                    {
+                        q: "Where do they walk?",
+                        correct: "Through a corn field",
+                        wrong: ["In a park", "At the beach", "In the city"]
+                    },
+                    {
+                        q: "When does the corn rustle?",
+                        correct: "In the breeze",
+                        wrong: ["When it rains", "At night", "Never"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does the corn rustle?",
+                        correct: "The wind moves the corn stalks",
+                        wrong: ["Animals are hiding in it", "Someone is shaking it", "It's alive"]
+                    },
+                    {
+                        q: "How does Aria feel on this walk?",
+                        correct: "Curious and interested",
+                        wrong: ["Sad and bored", "Angry and upset", "Scared and nervous"]
+                    },
+                    {
+                        q: "Why does her aunt tell farm stories?",
+                        correct: "To share memories and teach Aria",
+                        wrong: ["Because she is bored", "Because Aria asked for them", "Because she forgot something"]
+                    },
+                    {
+                        q: "What color is the barn?",
+                        correct: "Red",
+                        wrong: ["Blue", "Yellow", "Green"]
+                    }
+                ]
+            },
+            {
+                title: "Geese Flying South",
+                text: [
+                    "Zara hears honking sounds in the sky.",
+                    "She looks up and sees geese flying in a V shape.",
+                    "Her brother says they are going south for winter.",
+                    "The geese fly over her house and disappear.",
+                    "Zara waves goodbye to them from the yard."
+                ],
+                retellingPrompts: [
+                    "Zara heard",
+                    "She saw geese",
+                    "Her brother said the geese",
+                    "Zara waved"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who sees the geese?",
+                        correct: "Zara",
+                        wrong: ["Zara's brother", "Zara's mom", "Zara's teacher"]
+                    },
+                    {
+                        q: "What shape do the geese make?",
+                        correct: "A V shape",
+                        wrong: ["A circle", "A straight line", "A triangle"]
+                    },
+                    {
+                        q: "Where are the geese going?",
+                        correct: "South for winter",
+                        wrong: ["North for summer", "To the park", "To the ocean"]
+                    },
+                    {
+                        q: "When does Zara wave?",
+                        correct: "When they fly over her house",
+                        wrong: ["Before they arrive", "At night", "The next day"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do the geese fly south?",
+                        correct: "To find a warmer place for winter",
+                        wrong: ["Because they are lost", "To visit family", "Because they are scared"]
+                    },
+                    {
+                        q: "How does Zara feel about the geese?",
+                        correct: "Interested and amazed",
+                        wrong: ["Sad and upset", "Angry and mean", "Bored and sleepy"]
+                    },
+                    {
+                        q: "What season is it now?",
+                        correct: "Fall or autumn",
+                        wrong: ["Winter", "Spring", "Summer"]
+                    },
+                    {
+                        q: "Why do geese fly in a V shape?",
+                        correct: "It helps them fly easier and longer",
+                        wrong: ["It looks pretty", "They are playing a game", "They don't know how else to fly"]
+                    }
+                ]
+            },
+            {
+                title: "Leaf Collection Project",
+                text: [
+                    "Ben collects different leaves for his school project.",
+                    "He finds oak, maple, and birch leaves.",
+                    "He presses them carefully in a big book.",
+                    "His teacher says his collection is wonderful.",
+                    "Ben smiles and feels very proud."
+                ],
+                retellingPrompts: [
+                    "Ben collected leaves for",
+                    "He found different kinds like",
+                    "He pressed the leaves in",
+                    "His teacher said"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who makes the collection?",
+                        correct: "Ben",
+                        wrong: ["Ben's teacher", "Ben's mom", "Ben's friend"]
+                    },
+                    {
+                        q: "What does Ben collect?",
+                        correct: "Different leaves",
+                        wrong: ["Rocks", "Acorns", "Flowers"]
+                    },
+                    {
+                        q: "Where does he press the leaves?",
+                        correct: "In a big book",
+                        wrong: ["Under a rock", "In a box", "On the wall"]
+                    },
+                    {
+                        q: "When does Ben smile?",
+                        correct: "When his teacher compliments him",
+                        wrong: ["Before starting", "While collecting", "At bedtime"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does Ben press the leaves in a book?",
+                        correct: "To flatten and preserve them",
+                        wrong: ["To hide them", "Because he's clumsy", "To read about them"]
+                    },
+                    {
+                        q: "How does Ben feel about his project?",
+                        correct: "Proud and happy",
+                        wrong: ["Sad and disappointed", "Angry and frustrated", "Scared and nervous"]
+                    },
+                    {
+                        q: "Why does he need different kinds of leaves?",
+                        correct: "To show variety for his project",
+                        wrong: ["Because one isn't enough", "Because the teacher said so", "Because he's greedy"]
+                    },
+                    {
+                        q: "What season is it in this story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Spring", "Summer", "Winter"]
+                    }
+                ]
+            },
+            {
+                title: "Planning a Costume",
+                text: [
+                    "Lily and her mom look at costume ideas online.",
+                    "Lily wants to be a friendly witch for Halloween.",
+                    "They buy a black hat and an orange cape.",
+                    "Lily tries on the costume and twirls around.",
+                    "She can't wait to wear it to the Halloween party."
+                ],
+                retellingPrompts: [
+                    "Lily and her mom looked at",
+                    "Lily decided to be",
+                    "They bought",
+                    "Lily was excited to wear it"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who plans the costume?",
+                        correct: "Lily and her mom",
+                        wrong: ["Lily and her dad", "Lily and her teacher", "Lily alone"]
+                    },
+                    {
+                        q: "What does Lily want to be?",
+                        correct: "A friendly witch",
+                        wrong: ["A princess", "A superhero", "A pumpkin"]
+                    },
+                    {
+                        q: "Where do they look for ideas?",
+                        correct: "Online",
+                        wrong: ["At the store", "In a book", "At school"]
+                    },
+                    {
+                        q: "When will Lily wear the costume?",
+                        correct: "To the Halloween party",
+                        wrong: ["To school tomorrow", "To bed", "On Thanksgiving"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why does Lily want a costume?",
+                        correct: "For Halloween celebrations",
+                        wrong: ["For a play", "Because she's cold", "To wear every day"]
+                    },
+                    {
+                        q: "How does Lily feel about her costume?",
+                        correct: "Excited and happy",
+                        wrong: ["Sad and disappointed", "Angry and upset", "Scared and worried"]
+                    },
+                    {
+                        q: "Why does she twirl around?",
+                        correct: "To see how the costume looks when moving",
+                        wrong: ["Because she's dizzy", "Because Mom told her to", "Because she fell"]
+                    },
+                    {
+                        q: "What season is Halloween in?",
+                        correct: "Fall or autumn",
+                        wrong: ["Winter", "Spring", "Summer"]
+                    }
+                ]
+            },
+            {
+                title: "The Hayride Adventure",
+                text: [
+                    "Marcus goes on a hayride with his scout troop.",
+                    "The tractor pulls them slowly through the farm.",
+                    "They see pumpkins, corn fields, and apple trees.",
+                    "Everyone sings songs and tells jokes.",
+                    "At the end, they roast marshmallows by a fire."
+                ],
+                retellingPrompts: [
+                    "Marcus went on a hayride with",
+                    "The tractor pulled them through",
+                    "They saw",
+                    "At the end, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who goes on the hayride?",
+                        correct: "Marcus and his scout troop",
+                        wrong: ["Marcus and his family", "Marcus alone", "Marcus and his class"]
+                    },
+                    {
+                        q: "What pulls the hayride?",
+                        correct: "A tractor",
+                        wrong: ["A truck", "Horses", "A bus"]
+                    },
+                    {
+                        q: "Where do they ride?",
+                        correct: "Through the farm",
+                        wrong: ["Around the park", "In the city", "At the beach"]
+                    },
+                    {
+                        q: "When do they roast marshmallows?",
+                        correct: "At the end",
+                        wrong: ["Before the ride", "During the ride", "Never"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do they ride slowly?",
+                        correct: "To see everything and stay safe",
+                        wrong: ["Because the tractor is broken", "Because they are lost", "Because they are tired"]
+                    },
+                    {
+                        q: "How do Marcus and his friends feel?",
+                        correct: "Happy and having fun",
+                        wrong: ["Sad and bored", "Angry and upset", "Scared and worried"]
+                    },
+                    {
+                        q: "Why do they sing and tell jokes?",
+                        correct: "To have fun together on the ride",
+                        wrong: ["Because they have to", "Because they are nervous", "Because it's too quiet"]
+                    },
+                    {
+                        q: "What season is it in this story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Spring", "Summer", "Winter"]
+                    }
+                ]
+            }
+        ];
+
+        const storiesLevel2 = [
+            {
+                title: "Apple Picking Day",
+                text: [
+                    "Liam woke up early on Saturday morning, excited for the trip to Miller's Apple Farm.",
+                    "His mom packed a picnic lunch, and they drove down winding country roads lined with colorful trees.",
+                    "When they arrived, rows and rows of apple trees stretched across the hillside, covered with bright red fruit.",
+                    "Liam carefully picked the best apples he could find, making sure not to bruise them as he placed each one gently in his basket.",
+                    "The crisp autumn air smelled wonderfully sweet from all the ripe apples.",
+                    "That evening, they baked a delicious apple pie together, filling the whole house with the warm scent of cinnamon.",
+                    "Liam felt proud knowing the apples in their pie came from his own hard work."
+                ],
+                retellingPrompts: [
+                    "On Saturday, Liam and his mom",
+                    "At the farm, they saw",
+                    "Liam picked apples and",
+                    "Later that day, they used the apples to"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What is the name of the farm they visited?",
+                        correct: "Miller's Apple Farm",
+                        wrong: ["Johnson's Pumpkin Patch", "Green Valley Farm", "Sunshine Orchard"]
+                    },
+                    {
+                        q: "How did Liam make sure not to damage the apples?",
+                        correct: "He placed them gently in the basket",
+                        wrong: ["He threw them carefully", "He wrapped each one in paper", "He carried them in his hands"]
+                    },
+                    {
+                        q: "What day of the week did they go?",
+                        correct: "Saturday",
+                        wrong: ["Sunday", "Friday", "Monday"]
+                    },
+                    {
+                        q: "What spice did they use in the apple pie?",
+                        correct: "Cinnamon",
+                        wrong: ["Nutmeg", "Ginger", "Vanilla"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why did they drive on winding country roads?",
+                        correct: "The farm was in the countryside away from the city",
+                        wrong: ["They were lost", "It was a shortcut", "The main roads were closed"]
+                    },
+                    {
+                        q: "Why did Liam feel proud at the end?",
+                        correct: "He worked hard to pick the apples himself",
+                        wrong: ["His mom praised him", "He ate the whole pie", "He won a contest"]
+                    },
+                    {
+                        q: "What does 'crisp autumn air' tell us about the weather?",
+                        correct: "It was cool and refreshing outside",
+                        wrong: ["It was very hot", "It was raining", "It was windy and stormy"]
+                    },
+                    {
+                        q: "Why did his mom pack a picnic lunch?",
+                        correct: "They would be away from home for a while",
+                        wrong: ["There was no food at the farm", "Liam asked her to", "It was too expensive to eat there"]
+                    }
+                ]
+            },
+            {
+                title: "The Pumpkin Patch",
+                text: [
+                    "Mrs. Thompson's third-grade class buzzed with excitement as the bus pulled into Harvest Moon Pumpkin Patch.",
+                    "Mia had been looking forward to this field trip all week, especially since she wanted to find the perfect pumpkin to carve.",
+                    "She searched carefully among the vines, looking for one that was just the right size and shape.",
+                    "Her best friend Hannah found a huge, bumpy pumpkin that was almost too heavy to lift.",
+                    "After everyone picked their pumpkins, they all climbed aboard the hay wagon for a tour of the farm.",
+                    "The farmer waved his hat as they passed by, and all the students waved back enthusiastically.",
+                    "Mia couldn't wait to take her pumpkin home and turn it into a jack-o'-lantern with a silly face."
+                ],
+                retellingPrompts: [
+                    "Mrs. Thompson's class went on a field trip to",
+                    "Mia wanted to find",
+                    "After picking pumpkins, the class",
+                    "Mia planned to turn her pumpkin into"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What grade is Mia in?",
+                        correct: "Third grade",
+                        wrong: ["Second grade", "Fourth grade", "Fifth grade"]
+                    },
+                    {
+                        q: "What is the name of the pumpkin patch?",
+                        correct: "Harvest Moon Pumpkin Patch",
+                        wrong: ["Fall Festival Farm", "Orange Valley Patch", "Autumn Acres"]
+                    },
+                    {
+                        q: "Who is Mia's best friend?",
+                        correct: "Hannah",
+                        wrong: ["Emma", "Sophia", "Olivia"]
+                    },
+                    {
+                        q: "What did Mia want to carve on her pumpkin?",
+                        correct: "A silly face",
+                        wrong: ["A scary face", "A cat", "Her name"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why had Mia been excited all week?",
+                        correct: "She was looking forward to the field trip",
+                        wrong: ["It was her birthday", "She had a test", "She was moving"]
+                    },
+                    {
+                        q: "What does 'buzzed with excitement' mean?",
+                        correct: "Everyone was talking happily and feeling excited",
+                        wrong: ["There were bees on the bus", "The bus was making noise", "They were playing a buzzing game"]
+                    },
+                    {
+                        q: "Why did the farmer wave his hat?",
+                        correct: "To be friendly and greet the students",
+                        wrong: ["To cool himself off", "Because it was dirty", "To signal the driver"]
+                    },
+                    {
+                        q: "Why was Hannah's pumpkin 'almost too heavy to lift'?",
+                        correct: "It was very large and weighed a lot",
+                        wrong: ["She wasn't very strong", "It was stuck in the ground", "It was filled with water"]
+                    }
+                ]
+            },
+            {
+                title: "Leaves Falling Down",
+                text: [
+                    "Caleb and his dad decided to spend Sunday afternoon at Riverside Park to enjoy the beautiful fall weather.",
+                    "The trees were putting on a magnificent show, with leaves in every shade of red, orange, gold, and yellow.",
+                    "Caleb loved the crunching sound the dried leaves made under his feet as he walked.",
+                    "He kicked a big pile of leaves into the air and watched them swirl and float back down like confetti.",
+                    "His dad suggested they take a photo in front of the oldest oak tree in the park to remember this perfect autumn day.",
+                    "A gentle breeze blew through the branches, making even more leaves dance and twirl through the air.",
+                    "Caleb thought it looked like nature was celebrating fall with its own colorful party."
+                ],
+                retellingPrompts: [
+                    "Caleb and his dad went to",
+                    "The trees had leaves that were",
+                    "Caleb enjoyed",
+                    "They took a picture to"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What is the name of the park?",
+                        correct: "Riverside Park",
+                        wrong: ["Oakwood Park", "Sunset Park", "Meadow Park"]
+                    },
+                    {
+                        q: "What day did they visit the park?",
+                        correct: "Sunday",
+                        wrong: ["Saturday", "Friday", "Monday"]
+                    },
+                    {
+                        q: "What kind of tree did they take a photo by?",
+                        correct: "An oak tree",
+                        wrong: ["A maple tree", "A pine tree", "An elm tree"]
+                    },
+                    {
+                        q: "What did Caleb kick into the air?",
+                        correct: "A pile of leaves",
+                        wrong: ["A soccer ball", "Acorns", "Sticks"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why did the leaves make a crunching sound?",
+                        correct: "They were dried out from being on the ground",
+                        wrong: ["They were frozen", "Someone stepped on them first", "They were extra crispy"]
+                    },
+                    {
+                        q: "What did Caleb mean by saying nature was 'celebrating fall'?",
+                        correct: "The colorful leaves looked festive and joyful",
+                        wrong: ["There was an actual party", "Animals were celebrating", "People were having a festival"]
+                    },
+                    {
+                        q: "Why is the oak tree special?",
+                        correct: "It's the oldest tree in the park",
+                        wrong: ["It's the tallest tree", "It has the most leaves", "It's the only oak tree"]
+                    },
+                    {
+                        q: "What does 'magnificent show' mean?",
+                        correct: "The trees looked amazing and beautiful",
+                        wrong: ["There was a performance at the park", "The trees were moving", "People were watching the trees"]
+                    }
+                ]
+            },
+            {
+                title: "Hot Chocolate Time",
+                text: [
+                    "Emma shivered as she stepped off the school bus, pulling her jacket tighter against the chilly afternoon breeze.",
+                    "Gray clouds filled the sky, and a light drizzle had begun to fall, making everything look damp and dreary.",
+                    "When she opened the front door, her older sister Katie was already in the kitchen, heating milk on the stove.",
+                    "\"I thought you might want some hot chocolate on this cold, rainy day,\" Katie said with a warm smile.",
+                    "They made two steaming mugs topped with fluffy marshmallows that slowly melted into white swirls.",
+                    "Snuggled together under Grandma's handmade quilt on the couch, they watched raindrops race down the window.",
+                    "Emma felt grateful to have such a thoughtful sister who always knew how to make a bad weather day feel cozy and special."
+                ],
+                retellingPrompts: [
+                    "When Emma got home from school,",
+                    "Her sister Katie",
+                    "They sat together and",
+                    "Emma felt grateful because"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What is Emma's sister's name?",
+                        correct: "Katie",
+                        wrong: ["Kelly", "Kathy", "Karen"]
+                    },
+                    {
+                        q: "Where was Katie when Emma came home?",
+                        correct: "In the kitchen",
+                        wrong: ["In her bedroom", "In the living room", "Outside"]
+                    },
+                    {
+                        q: "Who made the quilt they used?",
+                        correct: "Grandma",
+                        wrong: ["Mom", "Katie", "Emma"]
+                    },
+                    {
+                        q: "What did they watch through the window?",
+                        correct: "Raindrops racing down",
+                        wrong: ["Birds flying", "Cars driving by", "People walking"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "How did Katie know Emma would want hot chocolate?",
+                        correct: "She noticed the cold, rainy weather",
+                        wrong: ["Emma called her", "Emma always wants hot chocolate", "Their mom told her"]
+                    },
+                    {
+                        q: "What does 'damp and dreary' mean?",
+                        correct: "Wet and gloomy looking",
+                        wrong: ["Bright and cheerful", "Dry and dusty", "Warm and sunny"]
+                    },
+                    {
+                        q: "Why did Emma feel the day was 'special' despite bad weather?",
+                        correct: "Katie's kindness made her feel cared for",
+                        wrong: ["She didn't have homework", "She got a present", "It was her birthday"]
+                    },
+                    {
+                        q: "What does it mean that the marshmallows 'melted into white swirls'?",
+                        correct: "They dissolved and mixed with the hot chocolate",
+                        wrong: ["They spun around in circles", "They turned into cream", "They floated on top"]
+                    }
+                ]
+            },
+            {
+                title: "Raking the Yard",
+                text: [
+                    "Mr. Lee's fourth-grade class had volunteered to help clean up the school grounds as part of their community service project.",
+                    "Autumn leaves had piled up everywhere around the playground and along the fence, making the yard look messy.",
+                    "The students worked together in teams, raking the crunchy brown and gold leaves into several enormous piles.",
+                    "\"Great teamwork, everyone!\" Mr. Lee called out as he watched his students cooperate so well.",
+                    "Before bagging up the leaves, he surprised them by giving permission for one fun jump into the biggest pile.",
+                    "Laughter filled the air as students took turns leaping into the soft, rustling mountain of leaves.",
+                    "By the time they finished, the schoolyard looked neat and tidy, and the students felt proud of their hard work."
+                ],
+                retellingPrompts: [
+                    "Mr. Lee's class volunteered to",
+                    "The students worked in teams to",
+                    "Before cleaning up, Mr. Lee let them",
+                    "When they finished, the yard looked"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What grade does Mr. Lee teach?",
+                        correct: "Fourth grade",
+                        wrong: ["Third grade", "Fifth grade", "Sixth grade"]
+                    },
+                    {
+                        q: "What kind of project were they doing?",
+                        correct: "A community service project",
+                        wrong: ["A science project", "An art project", "A reading project"]
+                    },
+                    {
+                        q: "Where had the leaves piled up?",
+                        correct: "Around the playground and along the fence",
+                        wrong: ["Only on the field", "In the parking lot", "By the school entrance"]
+                    },
+                    {
+                        q: "How many times could students jump in the leaves?",
+                        correct: "One time",
+                        wrong: ["As many times as they wanted", "Two times", "Three times"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why did Mr. Lee praise their 'teamwork'?",
+                        correct: "They were working well together and cooperating",
+                        wrong: ["They finished very quickly", "They found the most leaves", "They were very quiet"]
+                    },
+                    {
+                        q: "Why was jumping in the leaves a 'surprise'?",
+                        correct: "The students didn't expect to be allowed to play",
+                        wrong: ["They had never seen leaves before", "It was someone's birthday", "There was a prize"]
+                    },
+                    {
+                        q: "What does 'rustling mountain' suggest about the leaf pile?",
+                        correct: "It was very tall and made noise when disturbed",
+                        wrong: ["It was on a mountain", "It was made of rocks", "It was very small"]
+                    },
+                    {
+                        q: "How did the students probably feel about their work?",
+                        correct: "Accomplished and satisfied",
+                        wrong: ["Tired and annoyed", "Bored and frustrated", "Confused and worried"]
+                    }
+                ]
+            },
+            {
+                title: "Football Game Fun",
+                text: [
+                    "Carlos and his family arrived at the high school stadium just as the Friday night lights were being turned on.",
+                    "The smell of popcorn and hot dogs drifted through the cool evening air, and the bleachers were already filling with excited fans.",
+                    "Carlos wore his favorite team's colors - a bright red jersey and matching cap - and cheered loudly whenever they scored.",
+                    "His dad bought everyone warm apple cider to sip while they watched the players run incredible plays across the field.",
+                    "The marching band played energetic music during halftime, and Carlos tried to clap along with the beat.",
+                    "As the sun set completely and darkness fell, the bright stadium lights made everything glow.",
+                    "On the drive home, Carlos talked nonstop about the most exciting plays, already hoping they could come back next week."
+                ],
+                retellingPrompts: [
+                    "Carlos and his family went to",
+                    "He wore",
+                    "During the game, they",
+                    "Carlos wanted to"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What night of the week was the game?",
+                        correct: "Friday night",
+                        wrong: ["Saturday night", "Thursday night", "Sunday afternoon"]
+                    },
+                    {
+                        q: "What did Carlos wear to show team spirit?",
+                        correct: "A red jersey and matching cap",
+                        wrong: ["A blue sweater", "A green jacket", "A yellow shirt"]
+                    },
+                    {
+                        q: "What did the band do at halftime?",
+                        correct: "Played energetic music",
+                        wrong: ["Sold food", "Did a comedy show", "Gave out prizes"]
+                    },
+                    {
+                        q: "What drink did they have at the game?",
+                        correct: "Warm apple cider",
+                        wrong: ["Hot chocolate", "Lemonade", "Soda"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why are they called 'Friday night lights'?",
+                        correct: "Football games are traditionally played Friday nights under stadium lights",
+                        wrong: ["The lights only work on Fridays", "It's a special holiday", "The lights are a different color"]
+                    },
+                    {
+                        q: "What does 'talked nonstop' tell us about Carlos?",
+                        correct: "He was very excited and couldn't stop talking",
+                        wrong: ["He was tired", "He was upset", "He was confused"]
+                    },
+                    {
+                        q: "Why did they drink warm cider instead of cold drinks?",
+                        correct: "The evening air was cool so warm drinks felt good",
+                        wrong: ["They ran out of cold drinks", "It was healthier", "It was cheaper"]
+                    },
+                    {
+                        q: "What does 'bleachers were already filling' suggest?",
+                        correct: "The game was popular and many people were coming",
+                        wrong: ["The bleachers were broken", "They arrived very late", "There weren't enough seats"]
+                    }
+                ]
+            },
+            {
+                title: "Scarecrow in the Garden",
+                text: [
+                    "Old Farmer Jenkins stood back to admire his handiwork - a scarecrow that stood guard over his vegetable garden.",
+                    "He had dressed it in his worn-out plaid flannel shirt and his oldest straw hat with a hole in the brim.",
+                    "The scarecrow's arms were made from wooden poles, stuffed with hay and positioned to look like it was waving at passersby.",
+                    "Every time the autumn wind picked up, those straw-filled arms would sway gently, making the scarecrow seem almost alive.",
+                    "The local crows had been eating his precious corn, but now they kept their distance, fooled by the human-like figure.",
+                    "Some of the neighborhood children walking by would wave back at the scarecrow, thinking it looked friendly rather than scary.",
+                    "Farmer Jenkins chuckled with satisfaction, knowing his garden vegetables would be safe until harvest time."
+                ],
+                retellingPrompts: [
+                    "Farmer Jenkins made a scarecrow to",
+                    "He used",
+                    "When the wind blew,",
+                    "The scarecrow successfully"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What is the farmer's name?",
+                        correct: "Farmer Jenkins",
+                        wrong: ["Farmer Brown", "Farmer Smith", "Farmer Johnson"]
+                    },
+                    {
+                        q: "What was wrong with the hat?",
+                        correct: "It had a hole in the brim",
+                        wrong: ["It was too small", "It was missing", "It was torn in half"]
+                    },
+                    {
+                        q: "What were the scarecrow's arms made from?",
+                        correct: "Wooden poles stuffed with hay",
+                        wrong: ["Tree branches", "Metal pipes", "Rope"]
+                    },
+                    {
+                        q: "What were the crows trying to eat?",
+                        correct: "Corn",
+                        wrong: ["Tomatoes", "Pumpkins", "Apples"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "What does 'admire his handiwork' mean?",
+                        correct: "Feel proud of something he created",
+                        wrong: ["Fix something broken", "Start working", "Give up on work"]
+                    },
+                    {
+                        q: "Why did Farmer Jenkins use old, worn-out clothes?",
+                        correct: "He didn't need them anymore and they worked fine for the scarecrow",
+                        wrong: ["They were magical", "New clothes don't scare birds", "He was poor"]
+                    },
+                    {
+                        q: "Why did the children wave at the scarecrow?",
+                        correct: "It looked friendly like it was waving at them first",
+                        wrong: ["They were afraid of it", "Their parents told them to", "It was moving"]
+                    },
+                    {
+                        q: "What does 'chuckled with satisfaction' tell us?",
+                        correct: "He was pleased and happy with the result",
+                        wrong: ["He was laughing at someone", "He was nervous", "He was angry"]
+                    }
+                ]
+            },
+            {
+                title: "Fall Festival",
+                text: [
+                    "The annual Fall Festival in downtown had transformed the town square into a wonderland of autumn fun.",
+                    "Nora's family arrived early to make sure they had time to enjoy all the activities before the festival closed.",
+                    "Colorful vendor booths lined the streets, selling everything from caramel apples to handmade fall decorations.",
+                    "Nora's favorite treat was the caramel apple - sweet, sticky, and covered in crushed peanuts that crunched with every bite.",
+                    "Her younger brother Marcus begged to go on the giant slide three times, squealing with delight each trip down.",
+                    "A local band played lively bluegrass music on the main stage, and families danced together on the grass.",
+                    "As twilight faded to darkness, thousands of twinkling lights strung overhead made the whole festival sparkle like magic.",
+                    "Nora thought it was the most perfect autumn evening she could imagine."
+                ],
+                retellingPrompts: [
+                    "The Fall Festival was held in",
+                    "Nora's favorite treat was",
+                    "Her brother Marcus",
+                    "When evening came,"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What is Nora's brother's name?",
+                        correct: "Marcus",
+                        wrong: ["Michael", "Matthew", "Mason"]
+                    },
+                    {
+                        q: "What was on top of Nora's caramel apple?",
+                        correct: "Crushed peanuts",
+                        wrong: ["Chocolate chips", "Sprinkles", "Coconut"]
+                    },
+                    {
+                        q: "What type of music did the band play?",
+                        correct: "Bluegrass",
+                        wrong: ["Rock", "Jazz", "Country"]
+                    },
+                    {
+                        q: "How many times did Marcus ride the slide?",
+                        correct: "Three times",
+                        wrong: ["Two times", "Four times", "Five times"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why did they arrive early?",
+                        correct: "To have enough time to do everything before it closed",
+                        wrong: ["To avoid crowds", "To get free food", "To set up booths"]
+                    },
+                    {
+                        q: "What does 'transformed into a wonderland' mean?",
+                        correct: "Changed into an amazing, magical-looking place",
+                        wrong: ["Built a new building", "Moved to a different location", "Closed down"]
+                    },
+                    {
+                        q: "Why did the lights make it look 'like magic'?",
+                        correct: "They created a beautiful, enchanting atmosphere",
+                        wrong: ["They were actually magic", "A magician turned them on", "They changed colors"]
+                    },
+                    {
+                        q: "What does Marcus 'squealing with delight' tell us?",
+                        correct: "He was extremely happy and excited",
+                        wrong: ["He was scared", "He was hurt", "He was cold"]
+                    }
+                ]
+            },
+            {
+                title: "The Corn Maze",
+                text: [
+                    "Evan and his three best friends from school had been planning their corn maze adventure for weeks.",
+                    "The maze at Johnson Farm was famous for being tricky, with paths that twisted and turned in confusing directions.",
+                    "As they entered through the tall corn stalks, Evan noticed how the corn towered high above their heads, blocking out most of the sunlight.",
+                    "They tried to follow the wooden signs with arrows, but sometimes the signs seemed to point in opposite directions on purpose.",
+                    "When they realized they had walked in a complete circle back to where they started, they all burst out laughing at their mistake.",
+                    "\"This is harder than I thought!\" Evan's friend Josh admitted, studying the map they had been given.",
+                    "After nearly forty minutes of searching, they finally found the exit and celebrated with delicious pumpkin donuts from the farm stand.",
+                    "Evan decided that getting lost with good friends was actually more fun than finding the exit quickly."
+                ],
+                retellingPrompts: [
+                    "Evan and his friends went to",
+                    "The corn maze was",
+                    "They got confused because",
+                    "After finishing, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What farm was the corn maze at?",
+                        correct: "Johnson Farm",
+                        wrong: ["Miller Farm", "Green Acres", "Harvest Farm"]
+                    },
+                    {
+                        q: "How many friends went with Evan?",
+                        correct: "Three",
+                        wrong: ["Two", "Four", "Five"]
+                    },
+                    {
+                        q: "What is one friend's name mentioned in the story?",
+                        correct: "Josh",
+                        wrong: ["Jake", "Jack", "Joe"]
+                    },
+                    {
+                        q: "How long did it take them to find the exit?",
+                        correct: "Nearly forty minutes",
+                        wrong: ["Twenty minutes", "One hour", "Two hours"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why was the maze 'famous for being tricky'?",
+                        correct: "It was known as a difficult maze that confused people",
+                        wrong: ["It was in a movie", "It was the biggest maze", "It gave prizes"]
+                    },
+                    {
+                        q: "Why did the signs seem to point in 'opposite directions on purpose'?",
+                        correct: "The maze was designed to be confusing and challenging",
+                        wrong: ["Someone put them up wrong", "The wind moved them", "They were broken"]
+                    },
+                    {
+                        q: "What made Evan think getting lost was 'more fun'?",
+                        correct: "Spending time laughing with friends was enjoyable",
+                        wrong: ["He liked being lost", "He didn't want to leave", "He was afraid of the exit"]
+                    },
+                    {
+                        q: "Why did they laugh when they walked in a circle?",
+                        correct: "They found their mistake funny and weren't upset about it",
+                        wrong: ["Someone told a joke", "They were nervous", "They were tired"]
+                    }
+                ]
+            },
+            {
+                title: "Sweater Weather",
+                text: [
+                    "Lila opened her closet door and immediately reached for her coziest sweater - a soft, pumpkin-orange knit her grandmother had made last year.",
+                    "Looking out her bedroom window, she could see her breath making little clouds in the chilly morning air.",
+                    "The weatherman on TV had predicted the first real cold morning of fall, and he was definitely right.",
+                    "She walked to the corner with her friends Maya and Jordan, all bundled up in their warm jackets and scarves.",
+                    "A mysterious white fog lay low across the neighborhood lawns like a soft blanket, making everything look dreamy and magical.",
+                    "\"Look! The fog is disappearing!\" Maya pointed as the rising sun began breaking through the gray clouds.",
+                    "By the time the school bus arrived, the fog had vanished completely, and golden sunlight warmed their faces.",
+                    "Lila loved these crisp autumn mornings that started cold but promised to become beautiful, sunny days."
+                ],
+                retellingPrompts: [
+                    "On a chilly morning, Lila",
+                    "She walked to the bus stop with",
+                    "There was fog that",
+                    "Lila enjoyed"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who made Lila's sweater?",
+                        correct: "Her grandmother",
+                        wrong: ["Her mother", "Her aunt", "Her sister"]
+                    },
+                    {
+                        q: "What color was the sweater?",
+                        correct: "Pumpkin-orange",
+                        wrong: ["Red", "Yellow", "Brown"]
+                    },
+                    {
+                        q: "Who are Lila's two friends?",
+                        correct: "Maya and Jordan",
+                        wrong: ["Emma and Jack", "Sophie and Tyler", "Ava and Ryan"]
+                    },
+                    {
+                        q: "What happened to the fog?",
+                        correct: "It disappeared when the sun came out",
+                        wrong: ["It got thicker", "It turned to rain", "It stayed all day"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why could Lila see her breath?",
+                        correct: "The cold air made water vapor visible",
+                        wrong: ["She was breathing differently", "She was sick", "The window was foggy"]
+                    },
+                    {
+                        q: "What does 'fog lay low like a soft blanket' mean?",
+                        correct: "The fog covered the ground gently and evenly",
+                        wrong: ["There were actual blankets outside", "The fog was thick and heavy", "Someone put blankets on lawns"]
+                    },
+                    {
+                        q: "Why did the weatherman's prediction matter?",
+                        correct: "It helped people know what to wear that morning",
+                        wrong: ["He won a prize", "It was unusual", "He was always wrong"]
+                    },
+                    {
+                        q: "What does Lila appreciate about autumn mornings?",
+                        correct: "The contrast between cold starts and warm, beautiful days",
+                        wrong: ["She likes being cold", "She enjoys foggy weather", "She prefers staying inside"]
+                    }
+                ]
+            },
+            {
+                title: "Grandpa's Leaf Pile",
+                text: [
+                    "Maya spent every Saturday morning helping her grandfather with yard work, and today's job was tackling the massive amount of fallen leaves.",
+                    "Grandpa's old maple trees had dropped thousands of brown, crispy leaves that covered the entire backyard like a crunchy carpet.",
+                    "They worked side by side, filling bag after bag with the dried leaves, their rakes making satisfying scratching sounds on the grass.",
+                    "Maya's arms were getting tired after filling the fifth bag, but she didn't want to stop helping.",
+                    "\"You've worked so hard, sweetie,\" Grandpa said with a twinkle in his eye. \"I think you've earned something special.\"",
+                    "He gathered all the remaining leaves into one gigantic, fluffy pile right in the middle of the yard.",
+                    "Maya took a running start and jumped into the pile with a whoop of joy, sending leaves flying everywhere.",
+                    "Afterward, they sat on the porch drinking cold apple cider, tired but happy, watching the last few leaves drift down from the trees."
+                ],
+                retellingPrompts: [
+                    "Every Saturday, Maya helped",
+                    "They filled bags with",
+                    "As a reward, Grandpa",
+                    "Afterward, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "When does Maya help her grandfather?",
+                        correct: "Every Saturday morning",
+                        wrong: ["Every Sunday", "After school", "On weekends"]
+                    },
+                    {
+                        q: "What kind of trees does Grandpa have?",
+                        correct: "Maple trees",
+                        wrong: ["Oak trees", "Pine trees", "Birch trees"]
+                    },
+                    {
+                        q: "How many bags did Maya fill before getting tired?",
+                        correct: "Five bags",
+                        wrong: ["Three bags", "Seven bags", "Ten bags"]
+                    },
+                    {
+                        q: "Where did they sit to drink cider?",
+                        correct: "On the porch",
+                        wrong: ["At the kitchen table", "In the yard", "In the garage"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "What does 'with a twinkle in his eye' tell us?",
+                        correct: "Grandpa had a fun surprise planned",
+                        wrong: ["Something was in his eye", "He was crying", "He was angry"]
+                    },
+                    {
+                        q: "Why didn't Maya want to stop even though she was tired?",
+                        correct: "She enjoyed helping her grandfather and didn't want to let him down",
+                        wrong: ["She wasn't actually tired", "He was paying her", "She had to finish"]
+                    },
+                    {
+                        q: "What does 'covered like a crunchy carpet' suggest?",
+                        correct: "Leaves completely covered the ground in a thick layer",
+                        wrong: ["There was an actual carpet outside", "The leaves were wet", "There weren't many leaves"]
+                    },
+                    {
+                        q: "Why did they feel 'tired but happy'?",
+                        correct: "Hard work followed by fun made them feel satisfied",
+                        wrong: ["They took a nap", "Someone gave them money", "The work was finished"]
+                    }
+                ]
+            },
+            {
+                title: "Making Fall Crafts",
+                text: [
+                    "Rain pattered against the kitchen window as Jade and her mom decided it was the perfect day for an indoor craft project.",
+                    "They spread old newspapers across the kitchen table to protect it from glue and paint.",
+                    "Mom had collected colorful autumn leaves from their neighborhood - brilliant reds, bright oranges, and golden yellows.",
+                    "Jade carefully arranged the prettiest leaves on her white paper, creating a pattern that looked like a rainbow of fall colors.",
+                    "Once she was happy with the design, she used a glue stick to attach each leaf, pressing gently so they wouldn't tear.",
+                    "With her crayons, she drew a cheerful scarecrow wearing a big smile and a patched hat standing in a pumpkin patch.",
+                    "\"This is beautiful, Jade!\" her mom exclaimed, holding up the finished artwork to admire it.",
+                    "Mom hung it on the refrigerator with special magnets, right at eye level so everyone who came into the kitchen would see it first.",
+                    "Jade beamed with pride every time she walked past and saw her autumn masterpiece displayed so prominently."
+                ],
+                retellingPrompts: [
+                    "On a rainy day, Jade and her mom",
+                    "Jade used",
+                    "She drew a picture of",
+                    "When it was finished,"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What was the weather like outside?",
+                        correct: "It was raining",
+                        wrong: ["It was sunny", "It was snowing", "It was windy"]
+                    },
+                    {
+                        q: "What did they put on the table to protect it?",
+                        correct: "Old newspapers",
+                        wrong: ["A plastic sheet", "Paper towels", "A tablecloth"]
+                    },
+                    {
+                        q: "What tool did Jade use to attach the leaves?",
+                        correct: "A glue stick",
+                        wrong: ["Tape", "Liquid glue", "Staples"]
+                    },
+                    {
+                        q: "What was the scarecrow wearing?",
+                        correct: "A big smile and a patched hat",
+                        wrong: ["A crown", "Sunglasses", "A bowtie"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why was it a 'perfect day' for indoor crafts?",
+                        correct: "The rainy weather kept them inside",
+                        wrong: ["They had a holiday", "The store was closed", "They were bored"]
+                    },
+                    {
+                        q: "Why did Jade press the leaves 'gently'?",
+                        correct: "Leaves are delicate and could tear easily",
+                        wrong: ["She was being lazy", "The glue was weak", "Her mom told her to"]
+                    },
+                    {
+                        q: "What does 'displayed so prominently' mean?",
+                        correct: "Shown in an obvious, important place",
+                        wrong: ["Hidden away", "Thrown in the trash", "Put in a drawer"]
+                    },
+                    {
+                        q: "Why did Jade 'beam with pride'?",
+                        correct: "She felt accomplished and happy about her creation",
+                        wrong: ["She was showing off", "She won a contest", "Someone gave her money"]
+                    }
+                ]
+            },
+            {
+                title: "Squirrels Getting Ready",
+                text: [
+                    "Owen was doing his homework at the kitchen table when movement in the backyard caught his attention.",
+                    "Three busy squirrels were scampering back and forth across the lawn, their fluffy tails twitching with each quick movement.",
+                    "He watched, fascinated, as one squirrel dug a small hole near the fence, dropped an acorn inside, and covered it up with dirt and leaves.",
+                    "Another squirrel was racing up the trunk of the big oak tree, its tiny claws gripping the bark expertly.",
+                    "Owen's golden retriever, Max, had been napping on the back porch but suddenly woke up and barked loudly at the intruders.",
+                    "The startled squirrels scattered immediately, disappearing into the trees and bushes with impressive speed.",
+                    "\"They're gathering food for winter,\" his mom explained, joining him at the window. \"Squirrels hide nuts all over so they'll have enough to eat when it gets cold and snowy.\"",
+                    "Owen was amazed by how such small animals could be so smart and prepared for the changing seasons."
+                ],
+                retellingPrompts: [
+                    "Owen noticed squirrels",
+                    "The squirrels were",
+                    "When Max barked,",
+                    "Owen's mom explained that"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What was Owen doing when he saw the squirrels?",
+                        correct: "His homework",
+                        wrong: ["Eating lunch", "Playing games", "Watching TV"]
+                    },
+                    {
+                        q: "How many squirrels did Owen see?",
+                        correct: "Three",
+                        wrong: ["Two", "Four", "Five"]
+                    },
+                    {
+                        q: "What kind of dog does Owen have?",
+                        correct: "A golden retriever",
+                        wrong: ["A poodle", "A beagle", "A German shepherd"]
+                    },
+                    {
+                        q: "What is the dog's name?",
+                        correct: "Max",
+                        wrong: ["Buddy", "Charlie", "Rocky"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do squirrels hide nuts 'all over'?",
+                        correct: "So they can find food in different places during winter",
+                        wrong: ["They forget where they put them", "They're playing a game", "They're messy"]
+                    },
+                    {
+                        q: "What does 'their fluffy tails twitching' tell us?",
+                        correct: "The squirrels were alert and active",
+                        wrong: ["They were sick", "They were cold", "They were angry"]
+                    },
+                    {
+                        q: "Why did Owen find the squirrels 'smart and prepared'?",
+                        correct: "They were planning ahead for a time when food would be scarce",
+                        wrong: ["They could do tricks", "They were bigger than other squirrels", "They weren't afraid of Max"]
+                    },
+                    {
+                        q: "What does 'gripping the bark expertly' mean?",
+                        correct: "The squirrel was very skilled at climbing",
+                        wrong: ["It was stuck", "It was falling", "It was being careful"]
+                    }
+                ]
+            },
+            {
+                title: "Rainy Day Boots",
+                text: [
+                    "Sofia had been watching the rain clouds gather all morning, secretly hoping for a good downpour.",
+                    "Finally, after lunch, fat raindrops began splattering against the windows, and puddles started forming on the sidewalk.",
+                    "She quickly pulled on her bright yellow rain boots - her favorite pair that she'd gotten for her birthday.",
+                    "\"Don't go too far!\" her mom called from the doorway as Sofia dashed outside with excitement.",
+                    "The rain had created dozens of perfect puddles, and Sofia carefully aimed for each one, jumping high and landing with a satisfying splash.",
+                    "She discovered that the biggest puddle had formed right under the old maple tree, where water collected in a low spot in the sidewalk.",
+                    "After the rain shower passed, everything smelled incredibly fresh and clean, like the world had just taken a bath.",
+                    "Her mom snapped a photo of Sofia standing in her rain boots with the biggest grin on her face, muddy water drops sparkling on her rain jacket."
+                ],
+                retellingPrompts: [
+                    "Sofia had been hoping for",
+                    "When it started raining, she",
+                    "She found the biggest puddle",
+                    "Her mom took a picture of"
+                ],
+                basicQuestions: [
+                    {
+                        q: "When did it start raining?",
+                        correct: "After lunch",
+                        wrong: ["In the morning", "At breakfast", "At dinnertime"]
+                    },
+                    {
+                        q: "When did Sofia get her boots?",
+                        correct: "For her birthday",
+                        wrong: ["For Christmas", "Last week", "At the store yesterday"]
+                    },
+                    {
+                        q: "Where was the biggest puddle?",
+                        correct: "Under the old maple tree",
+                        wrong: ["In the driveway", "At the park", "By the mailbox"]
+                    },
+                    {
+                        q: "What was Sofia wearing besides boots?",
+                        correct: "A rain jacket",
+                        wrong: ["A sweater", "A dress", "A t-shirt"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why was Sofia 'secretly hoping' for rain?",
+                        correct: "She loved playing in puddles but didn't want to seem too eager",
+                        wrong: ["She wanted to skip school", "She was tired", "She was sad"]
+                    },
+                    {
+                        q: "What does 'the world had just taken a bath' mean?",
+                        correct: "The rain cleaned everything and made it smell fresh",
+                        wrong: ["There was soap everywhere", "People were bathing outside", "The streets were flooded"]
+                    },
+                    {
+                        q: "Why did water collect in that spot?",
+                        correct: "It was a low area where water naturally gathered",
+                        wrong: ["Someone dug a hole", "A pipe was broken", "It only rained there"]
+                    },
+                    {
+                        q: "How did Sofia feel about the rain?",
+                        correct: "Joyful and excited",
+                        wrong: ["Upset and angry", "Scared and worried", "Bored and tired"]
+                    }
+                ]
+            },
+            {
+                title: "Baking Pumpkin Bread",
+                text: [
+                    "Tyler loved spending Saturday mornings in the kitchen with his dad, especially when they were baking something delicious.",
+                    "Today's project was pumpkin bread, using a recipe that had been passed down from Tyler's great-grandmother.",
+                    "They carefully measured out flour, sugar, cinnamon, nutmeg, and ginger, and Tyler got to crack three eggs into the big mixing bowl.",
+                    "The star ingredient was a can of pure pumpkin puree - thick, orange, and smooth.",
+                    "As they mixed everything together, the wonderful smell of spices began filling the kitchen, making Tyler's stomach rumble with anticipation.",
+                    "Dad showed Tyler how to pour the thick batter evenly into the loaf pan without making a mess.",
+                    "While the bread baked in the oven, they cleaned up together, and the whole house filled with the most amazing aroma of cinnamon and pumpkin.",
+                    "When the timer finally buzzed and they pulled out the golden-brown loaf, Tyler couldn't wait to spread butter on a warm slice.",
+                    "\"This tastes even better because we made it together,\" Tyler said between delicious bites."
+                ],
+                retellingPrompts: [
+                    "Tyler and his dad decided to",
+                    "The recipe included spices like",
+                    "While the bread baked,",
+                    "Tyler thought the bread"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Whose recipe did they use?",
+                        correct: "Tyler's great-grandmother's",
+                        wrong: ["Tyler's mom's", "A cookbook's", "The internet's"]
+                    },
+                    {
+                        q: "How many eggs did Tyler crack?",
+                        correct: "Three",
+                        wrong: ["Two", "Four", "Five"]
+                    },
+                    {
+                        q: "What was the main ingredient?",
+                        correct: "Pumpkin puree",
+                        wrong: ["Apple sauce", "Sweet potato", "Banana"]
+                    },
+                    {
+                        q: "What did they spread on the warm bread?",
+                        correct: "Butter",
+                        wrong: ["Jam", "Cream cheese", "Honey"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why did Tyler's stomach rumble?",
+                        correct: "The smell made him hungry",
+                        wrong: ["He was sick", "He was nervous", "He drank too much"]
+                    },
+                    {
+                        q: "What does 'recipe passed down' mean?",
+                        correct: "A recipe shared through family generations",
+                        wrong: ["A recipe written down", "A recipe from a book", "A new recipe"]
+                    },
+                    {
+                        q: "Why did Tyler think it tasted 'even better'?",
+                        correct: "Making it with his dad made it more special",
+                        wrong: ["It had more sugar", "He was very hungry", "It was warmer than usual"]
+                    },
+                    {
+                        q: "What does 'filling the house with aroma' suggest?",
+                        correct: "The smell spread throughout the entire home",
+                        wrong: ["They opened windows", "Someone was spraying perfume", "The house was small"]
+                    }
+                ]
+            },
+            {
+                title: "Visiting the Corn Field",
+                text: [
+                    "Aria's Aunt Michelle had invited her to visit the old family farm where she had grown up decades ago.",
+                    "As they walked through rows of tall corn stalks, Aria marveled at how the plants stretched high above her head.",
+                    "The corn leaves made a gentle rustling sound whenever the breeze blew through them, almost like they were whispering secrets.",
+                    "\"When I was your age, I used to play hide-and-seek in these fields,\" Aunt Michelle said with a nostalgic smile.",
+                    "In the distance, they could see the faded red barn where Aunt Michelle's family had once kept horses and cows.",
+                    "Aria bent down and picked up a dried corn husk that had fallen to the ground, examining its papery texture.",
+                    "As they walked, Aunt Michelle shared wonderful stories about summer harvests, barn dances, and helping her parents tend to the animals.",
+                    "Aria loved learning about her family's history and imagining what life was like on the farm long before she was born."
+                ],
+                retellingPrompts: [
+                    "Aria visited",
+                    "The corn field had",
+                    "Aunt Michelle told stories about",
+                    "Aria enjoyed"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What is Aria's aunt's name?",
+                        correct: "Michelle",
+                        wrong: ["Mary", "Martha", "Margaret"]
+                    },
+                    {
+                        q: "What game did Aunt Michelle play as a child?",
+                        correct: "Hide-and-seek",
+                        wrong: ["Tag", "Kickball", "Soccer"]
+                    },
+                    {
+                        q: "What color was the barn?",
+                        correct: "Red",
+                        wrong: ["White", "Brown", "Gray"]
+                    },
+                    {
+                        q: "What did Aria pick up from the ground?",
+                        correct: "A dried corn husk",
+                        wrong: ["A corn cob", "A rock", "A leaf"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "What does 'nostalgic smile' tell us?",
+                        correct: "Aunt Michelle had fond memories of her childhood",
+                        wrong: ["She was sad", "She was confused", "She was tired"]
+                    },
+                    {
+                        q: "Why did the corn seem to 'whisper secrets'?",
+                        correct: "The rustling sound was quiet and mysterious",
+                        wrong: ["The corn could talk", "Someone was hiding", "It was magic"]
+                    },
+                    {
+                        q: "What does 'papery texture' mean?",
+                        correct: "Thin and dry like paper",
+                        wrong: ["Soft and wet", "Rough and bumpy", "Smooth and shiny"]
+                    },
+                    {
+                        q: "Why did Aria love learning about family history?",
+                        correct: "It helped her understand where she came from and feel connected to her past",
+                        wrong: ["She had to write a report", "She was bored", "Her teacher assigned it"]
+                    }
+                ]
+            },
+            {
+                title: "Geese Flying South",
+                text: [
+                    "Zara was raking leaves in the front yard when she heard a strange honking sound coming from above.",
+                    "She looked up and spotted a large group of geese flying in a perfect V-formation across the bright blue autumn sky.",
+                    "Her older brother Danny, who was a junior in high school, came outside and noticed her watching the birds.",
+                    "\"Those geese are migrating south for the winter,\" he explained. \"They fly hundreds of miles to find warmer weather and food.\"",
+                    "Zara counted at least twenty geese in the formation, all following the leader at the front of the V.",
+                    "The geese flew directly over their house, and Zara waved goodbye, wishing them a safe journey.",
+                    "\"Why do they fly in that V-shape?\" Zara asked curiously.",
+                    "Danny explained that flying in a V helps the geese save energy - the birds in back benefit from the air currents created by the ones in front.",
+                    "Zara thought it was amazing how nature had such clever solutions to help animals survive."
+                ],
+                retellingPrompts: [
+                    "Zara heard honking and",
+                    "Her brother Danny explained that",
+                    "The geese flew in a V-shape because",
+                    "Zara thought"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What was Zara doing when she heard the geese?",
+                        correct: "Raking leaves",
+                        wrong: ["Playing outside", "Doing homework", "Walking the dog"]
+                    },
+                    {
+                        q: "What is her brother's name?",
+                        correct: "Danny",
+                        wrong: ["David", "Daniel", "Derek"]
+                    },
+                    {
+                        q: "What grade is Danny in?",
+                        correct: "Junior year of high school",
+                        wrong: ["Freshman year", "Senior year", "Sophomore year"]
+                    },
+                    {
+                        q: "About how many geese did Zara count?",
+                        correct: "At least twenty",
+                        wrong: ["About ten", "About fifty", "About five"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why do geese migrate south?",
+                        correct: "To find warmer weather and available food",
+                        wrong: ["Because they're lost", "To visit family", "Because they're scared"]
+                    },
+                    {
+                        q: "What does 'save energy' mean in this context?",
+                        correct: "Use less effort while flying long distances",
+                        wrong: ["Go faster", "Stop more often", "Eat less food"]
+                    },
+                    {
+                        q: "What are 'air currents'?",
+                        correct: "Moving streams of air",
+                        wrong: ["Ocean waves", "Electricity", "Water currents"]
+                    },
+                    {
+                        q: "Why did Zara wave goodbye to the geese?",
+                        correct: "She felt connected to them and wished them well",
+                        wrong: ["She thought they could see her", "Her brother told her to", "She was trying to scare them"]
+                    }
+                ]
+            },
+            {
+                title: "Leaf Collection Project",
+                text: [
+                    "Ben's science teacher, Mrs. Palmer, had assigned an interesting project: collect and identify ten different types of tree leaves.",
+                    "Every day after school for a week, Ben walked around his neighborhood with a paper bag, carefully searching for different leaf varieties.",
+                    "He found oak leaves with their distinctive wavy edges, maple leaves shaped like stars, and smooth birch leaves.",
+                    "To preserve them properly, he placed each leaf between the pages of a heavy dictionary, just like Mrs. Palmer had demonstrated.",
+                    "After a few days of pressing, the leaves had dried flat and looked perfect for his display poster.",
+                    "Using his mom's help, Ben researched each tree species online and wrote interesting facts about them on index cards.",
+                    "He arranged everything neatly on a large poster board with the pressed leaves attached next to their information cards.",
+                    "When Mrs. Palmer saw his finished project, she gave him excellent feedback and displayed it on the classroom wall for other students to see.",
+                    "Ben felt incredibly proud that his hard work and patience had paid off so well."
+                ],
+                retellingPrompts: [
+                    "Ben's science project was to",
+                    "He collected leaves including",
+                    "To preserve them, he",
+                    "His teacher displayed"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What is Ben's teacher's name?",
+                        correct: "Mrs. Palmer",
+                        wrong: ["Mrs. Parker", "Mrs. Peterson", "Mrs. Powell"]
+                    },
+                    {
+                        q: "How many types of leaves did he need to collect?",
+                        correct: "Ten",
+                        wrong: ["Five", "Fifteen", "Twenty"]
+                    },
+                    {
+                        q: "Where did Ben press the leaves?",
+                        correct: "In a heavy dictionary",
+                        wrong: ["Under a rock", "In the microwave", "In a folder"]
+                    },
+                    {
+                        q: "What did Ben write on index cards?",
+                        correct: "Interesting facts about each tree species",
+                        wrong: ["His name", "The dates he found them", "Poems about trees"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why did Ben need a heavy dictionary?",
+                        correct: "The weight would flatten and dry the leaves properly",
+                        wrong: ["To read about leaves", "To make the leaves heavier", "Because Mrs. Palmer said so"]
+                    },
+                    {
+                        q: "What does 'distinctive wavy edges' mean?",
+                        correct: "Unique curved edges that help identify oak leaves",
+                        wrong: ["The edges were moving", "The edges were broken", "The edges were straight"]
+                    },
+                    {
+                        q: "Why did his patience 'pay off'?",
+                        correct: "Taking time to do it carefully resulted in success",
+                        wrong: ["He received money", "He got extra credit", "He won a prize"]
+                    },
+                    {
+                        q: "Why would Mrs. Palmer display his project?",
+                        correct: "It was an excellent example for other students to learn from",
+                        wrong: ["She had no other decorations", "Ben asked her to", "It was the only project"]
+                    }
+                ]
+            },
+            {
+                title: "Planning a Costume",
+                text: [
+                    "With Halloween just three weeks away, Lily knew it was time to start planning her costume seriously.",
+                    "She and her mom sat together on the couch with a laptop, browsing through costume websites for inspiration.",
+                    "Lily had seen many ideas - superheroes, princesses, animals - but nothing felt quite right until she saw a friendly witch costume.",
+                    "\"I want to be a good witch, not a scary one,\" she told her mom, imagining herself with a pointy hat and a kind smile.",
+                    "They ordered a silky black pointed hat with a silver moon and stars, plus a bright orange cape that would flow behind her when she walked.",
+                    "When the package arrived three days later, Lily immediately tried everything on and practiced her \"friendly witch\" walk.",
+                    "She twirled in front of the mirror, watching the orange cape spin around her like autumn leaves swirling in the wind.",
+                    "The school Halloween party was next Friday, and Lily could hardly wait to show everyone her creative costume idea."
+                ],
+                retellingPrompts: [
+                    "Lily needed to plan",
+                    "She and her mom looked online and",
+                    "They ordered",
+                    "Lily was excited to"
+                ],
+                basicQuestions: [
+                    {
+                        q: "How much time was left until Halloween?",
+                        correct: "Three weeks",
+                        wrong: ["Two weeks", "One month", "Five days"]
+                    },
+                    {
+                        q: "What kind of witch did Lily want to be?",
+                        correct: "A good, friendly witch",
+                        wrong: ["A scary witch", "A mean witch", "A sad witch"]
+                    },
+                    {
+                        q: "What was on the black hat?",
+                        correct: "A silver moon and stars",
+                        wrong: ["A black cat", "Pumpkins", "Bats"]
+                    },
+                    {
+                        q: "When was the school Halloween party?",
+                        correct: "Next Friday",
+                        wrong: ["This weekend", "On Halloween", "Next month"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why did other costume ideas not feel 'quite right'?",
+                        correct: "Lily wanted something that matched her personality better",
+                        wrong: ["They were too expensive", "They were sold out", "Her mom didn't like them"]
+                    },
+                    {
+                        q: "What does 'browsing through websites' mean?",
+                        correct: "Looking at different websites to find ideas",
+                        wrong: ["Buying everything they saw", "Reading articles", "Playing games"]
+                    },
+                    {
+                        q: "Why did she practice a 'friendly witch walk'?",
+                        correct: "She wanted to act the part and make her costume more convincing",
+                        wrong: ["She was learning to walk", "Her mom made her", "She was showing off"]
+                    },
+                    {
+                        q: "What does comparing the cape to 'autumn leaves swirling' suggest?",
+                        correct: "The cape moved gracefully and matched the fall season",
+                        wrong: ["The cape had leaves on it", "The cape was brown", "The cape was falling apart"]
+                    }
+                ]
+            },
+            {
+                title: "The Hayride Adventure",
+                text: [
+                    "Marcus's scout troop had been looking forward to their annual autumn hayride at Meadowbrook Farm for weeks.",
+                    "When the big day finally arrived, twelve excited scouts piled onto wooden benches arranged on the hay-filled wagon.",
+                    "An old green tractor slowly pulled them along a winding path through different sections of the working farm.",
+                    "They passed rows of orange pumpkins still attached to their vines, tall corn fields swaying in the breeze, and apple orchards heavy with ripe fruit.",
+                    "To keep spirits high during the long ride, the scouts sang campfire songs and told silly jokes that made everyone laugh.",
+                    "Marcus's favorite part was when they drove through a tunnel made by two rows of trees whose branches met overhead.",
+                    "At the end of the hayride, the farm owner had prepared a surprise - a crackling bonfire where they could roast marshmallows on long sticks.",
+                    "As the sun set and the fire glowed warmly, Marcus decided this was the best fall activity his troop had done all year."
+                ],
+                retellingPrompts: [
+                    "Marcus's scout troop went on",
+                    "The tractor pulled them past",
+                    "During the ride, they",
+                    "At the end, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What is the name of the farm?",
+                        correct: "Meadowbrook Farm",
+                        wrong: ["Green Valley Farm", "Harvest Moon Farm", "Sunny Acres Farm"]
+                    },
+                    {
+                        q: "How many scouts were on the hayride?",
+                        correct: "Twelve",
+                        wrong: ["Ten", "Fifteen", "Twenty"]
+                    },
+                    {
+                        q: "What color was the tractor?",
+                        correct: "Green",
+                        wrong: ["Red", "Blue", "Yellow"]
+                    },
+                    {
+                        q: "What was Marcus's favorite part?",
+                        correct: "The tunnel made by tree branches",
+                        wrong: ["The corn fields", "The singing", "The marshmallows"]
+                    }
+                ],
+                inferQuestions: [
+                    {
+                        q: "Why was it an 'annual' hayride?",
+                        correct: "They did it once every year as a tradition",
+                        wrong: ["It lasted all year", "It was the first time", "It happened monthly"]
+                    },
+                    {
+                        q: "Why did they sing songs and tell jokes?",
+                        correct: "To stay entertained and enjoy the ride together",
+                        wrong: ["Because they were bored", "To annoy the driver", "Because they had to"]
+                    },
+                    {
+                        q: "What does 'working farm' mean?",
+                        correct: "An active farm where crops are grown and sold",
+                        wrong: ["A farm where people work out", "A broken farm", "A farm museum"]
+                    },
+                    {
+                        q: "Why was the bonfire a 'surprise'?",
+                        correct: "The scouts didn't know about it beforehand",
+                        wrong: ["It started accidentally", "It was someone's birthday", "The fire was unusual"]
+                    }
+                ]
+            }
+        ];
+        
+        function setLevel(level) {
+            currentLevel = level;
+            localStorage.setItem('readingLevel', level);
+            
+            const levelBtns = document.querySelectorAll('.level-btn');
+            levelBtns.forEach(btn => {
+                if ((level === 1 && btn.textContent.includes('Level 1')) ||
+                    (level === 2 && btn.textContent.includes('Level 2'))) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+            });
+            
+            currentStory = 0;
+            goToStory(0);
+        }
+        
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+        
+        function setQuestionType(type) {
+            questionType = type;
+            
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+            toggleBtns.forEach(btn => {
+                if ((type === 'basic' && btn.textContent.includes('Basic')) ||
+                    (type === 'infer' && btn.textContent.includes('Inference')) ||
+                    (type === 'retelling' && btn.textContent.includes('Retelling'))) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+            });
+            
+            goToStory(currentStory);
+        }
+        
+        function createStory(story, index) {
+            const storyDiv = document.createElement('div');
+            storyDiv.className = index === 0 ? 'story active' : 'story';
+            storyDiv.id = `story-${index}`;
+            
+            let html = `<h2>${story.title}</h2>`;
+            html += `<div class="story-text">`;
+            story.text.forEach(line => {
+                html += `${line}<br>`;
+            });
+            html += `</div>`;
+            
+            if (questionType === 'retelling') {
+                html += `<div class="retelling-section">`;
+                html += `<div class="retelling-label" style="margin: 20px 0 15px 0; font-size: 1.2em; color: #2e7d32;">Now retell the story in your own words:</div>`;
+                
+                story.retellingPrompts.forEach((prompt, pIndex) => {
+                    const promptId = `retell-${index}-${pIndex}`;
+                    html += `
+                        <div class="retelling-prompt">
+                            <label class="retelling-label">${pIndex + 1}. <span class="sentence-starter">${prompt}</span></label>
+                            <textarea class="retelling-input" id="${promptId}" placeholder="Type your answer here..."></textarea>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            } else {
+                const questions = questionType === 'basic' ? story.basicQuestions : story.inferQuestions;
+                
+                questions.forEach((question, qIndex) => {
+                    const questionId = `q-${index}-${qIndex}-${questionType}`;
+                    html += `
+                        <div class="question">
+                            <div class="question-text">${question.q}</div>
+                            <button class="help-btn" onclick="showHelp('${questionId}')">I need help</button>
+                            <div class="choices" id="${questionId}-choices"></div>
+                            <div class="feedback" id="${questionId}-feedback"></div>
+                        </div>
+                    `;
+                });
+            }
+            
+            storyDiv.innerHTML = html;
+            return storyDiv;
+        }
+        
+        function goToStory(index) {
+            currentStory = index;
+            const stories = currentLevel === 1 ? storiesLevel1 : storiesLevel2;
+            
+            const container = document.getElementById('stories-container');
+            container.innerHTML = '';
+            
+            stories.forEach((story, i) => {
+                container.appendChild(createStory(story, i));
+            });
+            
+            const allStories = document.querySelectorAll('.story');
+            allStories.forEach(story => story.classList.remove('active'));
+            document.getElementById(`story-${index}`).classList.add('active');
+            
+            updateNavigation();
+            
+            const nextBtn = document.getElementById('next-btn');
+            if (index === stories.length - 1) {
+                nextBtn.textContent = 'All Done! 🎉';
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.textContent = 'Next Story →';
+                nextBtn.disabled = false;
+            }
+            
+            window.scrollTo(0, 0);
+        }
+        
+        function updateNavigation() {
+            const stories = currentLevel === 1 ? storiesLevel1 : storiesLevel2;
+            const navigation = document.getElementById('navigation');
+            navigation.innerHTML = '';
+            
+            stories.forEach((story, index) => {
+                const navBtn = document.createElement('button');
+                navBtn.className = index === currentStory ? 'nav-btn active' : 'nav-btn';
+                navBtn.textContent = `${index + 1}`;
+                navBtn.onclick = () => goToStory(index);
+                navigation.appendChild(navBtn);
+            });
+        }
+        
+        function nextStory() {
+            const stories = currentLevel === 1 ? storiesLevel1 : storiesLevel2;
+            if (currentStory < stories.length - 1) {
+                goToStory(currentStory + 1);
+            }
+        }
+        
+        function showHelp(questionId) {
+            const stories = currentLevel === 1 ? storiesLevel1 : storiesLevel2;
+            const parts = questionId.split('-');
+            const storyIndex = parseInt(parts[1]);
+            const qIndex = parseInt(parts[2]);
+            const qType = parts[3];
+            
+            const questions = qType === 'basic' ? stories[storyIndex].basicQuestions : stories[storyIndex].inferQuestions;
+            const question = questions[qIndex];
+            
+            const allChoices = [question.correct, ...question.wrong];
+            const shuffled = shuffle(allChoices);
+            
+            const choicesDiv = document.getElementById(`${questionId}-choices`);
+            choicesDiv.innerHTML = '';
+            choicesDiv.style.display = 'block';
+            
+            shuffled.forEach(choice => {
+                const choiceDiv = document.createElement('div');
+                choiceDiv.className = 'choice';
+                choiceDiv.textContent = choice;
+                choiceDiv.onclick = () => checkAnswer(questionId, choice, question.correct);
+                choicesDiv.appendChild(choiceDiv);
+            });
+            
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = 'Help shown';
+        }
+        
+        function checkAnswer(questionId, selected, correct) {
+            const choicesDiv = document.getElementById(`${questionId}-choices`);
+            const choices = choicesDiv.getElementsByClassName('choice');
+            const feedbackDiv = document.getElementById(`${questionId}-feedback`);
+            
+            for (let choice of choices) {
+                choice.style.pointerEvents = 'none';
+                if (choice.textContent === correct) {
+                    choice.classList.add('correct');
+                } else if (choice.textContent === selected) {
+                    choice.classList.add('incorrect');
+                }
+            }
+            
+            if (selected === correct) {
+                feedbackDiv.textContent = '✓ Great job! That\'s correct!';
+                feedbackDiv.className = 'feedback correct';
+            } else {
+                feedbackDiv.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+        
+        // Initialize
+        setLevel(currentLevel);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Story Reflection Practice</title>
+<style>
+  :root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --accent: #f59e0b;
+    --surface: rgba(255, 255, 255, 0.92);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(180deg, #eef2ff 0%, #e0f2fe 45%, #fdf2f8 100%);
+    color: #1f2937;
+    line-height: 1.6;
+  }
+
+  header {
+    background: white;
+    padding: 28px 18px;
+    text-align: center;
+    border-bottom: 4px solid rgba(99, 102, 241, 0.15);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 30px;
+    color: var(--primary);
+  }
+
+  header p {
+    margin: 10px auto 0;
+    max-width: 680px;
+    color: #475569;
+    font-weight: 500;
+  }
+
+  main {
+    max-width: 1040px;
+    margin: 40px auto 60px;
+    padding: 0 20px 40px;
+  }
+
+  .story-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 22px;
+    border: 2px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 18px 36px rgba(99, 102, 241, 0.12);
+  }
+
+  .story-nav button {
+    border-radius: 999px;
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    background: white;
+    color: #1f2937;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .story-nav button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+    border-color: rgba(99, 102, 241, 0.35);
+  }
+
+  .story-nav button.active {
+    background: var(--primary);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 14px 24px rgba(99, 102, 241, 0.32);
+  }
+
+  .story-card {
+    position: relative;
+    background: var(--surface);
+    border: 3px solid rgba(99, 102, 241, 0.18);
+    border-radius: 28px;
+    padding: 34px;
+    box-shadow: 0 28px 58px rgba(15, 23, 42, 0.12);
+    overflow: hidden;
+  }
+
+  .story-card::after {
+    content: "";
+    position: absolute;
+    inset: auto 18px 18px auto;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.12), transparent 70%),
+                radial-gradient(circle at 70% 70%, rgba(245, 158, 11, 0.15), transparent 65%);
+    z-index: 0;
+  }
+
+  .story-meta {
+    font-size: 16px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .level-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .level-nav button {
+    border-radius: 999px;
+    border: 2px solid transparent;
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.9);
+    color: #1f2937;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .level-nav button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 22px rgba(15, 23, 42, 0.1);
+    border-color: rgba(99, 102, 241, 0.4);
+  }
+
+  .level-nav button.active {
+    background: var(--accent);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 12px 22px rgba(245, 158, 11, 0.32);
+  }
+
+  .story-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-text {
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid rgba(99, 102, 241, 0.2);
+    border-radius: 20px;
+    padding: 22px 24px;
+    margin-bottom: 26px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-text p {
+    margin: 0 0 10px;
+  }
+
+  .question-section {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 24px;
+    border: 2px solid rgba(148, 163, 184, 0.35);
+    padding: 26px;
+  }
+
+  .question-meta {
+    font-size: 15px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 10px;
+  }
+
+  .question-text {
+    font-size: 22px;
+    font-weight: 650;
+    color: #1f2937;
+    margin-bottom: 16px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    border-radius: 18px;
+    border: 2px solid rgba(148, 163, 184, 0.7);
+    padding: 18px;
+    font-size: 18px;
+    font-family: inherit;
+    background: rgba(248, 250, 252, 0.97);
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+  }
+
+  .question-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 20px 0 12px;
+  }
+
+  button {
+    border-radius: 999px;
+    border: none;
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  button.primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 16px 32px rgba(99, 102, 241, 0.25);
+  }
+
+  button.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 20px 36px rgba(99, 102, 241, 0.35);
+  }
+
+  button.secondary {
+    background: white;
+    color: #1f2937;
+    border: 2px solid rgba(148, 163, 184, 0.6);
+  }
+
+  button.secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+    border-color: rgba(79, 70, 229, 0.45);
+  }
+
+  .clue-panel,
+  .choices-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px dashed rgba(99, 102, 241, 0.35);
+    border-radius: 18px;
+    padding: 18px 20px;
+    margin-top: 14px;
+    display: none;
+  }
+
+  .clue-panel.visible,
+  .choices-panel.visible {
+    display: block;
+  }
+
+  .clue-panel strong {
+    display: block;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+  }
+
+  .choices-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .choices-panel button.choice {
+    width: 100%;
+    text-align: left;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid rgba(148, 163, 184, 0.6);
+    background: rgba(248, 250, 252, 0.96);
+    color: #1f2937;
+  }
+
+  .choices-panel button.choice:hover {
+    border-color: var(--primary);
+    background: rgba(224, 231, 255, 0.85);
+  }
+
+  .feedback {
+    margin-top: 18px;
+    border-radius: 18px;
+    padding: 16px 18px;
+    font-weight: 600;
+    display: none;
+  }
+
+  .feedback.visible {
+    display: block;
+  }
+
+  .feedback.success {
+    background: rgba(134, 239, 172, 0.15);
+    border: 2px solid rgba(22, 163, 74, 0.25);
+    color: #166534;
+  }
+
+  .feedback.error {
+    background: rgba(252, 165, 165, 0.15);
+    border: 2px solid rgba(220, 38, 38, 0.25);
+    color: #b91c1c;
+  }
+
+  .progress {
+    margin-top: 22px;
+    font-size: 16px;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 24px;
+    }
+    .story-card {
+      padding: 26px;
+      border-radius: 22px;
+    }
+    .question-text {
+      font-size: 20px;
+    }
+    .question-controls,
+    .story-nav {
+      justify-content: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Social Story Reflection Practice</h1>
+    <p>Read the short story, think about what happened, and answer the questions. Use the clue or answer choices if you need a little boost!</p>
+  </header>
+
+  <main>
+    <nav class="story-nav" id="storyNav" aria-label="Select a social story"></nav>
+
+    <section class="story-card" aria-live="polite">
+      <div class="story-meta">
+        <span id="storyTopic">Story 1</span>
+        <span id="questionCounter">Question 1 of 3</span>
+      </div>
+      <div class="level-nav" id="levelNav" aria-label="Select difficulty level"></div>
+      <div class="story-title" id="storyTitle">Sharing Toys</div>
+      <div class="story-text" id="storyText"></div>
+
+      <div class="question-section">
+        <div class="question-meta" id="questionMeta">Story Reflection</div>
+        <div class="question-text" id="questionText">How does Mia feel?</div>
+
+        <textarea id="answerInput" placeholder="Type your answer here..." aria-label="Type your answer"></textarea>
+
+        <div class="question-controls">
+          <button class="primary" id="checkBtn" type="button">Check Answer</button>
+          <button class="secondary" id="clueBtn" type="button">I Need a Clue</button>
+          <button class="secondary" id="choicesBtn" type="button">I Need Choices</button>
+          <button class="secondary" id="nextQuestionBtn" type="button">Next Question ➜</button>
+        </div>
+
+        <div class="clue-panel" id="cluePanel">
+          <strong>Clue:</strong>
+          <span id="clueText"></span>
+        </div>
+
+        <div class="choices-panel" id="choicesPanel">
+          <strong>Try one of these answers:</strong>
+          <ul id="choicesList"></ul>
+        </div>
+
+        <div class="feedback" id="feedbackBox"></div>
+        <div class="progress" id="progressText"></div>
+      </div>
+    </section>
+  </main>
+
+<script>
+const stories = [
+  {
+    id: 'sharing-toys',
+    title: 'Sharing Toys',
+    topic: 'Story 1',
+    levels: [
+      {
+        name: 'Level 1',
+        sentences: [
+          'Alex has a new toy car.',
+          'Mia asks, “Can I have a turn?”',
+          'Alex says, “No, it’s mine!”',
+          'Mia looks sad and walks away.',
+          'Alex starts to feel bad.'
+        ],
+        questions: [
+          {
+            prompt: 'How does Mia feel?',
+            answer: 'sad',
+            choices: ['Sad', 'Angry', 'Excited'],
+            clue: 'Think about Mia’s face after Alex says no.'
+          },
+          {
+            prompt: 'Why does Alex feel bad?',
+            answer: 'he did not share',
+            choices: ['He did not share.', 'He got a new toy.', 'He lost the car.'],
+            clue: 'What did Alex do that made Mia walk away?'
+          },
+          {
+            prompt: 'What can Alex do next?',
+            answer: 'say sorry and share',
+            choices: ['Say sorry and share.', 'Walk away.', 'Hide the toy.'],
+            clue: 'What action would help Mia feel better and fix the problem?'
+          }
+        ]
+      },
+      {
+        name: 'Level 2',
+        sentences: [
+          'Alex zoomed his new toy car across the floor.',
+          'Mia watched with wide eyes. “Can I have a turn?” she asked.',
+          'Alex gripped the car and pulled it closer. “No, I just got it,” he said.',
+          'Mia’s shoulders drooped as she shuffled away, staring at the ground.',
+          'Alex’s smile disappeared while he kept glancing toward Mia.'
+        ],
+        questions: [
+          {
+            prompt: 'What clues show how Mia feels when Alex says no?',
+            answer: 'upset',
+            choices: ['Upset', 'Silly', 'Excited'],
+            clue: 'Watch what Mia’s shoulders and eyes do after Alex refuses.'
+          },
+          {
+            prompt: 'Why does Alex start to feel unsure after Mia leaves?',
+            answer: 'he sees mia is disappointed',
+            choices: ['He sees Mia is disappointed.', 'He wants another toy.', 'He remembers homework.'],
+            clue: 'Notice his smile and where he looks once Mia walks away.'
+          },
+          {
+            prompt: 'What could Alex do to make things better?',
+            answer: 'offer mia a turn',
+            choices: ['Offer Mia a turn.', 'Hide the car.', 'Tell Mia to leave.'],
+            clue: 'Think about what would help both kids enjoy the car.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'saying-thank-you',
+    title: 'Saying Thank You',
+    topic: 'Story 2',
+    levels: [
+      {
+        name: 'Level 1',
+        sentences: [
+          'Liam drops his papers on the floor.',
+          'Ben helps him pick them up.',
+          'Liam says, “Thanks for helping me!”',
+          'Ben smiles and says, “You’re welcome.”',
+          'Both boys feel happy.'
+        ],
+        questions: [
+          {
+            prompt: 'What did Ben do?',
+            answer: 'he helped liam',
+            choices: ['He helped Liam.', 'He dropped papers.', 'He ran away.'],
+            clue: 'Look for the action Ben did right after the papers fell.'
+          },
+          {
+            prompt: 'How do the boys feel?',
+            answer: 'happy',
+            choices: ['Happy', 'Mad', 'Scared'],
+            clue: 'Think about how they feel after they share kind words.'
+          },
+          {
+            prompt: 'Why does Liam say thank you?',
+            answer: 'ben helped him',
+            choices: ['Ben helped him.', 'He found a toy.', 'He wanted to play.'],
+            clue: 'What happened that made Liam grateful?'
+          }
+        ]
+      },
+      {
+        name: 'Level 2',
+        sentences: [
+          'Liam’s arms were full of homework pages when they slipped and fluttered to the floor.',
+          'Ben stopped walking, crouched down, and scooped up the loose sheets.',
+          'Liam let out a relieved breath and said, “Thanks for helping me.”',
+          'Ben grinned and answered, “You’re welcome.”',
+          'The hallway felt calmer as they stacked the papers together.'
+        ],
+        questions: [
+          {
+            prompt: 'What does Ben do when he sees the papers fall?',
+            answer: 'he helps pick them up',
+            choices: ['He helps pick them up.', 'He laughs and keeps walking.', 'He drops more papers.'],
+            clue: 'Watch Ben’s body when the papers scatter.'
+          },
+          {
+            prompt: 'How can you tell the boys feel good afterward?',
+            answer: 'they smile and speak kindly',
+            choices: ['They smile and speak kindly.', 'They argue loudly.', 'They run away.'],
+            clue: 'Listen to the words they use and notice their faces.'
+          },
+          {
+            prompt: 'Why does Liam use grateful words?',
+            answer: 'because ben helped him',
+            choices: ['Because Ben helped him.', 'Because he found money.', 'Because class ended.'],
+            clue: 'Think about what changed for Liam when Ben stepped in.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'waiting-turn',
+    title: 'Waiting for a Turn',
+    topic: 'Story 3',
+    levels: [
+      {
+        name: 'Level 1',
+        sentences: [
+          'Ella wants to swing at recess.',
+          'Another student is using the swing.',
+          'Ella waits in line quietly.',
+          'When it’s her turn, she smiles and swings high.',
+          'Her teacher says, “Nice waiting!”'
+        ],
+        questions: [
+          {
+            prompt: 'What does Ella do?',
+            answer: 'she waits in line',
+            choices: ['She waits in line.', 'She takes the swing.', 'She walks away.'],
+            clue: 'Notice Ella’s choice while the swing is busy.'
+          },
+          {
+            prompt: 'How does Ella feel after she swings?',
+            answer: 'happy',
+            choices: ['Happy', 'Tired', 'Mad'],
+            clue: 'Look at Ella’s face when it becomes her turn.'
+          },
+          {
+            prompt: 'What does her teacher say?',
+            answer: 'nice waiting',
+            choices: ['Nice waiting!', 'Stop that!', 'No more turns.'],
+            clue: 'The teacher responds to Ella’s patient behavior.'
+          }
+        ]
+      },
+      {
+        name: 'Level 2',
+        sentences: [
+          'Ella spotted the swing and bounced on her toes.',
+          'A classmate was soaring through the air already.',
+          'Ella clasped her hands and stood in line, keeping her feet still.',
+          'When the swing was free, she pumped her legs and grinned as she flew higher.',
+          'Her teacher nodded with a smile and said, “Nice waiting.”'
+        ],
+        questions: [
+          {
+            prompt: 'What does Ella choose to do while she waits?',
+            answer: 'she stands in line quietly',
+            choices: ['She stands in line quietly.', 'She pushes past others.', 'She leaves the playground.'],
+            clue: 'Watch Ella’s body and feet while she waits.'
+          },
+          {
+            prompt: 'How can you tell Ella enjoys her turn?',
+            answer: 'she smiles as she swings high',
+            choices: ['She smiles as she swings high.', 'She sighs and drags her feet.', 'She complains to the teacher.'],
+            clue: 'Look at her face and what she does with the swing.'
+          },
+          {
+            prompt: 'Why does the teacher praise her?',
+            answer: 'because she waited patiently',
+            choices: ['Because she waited patiently.', 'Because she ran to the swing.', 'Because she stopped playing.'],
+            clue: 'Think about the behavior the teacher is noticing.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'kind-words',
+    title: 'Using Kind Words',
+    topic: 'Story 4',
+    levels: [
+      {
+        name: 'Level 1',
+        sentences: [
+          'Jake calls Sam a mean name.',
+          'Sam looks hurt and doesn’t talk.',
+          'Jake sees that Sam is sad.',
+          'Jake says, “I’m sorry.”',
+          'Sam smiles a little.'
+        ],
+        questions: [
+          {
+            prompt: 'How does Sam feel when Jake is mean?',
+            answer: 'sad',
+            choices: ['Sad', 'Silly', 'Excited'],
+            clue: 'Notice Sam’s feelings when he hears the mean name.'
+          },
+          {
+            prompt: 'What does Jake say after he feels sorry?',
+            answer: 'i’m sorry',
+            choices: ['I’m sorry.', 'Go away.', 'Be quiet.'],
+            clue: 'Jake uses words to fix the hurt feelings.'
+          },
+          {
+            prompt: 'How does Sam feel at the end?',
+            answer: 'a little happy',
+            choices: ['A little happy.', 'Very mad.', 'Still angry.'],
+            clue: 'Look at Sam’s face after Jake apologizes.'
+          }
+        ]
+      },
+      {
+        name: 'Level 2',
+        sentences: [
+          'Jake let a sharp name slip out at Sam.',
+          'Sam’s shoulders lowered and he stared at the floor without speaking.',
+          'Jake noticed Sam’s quiet face.',
+          'He walked back and said softly, “I’m sorry.”',
+          'Sam’s mouth tugged into a small smile.'
+        ],
+        questions: [
+          {
+            prompt: 'What clues show Sam’s feelings after Jake’s words?',
+            answer: 'he looks down and stays quiet',
+            choices: ['He looks down and stays quiet.', 'He laughs loudly.', 'He jumps around.'],
+            clue: 'Watch Sam’s face and body language right after the comment.'
+          },
+          {
+            prompt: 'What does Jake decide to say to fix things?',
+            answer: 'i’m sorry',
+            choices: ['I’m sorry.', 'Whatever.', 'Leave me alone.'],
+            clue: 'Listen to the words Jake uses when he notices Sam’s reaction.'
+          },
+          {
+            prompt: 'How do you know Sam begins to feel better?',
+            answer: 'he gives a small smile',
+            choices: ['He gives a small smile.', 'He walks away angry.', 'He shouts back.'],
+            clue: 'Notice Sam’s expression after Jake apologizes.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'losing-game',
+    title: 'Losing a Game',
+    topic: 'Story 5',
+    levels: [
+      {
+        name: 'Level 1',
+        sentences: [
+          'Noah plays a board game with Ava.',
+          'Ava wins the game.',
+          'Noah feels mad and wants to quit.',
+          'Ava says, “Good game!”',
+          'Noah takes a deep breath and smiles.'
+        ],
+        questions: [
+          {
+            prompt: 'How does Noah feel when he loses?',
+            answer: 'mad',
+            choices: ['Mad', 'Happy', 'Tired'],
+            clue: 'How does Noah react right after Ava wins?'
+          },
+          {
+            prompt: 'What does Ava say?',
+            answer: 'good game',
+            choices: ['Good game!', 'You lose!', 'Don’t play!'],
+            clue: 'Listen to the kind words Ava uses after the game.'
+          },
+          {
+            prompt: 'What should Noah do next?',
+            answer: 'take a deep breath',
+            choices: ['Take a deep breath.', 'Yell at Ava.', 'Leave the room.'],
+            clue: 'What calming choice helps Noah feel better?'
+          }
+        ]
+      },
+      {
+        name: 'Level 2',
+        sentences: [
+          'Noah and Ava finished their board game with pieces scattered across the table.',
+          'Ava moved the last piece and grinned in victory.',
+          'Noah’s eyebrows pulled together and he thought about quitting.',
+          'Ava offered a friendly smile. “Good game!” she said.',
+          'Noah breathed in slowly and let the air out, then smiled back.'
+        ],
+        questions: [
+          {
+            prompt: 'How do you know Noah is upset about losing?',
+            answer: 'he frowns and thinks about quitting',
+            choices: ['He frowns and thinks about quitting.', 'He laughs and dances.', 'He thanks Ava right away.'],
+            clue: 'Look at Noah’s face and what he wants to do next.'
+          },
+          {
+            prompt: 'What kind words does Ava share?',
+            answer: 'good game',
+            choices: ['Good game!', 'You should go home!', 'I win, you lose!'],
+            clue: 'Listen to the words Ava uses after the game ends.'
+          },
+          {
+            prompt: 'What calm choice helps Noah move on?',
+            answer: 'he takes a deep breath',
+            choices: ['He takes a deep breath.', 'He tosses the pieces.', 'He stomps off.'],
+            clue: 'Notice what Noah does with his breathing before he smiles.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'helping-friend',
+    title: 'Helping a Friend',
+    topic: 'Story 6',
+    levels: [
+      {
+        name: 'Level 1',
+        sentences: [
+          'Lila sees Ben fall on the playground.',
+          'She runs to help him up.',
+          'Ben says, “Thank you!”',
+          'Lila feels proud for helping.',
+          'Ben feels better.'
+        ],
+        questions: [
+          {
+            prompt: 'What happens to Ben?',
+            answer: 'he falls',
+            choices: ['He falls.', 'He wins.', 'He runs away.'],
+            clue: 'Think about what happens before Lila helps.'
+          },
+          {
+            prompt: 'What does Lila do?',
+            answer: 'she helps him',
+            choices: ['She helps him.', 'She laughs.', 'She ignores him.'],
+            clue: 'Look at Lila’s actions after Ben falls.'
+          },
+          {
+            prompt: 'How does Lila feel after she helps?',
+            answer: 'proud',
+            choices: ['Proud', 'Mad', 'Scared'],
+            clue: 'Helping someone can make you feel good inside.'
+          }
+        ]
+      },
+      {
+        name: 'Level 2',
+        sentences: [
+          'Ben’s shoe caught on the curb and he tumbled onto the playground.',
+          'Lila hurried over and reached out a hand.',
+          'Ben took a breath and said, “Thanks for the help.”',
+          'Lila’s chest felt warm and she stood a little taller.',
+          'Ben brushed off his knees and smiled.'
+        ],
+        questions: [
+          {
+            prompt: 'What happens to Ben on the playground?',
+            answer: 'he trips and falls',
+            choices: ['He trips and falls.', 'He scores a goal.', 'He goes home early.'],
+            clue: 'Notice what causes Lila to rush over.'
+          },
+          {
+            prompt: 'How does Lila respond right away?',
+            answer: 'she runs over to help him up',
+            choices: ['She runs over to help him up.', 'She laughs at him.', 'She ignores him.'],
+            clue: 'Look at Lila’s first action after Ben hits the ground.'
+          },
+          {
+            prompt: 'What feeling do Lila’s actions give her afterward?',
+            answer: 'she feels proud',
+            choices: ['She feels proud.', 'She feels jealous.', 'She feels bored.'],
+            clue: 'Think about how people feel after they help someone.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'left-out',
+    title: 'When Someone is Left Out',
+    topic: 'Story 7',
+    levels: [
+      {
+        name: 'Level 1',
+        sentences: [
+          'Sofia and Maya are playing a game.',
+          'Eli wants to play too.',
+          'They say, “No, just us.”',
+          'Eli walks away and looks sad.',
+          'Sofia thinks and says, “Come play with us!”'
+        ],
+        questions: [
+          {
+            prompt: 'How does Eli feel?',
+            answer: 'sad',
+            choices: ['Sad', 'Silly', 'Excited'],
+            clue: 'Think about Eli’s reaction when he is left out.'
+          },
+          {
+            prompt: 'What does Sofia say at the end?',
+            answer: 'come play with us',
+            choices: ['Come play with us!', 'Go away!', 'Not today!'],
+            clue: 'Sofia changes her words to include Eli.'
+          },
+          {
+            prompt: 'How do they feel when Eli joins?',
+            answer: 'happy',
+            choices: ['Happy', 'Mad', 'Tired'],
+            clue: 'Notice the mood once everyone plays together.'
+          }
+        ]
+      },
+      {
+        name: 'Level 2',
+        sentences: [
+          'Sofia and Maya were deep in a game when Eli walked over with a hopeful smile.',
+          '“Can I play too?” he asked.',
+          '“Maybe later,” Sofia said quickly, and Maya nodded.',
+          'Eli’s gaze dropped and his steps slowed as he turned away.',
+          'Sofia watched him leave, took a breath, and called, “Come play with us!”'
+        ],
+        questions: [
+          {
+            prompt: 'What clues show how Eli feels when he is turned away?',
+            answer: 'he looks down and walks away',
+            choices: ['He looks down and walks away.', 'He laughs and claps.', 'He cheers loudly.'],
+            clue: 'Notice Eli’s face and pace after he hears “maybe later.”'
+          },
+          {
+            prompt: 'What does Sofia decide to tell Eli afterward?',
+            answer: 'come play with us',
+            choices: ['Come play with us!', 'Go play somewhere else!', 'Maybe later!'],
+            clue: 'She changes her words when she sees Eli’s reaction.'
+          },
+          {
+            prompt: 'How do the kids feel once Eli joins in?',
+            answer: 'happy',
+            choices: ['Happy', 'Grumpy', 'Sleepy'],
+            clue: 'Think about how play feels when everyone is included.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'following-directions',
+    title: 'Following Directions',
+    topic: 'Story 8',
+    levels: [
+      {
+        name: 'Level 1',
+        sentences: [
+          'The class lines up for lunch.',
+          'Jack runs ahead of everyone.',
+          'The teacher says, “Please go back and wait.”',
+          'Jack feels sorry and walks to the end of the line.',
+          'Now everyone feels calm and ready to go.'
+        ],
+        questions: [
+          {
+            prompt: 'What does Jack do first?',
+            answer: 'he runs ahead',
+            choices: ['He runs ahead.', 'He waits in line.', 'He eats lunch.'],
+            clue: 'Notice Jack’s action before the teacher talks.'
+          },
+          {
+            prompt: 'What does the teacher say?',
+            answer: 'please go back and wait',
+            choices: ['Please go back and wait.', 'Come to the front.', 'Go outside.'],
+            clue: 'The teacher gives Jack a direction to fix the problem.'
+          },
+          {
+            prompt: 'How does Jack feel at the end?',
+            answer: 'sorry',
+            choices: ['Sorry', 'Silly', 'Angry'],
+            clue: 'Jack changes his behavior after he listens.'
+          }
+        ]
+      },
+      {
+        name: 'Level 2',
+        sentences: [
+          'The lunch line formed down the hallway.',
+          'Jack darted past his classmates and slid into the front spot.',
+          'The teacher gave him a calm look and said, “Please go back and wait.”',
+          'Jack’s head lowered as he walked to the back.',
+          'The line moved forward quietly after he returned.'
+        ],
+        questions: [
+          {
+            prompt: 'What is Jack’s first action in the line?',
+            answer: 'he darts past everyone',
+            choices: ['He darts past everyone.', 'He waits patiently.', 'He opens his lunch.'],
+            clue: 'Think about how Jack moves when the line starts.'
+          },
+          {
+            prompt: 'What does the teacher ask Jack to do?',
+            answer: 'please go back and wait',
+            choices: ['Please go back and wait.', 'Take the first spot.', 'Run to the gym.'],
+            clue: 'Listen to the calm direction the teacher gives.'
+          },
+          {
+            prompt: 'How can you tell Jack feels sorry afterward?',
+            answer: 'he lowers his head and walks to the back',
+            choices: ['He lowers his head and walks to the back.', 'He laughs loudly.', 'He keeps cutting the line.'],
+            clue: 'Watch Jack’s body language after the reminder.'
+          }
+        ]
+      }
+    ]
+  }
+];
+
+let currentStoryIndex = 0;
+let currentLevelIndex = 0;
+let currentQuestionIndex = 0;
+let storyButtons = [];
+let levelButtons = [];
+let clueVisible = false;
+let choicesVisible = false;
+
+const storyNav = document.getElementById('storyNav');
+const storyTopic = document.getElementById('storyTopic');
+const storyTitle = document.getElementById('storyTitle');
+const storyText = document.getElementById('storyText');
+const questionCounter = document.getElementById('questionCounter');
+const questionMeta = document.getElementById('questionMeta');
+const questionText = document.getElementById('questionText');
+const answerInput = document.getElementById('answerInput');
+const levelNav = document.getElementById('levelNav');
+const clueBtn = document.getElementById('clueBtn');
+const choicesBtn = document.getElementById('choicesBtn');
+const checkBtn = document.getElementById('checkBtn');
+const nextQuestionBtn = document.getElementById('nextQuestionBtn');
+const cluePanel = document.getElementById('cluePanel');
+const clueText = document.getElementById('clueText');
+const choicesPanel = document.getElementById('choicesPanel');
+const choicesList = document.getElementById('choicesList');
+const feedbackBox = document.getElementById('feedbackBox');
+const progressText = document.getElementById('progressText');
+
+function normalize(text) {
+  return text
+    .trim()
+    .toLowerCase()
+    .replace(/[.!?,]/g, '');
+}
+
+function renderStoryNav() {
+  storyNav.innerHTML = '';
+  storyButtons = [];
+  stories.forEach((story, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = `${index + 1}. ${story.title}`;
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('aria-label', `Show ${story.title}`);
+    button.addEventListener('click', () => loadStory(index));
+    storyNav.appendChild(button);
+    storyButtons.push(button);
+  });
+}
+
+function loadStory(index) {
+  currentStoryIndex = index;
+  currentLevelIndex = 0;
+  currentQuestionIndex = 0;
+  clueVisible = false;
+  choicesVisible = false;
+
+  const story = stories[currentStoryIndex];
+  storyTitle.textContent = story.title;
+  renderLevelNav(story);
+  loadLevel(0);
+
+  storyButtons.forEach((button, buttonIndex) => {
+    const isActive = buttonIndex === currentStoryIndex;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
+function renderLevelNav(story) {
+  levelNav.innerHTML = '';
+  levelButtons = [];
+  story.levels.forEach((level, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = level.name;
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => loadLevel(index));
+    levelNav.appendChild(button);
+    levelButtons.push(button);
+  });
+}
+
+function loadLevel(levelIndex) {
+  const story = stories[currentStoryIndex];
+  if (!story.levels[levelIndex]) return;
+
+  currentLevelIndex = levelIndex;
+  currentQuestionIndex = 0;
+  clueVisible = false;
+  choicesVisible = false;
+
+  const level = story.levels[currentLevelIndex];
+  storyTopic.textContent = `${story.topic} · ${level.name}`;
+  storyText.innerHTML = '';
+  level.sentences.forEach(sentence => {
+    const p = document.createElement('p');
+    p.textContent = sentence;
+    storyText.appendChild(p);
+  });
+
+  levelButtons.forEach((button, index) => {
+    const isActive = index === currentLevelIndex;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+
+  loadQuestion(0);
+}
+
+function loadQuestion(index) {
+  const story = stories[currentStoryIndex];
+  const level = story.levels[currentLevelIndex];
+  const question = level.questions[index];
+  currentQuestionIndex = index;
+  clueVisible = false;
+  choicesVisible = false;
+
+  questionCounter.textContent = `Question ${index + 1} of ${level.questions.length}`;
+  questionMeta.textContent = `Story Reflection · ${story.title} · ${level.name}`;
+  questionText.textContent = question.prompt;
+  answerInput.value = '';
+  answerInput.focus();
+
+  cluePanel.classList.remove('visible');
+  clueBtn.textContent = 'I Need a Clue';
+  clueText.textContent = question.clue;
+
+  choicesPanel.classList.remove('visible');
+  choicesBtn.textContent = 'I Need Choices';
+  choicesList.innerHTML = '';
+  question.choices.forEach(choice => {
+    const li = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'choice';
+    button.textContent = choice;
+    button.addEventListener('click', () => {
+      answerInput.value = choice;
+      checkAnswer();
+    });
+    li.appendChild(button);
+    choicesList.appendChild(li);
+  });
+
+  feedbackBox.classList.remove('visible', 'success', 'error');
+  feedbackBox.textContent = '';
+  progressText.textContent = `Think about what happened in the story to answer the question.`;
+}
+
+function checkAnswer() {
+  const story = stories[currentStoryIndex];
+  const level = story.levels[currentLevelIndex];
+  const question = level.questions[currentQuestionIndex];
+  const guess = normalize(answerInput.value);
+  if (!guess) {
+    feedbackBox.textContent = 'Type your answer or choose from the list before checking.';
+    feedbackBox.className = 'feedback visible error';
+    return;
+  }
+
+  if (guess === normalize(question.answer)) {
+    feedbackBox.textContent = 'Great job! That answer matches the story.';
+    feedbackBox.className = 'feedback visible success';
+  } else {
+    feedbackBox.textContent = 'Not quite. Reread the story or use a clue.';
+    feedbackBox.className = 'feedback visible error';
+  }
+}
+
+clueBtn.addEventListener('click', () => {
+  clueVisible = !clueVisible;
+  cluePanel.classList.toggle('visible', clueVisible);
+  clueBtn.textContent = clueVisible ? 'Hide Clue' : 'I Need a Clue';
+});
+
+choicesBtn.addEventListener('click', () => {
+  choicesVisible = !choicesVisible;
+  choicesPanel.classList.toggle('visible', choicesVisible);
+  choicesBtn.textContent = choicesVisible ? 'Hide Choices' : 'I Need Choices';
+});
+
+checkBtn.addEventListener('click', checkAnswer);
+
+nextQuestionBtn.addEventListener('click', () => {
+  const story = stories[currentStoryIndex];
+  const level = story.levels[currentLevelIndex];
+  const nextIndex = (currentQuestionIndex + 1) % level.questions.length;
+  loadQuestion(nextIndex);
+});
+
+answerInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    checkAnswer();
+  }
+});
+
+renderStoryNav();
+loadStory(0);
+</script>
+</body>
+</html>

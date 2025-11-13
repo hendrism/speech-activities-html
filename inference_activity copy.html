@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making Inferences Activity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .scenario-card {
+            display: none;
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .scenario-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .progress {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+        
+        .scenario-section {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .scenario-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .scenario-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .question-section {
+            margin-bottom: 30px;
+        }
+        
+        .question-label {
+            font-size: 17px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .help-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #ffd54f;
+            color: #333;
+            border: none;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .help-btn:hover {
+            background-color: #ffc107;
+            transform: translateY(-2px);
+        }
+
+        .help-btn:disabled {
+            background-color: #e0e0e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .hint-container {
+            display: none;
+            margin-top: 15px;
+            background-color: #fff9e6;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #ffd54f;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .hint-container.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hint-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+
+        .hint-text {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .choices-container {
+            display: none;
+            margin-top: 20px;
+            background-color: #fffde7;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ffd54f;
+        }
+        
+        .choices-container.show {
+            display: block;
+        }
+        
+        .choice-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 10px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .choice-item:hover {
+            background-color: rgba(255, 213, 79, 0.3);
+        }
+        
+        .choice-item input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 3px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .choice-text {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .nav-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .prev-btn {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+        
+        .prev-btn:hover:not(:disabled) {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .next-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .scenario-card {
+                padding: 25px;
+            }
+            
+            .scenario-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Making Inferences</h1>
+        <p>Read each scenario carefully and answer the questions using details from the text</p>
+    </div>
+
+    <div class="container" id="scenarioContainer">
+        <!-- Scenarios will be loaded here -->
+    </div>
+
+    <script>
+        const scenarios = [
+            {
+                text: "Sarah walked into the kitchen and saw flour covering the counter, eggshells in the sink, and a mixing bowl with batter. The oven was preheating, and there was a cookbook open to a page with a picture of chocolate chip cookies. She could smell vanilla in the air.",
+                question: "What is Sarah probably going to do?",
+                hint: "Think about what all these ingredients and tools are used for. What does someone need an oven for?",
+                correctAnswer: "She is going to bake chocolate chip cookies",
+                wrongAnswers: [
+                    "She is going to make dinner",
+                    "She is going to clean the kitchen",
+                    "She is going to make pancakes"
+                ],
+                supportingDetail: "The oven was preheating, and there was a cookbook open to a page with a picture of chocolate chip cookies.",
+                supportingHint: "Look for clues that tell you exactly what Sarah is making. Is there anything that shows the specific recipe?",
+                wrongDetails: [
+                    "Sarah walked into the kitchen and saw flour covering the counter.",
+                    "She could smell vanilla in the air.",
+                    "There were eggshells in the sink and a mixing bowl with batter."
+                ]
+            },
+            {
+                text: "Marcus rushed into the house and threw his backpack on the floor. He ran straight to his room without saying hello to anyone. His mom heard his door slam shut. A few minutes later, she heard loud music coming from his room. When she knocked on the door to ask about his day, he yelled that he wanted to be alone.",
+                question: "How is Marcus probably feeling?",
+                hint: "Think about the actions Marcus took when he got home. How do people act when they're having a bad day?",
+                correctAnswer: "He is upset or angry about something",
+                wrongAnswers: [
+                    "He is excited and happy",
+                    "He is tired and wants to sleep",
+                    "He is hungry and wants dinner"
+                ],
+                supportingDetail: "He ran straight to his room without saying hello to anyone. His mom heard his door slam shut.",
+                supportingHint: "What behaviors show that someone is upset? Look for actions that indicate negative emotions.",
+                wrongDetails: [
+                    "Marcus rushed into the house and threw his backpack on the floor.",
+                    "A few minutes later, she heard loud music coming from his room.",
+                    "When she knocked on the door, he yelled that he wanted to be alone."
+                ]
+            },
+            {
+                text: "The sky had turned dark gray, and the wind was picking up speed. Birds were flying quickly to find shelter, and the air felt heavy and humid. Mr. Johnson started bringing in the patio furniture and closing all the windows. His neighbor was covering her car with a tarp and tying it down securely.",
+                question: "What is probably about to happen?",
+                hint: "Notice the weather changes and what people are doing to protect their belongings.",
+                correctAnswer: "A storm is coming",
+                wrongAnswers: [
+                    "It's going to be a sunny day",
+                    "It's time for dinner",
+                    "Everyone is going on vacation"
+                ],
+                supportingDetail: "The sky had turned dark gray, and the wind was picking up speed.",
+                supportingHint: "Look for the weather description that indicates bad weather approaching.",
+                wrongDetails: [
+                    "Birds were flying quickly to find shelter.",
+                    "Mr. Johnson started bringing in the patio furniture and closing all the windows.",
+                    "His neighbor was covering her car with a tarp and tying it down securely."
+                ]
+            },
+            {
+                text: "Emma had been studying for her math test all week. She made flashcards, did extra practice problems, and even asked her teacher for help after school. On the morning of the test, she woke up early to review her notes one more time. As she sat down at her desk, she smiled and took a deep breath.",
+                question: "How does Emma probably feel about the test?",
+                hint: "Think about how much Emma prepared and how she's acting on test day. What does smiling suggest?",
+                correctAnswer: "She feels confident and prepared",
+                wrongAnswers: [
+                    "She feels worried and unprepared",
+                    "She forgot about the test",
+                    "She doesn't care about the test"
+                ],
+                supportingDetail: "As she sat down at her desk, she smiled and took a deep breath.",
+                supportingHint: "Find the clue about Emma's body language and facial expression during the test.",
+                wrongDetails: [
+                    "She made flashcards and did extra practice problems.",
+                    "She asked her teacher for help after school.",
+                    "On the morning of the test, she woke up early to review her notes."
+                ]
+            },
+            {
+                text: "Jake's dog Max was sitting by the front door with his leash in his mouth. Max was wagging his tail and barking softly. Every time Jake walked near the door, Max would jump up and down excitedly. Jake looked at his watch and realized it was 4 o'clock, the same time they usually went to the park.",
+                question: "What does Max want?",
+                hint: "Look at what Max is holding and where he's sitting. What do dogs do with leashes?",
+                correctAnswer: "Max wants to go for a walk",
+                wrongAnswers: [
+                    "Max wants to eat dinner",
+                    "Max wants to play inside",
+                    "Max wants to take a nap"
+                ],
+                supportingDetail: "Max was sitting by the front door with his leash in his mouth.",
+                supportingHint: "Find the clearest clue about what Max wants by looking at what he's holding.",
+                wrongDetails: [
+                    "Max was wagging his tail and barking softly.",
+                    "Every time Jake walked near the door, Max would jump up and down excitedly.",
+                    "Jake realized it was 4 o'clock, the same time they usually went to the park."
+                ]
+            },
+            {
+                text: "Lily checked her phone and saw ten missed calls from her best friend. She had five text messages saying \"Call me back NOW!\" and \"This is so exciting!\" There was also a voice message where her friend was screaming with joy but Lily couldn't make out the words. When Lily called back, her friend picked up on the first ring.",
+                question: "What can you infer about Lily's friend?",
+                hint: "Pay attention to the words in the text messages and the emotions in the voice message.",
+                correctAnswer: "Her friend has exciting news to share",
+                wrongAnswers: [
+                    "Her friend is angry at Lily",
+                    "Her friend is sick",
+                    "Her friend needs help with homework"
+                ],
+                supportingDetail: "She had five text messages saying \"Call me back NOW!\" and \"This is so exciting!\"",
+                supportingHint: "Look for the message that directly states the friend's emotional state.",
+                wrongDetails: [
+                    "Lily checked her phone and saw ten missed calls from her best friend.",
+                    "There was a voice message where her friend was screaming with joy.",
+                    "When Lily called back, her friend picked up on the first ring."
+                ]
+            },
+            {
+                text: "The basketball game was tied with only ten seconds left on the clock. Tommy had the ball and was dribbling down the court. The crowd was on their feet, screaming and cheering. Tommy's teammates were calling for the ball, but he kept moving toward the basket. He jumped up and released the ball just as the buzzer sounded.",
+                question: "What is Tommy trying to do?",
+                hint: "Think about the game situation and what happens when time runs out in a tied game.",
+                correctAnswer: "He is trying to make the winning shot",
+                wrongAnswers: [
+                    "He is trying to pass the ball",
+                    "He is trying to leave the game",
+                    "He is trying to call a timeout"
+                ],
+                supportingDetail: "The basketball game was tied with only ten seconds left on the clock.",
+                supportingHint: "Find the detail about the score and time that creates the pressure situation.",
+                wrongDetails: [
+                    "Tommy had the ball and was dribbling down the court.",
+                    "Tommy's teammates were calling for the ball, but he kept moving toward the basket.",
+                    "He jumped up and released the ball just as the buzzer sounded."
+                ]
+            },
+            {
+                text: "Rachel put on her warmest coat and grabbed her hat and gloves from the closet. She looked out the window and saw white covering the ground and trees. Her little brother was already outside making snowballs and laughing. Rachel's mom reminded her to be home before dark and to stay where they could see her.",
+                question: "What is Rachel about to do?",
+                hint: "Look at what Rachel is wearing and what her brother is already doing outside.",
+                correctAnswer: "She is going outside to play in the snow",
+                wrongAnswers: [
+                    "She is going to school",
+                    "She is going to a birthday party",
+                    "She is going to the store"
+                ],
+                supportingDetail: "She looked out the window and saw white covering the ground and trees.",
+                supportingHint: "Find the description of what's outside that explains what they'll be playing in.",
+                wrongDetails: [
+                    "Rachel put on her warmest coat and grabbed her hat and gloves.",
+                    "Her little brother was already outside making snowballs and laughing.",
+                    "Rachel's mom reminded her to be home before dark."
+                ]
+            },
+            {
+                text: "The movie theater was packed with people holding popcorn and drinks. Everyone was talking excitedly as they found their seats. When the lights dimmed, the crowd became quiet. Suddenly, the screen lit up with previews for upcoming movies. A few people in the back row were still whispering and crunching on their snacks.",
+                question: "What is about to happen?",
+                hint: "Think about the sequence of events at a movie theater. What happens after the lights dim and previews play?",
+                correctAnswer: "The movie is about to start",
+                wrongAnswers: [
+                    "Everyone is leaving the theater",
+                    "The movie is over",
+                    "There is a fire drill"
+                ],
+                supportingDetail: "When the lights dimmed, the crowd became quiet.",
+                supportingHint: "Look for the typical signal that a movie is beginning.",
+                wrongDetails: [
+                    "The movie theater was packed with people holding popcorn and drinks.",
+                    "Suddenly, the screen lit up with previews for upcoming movies.",
+                    "A few people in the back row were still whispering and crunching on their snacks."
+                ]
+            },
+            {
+                text: "Alex walked into his surprise party and his jaw dropped. All his friends jumped out and yelled \"Surprise!\" His face turned red and he put his hand over his mouth. For a moment, he just stood there frozen, looking around at all the decorations and the big cake on the table. Then he started laughing and hugging everyone.",
+                question: "How did Alex feel when he first walked in?",
+                hint: "Look at Alex's physical reactions - his jaw, his face, how he stood. These show his emotions.",
+                correctAnswer: "He was shocked and surprised",
+                wrongAnswers: [
+                    "He was angry and upset",
+                    "He was bored and tired",
+                    "He knew about the party already"
+                ],
+                supportingDetail: "His jaw dropped. His face turned red and he put his hand over his mouth. For a moment, he just stood there frozen.",
+                supportingHint: "Find the sentence that describes multiple physical reactions Alex had.",
+                wrongDetails: [
+                    "All his friends jumped out and yelled \"Surprise!\"",
+                    "He was looking around at all the decorations and the big cake.",
+                    "Then he started laughing and hugging everyone."
+                ]
+            },
+            {
+                text: "Maria sat at her desk staring at the blank paper in front of her. She tapped her pencil against the desk and looked at the clock for the third time in five minutes. Her teacher had given the class thirty minutes to write a story, but Maria couldn't think of anything to write. She watched as her classmates' pencils moved quickly across their papers.",
+                question: "What problem is Maria having?",
+                hint: "Notice what Maria's paper looks like and what the text directly says about her ability to write.",
+                correctAnswer: "She has writer's block and can't think of ideas",
+                wrongAnswers: [
+                    "She finished her story already",
+                    "She doesn't have a pencil",
+                    "She doesn't understand the assignment"
+                ],
+                supportingDetail: "Maria couldn't think of anything to write.",
+                supportingHint: "Look for the sentence that directly states Maria's problem.",
+                wrongDetails: [
+                    "She tapped her pencil against the desk and looked at the clock.",
+                    "Her teacher had given the class thirty minutes to write a story.",
+                    "She watched as her classmates' pencils moved quickly across their papers."
+                ]
+            },
+            {
+                text: "The family van was packed with suitcases, beach toys, and coolers. Dad was checking the tire pressure while Mom went through her list one more time. The kids were already buckled in their seats, wearing sunglasses and holding their favorite stuffed animals. The GPS was programmed for a destination eight hours away on the coast.",
+                question: "What is this family doing?",
+                hint: "Look at what they packed and where they're headed. What do people do at the coast?",
+                correctAnswer: "They are going on a vacation to the beach",
+                wrongAnswers: [
+                    "They are moving to a new house",
+                    "They are going to the grocery store",
+                    "They are going to school"
+                ],
+                supportingDetail: "The GPS was programmed for a destination eight hours away on the coast.",
+                supportingHint: "Find the detail that tells you both how far they're going and where they're going.",
+                wrongDetails: [
+                    "The family van was packed with suitcases, beach toys, and coolers.",
+                    "Dad was checking the tire pressure while Mom went through her list.",
+                    "The kids were wearing sunglasses and holding their favorite stuffed animals."
+                ]
+            },
+            {
+                text: "The classroom was completely silent as students hunched over their papers, pencils moving rapidly. The teacher walked up and down the aisles, occasionally stopping to look at someone's work. A clock on the wall showed there were only five minutes left. Some students were checking their answers while others were still writing frantically.",
+                question: "What are the students doing?",
+                hint: "Think about why everyone is silent and writing at the same time. What happens when there's a time limit?",
+                correctAnswer: "They are taking a test or quiz",
+                wrongAnswers: [
+                    "They are writing thank you letters",
+                    "They are doing regular classwork",
+                    "They are drawing pictures"
+                ],
+                supportingDetail: "The classroom was completely silent as students hunched over their papers, pencils moving rapidly.",
+                supportingHint: "Look for clues about the serious, timed nature of what they're doing.",
+                wrongDetails: [
+                    "The teacher walked up and down the aisles, occasionally stopping to look at someone's work.",
+                    "A clock on the wall showed there were only five minutes left.",
+                    "Some students were checking their answers while others were still writing frantically."
+                ]
+            },
+            {
+                text: "Jenny walked into her bedroom and gasped. Streamers hung from the ceiling, balloons filled every corner, and a big banner read 'Happy 13th Birthday!' on the wall. Her bed was covered with wrapped presents, and she could hear giggling coming from her closet. Suddenly, her three best friends jumped out yelling and laughing.",
+                question: "What did Jenny's friends do?",
+                hint: "Think about what surprise means and who set up all the decorations while Jenny was away.",
+                correctAnswer: "They threw her a surprise birthday party",
+                wrongAnswers: [
+                    "They cleaned her room",
+                    "They borrowed her clothes",
+                    "They did her homework"
+                ],
+                supportingDetail: "A big banner read 'Happy 13th Birthday!' on the wall.",
+                supportingHint: "Find the detail that specifically tells you what occasion is being celebrated.",
+                wrongDetails: [
+                    "Streamers hung from the ceiling and balloons filled every corner.",
+                    "Her bed was covered with wrapped presents.",
+                    "Her three best friends jumped out yelling and laughing."
+                ]
+            },
+            {
+                text: "The old house at the end of the street had broken windows and overgrown weeds in the yard. The mailbox was rusty and falling over, and newspapers from months ago were piled up on the porch. The driveway had cracks with grass growing through them, and all the curtains were closed. A 'For Sale' sign had been standing in the yard for over a year.",
+                question: "What can you infer about this house?",
+                hint: "Look at all the signs of neglect. What happens when no one takes care of a property?",
+                correctAnswer: "No one lives there anymore",
+                wrongAnswers: [
+                    "A big family lives there",
+                    "Someone just moved in",
+                    "It's being renovated"
+                ],
+                supportingDetail: "Newspapers from months ago were piled up on the porch.",
+                supportingHint: "Find evidence that shows no one has been there for a long time.",
+                wrongDetails: [
+                    "The old house had broken windows and overgrown weeds in the yard.",
+                    "The mailbox was rusty and falling over.",
+                    "A 'For Sale' sign had been standing in the yard for over a year."
+                ]
+            },
+            {
+                text: "Mia sat on the bench watching the other kids play soccer during recess. She picked at the laces on her shoes and stared at the ground. When the teacher asked if she wanted to join, she shook her head and said she didn't feel like it. At lunch, she barely touched her food and kept looking at an empty seat next to her. Her best friend had moved away last week.",
+                question: "How is Mia feeling?",
+                hint: "Notice what Mia is doing differently than usual. What emotion makes people not want to eat or play?",
+                correctAnswer: "She is sad and lonely",
+                wrongAnswers: [
+                    "She is angry at the teacher",
+                    "She is excited about something",
+                    "She is sick with a cold"
+                ],
+                supportingDetail: "Her best friend had moved away last week.",
+                supportingHint: "Look for the reason why Mia might be acting this way.",
+                wrongDetails: [
+                    "She picked at the laces on her shoes and stared at the ground.",
+                    "She barely touched her food.",
+                    "She kept looking at an empty seat next to her."
+                ]
+            },
+            {
+                text: "The garage was a mess with tools scattered everywhere and oil stains on the floor. Dad's car was up on jack stands with all four tires off. A repair manual lay open on a workbench, and Dad was underneath the car with a wrench. His phone alarm went off, reminding him to pick up new brake pads from the auto store.",
+                question: "What is Dad doing?",
+                hint: "Look at what parts he's working on and what he needs to buy. What car repair involves removing all the tires?",
+                correctAnswer: "He is fixing the car's brakes",
+                wrongAnswers: [
+                    "He is washing the car",
+                    "He is painting the car",
+                    "He is selling the car"
+                ],
+                supportingDetail: "His phone alarm went off, reminding him to pick up new brake pads from the auto store.",
+                supportingHint: "Find the specific part that tells you exactly what repair he's making.",
+                wrongDetails: [
+                    "The garage was a mess with tools scattered everywhere.",
+                    "Dad's car was up on jack stands with all four tires off.",
+                    "A repair manual lay open on a workbench, and Dad was underneath the car with a wrench."
+                ]
+            }
+        ];
+
+        let currentScenario = 0;
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function loadScenarios() {
+            const container = document.getElementById('scenarioContainer');
+            container.innerHTML = '';
+
+            scenarios.forEach((scenario, index) => {
+                // Shuffle answer choices
+                const allAnswers = [scenario.correctAnswer, ...scenario.wrongAnswers];
+                const shuffledAnswers = shuffleArray(allAnswers);
+                
+                // Shuffle supporting details
+                const allDetails = [scenario.supportingDetail, ...scenario.wrongDetails];
+                const shuffledDetails = shuffleArray(allDetails);
+
+                const card = document.createElement('div');
+                card.className = `scenario-card ${index === 0 ? 'active' : ''}`;
+                card.dataset.index = index;
+
+                card.innerHTML = `
+                    <div class="progress">Scenario ${index + 1} of ${scenarios.length}</div>
+
+                    <div class="scenario-section">
+                        <div class="scenario-title">Read the scenario:</div>
+                        <div class="scenario-text">${scenario.text}</div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="question-label">${scenario.question}</label>
+                        <textarea class="text-input" id="answer-${index}" placeholder="Type your answer here..."></textarea>
+                        <button class="help-btn" onclick="showAnswerHint(${index})">💡 Show Hint</button>
+                        <button class="help-btn" onclick="showAnswerChoices(${index})" id="answer-choices-btn-${index}" style="display:none;">📋 Show Answer Choices</button>
+
+                        <div class="hint-container" id="answer-hint-${index}">
+                            <div class="hint-title">💡 Hint:</div>
+                            <div class="hint-text">${scenario.hint}</div>
+                        </div>
+
+                        <div class="choices-container" id="answer-choices-${index}">
+                            ${shuffledAnswers.map((answer, i) => `
+                                <label class="choice-item">
+                                    <input type="radio" name="answer-choice-${index}" value="${answer}">
+                                    <span class="choice-text">${answer}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="question-section">
+                        <label class="question-label">What part of the text helped you?</label>
+                        <textarea class="text-input" id="support-${index}" placeholder="Type the detail that supports your answer..."></textarea>
+                        <button class="help-btn" onclick="showSupportHint(${index})">💡 Show Hint</button>
+                        <button class="help-btn" onclick="showDetailChoices(${index})" id="detail-choices-btn-${index}" style="display:none;">📋 Show Detail Choices</button>
+
+                        <div class="hint-container" id="support-hint-${index}">
+                            <div class="hint-title">💡 Hint:</div>
+                            <div class="hint-text">${scenario.supportingHint}</div>
+                        </div>
+
+                        <div class="choices-container" id="detail-choices-${index}">
+                            ${shuffledDetails.map((detail, i) => `
+                                <label class="choice-item">
+                                    <input type="radio" name="detail-choice-${index}" value="${detail}">
+                                    <span class="choice-text">"${detail}"</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" onclick="previousScenario()" ${index === 0 ? 'disabled' : ''}>← Previous</button>
+                        <button class="nav-btn next-btn" onclick="nextScenario()" ${index === scenarios.length - 1 ? 'disabled' : ''}>Next →</button>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function showAnswerHint(index) {
+            const hintContainer = document.getElementById(`answer-hint-${index}`);
+            const choicesButton = document.getElementById(`answer-choices-btn-${index}`);
+
+            hintContainer.classList.add('show');
+            event.target.disabled = true;
+            choicesButton.style.display = 'inline-block';
+        }
+
+        function showAnswerChoices(index) {
+            const choicesContainer = document.getElementById(`answer-choices-${index}`);
+            choicesContainer.classList.add('show');
+            event.target.disabled = true;
+
+            // Add event listener to radio buttons to populate text area
+            const radioButtons = choicesContainer.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const textArea = document.getElementById(`answer-${index}`);
+                    textArea.value = this.value;
+                });
+            });
+        }
+
+        function showSupportHint(index) {
+            const hintContainer = document.getElementById(`support-hint-${index}`);
+            const choicesButton = document.getElementById(`detail-choices-btn-${index}`);
+
+            hintContainer.classList.add('show');
+            event.target.disabled = true;
+            choicesButton.style.display = 'inline-block';
+        }
+
+        function showDetailChoices(index) {
+            const choicesContainer = document.getElementById(`detail-choices-${index}`);
+            choicesContainer.classList.add('show');
+            event.target.disabled = true;
+
+            // Add event listener to radio buttons to populate text area
+            const radioButtons = choicesContainer.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const textArea = document.getElementById(`support-${index}`);
+                    textArea.value = this.value;
+                });
+            });
+        }
+
+        function updateDisplay() {
+            document.querySelectorAll('.scenario-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            const activeCard = document.querySelector(`[data-index="${currentScenario}"]`);
+            if (activeCard) {
+                activeCard.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextScenario() {
+            if (currentScenario < scenarios.length - 1) {
+                currentScenario++;
+                updateDisplay();
+            }
+        }
+
+        function previousScenario() {
+            if (currentScenario > 0) {
+                currentScenario--;
+                updateDisplay();
+            }
+        }
+
+        // Initialize
+        loadScenarios();
+    </script>
+</body>
+</html>

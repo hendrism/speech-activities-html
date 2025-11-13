@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Therapy Activities Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .filter-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-header {
+            background: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .category-title {
+            font-size: 2em;
+            color: #333;
+            margin: 0;
+        }
+
+        .category-description {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 0 0 15px 15px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .activity-icon {
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .activity-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .activity-description {
+            color: #666;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .activity-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            flex-direction: column;
+        }
+
+        .expandable-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .expandable-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .expand-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .expandable-card.expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+
+        .levels-container {
+            display: none;
+            width: 100%;
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 2px solid #f0f0f0;
+            gap: 8px;
+            flex-direction: column;
+        }
+
+        .levels-container.show {
+            display: flex;
+        }
+
+        .level-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f9fafb;
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .level-item:hover {
+            background: #f0f4ff;
+            transform: translateX(8px);
+        }
+
+        .level-badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .level-info {
+            flex: 1;
+        }
+
+        .level-title {
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .level-description {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                gap: 5px;
+            }
+
+            .filter-btn {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗣️ Speech Therapy Activities Hub</h1>
+        <p>Choose an activity to get started</p>
+    </div>
+
+    <div class="search-box">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search activities...">
+    </div>
+
+    <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All Activities</button>
+        <button class="filter-btn" data-filter="articulation">👄 Articulation</button>
+        <button class="filter-btn" data-filter="fluency">🎯 Fluency</button>
+        <button class="filter-btn" data-filter="grammar">🔤 Grammar</button>
+        <button class="filter-btn" data-filter="vocabulary">🧠 Vocabulary</button>
+        <button class="filter-btn" data-filter="syntax">✍️ Sentence Building</button>
+        <button class="filter-btn" data-filter="reading">📖 Reading</button>
+        <button class="filter-btn" data-filter="inference">🔎 Inference</button>
+        <button class="filter-btn" data-filter="writing">📝 Writing</button>
+        <button class="filter-btn" data-filter="pragmatics">💬 Pragmatics</button>
+        <button class="filter-btn" data-filter="social">🤝 Social Problem Solving</button>
+        <button class="filter-btn" data-filter="executive">🧭 Executive Function</button>
+    </div>
+
+    <div class="container" id="activitiesContainer"></div>
+
+    <script>
+        const activities = [
+            {
+                category: 'articulation',
+                title: 'Articulation & Phonology',
+                items: [
+                    {
+                        title: 'Articulation Practice - Drag & Drop',
+                        file: 'articulation-practice.html',
+                        icon: '🎯',
+                        description: 'Drag words into sentences to practice target blends.',
+                        tags: ['Blends', 'Drag & Drop', 'Sentences']
+                    },
+                    {
+                        title: 'Articulation Practice - Sequential',
+                        file: 'articulation-practice-sequential.html',
+                        icon: '🔄',
+                        description: 'Pick words one at a time to build sentences with target sounds.',
+                        tags: ['Blends', 'Sequential', 'Word Choice']
+                    },
+                    {
+                        title: 'Articulation Word Practice',
+                        file: 'articulation-word-practice.html',
+                        icon: '🧠',
+                        description: 'Cycle through randomized word cards after previewing each blend/position.',
+                        tags: ['Word Level', 'Preview', 'Articulation']
+                    },
+                    {
+                        title: 'Articulation Sentence Creator',
+                        file: 'articulation-make-your-own-sentence.html',
+                        icon: '✍️',
+                        description: 'Students choose a word and type their own sentence using it.',
+                        tags: ['Sentence Writing', 'Word Level', 'Articulation']
+                    },
+                    {
+                        title: 'Articulation Story Builder',
+                        file: 'articulation-story-builder.html',
+                        icon: '📝',
+                        description: 'Select 2-4 target words and craft multi-sentence stories.',
+                        tags: ['Story Writing', 'Multi-Sentence', 'Creative']
+                    },
+                    {
+                        title: 'Vocalic R Practice',
+                        file: 'vocalic-r-practice.html',
+                        icon: '🗣️',
+                        description: 'Comprehensive practice for vocalic R sounds (ar, or, er, etc.).',
+                        tags: ['Vocalic R', 'R Sounds', 'Word Lists']
+                    },
+                    {
+                        title: 'Final L Blend Stories',
+                        file: 'final_l_blend_stories_interactive.html',
+                        icon: '🔤',
+                        description: 'Interactive stories targeting final L blends.',
+                        tags: ['Blends', 'Reading', 'Articulation']
+                    }
+                ]
+            },
+            {
+                category: 'fluency',
+                title: 'Fluency & Speech Flow',
+                items: [
+                    {
+                        title: 'Fluency Therapy Session',
+                        file: 'Fluency_Therapy_Session_Activity.html',
+                        icon: '🎯',
+                        description: 'Complete fluency session with gentle onset practice and mindset work.',
+                        tags: ['Fluency', 'Gentle Onset', 'Self-Awareness']
+                    }
+                ]
+            },
+            {
+                category: 'grammar',
+                title: 'Grammar & Morphology',
+                items: [
+                    {
+                        title: 'Past Tense Hybrid',
+                        file: 'past-tense-hybrid copy.html',
+                        icon: '⏮️',
+                        description: 'Practice regular and irregular past tense verb forms.',
+                        tags: ['Past Tense', 'Grammar', 'Verbs']
+                    },
+                    {
+                        title: 'Plural Nouns Practice',
+                        file: 'plural_nouns_practice copy.html',
+                        icon: '📦',
+                        description: 'Form regular and irregular plural nouns with scaffolds.',
+                        tags: ['Plurals', 'Grammar', 'Nouns']
+                    }
+                ]
+            },
+            {
+                category: 'vocabulary',
+                title: 'Vocabulary & Word Relationships',
+                items: [
+                    {
+                        title: 'Word Definition Activity',
+                        file: 'word_definition_activity.html',
+                        icon: '📖',
+                        description: 'Learn and practice word meanings and definitions.',
+                        tags: ['Vocabulary', 'Definitions', 'Word Knowledge']
+                    },
+                    {
+                        title: 'Definition Attribute Builder',
+                        file: 'definition_attribute_builder.html',
+                        icon: '🧩',
+                        description: 'Define words by naming their category and key attributes.',
+                        tags: ['Vocabulary', 'Categories', 'Attributes']
+                    },
+                    {
+                        title: 'Category & Function Definition',
+                        file: 'category_function_definition.html',
+                        icon: '📝',
+                        description: 'Drag and drop words to define nouns by category and function.',
+                        tags: ['Vocabulary', 'Definitions', 'Drag & Drop']
+                    },
+                    {
+                        title: 'Analogies Activity',
+                        file: 'analogies_activity.html',
+                        icon: '🔗',
+                        description: 'Practice understanding and completing analogies.',
+                        tags: ['Analogies', 'Reasoning', 'Vocabulary']
+                    },
+                    {
+                        title: 'Multiple Meaning Words',
+                        file: 'multiple_meaning_words copy.html',
+                        icon: '🔀',
+                        description: 'Explore words with multiple meanings.',
+                        tags: ['Vocabulary', 'Multiple Meanings', 'Homonyms']
+                    },
+                    {
+                        title: 'Multiple Meaning Words - Advanced',
+                        file: 'multiple_meaning_advanced.html',
+                        icon: '🔤',
+                        description: 'Generate both definitions and write sentences for multiple meaning words.',
+                        tags: ['Vocabulary', 'Multiple Meanings', 'Sentence Writing']
+                    },
+                    {
+                        title: 'Fall Nouns - Category & Function',
+                        file: 'fall_nouns_category_function_expanded copy.html',
+                        icon: '🍂',
+                        description: 'Categorize fall-themed nouns and describe their functions.',
+                        tags: ['Nouns', 'Categories', 'Fall Theme']
+                    },
+                    {
+                        title: 'Fall Antonym Practice',
+                        file: 'fall_antonym_practice copy.html',
+                        icon: '↔️',
+                        description: 'Practice opposites with fall vocabulary.',
+                        tags: ['Antonyms', 'Opposites', 'Fall Theme']
+                    },
+                    {
+                        title: 'Context Clues Activities',
+                        icon: '🔍',
+                        description: 'Use context to figure out unknown words across multiple levels.',
+                        tags: ['Context Clues', 'Reading', 'Inference'],
+                        expandable: true,
+                        levels: [
+                            {
+                                title: 'Easy Level',
+                                file: 'context_clues_easy.html',
+                                description: 'Beginner context clues practice.',
+                                badge: 'Easy'
+                            },
+                            {
+                                title: 'Medium Level',
+                                file: 'context_clues_medium.html',
+                                description: 'Intermediate context clues practice.',
+                                badge: 'Medium'
+                            },
+                            {
+                                title: 'Hard Level',
+                                file: 'context_clues_hard.html',
+                                description: 'Advanced context clues practice.',
+                                badge: 'Hard'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                category: 'syntax',
+                title: 'Sentence Building & Syntax',
+                items: [
+                    {
+                        title: 'Sentence Builder - Elementary',
+                        file: 'sentence_builder_elementary.html',
+                        icon: '✏️',
+                        description: 'Build sentences with simpler words and helpful hints.',
+                        tags: ['Sentence Writing', 'Elementary', 'Vocabulary']
+                    },
+                    {
+                        title: 'Sentence Builder - Middle School',
+                        file: 'sentence_builder_middle_school.html',
+                        icon: '✍️',
+                        description: 'Create sentences using vocabulary words with a progressive help system.',
+                        tags: ['Sentence Writing', 'Middle School', 'Vocabulary']
+                    },
+                    {
+                        title: 'Complex Sentence Summary Builder',
+                        file: 'complex_sentence_summary_builder copy.html',
+                        icon: '🔨',
+                        description: 'Create complex sentences and short summaries from prompts.',
+                        tags: ['Sentence Structure', 'Complex Sentences', 'Writing']
+                    }
+                ]
+            },
+            {
+                category: 'reading',
+                title: 'Reading Comprehension',
+                items: [
+                    {
+                        title: 'Fall Stories - Expanded & Leveled',
+                        file: 'fall_stories_expanded_and_leveled copy.html',
+                        icon: '🍂',
+                        description: 'Fall-themed passages at multiple reading levels.',
+                        tags: ['Fall Theme', 'Multiple Levels', 'Comprehension']
+                    },
+                    {
+                        title: 'Multi-Level Reading Comprehension',
+                        file: 'multi_level_reading_comp copy.html',
+                        icon: '📖',
+                        description: 'Reading passages with differentiated questions for various skill levels.',
+                        tags: ['Multiple Levels', 'Comprehension', 'Questions']
+                    },
+                    {
+                        title: 'Fall Reading - Simple',
+                        file: 'fall-reading-simple copy.html',
+                        icon: '🍁',
+                        description: 'Simplified fall stories for beginning readers.',
+                        tags: ['Fall Theme', 'Beginning Level', 'Simple']
+                    },
+                    {
+                        title: 'High School Story Retelling',
+                        file: 'hs_story_retelling_final.html',
+                        icon: '📚',
+                        description: 'Complex narratives with retelling exercises for older students.',
+                        tags: ['High School', 'Retelling', 'Narrative']
+                    },
+                    {
+                        title: 'Story Retelling Pit Crew',
+                        file: 'hs_story_retelling_focus.html',
+                        icon: '🏁',
+                        description: 'Sonic-themed retelling stories with progressive scaffolds and memory checks.',
+                        tags: ['High School', 'Retelling', 'Supports']
+                    },
+                    {
+                        title: 'Short Stories with Pronouns & Details',
+                        file: 'short_stories_pronouns_details copy.html',
+                        icon: '📝',
+                        description: 'Stories focusing on pronoun usage and detail recall.',
+                        tags: ['Pronouns', 'Details', 'Grammar']
+                    }
+                ]
+            },
+            {
+                category: 'inference',
+                title: 'Inference & Critical Thinking',
+                items: [
+                    {
+                        title: 'Inference Activity',
+                        file: 'inference_activity copy.html',
+                        icon: '🔎',
+                        description: 'Practice making inferences from short passages.',
+                        tags: ['Inference', 'Critical Thinking', 'Reading']
+                    },
+                    {
+                        title: 'Fall Reading - Inference',
+                        file: 'fall-reading-comprehension_infer copy.html',
+                        icon: '🍁',
+                        description: 'Fall-themed stories paired with inference questions.',
+                        tags: ['Fall Theme', 'Inference', 'Comprehension']
+                    },
+                    {
+                        title: 'Stories with Inference & Compare',
+                        file: 'stories_inference_compare copy.html',
+                        icon: '📊',
+                        description: 'Read stories and practice comparing while making inferences.',
+                        tags: ['Inference', 'Comparison', 'Analysis']
+                    },
+                    {
+                        title: 'Compare & Contrast - Double Bubble',
+                        file: 'double_bubble_compare_contrast_fall_edition copy.html',
+                        icon: '🎭',
+                        description: 'Visual comparison activities using double bubble maps.',
+                        tags: ['Comparison', 'Critical Thinking', 'Organizer']
+                    },
+                    {
+                        title: 'Compare & Contrast Builder',
+                        file: 'compare_contrast_builder.html',
+                        icon: '⚖️',
+                        description: 'Select noun pairs, fill the organizer, and craft contrast sentences.',
+                        tags: ['Comparison', 'Sentence Frames', 'Organizer']
+                    }
+                ]
+            },
+            {
+                category: 'writing',
+                title: 'Writing & Storytelling',
+                items: [
+                    {
+                        title: 'Simple Story Prompts',
+                        file: 'simple-story-prompts-activity.html',
+                        icon: '✍️',
+                        description: 'Create stories from visual and written prompts.',
+                        tags: ['Writing', 'Creativity', 'Story Creation']
+                    },
+                    {
+                        title: 'Story Prompts - Expanded',
+                        file: 'story-prompts-expanded copy.html',
+                        icon: '📖',
+                        description: 'Expanded story prompts with multiple topics and categories.',
+                        tags: ['Writing', 'Story Creation', 'Topics']
+                    },
+                    {
+                        title: 'Story Retelling Worksheet',
+                        file: 'story-retelling-worksheet copy.html',
+                        icon: '📋',
+                        description: 'Structured retelling with story elements.',
+                        tags: ['Retelling', 'Story Elements', 'Organization']
+                    },
+                    {
+                        title: 'Interactive Descriptor Stories',
+                        file: 'interactive-descriptor-stories copy.html',
+                        icon: '🌟',
+                        description: 'Build stories using descriptive language prompts.',
+                        tags: ['Descriptors', 'Adjectives', 'Creative Writing']
+                    }
+                ]
+            },
+            {
+                category: 'pragmatics',
+                title: 'Pragmatics & Conversation',
+                items: [
+                    {
+                        title: 'Relevant Social Q&A',
+                        file: 'relevant_social_q_and_a copy.html',
+                        icon: '💬',
+                        description: 'Practice answering common social questions appropriately.',
+                        tags: ['Social Skills', 'Questions', 'Conversation']
+                    },
+                    {
+                        title: 'Conversation Response Practice',
+                        file: 'conversation_response_practice.html',
+                        icon: '🗨️',
+                        description: 'Develop appropriate conversational responses.',
+                        tags: ['Conversation', 'Turn-Taking', 'Responses']
+                    },
+                    {
+                        title: 'Conversation Starter Practice',
+                        file: 'conversation_starter_practice.html',
+                        icon: '🗣️',
+                        description: 'Plan multiple ways to open a conversation with scaffolds and hints.',
+                        tags: ['Conversation', 'Initiation', 'Starters']
+                    },
+                    {
+                        title: 'Communication Breakdown Practice',
+                        file: 'communication_breakdown_practice copy.html',
+                        icon: '🔄',
+                        description: 'Learn to repair communication when misunderstandings occur.',
+                        tags: ['Communication', 'Problem Solving', 'Repair']
+                    },
+                    {
+                        title: 'Initiate Conversations - Predict Response',
+                        file: 'initiate_conversations_predict_response copy.html',
+                        icon: '💭',
+                        description: 'Practice starting conversations and predicting responses.',
+                        tags: ['Initiation', 'Prediction', 'Social']
+                    },
+                    {
+                        title: 'Question & Response Practice',
+                        file: 'question_response_practice copy.html',
+                        icon: '❓',
+                        description: 'Practice asking and answering socially appropriate questions.',
+                        tags: ['Questions', 'Responses', 'Turn-Taking']
+                    }
+                ]
+            },
+            {
+                category: 'social',
+                title: 'Social Problem Solving & Perspective Taking',
+                items: [
+                    {
+                        title: 'Social Problem Solving',
+                        file: 'social_problem_solving.html',
+                        icon: '🤔',
+                        description: 'Work through social scenarios and choose the best solutions.',
+                        tags: ['Problem Solving', 'Social Scenarios', 'Critical Thinking']
+                    },
+                    {
+                        title: 'HS Social Solutions + Repair',
+                        file: 'high_school_social_solution_repair.html',
+                        icon: '🎯',
+                        description: 'Solve high school social situations and plan repair strategies.',
+                        tags: ['High School', 'Problem Solving', 'Repair']
+                    },
+                    {
+                        title: 'Social Response Evaluator',
+                        file: 'social_response_evaluator.html',
+                        icon: '⚖️',
+                        description: 'Judge whether responses help or hurt a conflict and justify why.',
+                        tags: ['Social Thinking', 'Judgment', 'Justification']
+                    },
+                    {
+                        title: 'High School Social Conflict Reflection',
+                        file: 'high_school_social_conflict_reflection copy.html',
+                        icon: '🤝',
+                        description: 'Reflect on and resolve high school social conflicts.',
+                        tags: ['High School', 'Conflict', 'Social Skills']
+                    },
+                    {
+                        title: 'Social Story Practice',
+                        file: 'social_story_practice copy.html',
+                        icon: '📱',
+                        description: 'Work through guided social stories and responses.',
+                        tags: ['Social Stories', 'Scenarios', 'Guidance']
+                    },
+                    {
+                        title: 'Perspective & Inference Pairs',
+                        file: 'perspective_pair_inference copy.html',
+                        icon: '👁️',
+                        description: 'Practice taking another person\'s perspective and inferring feelings.',
+                        tags: ['Perspective', 'Inference', 'Social Thinking']
+                    }
+                ]
+            },
+            {
+                category: 'executive',
+                title: 'Executive Function & Directions',
+                items: [
+                    {
+                        title: 'Direction Strategy Coach',
+                        file: 'direction_strategy_coach.html',
+                        icon: '🧭',
+                        description: 'Pull key details from written directions and pick strategies to follow them.',
+                        tags: ['Following Directions', 'Strategy', 'Planning']
+                    }
+                ]
+            }
+        ];
+
+        function renderActivities(filter = 'all', search = '') {
+            const container = document.getElementById('activitiesContainer');
+            container.innerHTML = '';
+
+            const searchLower = search.toLowerCase();
+
+            activities.forEach(categoryGroup => {
+                // Filter items
+                const filteredItems = categoryGroup.items.filter(item => {
+                    const matchesFilter = filter === 'all' || categoryGroup.category === filter;
+                    const matchesSearch = search === '' ||
+                        item.title.toLowerCase().includes(searchLower) ||
+                        item.description.toLowerCase().includes(searchLower) ||
+                        item.tags.some(tag => tag.toLowerCase().includes(searchLower));
+                    return matchesFilter && matchesSearch;
+                });
+
+                if (filteredItems.length === 0) return;
+
+                const section = document.createElement('div');
+                section.className = 'category-section';
+
+                const header = document.createElement('div');
+                header.className = 'category-header';
+                header.innerHTML = `<h2 class="category-title">${categoryGroup.title}</h2>`;
+
+                const grid = document.createElement('div');
+                grid.className = 'activities-grid';
+
+                filteredItems.forEach(item => {
+                    if (item.expandable && item.levels) {
+                        // Create expandable card
+                        const card = document.createElement('div');
+                        card.className = 'expandable-card';
+
+                        const tags = item.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('');
+
+                        card.innerHTML = `
+                            <div class="expandable-header">
+                                <span class="expand-icon">▶</span>
+                                <div class="activity-icon">${item.icon}</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">${item.title}</div>
+                                    <div class="activity-description">${item.description}</div>
+                                    <div class="activity-tags">${tags}</div>
+                                </div>
+                            </div>
+                            <div class="levels-container">
+                                ${item.levels.map(level => `
+                                    <a href="${level.file}" target="_blank" class="level-item">
+                                        <span class="level-badge">${level.badge}</span>
+                                        <div class="level-info">
+                                            <div class="level-title">${level.title}</div>
+                                            <div class="level-description">${level.description}</div>
+                                        </div>
+                                    </a>
+                                `).join('')}
+                            </div>
+                        `;
+
+                        card.querySelector('.expandable-header').addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            card.classList.toggle('expanded');
+                            card.querySelector('.levels-container').classList.toggle('show');
+                        });
+
+                        grid.appendChild(card);
+                    } else {
+                        // Create regular card
+                        const card = document.createElement('a');
+                        card.className = 'activity-card';
+                        card.href = item.file;
+                        card.target = '_blank';
+
+                        const tags = item.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('');
+
+                        card.innerHTML = `
+                            <div class="activity-icon">${item.icon}</div>
+                            <div class="activity-content">
+                                <div class="activity-title">${item.title}</div>
+                                <div class="activity-description">${item.description}</div>
+                                <div class="activity-tags">${tags}</div>
+                            </div>
+                        `;
+
+                        grid.appendChild(card);
+                    }
+                });
+
+                section.appendChild(header);
+                section.appendChild(grid);
+                container.appendChild(section);
+            });
+
+            if (container.innerHTML === '') {
+                container.innerHTML = '<div style="text-align: center; color: white; font-size: 1.5em; padding: 50px;">No activities found</div>';
+            }
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+                const search = document.getElementById('searchInput').value;
+                renderActivities(filter, search);
+            });
+        });
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = document.querySelector('.filter-btn.active').dataset.filter;
+            renderActivities(filter, this.value);
+        });
+
+        // Initial render
+        renderActivities();
+    </script>
+</body>
+</html>

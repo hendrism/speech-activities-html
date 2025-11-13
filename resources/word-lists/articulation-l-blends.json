@@ -1,0 +1,126 @@
+{
+  "id": "lBlends",
+  "name": "L-Blends",
+  "blends": {
+    "fl": [
+      {
+        "text": "flag",
+        "pos": "noun"
+      },
+      {
+        "text": "flower",
+        "pos": "noun"
+      },
+      {
+        "text": "floor",
+        "pos": "noun"
+      },
+      {
+        "text": "fly",
+        "pos": "verb"
+      },
+      {
+        "text": "flat",
+        "pos": "adjective"
+      }
+    ],
+    "cl": [
+      {
+        "text": "clock",
+        "pos": "noun"
+      },
+      {
+        "text": "cloud",
+        "pos": "noun"
+      },
+      {
+        "text": "class",
+        "pos": "noun"
+      },
+      {
+        "text": "climb",
+        "pos": "verb"
+      },
+      {
+        "text": "clean",
+        "pos": "adjective"
+      }
+    ],
+    "bl": [
+      {
+        "text": "block",
+        "pos": "noun"
+      },
+      {
+        "text": "blanket",
+        "pos": "noun"
+      },
+      {
+        "text": "blow",
+        "pos": "verb"
+      },
+      {
+        "text": "blue",
+        "pos": "adjective"
+      },
+      {
+        "text": "black",
+        "pos": "adjective"
+      }
+    ],
+    "gl": [
+      {
+        "text": "glass",
+        "pos": "noun"
+      },
+      {
+        "text": "glove",
+        "pos": "noun"
+      },
+      {
+        "text": "glow",
+        "pos": "verb"
+      },
+      {
+        "text": "glad",
+        "pos": "adjective"
+      }
+    ],
+    "pl": [
+      {
+        "text": "plate",
+        "pos": "noun"
+      },
+      {
+        "text": "plant",
+        "pos": "noun"
+      },
+      {
+        "text": "play",
+        "pos": "verb"
+      },
+      {
+        "text": "plan",
+        "pos": "verb"
+      }
+    ],
+    "sl": [
+      {
+        "text": "sled",
+        "pos": "noun"
+      },
+      {
+        "text": "slide",
+        "pos": "noun"
+      },
+      {
+        "text": "sleep",
+        "pos": "verb"
+      },
+      {
+        "text": "slow",
+        "pos": "adjective"
+      }
+    ]
+  }
+}

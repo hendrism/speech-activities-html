@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Clues Activity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #2193b0;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .level-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .level-tab {
+            padding: 15px 40px;
+            background-color: #f0f0f0;
+            border: 3px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .level-tab:hover {
+            background-color: #2193b0;
+            color: white;
+            border-color: #2193b0;
+            transform: translateY(-2px);
+        }
+        
+        .level-tab.active {
+            background-color: #1a7a8f;
+            color: white;
+            border-color: #1a7a8f;
+        }
+        
+        .info-box {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .info-box h3 {
+            color: #2193b0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .info-box p {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .sentence-card {
+            display: none;
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .sentence-card.active {
+            display: block;
+        }
+        
+        .example-card {
+            border: 4px solid #ffd54f;
+        }
+        
+        .example-badge {
+            display: inline-block;
+            background-color: #ffd54f;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .example-section {
+            background-color: #fffde7;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #ffd54f;
+        }
+        
+        .example-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .example-text {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .example-explanation {
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .clue-highlight {
+            background-color: #ffeb3b;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .progress-bar {
+            background-color: #e0e0e0;
+            height: 10px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .sentence-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .sentence-number {
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .clue-type {
+            background-color: #ffd54f;
+            color: #333;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .sentence-display {
+            background-color: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid #2193b0;
+            margin-bottom: 30px;
+        }
+        
+        .sentence-text {
+            font-size: 24px;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .target-word {
+            font-weight: bold;
+            color: #2193b0;
+            background-color: #e3f2fd;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+        
+        .question-section {
+            background-color: #fff3e0;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .hint {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .nav-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .prev-btn {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+        
+        .prev-btn:hover:not(:disabled) {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .next-btn {
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+        }
+        
+        .next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(33, 147, 176, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .sentence-card {
+                padding: 30px;
+            }
+            
+            .sentence-text {
+                font-size: 20px;
+            }
+            
+            .sentence-display {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Context Clues Activity</h1>
+        <div class="level-tabs">
+            <button class="level-tab active" onclick="changeLevel('easy')">Level 1</button>
+            <button class="level-tab" onclick="changeLevel('medium')">Level 2</button>
+            <button class="level-tab" onclick="changeLevel('hard')">Level 3</button>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h3>What are Context Clues?</h3>
+        <p><strong>Context clues</strong> help you figure out the meaning of words you don't know by looking at the other words in the sentence.</p>
+        <p><strong>Definition:</strong> This clue defines the word, or tells you what it means.</p>
+        <p><strong>Synonym:</strong> This clue tells you another word that means the same thing.</p>
+    </div>
+
+    <div class="container" id="sentenceContainer">
+        <!-- Sentences will be loaded here by JavaScript -->
+    </div>
+
+    <script>
+        const examples = {
+            easy: {
+                definition: {
+                    text: "A <span class='target-word'>kitten</span> is a baby cat.",
+                    word: "kitten",
+                    explanation: "The sentence tells us exactly what 'kitten' means - it's <span class='clue-highlight'>a baby cat</span>. That's the definition clue!"
+                },
+                synonym: {
+                    text: "The dog was <span class='target-word'>happy</span> and glad to see me.",
+                    word: "happy",
+                    explanation: "The word <span class='clue-highlight'>'glad'</span> means the same thing as 'happy'. That's the synonym clue!"
+                }
+            },
+            medium: {
+                definition: {
+                    text: "To <span class='target-word'>vanish</span> means to disappear suddenly.",
+                    word: "vanish",
+                    explanation: "The sentence tells us that 'vanish' means <span class='clue-highlight'>to disappear suddenly</span>. That's the definition clue!"
+                },
+                synonym: {
+                    text: "The water was <span class='target-word'>frigid</span> and freezing cold.",
+                    word: "frigid",
+                    explanation: "The phrase <span class='clue-highlight'>'freezing cold'</span> means the same thing as 'frigid'. That's the synonym clue!"
+                }
+            },
+            hard: {
+                definition: {
+                    text: "The lawyer tried to <span class='target-word'>dispute</span> the claim, which means to argue against it or challenge its truth.",
+                    word: "dispute",
+                    explanation: "The sentence tells us that 'dispute' means <span class='clue-highlight'>to argue against something or challenge its truth</span>. That's the definition clue!"
+                },
+                synonym: {
+                    text: "The situation was <span class='target-word'>perilous</span> and dangerous for everyone involved.",
+                    word: "perilous",
+                    explanation: "The word <span class='clue-highlight'>'dangerous'</span> means the same thing as 'perilous'. That's the synonym clue!"
+                }
+            }
+        };
+
+        const sentences = {
+            easy: [
+                // Definition clues
+                { text: "We saw an <span class='target-word'>enormous</span> elephant at the zoo that was very, very big.", type: "Definition", word: "enormous" },
+                { text: "The bear went into its <span class='target-word'>den</span>, a home where animals sleep.", type: "Definition", word: "den" },
+                { text: "I wanted to <span class='target-word'>peek</span> at my presents, taking a quick look.", type: "Definition", word: "peek" },
+                { text: "The firefighter was <span class='target-word'>brave</span>, not afraid of going into the burning building.", type: "Definition", word: "brave" },
+                { text: "I wrapped a <span class='target-word'>gift</span>, something to give to my friend on her birthday.", type: "Definition", word: "gift" },
+                { text: "The kids started to <span class='target-word'>giggle</span>, laughing in a silly way at the joke.", type: "Definition", word: "giggle" },
+                { text: "My <span class='target-word'>pal</span> came over to play, and I love having my friend visit.", type: "Definition", word: "pal" },
+                { text: "We had to <span class='target-word'>hurry</span> to school, going very fast so we wouldn't be late.", type: "Definition", word: "hurry" },
+                { text: "Grandma told us a <span class='target-word'>tale</span>, a story about when she was young.", type: "Definition", word: "tale" },
+                { text: "My shoes were <span class='target-word'>damp</span> from the rain, a little bit wet.", type: "Definition", word: "damp" },
+                // Synonym clues
+                { text: "The puppy was so <span class='target-word'>tiny</span> and small that it fit in my hand.", type: "Synonym", word: "tiny" },
+                { text: "She felt <span class='target-word'>glad</span> and happy when she got a new bike.", type: "Synonym", word: "glad" },
+                { text: "The monster in the movie looked <span class='target-word'>scary</span> and frightening.", type: "Synonym", word: "scary" },
+                { text: "He was <span class='target-word'>angry</span> and mad when someone took his toy.", type: "Synonym", word: "angry" },
+                { text: "I watched the bunny <span class='target-word'>hop</span> and jump across the yard.", type: "Synonym", word: "hop" },
+                { text: "The birthday cake was <span class='target-word'>yummy</span> and delicious.", type: "Synonym", word: "yummy" },
+                { text: "After the long day, I felt <span class='target-word'>sleepy</span> and tired.", type: "Synonym", word: "sleepy" },
+                { text: "The sad movie made me <span class='target-word'>cry</span> and weep.", type: "Synonym", word: "cry" },
+                { text: "The snail moved <span class='target-word'>slowly</span> and took its time getting across the sidewalk.", type: "Synonym", word: "slowly" },
+                { text: "The clown's tricks were <span class='target-word'>silly</span> and funny.", type: "Synonym", word: "silly" }
+            ],
+            medium: [
+                // Definition clues
+                { text: "We visited the <span class='target-word'>ancient</span> ruins that were built thousands of years ago.", type: "Definition", word: "ancient" },
+                { text: "The doctor wanted to <span class='target-word'>examine</span> my arm, looking at it very carefully to see if it was broken.", type: "Definition", word: "examine" },
+                { text: "My dad parked the <span class='target-word'>vehicle</span>, a car that takes us places, in the driveway.", type: "Definition", word: "vehicle" },
+                { text: "I <span class='target-word'>replied</span> to my mom, answering her question about what I want for lunch.", type: "Definition", word: "reply" },
+                { text: "Our family took a <span class='target-word'>journey</span> across the country, a long trip to visit my cousins.", type: "Definition", word: "journey" },
+                { text: "The wind made the leaves <span class='target-word'>scatter</span>, blowing them in many different directions.", type: "Definition", word: "scatter" },
+                { text: "Be careful with that <span class='target-word'>fragile</span> vase because it breaks easily like glass.", type: "Definition", word: "fragile" },
+                { text: "I had to <span class='target-word'>choose</span> between chocolate and vanilla, picking one flavor from the two options.", type: "Definition", word: "choose" },
+                { text: "My <span class='target-word'>chore</span> for today is washing dishes, a job I have to do at home.", type: "Definition", word: "chore" },
+                { text: "I <span class='target-word'>stumbled</span> on the sidewalk, tripping and almost falling down.", type: "Definition", word: "stumble" },
+                // Synonym clues
+                { text: "The basement was <span class='target-word'>dim</span> and dark until we turned on the lights.", type: "Synonym", word: "dim" },
+                { text: "She felt <span class='target-word'>curious</span> and wondered what surprise was waiting inside the wrapped box.", type: "Synonym", word: "curious" },
+                { text: "The hallway was <span class='target-word'>narrow</span> and thin, with barely enough room to walk through.", type: "Synonym", word: "narrow" },
+                { text: "After skipping breakfast, I was <span class='target-word'>famished</span> and hungry by lunchtime.", type: "Synonym", word: "famished" },
+                { text: "The stars looked <span class='target-word'>brilliant</span> and bright in the clear night sky.", type: "Synonym", word: "brilliant" },
+                { text: "My brother tried to <span class='target-word'>repair</span> and fix his broken remote control car.", type: "Synonym", word: "repair" },
+                { text: "The long lecture was <span class='target-word'>dull</span> and boring to sit through.", type: "Synonym", word: "dull" },
+                { text: "The coach will <span class='target-word'>demonstrate</span> and show us the proper way to shoot a basketball.", type: "Synonym", word: "demonstrate" },
+                { text: "The new student seemed <span class='target-word'>timid</span> and shy on her first day of school.", type: "Synonym", word: "timid" },
+                { text: "After running five miles, the athlete felt <span class='target-word'>exhausted</span> and very tired.", type: "Synonym", word: "exhausted" }
+            ],
+            hard: [
+                // Definition clues
+                { text: "The scientist recorded her <span class='target-word'>observation</span>, carefully watching the experiment and noting every detail.", type: "Definition", word: "observation" },
+                { text: "The lawyer tried to <span class='target-word'>persuade</span> the jury, working to convince them that her client was innocent.", type: "Definition", word: "persuade" },
+                { text: "The fallen tree created an <span class='target-word'>obstacle</span> in the path, something that blocked our way and made it hard to continue hiking.", type: "Definition", word: "obstacle" },
+                { text: "I <span class='target-word'>assisted</span> my grandmother with her groceries, helping her carry the heavy bags into the house.", type: "Definition", word: "assist" },
+                { text: "The earthquake caused <span class='target-word'>tremendous</span> damage, destroying buildings in an extremely large and powerful way.", type: "Definition", word: "tremendous" },
+                { text: "The detective began to <span class='target-word'>investigate</span> the crime scene, searching for information and examining every clue carefully.", type: "Definition", word: "investigate" },
+                { text: "The store has an excellent <span class='target-word'>reputation</span>, with customers thinking highly of it based on years of good service.", type: "Definition", word: "reputation" },
+                { text: "After months of practice, I finally <span class='target-word'>accomplished</span> my goal, successfully completing what I set out to do.", type: "Definition", word: "accomplish" },
+                { text: "We used a map to <span class='target-word'>navigate</span> through the city, finding our way from the hotel to the museum.", type: "Definition", word: "navigate" },
+                { text: "The <span class='target-word'>transparent</span> container let us see inside, clear and see-through like a window.", type: "Definition", word: "transparent" },
+                // Synonym clues
+                { text: "The abandoned mansion felt <span class='target-word'>eerie</span> and creepy as we walked through its dark hallways.", type: "Synonym", word: "eerie" },
+                { text: "The firefighter made a <span class='target-word'>valiant</span> and courageous attempt to rescue the family from the burning building.", type: "Synonym", word: "valiant" },
+                { text: "The wealthy businessman was known for being <span class='target-word'>generous</span> and giving, donating money to many charities.", type: "Synonym", word: "generous" },
+                { text: "The scientist discovered a <span class='target-word'>peculiar</span> and strange rock formation that had never been seen before.", type: "Synonym", word: "peculiar" },
+                { text: "The marathon runner showed great <span class='target-word'>perseverance</span> and determination, refusing to quit despite the pain.", type: "Synonym", word: "perseverance" },
+                { text: "The doctor's handwriting was <span class='target-word'>illegible</span> and messy, making it impossible for anyone to read the prescription.", type: "Synonym", word: "illegible" },
+                { text: "The hurricane brought <span class='target-word'>severe</span> and serious weather, causing widespread power outages.", type: "Synonym", word: "severe" },
+                { text: "She felt <span class='target-word'>reluctant</span> and hesitant to speak in front of the large crowd at the assembly.", type: "Synonym", word: "reluctant" },
+                { text: "The artist created an <span class='target-word'>elaborate</span> and detailed sculpture with hundreds of intricate pieces.", type: "Synonym", word: "elaborate" },
+                { text: "The comedian's performance was <span class='target-word'>hilarious</span> and extremely funny, making the entire audience laugh.", type: "Synonym", word: "hilarious" }
+            ]
+        };
+
+        let currentLevel = 'easy';
+        let currentIndex = 0;
+
+        function createExampleCard() {
+            const example = examples[currentLevel];
+            
+            return `
+                <div class="sentence-card example-card active" data-index="0">
+                    <span class="example-badge">✨ EXAMPLES - Look at these first!</span>
+                    
+                    <div class="example-section">
+                        <div class="example-title">Definition Clue Example:</div>
+                        <div class="example-text">${example.definition.text}</div>
+                        <div class="example-explanation">${example.definition.explanation}</div>
+                    </div>
+                    
+                    <div class="example-section">
+                        <div class="example-title">Synonym Clue Example:</div>
+                        <div class="example-text">${example.synonym.text}</div>
+                        <div class="example-explanation">${example.synonym.explanation}</div>
+                    </div>
+                    
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" disabled>← Previous</button>
+                        <button class="nav-btn next-btn" onclick="nextSentence()">Start Activity →</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadSentences() {
+            const container = document.getElementById('sentenceContainer');
+            const levelSentences = sentences[currentLevel];
+            
+            container.innerHTML = '';
+            
+            // Add example card
+            container.innerHTML = createExampleCard();
+            
+            // Add regular sentence cards
+            levelSentences.forEach((sentence, index) => {
+                const card = document.createElement('div');
+                card.className = 'sentence-card';
+                card.dataset.index = index + 1; // +1 because example is index 0
+                
+                const progress = ((index + 1) / levelSentences.length) * 100;
+                
+                card.innerHTML = `
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
+                    </div>
+                    
+                    <div class="sentence-info">
+                        <span class="sentence-number">Sentence ${index + 1} of ${levelSentences.length}</span>
+                        <span class="clue-type">${sentence.type} Clue</span>
+                    </div>
+                    
+                    <div class="sentence-display">
+                        <div class="sentence-text">${sentence.text}</div>
+                    </div>
+                    
+                    <div class="question-section">
+                        <div class="question-text">What does "<strong>${sentence.word}</strong>" mean?</div>
+                        <div class="hint">Look for the ${sentence.type.toLowerCase()} clue in the sentence!</div>
+                    </div>
+                    
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" onclick="previousSentence()">← Previous</button>
+                        <button class="nav-btn next-btn" onclick="nextSentence()" ${index === levelSentences.length - 1 ? 'disabled' : ''}>Next →</button>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function updateDisplay() {
+            document.querySelectorAll('.sentence-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            const activeCard = document.querySelector(`[data-index="${currentIndex}"]`);
+            if (activeCard) {
+                activeCard.classList.add('active');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextSentence() {
+            const totalCards = sentences[currentLevel].length + 1; // +1 for example card
+            if (currentIndex < totalCards - 1) {
+                currentIndex++;
+                updateDisplay();
+            }
+        }
+
+        function previousSentence() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateDisplay();
+            }
+        }
+
+        function changeLevel(level) {
+            currentLevel = level;
+            currentIndex = 0;
+            
+            // Update tab styling
+            document.querySelectorAll('.level-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            loadSentences();
+        }
+
+        // Initialize
+        loadSentences();
+    </script>
+</body>
+</html>

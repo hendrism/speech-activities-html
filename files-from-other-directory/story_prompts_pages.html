@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Prompts - Speech Therapy Activity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .navbar-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .topic-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .topic-btn:hover {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .topic-btn.active {
+            background-color: #764ba2;
+            color: white;
+            border-color: #764ba2;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .story-card {
+            display: none;
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .story-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .story-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .story-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .story-text {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .prompt-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .prompt-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .prompt-text {
+            font-size: 26px;
+            color: white;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 15px;
+        }
+        
+        .nav-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .prev-btn {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+        
+        .prev-btn:hover:not(:disabled) {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .next-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .story-card {
+                padding: 30px;
+            }
+            
+            .story-text {
+                font-size: 18px;
+                padding: 20px;
+            }
+            
+            .prompt-text {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-title">Choose a Topic:</div>
+        <button class="topic-btn" onclick="goToStory(0)">Waiting</button>
+        <button class="topic-btn" onclick="goToStory(1)">Getting Complicated</button>
+        <button class="topic-btn" onclick="goToStory(2)">Forgetting</button>
+        <button class="topic-btn" onclick="goToStory(3)">Making a Mess</button>
+        <button class="topic-btn" onclick="goToStory(4)">Wrong Assumption</button>
+        <button class="topic-btn" onclick="goToStory(5)">Not Paying Attention</button>
+        <button class="topic-btn" onclick="goToStory(6)">Argument</button>
+        <button class="topic-btn" onclick="goToStory(7)">Needing Help</button>
+        <button class="topic-btn" onclick="goToStory(8)">Delayed Mistake</button>
+        <button class="topic-btn" onclick="goToStory(9)">Miscommunication</button>
+    </div>
+
+    <div class="container">
+        <div class="story-card active" data-story="0">
+            <span class="story-number">Story 1 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    Last month I ordered a package online and it said it would arrive Tuesday. Tuesday came - nothing. Wednesday, Thursday, still nothing. I checked the tracking and it said "delivered" but I never got it. Turned out the delivery guy left it at the house next door. My neighbor brought it over three days later.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you were waiting for something</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()" disabled>← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="1">
+            <span class="story-number">Story 2 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was making breakfast and cracked an egg into the pan. Shell got in there. I tried to fish it out with my finger and burned myself. Then I used a spoon and accidentally flipped the whole egg onto the floor. Ended up eating cereal.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time something simple became complicated</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="2">
+            <span class="story-number">Story 3 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    My phone died during lunch and I forgot where I was supposed to meet my friend after school. I went to the usual spot but he wasn't there. Walked around for 15 minutes checking different places. Finally found him at the library - turns out he'd told me that morning but I forgot.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you forgot something important</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="3">
+            <span class="story-number">Story 4 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was carrying a stack of books to my locker and couldn't see over them. Hit the corner of a wall, books went everywhere. People had to step over them in the hallway. I was picking them up and one kid accidentally kicked one further down the hall. Took forever to get them all.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you dropped something or made a mess</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="4">
+            <span class="story-number">Story 5 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I thought we had a substitute teacher so I didn't do my homework. Walked into class feeling relaxed and our regular teacher was there. She started collecting homework. I panicked and said I left it at home. She said I could bring it tomorrow but I'd lose points. Had to actually do it that night.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you made a wrong assumption</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="5">
+            <span class="story-number">Story 6 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was playing basketball in the driveway and the ball bounced weird and rolled into the street. I ran after it without looking. A car had to brake hard and honked at me. The driver looked mad. I grabbed the ball and felt really stupid. My mom saw from the window and came out to yell at me.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you weren't paying attention</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="6">
+            <span class="story-number">Story 7 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    My brother and I were arguing about whose turn it was to take out the trash. We both insisted we'd done it last time. It got loud. My dad came in and checked the chore chart on the fridge. Turns out it was my turn. I had to take it out and apologize.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you had an argument or disagreement</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="7">
+            <span class="story-number">Story 8 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I tried to fix my bike chain because it kept slipping. Looked easy on YouTube. Got the chain off but couldn't get it back on right. Made it worse. Took it to my neighbor who actually knows about bikes. He fixed it in two minutes and showed me what I was doing wrong.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you needed help with something</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="8">
+            <span class="story-number">Story 9 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I wore two different shoes to school by accident - one black sneaker, one navy blue. Didn't notice until third period when someone pointed it out. Spent the rest of the day hoping no one else would see. My friend thought it was hilarious and kept bringing it up at lunch.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you made a mistake and didn't realize it right away</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="9">
+            <span class="story-number">Story 10 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was supposed to meet my dad at the front entrance after school but went to the side entrance where he usually parks. Waited there for ten minutes. He was calling my phone but I had it on silent. Finally checked my messages and had to run around the building. He was annoyed because we were late for my dentist appointment.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time there was a miscommunication or mix-up</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()" disabled>Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        const totalStories = 10;
+
+        function updateDisplay() {
+            // Hide all stories
+            document.querySelectorAll('.story-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Show current story
+            document.querySelector(`[data-story="${currentStory}"]`).classList.add('active');
+            
+            // Update topic buttons
+            document.querySelectorAll('.topic-btn').forEach((btn, index) => {
+                btn.classList.toggle('active', index === currentStory);
+            });
+            
+            // Update navigation buttons
+            const prevBtn = document.querySelector('.story-card.active .prev-btn');
+            const nextBtn = document.querySelector('.story-card.active .next-btn');
+            
+            if (prevBtn) prevBtn.disabled = currentStory === 0;
+            if (nextBtn) nextBtn.disabled = currentStory === totalStories - 1;
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStory() {
+            if (currentStory < totalStories - 1) {
+                currentStory++;
+                updateDisplay();
+            }
+        }
+
+        function previousStory() {
+            if (currentStory > 0) {
+                currentStory--;
+                updateDisplay();
+            }
+        }
+
+        function goToStory(index) {
+            currentStory = index;
+            updateDisplay();
+        }
+
+        // Initialize
+        updateDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High School Story Retelling - Focus Friendly Edition</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --accent: #f97316;
+            --surface: #ffffff;
+            --surface-soft: #f3f4f6;
+            --border: #d1d5db;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 24px 12px 60px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 36px;
+            box-shadow: 0 30px 40px -22px rgba(15, 23, 42, 0.45);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+
+        .highlight-box {
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 26px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .highlight-box strong {
+            color: var(--primary);
+        }
+
+        .length-filter,
+        .story-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .length-btn,
+        .story-btn {
+            border: 2px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+        }
+
+        .length-btn.active,
+        .story-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .length-btn:hover,
+        .story-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .story-card {
+            display: none;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            background: var(--surface-soft);
+            margin-bottom: 26px;
+        }
+
+        .story-card.active {
+            display: block;
+        }
+
+        .story-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .story-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .story-badge {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.12);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .story-text {
+            background: var(--surface);
+            border-radius: 14px;
+            padding: 20px;
+            line-height: 1.65;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .story-text p {
+            margin: 0 0 16px;
+        }
+
+        .story-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section {
+            margin-bottom: 26px;
+        }
+
+        .section h3 {
+            margin: 0 0 14px;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .section-note {
+            margin: 0 0 12px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .snapshot-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .snapshot-item label {
+            font-weight: 600;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            resize: vertical;
+            background: #fff;
+            min-height: 70px;
+            font-size: 0.95rem;
+        }
+
+        textarea:focus {
+            outline: 2px solid rgba(37, 99, 235, 0.35);
+        }
+
+        .reveal-btn {
+            margin-top: 12px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 9px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .reveal-btn:hover {
+            background: #ea580c;
+        }
+
+        .quick-facts {
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            display: none;
+        }
+
+        .quick-facts.show {
+            display: block;
+        }
+
+        .quick-facts ul {
+            padding-left: 18px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .retell-step {
+            background: var(--surface);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .retell-label {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .retell-prompt {
+            margin: 0 0 10px;
+            color: var(--text);
+        }
+
+        .help-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .help-btn {
+            border: 2px solid rgba(37, 99, 235, 0.3);
+            background: var(--surface);
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .help-btn:hover {
+            background: rgba(37, 99, 235, 0.12);
+            border-color: var(--primary);
+        }
+
+        .help-btn.active {
+            background: rgba(37, 99, 235, 0.15);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .help-icon {
+            font-size: 14px;
+        }
+
+        .help-content {
+            margin-top: 12px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .help-item {
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            display: none;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .help-item.show {
+            display: block;
+        }
+
+        .help-item h4 {
+            margin: 0 0 8px;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .help-item p {
+            margin: 0;
+            color: var(--text);
+        }
+
+        .help-item strong {
+            color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .memory-sparks ul {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .spark-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: rgba(15, 118, 110, 0.08);
+            border: 1px solid rgba(13, 148, 136, 0.25);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .spark-answer {
+            display: none;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .spark-answer.show {
+            display: block;
+        }
+
+        .spark-btn {
+            align-self: flex-start;
+            border: none;
+            background: rgba(13, 148, 136, 0.15);
+            color: #0f766e;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        .spark-btn:hover {
+            background: rgba(13, 148, 136, 0.25);
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 18px 10px 48px;
+            }
+
+            .container {
+                padding: 26px 18px;
+            }
+
+            .story-card {
+                padding: 22px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Story Retelling Pit Crew</h1>
+            <p class="subtitle">High-interest stories with built-in supports to help retell, recall, and stay on track.</p>
+        </header>
+
+        <div class="highlight-box">
+            <div><strong>How to use:</strong> Pick a story, fill in the Story Snapshot, and drive through the Retell Path. Use the hint buttons to get help only when you need it.</div>
+            <div><strong>Progressive help:</strong> Three levels of support for each step — toggle on Hint 1 (clue), Hint 2 (word bank), or Hint 3 (model idea). You can show or hide any hint independently.</div>
+            <div><strong>Memory sparks:</strong> Quick check-in questions with reveal buttons to confirm you can recall the big points.</div>
+        </div>
+
+        <div class="length-filter">
+            <button class="length-btn active" onclick="filterByLength('all', this)">All Stories</button>
+            <button class="length-btn" onclick="filterByLength('short', this)">Short (1 paragraph)</button>
+            <button class="length-btn" onclick="filterByLength('medium', this)">Medium (2 paragraphs)</button>
+        </div>
+
+        <div id="storyButtons" class="story-selector"></div>
+
+        <div id="storyCards"></div>
+    </div>
+
+    <script>
+        // Set up hint button event delegation
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.help-btn');
+            if (btn && btn.dataset.hint) {
+                toggleHint(btn);
+            }
+        });
+
+        function toggleHint(btn) {
+            const storyId = btn.dataset.story;
+            const hintNum = btn.dataset.hint;
+
+            let hintElement;
+
+            // Check if it's a retell step hint or snapshot hint
+            if (btn.dataset.step !== undefined) {
+                const stepIndex = btn.dataset.step;
+                hintElement = document.getElementById(`story${storyId}-step${stepIndex}-hint${hintNum}`);
+            } else if (btn.dataset.snapshot !== undefined) {
+                const snapshotIndex = btn.dataset.snapshot;
+                hintElement = document.getElementById(`story${storyId}-snapshot${snapshotIndex}-hint${hintNum}`);
+            }
+
+            const isActive = btn.classList.contains('active');
+
+            if (isActive) {
+                btn.classList.remove('active');
+                hintElement.classList.remove('show');
+            } else {
+                btn.classList.add('active');
+                hintElement.classList.add('show');
+            }
+        }
+
+        const storyLookup = {};
+        const buttonsContainer = document.getElementById("storyButtons");
+        const cardsContainer = document.getElementById("storyCards");
+
+        const stories = [
+            {
+                id: 1,
+                title: "Lunchroom Tournament",
+                length: "short",
+                paragraphs: [
+                    "Jayden asked the assistant principal if he could run a quick chess tournament in the cafeteria at lunch. He only had fifteen minutes, so he put students into pairs and gave them five minutes per game. When he saw Miguel standing alone by the windows, Jayden stopped the tournament to ask if Miguel wanted to be his partner. They lost in the first round, but everyone in that corner of the cafeteria cheered because Miguel finally joined in instead of just watching."
+                ],
+                snapshot: {
+                    characters: "Jayden, Miguel, and the students at the lunch tournament.",
+                    setting: "School cafeteria during lunch break.",
+                    kickoff: "Jayden set up a quick chess tournament at lunch.",
+                    challenge: "Miguel stayed by himself even though Jayden wanted him to join.",
+                    solution: "Jayden stopped the tournament to ask Miguel to be his partner.",
+                    result: "They didn't win, but Miguel felt included and everyone cheered for him."
+                },
+                retellSteps: [
+                    {
+                        label: "First",
+                        prompt: "Explain how Jayden turned lunch into a chess tournament.",
+                        help: {
+                            clue: "Think about what he organized and the time limits he set.",
+                            words: ["tournament", "pairs", "five-minute", "timed"],
+                            model: "Jayden organized students into pairs for a quick five-minute chess tournament."
+                        }
+                    },
+                    {
+                        label: "Next",
+                        prompt: "What problem did Jayden notice while students signed up?",
+                        help: {
+                            clue: "Focus on where Miguel was standing and what he was doing.",
+                            words: ["Miguel", "sidelines", "windows", "hanging back"],
+                            model: "He saw Miguel hanging back near the windows, just watching the signup."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "Describe how Jayden responded to that problem.",
+                        help: {
+                            clue: "What did Jayden stop doing, and who did he speak to?",
+                            words: ["paused", "invited", "doubles partner", "asked"],
+                            model: "Jayden paused the bracket and invited Miguel to be his doubles partner."
+                        }
+                    },
+                    {
+                        label: "Finally",
+                        prompt: "What was the result for Jayden and Miguel?",
+                        help: {
+                            clue: "Did they win, and how did everyone react?",
+                            words: ["lost first round", "cheered", "included", "group"],
+                            model: "They lost in the first round, but everyone cheered because Miguel finally joined in."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "Why did Jayden set a five-minute time limit for each game?",
+                        answer: "He only had fifteen minutes at lunch, so quick games made sure everyone could participate."
+                    },
+                    {
+                        question: "How did Miguel feel at the end of lunch?",
+                        answer: "He felt included because the crowd cheered when he played with Jayden."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Slideshow Save",
+                length: "short",
+                paragraphs: [
+                    "Lila said she would test the photography club's slideshow before their parent showcase. Ten minutes before it started, the newest file crashed when she clicked play and everyone groaned. Instead of freaking out, Lila opened the backup folder, found yesterday's file, and used that one instead. The slideshow worked, and the club decided to start by having Lila explain how she fixed the problem."
+                ],
+                snapshot: {
+                    characters: "Lila and the photography club members.",
+                    setting: "School media center before the parent showcase.",
+                    kickoff: "Lila tested the slideshow to make sure it worked.",
+                    challenge: "The newest file crashed when she clicked play.",
+                    solution: "She found yesterday's backup file and used that one.",
+                    result: "The slideshow worked, and Lila explained how she fixed it."
+                },
+                retellSteps: [
+                    {
+                        label: "First",
+                        prompt: "What job did Lila take on before the showcase?",
+                        help: {
+                            clue: "Think about what she promised the photography club.",
+                            words: ["volunteered", "test", "slideshow", "presentation"],
+                            model: "She volunteered to test the slideshow presentation before the showcase."
+                        }
+                    },
+                    {
+                        label: "Next",
+                        prompt: "What went wrong right before the event?",
+                        help: {
+                            clue: "Focus on the file and what happened when she clicked play.",
+                            words: ["file version", "crashed", "clicked play", "groaned"],
+                            model: "The newest file version crashed when she clicked play and everyone groaned."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "Explain how Lila fixed the problem.",
+                        help: {
+                            clue: "She looked in a different folder for an older file.",
+                            words: ["backup folder", "yesterday's version", "loaded", "found"],
+                            model: "Lila opened the backup folder and loaded yesterday's version instead."
+                        }
+                    },
+                    {
+                        label: "Finally",
+                        prompt: "What happened once the slideshow worked?",
+                        help: {
+                            clue: "How did the showcase begin?",
+                            words: ["worked", "started", "explaining", "solved"],
+                            model: "The slideshow worked and the club started with Lila explaining her fix."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "Why did Lila use yesterday's version of the file?",
+                        answer: "The newest version was broken, so she used an older backup that still worked."
+                    },
+                    {
+                        question: "How did the club use Lila's solution during the showcase?",
+                        answer: "They opened the event with Lila explaining how she solved the problem under pressure."
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Playlist Power Strategy",
+                length: "short",
+                paragraphs: [
+                    "Coach Ramirez told Malik to run practice laps without slowing down, but Malik kept losing focus halfway through. He remembered his workout playlist had three parts, each with a different speed. On the next lap, Malik hummed the songs in order to keep his pace, and his teammates noticed and asked how he did it. Coach timed them and smiled because they beat their usual time by thirty seconds."
+                ],
+                snapshot: {
+                    characters: "Malik, Coach Ramirez, and the track team.",
+                    setting: "School track during practice.",
+                    kickoff: "Coach asked Malik to run steady laps.",
+                    challenge: "Malik lost focus halfway through each lap.",
+                    solution: "He hummed his workout playlist to keep his pace.",
+                    result: "The team finished faster and the coach was happy."
+                },
+                retellSteps: [
+                    {
+                        label: "First",
+                        prompt: "What did Coach Ramirez want Malik to do?",
+                        help: {
+                            clue: "It involved practice laps and steady speed.",
+                            words: ["practice laps", "no slowing", "challenge"],
+                            model: "Coach Ramirez challenged Malik to run practice laps without slowing down."
+                        }
+                    },
+                    {
+                        label: "Next",
+                        prompt: "How did Malik use his playlist to solve his focus problem?",
+                        help: {
+                            clue: "Think about the playlist sections and how he remembered them.",
+                            words: ["playlist", "three sections", "different tempo", "hummed"],
+                            model: "He remembered his workout playlist had three sections and used the songs to pace himself."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "Describe what Malik did on the next lap.",
+                        help: {
+                            clue: "What did he hum and who noticed?",
+                            words: ["hummed songs", "in order", "teammates", "noticed"],
+                            model: "On the next lap Malik hummed the songs and his teammates noticed his method."
+                        }
+                    },
+                    {
+                        label: "Finally",
+                        prompt: "What was the result after Malik used his plan?",
+                        help: {
+                            clue: "Focus on the coach's reaction and the new lap time.",
+                            words: ["beat their time", "thirty seconds", "coach smiled"],
+                            model: "They beat their usual warm-up by thirty seconds and the coach smiled."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "Why did Malik use his playlist as a mental strategy?",
+                        answer: "The three sections with different tempos helped him pace himself and stay focused."
+                    },
+                    {
+                        question: "How did Malik's teammates react to his strategy?",
+                        answer: "They noticed his method and asked about it, then finished faster than usual."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Recipe Break Strategy",
+                length: "short",
+                paragraphs: [
+                    "Ava wanted to bake cookies as soon as she got home, but her media arts teacher gave her thirty vocabulary cards to finish. She set a fifteen-minute timer on her phone and told herself she could prep one ingredient after every five words. The quick tasks kept her awake, and by the third timer she had finished all the cards. Ava started measuring flour and sent her teacher a message that the plan worked."
+                ],
+                snapshot: {
+                    characters: "Ava and her media arts teacher.",
+                    setting: "Ava's desk at home after school.",
+                    kickoff: "Ava had thirty vocabulary cards but wanted to bake cookies.",
+                    challenge: "She needed to stay focused to finish the work.",
+                    solution: "She used timers with small baking tasks as rewards.",
+                    result: "She finished all the cards and started baking."
+                },
+                retellSteps: [
+                    {
+                        label: "First",
+                        prompt: "What did Ava want to do and what homework blocked her?",
+                        help: {
+                            clue: "Think about baking and the thirty definitions.",
+                            words: ["bake cookies", "thirty cards", "media arts", "homework"],
+                            model: "Ava wanted to bake cookies, but she had thirty vocab cards to finish."
+                        }
+                    },
+                    {
+                        label: "Next",
+                        prompt: "Describe the plan Ava made with her timer.",
+                        help: {
+                            clue: "She set time limits and rewarded herself with ingredient prep.",
+                            words: ["fifteen-minute timer", "prep ingredient", "five cards"],
+                            model: "She set fifteen-minute timers and prepped one ingredient after every five cards."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "How did the short tasks help her stay focused?",
+                        help: {
+                            clue: "Did she fall asleep or stay awake?",
+                            words: ["quick tasks", "awake", "third timer", "finished"],
+                            model: "The quick tasks kept her awake, and by the third timer she had finished the cards."
+                        }
+                    },
+                    {
+                        label: "Finally",
+                        prompt: "What happened once Ava completed her work?",
+                        help: {
+                            clue: "Did she start baking?",
+                            words: ["measuring flour", "guilt-free", "messaged", "plan worked"],
+                            model: "She started measuring flour guilt-free and told her teacher the plan worked."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "Why did Ava use ingredient prep as her reward?",
+                        answer: "Small baking tasks were quick rewards that kept her motivated without losing focus."
+                    },
+                    {
+                        question: "How did Ava feel after finishing the cards?",
+                        answer: "She felt proud and relaxed because she earned her baking time."
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Stream Tone Reset",
+                length: "short",
+                paragraphs: [
+                    "Nico's after-school art stream always brought in his friends, but this week the chat filled with jokes about another artist's messy sketch. He stopped drawing, reminded everyone that the channel was for support and helpful feedback, and asked viewers to post one positive comment instead. The tone changed right away, the other artist stayed, and the best part of the stream became a group drawing they made from everyone's ideas."
+                ],
+                snapshot: {
+                    characters: "Nico, his friends, and the artist being teased.",
+                    setting: "Nico's art stream after school.",
+                    kickoff: "Nico started his stream like usual.",
+                    challenge: "The chat turned mean and made fun of another artist's sketch.",
+                    solution: "He stopped drawing and asked for positive comments only.",
+                    result: "The chat became nice, the artist stayed, and they made group art."
+                },
+                retellSteps: [
+                    {
+                        label: "First",
+                        prompt: "What did Nico notice during his art stream?",
+                        help: {
+                            clue: "Focus on the chat messages.",
+                            words: ["chat", "jokes", "messy sketch", "negative"],
+                            model: "He noticed the chat joking about another artist's messy sketch."
+                        }
+                    },
+                    {
+                        label: "Next",
+                        prompt: "How did Nico respond to the negative chat?",
+                        help: {
+                            clue: "He stopped drawing and gave directions.",
+                            words: ["stopped", "reminded", "new rule", "positive comment"],
+                            model: "He stopped drawing, reminded everyone of the channel rules, and asked for positive comments."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "What change did Nico request from the viewers?",
+                        help: {
+                            clue: "Think about the kind of messages he wanted.",
+                            words: ["post", "positive comment", "supportive", "feedback"],
+                            model: "He asked everyone to post one positive comment instead of jokes."
+                        }
+                    },
+                    {
+                        label: "Finally",
+                        prompt: "What happened after the chat followed Nico's plan?",
+                        help: {
+                            clue: "Look at the artist and the highlight of the stream.",
+                            words: ["stayed", "collaborative piece", "helpful", "highlight"],
+                            model: "The artist stayed, and the highlight became a collaborative piece built from suggestions."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "Why did Nico stop drawing?",
+                        answer: "He wanted to stop the negative chat and reset the tone of the stream."
+                    },
+                    {
+                        question: "What new highlight came from the positive chat?",
+                        answer: "They created a collaborative art piece using the helpful suggestions people posted."
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "Reading Sprint Challenge",
+                length: "short",
+                paragraphs: [
+                    "Tori had to read three pages of a history article before advisory ended, but her eyes kept looking at the social media notifications on her phone. She turned it into a game by giving herself five minutes per page and drawing tiny checkboxes in the margin. The mini-sprint idea kept her going, and she finished the article with five minutes left, ready to share a cool fact with her partner."
+                ],
+                snapshot: {
+                    characters: "Tori and her advisory partner.",
+                    setting: "School library during advisory.",
+                    kickoff: "Tori needed to read three pages before advisory ended.",
+                    challenge: "She kept looking at her phone notifications.",
+                    solution: "She made a five-minute challenge with checkboxes for each page.",
+                    result: "She finished early and was ready to share a fact."
+                },
+                retellSteps: [
+                    {
+                        label: "First",
+                        prompt: "What reading job did Tori need to finish?",
+                        help: {
+                            clue: "Focus on the number of pages and the time limit.",
+                            words: ["three pages", "history article", "advisory"],
+                            model: "She needed to read three pages of a history article before advisory ended."
+                        }
+                    },
+                    {
+                        label: "Next",
+                        prompt: "What distracted Tori at first?",
+                        help: {
+                            clue: "Think about what was on her phone.",
+                            words: ["notifications", "phone", "social media", "drifting"],
+                            model: "Her eyes kept drifting to social media notifications on her phone."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "How did Tori turn the distraction into motivation?",
+                        help: {
+                            clue: "She created a timed challenge and drew something.",
+                            words: ["five-minute", "checkboxes", "margin", "sprint"],
+                            model: "She set a five-minute challenge for each page and drew checkboxes in the margin."
+                        }
+                    },
+                    {
+                        label: "Finally",
+                        prompt: "What happened after Tori used her sprint system?",
+                        help: {
+                            clue: "Did she finish with time left?",
+                            words: ["finished early", "five minutes", "share", "fact"],
+                            model: "She finished with five minutes to spare and was ready to share a fact."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "Why did Tori use five-minute sprints for each page?",
+                        answer: "The mini-challenges turned reading into a game and kept her focused."
+                    },
+                    {
+                        question: "What did Tori do with the extra time?",
+                        answer: "She prepared to share a surprising fact with her partner."
+                    }
+                ]
+            },
+            {
+                id: 7,
+                title: "Animation Recovery Mission",
+                length: "medium",
+                paragraphs: [
+                    "Ethan spent three weeks making a 3D animated logo for the tech expo. It had movements that matched the robotics team's special spin. The night before the showcase, a power surge shut down his laptop, and when he opened the file, it was all messed up code. Ethan's stomach dropped because the expo judges were expecting a finished animation.",
+                    "After texting his friend Priya, they looked through auto-save folders and only found old versions. Instead of giving up, Ethan found screenshots and video clips he had posted in the club chat and rebuilt the animation piece by piece, taking snack breaks with his favorite music. By morning the new version was ready, and he kept a printed list next to his laptop to explain how he fixed it. The judges loved the comeback story just as much as the animation."
+                ],
+                snapshot: {
+                    characters: "Ethan and his friend Priya from tech club.",
+                    setting: "Ethan's house the night before the tech expo.",
+                    kickoff: "Ethan made a 3D animated logo for the expo.",
+                    challenge: "A power surge broke the file.",
+                    solution: "He used old screenshots and Priya's help to rebuild it overnight.",
+                    result: "The new version worked, and judges liked the comeback story."
+                },
+                retellSteps: [
+                    {
+                        label: "At first",
+                        prompt: "What had Ethan created for the tech expo?",
+                        help: {
+                            clue: "Think about the animation and the robotics team.",
+                            words: ["3D logo", "three weeks", "robotics spin"],
+                            model: "Ethan designed a 3D animated logo with movements matching the robotics team's spin."
+                        }
+                    },
+                    {
+                        label: "Suddenly",
+                        prompt: "What disaster happened the night before the expo?",
+                        help: {
+                            clue: "Focus on the power surge and the file.",
+                            words: ["power surge", "corrupted", "file damaged"],
+                            model: "A power surge crashed his laptop and corrupted the project file."
+                        }
+                    },
+                    {
+                        label: "So he",
+                        prompt: "How did Ethan get help and start fixing the problem?",
+                        help: {
+                            clue: "He contacted a friend and searched for backups.",
+                            words: ["texted Priya", "auto-save", "old versions"],
+                            model: "He texted Priya and searched auto-save folders for anything he could use."
+                        }
+                    },
+                    {
+                        label: "After that",
+                        prompt: "Explain the strategy Ethan used to rebuild the animation.",
+                        help: {
+                            clue: "Remember the screenshots and video clips.",
+                            words: ["screenshots", "video clips", "frame by frame", "soundtrack"],
+                            model: "He rebuilt it frame by frame using screenshots and clips while timing breaks with music."
+                        }
+                    },
+                    {
+                        label: "In the end",
+                        prompt: "How did the expo judges react to Ethan's work?",
+                        help: {
+                            clue: "Did they like the comeback story?",
+                            words: ["printed steps", "judges", "rebuild story", "animation worked"],
+                            model: "The judges enjoyed the rebuilt animation and the story of how he saved the project."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "What caused Ethan's file to be corrupted?",
+                        answer: "A power surge shut down his laptop and damaged the project file."
+                    },
+                    {
+                        question: "Why did Ethan print a step list for the expo?",
+                        answer: "He wanted to show exactly how he recovered the project overnight."
+                    }
+                ]
+            },
+            {
+                id: 8,
+                title: "Gaming Club Proposal",
+                length: "medium",
+                paragraphs: [
+                    "Maya noticed the gym stayed empty after school while students crowded the library to play games. She thought an official gaming club would keep students interested and help them balance school work, so she wrote a proposal for the principal. When she showed it to him, the principal asked how the club would balance homework, screen time, and equipment costs.",
+                    "Maya met with the counselor to make a schedule that added quiet study time before each gaming session and shared a budget that used old laptops plus help from local sponsors. She even added three short movement breaks to help focus between matches. The principal approved a six-week trial, and Maya found members who agreed to share their grades with the counselor every Friday."
+                ],
+                snapshot: {
+                    characters: "Maya, the principal, and the counselor.",
+                    setting: "School library and office.",
+                    kickoff: "Maya wrote a plan for an official gaming club.",
+                    challenge: "She had to answer questions about homework time and costs.",
+                    solution: "She made a schedule with study time and a budget with sponsors.",
+                    result: "The principal approved a trial and Maya found committed members."
+                },
+                retellSteps: [
+                    {
+                        label: "At first",
+                        prompt: "What problem did Maya notice after school?",
+                        help: {
+                            clue: "Compare the gym and the library.",
+                            words: ["empty gym", "crowded library", "casual gaming"],
+                            model: "She saw the gym sitting empty while everyone crowded the library for gaming."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "How did Maya share her idea with the principal?",
+                        help: {
+                            clue: "She created something to show.",
+                            words: ["proposal", "principal", "official club"],
+                            model: "She wrote a proposal and presented it to the principal for an official club."
+                        }
+                    },
+                    {
+                        label: "Because",
+                        prompt: "What questions did the principal ask Maya to solve?",
+                        help: {
+                            clue: "Focus on time management and cost.",
+                            words: ["homework", "screen time", "equipment costs"],
+                            model: "The principal asked how the club would handle homework and equipment costs."
+                        }
+                    },
+                    {
+                        label: "After that",
+                        prompt: "Explain the plan Maya created with the counselor.",
+                        help: {
+                            clue: "It included study time and sponsorships.",
+                            words: ["study time", "budget", "hand-me-down laptops", "sponsorships"],
+                            model: "She made a schedule with study time and a budget using hand-me-down laptops plus sponsorships."
+                        }
+                    },
+                    {
+                        label: "In the end",
+                        prompt: "What was the final decision about the gaming club?",
+                        help: {
+                            clue: "Was the club approved?",
+                            words: ["six-week pilot", "recruited members", "grade logs"],
+                            model: "The principal approved a six-week pilot and Maya recruited members who agreed to log grades."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "Why did Maya add movement breaks to her plan?",
+                        answer: "She wanted short focus resets between matches to keep members sharp."
+                    },
+                    {
+                        question: "How will the club prove they are balancing school and gaming?",
+                        answer: "Each member promised to share their grades with the counselor every Friday."
+                    }
+                ]
+            },
+            {
+                id: 9,
+                title: "Physics Demo Teamwork",
+                length: "medium",
+                paragraphs: [
+                    "Jules and Rowan paired up for their physics presentation about speed and friction. Jules wanted to use skateboarding videos, but Rowan worried it would look like they were just showing off tricks. They argued so loudly in the media lab that the librarian asked if they needed different partners.",
+                    "To fix it, they wrote down what each person needed from the project. Jules said he would edit short clips that showed speed changes, while Rowan would write simple captions explaining the science. They practiced in front of a friend who timed them and said they should add a pause for questions. On presentation day the class paid attention, and even the teacher said she finally understood how ramp angles change friction."
+                ],
+                snapshot: {
+                    characters: "Jules, Rowan, and a classmate.",
+                    setting: "School media lab and classroom.",
+                    kickoff: "They teamed up for a physics presentation.",
+                    challenge: "They disagreed about using skateboarding videos.",
+                    solution: "They split the work and practiced with feedback.",
+                    result: "The class stayed interested and learned the concept."
+                },
+                retellSteps: [
+                    {
+                        label: "At first",
+                        prompt: "Why were Jules and Rowan working together?",
+                        help: {
+                            clue: "Think about the class and topic.",
+                            words: ["physics presentation", "acceleration", "friction"],
+                            model: "They partnered for a physics presentation about acceleration and friction."
+                        }
+                    },
+                    {
+                        label: "Next",
+                        prompt: "What did they argue about in the media lab?",
+                        help: {
+                            clue: "Focus on the skateboarding videos.",
+                            words: ["skateboarding videos", "showing off tricks", "argued"],
+                            model: "Jules wanted skateboarding videos while Rowan thought it would look like showing off."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "How did they decide to split the work?",
+                        help: {
+                            clue: "Each person took a different part.",
+                            words: ["Jules edit", "Rowan captions", "simple words"],
+                            model: "Jules edited the clips and Rowan wrote simple science captions."
+                        }
+                    },
+                    {
+                        label: "After that",
+                        prompt: "What practice step helped them improve?",
+                        help: {
+                            clue: "A friend helped with timing.",
+                            words: ["friend timed", "pause for questions", "rehearsed"],
+                            model: "They practiced with a friend who timed them and suggested a question pause."
+                        }
+                    },
+                    {
+                        label: "In the end",
+                        prompt: "How did the class react to their presentation?",
+                        help: {
+                            clue: "Did the teacher learn something?",
+                            words: ["class engaged", "teacher understood", "ramp angles"],
+                            model: "The class stayed engaged and the teacher said she finally understood ramp angles."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "Why was Rowan nervous about using skateboarding videos?",
+                        answer: "He worried the class would think they were just showing off tricks instead of explaining science."
+                    },
+                    {
+                        question: "What feedback improved their presentation?",
+                        answer: "A friend timed them and told them to add a pause for questions."
+                    }
+                ]
+            },
+            {
+                id: 10,
+                title: "Focus Checkpoint System",
+                length: "medium",
+                paragraphs: [
+                    "Damian's counselor noticed he tapped his pencil every two minutes in history class and then asked for hallway breaks that took too long. When she asked what he liked to do, Damian got excited and talked about the fantasy worlds he was drawing in his notebook margins. That gave her an idea.",
+                    "Together they made a focus tracker that treated each chunk of notes like a checkpoint. After every checkpoint, Damian checked off a square and added one detail to his margin drawing, reminding himself of the bigger reward: ten minutes to finish his world-building sketches after class. The visual timer and tiny art breaks kept him in his seat, and by Friday he had the neatest notebook in the room plus four detailed world maps to share."
+                ],
+                snapshot: {
+                    characters: "Damian and his counselor.",
+                    setting: "History class and the counselor's office.",
+                    kickoff: "The counselor noticed Damian couldn't sit still in history.",
+                    challenge: "Damian took long breaks and lost focus.",
+                    solution: "They made a checkpoint chart with small art rewards.",
+                    result: "He stayed in class, finished neat notes, and earned drawing time."
+                },
+                retellSteps: [
+                    {
+                        label: "At first",
+                        prompt: "What problem did Damian have in history class?",
+                        help: {
+                            clue: "Think about his tapping and breaks.",
+                            words: ["tapped pencil", "every two minutes", "hallway breaks"],
+                            model: "He tapped his pencil every two minutes and took long hallway breaks."
+                        }
+                    },
+                    {
+                        label: "Then",
+                        prompt: "How did the counselor discover what Damian liked?",
+                        help: {
+                            clue: "She asked about his interests.",
+                            words: ["asked", "fantasy worlds", "lit up", "margins"],
+                            model: "She asked what he enjoyed, and he lit up talking about fantasy worlds in his margins."
+                        }
+                    },
+                    {
+                        label: "So they",
+                        prompt: "What plan did Damian and the counselor create?",
+                        help: {
+                            clue: "It compared note-taking to checkpoints.",
+                            words: ["focus tracker", "checkpoints", "check off"],
+                            model: "They created a focus tracker that treated each chunk of notes like a checkpoint."
+                        }
+                    },
+                    {
+                        label: "After that",
+                        prompt: "How did Damian use rewards to stay focused?",
+                        help: {
+                            clue: "Think about the margin doodles and drawing time.",
+                            words: ["margin doodle", "one detail", "ten minutes", "world maps"],
+                            model: "After each checkpoint he added one detail to his doodle and earned ten minutes to draw."
+                        }
+                    },
+                    {
+                        label: "In the end",
+                        prompt: "What changed for Damian by Friday?",
+                        help: {
+                            clue: "Look at his notebook and behavior.",
+                            words: ["cleanest notebook", "stayed seated", "four world maps"],
+                            model: "He stayed in class, kept the cleanest notebook, and created four detailed world maps."
+                        }
+                    }
+                ],
+                sparks: [
+                    {
+                        question: "What inspired the counselor's idea for Damian?",
+                        answer: "Hearing him excitedly describe his fantasy world-building sparked the checkpoint tracker plan."
+                    },
+                    {
+                        question: "How did Damian reward himself after each checkpoint of notes?",
+                        answer: "He checked a box, added one detail to his margin doodle, and saved ten minutes to develop his world maps."
+                    }
+                ]
+            }
+        ];
+
+        renderStories();
+
+        function renderStories() {
+            stories.forEach((story, index) => {
+                storyLookup[story.id] = story;
+
+                const btn = document.createElement("button");
+                btn.className = "story-btn" + (index === 0 ? " active" : "");
+                btn.dataset.storyId = story.id;
+                btn.dataset.length = story.length;
+                btn.textContent = `Story ${story.id}`;
+                btn.addEventListener("click", () => showStory(story.id));
+                buttonsContainer.appendChild(btn);
+
+                const card = document.createElement("div");
+                card.className = "story-card" + (index === 0 ? " active" : "");
+                card.id = `story-card-${story.id}`;
+                card.dataset.length = story.length;
+                card.innerHTML = createStoryMarkup(story);
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        function createStoryMarkup(story) {
+            const paragraphs = story.paragraphs
+                .map(paragraph => `<p>${paragraph}</p>`)
+                .join("");
+
+            const snapshotFields = [
+                { key: "characters", label: "Characters" },
+                { key: "setting", label: "Setting" },
+                { key: "kickoff", label: "Kickoff Event" },
+                { key: "challenge", label: "Problem / Challenge" },
+                { key: "solution", label: "Actions / Strategy" },
+                { key: "result", label: "Result / Lesson" }
+            ];
+
+            const snapshotInputs = snapshotFields
+                .map((field, index) => `
+                    <div class="snapshot-item">
+                        <label>${field.label}</label>
+                        <textarea placeholder="Write about the ${field.label.toLowerCase()}..."></textarea>
+                        <div class="help-controls">
+                            <button class="help-btn" data-story="${story.id}" data-snapshot="${index}" data-hint="1">
+                                <span class="help-icon">💡</span> Hint 1: Clue
+                            </button>
+                            <button class="help-btn" data-story="${story.id}" data-snapshot="${index}" data-hint="2">
+                                <span class="help-icon">💡</span> Hint 2: Word Bank
+                            </button>
+                            <button class="help-btn" data-story="${story.id}" data-snapshot="${index}" data-hint="3">
+                                <span class="help-icon">💡</span> Hint 3: Example
+                            </button>
+                        </div>
+                        <div class="help-content" id="story${story.id}-snapshot${index}-help">
+                            <div class="help-item" id="story${story.id}-snapshot${index}-hint1">
+                                <h4>💡 Clue</h4>
+                                <p>Look for details about ${field.label.toLowerCase()} in the story.</p>
+                            </div>
+                            <div class="help-item" id="story${story.id}-snapshot${index}-hint2">
+                                <h4>🔤 Word Bank</h4>
+                                <p><strong>Key words:</strong> ${story.snapshot[field.key].split(' ').slice(0, 4).join(', ')}</p>
+                            </div>
+                            <div class="help-item" id="story${story.id}-snapshot${index}-hint3">
+                                <h4>✨ Example</h4>
+                                <p>${story.snapshot[field.key]}</p>
+                            </div>
+                        </div>
+                    </div>
+                `)
+                .join("");
+
+            const quickFacts = snapshotFields
+                .map(field => `<li><strong>${field.label}:</strong> ${story.snapshot[field.key]}</li>`)
+                .join("");
+
+            const retellSteps = story.retellSteps
+                .map((step, index) => `
+                    <div class="retell-step">
+                        <div class="retell-label">${step.label}</div>
+                        <p class="retell-prompt">${step.prompt}</p>
+                        <textarea id="story${story.id}-step${index + 1}-text" placeholder="Write your idea here..."></textarea>
+                        <div class="help-controls">
+                            <button class="help-btn" data-story="${story.id}" data-step="${index}" data-hint="1">
+                                <span class="help-icon">💡</span> Hint 1: Clue
+                            </button>
+                            <button class="help-btn" data-story="${story.id}" data-step="${index}" data-hint="2">
+                                <span class="help-icon">💡</span> Hint 2: Word Bank
+                            </button>
+                            <button class="help-btn" data-story="${story.id}" data-step="${index}" data-hint="3">
+                                <span class="help-icon">💡</span> Hint 3: Model Idea
+                            </button>
+                        </div>
+                        <div class="help-content" id="story${story.id}-step${index}-help">
+                            <div class="help-item" id="story${story.id}-step${index}-hint1">
+                                <h4>💡 Clue</h4>
+                                <p>${step.help.clue}</p>
+                            </div>
+                            <div class="help-item" id="story${story.id}-step${index}-hint2">
+                                <h4>🔤 Word Bank</h4>
+                                <p><strong>Try using:</strong> ${step.help.words.join(", ")}</p>
+                            </div>
+                            <div class="help-item" id="story${story.id}-step${index}-hint3">
+                                <h4>✨ Model Idea</h4>
+                                <p>${step.help.model}</p>
+                            </div>
+                        </div>
+                    </div>
+                `)
+                .join("");
+
+            const sparks = story.sparks
+                .map((spark, index) => `
+                    <li class="spark-item">
+                        <span>${spark.question}</span>
+                        <button class="spark-btn" onclick="toggleSpark(${story.id}, ${index}, this)">Reveal answer</button>
+                        <span class="spark-answer" id="story${story.id}-spark${index}">${spark.answer}</span>
+                    </li>
+                `)
+                .join("");
+
+            const badgeText = story.length === "short" ? "1 Paragraph" : "2 Paragraphs";
+
+            return `
+                <div class="story-header">
+                    <h2>${story.title}</h2>
+                    <span class="story-badge">${badgeText}</span>
+                </div>
+                <div class="story-text">
+                    ${paragraphs}
+                </div>
+                <div class="section">
+                    <h3>Story Snapshot</h3>
+                    <p class="section-note">Jot your own details first. If you get stuck, reveal the quick facts for support.</p>
+                    <div class="snapshot-grid">
+                        ${snapshotInputs}
+                    </div>
+                    <button class="reveal-btn" onclick="toggleSnapshot(${story.id}, this)">Reveal quick facts</button>
+                    <div class="quick-facts" id="story${story.id}-facts">
+                        <ul>
+                            ${quickFacts}
+                        </ul>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>Retell Path</h3>
+                    ${retellSteps}
+                </div>
+                <div class="section memory-sparks">
+                    <h3>Memory Sparks</h3>
+                    <ul>
+                        ${sparks}
+                    </ul>
+                </div>
+            `;
+        }
+
+        function filterByLength(length, button) {
+            document.querySelectorAll(".length-btn").forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            const navButtons = document.querySelectorAll(".story-btn");
+            let firstVisibleId = null;
+
+            navButtons.forEach(btn => {
+                const matches = length === "all" || btn.dataset.length === length;
+                btn.style.display = matches ? "inline-flex" : "none";
+                if (matches && firstVisibleId === null) {
+                    firstVisibleId = Number(btn.dataset.storyId);
+                }
+            });
+
+            if (length === "all") {
+                const activeBtn = document.querySelector(".story-btn.active");
+                if (!activeBtn && firstVisibleId !== null) {
+                    showStory(firstVisibleId);
+                }
+                return;
+            }
+
+            const activeCard = document.querySelector(".story-card.active");
+            if (!activeCard || activeCard.dataset.length !== length) {
+                if (firstVisibleId !== null) {
+                    showStory(firstVisibleId);
+                }
+            }
+        }
+
+        function showStory(storyId) {
+            document.querySelectorAll(".story-card").forEach(card => {
+                card.classList.toggle("active", card.id === `story-card-${storyId}`);
+            });
+
+            document.querySelectorAll(".story-btn").forEach(btn => {
+                btn.classList.toggle("active", Number(btn.dataset.storyId) === storyId);
+            });
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function toggleSnapshot(storyId, button) {
+            const facts = document.getElementById(`story${storyId}-facts`);
+            const shown = facts.classList.toggle("show");
+            button.textContent = shown ? "Hide quick facts" : "Reveal quick facts";
+        }
+
+        function toggleSpark(storyId, index, button) {
+            const answer = document.getElementById(`story${storyId}-spark${index}`);
+            const shown = answer.classList.toggle("show");
+            button.textContent = shown ? "Hide answer" : "Reveal answer";
+        }
+    </script>
+</body>
+</html>

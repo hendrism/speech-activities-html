@@ -1,0 +1,120 @@
+{
+  "sound": "initial-r",
+  "position": "initial",
+  "phoneme": "/r/",
+  "description": "Words that begin with the /r/ sound",
+  "levels": {
+    "easy": [
+      "red",
+      "run",
+      "rain",
+      "ring",
+      "rock",
+      "rope",
+      "rose",
+      "rug",
+      "rat",
+      "rice",
+      "rake",
+      "read"
+    ],
+    "medium": [
+      "rabbit",
+      "rocket",
+      "rainbow",
+      "race",
+      "radio",
+      "ranch",
+      "river",
+      "robot",
+      "ruler",
+      "raisin",
+      "ramp",
+      "recess",
+      "ribbon",
+      "robin",
+      "roller",
+      "rooster"
+    ],
+    "hard": [
+      "racecar",
+      "raccoon",
+      "raft",
+      "raspberry",
+      "rattlesnake",
+      "rectangle",
+      "reindeer",
+      "restaurant",
+      "rhinoceros",
+      "riddle",
+      "ruby",
+      "rudder",
+      "runway"
+    ]
+  },
+  "byCategory": {
+    "animals": [
+      "rabbit",
+      "rat",
+      "raccoon",
+      "rattlesnake",
+      "reindeer",
+      "rhinoceros",
+      "robin",
+      "rooster"
+    ],
+    "objects": [
+      "ring",
+      "rock",
+      "rope",
+      "rug",
+      "rake",
+      "radio",
+      "rocket",
+      "robot",
+      "ruler",
+      "ribbon",
+      "raft"
+    ],
+    "food": [
+      "rice",
+      "raisin",
+      "raspberry"
+    ],
+    "places": [
+      "ranch",
+      "river",
+      "restaurant",
+      "runway"
+    ],
+    "nature": [
+      "rain",
+      "rainbow",
+      "rose",
+      "rock"
+    ],
+    "colors": [
+      "red",
+      "ruby"
+    ],
+    "actions": [
+      "run",
+      "read",
+      "race",
+      "row"
+    ]
+  },
+  "sentences": [
+    "The rabbit ran in the rain.",
+    "I see a red robot.",
+    "The rocket is ready.",
+    "Rainbow colors are pretty.",
+    "Run to the river.",
+    "Read the riddle.",
+    "The rose is red.",
+    "Rats run around.",
+    "Rake the rocks.",
+    "Rice is ready."
+  ],
+  "totalWords": 42
+}

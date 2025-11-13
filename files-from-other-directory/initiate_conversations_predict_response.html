@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Practice Scenarios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .nav-bar {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 2px solid #e9ecef;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .nav-buttons {
+            display: inline-flex;
+            gap: 8px;
+        }
+        
+        .nav-btn {
+            padding: 8px 16px;
+            border: none;
+            background: white;
+            color: #667eea;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 2px solid #e9ecef;
+        }
+        
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .nav-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .scenario {
+            display: none;
+            padding: 40px;
+        }
+        
+        .scenario.active {
+            display: block;
+        }
+        
+        .scenario-header {
+            margin-bottom: 30px;
+        }
+        
+        .scenario-title {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .difficulty.easy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .difficulty.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .difficulty.hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .scenario-description {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .exchange {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .exchange-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .exchange-number {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 18px;
+        }
+        
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .remove-btn:hover {
+            background: #c82333;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .add-exchange-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .add-exchange-btn:hover {
+            background: #218838;
+        }
+        
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .next-btn, .prev-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .next-btn:hover, .prev-btn:hover {
+            background: #5568d3;
+        }
+        
+        .prev-btn:disabled, .next-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗣️ Social Conversation Practice</h1>
+            <p>Practice conversation starters and predict responses</p>
+        </div>
+        
+        <div class="nav-bar">
+            <div class="nav-buttons" id="navButtons"></div>
+        </div>
+        
+        <div id="scenarios"></div>
+    </div>
+
+    <script>
+        const scenarios = [
+            {
+                name: "Returning Borrowed Item",
+                difficulty: "easy",
+                description: "You borrowed a book from a classmate last week for a project. You're done with it and need to return it to them. You see them in the hallway between classes."
+            },
+            {
+                name: "Homework Question",
+                difficulty: "easy",
+                description: "You're confused about the homework assignment that was just given. The student sitting next to you seems to understand it. Class just ended and you're both packing up."
+            },
+            {
+                name: "Complimenting Something Specific",
+                difficulty: "easy",
+                description: "Someone in your art class just finished a drawing that's really impressive. You've worked near them before but haven't talked much. The class is ending and people are cleaning up."
+            },
+            {
+                name: "Group Project Start",
+                difficulty: "easy",
+                description: "You've just been assigned to work with two other students on a science project. The teacher gives you 10 minutes to exchange contact information and pick a meeting time. You need to figure out when to meet."
+            },
+            {
+                name: "Asking to Sit",
+                difficulty: "easy",
+                description: "The cafeteria is crowded and most tables are full. There's one seat open at a table where some classmates from your English class are sitting. You know their names but don't really talk to them."
+            },
+            {
+                name: "Library Encounter",
+                difficulty: "medium",
+                description: "You're at the library studying for a test when you see someone from your math class looking at the same textbook chapter. You've sat near each other but haven't talked. You figured out a good way to remember one of the formulas."
+            },
+            {
+                name: "Teacher Office Hours",
+                difficulty: "medium",
+                description: "You need to ask your teacher a question about an assignment. You go to their office hours and there's one other student already there talking to the teacher. The other student finishes and leaves. Now it's your turn."
+            },
+            {
+                name: "Club Information",
+                difficulty: "medium",
+                description: "There's a club (art, robotics, gaming, etc.) you're interested in joining. You see someone wearing the club t-shirt in your biology class. You want to know when they meet and what they do."
+            },
+            {
+                name: "Shared Interest",
+                difficulty: "medium",
+                description: "You're walking through the hallway and notice someone wearing a shirt from a book series/game/show you really like. You've seen them around but never talked to them. They're standing at their locker."
+            },
+            {
+                name: "Project Partner Question",
+                difficulty: "medium",
+                description: "You're working on a long-term project with a partner. You've been working mostly independently but need to check something with them about your part. You see them before class starts."
+            },
+            {
+                name: "Someone Initiates",
+                difficulty: "medium",
+                description: "You're sitting in the common area reading a book. Someone you don't know well sits down near you and says 'Hey, how's it going?' You need to respond and maybe continue the conversation."
+            },
+            {
+                name: "Counselor Meeting",
+                difficulty: "medium",
+                description: "You have a scheduled meeting with your guidance counselor to talk about your class schedule for next semester. You're not sure what to say after the basic greeting. You need to explain what classes you're interested in."
+            },
+            {
+                name: "Awkward Silence",
+                difficulty: "hard",
+                description: "You're working on a partner assignment with someone you don't know well. You've been working silently for 10 minutes and it's starting to feel weird. You still have 20 minutes left to work together."
+            },
+            {
+                name: "Following Up",
+                difficulty: "hard",
+                description: "Last week you had a nice conversation with someone about a video game you both play. You see them again in the hallway. You're not sure if you should say hi, and if you do, what to say beyond 'hi.'"
+            },
+            {
+                name: "Joining Discussion",
+                difficulty: "hard",
+                description: "You're early to class and a few students are talking about a topic you know a lot about (a game, book series, scientific topic, etc.). You want to add something to the conversation but you're not part of the group and they haven't noticed you."
+            }
+        ];
+
+        let currentScenario = 0;
+        const scenarioData = {};
+
+        function initializeData() {
+            scenarios.forEach((scenario, index) => {
+                scenarioData[index] = {
+                    exchanges: [{ starter: '', reaction: '' }]
+                };
+            });
+        }
+
+        function createNavButtons() {
+            const navContainer = document.getElementById('navButtons');
+            scenarios.forEach((scenario, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn';
+                btn.textContent = scenario.name;
+                btn.onclick = () => showScenario(index);
+                navContainer.appendChild(btn);
+            });
+        }
+
+        function createScenarios() {
+            const container = document.getElementById('scenarios');
+            scenarios.forEach((scenario, index) => {
+                const scenarioDiv = document.createElement('div');
+                scenarioDiv.className = 'scenario';
+                scenarioDiv.id = `scenario-${index}`;
+                
+                scenarioDiv.innerHTML = `
+                    <div class="scenario-header">
+                        <h2 class="scenario-title">${scenario.name}</h2>
+                        <span class="difficulty ${scenario.difficulty}">${scenario.difficulty.toUpperCase()}</span>
+                        <div class="scenario-description">${scenario.description}</div>
+                    </div>
+                    <div id="exchanges-${index}"></div>
+                    <button class="add-exchange-btn" onclick="addExchange(${index})">+ Add Another Exchange</button>
+                    <div class="bottom-nav">
+                        <button class="prev-btn" onclick="previousScenario()" ${index === 0 ? 'disabled' : ''}>← Previous</button>
+                        <button class="next-btn" onclick="nextScenario()" ${index === scenarios.length - 1 ? 'disabled' : ''}>Next →</button>
+                    </div>
+                `;
+                
+                container.appendChild(scenarioDiv);
+            });
+        }
+
+        function renderExchanges(scenarioIndex) {
+            const exchangesContainer = document.getElementById(`exchanges-${scenarioIndex}`);
+            const data = scenarioData[scenarioIndex];
+            
+            exchangesContainer.innerHTML = '';
+            
+            data.exchanges.forEach((exchange, exchangeIndex) => {
+                const exchangeDiv = document.createElement('div');
+                exchangeDiv.className = 'exchange';
+                
+                exchangeDiv.innerHTML = `
+                    <div class="exchange-header">
+                        <span class="exchange-number">Exchange ${exchangeIndex + 1}</span>
+                        ${exchangeIndex > 0 ? `<button class="remove-btn" onclick="removeExchange(${scenarioIndex}, ${exchangeIndex})">Remove</button>` : ''}
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">What I'll say:</label>
+                            <textarea 
+                                placeholder="Type your conversation starter or response here..."
+                                oninput="updateData(${scenarioIndex}, ${exchangeIndex}, 'starter', this.value)"
+                            >${exchange.starter}</textarea>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Predicted reaction:</label>
+                            <textarea 
+                                placeholder="How do you think they'll respond?"
+                                oninput="updateData(${scenarioIndex}, ${exchangeIndex}, 'reaction', this.value)"
+                            >${exchange.reaction}</textarea>
+                        </div>
+                    </div>
+                `;
+                
+                exchangesContainer.appendChild(exchangeDiv);
+            });
+        }
+
+        function updateData(scenarioIndex, exchangeIndex, field, value) {
+            scenarioData[scenarioIndex].exchanges[exchangeIndex][field] = value;
+        }
+
+        function addExchange(scenarioIndex) {
+            scenarioData[scenarioIndex].exchanges.push({ starter: '', reaction: '' });
+            renderExchanges(scenarioIndex);
+        }
+
+        function removeExchange(scenarioIndex, exchangeIndex) {
+            scenarioData[scenarioIndex].exchanges.splice(exchangeIndex, 1);
+            renderExchanges(scenarioIndex);
+        }
+
+        function showScenario(index) {
+            document.querySelectorAll('.scenario').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(`scenario-${index}`).classList.add('active');
+            document.querySelectorAll('.nav-btn')[index].classList.add('active');
+            
+            currentScenario = index;
+            renderExchanges(index);
+        }
+
+        function nextScenario() {
+            if (currentScenario < scenarios.length - 1) {
+                showScenario(currentScenario + 1);
+            }
+        }
+
+        function previousScenario() {
+            if (currentScenario > 0) {
+                showScenario(currentScenario - 1);
+            }
+        }
+
+        // Initialize
+        initializeData();
+        createNavButtons();
+        createScenarios();
+        showScenario(0);
+    </script>
+</body>
+</html>

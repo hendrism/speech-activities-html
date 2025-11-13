@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronoun Practice & Reading Comprehension</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        
+        .navigation {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 45px;
+        }
+        
+        .nav-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.active {
+            background: #764ba2;
+            transform: scale(1.1);
+        }
+        
+        .question-toggle {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .toggle-label {
+            display: block;
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .toggle-btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .toggle-btn:hover {
+            background: #c2185b;
+            transform: translateY(-2px);
+        }
+        
+        .toggle-btn.active {
+            background: #880e4f;
+            transform: scale(1.05);
+        }
+        
+        .story {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            display: none;
+        }
+        
+        .story.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 10px;
+        }
+        
+        .story-number {
+            background: #764ba2;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-right: 10px;
+        }
+        
+        .story-text {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            line-height: 1.9;
+            font-size: 1.15em;
+            color: #2c3e50;
+            border-left: 5px solid #667eea;
+        }
+        
+        .questions-section {
+            margin-top: 30px;
+        }
+        
+        .section-title {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .question {
+            background: #fff3e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #ff9800;
+        }
+        
+        .question-label {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            margin-top: 10px;
+            resize: vertical;
+            min-height: 50px;
+        }
+        
+        .answer-input:focus {
+            outline: none;
+            border-color: #764ba2;
+            background: #f5f3ff;
+        }
+        
+        .help-section {
+            margin-top: 15px;
+        }
+        
+        .help-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .help-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .help-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .help-btn.active {
+            background: #27ae60;
+        }
+        
+        .help-content {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            animation: slideDown 0.3s;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 200px; }
+        }
+        
+        .help-content.show {
+            display: block;
+        }
+        
+        .help-level-1 {
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .help-level-2 {
+            background: #ffe6e6;
+            border-left: 4px solid #e67e22;
+        }
+
+        .main-idea-choice-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .main-idea-choice-btn {
+            background: white;
+            border: 2px solid #8e24aa;
+            color: #6a1b9a;
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .main-idea-choice-btn:hover {
+            background: #f3e5f5;
+        }
+
+        .main-idea-choice-btn.selected {
+            border-color: #5e35b1;
+            background: #ede7f6;
+        }
+
+        .main-idea-choice-btn.correct {
+            border-color: #2e7d32;
+            background: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .main-idea-choice-btn.incorrect {
+            border-color: #c62828;
+            background: #ffebee;
+            color: #b71c1c;
+        }
+
+        .main-idea-feedback {
+            margin-top: 10px;
+            font-weight: 600;
+            color: #5e35b1;
+        }
+
+        .choices {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .choice {
+            background: white;
+            border: 2px solid #e67e22;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #e67e22;
+        }
+        
+        .key-events {
+            background: #e8f5e9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .event-prompt {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .detail-prompt {
+            font-weight: bold;
+            color: #1976d2;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .navigation-arrows {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .arrow-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        .arrow-btn:hover:not(:disabled) {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+        
+        .arrow-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .guide-section {
+            background: #e3f2fd;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #2196f3;
+        }
+
+        .guide-section h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .guide-section ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .main-idea-section {
+            background: #f3e5f5;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #8e24aa;
+        }
+
+        .main-idea-question {
+            font-weight: bold;
+            color: #6a1b9a;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+
+        .main-idea-choices {
+            margin-top: 10px;
+            padding-left: 20px;
+            color: #4527a0;
+        }
+
+        .main-idea-choices li {
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .retelling-section {
+            margin-top: 30px;
+        }
+
+        .retelling-step {
+            background: #fff3e0;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #ff9800;
+        }
+
+        .step-title {
+            color: #e65100;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-number {
+            background: #ff9800;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .event-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-label {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .event-input {
+            padding: 10px;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .event-input:focus {
+            outline: none;
+            border-color: #e65100;
+            background: #fff8e1;
+        }
+
+        .transition-bank {
+            background: #e8f5e9;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #4caf50;
+        }
+
+        .bank-title {
+            color: #2e7d32;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .bank-subtitle {
+            color: #558b2f;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .transition-words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .transition-word {
+            background: white;
+            border: 2px solid #4caf50;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #2e7d32;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .transition-word:hover {
+            background: #c8e6c9;
+            transform: scale(1.05);
+        }
+
+        .transition-word.used {
+            background: #4caf50;
+            color: white;
+            border-color: #2e7d32;
+        }
+
+        .combined-retelling {
+            background: #e1f5fe;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #0277bd;
+        }
+
+        .retelling-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #0277bd;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            resize: vertical;
+            min-height: 150px;
+            line-height: 1.6;
+        }
+
+        .retelling-textarea:focus {
+            outline: none;
+            border-color: #01579b;
+            background: #e0f7fa;
+        }
+
+        .word-counter {
+            margin-top: 10px;
+            color: #0277bd;
+            font-size: 0.95em;
+            font-weight: bold;
+        }
+
+        .transition-used-list {
+            margin-top: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #4caf50;
+        }
+
+        .used-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .used-words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .used-word-badge {
+            background: #4caf50;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .story {
+                padding: 20px;
+            }
+            .navigation-arrows {
+                flex-direction: column;
+            }
+            .arrow-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Pronoun Practice & Reading Stories</h1>
+        
+        <div class="navigation" id="navigation"></div>
+        
+        <div class="question-toggle">
+            <span class="toggle-label">Choose Activity:</span>
+            <button class="toggle-btn active" onclick="setQuestionType('pronouns')">Pronoun Questions</button>
+            <button class="toggle-btn" onclick="setQuestionType('events')">Key Events & Details</button>
+            <button class="toggle-btn" onclick="setQuestionType('mainIdea')">Main Idea</button>
+            <button class="toggle-btn" onclick="setQuestionType('retelling')">Story Retelling</button>
+        </div>
+        
+        <div id="stories-container"></div>
+        
+        <div class="navigation-arrows">
+            <button class="arrow-btn" id="prev-btn" onclick="previousStory()">← Previous</button>
+            <button class="arrow-btn" id="next-btn" onclick="nextStory()">Next →</button>
+        </div>
+        
+        <div class="guide-section">
+            <h3>📖 Teacher Guide</h3>
+            <p><strong>Pronoun Questions:</strong> Students answer questions using complete sentences with correct pronouns (he, she, they, his, her, their).</p>
+            <p style="margin-top: 10px;"><strong>Key Events & Details:</strong> Students identify main events and supporting details from the stories.</p>
+            <p style="margin-top: 10px;"><strong>Main Idea:</strong> Students determine the central message with layered hints and balanced multiple-choice support.</p>
+            <p style="margin-top: 10px;"><strong>Story Retelling:</strong> Students practice sequencing events and using transition words to create cohesive retellings. The word bank highlights which transitions they've used!</p>
+            <p style="margin-top: 10px;"><strong>Progressive Help:</strong> Level 1 provides context clues, Level 2 offers multiple choice options.</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        let questionType = 'pronouns';
+        
+        const stories = [
+            {
+                title: "The Garden Helper",
+                text: "Maya planted tomato seeds in her garden last spring. She watered them every morning before school. The plants grew tall and strong under the sunny sky. Maya's neighbor, Mr. Chen, gave her tips about removing weeds. By summer, she had bright red tomatoes to share with her whole family.",
+                pronounQuestions: [
+                    {
+                        q: "Who watered the plants every morning?",
+                        help1: "Look at the second sentence. Is this person identified as a girl or boy?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Maya) watered the plants."
+                    },
+                    {
+                        q: "What did Mr. Chen give Maya?",
+                        help1: "Find where Mr. Chen is mentioned. What did this person do?",
+                        help2: "Complete: '_____ gave her tips' (A) He (B) She (C) It",
+                        answer: "He gave her tips about removing weeds."
+                    },
+                    {
+                        q: "Who shared the tomatoes with family?",
+                        help1: "Who grew the tomatoes? This is the same person in the first sentence.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) Mr. Chen",
+                        answer: "She (Maya) shared the tomatoes."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Think about what Maya does with her garden from spring to summer.",
+                    choices: [
+                        { text: "Maya cares for her garden and grows tomatoes to share.", correct: true },
+                        { text: "Mr. Chen plants his own vegetable garden next door.", correct: false },
+                        { text: "Maya stops caring for the plants after just one week.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What happened first in this story?",
+                        prompt: "The story started when..."
+                    },
+                    {
+                        q: "What did Maya do every morning?",
+                        prompt: "Every morning, Maya..."
+                    },
+                    {
+                        q: "Who helped Maya with her garden?",
+                        prompt: "Mr. Chen helped by..."
+                    },
+                    {
+                        q: "What happened by summer?",
+                        prompt: "By summer..."
+                    }
+                ]
+            },
+            {
+                title: "The Library Mystery",
+                text: "Alex found a mysterious book on the library shelf yesterday. They opened it carefully and discovered old photographs inside. The pictures showed their town from 100 years ago. Alex brought the book to Ms. Rivera, the librarian. She explained that someone had donated their family album by mistake.",
+                pronounQuestions: [
+                    {
+                        q: "Who found the mysterious book?",
+                        help1: "Check the first sentence. The text doesn't say if this person is a boy or girl.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Alex) found the book."
+                    },
+                    {
+                        q: "Who explained about the family album?",
+                        help1: "Look for the person's title (Ms.). What does this tell you?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Ms. Rivera) explained."
+                    },
+                    {
+                        q: "What did Alex discover inside the book?",
+                        help1: "The person who found the book also opened it. Use the same pronoun.",
+                        help2: "Complete: '_____ opened it and discovered...' (A) He (B) She (C) They",
+                        answer: "They discovered old photographs."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Focus on what Alex discovers about the mysterious book.",
+                    choices: [
+                        { text: "Alex finds an old photo album and returns it to the librarian.", correct: true },
+                        { text: "Alex keeps the book because the photos are worth a lot.", correct: false },
+                        { text: "Ms. Rivera asks Alex to organize every shelf in the library.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "Where did Alex find the book?",
+                        prompt: "Alex found the book..."
+                    },
+                    {
+                        q: "What was inside the book?",
+                        prompt: "Inside the book were..."
+                    },
+                    {
+                        q: "What did the pictures show?",
+                        prompt: "The pictures showed..."
+                    },
+                    {
+                        q: "Who explained about the book?",
+                        prompt: "Ms. Rivera explained that..."
+                    }
+                ]
+            },
+            {
+                title: "The Soccer Game",
+                text: "Carlos practiced soccer every day after school. He wanted to make the winning goal in Saturday's big game. During the match, his teammate Emma passed him the ball. Carlos dribbled past two defenders and kicked hard. The ball soared into the net, and his whole team cheered!",
+                pronounQuestions: [
+                    {
+                        q: "Who practiced soccer every day?",
+                        help1: "The first sentence names a person. Is this a boy's or girl's name?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Carlos) practiced soccer."
+                    },
+                    {
+                        q: "Who passed the ball to Carlos?",
+                        help1: "Look at the third sentence. What does the name 'Emma' tell you?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Emma) passed the ball."
+                    },
+                    {
+                        q: "Who made the winning goal?",
+                        help1: "Who kicked the ball into the net? Look at sentences 4 and 5.",
+                        help2: "Complete: '_____ dribbled and kicked' (A) He (B) She (C) It",
+                        answer: "He (Carlos) made the goal."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Consider Carlos's goal for practice and what happens in the big game.",
+                    choices: [
+                        { text: "Carlos practices hard and scores the winning goal for his team.", correct: true },
+                        { text: "Emma scores the winning goal while Carlos watches from the bench.", correct: false },
+                        { text: "Carlos decides to quit soccer before the championship game begins.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What did Carlos do every day?",
+                        prompt: "Carlos practiced..."
+                    },
+                    {
+                        q: "What did Carlos want to do?",
+                        prompt: "Carlos wanted to..."
+                    },
+                    {
+                        q: "What happened during the match?",
+                        prompt: "During the match, Emma..."
+                    },
+                    {
+                        q: "How did the story end?",
+                        prompt: "The story ended when..."
+                    }
+                ]
+            },
+            {
+                title: "The Science Fair",
+                text: "Jordan worked on a volcano project for the science fair. They mixed baking soda and vinegar to create an eruption. The experiment was messy but exciting. Jordan's teacher, Mr. Lopez, was impressed by their presentation. He gave them a blue ribbon for creativity.",
+                pronounQuestions: [
+                    {
+                        q: "Who created the volcano eruption?",
+                        help1: "Find who did the mixing. The story doesn't specify boy or girl.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Jordan) created the eruption."
+                    },
+                    {
+                        q: "Who gave Jordan a blue ribbon?",
+                        help1: "Look for someone with the title 'Mr.' What does this tell you?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Mr. Lopez) gave the ribbon."
+                    },
+                    {
+                        q: "What impressed Mr. Lopez?",
+                        help1: "What did Jordan show to the teacher? Who presented it?",
+                        help2: "Complete: '_____ presentation' (A) His (B) Her (C) Their",
+                        answer: "Their presentation impressed him."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Look at what Jordan builds and how the teacher reacts.",
+                    choices: [
+                        { text: "Jordan's volcano project impresses the teacher and earns a blue ribbon.", correct: true },
+                        { text: "Jordan forgets the volcano at home and misses the science fair.", correct: false },
+                        { text: "Mr. Lopez asks every student to clean the messy lab after school.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What was Jordan's project?",
+                        prompt: "Jordan worked on..."
+                    },
+                    {
+                        q: "What did Jordan mix together?",
+                        prompt: "Jordan mixed..."
+                    },
+                    {
+                        q: "How did Mr. Lopez feel?",
+                        prompt: "Mr. Lopez was impressed by..."
+                    },
+                    {
+                        q: "What did Jordan receive?",
+                        prompt: "Jordan received..."
+                    }
+                ]
+            },
+            {
+                title: "The Birthday Surprise",
+                text: "Grandma June baked a three-layer chocolate cake for her grandson's birthday. She decorated it with blue frosting and ten candles. The kitchen smelled wonderful all afternoon. When Tommy arrived, he couldn't believe his eyes. She had created his favorite superhero on top of the cake!",
+                pronounQuestions: [
+                    {
+                        q: "Who baked the cake?",
+                        help1: "Look at the first sentence. The title 'Grandma' and name 'June' tell you this is female.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Grandma June) baked the cake."
+                    },
+                    {
+                        q: "Who couldn't believe his eyes?",
+                        help1: "Find Tommy in sentence 4. Is this name typically for a boy or girl?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Tommy) couldn't believe his eyes."
+                    },
+                    {
+                        q: "Who decorated the cake?",
+                        help1: "The same person who baked also decorated. Check sentences 1 and 2.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Grandma June) decorated it."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Think about what Grandma June prepares and how Tommy feels.",
+                    choices: [
+                        { text: "Grandma surprises Tommy with a special superhero cake she baked herself.", correct: true },
+                        { text: "Tommy bakes a birthday cake for Grandma and leaves off the frosting.", correct: false },
+                        { text: "Grandma buys simple cupcakes because she had no time to bake.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What did Grandma June make?",
+                        prompt: "Grandma June baked..."
+                    },
+                    {
+                        q: "How did she decorate it?",
+                        prompt: "She decorated it with..."
+                    },
+                    {
+                        q: "How did the kitchen smell?",
+                        prompt: "The kitchen smelled..."
+                    },
+                    {
+                        q: "What special detail was on the cake?",
+                        prompt: "On top of the cake was..."
+                    }
+                ]
+            },
+            {
+                title: "The Lost Puppy",
+                text: "Officer Davis found a small puppy wandering near the park. She checked the puppy's collar for a name tag. The tag said 'Milo' with a phone number. Officer Davis called the number and spoke to a worried family. They came to pick up their puppy within ten minutes.",
+                pronounQuestions: [
+                    {
+                        q: "Who found the puppy?",
+                        help1: "Look at the title 'Officer' and the name. Sentence 2 gives you a pronoun clue.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Officer Davis) found the puppy."
+                    },
+                    {
+                        q: "Who came to pick up the puppy?",
+                        help1: "Look at the last sentence. Was it one person or a group?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (the family) picked up the puppy."
+                    },
+                    {
+                        q: "Who called the phone number?",
+                        help1: "Find who made the call in sentence 4. This is the same person who found the puppy.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Officer Davis) called."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Focus on what Officer Davis does after finding the puppy.",
+                    choices: [
+                        { text: "Officer Davis finds a lost puppy and reunites it with its family.", correct: true },
+                        { text: "Officer Davis keeps the puppy because it has no name on the tag.", correct: false },
+                        { text: "The family decides to give the puppy away to a new neighbor.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "Where did Officer Davis find the puppy?",
+                        prompt: "Officer Davis found the puppy..."
+                    },
+                    {
+                        q: "What information was on the tag?",
+                        prompt: "The tag said..."
+                    },
+                    {
+                        q: "What did Officer Davis do next?",
+                        prompt: "Officer Davis called..."
+                    },
+                    {
+                        q: "How long did it take the family to arrive?",
+                        prompt: "The family came..."
+                    }
+                ]
+            },
+            {
+                title: "The Art Class",
+                text: "Sam loves painting pictures of animals. They brought their own brushes to art class today. Mrs. Kim showed the class how to mix colors for sunset backgrounds. Sam painted a purple and orange sky behind a wolf. Their artwork won first place in the school art show.",
+                pronounQuestions: [
+                    {
+                        q: "Who brought brushes to class?",
+                        help1: "The text doesn't say if Sam is a boy or girl. Check sentence 2.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Sam) brought brushes."
+                    },
+                    {
+                        q: "Who showed the class about mixing colors?",
+                        help1: "Look for the teacher. The title 'Mrs.' tells you this is female.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Mrs. Kim) showed the class."
+                    },
+                    {
+                        q: "Whose artwork won first place?",
+                        help1: "Who painted the wolf picture? This is the main character.",
+                        help2: "Complete: '_____ artwork won' (A) His (B) Her (C) Their",
+                        answer: "Their (Sam's) artwork won."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Notice what Sam paints and how the class reacts.",
+                    choices: [
+                        { text: "Sam paints a sunset scene with a wolf and wins the art show.", correct: true },
+                        { text: "Sam forgets their brushes and cannot finish the painting in class.", correct: false },
+                        { text: "Mrs. Kim asks Sam to paint only food instead of animals.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What does Sam love to paint?",
+                        prompt: "Sam loves painting..."
+                    },
+                    {
+                        q: "What did Mrs. Kim teach?",
+                        prompt: "Mrs. Kim showed the class..."
+                    },
+                    {
+                        q: "What did Sam paint?",
+                        prompt: "Sam painted..."
+                    },
+                    {
+                        q: "What happened at the art show?",
+                        prompt: "Sam's artwork..."
+                    }
+                ]
+            },
+            {
+                title: "The Camping Trip",
+                text: "Uncle Marcus took his nieces camping in the mountains last weekend. He taught them how to set up a tent and build a campfire. The girls learned to identify different animal tracks in the dirt. At night, he pointed out constellations in the starry sky. Everyone agreed it was the best trip ever.",
+                pronounQuestions: [
+                    {
+                        q: "Who taught about setting up the tent?",
+                        help1: "Find 'Uncle Marcus' in the text. The title 'Uncle' indicates male.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Uncle Marcus) taught them."
+                    },
+                    {
+                        q: "Who learned about animal tracks?",
+                        help1: "Look at sentence 3. The word 'girls' tells you about gender and number.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (the girls) learned."
+                    },
+                    {
+                        q: "Who pointed out constellations?",
+                        help1: "This is the same person who taught camping skills. Check sentences 2 and 4.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Uncle Marcus) pointed them out."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Think about what Uncle Marcus teaches his nieces during the trip.",
+                    choices: [
+                        { text: "Uncle Marcus teaches his nieces camping skills during their mountain trip.", correct: true },
+                        { text: "The girls spend the weekend indoors because the weather is stormy.", correct: false },
+                        { text: "Uncle Marcus forgets the tent and they decide to drive back home.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "Who went camping?",
+                        prompt: "Uncle Marcus and his nieces..."
+                    },
+                    {
+                        q: "What did Uncle Marcus teach?",
+                        prompt: "He taught them how to..."
+                    },
+                    {
+                        q: "What did the girls learn about?",
+                        prompt: "The girls learned to identify..."
+                    },
+                    {
+                        q: "What did they see at night?",
+                        prompt: "At night, they saw..."
+                    }
+                ]
+            },
+            {
+                title: "The Invention",
+                text: "Riley spent months building a robot in their garage workshop. They programmed it to help sort recyclables into different bins. The robot had spinning wheels and mechanical arms. Riley's parents were amazed when they saw the demonstration. The local newspaper wrote a story about their talented young inventor.",
+                pronounQuestions: [
+                    {
+                        q: "Who built the robot?",
+                        help1: "Check the first sentence. The story doesn't specify if Riley is a boy or girl.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Riley) built the robot."
+                    },
+                    {
+                        q: "Who were amazed by the demonstration?",
+                        help1: "Look at sentence 4. Was it one parent or both?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Riley's parents) were amazed."
+                    },
+                    {
+                        q: "Who did the newspaper write about?",
+                        help1: "The inventor is the main person in this story. Check the last sentence.",
+                        help2: "Complete: '_____ talented inventor' (A) his (B) her (C) their",
+                        answer: "Their (Riley's) invention was featured."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Focus on what Riley builds and how others respond.",
+                    choices: [
+                        { text: "Riley creates a recycling robot that impresses their parents and community.", correct: true },
+                        { text: "Riley's robot breaks immediately and nobody wants to see the invention.", correct: false },
+                        { text: "The newspaper asks Riley to stop experimenting in the garage workshop.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What did Riley build?",
+                        prompt: "Riley built..."
+                    },
+                    {
+                        q: "What did the robot do?",
+                        prompt: "The robot helped..."
+                    },
+                    {
+                        q: "How did Riley's parents react?",
+                        prompt: "Riley's parents were..."
+                    },
+                    {
+                        q: "What did the newspaper do?",
+                        prompt: "The newspaper wrote..."
+                    }
+                ]
+            },
+            {
+                title: "The School Play",
+                text: "Ms. Thompson directed the school play about pirates. She held auditions for two weeks to find the perfect cast. A student named Casey earned the lead role of Captain Redbeard. They practiced their lines every afternoon. Casey's performance on opening night made everyone in the audience cheer.",
+                pronounQuestions: [
+                    {
+                        q: "Who directed the play?",
+                        help1: "Find the director's name and title. 'Ms.' tells you this is female.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Ms. Thompson) directed it."
+                    },
+                    {
+                        q: "Who earned the lead role?",
+                        help1: "Find Casey in sentence 3. The story doesn't say boy or girl.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Casey) earned the role."
+                    },
+                    {
+                        q: "Who held auditions?",
+                        help1: "The director would hold auditions. Check sentence 2.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Ms. Thompson) held auditions."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Notice who earns the lead role and what happens at the performance.",
+                    choices: [
+                        { text: "Casey practices hard as Captain Redbeard and thrills the audience on opening night.", correct: true },
+                        { text: "Ms. Thompson cancels the play because no students audition for any roles.", correct: false },
+                        { text: "Casey forgets the lines and the audience quietly leaves the theater.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What was the play about?",
+                        prompt: "The play was about..."
+                    },
+                    {
+                        q: "How long were auditions?",
+                        prompt: "Ms. Thompson held auditions for..."
+                    },
+                    {
+                        q: "Who got the lead role?",
+                        prompt: "Casey earned..."
+                    },
+                    {
+                        q: "What happened on opening night?",
+                        prompt: "On opening night..."
+                    }
+                ]
+            },
+            {
+                title: "The Rainy Day Adventure",
+                text: "Noah noticed the rain had created huge puddles in his backyard. He put on his yellow rain boots and ran outside. The biggest puddle was perfect for jumping. Noah's little sister, Zoe, watched from the window and wanted to join. She quickly got ready and splashed alongside him.",
+                pronounQuestions: [
+                    {
+                        q: "Who put on yellow rain boots?",
+                        help1: "Look at sentence 2. 'Noah' is typically a boy's name.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Noah) put on boots."
+                    },
+                    {
+                        q: "Who watched from the window?",
+                        help1: "Find Zoe in sentence 4. The text says 'little sister.'",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Zoe) watched."
+                    },
+                    {
+                        q: "Who splashed alongside Noah?",
+                        help1: "Who got ready and went outside in sentence 5?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Zoe) splashed with him."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Think about what Noah and Zoe do once it starts raining.",
+                    choices: [
+                        { text: "Noah and Zoe enjoy jumping in the backyard puddles together.", correct: true },
+                        { text: "Noah stays inside because he dislikes getting his yellow boots wet.", correct: false },
+                        { text: "Zoe watches the rain but refuses to play with her brother.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What did Noah notice?",
+                        prompt: "Noah noticed that..."
+                    },
+                    {
+                        q: "What did Noah do?",
+                        prompt: "Noah put on his boots and..."
+                    },
+                    {
+                        q: "Who wanted to join?",
+                        prompt: "Zoe watched and..."
+                    },
+                    {
+                        q: "What did Zoe do?",
+                        prompt: "Zoe got ready and..."
+                    }
+                ]
+            },
+            {
+                title: "The Community Garden",
+                text: "Taylor volunteered at the community garden every Saturday morning. They pulled weeds, watered vegetables, and picked ripe tomatoes. Mr. Washington, the garden coordinator, appreciated their hard work. He gave Taylor a basket of fresh carrots to take home. Taylor's family made a delicious soup with them that evening.",
+                pronounQuestions: [
+                    {
+                        q: "Who volunteered on Saturdays?",
+                        help1: "The main person isn't identified as boy or girl in the story.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Taylor) volunteered."
+                    },
+                    {
+                        q: "Who gave Taylor the carrots?",
+                        help1: "Look for 'Mr. Washington.' What does 'Mr.' tell you?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Mr. Washington) gave carrots."
+                    },
+                    {
+                        q: "Whose family made soup?",
+                        help1: "Who brought the carrots home? This is the volunteer.",
+                        help2: "Complete: '_____ family' (A) His (B) Her (C) Their",
+                        answer: "Their (Taylor's) family made soup."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Focus on how Taylor helps at the community garden.",
+                    choices: [
+                        { text: "Taylor volunteers in the garden and takes home fresh carrots for soup.", correct: true },
+                        { text: "Taylor forgets to water the plants and all the vegetables dry out.", correct: false },
+                        { text: "Mr. Washington tells Taylor to stop visiting the garden every Saturday.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "When did Taylor volunteer?",
+                        prompt: "Taylor volunteered..."
+                    },
+                    {
+                        q: "What work did Taylor do?",
+                        prompt: "Taylor pulled weeds, watered..."
+                    },
+                    {
+                        q: "What did Mr. Washington give Taylor?",
+                        prompt: "Mr. Washington gave..."
+                    },
+                    {
+                        q: "What did Taylor's family make?",
+                        prompt: "Taylor's family made..."
+                    }
+                ]
+            },
+            {
+                title: "The Swimming Lesson",
+                text: "Coach Maria teaches swimming at the recreation center. She demonstrates proper breathing techniques for the backstroke. Eight-year-old Lily watches carefully and tries to copy her movements. The little girl kicks her legs and glides through the water. Coach Maria smiles proudly as she sees Lily's improvement.",
+                pronounQuestions: [
+                    {
+                        q: "Who teaches swimming?",
+                        help1: "Find Coach Maria in the first sentence. 'Maria' is typically a girl's name.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Coach Maria) teaches."
+                    },
+                    {
+                        q: "Who tries to copy the movements?",
+                        help1: "Look at sentence 3. It says 'little girl.'",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Lily) copies the movements."
+                    },
+                    {
+                        q: "Who demonstrates breathing techniques?",
+                        help1: "The coach demonstrates. Check sentence 2.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Coach Maria) demonstrates."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Think about what Coach Maria teaches Lily during the lesson.",
+                    choices: [
+                        { text: "Coach Maria teaches Lily the backstroke and is proud of her progress.", correct: true },
+                        { text: "Lily refuses to practice, so Coach Maria cancels the swimming lesson.", correct: false },
+                        { text: "Coach Maria only watches other students and ignores Lily's efforts.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "Where does Coach Maria teach?",
+                        prompt: "Coach Maria teaches at..."
+                    },
+                    {
+                        q: "What does Coach Maria demonstrate?",
+                        prompt: "She demonstrates..."
+                    },
+                    {
+                        q: "What does Lily do?",
+                        prompt: "Lily watches and tries to..."
+                    },
+                    {
+                        q: "How does Coach Maria feel?",
+                        prompt: "Coach Maria smiles because..."
+                    }
+                ]
+            },
+            {
+                title: "The Chess Tournament",
+                text: "Dr. Anderson organized a chess tournament at the community center. He invited players of all ages to participate. Morgan arrived early to practice their opening moves. They had studied chess strategies for months. Morgan's dedication paid off when they won the tournament trophy.",
+                pronounQuestions: [
+                    {
+                        q: "Who organized the tournament?",
+                        help1: "Find the person with 'Dr.' in their title. Sentence 2 gives a pronoun.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Dr. Anderson) organized it."
+                    },
+                    {
+                        q: "Who arrived early to practice?",
+                        help1: "Find Morgan in sentence 3. The text doesn't specify boy or girl.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Morgan) arrived early."
+                    },
+                    {
+                        q: "Who won the trophy?",
+                        help1: "Who studied and was dedicated? Check the last sentence.",
+                        help2: "Complete: '_____ dedication' (A) His (B) Her (C) Their",
+                        answer: "Their (Morgan's) dedication paid off."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Focus on Morgan's preparation and what happens at the tournament.",
+                    choices: [
+                        { text: "Morgan studies chess strategies and wins the community tournament trophy.", correct: true },
+                        { text: "Morgan forgets the rules and leaves the tournament before the games start.", correct: false },
+                        { text: "Dr. Anderson cancels the event because nobody wants to play chess.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What did Dr. Anderson organize?",
+                        prompt: "Dr. Anderson organized..."
+                    },
+                    {
+                        q: "Who did he invite?",
+                        prompt: "He invited..."
+                    },
+                    {
+                        q: "What did Morgan do to prepare?",
+                        prompt: "Morgan studied..."
+                    },
+                    {
+                        q: "What happened at the tournament?",
+                        prompt: "Morgan won..."
+                    }
+                ]
+            },
+            {
+                title: "The Bake Sale",
+                text: "Isabella decided to bake cookies for the school bake sale. She made chocolate chip, oatmeal, and peanut butter varieties. Her little brother, Max, helped by stirring the dough. He carefully placed each cookie on the baking sheet. Together, they raised money for new playground equipment.",
+                pronounQuestions: [
+                    {
+                        q: "Who decided to bake cookies?",
+                        help1: "Look at the first sentence. 'Isabella' is typically a girl's name.",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "She (Isabella) decided to bake."
+                    },
+                    {
+                        q: "Who helped stir the dough?",
+                        help1: "Find Max in sentence 3. It says 'little brother.'",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "He (Max) helped stir."
+                    },
+                    {
+                        q: "Who raised money together?",
+                        help1: "The last sentence says two people worked together. How many?",
+                        help2: "Choose the pronoun: (A) He (B) She (C) They",
+                        answer: "They (Isabella and Max) raised money."
+                    }
+                ],
+                mainIdea: {
+                    question: "What is the main idea of this story?",
+                    clue: "Think about what Isabella and Max do for the bake sale.",
+                    choices: [
+                        { text: "Isabella and Max bake different cookies to raise money for new equipment.", correct: true },
+                        { text: "Max eats all the cookies and the bake sale has nothing to sell.", correct: false },
+                        { text: "Isabella decides to buy candy instead of baking treats for school.", correct: false }
+                    ]
+                },
+                keyEvents: [
+                    {
+                        q: "What did Isabella decide to do?",
+                        prompt: "Isabella decided to..."
+                    },
+                    {
+                        q: "What kinds of cookies did she make?",
+                        prompt: "She made..."
+                    },
+                    {
+                        q: "How did Max help?",
+                        prompt: "Max helped by..."
+                    },
+                    {
+                        q: "What was the money for?",
+                        prompt: "They raised money for..."
+                    }
+                ]
+            }
+        ];
+
+        const transitionWords = [
+            'First', 'Next', 'Then', 'After that', 'Finally',
+            'Because', 'So', 'When', 'While', 'Before',
+            'After', 'Later', 'Soon', 'Meanwhile', 'However'
+        ];
+
+        function shuffleArray(array) {
+            const copy = [...array];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function setQuestionType(type) {
+            questionType = type;
+
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+                toggleBtns.forEach(btn => {
+                    if ((type === 'pronouns' && btn.textContent.includes('Pronoun')) ||
+                        (type === 'events' && btn.textContent.includes('Events')) ||
+                        (type === 'mainIdea' && btn.textContent.includes('Main Idea')) ||
+                        (type === 'retelling' && btn.textContent.includes('Retelling'))) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+            });
+
+            goToStory(currentStory);
+        }
+
+        function createStory(story, index) {
+            const storyDiv = document.createElement('div');
+            storyDiv.className = index === currentStory ? 'story active' : 'story';
+            storyDiv.id = `story-${index}`;
+            
+            let html = `<h2><span class="story-number">Story ${index + 1}</span>${story.title}</h2>`;
+            html += `<div class="story-text">${story.text}</div>`;
+            
+            if (questionType === 'pronouns') {
+                html += `<div class="questions-section">`;
+                html += `<div class="section-title">Pronoun Questions</div>`;
+                
+                story.pronounQuestions.forEach((q, qIndex) => {
+                    const qId = `pq-${index}-${qIndex}`;
+                    html += `
+                        <div class="question">
+                            <label class="question-label">${qIndex + 1}. ${q.q}</label>
+                            <textarea class="answer-input" id="${qId}-input" placeholder="Type your answer using complete sentences..."></textarea>
+                            <div class="help-section">
+                                <button class="help-btn" onclick="toggleHelp('${qId}', 1)">💡 Help Level 1</button>
+                                <button class="help-btn" onclick="toggleHelp('${qId}', 2)">💡 Help Level 2</button>
+                                <div id="${qId}-help1" class="help-content help-level-1">${q.help1}</div>
+                                <div id="${qId}-help2" class="help-content help-level-2">${q.help2}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            } else if (questionType === 'events') {
+                html += `<div class="questions-section">`;
+                html += `<div class="section-title">Key Events & Details</div>`;
+
+                story.keyEvents.forEach((evt, eIndex) => {
+                    const eId = `ke-${index}-${eIndex}`;
+                    html += `
+                        <div class="key-events">
+                            <label class="event-prompt">${eIndex + 1}. ${evt.q}</label>
+                            <div class="detail-prompt">${evt.prompt}</div>
+                            <textarea class="answer-input" id="${eId}-input" placeholder="Type your answer here..."></textarea>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            } else if (questionType === 'mainIdea') {
+                html += `<div class="questions-section">`;
+                html += `<div class="section-title">Main Idea</div>`;
+
+                if (story.mainIdea) {
+                    const miId = `mi-${index}`;
+                    const shuffledChoices = shuffleArray(story.mainIdea.choices || []);
+                    html += `
+                        <div class="main-idea-section">
+                            <div class="main-idea-question">${story.mainIdea.question}</div>
+                            <textarea class="answer-input" id="${miId}-input" placeholder="Explain the main idea in your own words..."></textarea>
+                            <div class="help-section">
+                                <button class="help-btn" onclick="toggleHelp('${miId}', 1)">💡 I Need Help</button>
+                                <button class="help-btn" onclick="toggleHelp('${miId}', 2)">✨ I Need More Help</button>
+                                <div id="${miId}-help1" class="help-content help-level-1">${story.mainIdea.clue}</div>
+                                <div id="${miId}-help2" class="help-content help-level-2">
+                                    <p style="margin-bottom: 12px; font-weight: bold; color: #8e24aa;">Tap a possible main idea:</p>
+                                    <div class="main-idea-choice-group" id="${miId}-choices">
+                                        ${shuffledChoices.map(choice => `
+                                            <button type="button" class="main-idea-choice-btn"
+                                                onclick="selectMainIdeaChoice(${index}, this)"
+                                                data-correct="${choice.correct ? 'true' : 'false'}">
+                                                ${choice.text}
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                    <div class="main-idea-feedback" id="${miId}-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    html += `<p class="help-content show">Main idea prompts coming soon.</p>`;
+                }
+
+                html += `</div>`;
+            } else if (questionType === 'retelling') {
+                html += `<div class="retelling-section">`;
+
+                // Step 1: List the Events
+                html += `
+                    <div class="retelling-step">
+                        <div class="step-title">
+                            <span class="step-number">1</span>
+                            <span>List the Main Events in Order</span>
+                        </div>
+                        <p style="margin-bottom: 15px; color: #666;">Write 4 main events from the story. Keep them simple!</p>
+                        <div class="events-grid">
+                            <div class="event-box">
+                                <label class="event-label">Event 1 (Beginning)</label>
+                                <textarea class="event-input" id="event1-${index}" placeholder="What happened first?"></textarea>
+                            </div>
+                            <div class="event-box">
+                                <label class="event-label">Event 2</label>
+                                <textarea class="event-input" id="event2-${index}" placeholder="What happened next?"></textarea>
+                            </div>
+                            <div class="event-box">
+                                <label class="event-label">Event 3</label>
+                                <textarea class="event-input" id="event3-${index}" placeholder="Then what?"></textarea>
+                            </div>
+                            <div class="event-box">
+                                <label class="event-label">Event 4 (End)</label>
+                                <textarea class="event-input" id="event4-${index}" placeholder="How did it end?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Step 2: Transition Word Bank
+                html += `
+                    <div class="retelling-step">
+                        <div class="step-title">
+                            <span class="step-number">2</span>
+                            <span>Explore Transition Words</span>
+                        </div>
+                        <p style="margin-bottom: 15px; color: #666;">Click transition words to add them to your retelling or to plan which ones you'll use.</p>
+                        <div class="transition-bank">
+                            <div class="bank-title">🔗 Transition Word Bank</div>
+                            <div class="bank-subtitle">Click on transition words to help you connect your ideas!</div>
+                            <div class="transition-words" id="transition-bank-${index}">
+                                ${transitionWords.map(word =>
+                                    `<span class="transition-word" onclick="insertTransition(${index}, '${word}')">${word}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Step 3: Combined Retelling
+                html += `
+                    <div class="retelling-step">
+                        <div class="step-title">
+                            <span class="step-number">3</span>
+                            <span>Combine Your Events with Transition Words</span>
+                        </div>
+                        <p style="margin-bottom: 15px; color: #666;">Use transition words from the bank above to connect your events into a flowing retelling!</p>
+                        <div class="combined-retelling">
+                            <textarea class="retelling-textarea" id="retelling-${index}"
+                                placeholder="Start retelling the story here using transition words to connect your events..."
+                                oninput="checkTransitions(${index})"></textarea>
+                            <div class="word-counter" id="counter-${index}">Word count: 0</div>
+                            <div class="transition-used-list" id="used-list-${index}" style="display:none;">
+                                <div class="used-title">✓ Transition Words You've Used:</div>
+                                <div class="used-words" id="used-words-${index}"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                html += `</div>`;
+            }
+            
+            storyDiv.innerHTML = html;
+            return storyDiv;
+        }
+
+        function toggleHelp(qId, level) {
+            const helpDiv = document.getElementById(`${qId}-help${level}`);
+            const otherHelpDiv = document.getElementById(`${qId}-help${level === 1 ? 2 : 1}`);
+
+            if (helpDiv.classList.contains('show')) {
+                helpDiv.classList.remove('show');
+            } else {
+                if (otherHelpDiv) {
+                    otherHelpDiv.classList.remove('show');
+                }
+                helpDiv.classList.add('show');
+            }
+        }
+
+        function insertTransition(storyIndex, word) {
+            const textarea = document.getElementById(`retelling-${storyIndex}`);
+            if (!textarea) {
+                return;
+            }
+            const cursorPos = textarea.selectionStart;
+            const textBefore = textarea.value.substring(0, cursorPos);
+            const textAfter = textarea.value.substring(cursorPos);
+
+            // Add the word with appropriate spacing
+            const needsSpaceBefore = textBefore.length > 0 && !textBefore.endsWith(' ');
+            const insertion = (needsSpaceBefore ? ' ' : '') + word + ' ';
+
+            textarea.value = textBefore + insertion + textAfter;
+            textarea.focus();
+
+            // Move cursor after inserted word
+            const newCursorPos = cursorPos + insertion.length;
+            textarea.setSelectionRange(newCursorPos, newCursorPos);
+
+            // Update the transition checker
+            checkTransitions(storyIndex);
+        }
+
+        function checkTransitions(storyIndex) {
+            const textarea = document.getElementById(`retelling-${storyIndex}`);
+            const wordCounter = document.getElementById(`counter-${storyIndex}`);
+            const usedList = document.getElementById(`used-list-${storyIndex}`);
+            const usedWordsDiv = document.getElementById(`used-words-${storyIndex}`);
+
+            if (!textarea || !wordCounter || !usedList || !usedWordsDiv) {
+                return;
+            }
+
+            const text = textarea.value.toLowerCase();
+
+            // Count words
+            const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            wordCounter.textContent = `Word count: ${wordCount}`;
+
+            // Check which transition words are used
+            const usedTransitions = [];
+            transitionWords.forEach(word => {
+                const wordLower = word.toLowerCase();
+                // Check if the word appears as a whole word (not part of another word)
+                const regex = new RegExp('\\b' + wordLower + '\\b', 'i');
+                if (regex.test(text)) {
+                    usedTransitions.push(word);
+                }
+            });
+
+            // Update the word bank to highlight used words
+            const bankDiv = document.getElementById(`transition-bank-${storyIndex}`);
+            if (bankDiv) {
+                const wordSpans = bankDiv.querySelectorAll('.transition-word');
+                wordSpans.forEach(span => {
+                    const word = span.textContent;
+                    if (usedTransitions.includes(word)) {
+                        span.classList.add('used');
+                    } else {
+                        span.classList.remove('used');
+                    }
+                });
+            }
+
+            // Show/update the used words list
+            if (usedTransitions.length > 0) {
+                usedList.style.display = 'block';
+                usedWordsDiv.innerHTML = usedTransitions.map(word =>
+                    `<span class="used-word-badge">${word}</span>`
+                ).join('');
+            } else {
+                usedList.style.display = 'none';
+            }
+        }
+
+        function selectMainIdeaChoice(storyIndex, button) {
+            const choicesContainer = document.getElementById(`mi-${storyIndex}-choices`);
+            const feedback = document.getElementById(`mi-${storyIndex}-feedback`);
+
+            if (!choicesContainer || !feedback) {
+                return;
+            }
+
+            const buttons = choicesContainer.querySelectorAll('.main-idea-choice-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            const isCorrect = button.dataset.correct === 'true';
+            button.classList.add('selected');
+            button.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+            if (isCorrect) {
+                feedback.textContent = 'Great job! That sentence captures the main idea.';
+                feedback.style.color = '#2e7d32';
+            } else {
+                feedback.textContent = 'Not quite. Try another option that matches the biggest idea of the story.';
+                feedback.style.color = '#c62828';
+            }
+        }
+
+        function goToStory(index) {
+            currentStory = index;
+            
+            const container = document.getElementById('stories-container');
+            container.innerHTML = '';
+            
+            stories.forEach((story, i) => {
+                if (i === index) {
+                    container.appendChild(createStory(story, i));
+                }
+            });
+            
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === stories.length - 1;
+            
+            if (index === stories.length - 1) {
+                nextBtn.textContent = 'All Done! 🎉';
+            } else {
+                nextBtn.textContent = 'Next →';
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function nextStory() {
+            if (currentStory < stories.length - 1) {
+                goToStory(currentStory + 1);
+            }
+        }
+
+        function previousStory() {
+            if (currentStory > 0) {
+                goToStory(currentStory - 1);
+            }
+        }
+
+        // Initialize navigation
+        const navigation = document.getElementById('navigation');
+        stories.forEach((story, index) => {
+            const navBtn = document.createElement('button');
+            navBtn.className = index === 0 ? 'nav-btn active' : 'nav-btn';
+            navBtn.textContent = `${index + 1}`;
+            navBtn.onclick = () => goToStory(index);
+            navigation.appendChild(navBtn);
+        });
+        
+        // Initialize first story
+        goToStory(0);
+    </script>
+</body>
+</html>

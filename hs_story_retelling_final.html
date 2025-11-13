@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Retelling & Story Grammar Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --success: #10b981;
+            --accent: #8b5cf6;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        .filter-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .length-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .length-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--accent);
+        }
+
+        .length-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .length-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .story-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .story-btn {
+            padding: 12px 24px;
+            background: var(--light-gray);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .story-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .story-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .story-container {
+            display: none;
+        }
+
+        .story-container.active {
+            display: block;
+        }
+
+        .story-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--accent);
+            color: white;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .story-text {
+            background: var(--light-gray);
+            padding: 25px;
+            border-radius: 12px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .story-text p {
+            margin-bottom: 15px;
+        }
+
+        .story-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instruction {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .retelling-step {
+            margin-bottom: 25px;
+        }
+
+        .transition-word {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .question-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .question-label {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            color: var(--gray);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .activity-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .toggle-btn {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .toggle-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .activity-content {
+            display: none;
+        }
+
+        .activity-content.active {
+            display: block;
+        }
+
+        .help-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .help-btn {
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .help-btn:hover {
+            background: #7c3aed;
+        }
+
+        .help-btn.secondary {
+            background: #f59e0b;
+        }
+
+        .help-btn.secondary:hover {
+            background: #d97706;
+        }
+
+        .help-content {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 6px;
+        }
+
+        .help-content.show {
+            display: block;
+        }
+
+        .help-content strong {
+            color: #92400e;
+        }
+
+        .sentence-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .sentence-option {
+            padding: 12px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .sentence-option:hover {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .sentence-option.selected {
+            border-color: var(--success);
+            background: #d1fae5;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .story-selector {
+                display: none;
+            }
+            
+            .story-container {
+                display: block !important;
+                page-break-after: always;
+            }
+            
+            button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📖 Story Retelling & Story Grammar Practice</h1>
+            <p class="subtitle">Read each story, retell it using transition words, and answer story grammar questions</p>
+        </header>
+
+        <div class="filter-section">
+            <div class="filter-label">Filter by Length:</div>
+            <div class="length-selector">
+                <button class="length-btn active" onclick="filterByLength('all')">All Stories</button>
+                <button class="length-btn" onclick="filterByLength('short')">Short Stories</button>
+                <button class="length-btn" onclick="filterByLength('medium')">Medium Stories</button>
+                <button class="length-btn" onclick="filterByLength('long')">Long Stories</button>
+            </div>
+        </div>
+
+        <div class="story-selector">
+            <button class="story-btn active" data-length="short" onclick="showStory(1)">Story 1</button>
+            <button class="story-btn" data-length="short" onclick="showStory(2)">Story 2</button>
+            <button class="story-btn" data-length="short" onclick="showStory(3)">Story 3</button>
+            <button class="story-btn" data-length="short" onclick="showStory(4)">Story 4</button>
+            <button class="story-btn" data-length="short" onclick="showStory(5)">Story 5</button>
+            <button class="story-btn" data-length="medium" onclick="showStory(6)">Story 6</button>
+            <button class="story-btn" data-length="medium" onclick="showStory(7)">Story 7</button>
+            <button class="story-btn" data-length="medium" onclick="showStory(8)">Story 8</button>
+            <button class="story-btn" data-length="medium" onclick="showStory(9)">Story 9</button>
+            <button class="story-btn" data-length="long" onclick="showStory(10)">Story 10</button>
+            <button class="story-btn" data-length="long" onclick="showStory(11)">Story 11</button>
+            <button class="story-btn" data-length="long" onclick="showStory(12)">Story 12</button>
+        </div>
+
+        <!-- Story 1: Short -->
+        <div class="story-container active" id="story1" data-length="short">
+            <span class="story-badge">Story 1 - Short</span>
+            <div class="story-text">
+                <p>Maria's phone battery died during lunch. She needed to text her mom about a schedule change after school. Her friend Carlos noticed she looked worried and offered to let her use his phone. Maria thanked him and quickly sent the message. She felt relieved that her mom would know where to pick her up.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(1, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(1, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story1-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are the main people in this story? Describe them briefly.</div>
+                        <textarea placeholder="Write about the characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Setting</div>
+                        <div class="question-text">Where and when does this story take place?</div>
+                        <textarea placeholder="Describe the setting..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Problem</div>
+                        <div class="question-text">What problem or challenge did the character face?</div>
+                        <textarea placeholder="Explain the problem..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Solution</div>
+                        <div class="question-text">How was the problem solved?</div>
+                        <textarea placeholder="Describe the solution..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Feelings</div>
+                        <div class="question-text">How did the main character feel at the beginning and at the end? What caused these feelings?</div>
+                        <textarea placeholder="Discuss the character's feelings..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story1-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">First,</div>
+                        <textarea id="story1-step1" placeholder="What happened at the beginning?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(1, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(1, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story1-step1-clue">
+                            <strong>Clue:</strong> Think about what happened to Maria's phone and what problem this created.
+                        </div>
+                        <div class="help-content" id="story1-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Next,</div>
+                        <textarea id="story1-step2" placeholder="What happened after that?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(1, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(1, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story1-step2-clue">
+                            <strong>Clue:</strong> Who noticed Maria was worried? What did he see or notice about her?
+                        </div>
+                        <div class="help-content" id="story1-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Then,</div>
+                        <textarea id="story1-step3" placeholder="What happened next?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(1, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(1, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story1-step3-clue">
+                            <strong>Clue:</strong> How did Carlos help Maria solve her problem?
+                        </div>
+                        <div class="help-content" id="story1-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Finally,</div>
+                        <textarea id="story1-step4" placeholder="How did the story end?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(1, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(1, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story1-step4-clue">
+                            <strong>Clue:</strong> How did Maria feel after sending the message? Why did she feel this way?
+                        </div>
+                        <div class="help-content" id="story1-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 2: Short -->
+        <div class="story-container" id="story2" data-length="short">
+            <span class="story-badge">Story 2 - Short</span>
+            <div class="story-text">
+                <p>Jake studied hard for his chemistry test all week. When the teacher handed back the exams, he saw a big red A at the top of his paper. His lab partner Sarah high-fived him and said she knew he would do well. Jake smiled and texted a photo of the test to his parents. They replied immediately with congratulations and celebration emojis.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(2, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(2, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story2-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are the main people in this story? Describe them briefly.</div>
+                        <textarea placeholder="Write about the characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Setting</div>
+                        <div class="question-text">Where and when does this story take place?</div>
+                        <textarea placeholder="Describe the setting..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Problem/Goal</div>
+                        <div class="question-text">What was Jake trying to achieve or accomplish?</div>
+                        <textarea placeholder="Explain Jake's goal..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Outcome</div>
+                        <div class="question-text">What was the result? Did Jake achieve his goal?</div>
+                        <textarea placeholder="Describe what happened..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Feelings & Reactions</div>
+                        <div class="question-text">How did Jake feel, and how did others react to his success?</div>
+                        <textarea placeholder="Discuss feelings and reactions..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story2-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">First,</div>
+                        <textarea id="story2-step1" placeholder="What happened at the beginning?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(2, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(2, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story2-step1-clue">
+                            <strong>Clue:</strong> What did Jake do before the test? How did he prepare?
+                        </div>
+                        <div class="help-content" id="story2-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Next,</div>
+                        <textarea id="story2-step2" placeholder="What happened after that?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(2, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(2, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story2-step2-clue">
+                            <strong>Clue:</strong> What happened when the teacher returned the tests? What did Jake see?
+                        </div>
+                        <div class="help-content" id="story2-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Then,</div>
+                        <textarea id="story2-step3" placeholder="What happened next?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(2, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(2, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story2-step3-clue">
+                            <strong>Clue:</strong> How did Sarah react to Jake's grade? What did she do?
+                        </div>
+                        <div class="help-content" id="story2-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Finally,</div>
+                        <textarea id="story2-step4" placeholder="How did the story end?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(2, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(2, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story2-step4-clue">
+                            <strong>Clue:</strong> Who else did Jake share the news with? How did they respond?
+                        </div>
+                        <div class="help-content" id="story2-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 3: Short -->
+        <div class="story-container" id="story3" data-length="short">
+            <span class="story-badge">Story 3 - Short</span>
+            <div class="story-text">
+                <p>Destiny was nervous before giving her speech in English class. Her hands were shaking, and her heart was pounding. She took three deep breaths and looked at her note cards. When she started speaking, her voice was strong and clear. The class clapped when she finished, and her teacher smiled proudly at her.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(3, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(3, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story3-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who is the main character in this story? Describe them briefly.</div>
+                        <textarea placeholder="Write about the character..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Setting</div>
+                        <div class="question-text">Where does this story take place?</div>
+                        <textarea placeholder="Describe the setting..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Challenge</div>
+                        <div class="question-text">What challenge or fear did Destiny face?</div>
+                        <textarea placeholder="Explain the challenge..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Actions</div>
+                        <div class="question-text">What did Destiny do to overcome her nervousness?</div>
+                        <textarea placeholder="Describe her actions..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Outcome</div>
+                        <div class="question-text">How did the story end? How did Destiny and others feel?</div>
+                        <textarea placeholder="Discuss the outcome..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story3-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">At first,</div>
+                        <textarea placeholder="How was Destiny feeling before the speech?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(3, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(3, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story3-step1-clue">
+                            <strong>Clue:</strong> What physical signs showed that Destiny was nervous?
+                        </div>
+                        <div class="help-content" id="story3-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Before speaking,</div>
+                        <textarea placeholder="What did Destiny do to prepare herself?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(3, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(3, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story3-step2-clue">
+                            <strong>Clue:</strong> What two things did Destiny do to calm herself?
+                        </div>
+                        <div class="help-content" id="story3-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">When she began,</div>
+                        <textarea placeholder="What happened when Destiny started her speech?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(3, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(3, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story3-step3-clue">
+                            <strong>Clue:</strong> How was Destiny's voice when she started speaking?
+                        </div>
+                        <div class="help-content" id="story3-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">In the end,</div>
+                        <textarea placeholder="What was the final outcome?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(3, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(3, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story3-step4-clue">
+                            <strong>Clue:</strong> How did the audience respond? How did Destiny feel at the end?
+                        </div>
+                        <div class="help-content" id="story3-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 4: Short -->
+        <div class="story-container" id="story4" data-length="short">
+            <span class="story-badge">Story 4 - Short</span>
+            <div class="story-text">
+                <p>Emma forgot her lunch money at home on Friday. She felt embarrassed and didn't want to ask anyone for help. Her classmate Jordan noticed her sitting alone and walked over with an extra sandwich. Jordan said his mom always packed too much food anyway. Emma gratefully accepted and promised to return the favor next week.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(4, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(4, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story4-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are the main people in this story? Describe them briefly.</div>
+                        <textarea placeholder="Write about the characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Setting</div>
+                        <div class="question-text">Where and when does this story take place?</div>
+                        <textarea placeholder="Describe the setting..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Problem</div>
+                        <div class="question-text">What problem did Emma face? How did she feel about it?</div>
+                        <textarea placeholder="Explain the problem..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Solution</div>
+                        <div class="question-text">How was Emma's problem solved? Who helped her?</div>
+                        <textarea placeholder="Describe the solution..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Theme</div>
+                        <div class="question-text">What does this story teach about kindness and friendship?</div>
+                        <textarea placeholder="Discuss the theme..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story4-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">First,</div>
+                        <textarea placeholder="What problem did Emma have?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(4, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(4, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story4-step1-clue">
+                            <strong>Clue:</strong> What did Emma forget? When did this happen?
+                        </div>
+                        <div class="help-content" id="story4-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Because of this,</div>
+                        <textarea placeholder="How did Emma feel and what did she do?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(4, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(4, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story4-step2-clue">
+                            <strong>Clue:</strong> What emotion did Emma feel? Where was she sitting?
+                        </div>
+                        <div class="help-content" id="story4-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Then,</div>
+                        <textarea placeholder="What did Jordan do to help?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(4, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(4, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story4-step3-clue">
+                            <strong>Clue:</strong> Who noticed Emma? What did Jordan bring over? What did Jordan say?
+                        </div>
+                        <div class="help-content" id="story4-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Finally,</div>
+                        <textarea placeholder="How did the story end?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(4, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(4, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story4-step4-clue">
+                            <strong>Clue:</strong> How did Emma respond to Jordan's kindness? What did she promise?
+                        </div>
+                        <div class="help-content" id="story4-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 5: Short -->
+        <div class="story-container" id="story5" data-length="short">
+            <span class="story-badge">Story 5 - Short</span>
+            <div class="story-text">
+                <p>Ryan's little sister accidentally broke his favorite gaming controller. He was angry at first and started yelling at her. When he saw tears rolling down her face, he realized she hadn't done it on purpose. Ryan took a deep breath and told her it was okay. They sat together and researched how to fix it online, turning the accident into a bonding moment.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(5, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(5, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story5-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are the main people in this story? What is their relationship?</div>
+                        <textarea placeholder="Write about the characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Problem/Incident</div>
+                        <div class="question-text">What happened that caused a problem?</div>
+                        <textarea placeholder="Describe what happened..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Initial Reaction</div>
+                        <div class="question-text">How did Ryan first react to what happened?</div>
+                        <textarea placeholder="Describe Ryan's first reaction..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Change in Perspective</div>
+                        <div class="question-text">What made Ryan change how he was acting? What did he realize?</div>
+                        <textarea placeholder="Explain the change..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Resolution & Lesson</div>
+                        <div class="question-text">How did Ryan handle the situation after calming down? What lesson does this story teach about managing emotions?</div>
+                        <textarea placeholder="Discuss the resolution and lesson..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story5-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">In the beginning,</div>
+                        <textarea placeholder="What happened to Ryan's controller?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step1-clue">
+                            <strong>Clue:</strong> What did Ryan's sister do? What item was affected?
+                        </div>
+                        <div class="help-content" id="story5-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">At first,</div>
+                        <textarea placeholder="How did Ryan react initially?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step2-clue">
+                            <strong>Clue:</strong> What emotion did Ryan feel? What did he start doing?
+                        </div>
+                        <div class="help-content" id="story5-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">However,</div>
+                        <textarea placeholder="What made Ryan change his reaction?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step3-clue">
+                            <strong>Clue:</strong> What did Ryan see on his sister's face? What did he realize?
+                        </div>
+                        <div class="help-content" id="story5-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">In the end,</div>
+                        <textarea placeholder="How did Ryan handle the situation?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step4-clue">
+                            <strong>Clue:</strong> What did Ryan do after taking a deep breath? What did they do together?
+                        </div>
+                        <div class="help-content" id="story5-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 6: Medium (2 paragraphs) -->
+        <div class="story-container" id="story6" data-length="medium">
+            <span class="story-badge">Story 6 - Medium</span>
+            <div class="story-text">
+                <p>Tyler and his best friend Marcus had been planning to start a podcast about video games for months. They finally saved enough money to buy a decent microphone and recording software. Everything was ready to go, but on the day they planned to record their first episode, Marcus texted Tyler saying he couldn't make it because he had to help his grandmother move. Tyler felt frustrated and disappointed because they had been so excited about this launch.</p>
+                
+                <p>Instead of giving up, Tyler decided to record a solo introduction episode where he explained the concept of the podcast and promised that the next episode would feature both hosts. He worked hard on the editing and uploaded it that evening. When Marcus saw the episode, he felt grateful that Tyler had moved forward rather than waiting. The next week, they recorded their first full episode together, and it turned out even better than they had imagined. Tyler learned that sometimes adaptation is more important than perfection.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(4, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(4, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story4-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are the main characters and what is their relationship?</div>
+                        <textarea placeholder="Write about the characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Goal/Plan</div>
+                        <div class="question-text">What were Tyler and Marcus trying to accomplish?</div>
+                        <textarea placeholder="Describe their goal..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Problem</div>
+                        <div class="question-text">What obstacle prevented them from executing their plan?</div>
+                        <textarea placeholder="Explain the problem..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Solution</div>
+                        <div class="question-text">How did Tyler adapt to solve the problem?</div>
+                        <textarea placeholder="Describe the solution..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Theme/Lesson</div>
+                        <div class="question-text">What lesson did Tyler learn from this experience?</div>
+                        <textarea placeholder="Discuss the lesson learned..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story4-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">Initially,</div>
+                        <textarea placeholder="What were Tyler and Marcus planning to do?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(4, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(4, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story4-step1-clue">
+                            <strong>Clue:</strong> What had Tyler and Marcus been planning? What did they finally get?
+                        </div>
+                        <div class="help-content" id="story4-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">However,</div>
+                        <textarea placeholder="What problem occurred on launch day?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(4, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(4, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story4-step2-clue">
+                            <strong>Clue:</strong> What did Marcus tell Tyler? How did Tyler feel about this?
+                        </div>
+                        <div class="help-content" id="story4-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Despite this setback,</div>
+                        <textarea placeholder="How did Tyler respond to the situation?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(4, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(4, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story4-step3-clue">
+                            <strong>Clue:</strong> What did Tyler decide to do instead of waiting? What kind of episode did he create?
+                        </div>
+                        <div class="help-content" id="story4-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Ultimately,</div>
+                        <textarea placeholder="What was the final outcome?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(4, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(4, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story4-step4-clue">
+                            <strong>Clue:</strong> How did Marcus react? What happened the following week? What did Tyler learn?
+                        </div>
+                        <div class="help-content" id="story4-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 5: Medium (3 paragraphs) -->
+        <div class="story-container" id="story5">
+            <span class="story-badge">Story 10 - Long</span>
+            <div class="story-text">
+                <p>Keisha was passionate about environmental issues and wanted to make a real difference at her high school. She decided to organize a school-wide campaign to reduce single-use plastic consumption. Her initial idea was simple: convince the cafeteria to stop using plastic straws and utensils.</p>
+                
+                <p>However, when Keisha met with the cafeteria manager, she learned that switching to eco-friendly alternatives would cost the school an extra $3,000 per year, money that wasn't in the budget. The manager was sympathetic but explained that without funding, the change couldn't happen. Keisha felt discouraged but refused to give up. She researched grants for schools working on sustainability initiatives and discovered that the county had a "Green Schools" program that offered up to $5,000 for environmental projects. She spent two weeks writing a detailed grant proposal, explaining how eliminating single-use plastics would benefit both the environment and serve as an educational opportunity for students.</p>
+                
+                <p>Three months later, Keisha received news that her grant application had been approved. The school would receive $4,500 to fund the transition to compostable utensils and reusable containers. The cafeteria manager was impressed by Keisha's determination and agreed to implement the changes starting the next semester. Keisha presented her entire journey at the school board meeting, inspiring two other schools in the district to apply for similar grants. Her teacher gave her the highest grade in the class, but more importantly, Keisha learned that creating real change required persistence, research, and creative problem-solving—skills she knew would serve her well beyond high school.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(5, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(5, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story5-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Main Character</div>
+                        <div class="question-text">Describe Keisha's personality, motivations, and character traits. What evidence from the story supports your description?</div>
+                        <textarea placeholder="Provide a detailed character analysis..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Setting</div>
+                        <div class="question-text">Describe the setting of this story. Where does it take place?</div>
+                        <textarea placeholder="Describe the setting..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Goal & Obstacles</div>
+                        <div class="question-text">What was Keisha's goal, and what obstacles did she encounter in achieving it?</div>
+                        <textarea placeholder="Explain the goal and obstacles..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Problem-Solving Process</div>
+                        <div class="question-text">How did Keisha work through the obstacles to achieve her goal? Describe the steps she took.</div>
+                        <textarea placeholder="Describe her problem-solving approach..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Impact & Lesson</div>
+                        <div class="question-text">What impact did Keisha's actions have on others? What themes or messages does this story convey?</div>
+                        <textarea placeholder="Analyze the themes and lessons..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story5-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">At the beginning,</div>
+                        <textarea placeholder="What was the initial situation and goal?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step1-clue">
+                            <strong>Clue:</strong> What was Keisha passionate about? What did she want to do at school?
+                        </div>
+                        <div class="help-content" id="story5-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">When she began,</div>
+                        <textarea placeholder="What happened when she first tried to implement her idea?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step2-clue">
+                            <strong>Clue:</strong> What problem did the cafeteria manager explain? Why couldn't they make the change right away?
+                        </div>
+                        <div class="help-content" id="story5-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Despite this setback,</div>
+                        <textarea placeholder="How did she respond to the challenge?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step3-clue">
+                            <strong>Clue:</strong> What did Keisha research? What program did she discover?
+                        </div>
+                        <div class="help-content" id="story5-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">After writing the proposal,</div>
+                        <textarea placeholder="What happened with her grant application?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step4-clue">
+                            <strong>Clue:</strong> What news did Keisha receive three months later? How much funding did the school get?
+                        </div>
+                        <div class="help-content" id="story5-step4-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">In the end,</div>
+                        <textarea placeholder="What was the final outcome and broader impact?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(5, 5, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(5, 5, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story5-step5-clue">
+                            <strong>Clue:</strong> What did Keisha present at the school board meeting? Who did she inspire? What did she learn?
+                        </div>
+                        <div class="help-content" id="story5-step5-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 6: Medium (3 paragraphs) -->
+        <div class="story-container" id="story6">
+            <span class="story-badge">Story 11 - Long</span>
+            <div class="story-text">
+                <p>David had always been naturally talented at basketball, but this season he faced his biggest challenge yet. His team made it to the state championship, where they would compete against Lincoln High, a team known for their aggressive defense. David's coach had designed several plays specifically around David's ability to score from the three-point line. The pressure was intense because David knew his teammates and the entire school were counting on him to perform well.</p>
+                
+                <p>During the first half of the game, David's shots weren't falling. Every time he attempted a three-pointer, the ball bounced off the rim or missed entirely. His frustration grew with each failed attempt, and he could feel his confidence draining away. By halftime, his team was down by twelve points, and David felt responsible for the deficit. In the locker room, David sat alone with his head in his hands, questioning whether he deserved to be on the court. His teammate Lin sat down next to him and reminded him that basketball was a team sport. Lin pointed out that David had created several assists and had been playing solid defense, even if his shots weren't landing. Lin suggested that maybe David should focus on creating opportunities for others rather than forcing his own shots.</p>
+                
+                <p>In the second half, David changed his approach. Instead of looking for his own shot first, he focused on passing to open teammates and driving to the basket to draw defenders. His unselfish play energized the entire team, and they began scoring consistently. With three minutes left and the score tied, David found himself open for a three-pointer. This time, he took the shot with confidence, not because his team needed him to be a hero, but because it was the right play. The ball swished through the net, and his team went on to win the championship by five points. David learned that true leadership sometimes means stepping back to help others shine, and that his value to the team extended far beyond his scoring ability.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(6, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(6, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story6-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are the main characters in this story? Describe their roles and relationships.</div>
+                        <textarea placeholder="Write about the characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Setting & Context</div>
+                        <div class="question-text">Describe the setting and the significance of the championship game.</div>
+                        <textarea placeholder="Explain the setting and context..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Internal Conflict</div>
+                        <div class="question-text">What internal struggle did David face during the game? How did this affect his performance?</div>
+                        <textarea placeholder="Analyze David's internal conflict..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Turning Point</div>
+                        <div class="question-text">What caused David to change his approach in the second half? How did Lin help him?</div>
+                        <textarea placeholder="Describe the turning point..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Resolution & Theme</div>
+                        <div class="question-text">How was the game resolved? What important lesson did David learn about leadership and teamwork?</div>
+                        <textarea placeholder="Discuss the resolution and themes..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story6-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">At the start,</div>
+                        <textarea placeholder="What was the situation and challenge David faced?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(6, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(6, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story6-step1-clue">
+                            <strong>Clue:</strong> What game was David's team playing? What was David known for? What pressure did he feel?
+                        </div>
+                        <div class="help-content" id="story6-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">During the first half,</div>
+                        <textarea placeholder="What problem occurred during the first half?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(6, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(6, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story6-step2-clue">
+                            <strong>Clue:</strong> How did David's shots go? How did he feel? What was the score at halftime?
+                        </div>
+                        <div class="help-content" id="story6-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">At halftime,</div>
+                        <textarea placeholder="What happened in the locker room?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(6, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(6, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story6-step3-clue">
+                            <strong>Clue:</strong> How was David feeling? Who talked to him? What did Lin say and do?
+                        </div>
+                        <div class="help-content" id="story6-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">After talking with Lin,</div>
+                        <textarea placeholder="How did David's perspective change?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(6, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(6, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story6-step4-clue">
+                            <strong>Clue:</strong> What did Lin help David understand? What did David do after their conversation?
+                        </div>
+                        <div class="help-content" id="story6-step4-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Ultimately,</div>
+                        <textarea placeholder="What was the final outcome and what did David learn?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(6, 5, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(6, 5, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story6-step5-clue">
+                            <strong>Clue:</strong> What was the result of the competition? What important lesson did David learn?
+                        </div>
+                        <div class="help-content" id="story6-step5-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 7: Short (NEW) -->
+        <div class="story-container" id="story7">
+            <span class="story-badge">Story 6 - Short</span>
+            <div class="story-text">
+                <p>Emma forgot her lunch money at home on Friday. She felt embarrassed and didn't want to ask anyone for help. Her classmate Jordan noticed her sitting alone and walked over with an extra sandwich. Jordan said his mom always packed too much food anyway. Emma gratefully accepted and promised to return the favor next week.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(7, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(7, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story7-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are the main people in this story? Describe them briefly.</div>
+                        <textarea placeholder="Write about the characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Setting</div>
+                        <div class="question-text">Where and when does this story take place?</div>
+                        <textarea placeholder="Describe the setting..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Problem</div>
+                        <div class="question-text">What problem did Emma face? How did she feel about it?</div>
+                        <textarea placeholder="Explain the problem..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Solution</div>
+                        <div class="question-text">How was Emma's problem solved? Who helped her?</div>
+                        <textarea placeholder="Describe the solution..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Theme</div>
+                        <div class="question-text">What does this story teach about kindness and friendship?</div>
+                        <textarea placeholder="Discuss the theme..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story7-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">First,</div>
+                        <textarea placeholder="What problem did Emma have?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(7, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(7, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story7-step1-clue">
+                            <strong>Clue:</strong> What did Emma forget? When did this happen?
+                        </div>
+                        <div class="help-content" id="story7-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Because of this,</div>
+                        <textarea placeholder="How did Emma feel and what did she do?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(7, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(7, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story7-step2-clue">
+                            <strong>Clue:</strong> What emotion did Emma feel? Where was she sitting?
+                        </div>
+                        <div class="help-content" id="story7-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Then,</div>
+                        <textarea placeholder="What did Jordan do to help?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(7, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(7, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story7-step3-clue">
+                            <strong>Clue:</strong> Who noticed Emma? What did Jordan bring over? What did Jordan say?
+                        </div>
+                        <div class="help-content" id="story7-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Finally,</div>
+                        <textarea placeholder="How did the story end?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(7, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(7, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story7-step4-clue">
+                            <strong>Clue:</strong> How did Emma respond to Jordan's kindness? What did she promise?
+                        </div>
+                        <div class="help-content" id="story7-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 8: Short (NEW) -->
+        <div class="story-container" id="story8">
+            <span class="story-badge">Story 8 - Short</span>
+            <div class="story-text">
+                <p>Ryan's little sister accidentally broke his favorite gaming controller. He was angry at first and started yelling at her. When he saw tears rolling down her face, he realized she hadn't done it on purpose. Ryan took a deep breath and told her it was okay. They sat together and researched how to fix it online, turning the accident into a bonding moment.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(8, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(8, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story8-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are the main people in this story? What is their relationship?</div>
+                        <textarea placeholder="Write about the characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Problem/Incident</div>
+                        <div class="question-text">What happened that caused a problem?</div>
+                        <textarea placeholder="Describe what happened..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Initial Reaction</div>
+                        <div class="question-text">How did Ryan first react to what happened?</div>
+                        <textarea placeholder="Describe Ryan's first reaction..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Change in Perspective</div>
+                        <div class="question-text">What made Ryan change how he was acting? What did he realize?</div>
+                        <textarea placeholder="Explain the change..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Resolution & Lesson</div>
+                        <div class="question-text">How did Ryan handle the situation after calming down? What lesson does this story teach about managing emotions?</div>
+                        <textarea placeholder="Discuss the resolution and lesson..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story8-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">In the beginning,</div>
+                        <textarea placeholder="What happened to Ryan's controller?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(8, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(8, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story8-step1-clue">
+                            <strong>Clue:</strong> What did Ryan's sister do? What item was affected?
+                        </div>
+                        <div class="help-content" id="story8-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">At first,</div>
+                        <textarea placeholder="How did Ryan react initially?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(8, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(8, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story8-step2-clue">
+                            <strong>Clue:</strong> What emotion did Ryan feel? What did he start doing?
+                        </div>
+                        <div class="help-content" id="story8-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">However,</div>
+                        <textarea placeholder="What made Ryan change his reaction?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(8, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(8, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story8-step3-clue">
+                            <strong>Clue:</strong> What did Ryan see on his sister's face? What did he realize?
+                        </div>
+                        <div class="help-content" id="story8-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">In the end,</div>
+                        <textarea placeholder="How did Ryan handle the situation?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(8, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(8, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story8-step4-clue">
+                            <strong>Clue:</strong> What did Ryan do after taking a deep breath? What did they do together?
+                        </div>
+                        <div class="help-content" id="story8-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 9: Short (NEW) -->
+        <div class="story-container" id="story9">
+            <span class="story-badge">Story 9 - Short</span>
+            <div class="story-text">
+                <p>Aaliyah wanted to try out for the school play but felt too nervous to audition. She practiced her lines at home for two weeks but kept finding excuses not to sign up. On the last day of auditions, her drama teacher noticed her hesitation and encouraged her to give it a try. Aaliyah took a chance and auditioned. Two days later, she found out she got a supporting role and felt proud that she had faced her fear.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(9, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(9, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story9-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Character</div>
+                        <div class="question-text">Who is the main character? What do we learn about her personality?</div>
+                        <textarea placeholder="Write about the character..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Goal</div>
+                        <div class="question-text">What did Aaliyah want to do?</div>
+                        <textarea placeholder="Describe her goal..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Internal Conflict</div>
+                        <div class="question-text">What internal struggle or fear held Aaliyah back?</div>
+                        <textarea placeholder="Explain the internal conflict..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Support & Action</div>
+                        <div class="question-text">Who helped Aaliyah overcome her fear? What did she decide to do?</div>
+                        <textarea placeholder="Describe the support and action..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Outcome & Growth</div>
+                        <div class="question-text">What was the result of Aaliyah's audition? How did she feel and why?</div>
+                        <textarea placeholder="Discuss the outcome and personal growth..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story9-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">Initially,</div>
+                        <textarea placeholder="What did Aaliyah want to do?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(9, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(9, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story9-step1-clue">
+                            <strong>Clue:</strong> What was Aaliyah interested in? How did she feel about it?
+                        </div>
+                        <div class="help-content" id="story9-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Even though she prepared,</div>
+                        <textarea placeholder="What did Aaliyah do but still struggle with?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(9, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(9, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story9-step2-clue">
+                            <strong>Clue:</strong> What did Aaliyah practice at home? What kept happening despite her practice?
+                        </div>
+                        <div class="help-content" id="story9-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">On the final day,</div>
+                        <textarea placeholder="What happened that helped Aaliyah take action?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(9, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(9, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story9-step3-clue">
+                            <strong>Clue:</strong> Who noticed Aaliyah? What did this person do? How did Aaliyah respond?
+                        </div>
+                        <div class="help-content" id="story9-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">As a result,</div>
+                        <textarea placeholder="What was the outcome?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(9, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(9, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story9-step4-clue">
+                            <strong>Clue:</strong> What news did Aaliyah receive two days later? How did she feel and why?
+                        </div>
+                        <div class="help-content" id="story9-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 10: Medium (2 paragraphs) (NEW) -->
+        <div class="story-container" id="story10">
+            <span class="story-badge">Story 7 - Medium</span>
+            <div class="story-text">
+                <p>Jasmine had been working on her science fair project for three months, building an elaborate model to demonstrate renewable energy sources. The night before the science fair, while transporting her project from her house to her car, she tripped on the front steps and watched in horror as her carefully constructed solar panel display crashed to the ground. Key components were broken, and some of the circuits she had meticulously soldered were completely destroyed. Jasmine felt devastated and considered not going to the science fair at all, thinking there was no way she could compete with a broken project.</p>
+                
+                <p>However, Jasmine's father suggested a different approach. Instead of hiding the failure, why not make it part of the presentation? Together, they photographed the broken project and stayed up until 2 AM creating a new presentation that documented both the original successful design and the accident. Jasmine's new presentation focused on resilience in scientific research, explaining that real scientists face setbacks constantly and must learn to adapt. At the science fair, judges were impressed by her honesty and her mature understanding that failure is part of the scientific process. Jasmine didn't win first place, but she received a special recognition award for "Most Innovative Approach to Adversity," and three judges specifically told her that her presentation taught them something valuable about the real nature of scientific work.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(10, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(10, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story10-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Main Character</div>
+                        <div class="question-text">Who is Jasmine and what had she been working on?</div>
+                        <textarea placeholder="Describe Jasmine and her work..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Crisis</div>
+                        <div class="question-text">What unexpected disaster occurred? How did it affect Jasmine's project?</div>
+                        <textarea placeholder="Explain the crisis..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Creative Solution</div>
+                        <div class="question-text">What creative idea did Jasmine's father suggest? How did they transform the setback?</div>
+                        <textarea placeholder="Describe the creative solution..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Result</div>
+                        <div class="question-text">What happened at the science fair? How did the judges respond to Jasmine's new approach?</div>
+                        <textarea placeholder="Explain the results..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Theme</div>
+                        <div class="question-text">What lesson does this story teach about failure, resilience, and the scientific process?</div>
+                        <textarea placeholder="Analyze the theme..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story10-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">Before the disaster,</div>
+                        <textarea placeholder="What had Jasmine been working on?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(10, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(10, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story10-step1-clue">
+                            <strong>Clue:</strong> How long had Jasmine worked on her project? What was the project about?
+                        </div>
+                        <div class="help-content" id="story10-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Unfortunately,</div>
+                        <textarea placeholder="What accident happened the night before the fair?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(10, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(10, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story10-step2-clue">
+                            <strong>Clue:</strong> What happened when Jasmine was transporting her project? What was damaged?
+                        </div>
+                        <div class="help-content" id="story10-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Rather than giving up,</div>
+                        <textarea placeholder="How did Jasmine and her father respond?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(10, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(10, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story10-step3-clue">
+                            <strong>Clue:</strong> What did Jasmine's father suggest? What did they create together? What was the new focus?
+                        </div>
+                        <div class="help-content" id="story10-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">At the science fair,</div>
+                        <textarea placeholder="How did the judges react and what was the outcome?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(10, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(10, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story10-step4-clue">
+                            <strong>Clue:</strong> What impressed the judges? What award did Jasmine receive? What did the judges tell her?
+                        </div>
+                        <div class="help-content" id="story10-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 11: Medium (2 paragraphs) (NEW) -->
+        <div class="story-container" id="story11">
+            <span class="story-badge">Story 8 - Medium</span>
+            <div class="story-text">
+                <p>Nicole had moved to a new school in the middle of the year and struggled to make friends. During lunch, she always sat alone in the corner of the cafeteria, watching groups of students laugh and talk together. One day, she overheard some students at a nearby table discussing a book club they were trying to start, but they needed more members to make it official. Nicole loved reading more than anything, but she felt too shy to approach the group. She spent the rest of lunch debating whether she should say something, ultimately deciding it was too risky.</p>
+                
+                <p>The next day, Nicole brought her current book—a science fiction novel she was obsessed with—and strategically sat a little closer to the book club group. One of the students, Maya, noticed the book and excitedly asked if Nicole had read the rest of the series. This simple question opened the door, and soon Nicole found herself deep in conversation about her favorite characters and plot twists. Maya invited her to join their book club, and within a week, Nicole had found her first group of friends at her new school. She learned that sometimes you don't need to make a grand gesture to connect with others; sometimes you just need to show up and let your interests speak for you.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(11, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(11, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story11-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Character & Situation</div>
+                        <div class="question-text">Who is Nicole and what challenge is she facing?</div>
+                        <textarea placeholder="Describe Nicole's situation..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Opportunity</div>
+                        <div class="question-text">What opportunity did Nicole discover? Why didn't she take advantage of it immediately?</div>
+                        <textarea placeholder="Explain the opportunity and Nicole's hesitation..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Strategy</div>
+                        <div class="question-text">What subtle strategy did Nicole use the next day to connect with the group?</div>
+                        <textarea placeholder="Describe Nicole's approach..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Breakthrough</div>
+                        <div class="question-text">What caused Nicole's breakthrough in making friends? Who helped and how?</div>
+                        <textarea placeholder="Explain the breakthrough moment..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Lesson</div>
+                        <div class="question-text">What important lesson did Nicole learn about making connections with others?</div>
+                        <textarea placeholder="Discuss the lesson..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story11-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">At the start,</div>
+                        <textarea placeholder="What was Nicole's situation at her new school?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(11, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(11, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story11-step1-clue">
+                            <strong>Clue:</strong> When did Nicole move to the new school? What problem was she having? Where did she sit at lunch?
+                        </div>
+                        <div class="help-content" id="story11-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">One day,</div>
+                        <textarea placeholder="What opportunity did Nicole hear about?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(11, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(11, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story11-step2-clue">
+                            <strong>Clue:</strong> What did Nicole overhear students discussing? Why did Nicole feel it was perfect for her? What stopped her from joining?
+                        </div>
+                        <div class="help-content" id="story11-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">The following day,</div>
+                        <textarea placeholder="What strategy did Nicole use?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(11, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(11, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story11-step3-clue">
+                            <strong>Clue:</strong> What did Nicole bring with her? Where did she sit? What was her plan?
+                        </div>
+                        <div class="help-content" id="story11-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">As a result,</div>
+                        <textarea placeholder="What happened and what was the outcome?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(11, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(11, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story11-step4-clue">
+                            <strong>Clue:</strong> Who noticed Nicole's book? What did they talk about? What invitation did Nicole receive? What did Nicole learn?
+                        </div>
+                        <div class="help-content" id="story11-step4-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story 12: Medium (3 paragraphs) (NEW) -->
+        <div class="story-container" id="story12">
+            <span class="story-badge">Story 12 - Long</span>
+            <div class="story-text">
+                <p>Marcus had always dreamed of becoming the editor-in-chief of his school newspaper, and this year he finally had the qualifications to apply. He had been writing articles since freshman year, had won several journalism awards, and had consistently met every deadline. When applications opened, Marcus felt confident that the position was practically his. However, he learned that another student, Sofia, was also applying. Sofia had only joined the newspaper staff this year, but she had fresh ideas about expanding their online presence and social media engagement.</p>
+                
+                <p>During the selection interviews, Marcus focused on his experience and past accomplishments, listing all the articles he had written and awards he had received. Sofia, on the other hand, presented a detailed vision for the newspaper's future, including plans for a podcast series, interactive content, and partnerships with local news outlets. When the journalism advisor announced that Sofia had been chosen as editor-in-chief, Marcus felt shocked and hurt. He had worked so hard for so long, and it seemed unfair that someone with less experience had been selected. Marcus considered quitting the newspaper entirely, feeling that his years of dedication hadn't been valued.</p>
+                
+                <p>Marcus's journalism teacher, Mr. Rodriguez, noticed his disappointment and asked to speak with him. Mr. Rodriguez explained that Marcus's experience was indeed valuable, but leadership isn't just about what you've already accomplished—it's about vision, innovation, and the ability to inspire others toward new goals. He suggested that Marcus could use this as an opportunity to learn from Sofia's fresh perspective while contributing his own expertise. Marcus decided to stay on the newspaper staff, and Sofia immediately asked him to be her deputy editor, recognizing that his experience would be crucial to implementing her ambitious plans. Working together, they created the most successful year the school newspaper had ever seen. Marcus learned that sometimes being second in command with the right team is more fulfilling than being a leader alone, and that true professionalism means supporting the vision even when it isn't your own.</p>
+            </div>
+
+            <div class="activity-toggle">
+                <button class="toggle-btn active" onclick="toggleActivity(12, 'grammar')">🎯 Story Grammar Questions</button>
+                <button class="toggle-btn" onclick="toggleActivity(12, 'retelling')">📝 Retell the Story</button>
+            </div>
+
+            <div class="activity-content active" id="story12-grammar">
+                <div class="section">
+                    <h2>🎯 Story Grammar Questions</h2>
+                    
+                    <div class="question-card">
+                        <div class="question-label">Characters</div>
+                        <div class="question-text">Who are Marcus and Sofia? Compare their backgrounds and strengths.</div>
+                        <textarea placeholder="Compare the two characters..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Conflict</div>
+                        <div class="question-text">What competition existed between Marcus and Sofia? What different approaches did they take?</div>
+                        <textarea placeholder="Explain the conflict..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Disappointment</div>
+                        <div class="question-text">How did Marcus react when Sofia was chosen? What emotions did he experience and why?</div>
+                        <textarea placeholder="Describe Marcus's reaction..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Turning Point</div>
+                        <div class="question-text">How did Mr. Rodriguez help Marcus understand the situation differently? What lesson did he teach?</div>
+                        <textarea placeholder="Explain the turning point..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">Resolution & Growth</div>
+                        <div class="question-text">How did Marcus and Sofia work together? What valuable lessons did Marcus learn about leadership, teamwork, and handling disappointment?</div>
+                        <textarea placeholder="Discuss the resolution and lessons learned..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="story12-retelling">
+                <div class="section">
+                    <h2>📝 Retell the Story</h2>
+                    <div class="instruction">
+                        Use transition words to retell what happened in the story. Include the important events in order.
+                    </div>
+                    
+                    <div class="retelling-step">
+                        <div class="transition-word">Originally,</div>
+                        <textarea placeholder="What was Marcus's dream and why did he feel confident?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(12, 1, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(12, 1, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story12-step1-clue">
+                            <strong>Clue:</strong> What position did Marcus want? What was his background and experience? Who was his competition?
+                        </div>
+                        <div class="help-content" id="story12-step1-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">During the interviews,</div>
+                        <textarea placeholder="How did Marcus and Sofia present themselves differently?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(12, 2, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(12, 2, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story12-step2-clue">
+                            <strong>Clue:</strong> What did Marcus focus on? What did Sofia present? What was different about their approaches?
+                        </div>
+                        <div class="help-content" id="story12-step2-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">When the decision was made,</div>
+                        <textarea placeholder="What was the result and how did Marcus react?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(12, 3, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(12, 3, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story12-step3-clue">
+                            <strong>Clue:</strong> Who was chosen as editor-in-chief? How did Marcus feel? What did he consider doing?
+                        </div>
+                        <div class="help-content" id="story12-step3-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">After speaking with his teacher,</div>
+                        <textarea placeholder="What did Marcus learn and how did his perspective change?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(12, 4, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(12, 4, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story12-step4-clue">
+                            <strong>Clue:</strong> What did Mr. Rodriguez explain about leadership? What did he suggest Marcus could do?
+                        </div>
+                        <div class="help-content" id="story12-step4-options"></div>
+                    </div>
+
+                    <div class="retelling-step">
+                        <div class="transition-word">Ultimately,</div>
+                        <textarea placeholder="What was the final outcome and what did Marcus learn?"></textarea>
+                        <div class="help-buttons">
+                            <button class="help-btn" onclick="showHelp(12, 5, 'clue')">💡 I need help</button>
+                            <button class="help-btn secondary" onclick="showHelp(12, 5, 'options')">📋 I need more help</button>
+                        </div>
+                        <div class="help-content" id="story12-step5-clue">
+                            <strong>Clue:</strong> What position did Sofia offer Marcus? How successful was their year? What lessons did Marcus learn?
+                        </div>
+                        <div class="help-content" id="story12-step5-options"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <button onclick="window.print()" style="background: var(--primary); color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">🖨️ Print All Stories</button>
+        </div>
+    </div>
+
+    <script>
+        // Sentence starter options for each story
+        const sentenceStarters = {
+            1: {
+                1: {
+                    good: "Maria's phone battery died during lunch, and she needed to contact her mom about a schedule change.",
+                    bad: ["Maria was having a great day at school with all her friends.", "Maria decided to turn off her phone because she didn't want to be disturbed."]
+                },
+                2: {
+                    good: "Carlos noticed that Maria looked worried and concerned.",
+                    bad: ["Maria started screaming loudly in the cafeteria.", "Carlos was too busy eating to notice anything."]
+                },
+                3: {
+                    good: "Carlos offered to let Maria use his phone to send the message.",
+                    bad: ["Maria bought a new phone from the school store.", "Carlos told Maria she should just walk home instead."]
+                },
+                4: {
+                    good: "Maria felt relieved because her mom would now know where to pick her up.",
+                    bad: ["Maria was still worried and decided to skip the rest of school.", "Maria's mom never got the message and forgot about her."]
+                }
+            },
+            2: {
+                1: {
+                    good: "Jake studied hard for his chemistry test all week to prepare.",
+                    bad: ["Jake didn't study at all and hoped he would get lucky.", "Jake was nervous about his basketball game."]
+                },
+                2: {
+                    good: "When the teacher handed back the exams, Jake saw he got an A.",
+                    bad: ["Jake refused to look at his test grade.", "The teacher lost Jake's test paper."]
+                },
+                3: {
+                    good: "His lab partner Sarah congratulated him with a high-five.",
+                    bad: ["Sarah was upset that Jake did better than her.", "Jake left school immediately without talking to anyone."]
+                },
+                4: {
+                    good: "Jake shared the good news with his parents by texting them a photo of his test.",
+                    bad: ["Jake kept his grade a secret from everyone.", "Jake's parents were disappointed in his grade."]
+                }
+            }
+        };
+
+        function toggleActivity(storyNum, activity) {
+            // Hide all activity contents for this story
+            const grammarContent = document.getElementById(`story${storyNum}-grammar`);
+            const retellingContent = document.getElementById(`story${storyNum}-retelling`);
+            
+            if (activity === 'grammar') {
+                grammarContent.classList.add('active');
+                retellingContent.classList.remove('active');
+            } else {
+                grammarContent.classList.remove('active');
+                retellingContent.classList.add('active');
+            }
+
+            // Update toggle buttons
+            const toggleButtons = document.querySelectorAll(`#story${storyNum} .toggle-btn`);
+            toggleButtons.forEach(btn => {
+                if ((activity === 'grammar' && btn.textContent.includes('Grammar')) ||
+                    (activity === 'retelling' && btn.textContent.includes('Retell'))) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        function showHelp(storyNum, stepNum, helpType) {
+            const clueEl = document.getElementById(`story${storyNum}-step${stepNum}-clue`);
+            const optionsEl = document.getElementById(`story${storyNum}-step${stepNum}-options`);
+
+            if (helpType === 'clue') {
+                if (clueEl.classList.contains('show')) {
+                    clueEl.classList.remove('show');
+                } else {
+                    clueEl.classList.add('show');
+                    optionsEl.classList.remove('show');
+                }
+            } else if (helpType === 'options') {
+                if (optionsEl.classList.contains('show')) {
+                    optionsEl.classList.remove('show');
+                } else {
+                    const storyData = sentenceStarters[storyNum];
+                    if (storyData && storyData[stepNum]) {
+                        const options = generateSentenceOptions(storyData[stepNum].good, storyData[stepNum].bad);
+                        optionsEl.innerHTML = `
+                            <strong>Choose the best sentence to complete this step:</strong>
+                            <div class="sentence-options">
+                                ${options.map((opt, idx) => 
+                                    `<div class="sentence-option" onclick="selectOption(this, ${opt.isGood})">${opt.text}</div>`
+                                ).join('')}
+                            </div>
+                        `;
+                    }
+                    optionsEl.classList.add('show');
+                    clueEl.classList.remove('show');
+                }
+            }
+        }
+
+        function generateSentenceOptions(goodSentence, badSentences) {
+            const options = [
+                { text: goodSentence, isGood: true },
+                ...badSentences.map(bad => ({ text: bad, isGood: false }))
+            ];
+
+            // Shuffle array
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+
+            return options;
+        }
+
+        function selectOption(element, isGood) {
+            // Remove previous selections
+            const siblings = element.parentElement.querySelectorAll('.sentence-option');
+            siblings.forEach(sib => sib.classList.remove('selected'));
+            
+            // Mark this one as selected
+            element.classList.add('selected');
+
+            if (isGood) {
+                element.style.borderColor = 'var(--success)';
+                element.style.background = '#d1fae5';
+            } else {
+                element.style.borderColor = '#ef4444';
+                element.style.background = '#fee2e2';
+            }
+        }
+
+        function filterByLength(length) {
+            const storyButtons = document.querySelectorAll('.story-btn');
+            const lengthButtons = document.querySelectorAll('.length-btn');
+            
+            // Update length filter button states
+            lengthButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Show/hide story buttons based on filter
+            storyButtons.forEach(btn => {
+                const btnLength = btn.getAttribute('data-length');
+                if (length === 'all' || btnLength === length) {
+                    btn.style.display = 'inline-block';
+                } else {
+                    btn.style.display = 'none';
+                }
+            });
+            
+            // If current story is hidden, show first visible story
+            const currentStory = document.querySelector('.story-container.active');
+            const currentStoryLength = currentStory.getAttribute('data-length');
+            
+            if (length !== 'all' && currentStoryLength !== length) {
+                // Find first story of selected length
+                const firstVisibleBtn = document.querySelector(`.story-btn[data-length="${length}"]`);
+                if (firstVisibleBtn) {
+                    firstVisibleBtn.click();
+                }
+            }
+        }
+
+        function showStory(storyNum) {
+            // Hide all stories
+            const stories = document.querySelectorAll('.story-container');
+            stories.forEach(story => story.classList.remove('active'));
+            
+            // Show selected story
+            document.getElementById('story' + storyNum).classList.add('active');
+            
+            // Update button states
+            const buttons = document.querySelectorAll('.story-btn');
+            buttons.forEach((btn, index) => {
+                if (index + 1 === storyNum) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

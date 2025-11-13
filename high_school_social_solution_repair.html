@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>High School Social Solutions with Communication Repair</title>
+  <style>
+    :root {
+      --bg: #f5f3ff;
+      --surface: #ffffff;
+      --accent: #7c3aed;
+      --accent-dark: #5b21b6;
+      --secondary: #0ea5e9;
+      --ink: #1e1b4b;
+      --muted: #4c1d95;
+      --border: #ddd6fe;
+      --shadow: 0 16px 32px rgba(124, 58, 237, 0.18);
+      --radius: 18px;
+      --max-width: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      color: white;
+      padding: 42px 20px 36px;
+      text-align: center;
+      box-shadow: 0 22px 44px rgba(14, 165, 233, 0.25);
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      letter-spacing: 0.01em;
+    }
+
+    header p {
+      margin: 0;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 16px;
+      opacity: 0.94;
+    }
+
+    header .subline {
+      margin-top: 12px;
+      font-size: 15px;
+      opacity: 0.82;
+    }
+
+    nav {
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+      padding: 14px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .tab-list {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tab-btn {
+      border: none;
+      background: rgba(124, 58, 237, 0.12);
+      color: var(--accent-dark);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      background: rgba(14, 165, 233, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 12px 28px rgba(124, 58, 237, 0.35);
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 32px auto 60px;
+      padding: 0 18px 18px;
+    }
+
+    .scenario-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(124, 58, 237, 0.08);
+      display: grid;
+      gap: 26px;
+    }
+
+    .scenario-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .scenario-title-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .scenario-number {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(76, 29, 149, 0.7);
+    }
+
+    .scenario-title-group h2 {
+      margin: 0;
+      font-size: 26px;
+      color: var(--accent-dark);
+    }
+
+    .scenario-context {
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      color: #0c4a6e;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step {
+      display: grid;
+      gap: 14px;
+      background: rgba(124, 58, 237, 0.03);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .step h3 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--accent-dark);
+    }
+
+    .step-description {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    textarea {
+      width: 100%;
+      border: 2px solid rgba(124, 58, 237, 0.22);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 16px;
+      font-family: inherit;
+      min-height: 120px;
+      resize: vertical;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #fdfbff;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.18);
+      background: white;
+    }
+
+    .breakdown-box {
+      background: white;
+      border-radius: 14px;
+      border: 2px dashed rgba(14, 165, 233, 0.25);
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .breakdown-heading {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(14, 165, 233, 0.9);
+      margin: 0;
+    }
+
+    .breakdown-text {
+      margin: 0;
+      font-size: 15px;
+      color: #0f172a;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: rgba(14, 165, 233, 0.12);
+      border: 1px solid rgba(14, 165, 233, 0.35);
+      color: #0f4c81;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .strategy-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .strategy-option {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border-radius: 14px;
+      border: 2px solid rgba(124, 58, 237, 0.15);
+      background: rgba(124, 58, 237, 0.05);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .strategy-option:hover {
+      border-color: var(--secondary);
+      background: rgba(14, 165, 233, 0.08);
+    }
+
+    .strategy-option input[type="checkbox"] {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+
+    .strategy-option strong {
+      font-size: 15px;
+      color: var(--accent-dark);
+    }
+
+    .strategy-option span {
+      display: block;
+      font-size: 14px;
+      color: #1e293b;
+      margin-top: 4px;
+    }
+
+    .strategy-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(14, 165, 233, 0.12);
+      border: 1px solid rgba(14, 165, 233, 0.25);
+      color: #0f4c81;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .selected-chip {
+      background: white;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: var(--secondary);
+      border: 1px solid rgba(14, 165, 233, 0.35);
+    }
+
+    .starter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .starter-chip {
+      background: rgba(124, 58, 237, 0.12);
+      color: var(--accent-dark);
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .progress-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .progress-pill {
+      background: rgba(148, 163, 184, 0.18);
+      color: #475569;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .progress-pill.done {
+      background: rgba(16, 185, 129, 0.22);
+      color: #047857;
+    }
+
+    .progress-pill::before {
+      content: "o";
+      font-weight: 700;
+    }
+
+    .progress-pill.done::before {
+      content: "*";
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto 40px;
+      padding: 0 18px;
+    }
+
+    .toolbox {
+      background: rgba(15, 23, 42, 0.82);
+      color: #e0e7ff;
+      border-radius: 18px;
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.35);
+    }
+
+    .toolbox h3 {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 14px;
+      color: #93c5fd;
+    }
+
+    .toolbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .toolbox-item {
+      background: rgba(148, 163, 184, 0.12);
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      display: grid;
+      gap: 6px;
+    }
+
+    .toolbox-item strong {
+      font-size: 14px;
+      color: #f8fafc;
+    }
+
+    .toolbox-item span {
+      font-size: 13px;
+      color: rgba(226, 232, 240, 0.92);
+    }
+
+    @media (max-width: 720px) {
+      header h1 {
+        font-size: 26px;
+      }
+
+      .scenario-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .scenario-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>High School Social Solutions</h1>
+    <p>Work through real-world high school situations, plan a respectful solution, and repair the conversation when a communication breakdown happens.</p>
+    <p class="subline">Complete all three steps for each scenario: plan your solution, fix the breakdown with purposeful strategies, and reflect on what you will carry forward.</p>
+  </header>
+
+  <nav>
+    <div class="tab-list" id="scenarioTabs" aria-label="Scenario Navigation"></div>
+  </nav>
+
+  <main>
+    <div id="scenarioContainer"></div>
+  </main>
+
+  <footer>
+    <section class="toolbox">
+      <h3>Strategy Toolbox</h3>
+      <p style="margin: 0;">Use these ideas whenever a conversation starts to fall apart. Mix and match them with what you know about the person and the setting.</p>
+      <div class="toolbox-grid" id="toolboxGrid"></div>
+    </section>
+  </footer>
+
+  <script>
+    const strategyLibrary = {
+      acknowledgeFeelings: {
+        label: "Acknowledge feelings",
+        description: "Name the emotion you notice (\"I hear that sounded bossy\") so the other person feels seen."
+      },
+      clarifyIntent: {
+        label: "Clarify your intent",
+        description: "State your goal and why you brought it up so others know you want teamwork, not control."
+      },
+      inviteInput: {
+        label: "Invite their input",
+        description: "Ask an open question to show you want their ideas before finalizing the plan."
+      },
+      switchChannel: {
+        label: "Switch to a richer channel",
+        description: "Suggest a quick call or in-person chat so tone, facial expressions, and context are clear."
+      },
+      repeatKey: {
+        label: "Repeat the key info slowly",
+        description: "Emphasize and repeat the most important words so the listener can process accurately."
+      },
+      useIStatements: {
+        label: "Use I-statements",
+        description: "Share how the situation affects you (\"I get nervous with the acid\") instead of blaming."
+      },
+      askWhatTheyHeard: {
+        label: "Ask what they heard",
+        description: "Have them paraphrase your message to uncover any missing or distorted details."
+      },
+      useVisual: {
+        label: "Use a visual or written support",
+        description: "Point to the lab sheet, slide, or shared doc so everyone can see the same directions."
+      },
+      acknowledgeEffort: {
+        label: "Recognize their effort first",
+        description: "Start with a genuine thank-you to lower defensiveness before sharing a correction."
+      },
+      moveToQuiet: {
+        label: "Move to a quieter space",
+        description: "Step away from distractions or noise so both of you can hear and focus."
+      },
+      confirmDetails: {
+        label: "Confirm the precise details",
+        description: "Restate dates, times, or responsibilities to guarantee everyone has the same information."
+      },
+      writeItDown: {
+        label: "Write the plan down",
+        description: "Send a quick text, calendar invite, or sticky note so the agreement is recorded."
+      },
+      shareReason: {
+        label: "Explain the reason behind the request",
+        description: "Give the why (\"I have the SAT\") to make the request feel fair and important."
+      },
+      previewPurpose: {
+        label: "Preview your purpose",
+        description: "Start by saying what you need and that you are looking for solutions, not just venting."
+      },
+      provideEvidence: {
+        label: "Share specific evidence",
+        description: "Offer concrete examples or data so the listener sees the full picture."
+      },
+      askForTime: {
+        label: "Ask for a moment to talk",
+        description: "Check whether now works or schedule a short meeting so you have their attention."
+      },
+      summarizeNextSteps: {
+        label: "Summarize next steps",
+        description: "Review what you will each do after the conversation to show responsibility."
+      },
+      stateContext: {
+        label: "State the missing context",
+        description: "Fill in the background information the other person did not know so the joke or plan makes sense."
+      },
+      offerApology: {
+        label: "Offer a sincere apology",
+        description: "Own the impact, express regret, and share what you will do differently."
+      }
+    };
+
+    const scenarios = [
+      {
+        id: "fundraiser-chat",
+        title: "Fundraiser Group Chat",
+        shortTitle: "Group Chat",
+        context: "Student Council - After-School Planning",
+        problem: "Your committee has to pick vendors for the spring fundraiser by tomorrow. Two friends still have not filled in the shared doc. You need everyone's buy-in without sounding controlling.",
+        planPrompt: "Write how you will approach the group so the plan feels like a team decision.",
+        breakdown: {
+          description: "You text: \"I'm assigning booths: Maya - tickets, Jordan - decor. We can't keep delaying.\" Maya replies, \"Okay chill. You don't decide everything,\" and goes silent.",
+          cues: ["Tone sounded bossy", "Text-only message", "No invitation for feedback"]
+        },
+        repairPrompt: "Draft a follow-up that repairs the tone, invites input, and keeps planning moving.",
+        reflectionPrompt: "What will you do next time to show leadership while keeping the team with you?",
+        strategyKeys: ["acknowledgeFeelings", "clarifyIntent", "inviteInput", "switchChannel"],
+        starterIdeas: [
+          "I want to make sure this stays a team decision.",
+          "Can we hop on a five-minute call before practice?",
+          "What part do you want to tackle?"
+        ]
+      },
+      {
+        id: "chem-lab",
+        title: "Chem Lab Confusion",
+        shortTitle: "Chem Lab",
+        context: "Chemistry Lab - Safety Gear and Bunsen Burners",
+        problem: "During a titration lab your partner Alexis keeps skipping steps and grabbing materials out of order. You need a plan for who does what so nothing spills.",
+        planPrompt: "Describe how you will set up roles respectfully before the next measurement.",
+        breakdown: {
+          description: "Over the vent hood noise you say, \"Let me handle the acid, you record the measurements.\" Alexis frowns: \"So I'm just your assistant now?\" They clearly misheard your plan.",
+          cues: ["Loud background noise", "Instructions came out fast", "Message sounded like a demand"]
+        },
+        repairPrompt: "How can you restate the plan so Alexis feels trusted and the roles are clear?",
+        reflectionPrompt: "Which communication habit will help you in future science labs?",
+        strategyKeys: ["repeatKey", "useIStatements", "askWhatTheyHeard", "useVisual"],
+        starterIdeas: [
+          "I feel better if we double-check the safety steps together.",
+          "What did you hear me say about the roles?",
+          "Let's look at the lab card and split the steps."
+        ]
+      },
+      {
+        id: "rehearsal-notes",
+        title: "Theatre Rehearsal Notes",
+        shortTitle: "Rehearsal",
+        context: "Drama Club - Auditorium After School",
+        problem: "You are assistant stage manager and your friend Jay keeps missing the cue to raise the lights. You need to correct the pattern so the scene lands.",
+        planPrompt: "Plan what you will say after rehearsal to help Jay hit the cue.",
+        breakdown: {
+          description: "You tell Jay, \"If you actually watched the script you'd remember the cue.\" Jay crosses their arms: \"Wow, thanks for calling me lazy,\" and starts packing up.",
+          cues: ["Sarcasm or sharp tone", "Feedback lacked appreciation", "Listener became defensive"]
+        },
+        repairPrompt: "Write how you will repair Jay's reaction and still solve the lighting issue.",
+        reflectionPrompt: "How can you give feedback that is both honest and supportive?",
+        strategyKeys: ["acknowledgeEffort", "useIStatements", "clarifyIntent", "inviteInput"],
+        starterIdeas: [
+          "I know you're juggling sound cues too.",
+          "I noticed the lights stayed down in scene three - can we check the cue sheet?",
+          "What would make that cue easier to remember?"
+        ]
+      },
+      {
+        id: "shift-mixup",
+        title: "Shift Coverage Mix-Up",
+        shortTitle: "Shift Mix-Up",
+        context: "Smoothie Shop - Saturday Closing Shift",
+        problem: "You and DeShawn agreed to swap next Saturday's closing shift so you can take the SAT. The schedule still has your name, and you need to confirm the switch politely.",
+        planPrompt: "Explain how you will remind DeShawn about the switch without sounding demanding.",
+        breakdown: {
+          description: "Over the blenders you say, \"Remember, you're covering my Saturday close.\" DeShawn hears, \"...covering Saturday, close?\" and panics: \"I can't cover tonight!\" before walking away.",
+          cues: ["Noisy environment", "Important detail misheard", "Assumptions about the date"]
+        },
+        repairPrompt: "How will you double-check the plan so the right shift gets covered?",
+        reflectionPrompt: "What tools will you use next time to avoid schedule confusion?",
+        strategyKeys: ["moveToQuiet", "confirmDetails", "writeItDown", "shareReason"],
+        starterIdeas: [
+          "Let's step outside for thirty seconds.",
+          "I meant next Saturday the 18th because of the SAT.",
+          "I'll text the manager and loop you in so it's official."
+        ]
+      },
+      {
+        id: "teacher-checkin",
+        title: "Teacher Check-In",
+        shortTitle: "Teacher Talk",
+        context: "English Class - After-School Conference",
+        problem: "Your partner still has not shared their slides for the group project. You plan to meet Ms. Chen for help before the due date so your grade is protected.",
+        planPrompt: "Outline how you will open the conversation so it sounds solution-focused.",
+        breakdown: {
+          description: "You start with, \"Liam isn't doing anything.\" Ms. Chen interrupts: \"Are you just complaining or do you have a plan?\" She glances at the clock.",
+          cues: ["Led with blame", "Purpose unclear", "Teacher pressed for time"]
+        },
+        repairPrompt: "Write how you will reset the conversation so Ms. Chen sees you are prepared.",
+        reflectionPrompt: "What will you bring to future teacher conversations to show responsibility?",
+        strategyKeys: ["previewPurpose", "provideEvidence", "askForTime", "summarizeNextSteps"],
+        starterIdeas: [
+          "Do you have two minutes? I brought our outline.",
+          "I'm looking for advice to keep the project on track.",
+          "If now isn't good, can we check in tomorrow after school?"
+        ]
+      },
+      {
+        id: "social-post",
+        title: "Post Misunderstood",
+        shortTitle: "Social Post",
+        context: "Instagram Stories - After the Game",
+        problem: "You posted a locker-room selfie with an inside joke caption. A classmate from the other team thinks it was about them and messages you upset. You want to calm things down.",
+        planPrompt: "Decide what you will say to clear things up before the rumor spreads.",
+        breakdown: {
+          description: "You reply, \"It was just a joke lol.\" They answer, \"So you're laughing at us? Wow.\" Then they stop responding.",
+          cues: ["Tone too casual", "Missing context", "Hurt feelings not acknowledged"]
+        },
+        repairPrompt: "Draft a message or script that adds context, apologizes, and offers next steps.",
+        reflectionPrompt: "How will you double-check future posts to avoid misunderstandings?",
+        strategyKeys: ["acknowledgeFeelings", "stateContext", "offerApology", "switchChannel"],
+        starterIdeas: [
+          "I get why that looked like we were laughing at you.",
+          "The caption was an inside joke about our own team - here's what it meant.",
+          "If you're up for a quick call, I want to hear how it landed."
+        ]
+      }
+    ];
+
+    const responses = {};
+
+    const scenarioContainer = document.getElementById("scenarioContainer");
+    const tabsContainer = document.getElementById("scenarioTabs");
+    const toolboxGrid = document.getElementById("toolboxGrid");
+
+    function ensureResponse(id) {
+      if (!responses[id]) {
+        responses[id] = {
+          solution: "",
+          repair: "",
+          reflection: "",
+          strategies: []
+        };
+      }
+      return responses[id];
+    }
+
+    function createTabs() {
+      scenarios.forEach((scenario, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tab-btn" + (index === 0 ? " active" : "");
+        btn.textContent = scenario.shortTitle;
+        btn.addEventListener("click", () => switchScenario(index));
+        tabsContainer.appendChild(btn);
+      });
+    }
+
+    function switchScenario(index) {
+      const tabButtons = tabsContainer.querySelectorAll(".tab-btn");
+      tabButtons.forEach((btn, idx) => {
+        btn.classList.toggle("active", idx === index);
+      });
+      renderScenario(index);
+    }
+
+    function renderScenario(index) {
+      const scenario = scenarios[index];
+      const response = ensureResponse(scenario.id);
+
+      const strategyOptions = scenario.strategyKeys.map((key, idx) => {
+        const strategy = strategyLibrary[key];
+        const optionId = `${scenario.id}-strategy-${idx}`;
+        const checked = response.strategies.includes(key) ? "checked" : "";
+        return `
+          <label class="strategy-option" for="${optionId}">
+            <input type="checkbox" id="${optionId}" data-strategy="${key}" ${checked}>
+            <div>
+              <strong>${strategy.label}</strong>
+              <span>${strategy.description}</span>
+            </div>
+          </label>
+        `;
+      }).join("");
+
+      const starterChips = scenario.starterIdeas.map(text => `<span class="starter-chip">${text}</span>`).join("");
+      const breakdownTags = scenario.breakdown.cues.map(tag => `<span class="tag">${tag}</span>`).join("");
+
+      scenarioContainer.innerHTML = `
+        <article class="scenario-card" aria-live="polite">
+          <header class="scenario-header">
+            <div class="scenario-title-group">
+              <span class="scenario-number">Scenario ${index + 1}</span>
+              <h2>${scenario.title}</h2>
+            </div>
+            <span class="scenario-context">Location: ${scenario.context}</span>
+          </header>
+
+          <section class="step">
+            <h3>Step 1 - Plan Your Solution</h3>
+            <p class="step-description">${scenario.problem}</p>
+            <textarea id="solutionInput" placeholder="${scenario.planPrompt}">${response.solution}</textarea>
+            <div class="progress-pills">
+              <div class="progress-pill ${response.solution.trim() ? "done" : ""}" data-progress="solution">Solution planned</div>
+            </div>
+          </section>
+
+          <section class="step">
+            <h3>Step 2 - Communication Breakdown</h3>
+            <div class="breakdown-box">
+              <h4 class="breakdown-heading">What went wrong</h4>
+              <p class="breakdown-text">${scenario.breakdown.description}</p>
+              <div class="tag-row">${breakdownTags}</div>
+            </div>
+            <p class="step-description">Choose at least one strategy to repair the breakdown, then script how you will keep the conversation on track.</p>
+            <div class="strategy-grid">
+              ${strategyOptions}
+            </div>
+            <div class="strategy-summary">
+              <span>Selected strategies: <span id="strategyCount">${response.strategies.length}</span></span>
+              <div id="selectedStrategiesList">${response.strategies.length ? response.strategies.map(key => `<span class="selected-chip">${strategyLibrary[key].label}</span>`).join("") : "No strategies selected yet."}</div>
+            </div>
+            <div class="starter-chips">${starterChips}</div>
+            <textarea id="repairInput" placeholder="${scenario.repairPrompt}">${response.repair}</textarea>
+            <div class="progress-pills">
+              <div class="progress-pill ${response.strategies.length ? "done" : ""}" data-progress="strategies">Strategies chosen</div>
+              <div class="progress-pill ${response.repair.trim() ? "done" : ""}" data-progress="repair">Repair scripted</div>
+            </div>
+          </section>
+
+          <section class="step">
+            <h3>Step 3 - Reflection</h3>
+            <p class="step-description">Lock in what you learned so you can transfer it to the next social situation.</p>
+            <textarea id="reflectionInput" placeholder="${scenario.reflectionPrompt}">${response.reflection}</textarea>
+            <div class="progress-pills">
+              <div class="progress-pill ${response.reflection.trim() ? "done" : ""}" data-progress="reflection">Reflection captured</div>
+            </div>
+          </section>
+        </article>
+      `;
+
+      attachHandlers(scenario);
+    }
+
+    function attachHandlers(scenario) {
+      const response = ensureResponse(scenario.id);
+      const solutionInput = document.getElementById("solutionInput");
+      const repairInput = document.getElementById("repairInput");
+      const reflectionInput = document.getElementById("reflectionInput");
+      const strategyCheckboxes = Array.from(document.querySelectorAll(".strategy-option input[type='checkbox']"));
+      const strategyCount = document.getElementById("strategyCount");
+      const selectedList = document.getElementById("selectedStrategiesList");
+      const solutionPill = document.querySelector('[data-progress="solution"]');
+      const strategyPill = document.querySelector('[data-progress="strategies"]');
+      const repairPill = document.querySelector('[data-progress="repair"]');
+      const reflectionPill = document.querySelector('[data-progress="reflection"]');
+
+      function updateStrategySummary() {
+        strategyCount.textContent = response.strategies.length;
+        if (response.strategies.length === 0) {
+          selectedList.textContent = "No strategies selected yet.";
+        } else {
+          selectedList.innerHTML = response.strategies
+            .map(key => `<span class="selected-chip">${strategyLibrary[key].label}</span>`)
+            .join("");
+        }
+        strategyPill.classList.toggle("done", response.strategies.length > 0);
+      }
+
+      function syncProgress() {
+        solutionPill.classList.toggle("done", Boolean(response.solution.trim()));
+        repairPill.classList.toggle("done", Boolean(response.repair.trim()));
+        reflectionPill.classList.toggle("done", Boolean(response.reflection.trim()));
+      }
+
+      solutionInput.addEventListener("input", (event) => {
+        response.solution = event.target.value;
+        syncProgress();
+      });
+
+      repairInput.addEventListener("input", (event) => {
+        response.repair = event.target.value;
+        syncProgress();
+      });
+
+      reflectionInput.addEventListener("input", (event) => {
+        response.reflection = event.target.value;
+        syncProgress();
+      });
+
+      strategyCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", (event) => {
+          const key = event.target.dataset.strategy;
+          if (event.target.checked) {
+            if (!response.strategies.includes(key)) {
+              response.strategies.push(key);
+            }
+          } else {
+            response.strategies = response.strategies.filter(item => item !== key);
+          }
+          updateStrategySummary();
+        });
+      });
+
+      updateStrategySummary();
+      syncProgress();
+    }
+
+    function buildToolbox() {
+      const entries = Object.values(strategyLibrary);
+      toolboxGrid.innerHTML = entries.map(entry => `
+        <div class="toolbox-item">
+          <strong>${entry.label}</strong>
+          <span>${entry.description}</span>
+        </div>
+      `).join("");
+    }
+
+    createTabs();
+    renderScenario(0);
+    buildToolbox();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category & Function Definition Practice</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .instructions {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .instructions p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .difficulty-toggle {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .difficulty-toggle h3 {
+            color: #667eea;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .difficulty-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .difficulty-btn {
+            padding: 10px 30px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #333;
+        }
+
+        .difficulty-btn:hover {
+            background: #f0f4ff;
+            border-color: #667eea;
+        }
+
+        .difficulty-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .word-navigation {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .word-navigation h3 {
+            color: #667eea;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .word-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 8px;
+        }
+
+        .word-nav-btn {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+
+        .word-nav-btn:hover {
+            background: #f0f4ff;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .word-nav-btn.current {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .word-nav-btn.completed {
+            background: #e8f5e9;
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+
+        .word-nav-btn.completed::after {
+            content: ' ✓';
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .word-item {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .word-item.completed {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        .word-item.current {
+            background: #fff3e0;
+            border-color: #ff9800;
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
+        }
+
+        .word-header {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .definition-builder {
+            font-size: 1.1rem;
+            line-height: 2.5;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .definition-builder span {
+            color: #333;
+        }
+
+        .drop-zone {
+            display: inline-block;
+            min-width: 150px;
+            min-height: 50px;
+            border: 2px dashed #999;
+            border-radius: 8px;
+            padding: 10px 15px;
+            background: white;
+            transition: all 0.2s ease;
+            vertical-align: middle;
+        }
+
+        .drop-zone.drag-over {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            transform: scale(1.05);
+        }
+
+        .drop-zone.filled {
+            border: 2px solid #4caf50;
+            background: #e8f5e9;
+        }
+
+        .drop-zone.incorrect {
+            border: 2px solid #f44336;
+            background: #ffebee;
+        }
+
+        .drop-zone.custom {
+            border: 2px solid #ff9800;
+            background: #fff3e0;
+        }
+
+        .custom-input-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .custom-input {
+            padding: 8px 12px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            min-width: 150px;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: #5568d3;
+        }
+
+        .add-custom-btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .add-custom-btn:hover {
+            background: #f57c00;
+        }
+
+        .custom-answer-note {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 4px 10px;
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #e65100;
+            font-weight: 600;
+        }
+
+        .draggable-word {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border-radius: 8px;
+            cursor: move;
+            user-select: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin: 5px;
+        }
+
+        .draggable-word:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .draggable-word.dragging {
+            opacity: 0.5;
+        }
+
+        .draggable-word.used {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .word-banks {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .word-bank {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #ddd;
+        }
+
+        .word-bank h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .word-bank-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .check-button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .check-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .check-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #4caf50;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            color: #c62828;
+            border: 2px solid #f44336;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .completion-message {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .completion-message.show {
+            display: block;
+        }
+
+        .completion-message h2 {
+            color: #4caf50;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .completion-message p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .word-banks {
+                grid-template-columns: 1fr;
+            }
+
+            .definition-builder {
+                font-size: 1rem;
+            }
+
+            .word-nav-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+
+            .word-nav-btn {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+
+            .difficulty-buttons {
+                flex-direction: column;
+            }
+
+            .difficulty-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Category & Function Definition Practice</h1>
+            <p style="color: #666; margin-top: 10px;">Define each word by dragging the correct category and function</p>
+        </header>
+
+        <div class="instructions">
+            <p><strong>Instructions:</strong> Complete the definition by dragging words from the word banks below. Can't find the right word? Click "Type your own" to add your own answer! Format: "A [word] is a [category] that you [function]."</p>
+        </div>
+
+        <div class="difficulty-toggle">
+            <h3>Category Difficulty:</h3>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn active" onclick="setDifficulty('general')">General (toy, tool, furniture)</button>
+                <button class="difficulty-btn" onclick="setDifficulty('specific')">Specific (sports toy, writing tool, etc.)</button>
+            </div>
+        </div>
+
+        <div class="word-navigation">
+            <h3>Jump to Word:</h3>
+            <div class="word-nav-grid" id="wordNavigation"></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar">0 / 20</div>
+        </div>
+
+        <div id="wordContainer"></div>
+
+        <div class="completion-message" id="completionMessage">
+            <h2>🎉 Great Job!</h2>
+            <p>You've completed all 20 definitions!</p>
+            <button class="nav-button" onclick="resetActivity()" style="margin-top: 20px;">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        let currentDifficulty = 'general';
+
+        function setDifficulty(level) {
+            currentDifficulty = level;
+
+            // Update button states
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Re-render current word
+            renderWord(currentIndex);
+        }
+
+        const words = [
+            {
+                word: "spoon",
+                categoryGeneral: "utensil",
+                categorySpecific: "eating utensil",
+                categoryFoils: ["tool", "toy", "furniture", "vehicle"],
+                function: "use to scoop or eat food",
+                functionFoils: ["use to sit down", "wear on your feet", "ride to travel", "use to write words"]
+            },
+            {
+                word: "pencil",
+                categoryGeneral: "tool",
+                categorySpecific: "writing tool",
+                categoryFoils: ["toy", "food", "clothing", "furniture"],
+                function: "use to write or draw",
+                functionFoils: ["use to eat soup", "wear on your head", "use to sit and relax on", "use to throw during games"]
+            },
+            {
+                word: "chair",
+                categoryGeneral: "furniture",
+                categorySpecific: "seating furniture",
+                categoryFoils: ["tool", "toy", "vehicle", "clothing"],
+                function: "use to sit and rest",
+                functionFoils: ["use to stir soup", "wear on your feet", "use to throw during games", "use to write homework"]
+            },
+            {
+                word: "ball",
+                categoryGeneral: "toy",
+                categorySpecific: "sports toy",
+                categoryFoils: ["furniture", "utensil", "clothing", "tool"],
+                function: "use to throw and play games",
+                functionFoils: ["use to sit quietly", "use to eat breakfast", "wear on your hands", "use to write neatly"]
+            },
+            {
+                word: "cup",
+                categoryGeneral: "container",
+                categorySpecific: "drinking container",
+                categoryFoils: ["toy", "furniture", "clothing", "tool"],
+                function: "use to drink liquids",
+                functionFoils: ["use to ride fast", "wear on your feet", "use to write", "use to throw far"]
+            },
+            {
+                word: "shoe",
+                categoryGeneral: "clothing",
+                categorySpecific: "footwear",
+                categoryFoils: ["tool", "toy", "furniture", "vehicle"],
+                function: "wear on your feet for walking",
+                functionFoils: ["use to eat cereal", "use to sit upright", "throw during games", "use to take notes"]
+            },
+            {
+                word: "book",
+                categoryGeneral: "item",
+                categorySpecific: "reading material",
+                categoryFoils: ["toy", "furniture", "utensil", "vehicle"],
+                function: "read to learn or enjoy stories",
+                functionFoils: ["use to cook food", "use to sit and relax on", "wear on your hands", "use to throw across the room"]
+            },
+            {
+                word: "plate",
+                categoryGeneral: "dish",
+                categorySpecific: "serving dish",
+                categoryFoils: ["toy", "furniture", "clothing", "vehicle"],
+                function: "use to hold food while eating",
+                functionFoils: ["use to sit and swing", "wear on your head", "use to write neatly", "ride to school"]
+            },
+            {
+                word: "blanket",
+                categoryGeneral: "item",
+                categorySpecific: "bedding",
+                categoryFoils: ["tool", "toy", "furniture", "clothing"],
+                function: "use to cover yourself for warmth",
+                functionFoils: ["use to eat salad", "use to write answers", "use to throw at targets", "use to sit during class"]
+            },
+            {
+                word: "fork",
+                categoryGeneral: "utensil",
+                categorySpecific: "eating utensil",
+                categoryFoils: ["toy", "furniture", "clothing", "vehicle"],
+                function: "use to spear or pick up food",
+                functionFoils: ["use to sit comfortably", "wear on your feet", "use to read for fun", "ride to the park"]
+            },
+            {
+                word: "refrigerator",
+                categoryGeneral: "appliance",
+                categorySpecific: "kitchen appliance",
+                categoryFoils: ["tool", "toy", "furniture", "vehicle"],
+                function: "store food to keep it cold",
+                functionFoils: ["use to sit in", "use to eat soup", "wear on your body", "ride down the street"]
+            },
+            {
+                word: "bicycle",
+                categoryGeneral: "vehicle",
+                categorySpecific: "pedal vehicle",
+                categoryFoils: ["toy", "furniture", "utensil", "appliance"],
+                function: "ride to travel using pedals",
+                functionFoils: ["use to eat dinner", "use to sit at a desk", "use to write essays", "wear on your head"]
+            },
+            {
+                word: "umbrella",
+                categoryGeneral: "tool",
+                categorySpecific: "weather tool",
+                categoryFoils: ["toy", "furniture", "vehicle", "clothing"],
+                function: "use to stay dry in the rain",
+                functionFoils: ["use to eat spaghetti", "use to sit in class", "use to ride to the store", "use to write quickly"]
+            },
+            {
+                word: "pillow",
+                categoryGeneral: "item",
+                categorySpecific: "bedding",
+                categoryFoils: ["tool", "toy", "vehicle", "furniture"],
+                function: "rest your head on while sleeping",
+                functionFoils: ["use to eat cereal", "use to ride around town", "wear on your hands", "use to throw to a friend"]
+            },
+            {
+                word: "toothbrush",
+                categoryGeneral: "tool",
+                categorySpecific: "hygiene tool",
+                categoryFoils: ["toy", "furniture", "vehicle", "utensil"],
+                function: "use to clean your teeth",
+                functionFoils: ["use to eat dinner", "use to sit and relax on", "use to ride to work", "wear on your feet"]
+            },
+            {
+                word: "scissors",
+                categoryGeneral: "tool",
+                categorySpecific: "cutting tool",
+                categoryFoils: ["toy", "furniture", "vehicle", "utensil"],
+                function: "use to cut paper or fabric",
+                functionFoils: ["use to eat stew", "use to sit down on", "use to ride in the park", "wear on your hands"]
+            },
+            {
+                word: "backpack",
+                categoryGeneral: "bag",
+                categorySpecific: "carrying bag",
+                categoryFoils: ["toy", "furniture", "vehicle", "tool"],
+                function: "carry books or supplies",
+                functionFoils: ["use to eat dessert", "use to sit while reading", "use to ride to school", "wear on your hands"]
+            },
+            {
+                word: "camera",
+                categoryGeneral: "device",
+                categorySpecific: "electronic device",
+                categoryFoils: ["toy", "furniture", "utensil", "vehicle"],
+                function: "use to take photographs",
+                functionFoils: ["use to eat soup", "use to sit and relax on", "wear on your feet", "use to ride to the park"]
+            },
+            {
+                word: "calculator",
+                categoryGeneral: "device",
+                categorySpecific: "math device",
+                categoryFoils: ["toy", "furniture", "vehicle", "utensil"],
+                function: "use to solve math problems",
+                functionFoils: ["use to eat snacks", "use to sit quietly on", "use to ride around town", "wear on your head"]
+            },
+            {
+                word: "thermometer",
+                categoryGeneral: "instrument",
+                categorySpecific: "medical instrument",
+                categoryFoils: ["toy", "furniture", "vehicle", "utensil"],
+                function: "use to measure temperature",
+                functionFoils: ["use to eat soup", "use to sit on during class", "use to ride to practice", "wear on your feet"]
+            }
+        ];
+
+        let currentIndex = 0;
+        let completedWords = 0;
+
+        function createWordNavigation() {
+            const navContainer = document.getElementById('wordNavigation');
+            navContainer.innerHTML = '';
+
+            words.forEach((word, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'word-nav-btn';
+                btn.textContent = word.word;
+                btn.onclick = () => jumpToWord(index);
+                navContainer.appendChild(btn);
+            });
+
+            updateNavigation();
+        }
+
+        function updateNavigation() {
+            const navButtons = document.querySelectorAll('.word-nav-btn');
+            navButtons.forEach((btn, index) => {
+                btn.classList.remove('current', 'completed');
+                if (index === currentIndex) {
+                    btn.classList.add('current');
+                } else if (words[index].completed) {
+                    btn.classList.add('completed');
+                }
+            });
+        }
+
+        function jumpToWord(index) {
+            currentIndex = index;
+            renderWord(index);
+            updateNavigation();
+        }
+
+        function renderWord(index) {
+            const word = words[index];
+            const container = document.getElementById('wordContainer');
+
+            // Get the correct category based on difficulty
+            const correctCategory = currentDifficulty === 'general' ? word.categoryGeneral : word.categorySpecific;
+
+            // Combine category and function with foils for word banks
+            const allCategories = [correctCategory, ...word.categoryFoils];
+            const allFunctions = [word.function, ...word.functionFoils];
+
+            // Shuffle arrays
+            shuffleArray(allCategories);
+            shuffleArray(allFunctions);
+
+            container.innerHTML = `
+                <div class="word-item current" id="currentWord">
+                    <div class="word-header">Word ${index + 1} of ${words.length}: "${word.word}"</div>
+
+                    <div class="definition-builder">
+                        <span>A</span>
+                        <strong style="color: #667eea; font-size: 1.2em;">${word.word}</strong>
+                        <span>is a</span>
+                        <div class="drop-zone" data-type="category" id="categoryZone"></div>
+                        <span>that you</span>
+                        <div class="drop-zone" data-type="function" id="functionZone"></div>
+                        <span>.</span>
+                    </div>
+
+                    <div class="word-banks">
+                        <div class="word-bank">
+                            <h3>Categories</h3>
+                            <div class="word-bank-items" id="categoryBank">
+                                ${allCategories.map(cat =>
+                                    `<div class="draggable-word" draggable="true" data-type="category" data-value="${cat}">${cat}</div>`
+                                ).join('')}
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <button class="add-custom-btn" onclick="showCustomInput('category')">✏️ Type your own</button>
+                            </div>
+                        </div>
+                        <div class="word-bank">
+                            <h3>Functions</h3>
+                            <div class="word-bank-items" id="functionBank">
+                                ${allFunctions.map(func =>
+                                    `<div class="draggable-word" draggable="true" data-type="function" data-value="${func}">${func}</div>`
+                                ).join('')}
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <button class="add-custom-btn" onclick="showCustomInput('function')">✏️ Type your own</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="check-button" onclick="checkAnswer()">Check Answer</button>
+
+                    <div class="feedback" id="feedback"></div>
+
+                    <div class="navigation">
+                        <button class="nav-button" onclick="previousWord()" ${index === 0 ? 'disabled' : ''}>← Previous</button>
+                        <button class="nav-button" id="nextButton" onclick="nextWord()" disabled>Next →</button>
+                    </div>
+                </div>
+            `;
+
+            setupDragAndDrop();
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function setupDragAndDrop() {
+            const draggables = document.querySelectorAll('.draggable-word');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', handleDragStart);
+                draggable.addEventListener('dragend', handleDragEnd);
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('drop', handleDrop);
+                zone.addEventListener('dragleave', handleDragLeave);
+                zone.addEventListener('click', handleZoneClick);
+            });
+        }
+
+        let draggedElement = null;
+
+        function handleDragStart(e) {
+            if (this.classList.contains('used')) return;
+            draggedElement = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+            this.classList.add('drag-over');
+            return false;
+        }
+
+        function handleDragLeave(e) {
+            this.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+
+            this.classList.remove('drag-over');
+
+            if (draggedElement && draggedElement.dataset.type === this.dataset.type) {
+                // If zone already has content, return it to bank (if not custom)
+                if (this.dataset.currentWord) {
+                    if (this.dataset.isCustom !== 'true') {
+                        const oldWord = document.querySelector(`.draggable-word[data-value="${this.dataset.currentWord}"]`);
+                        if (oldWord) {
+                            oldWord.classList.remove('used');
+                        }
+                    }
+                }
+
+                this.textContent = draggedElement.dataset.value;
+                this.dataset.currentWord = draggedElement.dataset.value;
+                delete this.dataset.isCustom;
+                this.classList.add('filled');
+                this.classList.remove('incorrect', 'custom');
+                draggedElement.classList.add('used');
+
+                checkIfBothFilled();
+            }
+
+            return false;
+        }
+
+        function handleZoneClick(e) {
+            if (this.dataset.currentWord) {
+                // Return word to bank (if not custom)
+                if (this.dataset.isCustom !== 'true') {
+                    const word = document.querySelector(`.draggable-word[data-value="${this.dataset.currentWord}"]`);
+                    if (word) {
+                        word.classList.remove('used');
+                    }
+                }
+                this.textContent = '';
+                delete this.dataset.currentWord;
+                delete this.dataset.isCustom;
+                this.classList.remove('filled', 'incorrect', 'custom');
+                checkIfBothFilled();
+            }
+        }
+
+        function checkIfBothFilled() {
+            const categoryZone = document.getElementById('categoryZone');
+            const functionZone = document.getElementById('functionZone');
+            const checkButton = document.querySelector('.check-button');
+
+            if (categoryZone.dataset.currentWord && functionZone.dataset.currentWord) {
+                checkButton.disabled = false;
+            } else {
+                checkButton.disabled = true;
+            }
+        }
+
+        function showCustomInput(type) {
+            const zone = type === 'category' ? document.getElementById('categoryZone') : document.getElementById('functionZone');
+
+            // Clear existing content if any
+            if (zone.dataset.currentWord) {
+                const oldWord = document.querySelector(`.draggable-word[data-value="${zone.dataset.currentWord}"]`);
+                if (oldWord) {
+                    oldWord.classList.remove('used');
+                }
+            }
+
+            const input = prompt(`Enter your own ${type}:`);
+            if (input && input.trim()) {
+                zone.textContent = input.trim();
+                zone.dataset.currentWord = input.trim();
+                zone.dataset.isCustom = 'true';
+                zone.classList.add('filled', 'custom');
+                zone.classList.remove('incorrect');
+                checkIfBothFilled();
+            }
+        }
+
+        function checkAnswer() {
+            const word = words[currentIndex];
+            const categoryZone = document.getElementById('categoryZone');
+            const functionZone = document.getElementById('functionZone');
+            const feedback = document.getElementById('feedback');
+            const nextButton = document.getElementById('nextButton');
+
+            const categoryAnswer = categoryZone.dataset.currentWord;
+            const functionAnswer = functionZone.dataset.currentWord;
+
+            const categoryIsCustom = categoryZone.dataset.isCustom === 'true';
+            const functionIsCustom = functionZone.dataset.isCustom === 'true';
+
+            // Get the correct category based on difficulty level
+            const correctCategory = currentDifficulty === 'general' ? word.categoryGeneral : word.categorySpecific;
+
+            const categoryCorrect = categoryAnswer === correctCategory || categoryIsCustom;
+            const functionCorrect = functionAnswer === word.function || functionIsCustom;
+
+            if (categoryCorrect && functionCorrect) {
+                let message = '✓ ';
+                if (categoryIsCustom || functionIsCustom) {
+                    message += 'Good thinking! ';
+                    if (categoryIsCustom) message += `You used "${categoryAnswer}" for category. `;
+                    if (functionIsCustom) message += `You used "${functionAnswer}" for function. `;
+                    message += 'Creative answers like these should be discussed!';
+                } else {
+                    message += 'Correct! Great job defining the word!';
+                }
+
+                feedback.className = 'feedback correct show';
+                feedback.textContent = message;
+                categoryZone.classList.remove('incorrect');
+                functionZone.classList.remove('incorrect');
+                nextButton.disabled = false;
+
+                if (!words[currentIndex].completed) {
+                    words[currentIndex].completed = true;
+                    completedWords++;
+                    updateProgress();
+                    updateNavigation();
+                }
+            } else {
+                feedback.className = 'feedback incorrect show';
+                let message = '✗ Not quite right. ';
+                if (!categoryCorrect && !categoryIsCustom) {
+                    message += `The expected category is "${correctCategory}". `;
+                    categoryZone.classList.add('incorrect');
+                }
+                if (!functionCorrect && !functionIsCustom) {
+                    message += `The expected function is "${word.function}".`;
+                    functionZone.classList.add('incorrect');
+                }
+                feedback.textContent = message;
+            }
+        }
+
+        function nextWord() {
+            if (currentIndex < words.length - 1) {
+                currentIndex++;
+                renderWord(currentIndex);
+                updateProgress();
+                updateNavigation();
+            } else {
+                showCompletion();
+            }
+        }
+
+        function previousWord() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderWord(currentIndex);
+                updateNavigation();
+            }
+        }
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const percentage = (completedWords / words.length) * 100;
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = `${completedWords} / ${words.length}`;
+        }
+
+        function showCompletion() {
+            document.getElementById('wordContainer').style.display = 'none';
+            document.getElementById('completionMessage').classList.add('show');
+        }
+
+        function resetActivity() {
+            currentIndex = 0;
+            completedWords = 0;
+            words.forEach(word => word.completed = false);
+            document.getElementById('wordContainer').style.display = 'block';
+            document.getElementById('completionMessage').classList.remove('show');
+            renderWord(0);
+            updateProgress();
+            updateNavigation();
+        }
+
+        // Initialize
+        createWordNavigation();
+        renderWord(0);
+    </script>
+</body>
+</html>

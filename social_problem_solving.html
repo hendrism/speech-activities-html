@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Problem Solving - Interactive Activity</title>
+<style>
+  :root {
+    --w: 900px;
+    --accent: #8b5cf6;
+    --blue: #0ea5e9;
+    --green: #10b981;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #d97706;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid var(--accent); 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 18px 24px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .bar h1 { 
+    font-size: 22px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 10px; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 24px auto; 
+    padding: 0 24px; 
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #7c3aed;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--ink);
+    border: 2px solid #e2e8f0;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .problem-selector {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .problem-selector h2 {
+    margin: 0 0 16px;
+    color: var(--accent);
+    font-size: 20px;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+  }
+
+  .problem-btn {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 15px;
+  }
+
+  .problem-btn:hover {
+    border-color: var(--accent);
+    background: #faf5ff;
+  }
+
+  .problem-btn.active {
+    border-color: var(--accent);
+    background: #faf5ff;
+    border-width: 3px;
+  }
+
+  .activity-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .problem-display {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+  }
+
+  .problem-display h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .problem-text {
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .solution-section {
+    margin-bottom: 32px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    background: #fafafa;
+  }
+
+  .solution-type-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .solution-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .solution-number {
+    background: var(--accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .solution-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--ink);
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  .input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--ink);
+    font-size: 16px;
+  }
+
+  .solution-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 100px;
+    resize: vertical;
+    transition: border-color 0.2s;
+    background: white;
+  }
+
+  .solution-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .outcome-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #bae6fd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 100px;
+    resize: vertical;
+    transition: border-color 0.2s;
+    background: white;
+  }
+
+  .outcome-input:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+
+  .hint-system {
+    margin-top: 16px;
+  }
+
+  .hint-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .hint-btn {
+    padding: 8px 16px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hint-btn:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .hint-btn.active {
+    background: #fff7ed;
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .hint-icon {
+    font-size: 16px;
+  }
+
+  .hint-content {
+    background: #fef3c7;
+    border: 2px solid var(--warning);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .hint-content.show {
+    display: block;
+  }
+
+  .hint-content h4 {
+    margin: 0 0 8px;
+    color: #92400e;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .hint-content p {
+    margin: 0;
+    color: #78350f;
+    line-height: 1.6;
+  }
+
+  .hint-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+  }
+
+  .hint-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    color: #78350f;
+  }
+
+  .hint-list li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: var(--warning);
+  }
+
+  .comparison-section {
+    background: #f0fdf4;
+    border: 2px solid var(--green);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 32px;
+  }
+
+  .comparison-section h3 {
+    margin: 0 0 16px;
+    color: #065f46;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .comparison-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #86efac;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 100px;
+    resize: vertical;
+    background: white;
+  }
+
+  .comparison-input:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .progress-indicator {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .progress-text {
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  .checkmark {
+    color: var(--ok);
+    font-size: 20px;
+  }
+
+  .outcome-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .outcome-positive {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .outcome-negative {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  .outcome-mixed {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .problem-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+    }
+    
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <h1>🧩 Social Problem Solving</h1>
+    <div class="controls">
+      <button class="btn btn-secondary" id="resetBtn">Reset</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="problem-selector">
+    <h2>Choose a Problem to Solve</h2>
+    <div class="problem-grid" id="problemGrid"></div>
+  </div>
+
+  <div class="activity-container" id="activityContainer" style="display: none;">
+    <div class="progress-indicator">
+      <span class="progress-text">Complete both solutions and their outcomes to finish</span>
+      <span id="progressCheckmarks"></span>
+    </div>
+
+    <div class="problem-display" id="problemDisplay"></div>
+
+    <!-- Solution 1 -->
+    <div class="solution-section">
+      <div class="solution-header">
+        <div class="solution-number">1</div>
+        <h3>Solution #1</h3>
+      </div>
+      
+      <div class="solution-type-badge" id="type-1"></div>
+      
+      <div class="input-group">
+        <label>What is one way you could solve this problem?</label>
+        <textarea 
+          class="solution-input" 
+          id="solution1" 
+          placeholder="Describe your first solution here..."
+        ></textarea>
+      </div>
+
+      <div class="hint-system">
+        <div class="hint-buttons">
+          <button class="hint-btn" data-hint="1" data-solution="1">
+            <span class="hint-icon">💡</span> Hint 1: More Details
+          </button>
+          <button class="hint-btn" data-hint="2" data-solution="1">
+            <span class="hint-icon">💡</span> Hint 2: How to Start
+          </button>
+          <button class="hint-btn" data-hint="3" data-solution="1">
+            <span class="hint-icon">💡</span> Hint 3: Full Example
+          </button>
+        </div>
+        <div class="hint-content" id="hint1-1"></div>
+        <div class="hint-content" id="hint2-1"></div>
+        <div class="hint-content" id="hint3-1"></div>
+      </div>
+
+      <div class="input-group" style="margin-top: 20px;">
+        <label>🔮 What might happen if you use this solution? (Predict the outcome)</label>
+        <textarea 
+          class="outcome-input" 
+          id="outcome1" 
+          placeholder="If I do this, then... (Think about: Will it solve the problem? How will people react? Any downsides?)"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Solution 2 -->
+    <div class="solution-section">
+      <div class="solution-header">
+        <div class="solution-number">2</div>
+        <h3>Solution #2 (Different Approach)</h3>
+      </div>
+      
+      <div class="solution-type-badge" id="type-2"></div>
+      
+      <div class="input-group">
+        <label>What is a DIFFERENT way you could solve this problem?</label>
+        <textarea 
+          class="solution-input" 
+          id="solution2" 
+          placeholder="Describe your second solution here..."
+        ></textarea>
+      </div>
+
+      <div class="hint-system">
+        <div class="hint-buttons">
+          <button class="hint-btn" data-hint="1" data-solution="2">
+            <span class="hint-icon">💡</span> Hint 1: More Details
+          </button>
+          <button class="hint-btn" data-hint="2" data-solution="2">
+            <span class="hint-icon">💡</span> Hint 2: How to Start
+          </button>
+          <button class="hint-btn" data-hint="3" data-solution="2">
+            <span class="hint-icon">💡</span> Hint 3: Full Example
+          </button>
+        </div>
+        <div class="hint-content" id="hint1-2"></div>
+        <div class="hint-content" id="hint2-2"></div>
+        <div class="hint-content" id="hint3-2"></div>
+      </div>
+
+      <div class="input-group" style="margin-top: 20px;">
+        <label>🔮 What might happen if you use this solution? (Predict the outcome)</label>
+        <textarea 
+          class="outcome-input" 
+          id="outcome2" 
+          placeholder="If I do this, then... (Think about: Will it solve the problem? How will people react? Any downsides?)"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Comparison Section -->
+    <div class="comparison-section">
+      <h3>
+        <span>⚖️</span>
+        Compare: Which solution would you choose and why?
+      </h3>
+      <textarea 
+        class="comparison-input" 
+        id="comparison" 
+        placeholder="Looking at both solutions and their outcomes, which one would you actually use? Explain your reasoning..."
+      ></textarea>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn btn-primary" id="nextProblemBtn">Next Problem ➜</button>
+      <button class="btn btn-secondary" id="changeProblemBtn">Choose Different Problem</button>
+    </div>
+  </div>
+</main>
+
+<script>
+const problems = [
+  {
+    id: 1,
+    title: "Forgot Homework",
+    text: "You realize you forgot to do an important homework assignment that's due today. The teacher hasn't collected it yet, but class starts in 20 minutes.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Direct Communication",
+          content: "One approach is to be proactive and communicate with your teacher before they find out. This means talking to them directly about the situation."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Find the teacher before class starts",
+            "Explain honestly what happened",
+            "Ask if you can turn it in late"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Go to the teacher before class starts and say: 'I'm really sorry, but I forgot to do last night's homework. I know that's my responsibility. Is there any way I could turn it in tomorrow with a late penalty? I'll make sure it doesn't happen again.'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will the teacher allow late work?",
+            "How will this affect your grade?",
+            "Will the teacher trust you more or less?",
+            "Does this solve the problem or just delay it?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Take Immediate Action",
+          content: "Another approach is to use the time you have to get as much done as possible. This is more action-focused rather than communication-focused."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Find a quiet spot immediately",
+            "Work as quickly as you can for 20 minutes",
+            "Turn in what you complete, even if it's not finished"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Use the 20 minutes before class to complete as much of the assignment as possible. Work quickly and focus on the most important parts. Turn in whatever you finish, and if the teacher asks, explain that you're submitting partial work and ask if you can complete the rest later."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will you be able to finish enough to get partial credit?",
+            "Is rushing through it better than nothing?",
+            "What if the work is messy or incomplete?",
+            "How will you feel about the quality?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 2,
+    title: "Loud Neighbors",
+    text: "Your neighbors have been really loud late at night for the past week. It's hard to sleep and you have school the next day. You don't know them very well.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Direct Communication",
+          content: "One approach is to talk directly to your neighbors about the noise. This is a direct way to address the problem at the source."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Go over when it's daytime and quiet",
+            "Be polite and friendly",
+            "Explain the situation without being accusatory"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Knock on their door during the day and say: 'Hi, I'm your neighbor from next door. I wanted to talk to you about something. The noise has been pretty loud late at night this week, and it's been hard for me to sleep with school the next day. Would you mind keeping it down after 10 PM?'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "How might the neighbors react?",
+            "Will they actually be quieter?",
+            "Could this make things awkward?",
+            "What if they get defensive?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Involve an Authority Figure",
+          content: "Another approach is to involve an adult or authority figure who can handle the situation. This removes you from direct confrontation."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Tell your parents or guardian about the problem",
+            "Let them decide how to handle it",
+            "They can talk to the neighbors or the landlord"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Tell your parents: 'The neighbors have been really loud late at night all week and I can't sleep. Can you please talk to them about it or contact the landlord?' Let them handle the conversation with the neighbors."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will your parents be willing to help?",
+            "Is this better than talking to neighbors yourself?",
+            "How might the neighbors feel about parents getting involved?",
+            "Will this solve it faster or slower?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 3,
+    title: "Group Project Slacker",
+    text: "You're in a group project with three other people. One person hasn't done any work and the project is due in three days. You're worried your grade will suffer.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Direct Communication",
+          content: "One approach is to reach out to the person who isn't doing work and try to get them involved. This addresses the problem directly with them."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Message or talk to them privately",
+            "Ask if everything is okay",
+            "Clearly explain what they need to do"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Text or talk to the person: 'Hey, I noticed you haven't been able to work on the project yet. Is everything okay? We really need you to do your part because it's due in three days. Can you handle [specific task] by tomorrow? Let me know if you need help.'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will they actually do the work?",
+            "Are they avoiding the work for a reason?",
+            "Could this motivate them or will they ignore it?",
+            "What if they still don't help?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Involve an Authority Figure",
+          content: "Another approach is to inform the teacher about the situation. This brings in authority to handle the problem."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Talk to your teacher privately",
+            "Explain who isn't contributing",
+            "Ask how the grading will work"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Talk to the teacher: 'I wanted to let you know that one person in our group hasn't contributed to the project at all. The rest of us have been doing the work. Will this affect our individual grades? What should we do about it?'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will the teacher handle it fairly?",
+            "How will the group member react?",
+            "Could this seem like 'tattling' to others?",
+            "Will it protect your grade?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 4,
+    title: "Friend Spreading Rumors",
+    text: "You heard from someone that your friend has been telling other people personal things you shared with them in private. You're not sure if it's true, but multiple people have mentioned it.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Direct Confrontation",
+          content: "One approach is to talk to your friend directly and ask if the rumors are true. This is confrontational but gets to the truth."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Talk to them privately, not in front of others",
+            "Explain what you heard",
+            "Give them a chance to explain"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Talk to your friend alone: 'Hey, I need to ask you something. A few people have told me that you've been sharing stuff I told you in private. Is that true? I'm confused and hurt because I trusted you with that information.'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will they admit it or deny it?",
+            "Could this damage the friendship?",
+            "Will you get the truth?",
+            "How will you feel afterward?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Create Distance",
+          content: "Another approach is to pull back from the friendship without confrontation. This protects you but doesn't address the problem directly."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Stop sharing personal information with them",
+            "Spend less time with them",
+            "Be polite but less close"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Gradually stop hanging out with this friend as much. Be friendly when you see them but don't share personal things anymore. If they ask what's wrong, you could say: 'I'm just busy with other stuff' or be honest: 'I don't feel like I can trust you like I used to.'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will this protect your privacy going forward?",
+            "Does avoiding confrontation feel better or worse?",
+            "Will the friend notice and care?",
+            "Does this solve the original problem?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 5,
+    title: "Argument With Parent",
+    text: "You had a big argument with your parent this morning before school. Both of you said things you didn't mean. Now you're at school feeling upset and you know they're probably upset too.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Take Initiative",
+          content: "One approach is to be the first to apologize and try to make things better. This takes initiative to fix the relationship."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Text or call them during lunch or a break",
+            "Apologize for your part in the argument",
+            "Express that you want to talk about it later"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Text your parent: 'I'm sorry about this morning. I said things I didn't mean and I feel bad. Can we talk about it when I get home? I love you.' This opens the door to fixing things without needing to solve everything right away."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will this make you both feel better?",
+            "How might your parent respond?",
+            "Does apologizing first mean admitting you were wrong?",
+            "Will this help you focus at school?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Wait and Cool Off",
+          content: "Another approach is to give both of you time to calm down before discussing it. This prevents making things worse while emotions are high."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Focus on school for now",
+            "Wait until you're home and both calmer",
+            "Then have a conversation about what happened"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Wait until you get home from school. Let things cool down during the day. When you get home, approach them calmly: 'Can we talk about this morning? I think we both said things we didn't mean. I want to understand your side and explain mine.'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will waiting make things better or worse?",
+            "Can you focus on school while this is unresolved?",
+            "Will your parent think you don't care?",
+            "Is a calm conversation later better than an emotional text now?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 6,
+    title: "Lost Borrowed Item",
+    text: "You borrowed a friend's expensive headphones a week ago and now you can't find them. You've looked everywhere. You're worried about telling them.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Immediate Honesty",
+          content: "One approach is to be honest right away and offer a solution. This shows responsibility even though the situation is bad."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Tell your friend as soon as possible",
+            "Apologize sincerely",
+            "Offer to pay for new ones or replace them"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Talk to your friend: 'I have bad news and I'm really sorry. I lost your headphones. I've looked everywhere and I can't find them. I know they were expensive. Can I pay you back for them or buy you new ones? I feel terrible about this.'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will your friend be angry?",
+            "Can you afford to replace them?",
+            "Will this hurt the friendship?",
+            "Is honesty the best policy here?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Problem-Solve First",
+          content: "Another approach is to search more thoroughly before saying anything. This gives you a chance to find them and avoid the conversation altogether."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Search everywhere one more time carefully",
+            "Ask family if they've seen them",
+            "Check all the places you've been",
+            "Give yourself a deadline (like 2 days) to find them"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Spend the next day or two doing a thorough search: check your room, car, locker, friend's houses you've visited, lost and found at school. Ask your parents if they've seen them. If you still can't find them after 2 days, then tell your friend and offer to replace them."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "What if your friend asks for them back during this time?",
+            "Will delaying make them more upset later?",
+            "What are the actual chances you'll find them?",
+            "Is it worth the stress of hiding this?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 7,
+    title: "Uncomfortable Party",
+    text: "You're at a party where people are doing things you're not comfortable with (drinking, vaping, etc.). Your ride isn't leaving for another hour and you don't want to be there.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Get Help to Leave",
+          content: "One approach is to call a parent, guardian, or trusted adult to come get you. This removes you from the situation immediately."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Find a quiet place to make a call",
+            "Call your parent or a trusted adult",
+            "Explain you want to leave early"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Go outside or to a bathroom and call your parent: 'Hi, I'm at this party but I'm really uncomfortable and I want to leave. Can you please come pick me up?' If you're worried they'll be mad, remember: most parents would rather you call than stay somewhere unsafe."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will your parents be upset or proud you called?",
+            "How will your friends at the party react?",
+            "Will you feel relieved or embarrassed?",
+            "Is your safety worth potential awkwardness?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Stay But Separate",
+          content: "Another approach is to stay at the party but separate yourself from the activities you're uncomfortable with. This is a middle ground."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Find friends who aren't participating in those activities",
+            "Stay in a different area of the party",
+            "Keep yourself busy until your ride is ready"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Move to a different room or area where people aren't doing the things that make you uncomfortable. Text friends: 'I'm going to hang out in the other room if you want to join.' Stick with people who aren't participating. Watch the time and leave when your original ride is ready."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will you actually be comfortable in another area?",
+            "Can you avoid peer pressure for a whole hour?",
+            "Will people pressure you to join anyway?",
+            "Is waiting worth the discomfort?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 8,
+    title: "Witnessing Bullying",
+    text: "You see someone getting picked on in the hallway at school. A group of students is making fun of them. The person being bullied looks really upset. You don't know them personally.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Direct Intervention",
+          content: "One approach is to step in and try to stop it. This is direct action but requires confidence."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Approach the situation calmly",
+            "Say something to interrupt the bullying",
+            "Try to get the bullied person away from the situation"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Walk up and interrupt: 'Hey, leave them alone.' Or try distraction: 'Hey [bullied person's name or 'hey there'], I was looking for you. Can you help me with something?' Then walk away with them. This interrupts the bullying without direct confrontation."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Could you become a target too?",
+            "Will the bullies stop or get worse?",
+            "How will the bullied person feel?",
+            "Do you feel safe doing this?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Get Adult Help",
+          content: "Another approach is to immediately find a teacher, counselor, or other adult. This gets professional help involved."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Find the nearest teacher or staff member quickly",
+            "Explain what's happening and where",
+            "Point out who's involved if needed"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Quickly walk to the nearest classroom or office and say: 'There's a group of students bullying someone in the hallway near [location]. Can someone come help?' This gets an authority figure involved who can handle it properly."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will the adult get there in time?",
+            "Will this actually stop the bullying?",
+            "Could the bullies retaliate against the victim later?",
+            "Is this the safest option for everyone?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 9,
+    title: "Failing a Class",
+    text: "You're failing a class and the semester is almost over. Your parent doesn't know yet. You're worried about your grade and what will happen when they find out.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Take Initiative",
+          content: "One approach is to talk to your teacher about options to improve your grade before telling your parents. This shows initiative."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Schedule a meeting with your teacher",
+            "Ask about extra credit or makeup work",
+            "Create a plan to improve"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Talk to your teacher: 'I know I'm failing your class and I want to fix it. Are there any opportunities for extra credit or makeup work? I'm willing to put in extra time. Can we make a plan for how I can improve my grade before the end of the semester?'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will the teacher allow you to make up work?",
+            "Is there enough time to actually improve?",
+            "Should you tell your parents before or after making this plan?",
+            "What if the teacher says no?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Ask for Family Support",
+          content: "Another approach is to tell your parents honestly and ask them to help you figure out a solution. This is vulnerable but shows trust."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Choose a calm time to talk to them",
+            "Be honest about the grade",
+            "Explain why it happened",
+            "Ask for their help making a plan"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Talk to your parent: 'I need to tell you something. I'm failing [class] and I'm really worried about it. I've been struggling with [reason] and I didn't know how to ask for help. I want to fix this. Can you help me figure out what to do?' Then work together on a plan."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will your parents be angry or supportive?",
+            "Can they help you in a meaningful way?",
+            "Will telling them make things better or worse?",
+            "Is facing it now better than hiding it longer?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 10,
+    title: "Wrong Order at Restaurant",
+    text: "You ordered food at a restaurant and they brought you the wrong order. It's not what you wanted at all, but the server seems really busy and stressed.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Assert Your Needs",
+          content: "One approach is to let the server know about the mistake and ask them to fix it. This is assertive but respectful."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Wait for the server to come back or politely get their attention",
+            "Explain the mistake calmly",
+            "Ask for the correct order"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "When the server comes back, say: 'Excuse me, I'm sorry but I think there was a mix-up with my order. I ordered [what you wanted] but this is [what you got]. Could I please get what I ordered?' Be polite and understanding."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will they fix it quickly?",
+            "How long will you have to wait?",
+            "Will the server be annoyed or apologetic?",
+            "Is it worth speaking up?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Accept the Situation",
+          content: "Another approach is to accept the wrong order and eat it anyway. This avoids confrontation but you don't get what you wanted."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Decide if the wrong order is acceptable to you",
+            "Eat what they brought",
+            "Maybe mention it when paying (if you're comfortable)"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Decide that the wrong order is okay enough to eat, especially since the server is busy. Eat it without saying anything. If you want, you could mention it when paying: 'Just so you know, I got the wrong order but it was fine.' This gives feedback without making them fix it in the moment."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will you enjoy the meal you didn't want?",
+            "Are you paying for something you didn't order?",
+            "Will you regret not speaking up?",
+            "Is avoiding confrontation worth it?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 11,
+    title: "Friend Wants to Cheat",
+    text: "You're taking a test and your friend keeps trying to look at your answers. They're texting you asking for help. You want to help them but you know it's cheating.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Refuse Directly",
+          content: "One approach is to clearly refuse to help and make sure you don't get caught up in cheating. This protects your integrity."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Ignore their texts or turn your phone off",
+            "Cover your paper so they can't see",
+            "Focus on your own test"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "During the test, cover your paper and angle it away from them. Turn off your phone or ignore texts. After the test, you could say: 'I can't help you cheat on tests. I could get in trouble too. I'm happy to study with you before the next test though.'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will your friend be mad at you?",
+            "Are you protecting yourself from consequences?",
+            "How will you feel about refusing?",
+            "Will this affect your friendship?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Refuse but Offer Alternative",
+          content: "Another approach is to refuse during the test but offer to help them study for future tests. This says no while still being supportive."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Don't help during the test",
+            "Text them after: 'I can't help during tests, but we can study together next time'",
+            "Offer to be a study partner going forward"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Cover your paper during the test and don't respond to texts. After class, tell them: 'Hey, I can't help you cheat because we'd both get in trouble. But I'm happy to study with you before the next test. We could meet up after school or quiz each other.'"
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will they appreciate the offer to study together?",
+            "Does offering help later soften the refusal?",
+            "Will they actually study with you?",
+            "Is this a good compromise?"
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 12,
+    title: "Social Media Drama",
+    text: "Someone posted something mean about you on social media. Your friends are telling you about it and asking if you're going to respond. You're upset and angry.",
+    hints: {
+      solution1: {
+        hint1: {
+          title: "Solution Type: Don't Engage",
+          content: "One approach is to avoid responding on social media. This prevents escalation and takes away the drama."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Don't comment or post anything in response",
+            "Take a screenshot for evidence",
+            "Talk to a trusted adult if needed"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Resist the urge to respond online. Take a screenshot of the post in case you need evidence later. Tell your friends: 'I'm not going to respond because that's what they want. I'm just going to ignore it.' If it's really bad, tell a parent or school counselor."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will ignoring it make it go away?",
+            "How will you feel not defending yourself?",
+            "Will people respect you more for not engaging?",
+            "What if it gets worse?"
+          ]
+        }
+      },
+      solution2: {
+        hint1: {
+          title: "Different Approach: Address Privately",
+          content: "Another approach is to message the person privately instead of responding publicly. This addresses it without creating more drama."
+        },
+        hint2: {
+          title: "Steps to take:",
+          list: [
+            "Send them a direct message",
+            "Keep it calm and direct",
+            "Ask them to take it down"
+          ]
+        },
+        hint3: {
+          title: "Full Example Solution:",
+          content: "Send a private message: 'I saw what you posted about me. I'm not sure why you felt the need to post that publicly, but it's hurtful. Can you please take it down? If there's an actual issue, we can talk about it privately.' Stay calm and mature."
+        },
+        hint4: {
+          title: "Think about the outcome:",
+          list: [
+            "Will they take it down?",
+            "Could they screenshot your message and post that too?",
+            "Is engaging at all a good idea?",
+            "Will this resolve things or make them worse?"
+          ]
+        }
+      }
+    }
+  }
+];
+
+let currentProblem = null;
+let activeHints = { 1: new Set(), 2: new Set() };
+
+// Initialize the app
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
+  renderProblemButtons();
+  setupEventListeners();
+}
+
+function renderProblemButtons() {
+  const grid = document.getElementById('problemGrid');
+  grid.innerHTML = problems.map(problem => `
+    <button class="problem-btn" data-id="${problem.id}">
+      <strong>${problem.title}</strong>
+    </button>
+  `).join('');
+}
+
+function setupEventListeners() {
+  // Problem selection
+  document.getElementById('problemGrid').addEventListener('click', (e) => {
+    const btn = e.target.closest('.problem-btn');
+    if (btn) {
+      const id = parseInt(btn.dataset.id);
+      loadProblem(id);
+    }
+  });
+
+  // Hint buttons
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.hint-btn');
+    if (btn) {
+      toggleHint(btn);
+    }
+  });
+
+  // Input tracking for progress
+  document.getElementById('solution1').addEventListener('input', updateProgress);
+  document.getElementById('solution2').addEventListener('input', updateProgress);
+  document.getElementById('outcome1').addEventListener('input', updateProgress);
+  document.getElementById('outcome2').addEventListener('input', updateProgress);
+
+  // Action buttons
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  document.getElementById('nextProblemBtn').addEventListener('click', loadNextProblem);
+  document.getElementById('changeProblemBtn').addEventListener('click', () => {
+    document.querySelector('.problem-selector').scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+function loadProblem(id) {
+  currentProblem = problems.find(p => p.id === id);
+  if (!currentProblem) return;
+
+  // Update active button
+  document.querySelectorAll('.problem-btn').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.id) === id);
+  });
+
+  // Show activity container
+  document.getElementById('activityContainer').style.display = 'block';
+  
+  // Display problem
+  document.getElementById('problemDisplay').innerHTML = `
+    <h3>Problem ${currentProblem.id}</h3>
+    <p class="problem-text">${currentProblem.text}</p>
+  `;
+
+  // Load hints
+  loadHintsForProblem();
+
+  // Clear all inputs and hints
+  document.getElementById('solution1').value = '';
+  document.getElementById('solution2').value = '';
+  document.getElementById('outcome1').value = '';
+  document.getElementById('outcome2').value = '';
+  document.getElementById('comparison').value = '';
+  
+  activeHints = { 1: new Set(), 2: new Set() };
+  document.querySelectorAll('.hint-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.hint-content').forEach(content => content.classList.remove('show'));
+
+  updateProgress();
+
+  // Scroll to activity
+  document.getElementById('activityContainer').scrollIntoView({ behavior: 'smooth' });
+}
+
+function loadHintsForProblem() {
+  // Display solution types as visible badges
+  const s1Type = currentProblem.hints.solution1.hint1.title.replace('Solution Type: ', '');
+  const s2Type = currentProblem.hints.solution2.hint1.title.replace('Different Approach: ', '').replace('Solution Type: ', '');
+  
+  document.getElementById('type-1').textContent = '💡 ' + s1Type;
+  document.getElementById('type-2').textContent = '💡 ' + s2Type;
+
+  // Load hints for Solution 1 (now hint1 is the old hint2, etc.)
+  const s1Hints = currentProblem.hints.solution1;
+  loadHint(1, 1, { title: 'More Details', content: s1Hints.hint1.content });
+  loadHint(1, 2, s1Hints.hint2);
+  loadHint(1, 3, s1Hints.hint3);
+
+  // Load hints for Solution 2
+  const s2Hints = currentProblem.hints.solution2;
+  loadHint(2, 1, { title: 'More Details', content: s2Hints.hint1.content });
+  loadHint(2, 2, s2Hints.hint2);
+  loadHint(2, 3, s2Hints.hint3);
+}
+
+function loadHint(solutionNum, hintNum, hintData) {
+  const hintElement = document.getElementById(`hint${hintNum}-${solutionNum}`);
+  
+  let content = `<h4>${hintData.title}</h4>`;
+  
+  if (hintData.content) {
+    content += `<p>${hintData.content}</p>`;
+  }
+  
+  if (hintData.list) {
+    content += '<ul class="hint-list">';
+    hintData.list.forEach(item => {
+      content += `<li>${item}</li>`;
+    });
+    content += '</ul>';
+  }
+  
+  hintElement.innerHTML = content;
+}
+
+function toggleHint(btn) {
+  const hintNum = btn.dataset.hint;
+  const solutionNum = btn.dataset.solution;
+  const hintContent = document.getElementById(`hint${hintNum}-${solutionNum}`);
+  
+  const isActive = btn.classList.contains('active');
+  
+  if (isActive) {
+    btn.classList.remove('active');
+    hintContent.classList.remove('show');
+    activeHints[solutionNum].delete(hintNum);
+  } else {
+    btn.classList.add('active');
+    hintContent.classList.add('show');
+    activeHints[solutionNum].add(hintNum);
+  }
+}
+
+function updateProgress() {
+  const solution1 = document.getElementById('solution1').value.trim();
+  const solution2 = document.getElementById('solution2').value.trim();
+  const outcome1 = document.getElementById('outcome1').value.trim();
+  const outcome2 = document.getElementById('outcome2').value.trim();
+  
+  const checkmarks = [];
+  if (solution1.length > 10 && outcome1.length > 10) checkmarks.push('✓');
+  if (solution2.length > 10 && outcome2.length > 10) checkmarks.push('✓');
+  
+  document.getElementById('progressCheckmarks').innerHTML = 
+    checkmarks.map(c => `<span class="checkmark">${c}</span>`).join(' ');
+}
+
+function loadNextProblem() {
+  if (!currentProblem) return;
+  
+  const currentIndex = problems.findIndex(p => p.id === currentProblem.id);
+  const nextIndex = (currentIndex + 1) % problems.length;
+  loadProblem(problems[nextIndex].id);
+}
+
+function resetAll() {
+  if (confirm('Are you sure you want to reset? This will clear all your solutions.')) {
+    currentProblem = null;
+    document.getElementById('activityContainer').style.display = 'none';
+    document.querySelectorAll('.problem-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.problem-selector').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+</script>
+
+</body>
+</html>

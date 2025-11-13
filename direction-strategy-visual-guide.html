@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Direction Strategy Visual Guide</title>
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --purple-dark: #5b21b6;
+      --blue: #0ea5e9;
+      --green: #10b981;
+      --muted: #6b7280;
+      --ink: #111827;
+      --surface: #ffffff;
+      --bg: radial-gradient(circle at top, #ede9fe 0%, #f8fafc 55%, #eef2ff 100%);
+      --card-shadow: 0 16px 32px rgba(124, 58, 237, 0.16);
+      --card-border: 1px solid rgba(124, 58, 237, 0.18);
+      --radius: 22px;
+      --max: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      width: min(92%, var(--max));
+      display: grid;
+      gap: 28px;
+      padding: 40px 0 60px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--radius);
+      border: var(--card-border);
+      box-shadow: var(--card-shadow);
+      padding: 28px;
+      display: grid;
+      gap: 14px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 34px);
+      color: var(--purple-dark);
+    }
+
+    header p {
+      margin: 0;
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .flow-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .flow-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: var(--card-border);
+      box-shadow: var(--card-shadow);
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+      position: relative;
+    }
+
+    .flow-number {
+      position: absolute;
+      top: -16px;
+      left: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--purple);
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 12px 24px rgba(124, 58, 237, 0.25);
+    }
+
+    .flow-card h2 {
+      margin: 32px 0 0;
+      font-size: 20px;
+      color: var(--purple-dark);
+    }
+
+    .flow-card p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .reminder {
+      display: grid;
+      gap: 12px;
+      background: rgba(14, 165, 233, 0.1);
+      border: 2px solid rgba(14, 165, 233, 0.3);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 16px 32px rgba(14, 165, 233, 0.18);
+    }
+
+    .reminder h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #0c4a6e;
+    }
+
+    .reminder-list {
+      margin: 0;
+      padding-left: 22px;
+      display: grid;
+      gap: 6px;
+      font-size: 15px;
+      color: #0c4a6e;
+    }
+
+    .strategy-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .strategy-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius);
+      border: 2px solid rgba(124, 58, 237, 0.22);
+      box-shadow: var(--card-shadow);
+      padding: 22px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .strategy-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--purple-dark);
+    }
+
+    .strategy-body {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .tip-banner {
+      background: rgba(16, 185, 129, 0.12);
+      border-radius: var(--radius);
+      border: 2px solid rgba(16, 185, 129, 0.35);
+      padding: 18px;
+      font-size: 15px;
+      color: #065f46;
+      box-shadow: 0 16px 28px rgba(16, 185, 129, 0.18);
+    }
+
+    @media (max-width: 640px) {
+      header, .flow-card, .reminder, .strategy-card, .tip-banner {
+        padding: 20px;
+      }
+
+      .flow-number {
+        left: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Direction Strategy Chart</h1>
+      <p>Use this visual to slow down, spot the most important parts of a direction, and choose the best strategy to ace it the first time.</p>
+    </header>
+
+    <section class="flow-grid" aria-label="Direction strategy steps">
+      <article class="flow-card">
+        <span class="flow-number">1</span>
+        <h2>Scan &amp; Notice</h2>
+        <p><strong>Think:</strong> What is this asking me to do? Circle verbs and time words. If it's spoken, replay it in your head or ask to hear it again.</p>
+      </article>
+
+      <article class="flow-card">
+        <span class="flow-number">2</span>
+        <h2>Highlight the Core</h2>
+        <p><strong>Spot the must-do items:</strong> Underline steps, people, tools, and deadlines. Chunk long directions into smaller pieces you can handle.</p>
+      </article>
+
+      <article class="flow-card">
+        <span class="flow-number">3</span>
+        <h2>Plan Your Strategy</h2>
+        <p><strong>Pick what helps:</strong> Will you rehearse, visualize, write it down, or set a reminder? Say the plan out loud so you know the order.</p>
+      </article>
+    </section>
+
+    <section class="reminder" aria-label="Quick decision cue">
+      <h2>Ask Yourself Before You Start</h2>
+      <ul class="reminder-list">
+        <li>What is the first thing I need to do?</li>
+        <li>Is there a time, place, or person I can’t forget?</li>
+        <li>Which strategy will help me remember the full direction?</li>
+      </ul>
+    </section>
+
+    <section class="strategy-grid" aria-label="Strategy menu">
+      <article class="strategy-card">
+        <div class="strategy-header">🖍️ Highlight &amp; Chunk</div>
+        <div class="strategy-body">Mark the verbs, underline names and due times, and group long directions into two or three smaller actions.</div>
+      </article>
+
+      <article class="strategy-card">
+        <div class="strategy-header">🔁 Repeat or Rehearse</div>
+        <div class="strategy-body">Say each step out loud once, then quietly rehearse it. Tap or count on fingers if that keeps the order straight.</div>
+      </article>
+
+      <article class="strategy-card">
+        <div class="strategy-header">🎥 Visualize It</div>
+        <div class="strategy-body">Picture yourself moving through each step. Imagine the screen, backpack, or classroom so your brain already knows the path.</div>
+      </article>
+
+      <article class="strategy-card">
+        <div class="strategy-header">✍️ Write or Check Off</div>
+        <div class="strategy-body">Jot the steps in order or draw short boxes to check off. Use sticky notes, a whiteboard, or the notes app on your device.</div>
+      </article>
+
+      <article class="strategy-card">
+        <div class="strategy-header">🗣️ Ask &amp; Clarify</div>
+        <div class="strategy-body">If something is unclear, ask sooner rather than later. Repeat the part you heard and say, “Can you confirm this piece?”</div>
+      </article>
+
+      <article class="strategy-card">
+        <div class="strategy-header">⏰ Set Reminders</div>
+        <div class="strategy-body">Need to remember a time or final step? Set a phone reminder, alarm, or digital calendar alert right away.</div>
+      </article>
+    </section>
+
+    <div class="tip-banner" role="note">
+      Pro Tip: Finish by restating your plan: “First I’ll…, then I will…, and finally I’ll…” Saying it or writing it cements the steps before you take action.
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Same and Different Worksheets — Image Version</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --w: 1200px;
+      --border: 2px solid #000;
+    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1, h3 { text-align: center; margin: 6px 0; }
+    .toolbar {
+      display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;
+      margin: 10px 0 18px 0;
+    }
+    .toolbar button, .toolbar label {
+      font-size: 14px; padding: 8px 10px; border-radius: 8px; border: 1px solid #444; cursor: pointer;
+      background: #f5f5f5;
+    }
+    .toolbar .note { font-size: 13px; opacity: .8 }
+    table { width: var(--w); margin: 0 auto 30px auto; border-collapse: collapse; }
+    th, td { border: var(--border); text-align: center; padding: 10px; vertical-align: middle; }
+    th { background: #f0f4ff }
+    textarea.entry {
+      width: 95%; min-height: 46px; padding: 6px; font-size: 15px; line-height: 1.35; resize: vertical;
+    }
+    .frame-label { font-weight: bold; display: block; margin-bottom: 4px; text-align: left; }
+    .diff-block { margin-bottom: 8px; }
+    .pic-wrap { display: grid; grid-template-rows: 1fr auto auto; gap: 6px; align-items: center; }
+    .pic {
+      display: block; width: 160px; height: 120px; object-fit: contain; margin: 0 auto; background: #fff;
+      border: 1px dashed #aaa; border-radius: 6px;
+    }
+    .pick { display: inline-block; font-size: 12px; }
+    .label-input { width: 90%; font-size: 14px; padding: 4px 6px }
+    .cell-title { font-weight: 600; font-size: 14px; }
+    .small { font-size: 12px; opacity: .8 }
+    .hc th, .hc td { border-color: #000; }
+    .hc .frame-label { color: #000 }
+    .hc { background: #fff; color: #000 }
+    @media print {
+      .toolbar { display: none }
+      textarea.entry { border: 1px solid #999; }
+      .pick { display: none }
+      input[type="text"] { border: none; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Same and Different Worksheets</h1>
+  <h3>Image-friendly version with saving</h3>
+
+  <div class="toolbar">
+    <button id="save">Save all</button>
+    <button id="load">Load saved</button>
+    <button id="clear">Clear all</button>
+    <button onclick="window.print()">Print</button>
+    <label><input type="checkbox" id="contrast"> High contrast</label>
+    <span class="note">Tip: click Choose image to add real photos. Your entries save in this browser only.</span>
+  </div>
+
+  <table id="sheet">
+    <tr>
+      <th>Item 1</th><th>Item 2</th><th>SAME</th><th>DIFFERENT</th>
+    </tr>
+  </table>
+
+<script>
+const pairs = [
+  ["Dog","Cat"],
+  ["Spoon","Fork"],
+  ["Shirt","Pants"],
+  ["Bike","Car"],
+  ["Apple","Orange"],
+  ["Book","Tablet"],
+  ["Chair","Couch"],
+  ["Sun","Moon"],
+  ["Pencil","Crayon"],
+  ["Sneakers","Sandals"]
+];
+
+const table = document.getElementById('sheet');
+
+function makeRow(idx, a, b) {
+  const tr = document.createElement('tr');
+
+  // helper to make picture cell
+  function picCell(side, label) {
+    const td = document.createElement('td');
+    td.className = 'pic-cell';
+    const wrap = document.createElement('div');
+    wrap.className = 'pic-wrap';
+
+    const img = document.createElement('img');
+    img.className = 'pic';
+    img.alt = label;
+    img.dataset.key = `img_${idx}_${side}`;
+    img.src = ''; // empty by default
+
+    const file = document.createElement('input');
+    file.type = 'file'; file.accept = 'image/*';
+    file.className = 'pick';
+    file.addEventListener('change', async (e)=>{
+      const f = e.target.files[0];
+      if (!f) return;
+      const dataUrl = await toDataURL(f);
+      img.src = dataUrl;
+    });
+
+    const itemLabel = document.createElement('input');
+    itemLabel.type = 'text';
+    itemLabel.className = 'label-input';
+    itemLabel.value = label;
+    itemLabel.placeholder = side === 0 ? 'Item 1 label' : 'Item 2 label';
+    itemLabel.dataset.key = `lbl_${idx}_${side}`;
+
+    const title = document.createElement('div');
+    title.className = 'cell-title small';
+    title.textContent = side === 0 ? "Item 1" : "Item 2";
+
+    wrap.appendChild(img);
+    wrap.appendChild(file);
+    wrap.appendChild(itemLabel);
+    td.appendChild(wrap);
+    return td;
+  }
+
+  // SAME cell
+  function sameCell() {
+    const td = document.createElement('td');
+    const label = document.createElement('span');
+    label.className = 'frame-label';
+    label.textContent = 'They are both...';
+    const ta = document.createElement('textarea');
+    ta.className = 'entry';
+    ta.dataset.key = `same_${idx}`;
+    td.appendChild(label);
+    td.appendChild(ta);
+    return td;
+  }
+
+  // DIFFERENT cell
+  function diffCell(aLabel, bLabel) {
+    const td = document.createElement('td');
+    const d1 = document.createElement('div');
+    d1.className = 'diff-block';
+    const l1 = document.createElement('span');
+    l1.className = 'frame-label';
+    l1.textContent = `A ${aLabel}...`;
+    l1.dataset.bind = `lbl_${idx}_0`;
+    const t1 = document.createElement('textarea');
+    t1.className = 'entry';
+    t1.dataset.key = `diffA_${idx}`;
+    d1.appendChild(l1); d1.appendChild(t1);
+
+    const d2 = document.createElement('div');
+    d2.className = 'diff-block';
+    const l2 = document.createElement('span');
+    l2.className = 'frame-label';
+    l2.textContent = `A ${bLabel}...`;
+    l2.dataset.bind = `lbl_${idx}_1`;
+    const t2 = document.createElement('textarea');
+    t2.className = 'entry';
+    t2.dataset.key = `diffB_${idx}`;
+    d2.appendChild(l2); d2.appendChild(t2);
+
+    td.appendChild(d1); td.appendChild(d2);
+    return td;
+  }
+
+  tr.appendChild(picCell(0, a));
+  tr.appendChild(picCell(1, b));
+  tr.appendChild(sameCell());
+  tr.appendChild(diffCell(a, b));
+  return tr;
+}
+
+pairs.forEach((p, i)=> table.appendChild(makeRow(i, p[0], p[1])));
+
+// bind label updates to "A ___..." headers
+function bindLabelToHeaders() {
+  document.querySelectorAll('.label-input').forEach(inp => {
+    function update() {
+      const key = inp.dataset.key;
+      document.querySelectorAll(`[data-bind="${key}"]`).forEach(el => {
+        el.textContent = `A ${inp.value}...`;
+      });
+    }
+    inp.addEventListener('input', update);
+    update();
+  });
+}
+bindLabelToHeaders();
+
+// persistence
+function saveAll() {
+  const data = {};
+  document.querySelectorAll('[data-key]').forEach(el => {
+    if (el.tagName === 'TEXTAREA' || (el.tagName === 'INPUT' && el.type === 'text')) {
+      data[el.dataset.key] = el.value;
+    } else if (el.tagName === 'IMG') {
+      data[el.dataset.key] = el.src || '';
+    }
+  });
+  localStorage.setItem('sameDiff_v2', JSON.stringify(data));
+  alert('Saved');
+}
+
+function loadAll() {
+  const raw = localStorage.getItem('sameDiff_v2');
+  if (!raw) return;
+  const data = JSON.parse(raw);
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const val = data[el.dataset.key];
+    if (val == null) return;
+    if (el.tagName === 'TEXTAREA' || (el.tagName === 'INPUT' && el.type === 'text')) {
+      el.value = val;
+      if (el.classList.contains('label-input')) {
+        // keep headers in sync
+        const event = new Event('input');
+        el.dispatchEvent(event);
+      }
+    } else if (el.tagName === 'IMG') {
+      el.src = val;
+    }
+  });
+}
+
+function clearAll() {
+  if (!confirm('Clear all fields and images?')) return;
+  document.querySelectorAll('textarea.entry').forEach(t=> t.value = '');
+  document.querySelectorAll('.label-input').forEach(i=> i.value = i.placeholder.includes('1') ? 'Item 1' : 'Item 2');
+  document.querySelectorAll('img.pic').forEach(img=> img.src = '');
+  localStorage.removeItem('sameDiff_v2');
+  bindLabelToHeaders();
+}
+
+async function toDataURL(file) {
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = ()=> resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// toolbar buttons
+document.getElementById('save').addEventListener('click', saveAll);
+document.getElementById('load').addEventListener('click', loadAll);
+document.getElementById('clear').addEventListener('click', clearAll);
+document.getElementById('contrast').addEventListener('change', (e)=>{
+  document.body.classList.toggle('hc', e.target.checked);
+});
+
+// try loading saved data on open
+loadAll();
+</script>
+</body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perspective Pair Inference Practice</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --primary: #7c3aed;
+      --secondary: #0ea5e9;
+      --text: #0f172a;
+      --muted: #475569;
+      --radius: 18px;
+      --width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 32px 20px;
+      text-align: center;
+      box-shadow: 0 18px 36px rgba(124, 58, 237, 0.35);
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      letter-spacing: 0.01em;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.92;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .nav-bar {
+      background: #0f172a;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.35);
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .nav-btn {
+      border: none;
+      background: rgba(148, 163, 184, 0.18);
+      color: #e2e8f0;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background: rgba(226, 232, 240, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    main {
+      max-width: var(--width);
+      margin: 28px auto 56px;
+      padding: 0 18px;
+    }
+
+    .scenario {
+      display: none;
+    }
+
+    .scenario.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+      page-break-before: always;
+      padding-bottom: 40px;
+    }
+
+    .scenario:first-of-type {
+      page-break-before: auto;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scenario-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
+      border: 2px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .scenario-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .scenario-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .context-tag {
+      background: rgba(14, 165, 233, 0.12);
+      border: 1px solid rgba(14, 165, 233, 0.24);
+      color: #0f4a6e;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .scenario-text {
+      background: rgba(148, 163, 184, 0.12);
+      border-left: 5px solid var(--secondary);
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .clue-container {
+      margin-bottom: 22px;
+    }
+
+    .clue-toggle {
+      background: #7c3aed;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .clue-toggle:hover {
+      background: #6d28d9;
+    }
+
+    .clue-panel {
+      background: rgba(124, 58, 237, 0.08);
+      border: 2px dashed rgba(124, 58, 237, 0.3);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      display: none;
+    }
+
+    .clue-panel.visible {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .clue-panel h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #5b21b6;
+    }
+
+    .clue-panel ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .perspective-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .perspective-card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 2px solid rgba(148, 163, 184, 0.25);
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .person-label {
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 14px;
+    }
+
+    textarea {
+      width: 100%;
+      border: 2px solid rgba(148, 163, 184, 0.4);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-family: inherit;
+      min-height: 120px;
+      resize: vertical;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #f8fafc;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+      background: white;
+    }
+
+    .prompt-hint {
+      font-size: 14px;
+      color: var(--muted);
+      background: rgba(148, 163, 184, 0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+
+    @media (max-width: 720px) {
+      header h1 {
+        font-size: 26px;
+      }
+
+      .scenario-card {
+        padding: 20px;
+      }
+    }
+
+    @media print {
+      header, .nav-bar {
+        display: none;
+      }
+
+      main {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .scenario {
+        display: block !important;
+        page-break-before: always;
+      }
+
+      .scenario:first-of-type {
+        page-break-before: auto;
+      }
+
+      .scenario-card {
+        box-shadow: none;
+        border: none;
+        border-bottom: 3px solid rgba(148, 163, 184, 0.35);
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Perspective Pair Inference Practice</h1>
+    <p>
+      Read each social scenario. Use the clues to infer how at least two people might be thinking or feeling.
+      Explain their perspectives in your own words.
+    </p>
+  </header>
+
+  <nav class="nav-bar">
+    <div class="nav-buttons" id="navButtons"></div>
+  </nav>
+
+  <main id="scenarioContainer"></main>
+
+  <script>
+    const scenarios = [
+      {
+        title: "Scenario 1: Science Lab Partners",
+        context: "Science Class • Lab Stations • Midweek",
+        text:
+          "Maya and Devin are assigned to mix chemicals for a lab. Devin reads the instructions twice before moving. Maya drums her fingers on the counter and glances at the clock. When Devin finally pours, Maya nudges the beaker a little faster than the instructions say.",
+        clues: [
+          "Different pacing: Maya rushes, Devin double-checks.",
+          "Maya’s body language shows impatience (finger drumming, glancing at the clock).",
+          "Devin’s careful reading may signal nerves or fear of mistakes."
+        ],
+        personA: "Maya",
+        personAHint: "What might Maya be feeling or thinking? Use evidence from the scene.",
+        personB: "Devin",
+        personBHint: "What clues tell you about Devin’s thoughts or feelings?"
+      },
+      {
+        title: "Scenario 2: Lunch Table Invite",
+        context: "Cafeteria • Busy Friday • Friends",
+        text:
+          "Jordan spots Lucia sitting with two classmates from art club. Jordan waves and walks over. Lucia smiles but slides her backpack onto the empty seat beside her. “Hey! We were just talking about the art show,” Lucia says, glancing at her friends.",
+        clues: [
+          "Backpack blocking the seat while still greeting politely.",
+          "Lucia mentions the art show and glances at friends—maybe worried about including someone new.",
+          "Jordan approached confidently, expecting to join."
+        ],
+        personA: "Jordan",
+        personAHint: "How might Jordan interpret Lucia moving the backpack?",
+        personB: "Lucia",
+        personBHint: "Why might Lucia block the seat yet stay friendly?"
+      },
+      {
+        title: "Scenario 3: Group Text Silence",
+        context: "Evening • Group Chat • Project Planning",
+        text:
+          "Alana posts, “Let’s meet Sunday at 2? I can bring the posters.” Ten minutes go by with no responses. Marcus reacts with a thumbs-up. Dana types, “I’ll try to make it,” but doesn’t add more. The typing bubbles appear and disappear a few times, but no one else replies.",
+        clues: [
+          "Delay in responses shows hesitation.",
+          "Marcus only reacts with an emoji—minimal effort.",
+          "Dana’s “I’ll try” and stopping typing may show uncertainty or schedule conflict."
+        ],
+        personA: "Alana",
+        personAHint: "How might Alana feel after getting limited feedback?",
+        personB: "Dana",
+        personBHint: "What might Dana’s response mean about her perspective?"
+      },
+      {
+        title: "Scenario 4: Theater Audition Results",
+        context: "Auditorium • After School • Cast List Posted",
+        text:
+          "Sam scans the cast list and whispers, “I got a lead!” Priya stands a few steps back, holding her script and scanning the list twice. She smiles at Sam and says, “Congrats!” but her voice sounds quieter. Priya folds her script and tucks it into her bag without eye contact.",
+        clues: [
+          "Sam’s excitement vs. Priya’s quiet congratulations.",
+          "Priya re-checks the list and avoids eye contact—possible disappointment.",
+          "Putting the script away hints at giving up or needing a break."
+        ],
+        personA: "Sam",
+        personAHint: "What might Sam assume about Priya’s reaction?",
+        personB: "Priya",
+        personBHint: "What clues suggest Priya’s thoughts or feelings?"
+      },
+      {
+        title: "Scenario 5: Part-Time Job Rush",
+        context: "Coffee Shop • Saturday Morning • Busy Line",
+        text:
+          "Elise takes orders at the register. Mateo, a new hire, makes drinks. A customer orders a complicated drink. Elise calls it out clearly, but Mateo hesitates, glancing at the manual. Elise says, “We've got a long line of people waiting—Mateo, can you speed up?” Mateo bites his lip and nods without looking up.",
+        clues: [
+          "Elise’s urgency about line length.",
+          "Mateo is new and referencing the manual—signs of learning or nervousness.",
+          "Biting a lip and not making eye contact may show pressure or embarrassment."
+        ],
+        personA: "Elise",
+        personAHint: "What might Elise be thinking as the line grows?",
+        personB: "Mateo",
+        personBHint: "How might Mateo feel being asked to speed up?"
+      },
+      {
+        title: "Scenario 6: Family Move Announcement",
+        context: "Living Room • Evening • Family Meeting",
+        text:
+          "Dad says, “We might move to another city next year.” Older sister Jaya crosses her arms and stares at her plate. Younger brother Eli leans forward and asks, “Will I still go to the same school?” Dad replies, “We’re not sure yet,” and Jaya’s jaw tightens.",
+        clues: [
+          "Jaya’s closed posture vs. Eli leaning forward with questions.",
+          "Uncertainty about school and friends.",
+          "Dad’s answer doesn’t reassure either child."
+        ],
+        personA: "Jaya",
+        personAHint: "What might Jaya’s body language tell you?",
+        personB: "Eli",
+        personBHint: "What does Eli’s question show about his perspective?"
+      },
+      {
+        title: "Scenario 7: Group Presentation Prep",
+        context: "Library • After School • Shared Slides",
+        text:
+          "Nora and Ben are both editing slides for their group presentation. Ben rearranges the order without asking. Nora  switches it back, saying, “I liked it better before.” Ben sighs and opens a new document to work separately.",
+        clues: [
+          "Changing slides without asking vs. switching back immediately.",
+          "Nora uses a polite phrase but not much explanation.",
+          "Ben’s sigh and separate document show frustration or desire for control."
+        ],
+        personA: "Nora",
+        personAHint: "What might Nora be thinking about the slide order?",
+        personB: "Ben",
+        personBHint: "What clues show Ben’s feelings after Nora’s response?"
+      },
+      {
+        title: "Scenario 8: Gaming Night Plans",
+        context: "Online Chat • Evening • Weekend Plans",
+        text:
+          "Three friends are planning a gaming night. Kaylee says, “Can we start at 9? I have a family dinner.” Omar replies with a thumbs-up emoji. Jalen writes, “9 is kind of late. I have to wake up early.” Omar keeps sending memes instead of replying to Jalen.",
+        clues: [
+          "Omar’s thumbs-up but no words—low effort.",
+          "Jalen expresses a real concern; no one addresses it.",
+          "Kaylee’s family dinner creates a schedule puzzle."
+        ],
+        personA: "Kaylee",
+        personAHint: "What might Kaylee think when she sees the reactions?",
+        personB: "Jalen",
+        personBHint: "What does Jalen’s comment show about his needs?"
+      },
+      {
+        title: "Scenario 9: Art Critique Day",
+        context: "Art Studio • Afternoon • Peer Feedback",
+        text:
+          "During critiques, Lila shows her painting. Marcus studies it and says, “The colors are interesting.” Lila waits for more feedback and asks, “Anything else?” Marcus shrugs, “Not really.” Lila thanks him, then quietly takes out a notebook and writes something.",
+        clues: [
+          "Marcus’s vague comment (“interesting,” “not really”).",
+          "Lila expected more detailed feedback.",
+          "Writing something afterward could show processing or disappointment."
+        ],
+        personA: "Lila",
+        personAHint: "What might Lila be thinking after Marcus’s reply?",
+        personB: "Marcus",
+        personBHint: "Why might Marcus give such a short answer?"
+      },
+      {
+        title: "Scenario 10: Bus Ride Apology",
+        context: "Bus • Morning • On the Way to School",
+        text:
+          "Yesterday, Ava and Noah argued about who saved seats. Today, Noah sits down next to Ava and says, “Hey, sorry about yesterday. I was in a mood.” Ava nods slowly and turns toward the window. Noah waits a few seconds, then asks, “So, we good?”",
+        clues: [
+          "Noah apologizes first and checks in.",
+          "Ava nods but doesn’t speak; turns away.",
+          "Noah’s follow-up question shows uncertainty."
+        ],
+        personA: "Noah",
+        personAHint: "How might Noah feel while waiting for Ava’s reaction?",
+        personB: "Ava",
+        personBHint: "What does Ava’s body language suggest about her perspective?"
+      }
+    ];
+
+    const navButtonsContainer = document.getElementById("navButtons");
+    const scenarioContainer = document.getElementById("scenarioContainer");
+
+    function createScenarioCard(data, index) {
+      const scenarioSection = document.createElement("section");
+      scenarioSection.className = "scenario";
+      scenarioSection.id = `scenario-${index}`;
+
+      scenarioSection.innerHTML = `
+        <article class="scenario-card">
+          <div class="scenario-header">
+            <h2 class="scenario-title">${data.title}</h2>
+            <span class="context-tag">${data.context}</span>
+          </div>
+          <div class="scenario-text">
+            ${data.text}
+          </div>
+          <div class="clue-container">
+            <button class="clue-toggle" onclick="toggleClues(${index})">I Need Help</button>
+            <div class="clue-panel" id="clues-${index}">
+              <h3>Clues to Notice</h3>
+              <ul>
+                ${data.clues.map(clue => `<li>${clue}</li>`).join("")}
+              </ul>
+            </div>
+          </div>
+          <div class="perspective-grid">
+            <div class="perspective-card">
+              <span class="person-label">${data.personA}'s Perspective</span>
+              <div class="prompt-hint">${data.personAHint}</div>
+              <textarea placeholder="${data.personA} might be thinking/feeling..."></textarea>
+            </div>
+            <div class="perspective-card">
+              <span class="person-label">${data.personB}'s Perspective</span>
+              <div class="prompt-hint">${data.personBHint}</div>
+              <textarea placeholder="${data.personB} might be thinking/feeling..."></textarea>
+            </div>
+          </div>
+        </article>
+      `;
+
+      return scenarioSection;
+    }
+
+    function createNavButton(data, index) {
+      const btn = document.createElement("button");
+      btn.className = "nav-btn";
+      let label = data.title;
+      const colonIndex = label.indexOf(":");
+      if (colonIndex !== -1) {
+        label = label.slice(colonIndex + 1).trim();
+      }
+      btn.innerHTML = `<strong>${index + 1}.</strong> ${label}`;
+      btn.onclick = () => showScenario(index);
+      return btn;
+    }
+
+    function showScenario(index) {
+      document.querySelectorAll(".scenario").forEach((scene) => scene.classList.remove("active"));
+      document.querySelectorAll(".nav-btn").forEach((btn) => btn.classList.remove("active"));
+
+      document.getElementById(`scenario-${index}`).classList.add("active");
+      navButtonsContainer.children[index].classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleClues(index) {
+      const panel = document.getElementById(`clues-${index}`);
+      panel.classList.toggle("visible");
+    }
+
+    function init() {
+      scenarios.forEach((scenario, index) => {
+        scenarioContainer.appendChild(createScenarioCard(scenario, index));
+        navButtonsContainer.appendChild(createNavButton(scenario, index));
+      });
+
+      showScenario(0);
+    }
+
+    init();
+  </script>
+</body>
+</html>

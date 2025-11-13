@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Retelling Worksheet</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #333;
+            padding-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .info-line {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            gap: 20px;
+        }
+        
+        .info-field {
+            flex: 1;
+        }
+        
+        .info-field label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .info-field input {
+            border: none;
+            border-bottom: 2px solid #333;
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+        }
+        
+        .story-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .sentence-starter {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 15px;
+        }
+        
+        .writing-area {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 16px;
+            line-height: 1.8;
+            font-family: 'Arial', sans-serif;
+            resize: vertical;
+        }
+        
+        @media print {
+            body {
+                padding: 20px;
+            }
+            
+            .writing-area {
+                border: 1px solid #333;
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📖 Story Retelling Worksheet</h1>
+        <p>Use the sentence starters to retell your story in order!</p>
+    </div>
+    
+    <div class="story-section">
+        <div class="sentence-starter">First,</div>
+        <textarea class="writing-area" placeholder="What happened at the beginning of the story?"></textarea>
+    </div>
+    
+    <div class="story-section">
+        <div class="sentence-starter">Next,</div>
+        <textarea class="writing-area" placeholder="What happened after that?"></textarea>
+    </div>
+    
+    <div class="story-section">
+        <div class="sentence-starter">Then,</div>
+        <textarea class="writing-area" placeholder="What happened next?"></textarea>
+    </div>
+    
+    <div class="story-section">
+        <div class="sentence-starter">Last,</div>
+        <textarea class="writing-area" placeholder="How did the story end?"></textarea>
+    </div>
+</body>
+</html>

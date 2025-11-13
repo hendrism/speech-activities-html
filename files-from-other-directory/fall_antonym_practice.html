@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fall Antonym Practice</title>
+<style>
+  :root {
+    --leaf-orange: #f97316;
+    --leaf-brown: #92400e;
+    --autumn-cream: #fff7ed;
+    --sky: #2563eb;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(180deg, #f8fafc 0%, #dbeafe 35%, #fee2ce 100%);
+  color: #1f2937;
+    line-height: 1.6;
+    font-size: 18px;
+  }
+
+header {
+  background: white;
+  padding: 24px 16px;
+  text-align: center;
+  border-bottom: 4px solid rgba(249, 115, 22, 0.25);
+  box-shadow: 0 10px 25px rgba(30, 64, 175, 0.08);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 30px;
+    color: var(--leaf-orange);
+    letter-spacing: 0.5px;
+  }
+
+  header p {
+    margin: 8px auto 0;
+    max-width: 640px;
+    color: #475569;
+    font-weight: 500;
+  }
+
+main {
+  max-width: 960px;
+  margin: 40px auto 60px;
+  padding: 0 20px 40px;
+}
+
+  .level-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 18px;
+    border: 2px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 14px 28px rgba(249, 115, 22, 0.12);
+  }
+
+  .level-nav button {
+    border-radius: 999px;
+    border: 2px solid transparent;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    background: white;
+    color: #1f2937;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .level-nav button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
+    border-color: rgba(249, 115, 22, 0.35);
+  }
+
+  .level-nav button.active {
+    background: var(--leaf-orange);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 12px 22px rgba(249, 115, 22, 0.28);
+  }
+
+  .word-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    border: 2px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 16px 36px rgba(148, 163, 184, 0.12);
+  }
+
+  .word-nav button {
+    border-radius: 999px;
+    border: 2px solid transparent;
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    background: white;
+    color: #1f2937;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .word-nav button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
+    border-color: rgba(37, 99, 235, 0.25);
+  }
+
+  .word-nav button.active {
+    background: var(--leaf-orange);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 12px 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 3px solid rgba(249, 115, 22, 0.25);
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 24px 50px rgba(30, 64, 175, 0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 12px 12px auto auto;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, rgba(249, 115, 22, 0.15), transparent 70%),
+                radial-gradient(circle at 70% 70%, rgba(234, 179, 8, 0.18), transparent 65%);
+    z-index: 0;
+    opacity: 0.8;
+  }
+
+  .meta {
+    font-size: 15px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .word-display {
+    position: relative;
+    z-index: 1;
+    background: var(--autumn-cream);
+    border: 2px solid rgba(234, 88, 12, 0.35);
+    border-radius: 18px;
+    padding: 22px 24px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--leaf-brown);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .word-display span.label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #475569;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 110px;
+    border-radius: 18px;
+    border: 2px solid rgba(148, 163, 184, 0.7);
+    padding: 18px;
+    font-size: 18px;
+    font-family: inherit;
+    background: rgba(248, 250, 252, 0.95);
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  textarea:focus {
+    border-color: var(--sky);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 22px 0 12px;
+  }
+
+  button {
+    border-radius: 999px;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  button.primary {
+    background: var(--leaf-orange);
+    color: white;
+    box-shadow: 0 12px 24px rgba(249, 115, 22, 0.25);
+  }
+
+  button.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(249, 115, 22, 0.35);
+  }
+
+  button.secondary {
+    background: white;
+    color: #1f2937;
+    border: 2px solid rgba(148, 163, 184, 0.6);
+  }
+
+  button.secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
+    border-color: rgba(14, 116, 144, 0.5);
+  }
+
+  .help-panel,
+  .choices-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px dashed rgba(14, 116, 144, 0.4);
+    border-radius: 18px;
+    padding: 18px 20px;
+    margin-top: 16px;
+    display: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .help-panel.visible,
+  .choices-panel.visible {
+    display: block;
+  }
+
+  .help-panel strong {
+    display: block;
+    color: #0f766e;
+    margin-bottom: 6px;
+  }
+
+  .choices-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .choices-panel button.choice {
+    width: 100%;
+    text-align: left;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid rgba(148, 163, 184, 0.6);
+    background: rgba(248, 250, 252, 0.9);
+    color: #1f2937;
+  }
+
+  .choices-panel button.choice:hover {
+    border-color: var(--sky);
+    background: rgba(219, 234, 254, 0.8);
+  }
+
+  .feedback {
+    margin-top: 20px;
+    border-radius: 16px;
+    padding: 16px 18px;
+    font-weight: 600;
+    display: none;
+  }
+
+  .feedback.visible {
+    display: block;
+  }
+
+  .feedback.success {
+    background: rgba(74, 222, 128, 0.12);
+    border: 2px solid rgba(22, 163, 74, 0.25);
+    color: #166534;
+  }
+
+  .feedback.error {
+    background: rgba(252, 165, 165, 0.12);
+    border: 2px solid rgba(220, 38, 38, 0.25);
+    color: #b91c1c;
+  }
+
+  .progress {
+    margin-top: 26px;
+    font-size: 16px;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  @media (max-width: 720px) {
+    header h1 {
+      font-size: 24px;
+    }
+    .card {
+      padding: 24px;
+      border-radius: 20px;
+    }
+    .word-display {
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 24px;
+    }
+    textarea {
+      min-height: 140px;
+    }
+  }
+
+  .sentence {
+    margin: 0 0 18px;
+    font-size: 20px;
+    color: #334155;
+    background: rgba(255, 255, 255, 0.72);
+    border-left: 4px solid rgba(37, 99, 235, 0.2);
+    padding: 14px 18px;
+    border-radius: 14px;
+  }
+
+</style>
+</head>
+<body>
+  <header>
+    <h1>🍂 Fall Antonym Practice</h1>
+    <p>Read each fall-themed word and tell the opposite. Use a clue or the answer choices if you get stuck, then type your antonym to practice expressive language.</p>
+  </header>
+
+  <main>
+    <nav class="level-nav" id="levelNav" aria-label="Select difficulty level"></nav>
+    <nav class="word-nav" id="wordNav" aria-label="Select a word"></nav>
+    <section class="card" aria-live="polite">
+      <div class="meta">
+        <span id="topicLabel">Topic: Feelings &amp; Weather</span>
+        <span id="counterLabel">Word 1 of 10</span>
+      </div>
+
+      <div class="word-display">
+        <span class="label">Tell me an antonym for:</span>
+        <span id="wordText">crisp</span>
+      </div>
+
+      <p class="sentence" id="sentenceText">I bit into the crisp apple.</p>
+
+      <textarea id="answerInput" placeholder="Type the antonym here..." aria-label="Type the antonym"></textarea>
+
+      <div class="controls">
+        <button class="primary" id="checkBtn" type="button">Check Answer</button>
+        <button class="secondary" id="clueBtn" type="button">I Need a Clue</button>
+        <button class="secondary" id="choicesBtn" type="button">I Need Choices</button>
+        <button class="secondary" id="nextBtn" type="button">Next Word ➜</button>
+      </div>
+
+      <div class="help-panel" id="cluePanel">
+        <strong>Clue:</strong>
+        <span id="clueText"></span>
+      </div>
+
+      <div class="choices-panel" id="choicesPanel">
+        <strong>Try one of these opposite words:</strong>
+        <ul id="choicesList"></ul>
+      </div>
+
+      <div class="feedback" id="feedbackBox"></div>
+
+      <div class="progress" id="progressText"></div>
+    </section>
+  </main>
+
+<script>
+const antonymLevels = [
+  {
+    name: 'Level 1 · Warm-Up',
+    cards: [
+      {
+        topic: 'Cozy Drinks',
+        word: 'hot',
+        sentence: 'The cocoa was hot.',
+        clue: 'If the cocoa feels hot, what is the opposite temperature?',
+        answer: 'cold',
+        choices: ['cold', 'sweet', 'brown']
+      },
+      {
+        topic: 'Pumpkin Patch',
+        word: 'big',
+        sentence: 'We carried a big pumpkin.',
+        clue: 'What is the opposite size of big?',
+        answer: 'small',
+        choices: ['small', 'orange', 'round']
+      },
+      {
+        topic: 'Apple Basket',
+        word: 'full',
+        sentence: 'My basket is full of apples.',
+        clue: 'If the basket is full, what would it be with no apples?',
+        answer: 'empty',
+        choices: ['empty', 'heavy', 'sweet']
+      },
+      {
+        topic: 'Morning Dew',
+        word: 'wet',
+        sentence: 'The grass was wet with morning dew.',
+        clue: 'What is the opposite word for wet grass?',
+        answer: 'dry',
+        choices: ['dry', 'long', 'green']
+      },
+      {
+        topic: 'Parade Band',
+        word: 'loud',
+        sentence: 'The marching band was loud at the parade.',
+        clue: 'What is the opposite sound of loud?',
+        answer: 'quiet',
+        choices: ['quiet', 'bright', 'late']
+      },
+      {
+        topic: 'Barn Door',
+        word: 'open',
+        sentence: 'The barn door is open for visitors.',
+        clue: 'If the door is open now, what is the opposite?',
+        answer: 'closed',
+        choices: ['closed', 'wide', 'tall']
+      },
+      {
+        topic: 'Hayride',
+        word: 'slow',
+        sentence: 'The hayride tractor moves slow.',
+        clue: 'If the tractor is slow, what is the opposite speed?',
+        answer: 'fast',
+        choices: ['fast', 'noisy', 'deep']
+      },
+      {
+        topic: 'Backpack',
+        word: 'light',
+        sentence: 'My backpack felt light after snack time.',
+        clue: 'What is the opposite weight of light?',
+        answer: 'heavy',
+        choices: ['heavy', 'soft', 'long']
+      },
+      {
+        topic: 'Weather',
+        word: 'sunny',
+        sentence: 'It was a sunny fall afternoon.',
+        clue: 'If the sky is sunny, what is the opposite kind of sky?',
+        answer: 'cloudy',
+        choices: ['cloudy', 'windy', 'short']
+      },
+      {
+        topic: 'Campfire',
+        word: 'bright',
+        sentence: 'The campfire was bright at night.',
+        clue: 'What is the opposite of bright light?',
+        answer: 'dark',
+        choices: ['dark', 'warm', 'soft']
+      }
+    ]
+  },
+  {
+    name: 'Level 2 · Challenge',
+    cards: [
+      {
+        topic: 'Snacks',
+        word: 'crisp',
+        sentence: 'I bit into the crisp apple.',
+        clue: 'How does the apple feel if it is the opposite of crisp?',
+        answer: 'soft',
+        choices: ['soft', 'tasty', 'round']
+      },
+      {
+        topic: 'Weather',
+        word: 'chilly',
+        sentence: 'The chilly wind made me zip my coat.',
+        clue: 'If the wind is chilly, what is the opposite temperature?',
+        answer: 'warm',
+        choices: ['warm', 'cloudy', 'noisy']
+      },
+      {
+        topic: 'Farm Work',
+        word: 'harvest',
+        sentence: 'The farmer will harvest the pumpkins this week.',
+        clue: 'Harvest means pick the crops. What is the opposite job?',
+        answer: 'plant',
+        choices: ['plant', 'wash', 'stack']
+      },
+      {
+        topic: 'Cozy Spaces',
+        word: 'cozy',
+        sentence: 'We sat under a cozy blanket.',
+        clue: 'Cozy feels warm and comfy. What is the opposite feeling?',
+        answer: 'cold',
+        choices: ['cold', 'sleepy', 'quiet']
+      },
+      {
+        topic: 'Collecting',
+        word: 'gather',
+        sentence: 'We gather leaves into a big pile.',
+        clue: 'Gather is pull together. What is the opposite action?',
+        answer: 'scatter',
+        choices: ['scatter', 'count', 'jump']
+      },
+      {
+        topic: 'Feelings',
+        word: 'thankful',
+        sentence: 'I feel thankful for my family dinner.',
+        clue: 'Thankful means glad. What is the opposite feeling?',
+        answer: 'ungrateful',
+        choices: ['ungrateful', 'sleepy', 'careful']
+      },
+      {
+        topic: 'Meals',
+        word: 'feast',
+        sentence: 'We had a feast of turkey and pie.',
+        clue: 'A feast is a big meal. What is the opposite size meal?',
+        answer: 'snack',
+        choices: ['snack', 'party', 'gift']
+      },
+      {
+        topic: 'Air',
+        word: 'breeze',
+        sentence: 'A light breeze moved the leaves.',
+        clue: 'A breeze means moving air. What word means no air moving?',
+        answer: 'still',
+        choices: ['still', 'gust', 'rainy']
+      },
+      {
+        topic: 'Light',
+        word: 'glow',
+        sentence: 'The lantern gave a soft glow.',
+        clue: 'A glow shines. What is the opposite kind of light?',
+        answer: 'dark',
+        choices: ['dark', 'spark', 'gold']
+      },
+      {
+        topic: 'Amounts',
+        word: 'plenty',
+        sentence: 'We picked plenty of apples.',
+        clue: 'Plenty means lots. What is the opposite amount?',
+        answer: 'few',
+        choices: ['few', 'tall', 'sweet']
+      }
+    ]
+  }
+];
+
+let currentLevelIndex = 0;
+let currentCardIndex = 0;
+let revealedClue = false;
+let revealedChoices = false;
+
+const topicLabel = document.getElementById('topicLabel');
+const counterLabel = document.getElementById('counterLabel');
+const wordText = document.getElementById('wordText');
+const answerInput = document.getElementById('answerInput');
+const clueBtn = document.getElementById('clueBtn');
+const choicesBtn = document.getElementById('choicesBtn');
+const checkBtn = document.getElementById('checkBtn');
+const nextBtn = document.getElementById('nextBtn');
+const cluePanel = document.getElementById('cluePanel');
+const clueText = document.getElementById('clueText');
+const choicesPanel = document.getElementById('choicesPanel');
+const choicesList = document.getElementById('choicesList');
+const feedbackBox = document.getElementById('feedbackBox');
+const progressText = document.getElementById('progressText');
+const levelNav = document.getElementById('levelNav');
+const wordNav = document.getElementById('wordNav');
+let levelButtons = [];
+let navButtons = [];
+
+function shuffle(array) {
+  return array
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+}
+
+function normalizeText(value) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[.!?,]/g, '');
+}
+
+function loadCard(index) {
+  const level = antonymLevels[currentLevelIndex];
+  const card = level.cards[index];
+  currentCardIndex = index;
+  revealedClue = false;
+  revealedChoices = false;
+
+  topicLabel.textContent = `Topic: ${card.topic} · ${level.name}`;
+  counterLabel.textContent = `Word ${index + 1} of ${level.cards.length}`;
+  wordText.textContent = card.word;
+  document.getElementById('sentenceText').textContent = card.sentence;
+  answerInput.value = '';
+  answerInput.focus();
+
+  cluePanel.classList.remove('visible');
+  clueText.textContent = card.clue;
+  clueBtn.textContent = 'I Need a Clue';
+
+  choicesPanel.classList.remove('visible');
+  choicesBtn.textContent = 'I Need Choices';
+  choicesList.innerHTML = '';
+  const shuffledChoices = shuffle(card.choices.map((choice) => choice));
+  shuffledChoices.forEach((choice) => {
+    const li = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'choice';
+    button.textContent = choice;
+    button.addEventListener('click', () => {
+      answerInput.value = choice;
+      checkAnswer();
+    });
+    li.appendChild(button);
+    choicesList.appendChild(li);
+  });
+
+  feedbackBox.classList.remove('visible', 'success', 'error');
+  feedbackBox.textContent = '';
+
+  progressText.textContent = `Think of a word that means the opposite of "${card.word}".`;
+
+  if (navButtons.length) {
+    navButtons.forEach((button, buttonIndex) => {
+      const isActive = buttonIndex === currentCardIndex;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+}
+
+function checkAnswer() {
+  const userAnswer = normalizeText(answerInput.value);
+  const level = antonymLevels[currentLevelIndex];
+  const { answer, word } = level.cards[currentCardIndex];
+  if (!userAnswer) {
+    feedbackBox.textContent = 'Type an antonym before checking your answer.';
+    feedbackBox.className = 'feedback visible error';
+    return;
+  }
+
+  if (userAnswer === normalizeText(answer)) {
+    feedbackBox.textContent = `Great job! "${capitalize(answer)}" means the opposite of "${word}".`;
+    feedbackBox.className = 'feedback visible success';
+  } else {
+    feedbackBox.textContent = `Not quite. Try another antonym for "${word}".`;
+    feedbackBox.className = 'feedback visible error';
+  }
+}
+
+function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+clueBtn.addEventListener('click', () => {
+  revealedClue = !revealedClue;
+  cluePanel.classList.toggle('visible', revealedClue);
+  clueBtn.textContent = revealedClue ? 'Hide Clue' : 'I Need a Clue';
+});
+
+choicesBtn.addEventListener('click', () => {
+  revealedChoices = !revealedChoices;
+  choicesPanel.classList.toggle('visible', revealedChoices);
+  choicesBtn.textContent = revealedChoices ? 'Hide Choices' : 'I Need Choices';
+});
+
+checkBtn.addEventListener('click', checkAnswer);
+
+nextBtn.addEventListener('click', () => {
+  const level = antonymLevels[currentLevelIndex];
+  const nextIndex = (currentCardIndex + 1) % level.cards.length;
+  loadCard(nextIndex);
+});
+
+answerInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    checkAnswer();
+  }
+});
+
+function renderWordNav() {
+  wordNav.innerHTML = '';
+  navButtons = [];
+  const level = antonymLevels[currentLevelIndex];
+  level.cards.forEach((card, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = `${index + 1}. ${card.word}`;
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('aria-label', `Show the word ${card.word}`);
+    button.addEventListener('click', () => loadCard(index));
+    wordNav.appendChild(button);
+    navButtons.push(button);
+  });
+}
+
+function renderLevelNav() {
+  levelNav.innerHTML = '';
+  levelButtons = [];
+  antonymLevels.forEach((level, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = level.name;
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => loadLevel(index));
+    levelNav.appendChild(button);
+    levelButtons.push(button);
+  });
+}
+
+function loadLevel(index) {
+  currentLevelIndex = index;
+  currentCardIndex = 0;
+  revealedClue = false;
+  revealedChoices = false;
+
+  levelButtons.forEach((button, buttonIndex) => {
+    const isActive = buttonIndex === currentLevelIndex;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+
+  renderWordNav();
+  loadCard(0);
+}
+
+renderLevelNav();
+loadLevel(0);
+</script>
+</body>
+</html>

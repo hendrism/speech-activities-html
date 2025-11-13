@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complete Sentence Response Practice</title>
+<style>
+  :root {
+    --w: 1000px;
+    --accent: #ec4899;
+    --bg: #fdf2f8;
+    --ink: #1e1b4b;
+    --ok: #16a34a;
+    --err: #dc2626;
+    --warning: #ea580c;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --pink: #f472b6;
+    --yellow: #eab308;
+    --green: #10b981;
+    --orange: #f97316;
+    --gray: #64748b;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #fce7f3; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+    flex-wrap: wrap;
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+  
+  .settings-panel {
+    background: white;
+    border: 3px solid #fce7f3;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.08);
+  }
+  
+  .settings-row {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .setting-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .setting-label {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 16px;
+  }
+  
+  .category-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .category-btn {
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #fce7f3;
+    background: white;
+    cursor: pointer;
+    color: var(--gray);
+  }
+  
+  .category-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  .question-type-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .type-btn {
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .type-btn.active {
+    background: var(--purple);
+    color: white;
+    border-color: var(--purple);
+  }
+  
+  .practice-container {
+    background: white;
+    border: 3px solid #fce7f3;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.08);
+    margin-bottom: 30px;
+    text-align: center;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .question-header {
+    margin-bottom: 30px;
+  }
+  
+  .current-category {
+    background: var(--accent);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  
+  .question-type-indicator {
+    background: var(--purple);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  .question-display {
+    background: #fef7ff;
+    border: 3px solid #d946ef;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .question-text {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--purple);
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .question-icon {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: var(--purple);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  
+  .response-section {
+    margin: 30px 0;
+  }
+  
+  .sentence-starter {
+    background: #fef3c7;
+    border: 3px solid #f59e0b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: none;
+  }
+  
+  .sentence-starter.show {
+    display: block;
+    animation: slideDown 0.4s ease;
+  }
+  
+  .sentence-starter h4 {
+    color: #92400e;
+    margin: 0 0 10px;
+    font-size: 16px;
+  }
+  
+  .sentence-starters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .starter-option {
+    background: white;
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #92400e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .starter-option:hover {
+    background: #fbbf24;
+    color: white;
+  }
+  
+  .response-input {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 18px;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+  }
+  
+  .response-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+  }
+  
+  .response-input.has-content {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+  }
+  
+  .action-btn {
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .action-btn.primary {
+    background: var(--accent);
+    color: white;
+  }
+  
+  .action-btn.primary:hover {
+    background: #db2777;
+    transform: translateY(-2px);
+  }
+  
+  .action-btn.secondary {
+    background: var(--orange);
+    color: white;
+  }
+  
+  .action-btn.secondary:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+  }
+  
+  .action-btn.success {
+    background: var(--ok);
+    color: white;
+  }
+  
+  .action-btn.success:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+  }
+  
+  .feedback {
+    background: #f0f9ff;
+    border: 3px solid var(--blue);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 25px;
+    display: none;
+    text-align: left;
+  }
+  
+  .feedback.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .feedback h4 {
+    color: var(--blue);
+    margin: 0 0 10px;
+    font-size: 18px;
+  }
+  
+  .example-responses {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+  }
+  
+  .example-responses h5 {
+    margin: 0 0 10px;
+    color: var(--gray);
+    font-size: 14px;
+  }
+  
+  .example-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .example-list li {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-style: italic;
+    color: var(--gray);
+  }
+  
+  .progress-info {
+    background: white;
+    border: 2px solid #fce7f3;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .stats-row {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  
+  .stat-label {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 600;
+  }
+  
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #db2777;
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @media (max-width: 768px) {
+    .bar {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 15px;
+    }
+    
+    .settings-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .category-buttons {
+      justify-content: center;
+    }
+    
+    .category-btn {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+    
+    .question-text {
+      font-size: 22px;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .action-btn {
+      width: 100%;
+      max-width: 250px;
+    }
+    
+    .stats-row {
+      gap: 20px;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>💬 Complete Sentence Practice</h1>
+      <div class="controls">
+        <button id="resetSession" class="primary">🔄 New Session</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="progress-info">
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number" id="questionsAnswered">0</div>
+          <div class="stat-label">Questions Practiced</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="currentStreak">0</div>
+          <div class="stat-label">This Session</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="completeSentences">👍</div>
+          <div class="stat-label">Keep Going!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-panel">
+      <div class="settings-row">
+        <div class="setting-group">
+          <div class="setting-label">Choose Topics:</div>
+          <div class="category-buttons" id="categoryButtons">
+            <button class="category-btn active" data-category="about-me">🌟 About Me</button>
+            <button class="category-btn" data-category="school">🏫 School</button>
+            <button class="category-btn" data-category="home">🏡 Home & Family</button>
+            <button class="category-btn" data-category="hobbies">🎨 Hobbies</button>
+            <button class="category-btn" data-category="food">🍕 Food</button>
+            <button class="category-btn" data-category="animals">🐱 Animals</button>
+            <button class="category-btn" data-category="entertainment">🎬 Movies & TV</button>
+            <button class="category-btn" data-category="friends">👭 Friends</button>
+          </div>
+        </div>
+        
+        <div class="setting-group">
+          <div class="setting-label">Question Types:</div>
+          <div class="question-type-buttons">
+            <button class="type-btn active" data-type="both">Both Types</button>
+            <button class="type-btn" data-type="yes-no">Yes/No Only</button>
+            <button class="type-btn" data-type="wh">Wh- Only</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-container">
+      <div class="question-header">
+        <div class="current-category" id="currentCategory">About Me</div>
+        <div class="question-type-indicator" id="questionTypeIndicator">Yes/No Question</div>
+      </div>
+
+      <div class="question-display">
+        <div class="question-icon" id="questionIcon">?</div>
+        <p class="question-text" id="questionText">Do you like pizza?</p>
+      </div>
+
+      <div class="response-section">
+        <textarea class="response-input" id="responseInput" placeholder="Type your complete sentence answer here..."></textarea>
+
+        <div class="action-buttons">
+          <button class="action-btn primary" id="nextQuestionBtn">Next Question →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+const questionData = {
+  "about-me": {
+    name: "About Me",
+    icon: "🌟",
+    "yes-no": [
+      { q: "Do you like to read books?", starters: ["Yes, I", "No, I"], examples: ["Yes, I love reading adventure books.", "No, I prefer watching movies instead."] },
+      { q: "Are you good at math?", starters: ["Yes, I", "No, I"], examples: ["Yes, I am really good at solving math problems.", "No, I find math challenging but I try my best."] },
+      { q: "Do you have a pet?", starters: ["Yes, I", "No, I"], examples: ["Yes, I have a cute dog named Buddy.", "No, I don't have any pets right now."] },
+      { q: "Are you the oldest child in your family?", starters: ["Yes, I", "No, I"], examples: ["Yes, I am the oldest of three kids.", "No, I have an older brother."] },
+      { q: "Do you like to sing?", starters: ["Yes, I", "No, I"], examples: ["Yes, I love singing along to my favorite songs.", "No, I prefer listening to music instead."] },
+      { q: "Are you afraid of the dark?", starters: ["Yes, I", "No, I"], examples: ["Yes, I get scared in complete darkness.", "No, I don't mind the dark at all."] }
+    ],
+    "wh": [
+      { q: "What is your favorite color?", starters: ["My favorite", "I really like"], examples: ["My favorite color is purple because it's pretty.", "I really like blue because it reminds me of the ocean."] },
+      { q: "When is your birthday?", starters: ["My birthday", "I was born"], examples: ["My birthday is in March.", "I was born on June 15th."] },
+      { q: "What do you want to be when you grow up?", starters: ["I want", "When I grow up"], examples: ["I want to be a veterinarian to help animals.", "When I grow up, I want to be a teacher."] },
+      { q: "Who is your best friend?", starters: ["My best friend", "I have"], examples: ["My best friend is Sarah from my class.", "I have several good friends, but Emma is my closest."] },
+      { q: "What makes you feel happy?", starters: ["I feel happy", "What makes me"], examples: ["I feel happy when I spend time with my family.", "What makes me happy is playing with my friends."] },
+      { q: "Where would you like to travel?", starters: ["I would like", "I want to"], examples: ["I would like to visit Disney World someday.", "I want to travel to Paris to see the Eiffel Tower."] }
+    ]
+  },
+  
+  "school": {
+    name: "School",
+    icon: "🏫",
+    "yes-no": [
+      { q: "Do you like your teacher this year?", starters: ["Yes, I", "No, I"], examples: ["Yes, I really like my teacher because she's kind.", "No, I wish my teacher explained things more clearly."] },
+      { q: "Is math your favorite subject?", starters: ["Yes, math", "No, math"], examples: ["Yes, math is my favorite subject because I love solving problems.", "No, math is not my favorite subject."] },
+      { q: "Do you eat lunch at school?", starters: ["Yes, I", "No, I"], examples: ["Yes, I eat lunch in the cafeteria with my friends.", "No, I bring my lunch from home every day."] },
+      { q: "Are you in any after-school activities?", starters: ["Yes, I", "No, I"], examples: ["Yes, I participate in the art club after school.", "No, I go home right after school ends."] },
+      { q: "Do you like doing homework?", starters: ["Yes, I", "No, I"], examples: ["Yes, I enjoy homework because it helps me learn.", "No, I find homework boring and hard."] },
+      { q: "Is your school big?", starters: ["Yes, my school", "No, my school"], examples: ["Yes, my school has over 500 students.", "No, my school is pretty small with just a few classes."] }
+    ],
+    "wh": [
+      { q: "What is your favorite subject in school?", starters: ["My favorite subject", "I really enjoy"], examples: ["My favorite subject is art because I love being creative.", "I really enjoy science class because we do cool experiments."] },
+      { q: "Who sits next to you in class?", starters: ["The person who", "My classmate"], examples: ["The person who sits next to me is Jake.", "My classmate Maria sits right beside my desk."] },
+      { q: "What do you do during recess?", starters: ["During recess, I", "At recess, I"], examples: ["During recess, I play on the swings with my friends.", "At recess, I like to read books under the big tree."] },
+      { q: "When do you usually do your homework?", starters: ["I usually do", "I complete my"], examples: ["I usually do my homework right after dinner.", "I complete my homework as soon as I get home."] },
+      { q: "What supplies do you need for school?", starters: ["I need", "For school, I"], examples: ["I need pencils, notebooks, and folders for my classes.", "For school, I use a backpack to carry all my supplies."] },
+      { q: "Where do you sit during lunch?", starters: ["I sit", "During lunch, I"], examples: ["I sit at the round table near the windows.", "During lunch, I sit with my friends at our usual spot."] }
+    ]
+  },
+  
+  "home": {
+    name: "Home & Family",
+    icon: "🏡",
+    "yes-no": [
+      { q: "Do you have your own bedroom?", starters: ["Yes, I", "No, I"], examples: ["Yes, I have my own pink bedroom.", "No, I share a room with my little sister."] },
+      { q: "Does your family eat dinner together?", starters: ["Yes, we", "No, we"], examples: ["Yes, we always eat dinner together at 6 PM.", "No, we usually eat at different times."] },
+      { q: "Do you help with chores at home?", starters: ["Yes, I", "No, I"], examples: ["Yes, I help by setting the table and feeding our cat.", "No, I don't have regular chores yet."] },
+      { q: "Are your grandparents still alive?", starters: ["Yes, my", "No, my"], examples: ["Yes, my grandparents visit us every weekend.", "No, my grandparents live very far away."] },
+      { q: "Does your family have a car?", starters: ["Yes, we", "No, we"], examples: ["Yes, we have a blue SUV that fits our whole family.", "No, we use public transportation to get around."] },
+      { q: "Do you like spending time with your siblings?", starters: ["Yes, I", "No, I"], examples: ["Yes, I love playing games with my brother.", "No, I sometimes prefer to have alone time."] }
+    ],
+    "wh": [
+      { q: "What chores do you do at home?", starters: ["At home, I", "My chores include"], examples: ["At home, I help by washing dishes and vacuuming.", "My chores include making my bed and taking out trash."] },
+      { q: "Who cooks dinner in your family?", starters: ["In my family,", "Usually,"], examples: ["In my family, my mom cooks dinner most nights.", "Usually, my dad makes dinner on weekends."] },
+      { q: "What is your favorite room in your house?", starters: ["My favorite room", "I really love"], examples: ["My favorite room is my bedroom because it's cozy.", "I really love our living room where we watch movies."] },
+      { q: "When does your family watch TV together?", starters: ["We watch", "My family watches"], examples: ["We watch TV together after dinner every day.", "My family watches movies on Friday nights."] },
+      { q: "Where does your family like to go on weekends?", starters: ["On weekends, we", "My family likes"], examples: ["On weekends, we often go to the park or mall.", "My family likes to visit my aunt's house."] },
+      { q: "What does your family do for fun?", starters: ["For fun, we", "My family enjoys"], examples: ["For fun, we play board games and go on bike rides.", "My family enjoys having picnics in our backyard."] }
+    ]
+  },
+  
+  "hobbies": {
+    name: "Hobbies",
+    icon: "🎨",
+    "yes-no": [
+      { q: "Do you like to draw or paint?", starters: ["Yes, I", "No, I"], examples: ["Yes, I love drawing animals and flowers.", "No, I prefer doing crafts with beads instead."] },
+      { q: "Can you play any musical instruments?", starters: ["Yes, I", "No, I"], examples: ["Yes, I can play piano and I'm learning guitar.", "No, I don't play instruments but I love listening to music."] },
+      { q: "Do you collect anything special?", starters: ["Yes, I", "No, I"], examples: ["Yes, I collect stickers and put them in a special book.", "No, I don't collect anything right now."] },
+      { q: "Are you good at sports?", starters: ["Yes, I", "No, I"], examples: ["Yes, I'm really good at soccer and swimming.", "No, I'm not very athletic but I try my best."] },
+      { q: "Do you like to dance?", starters: ["Yes, I", "No, I"], examples: ["Yes, I take dance classes and love performing.", "No, I feel shy about dancing in front of others."] },
+      { q: "Do you enjoy doing puzzles?", starters: ["Yes, I", "No, I"], examples: ["Yes, I love doing 1000-piece jigsaw puzzles.", "No, I find puzzles too frustrating and hard."] }
+    ],
+    "wh": [
+      { q: "What do you like to do in your free time?", starters: ["In my free time,", "I like to"], examples: ["In my free time, I enjoy reading and playing video games.", "I like to spend time drawing and listening to music."] },
+      { q: "What is your favorite craft or art project?", starters: ["My favorite", "I really enjoy"], examples: ["My favorite art project is making friendship bracelets.", "I really enjoy painting watercolor pictures of nature."] },
+      { q: "What sport do you most enjoy playing?", starters: ["I most enjoy", "My favorite sport"], examples: ["I most enjoy playing basketball with my friends.", "My favorite sport is swimming because I love being in water."] },
+      { q: "What kind of music do you like best?", starters: ["I like", "My favorite music"], examples: ["I like pop music and songs that I can sing along to.", "My favorite music is country because the stories are nice."] },
+      { q: "What hobby would you like to try?", starters: ["I would like", "I want to try"], examples: ["I would like to try learning how to knit scarves.", "I want to try rock climbing at the indoor gym."] },
+      { q: "When do you have time for your hobbies?", starters: ["I have time", "I do my hobbies"], examples: ["I have time for hobbies after school and on weekends.", "I do my hobbies before bedtime when I'm relaxed."] }
+    ]
+  },
+  
+  "food": {
+    name: "Food",
+    icon: "🍕",
+    "yes-no": [
+      { q: "Do you like spicy food?", starters: ["Yes, I", "No, I"], examples: ["Yes, I love eating spicy tacos and hot sauce.", "No, I prefer mild foods because spice hurts my mouth."] },
+      { q: "Are you a picky eater?", starters: ["Yes, I", "No, I"], examples: ["Yes, I only like a few different foods.", "No, I'm willing to try almost anything new."] },
+      { q: "Do you know how to cook anything?", starters: ["Yes, I", "No, I"], examples: ["Yes, I can make scrambled eggs and grilled cheese.", "No, I don't know how to cook yet."] },
+      { q: "Do you like vegetables?", starters: ["Yes, I", "No, I"], examples: ["Yes, I especially like carrots and broccoli.", "No, I think most vegetables taste yucky."] },
+      { q: "Is breakfast your favorite meal?", starters: ["Yes, breakfast", "No, breakfast"], examples: ["Yes, breakfast is my favorite because I love pancakes.", "No, breakfast is not my favorite meal of the day."] },
+      { q: "Do you like trying new foods?", starters: ["Yes, I", "No, I"], examples: ["Yes, I enjoy discovering new flavors and dishes.", "No, I prefer to stick with foods I already know."] }
+    ],
+    "wh": [
+      { q: "What is your favorite food?", starters: ["My favorite food", "I really love"], examples: ["My favorite food is pizza because it has cheese and pepperoni.", "I really love spaghetti with meatballs and garlic bread."] },
+      { q: "What do you usually eat for breakfast?", starters: ["For breakfast, I", "I usually eat"], examples: ["For breakfast, I usually have cereal and orange juice.", "I usually eat toast with peanut butter and a banana."] },
+      { q: "What food do you absolutely hate?", starters: ["I absolutely hate", "The food I"], examples: ["I absolutely hate Brussels sprouts because they're bitter.", "The food I dislike most is liver because of the texture."] },
+      { q: "Where is your favorite place to eat out?", starters: ["My favorite place", "I love eating"], examples: ["My favorite place to eat is the Italian restaurant downtown.", "I love eating at the diner because they have great milkshakes."] },
+      { q: "What snack do you eat most often?", starters: ["I most often", "My go-to snack"], examples: ["I most often snack on apple slices with peanut butter.", "My go-to snack is popcorn while watching TV."] },
+      { q: "What would you cook for a friend?", starters: ["I would cook", "For a friend,"], examples: ["I would cook mac and cheese because most people like it.", "For a friend, I would make chocolate chip cookies."] }
+    ]
+  },
+  
+  "animals": {
+    name: "Animals",
+    icon: "🐱",
+    "yes-no": [
+      { q: "Are you afraid of any animals?", starters: ["Yes, I", "No, I"], examples: ["Yes, I am scared of spiders and snakes.", "No, I'm not afraid of any animals at all."] },
+      { q: "Do you have a favorite wild animal?", starters: ["Yes, my", "No, I"], examples: ["Yes, my favorite wild animal is the dolphin.", "No, I don't have a specific favorite wild animal."] },
+      { q: "Would you like to work with animals someday?", starters: ["Yes, I", "No, I"], examples: ["Yes, I would love to be a veterinarian or zookeeper.", "No, I prefer working with people instead of animals."] },
+      { q: "Have you ever been to a zoo?", starters: ["Yes, I", "No, I"], examples: ["Yes, I went to the zoo last summer with my family.", "No, I have never visited a zoo before."] },
+      { q: "Do you think pets should live indoors?", starters: ["Yes, I think", "No, I think"], examples: ["Yes, I think pets are safer when they live inside.", "No, I think some animals need to be outside sometimes."] },
+      { q: "Are you good with taking care of animals?", starters: ["Yes, I", "No, I"], examples: ["Yes, I'm very gentle and responsible with pets.", "No, I sometimes forget to do things like feeding time."] }
+    ],
+    "wh": [
+      { q: "What is your favorite animal?", starters: ["My favorite animal", "I really love"], examples: ["My favorite animal is a golden retriever dog.", "I really love pandas because they're cute and fluffy."] },
+      { q: "What pet would you most like to have?", starters: ["I would most", "The pet I"], examples: ["I would most like to have a kitten to cuddle with.", "The pet I want most is a hamster in a big cage."] },
+      { q: "What do you think is the scariest animal?", starters: ["I think the", "The scariest animal"], examples: ["I think the shark is the scariest because of its teeth.", "The scariest animal to me is a big spider."] },
+      { q: "Where would you most like to see animals?", starters: ["I would like", "The place I"], examples: ["I would like to see animals at an aquarium.", "The place I want to visit is an African safari."] },
+      { q: "What animal do you think is most intelligent?", starters: ["I think", "The most intelligent"], examples: ["I think dolphins are the most intelligent sea animals.", "The most intelligent animal is probably a chimpanzee."] },
+      { q: "What sound does your favorite animal make?", starters: ["My favorite animal", "The sound is"], examples: ["My favorite animal makes a soft purring sound.", "The sound is a happy bark when dogs are excited."] }
+    ]
+  },
+  
+  "entertainment": {
+    name: "Movies & TV",
+    icon: "🎬",
+    "yes-no": [
+      { q: "Do you like scary movies?", starters: ["Yes, I", "No, I"], examples: ["Yes, I enjoy scary movies but only during the day.", "No, I get too frightened and have bad dreams."] },
+      { q: "Do you watch cartoons?", starters: ["Yes, I", "No, I"], examples: ["Yes, I still love watching animated movies and shows.", "No, I prefer shows with real people now."] },
+      { q: "Are you allowed to watch TV on school nights?", starters: ["Yes, I", "No, I"], examples: ["Yes, I can watch one hour after I finish homework.", "No, I'm only allowed to watch TV on weekends."] },
+      { q: "Do you like movies better than TV shows?", starters: ["Yes, I", "No, I"], examples: ["Yes, I prefer movies because they tell a complete story.", "No, I like TV shows because I can follow characters longer."] },
+      { q: "Have you ever been to a movie theater?", starters: ["Yes, I", "No, I"], examples: ["Yes, I love going to the movies and getting popcorn.", "No, I have only watched movies at home so far."] },
+      { q: "Do you like singing shows like American Idol?", starters: ["Yes, I", "No, I"], examples: ["Yes, I love watching people perform and compete.", "No, I prefer comedy shows that make me laugh."] }
+    ],
+    "wh": [
+      { q: "What is your favorite movie?", starters: ["My favorite movie", "I really love"], examples: ["My favorite movie is Frozen because I love the songs.", "I really love the Harry Potter movies because they're magical."] },
+      { q: "What TV show do you watch most often?", starters: ["I watch", "My favorite show"], examples: ["I watch sitcoms that make me laugh after school.", "My favorite show is a cooking competition on Food Network."] },
+      { q: "Who is your favorite actor or actress?", starters: ["My favorite", "I really like"], examples: ["My favorite actress is Emma Watson from Harry Potter.", "I really like the actor who plays Spider-Man."] },
+      { q: "What type of movies do you enjoy most?", starters: ["I enjoy", "My favorite type"], examples: ["I enjoy romantic comedies because they're funny and sweet.", "My favorite type of movie is action adventures."] },
+      { q: "When do you usually watch TV?", starters: ["I usually watch", "I watch TV"], examples: ["I usually watch TV right after dinner with my family.", "I watch TV on Saturday mornings before everyone wakes up."] },
+      { q: "What movie made you cry?", starters: ["The movie that", "I cried when"], examples: ["The movie that made me cry was about a dog who got lost.", "I cried when I watched the sad parts of Titanic."] }
+    ]
+  },
+  
+  "friends": {
+    name: "Friends",
+    icon: "👭",
+    "yes-no": [
+      { q: "Do you have a lot of friends?", starters: ["Yes, I", "No, I"], examples: ["Yes, I have many friends from school and my neighborhood.", "No, I have just a few very close friends."] },
+      { q: "Is it easy for you to make new friends?", starters: ["Yes, it", "No, it"], examples: ["Yes, it is easy because I like talking to new people.", "No, it takes me a while to feel comfortable with others."] },
+      { q: "Do you and your friends ever argue?", starters: ["Yes, we", "No, we"], examples: ["Yes, we sometimes disagree but we always make up.", "No, we get along really well and rarely fight."] },
+      { q: "Do you prefer hanging out with one friend or a group?", starters: ["I prefer", "I like"], examples: ["I prefer spending time with just one friend at a time.", "I like being with a big group because it's more fun."] },
+      { q: "Are most of your friends from school?", starters: ["Yes, most", "No, most"], examples: ["Yes, most of my friends are from my classes.", "No, most of my friends live in my neighborhood."] },
+      { q: "Do you keep in touch with old friends?", starters: ["Yes, I", "No, I"], examples: ["Yes, I still text my friend who moved to another state.", "No, I lose touch when people aren't around anymore."] }
+    ],
+    "wh": [
+      { q: "What do you and your friends like to do together?", starters: ["We like to", "My friends and I"], examples: ["We like to play video games and ride our bikes together.", "My friends and I enjoy having sleepovers and watching movies."] },
+      { q: "What makes someone a good friend?", starters: ["A good friend", "I think"], examples: ["A good friend is someone who listens and cares about you.", "I think good friends are honest and fun to be around."] },
+      { q: "Who was your first best friend?", starters: ["My first", "I became friends"], examples: ["My first best friend was Katie from kindergarten.", "I became friends with Alex when we were in preschool together."] },
+      { q: "What is the most fun thing you've done with friends?", starters: ["The most fun", "We had"], examples: ["The most fun was when we had a birthday party sleepover.", "We had a great time when we went to the amusement park."] },
+      { q: "Where do you usually hang out with your friends?", starters: ["We usually", "My friends and I"], examples: ["We usually hang out at each other's houses after school.", "My friends and I like to meet at the park playground."] },
+      { q: "What would you do if a friend was being mean?", starters: ["If a friend", "I would"], examples: ["If a friend was being mean, I would tell them how I feel.", "I would talk to my parents or teacher about the problem."] }
+    ]
+  }
+};
+
+let currentCategories = ["about-me"]; // Start with one category selected
+let currentQuestionType = "both";
+let currentQuestion = null;
+let answeredQuestions = 0;
+let usedQuestions = new Set();
+
+function initializePage() {
+  setupEventListeners();
+  loadInitialQuestion();
+  // Stats start at default values from HTML
+}
+
+function loadInitialQuestion() {
+  // Reset UI
+  document.getElementById('responseInput').value = '';
+  document.getElementById('responseInput').classList.remove('has-content');
+  
+  // Select the active category
+  const selectedCategory = currentCategories[0];
+  const categoryData = questionData[selectedCategory];
+  
+  // Determine question types to choose from
+  let availableTypes = [];
+  if (currentQuestionType === 'both') {
+    availableTypes = ['yes-no', 'wh'];
+  } else {
+    availableTypes = [currentQuestionType === 'yes-no' ? 'yes-no' : 'wh'];
+  }
+  
+  // Select random question type
+  const selectedType = availableTypes[Math.floor(Math.random() * availableTypes.length)];
+  const questions = categoryData[selectedType];
+  
+  // Select random question
+  const selectedQuestion = questions[Math.floor(Math.random() * questions.length)];
+  usedQuestions.add(selectedQuestion.q);
+  
+  currentQuestion = {
+    ...selectedQuestion,
+    category: selectedCategory,
+    type: selectedType
+  };
+  
+  // Update UI
+  document.getElementById('currentCategory').textContent = categoryData.name;
+  document.getElementById('questionTypeIndicator').textContent = 
+    selectedType === 'yes-no' ? 'Yes/No Question' : 'Wh- Question';
+  document.getElementById('questionIcon').textContent = selectedType === 'yes-no' ? '?' : 'W';
+  document.getElementById('questionText').textContent = currentQuestion.q;
+}
+
+function setupEventListeners() {
+  // Category buttons
+  document.getElementById('categoryButtons').addEventListener('click', (e) => {
+    if (e.target.classList.contains('category-btn')) {
+      // Single-select behavior: remove active from all, then add to clicked
+      document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+      e.target.classList.add('active');
+      updateSelectedCategories();
+      generateNewQuestion();
+    }
+  });
+  
+  // Question type buttons
+  document.querySelectorAll('.type-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      currentQuestionType = e.target.dataset.type;
+      generateNewQuestion();
+    });
+  });
+  
+  // Action buttons
+  document.getElementById('nextQuestionBtn').addEventListener('click', generateNewQuestion);
+  document.getElementById('resetSession').addEventListener('click', resetSession);
+  
+  // Response input
+  document.getElementById('responseInput').addEventListener('input', handleInputChange);
+}
+
+function updateSelectedCategories() {
+  const activeButtons = document.querySelectorAll('.category-btn.active');
+  currentCategories = Array.from(activeButtons).map(btn => btn.dataset.category);
+}
+
+function generateNewQuestion() {
+  // Reset UI
+  document.getElementById('responseInput').value = '';
+  document.getElementById('responseInput').classList.remove('has-content');
+  
+  // Select the active category
+  const selectedCategory = currentCategories[0]; // Since we now have single-select
+  const categoryData = questionData[selectedCategory];
+  
+  // Determine question types to choose from
+  let availableTypes = [];
+  if (currentQuestionType === 'both') {
+    availableTypes = ['yes-no', 'wh'];
+  } else {
+    availableTypes = [currentQuestionType === 'yes-no' ? 'yes-no' : 'wh'];
+  }
+  
+  // Select random question type
+  const selectedType = availableTypes[Math.floor(Math.random() * availableTypes.length)];
+  const questions = categoryData[selectedType];
+  
+  // Select random question (avoid recent repeats)
+  let attempts = 0;
+  let selectedQuestion;
+  do {
+    selectedQuestion = questions[Math.floor(Math.random() * questions.length)];
+    attempts++;
+  } while (usedQuestions.has(selectedQuestion.q) && attempts < 20);
+  
+  // Track used questions (reset if we've used too many)
+  if (usedQuestions.size > 50) {
+    usedQuestions.clear();
+  }
+  usedQuestions.add(selectedQuestion.q);
+  
+  currentQuestion = {
+    ...selectedQuestion,
+    category: selectedCategory,
+    type: selectedType
+  };
+  
+  // Update UI
+  document.getElementById('currentCategory').textContent = categoryData.name;
+  document.getElementById('questionTypeIndicator').textContent = 
+    selectedType === 'yes-no' ? 'Yes/No Question' : 'Wh- Question';
+  document.getElementById('questionIcon').textContent = selectedType === 'yes-no' ? '?' : 'W';
+  document.getElementById('questionText').textContent = currentQuestion.q;
+  
+  // Update stats
+  answeredQuestions++;
+  updateStats();
+}
+
+function handleInputChange() {
+  const input = document.getElementById('responseInput');
+  if (input.value.trim().length > 0) {
+    input.classList.add('has-content');
+  } else {
+    input.classList.remove('has-content');
+  }
+}
+
+function updateStats() {
+  document.getElementById('questionsAnswered').textContent = answeredQuestions;
+  document.getElementById('currentStreak').textContent = answeredQuestions; // Use same number for session
+  // Third stat stays motivational
+}
+
+function resetSession() {
+  if (confirm('Start a new session? This will reset your progress.')) {
+    answeredQuestions = 0;
+    usedQuestions.clear();
+    // Reset to initial state
+    document.getElementById('questionsAnswered').textContent = '0';
+    document.getElementById('currentStreak').textContent = '0';
+    document.getElementById('completeSentences').textContent = '👍';
+    loadInitialQuestion();
+  }
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+</body>
+</html>

@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-Level Reading Comprehension Tool</title>
+<style>
+  :root {
+    --w: 1200px;
+    --accent: #3b82f6;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #10b981;
+    --err: #ef4444;
+    --warning: #f59e0b;
+    --purple: #8b5cf6;
+    --gray: #64748b;
+    --very-simple: #06b6d4;
+    --simple: #22c55e;
+    --middle: #f59e0b;
+    --complex: #ef4444;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+    flex-wrap: wrap;
+  }
+
+  .teacher-info {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 500;
+  }
+
+  .teacher-info.very-simple { border-left: 4px solid var(--very-simple); }
+  .teacher-info.simple { border-left: 4px solid var(--simple); }
+  .teacher-info.middle { border-left: 4px solid var(--middle); }
+  .teacher-info.complex { border-left: 4px solid var(--complex); }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+
+  .setup-panel {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .setup-section {
+    margin-bottom: 25px;
+  }
+
+  .setup-section h3 {
+    margin: 0 0 15px;
+    color: var(--accent);
+    font-size: 18px;
+  }
+
+  .level-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .level-btn {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .level-btn.very-simple { border-color: var(--very-simple); }
+  .level-btn.very-simple.active { background: var(--very-simple); color: white; }
+  
+  .level-btn.simple { border-color: var(--simple); }
+  .level-btn.simple.active { background: var(--simple); color: white; }
+  
+  .level-btn.middle { border-color: var(--middle); }
+  .level-btn.middle.active { background: var(--middle); color: white; }
+  
+  .level-btn.complex { border-color: var(--complex); }
+  .level-btn.complex.active { background: var(--complex); color: white; }
+
+  .level-btn .level-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .level-btn .level-desc {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+
+  .objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+  }
+
+  .objective-card {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .objective-card:hover {
+    border-color: var(--accent);
+    background: #eff6ff;
+  }
+
+  .objective-card.selected {
+    border-color: var(--accent);
+    background: #eff6ff;
+  }
+
+  .objective-card input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+  }
+
+  .objective-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--ink);
+  }
+
+  .objective-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+
+  .story-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .story-btn {
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .story-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .activity-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .story-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .story-title {
+    color: var(--accent);
+    font-size: 28px;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+
+  .story-picture {
+    max-width: 400px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: block;
+    object-fit: contain;
+  }
+  
+  .activity-toggle {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .toggle-btn {
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .toggle-btn.active {
+    background: var(--purple);
+    color: white;
+    border-color: var(--purple);
+  }
+  
+  .story-text {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    line-height: 1.7;
+  }
+
+  .story-text.very-simple { font-size: 18px; line-height: 2.0; }
+  .story-text.simple { font-size: 16px; }
+  .story-text.middle { font-size: 17px; }
+  .story-text.complex { font-size: 18px; }
+  
+  .story-text p {
+    margin: 0 0 20px;
+  }
+  
+  .story-text p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .activity-section {
+    display: none;
+  }
+  
+  .activity-section.active {
+    display: block;
+  }
+
+  /* Main Idea Activity */
+  .main-idea-choices {
+    display: grid;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  .main-idea-choice {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .main-idea-choice:hover {
+    border-color: var(--accent);
+    background: #f8fafc;
+  }
+
+  .main-idea-choice.selected {
+    border-color: var(--accent);
+    background: #eff6ff;
+  }
+
+  .main-idea-choice.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+
+  .main-idea-choice.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+
+  /* Vocabulary Activity */
+  .vocab-activity {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .vocab-word {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+  }
+  
+  .vocab-word-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .vocab-sentence {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .vocab-target {
+    background: #ddd6fe;
+    color: #5b21b6;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .context-clues-section {
+    background: #fef3c7;
+    border: 2px solid var(--warning);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 15px 0;
+    display: none;
+  }
+
+  .context-clues-section.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .context-clues-section h4 {
+    color: #92400e;
+    margin: 0 0 10px;
+    font-size: 16px;
+  }
+
+  .clue-highlight {
+    background: #fef3c7;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  .vocab-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 15px 0;
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  /* Sequence Activity */
+  .sequence-activity {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .sequence-prompt {
+    background: #eff6ff;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .sequence-steps {
+    display: grid;
+    gap: 20px;
+  }
+
+  .sequence-step {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 15px;
+    align-items: start;
+  }
+
+  .step-number {
+    background: var(--accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 5px;
+  }
+
+  .step-content {
+    display: grid;
+    gap: 10px;
+  }
+
+  .sentence-starter {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 16px;
+  }
+
+  .sentence-starter.expanded {
+    color: var(--purple);
+  }
+
+  .sequence-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+  }
+
+  .step-help-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #2563eb;
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+
+  button.small {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+  }
+  
+  .feedback.show {
+    display: block;
+  }
+  
+  .feedback.success {
+    background: #f0fdf4;
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: #fef2f2;
+    border-color: var(--err);
+    color: #991b1b;
+  }
+
+  .start-session-btn {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 20px;
+  }
+
+  .start-session-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .start-session-btn:disabled {
+    background: #cbd5e1;
+    color: #64748b;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Picture Upload Styles */
+  .picture-upload {
+    position: relative;
+    display: none;
+  }
+
+  .picture-upload.show {
+    display: block;
+  }
+
+  .picture-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+  }
+
+  .picture-input {
+    display: none;
+  }
+
+  .remove-picture-btn {
+    background: var(--err);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .objectives-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .level-selector {
+      grid-template-columns: 1fr;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+    }
+    
+    .controls {
+      justify-content: center;
+    }
+
+    .activity-toggle {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sequence-step {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .step-number {
+      justify-self: center;
+      margin-bottom: 10px;
+    }
+
+    .picture-controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .story-picture {
+      max-width: 300px;
+      max-height: 200px;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>📚 Multi-Level Reading Comprehension Tool</h1>
+      <div class="controls">
+        <div class="teacher-info" id="teacherInfo" style="display:none;">Level: Simple</div>
+        <button id="addPicture" class="small" style="display:none;">📷 Add Picture</button>
+        <button id="backToSetup" class="warning" style="display:none;">← Back to Setup</button>
+        <button id="resetActivity" class="warning" style="display:none;">🔄 Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Setup Panel -->
+    <div class="setup-panel" id="setupPanel">
+      <div class="setup-section">
+        <h3>1. Select Reading Level</h3>
+        <div class="level-selector">
+          <button class="level-btn very-simple active" data-level="very-simple">
+            <div class="level-title">🟦 Very Simple</div>
+            <div class="level-desc">5 sentences, basic words, significant language support needed</div>
+          </button>
+          <button class="level-btn simple" data-level="simple">
+            <div class="level-title">🟢 Simple</div>
+            <div class="level-desc">Short paragraphs, basic vocabulary, ages 10-12</div>
+          </button>
+          <button class="level-btn middle" data-level="middle">
+            <div class="level-title">🟡 Middle</div>
+            <div class="level-desc">Grade-level vocabulary and complexity, ages 12-14</div>
+          </button>
+          <button class="level-btn complex" data-level="complex">
+            <div class="level-title">🔴 Complex</div>
+            <div class="level-desc">Advanced vocabulary and sentence structure, ages 14+</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="setup-section">
+        <h3>2. Select Learning Objectives (Multi-select)</h3>
+        <div class="objectives-grid">
+          <div class="objective-card" data-objective="main-idea">
+            <input type="checkbox" id="obj-main-idea">
+            <label for="obj-main-idea" class="objective-title">Main Idea Identification</label>
+            <div class="objective-desc">Name the main idea of a passage when given three answer choices</div>
+          </div>
+          <div class="objective-card" data-objective="context-clues">
+            <input type="checkbox" id="obj-context-clues">
+            <label for="obj-context-clues" class="objective-title">Context Clues Vocabulary</label>
+            <div class="objective-desc">Use context clues to determine the meaning of an unknown word</div>
+          </div>
+          <div class="objective-card" data-objective="sequence">
+            <input type="checkbox" id="obj-sequence">
+            <label for="obj-sequence" class="objective-title">Story Sequence Retelling</label>
+            <div class="objective-desc">Retell a 3-4 part sequence using sentence starters</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <button class="start-session-btn" id="startSession" disabled>
+          🚀 Start Reading Session
+        </button>
+        <div id="selectionSummary" style="margin-top: 15px; color: var(--gray); font-size: 14px;">
+          Select a reading level and at least one objective to begin
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Activity Area (Initially Hidden) -->
+    <div id="mainActivity" style="display: none;">
+      <div class="story-selector" id="storySelector">
+        <!-- Story buttons will be generated -->
+      </div>
+
+      <div class="activity-container">
+        <div class="story-header">
+          <h2 class="story-title" id="storyTitle">Story Title</h2>
+          
+          <div class="picture-upload" id="pictureUpload">
+            <div class="picture-controls">
+              <input type="file" class="picture-input" id="pictureInput" accept="image/*">
+              <label for="pictureInput" class="small" style="cursor: pointer; padding: 6px 12px; background: var(--accent); color: white; border-radius: 6px; font-size: 12px;">Choose Image</label>
+              <span id="pictureFileName" style="font-size: 12px; color: var(--gray);"></span>
+              <button class="remove-picture-btn" id="removePicture">Remove</button>
+            </div>
+            <img id="storyPicture" class="story-picture" style="display: none;" alt="Story picture">
+          </div>
+        </div>
+
+        <div class="activity-toggle" id="activityToggle">
+          <!-- Activity buttons will be generated based on selected objectives -->
+        </div>
+
+        <div class="story-text" id="storyText">
+          <!-- Story content will be populated here -->
+        </div>
+
+        <!-- Main Idea Activity -->
+        <div class="activity-section" id="mainIdeaSection">
+          <h3>🎯 What is the main idea of this story?</h3>
+          <div class="main-idea-choices" id="mainIdeaChoices">
+            <!-- Choices will be populated here -->
+          </div>
+          <button id="checkMainIdea" class="primary">✓ Check Answer</button>
+          <div class="feedback" id="mainIdeaFeedback"></div>
+        </div>
+
+        <!-- Context Clues Vocabulary Activity -->
+        <div class="activity-section" id="contextCluesSection">
+          <div class="vocab-activity" id="contextCluesActivity">
+            <!-- Context clues activities will be populated here -->
+          </div>
+        </div>
+
+        <!-- Sequence Activity -->
+        <div class="activity-section" id="sequenceSection">
+          <div class="sequence-activity">
+            <div class="sequence-prompt">
+              <h3>📝 Retell this story in order</h3>
+              <p>Use the sentence starters to help you retell what happened in the story. Write 1-2 sentences for each step.</p>
+            </div>
+            <div class="sequence-steps" id="sequenceSteps">
+              <!-- Sequence steps will be populated here -->
+            </div>
+            <button id="checkSequence" class="primary" style="margin-top: 20px;">✓ Check My Retelling</button>
+            <div class="feedback" id="sequenceFeedback"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+// Story data with four reading levels and activities
+const storyData = {
+  "garden": {
+    title: "The Garden Project",
+    "very-simple": {
+      text: `Alex wanted to grow plants. Alex got seeds at the store. Alex planted the seeds in dirt. The plants grew big. Alex was happy.`,
+      mainIdea: {
+        question: "What did Alex do?",
+        choices: [
+          "Alex grew plants",
+          "Alex went to the store", 
+          "Alex was happy"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "planted",
+          sentence: "Alex planted the seeds in dirt.",
+          context: "Alex put the seeds in the ground so they could grow.",
+          clues: ["put in ground", "so they could grow"],
+          question: "What does 'planted' mean?",
+          answer: "put seeds in the ground"
+        }
+      ],
+      sequence: [
+        { basic: "First, Alex...", expanded: "First, Alex wanted to..." },
+        { basic: "Next, Alex...", expanded: "Next, Alex got..." },
+        { basic: "Then, Alex...", expanded: "Then, Alex planted..." },
+        { basic: "Finally, Alex...", expanded: "Finally, Alex was..." }
+      ]
+    },
+    simple: {
+      text: `Alex wanted to grow plants for a school project. Alex asked Mom and Dad to help buy seeds at the store. They bought tomato seeds, bean seeds, and a small shovel.
+
+Alex dug a small garden in the backyard. Alex watered the plants every morning before school. After many weeks, the plants grew big and had vegetables.
+
+Alex was happy to share the vegetables with the family. The teacher gave Alex a good grade on the project.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Alex grew a garden for a school project and did well",
+          "Alex likes to eat vegetables from the store",
+          "The teacher gave hard projects to students"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "dug",
+          sentence: "Alex dug a small garden in the backyard.",
+          context: "Alex used a shovel to make holes in the dirt for the seeds.",
+          clues: ["used a shovel", "make holes", "in the dirt"],
+          question: "What does 'dug' mean?",
+          answer: "made holes in the ground"
+        }
+      ],
+      sequence: [
+        { basic: "First, Alex...", expanded: "First, Alex decided to..." },
+        { basic: "Next, Alex...", expanded: "Next, Alex went shopping and..." },
+        { basic: "Then, Alex...", expanded: "Then, Alex planted and..." },
+        { basic: "Finally, Alex...", expanded: "Finally, Alex shared and..." }
+      ]
+    },
+    middle: {
+      text: `Alex had always wanted to try gardening but had never attempted it before. When their science teacher assigned a project about plant growth, Alex saw this as the perfect opportunity to start their first garden.
+
+Alex spent time researching which vegetables would grow well in their area. They convinced their parents to take them to the garden center, where they carefully selected tomato plants, bean seeds, and basic gardening supplies.
+
+At home, Alex prepared a 4-foot by 6-foot plot in the backyard. They watered their garden every morning and monitored the plants' progress daily. When the first vegetables appeared, Alex felt incredibly proud.
+
+By the end of the term, Alex had grown enough vegetables to share with their family and earned an excellent grade on their science project.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Alex successfully completed a science project by creating their first garden",
+          "Gardening requires expensive supplies and lots of space in the backyard",
+          "Science teachers often assign difficult projects that stress students"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "monitored",
+          sentence: "They watered their garden every morning and monitored the plants' progress daily.",
+          context: "Alex watched and checked on the plants every day to see how they were growing.",
+          clues: ["checked on", "every day", "plants' progress"],
+          question: "What does 'monitored' mean?",
+          answer: "watched carefully and regularly"
+        }
+      ],
+      sequence: [
+        { basic: "First, Alex...", expanded: "First, Alex recognized the opportunity to..." },
+        { basic: "Next, Alex...", expanded: "Next, Alex researched and purchased..." },
+        { basic: "Then, Alex...", expanded: "Then, Alex prepared the garden and..." },
+        { basic: "Finally, Alex...", expanded: "Finally, Alex succeeded by..." }
+      ]
+    },
+    complex: {
+      text: `Alex had cultivated a longstanding fascination with botany but had never ventured into practical horticulture. When their science instructor announced a comprehensive project examining plant development and growth cycles, Alex recognized this as an unprecedented opportunity to establish their inaugural garden.
+
+Through meticulous research, Alex investigated which cultivars would thrive in their geographical region's climate and soil conditions. They persuaded their parents to accompany them to the local nursery, where they methodically selected heritage tomato varieties, organic bean seeds, and professional-grade gardening implements.
+
+Upon returning home, Alex meticulously prepared a precisely measured 4-foot by 6-foot cultivation area. They maintained a rigorous watering schedule each morning and conducted daily assessments of their plants' developmental progress. When the first fruits emerged, Alex experienced tremendous satisfaction from their agricultural achievements.
+
+By the semester's conclusion, Alex had produced a substantial harvest sufficient to provision their entire household while simultaneously earning exemplary marks on their scientific investigation.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Alex successfully executed a comprehensive garden project that fulfilled academic requirements while providing personal satisfaction",
+          "Professional-grade gardening implements are essential for successful agricultural endeavors",
+          "Academic institutions increasingly emphasize practical application in scientific curricula"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "cultivars",
+          sentence: "Alex investigated which cultivars would thrive in their geographical region's climate and soil conditions.",
+          context: "Alex was researching different types of plants that would grow well in their area's weather and dirt.",
+          clues: ["investigated", "thrive in their region", "climate and soil conditions"],
+          question: "What does 'cultivars' mean?",
+          answer: "varieties or types of plants bred for specific characteristics"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, Alex...", expanded: "Initially, Alex recognized the unprecedented opportunity to..." },
+        { basic: "Subsequently, Alex...", expanded: "Subsequently, Alex conducted research and..." },
+        { basic: "Following this, Alex...", expanded: "Following this preparation, Alex established..." },
+        { basic: "Ultimately, Alex...", expanded: "Ultimately, Alex achieved success through..." }
+      ]
+    }
+  },
+  "talent_show": {
+    title: "The Talent Show",
+    "very-simple": {
+      text: `Maya plays piano. Maya wanted to be in the show. Maya practiced every day. Maya played at tryouts. Maya got picked for the show.`,
+      mainIdea: {
+        question: "What happened to Maya?",
+        choices: [
+          "Maya got in the talent show",
+          "Maya learned to play piano",
+          "Maya went to school"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "tryouts",
+          sentence: "Maya played at tryouts.",
+          context: "Maya had to play piano to see if she could be in the show.",
+          clues: ["play piano", "see if she could be in show"],
+          question: "What are 'tryouts'?",
+          answer: "when you try to get into something"
+        }
+      ],
+      sequence: [
+        { basic: "First, Maya...", expanded: "First, Maya wanted to..." },
+        { basic: "Next, Maya...", expanded: "Next, Maya practiced..." },
+        { basic: "Then, Maya...", expanded: "Then, Maya played at..." },
+        { basic: "Finally, Maya...", expanded: "Finally, Maya got..." }
+      ]
+    },
+    simple: {
+      text: `Maya plays piano and wanted to be in the school talent show. She had been playing piano for two years but was scared to play in front of many people.
+
+Maya practiced her song every day after school for three weeks. Her piano teacher helped her with the hard parts. Maya also played for her family to practice performing.
+
+On the day of tryouts, Maya felt nervous but ready. She played her song and only made one small mistake. The judges liked her playing.
+
+A week later, Maya saw her name on the list. She was picked for the talent show! Maya felt very happy and excited.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Maya practiced hard and got into the talent show",
+          "Piano lessons are very expensive for families",
+          "Talent shows are popular events at most schools"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "tryouts",
+          sentence: "On the day of tryouts, Maya felt nervous but ready.",
+          context: "Maya had to perform to try to get picked for the talent show.",
+          clues: ["perform", "get picked", "for the talent show"],
+          question: "What are 'tryouts'?",
+          answer: "a test or audition to see if you can join something"
+        }
+      ],
+      sequence: [
+        { basic: "First, Maya...", expanded: "First, Maya wanted to..." },
+        { basic: "Next, Maya...", expanded: "Next, Maya practiced by..." },
+        { basic: "Then, Maya...", expanded: "Then, Maya went to tryouts and..." },
+        { basic: "Finally, Maya...", expanded: "Finally, Maya found out that..." }
+      ]
+    },
+    middle: {
+      text: `Maya had been studying piano for three years but had never performed before a large audience. When announcements mentioned tryouts for the annual school talent show, Maya felt both excited and anxious about the opportunity.
+
+Maya was working on a challenging classical piece called "Für Elise" by Beethoven. She realized she needed additional practice to feel confident performing it publicly. For three weeks, Maya dedicated herself to practicing the piece daily for at least an hour after school.
+
+Her piano instructor suggested performing for small groups first to build confidence. Maya followed this advice, playing first for her family, then her best friend, and eventually her entire piano class.
+
+On audition day, Maya approached the piano with determination. Despite feeling nervous, she performed beautifully with only one minor error. The judges responded positively throughout her performance. When the results were posted a week later, Maya was thrilled to discover her name among the selected performers.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Maya overcame her nervousness through preparation and successfully earned a spot in the talent show",
+          "Classical piano pieces like Für Elise require expensive professional instruction",
+          "School talent shows create unnecessary stress for students who participate"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "determination",
+          sentence: "On audition day, Maya approached the piano with determination.",
+          context: "Maya felt strong and decided, ready to do her best even though she was nervous.",
+          clues: ["approached", "ready to do her best", "even though nervous"],
+          question: "What does 'determination' mean?",
+          answer: "having strong will and resolve to achieve something"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, Maya...", expanded: "Initially, Maya felt nervous about..." },
+        { basic: "To prepare, Maya...", expanded: "To prepare, Maya practiced and..." },
+        { basic: "During the audition, Maya...", expanded: "During the audition, Maya performed..." },
+        { basic: "Ultimately, Maya...", expanded: "Ultimately, Maya succeeded when..." }
+      ]
+    },
+    complex: {
+      text: `Maya had been pursuing classical piano instruction for three years but had never undertaken a performance before a substantial audience. When administrative announcements publicized auditions for the institution's prestigious annual talent exhibition, Maya experienced simultaneous exhilaration and trepidation regarding this unprecedented opportunity.
+
+Maya had been mastering Beethoven's intricate composition "Für Elise," recognizing that additional intensive preparation would be essential for confident public presentation. She embarked upon a rigorous three-week practice regimen, dedicating no fewer than sixty minutes daily to perfecting the piece's technical complexities.
+
+Her instructor recommended graduated exposure to progressively larger audiences to ameliorate performance anxiety. Maya methodically implemented this strategy, beginning with intimate family presentations, advancing to individual demonstrations, and culminating with performances before her complete piano ensemble.
+
+On the decisive audition date, Maya approached the instrument with resolute determination. Despite experiencing considerable nervous tension, she delivered a compelling interpretation with merely one inconsequential technical imperfection. The adjudicating panel maintained visibly appreciative engagement throughout her presentation. Upon publication of results one week subsequently, Maya experienced profound elation discovering her selection among the distinguished performers.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Maya systematically conquered performance anxiety through methodical preparation and achieved prestigious recognition",
+          "Prestigious institutional talent exhibitions require extensive financial investment in professional instruction",
+          "Academic institutions increasingly emphasize extracurricular performance opportunities to enhance student development"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "ameliorate",
+          sentence: "Her instructor recommended graduated exposure to progressively larger audiences to ameliorate performance anxiety.",
+          context: "The instructor suggested playing for bigger groups little by little to reduce Maya's nervousness about performing.",
+          clues: ["recommended", "reduce", "performance anxiety"],
+          question: "What does 'ameliorate' mean?",
+          answer: "to make better or improve"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, Maya...", expanded: "Initially, Maya confronted the challenge of..." },
+        { basic: "Through preparation, Maya...", expanded: "Through systematic preparation, Maya implemented..." },
+        { basic: "During the audition, Maya...", expanded: "During the pivotal audition, Maya demonstrated..." },
+        { basic: "Consequently, Maya...", expanded: "Consequently, Maya achieved recognition by..." }
+      ]
+    }
+  },
+  "mystery": {
+    title: "The Missing Lunch Mystery",
+    "very-simple": {
+      text: `Kids lost their lunch food. The teacher looked for clues. A squirrel was taking the food. The teacher fixed the window. The mystery was solved.`,
+      mainIdea: {
+        question: "Who took the lunch food?",
+        choices: [
+          "A squirrel took the food",
+          "The teacher took the food",
+          "The kids took the food"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "clues",
+          sentence: "The teacher looked for clues.",
+          context: "The teacher looked for things to help solve the mystery.",
+          clues: ["looked for things", "solve the mystery"],
+          question: "What are 'clues'?",
+          answer: "things that help you solve a mystery"
+        }
+      ],
+      sequence: [
+        { basic: "First, kids...", expanded: "First, kids lost..." },
+        { basic: "Next, the teacher...", expanded: "Next, the teacher looked..." },
+        { basic: "Then, a squirrel...", expanded: "Then, a squirrel was..." },
+        { basic: "Finally, the teacher...", expanded: "Finally, the teacher fixed..." }
+      ]
+    },
+    simple: {
+      text: `Students at school were losing food from their lunch boxes. Emma lost her cookies. Jake lost his apple. Other kids lost food too. Everyone was upset and thought someone was taking their food.
+
+Ms. Rodriguez, the teacher, wanted to find out what was happening. She asked the students questions and watched the classroom carefully. One morning, she came to school very early and hid in the hallway to watch.
+
+That's when Ms. Rodriguez saw a gray squirrel come into the room through a broken window screen. The squirrel was taking food from the lunch boxes with its small paws and carrying it outside.
+
+Ms. Rodriguez fixed the window screen and told the students about the squirrel. Everyone laughed because they thought it was funny. The mystery was solved!`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "A teacher solved the mystery of missing lunches by finding a squirrel was taking the food",
+          "Students should always keep their lunch boxes locked up tight",
+          "School buildings often have problems with broken windows"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "mystery",
+          sentence: "The mystery was solved!",
+          context: "Everyone was confused about who was taking the food, but now they knew it was the squirrel.",
+          clues: ["confused", "now they knew", "solved"],
+          question: "What is a 'mystery'?",
+          answer: "something that is hard to understand or figure out"
+        }
+      ],
+      sequence: [
+        { basic: "First, students...", expanded: "First, students noticed that..." },
+        { basic: "Next, Ms. Rodriguez...", expanded: "Next, Ms. Rodriguez decided to..." },
+        { basic: "Then, she...", expanded: "Then, she discovered that..." },
+        { basic: "Finally, the mystery...", expanded: "Finally, the mystery was solved when..." }
+      ]
+    },
+    middle: {
+      text: `Students at Lincoln Middle School began reporting that items from their packed lunches were mysteriously disappearing. Emma's homemade cookies vanished, Jake's apple went missing, and by Thursday, five different students had experienced similar losses. The situation was creating suspicion and frustration among classmates.
+
+Ms. Rodriguez, the homeroom teacher, decided to investigate the peculiar incidents. She systematically interviewed students about their missing items and conducted regular classroom inspections throughout the day. Determined to solve the mystery, she arrived at school exceptionally early Friday morning and positioned herself discreetly in the hallway to observe.
+
+During her surveillance, Ms. Rodriguez witnessed the actual perpetrator: an ingenious gray squirrel that had discovered access to the classroom through a damaged window screen. The creature was systematically opening lunch containers with remarkable dexterity and transporting the most appealing snacks to its outdoor nest.
+
+After repairing the window screen, Ms. Rodriguez explained the situation to her greatly relieved students. The revelation transformed their previous anxiety into amusement, and Jake even suggested providing nuts for their unexpected "classroom visitor." The lunch mystery was finally resolved.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "A systematic investigation revealed that a clever squirrel was responsible for the missing lunch items",
+          "School maintenance issues frequently create problems that disrupt educational environments",
+          "Student suspicions about classmates often damage classroom relationships unnecessarily"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "surveillance",
+          sentence: "During her surveillance, Ms. Rodriguez witnessed the actual perpetrator.",
+          context: "Ms. Rodriguez was watching carefully and secretly to see who was taking the food.",
+          clues: ["watching", "carefully", "to observe", "witnessed"],
+          question: "What is 'surveillance'?",
+          answer: "careful watching or monitoring"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, students...", expanded: "Initially, students experienced the problem of..." },
+        { basic: "To address this, Ms. Rodriguez...", expanded: "To address this, Ms. Rodriguez conducted..." },
+        { basic: "Through observation, she...", expanded: "Through careful observation, she discovered..." },
+        { basic: "Resolution occurred when...", expanded: "Resolution occurred when Ms. Rodriguez..." }
+      ]
+    },
+    complex: {
+      text: `Students at Lincoln Middle School encountered an escalating phenomenon wherein components of their carefully prepared lunches were inexplicably vanishing. Emma's artisanal cookies disappeared, Jake's organic apple went missing, and by week's end, five students had reported analogous losses. This unprecedented situation was generating mounting suspicion and interpersonal tension throughout the academic community.
+
+Ms. Rodriguez, the supervising educator, resolved to conduct a comprehensive investigation into these enigmatic occurrences. She implemented systematic student interviews regarding their missing provisions and instituted rigorous classroom surveillance protocols throughout various periods. Committed to resolving this perplexing mystery, she arrived at the educational facility extraordinarily early Friday morning and established a concealed observation position in the corridor.
+
+During her covert monitoring operation, Ms. Rodriguez identified the authentic culprit: an exceptionally resourceful gray squirrel that had ingeniously exploited a compromised window screening mechanism to gain unauthorized classroom access. This remarkable creature was methodically manipulating lunch containers with extraordinary manual dexterity, selectively appropriating the most nutritionally appealing items for transportation to its external domicile.
+
+Following the restoration of proper window screening integrity, Ms. Rodriguez elucidated the circumstances to her profoundly relieved students. This revelation transformed their preceding anxiety into collective amusement, with Jake proposing the establishment of a supplemental nut provision for their unanticipated "academic associate." The alimentary mystery had achieved definitive resolution.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "A methodical investigative approach successfully identified an ingenious squirrel as the perpetrator of systematic lunch theft",
+          "Institutional infrastructure maintenance deficiencies frequently precipitate disruptive educational complications",
+          "Interpersonal suspicions within academic communities often generate unnecessary social fragmentation"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "elucidated",
+          sentence: "Ms. Rodriguez elucidated the circumstances to her profoundly relieved students.",
+          context: "Ms. Rodriguez explained and made clear to the students what had really been happening with their missing lunches.",
+          clues: ["explained", "made clear", "the circumstances"],
+          question: "What does 'elucidated' mean?",
+          answer: "explained clearly or made something easy to understand"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, the community...", expanded: "Initially, the academic community confronted..." },
+        { basic: "Through investigation, Ms. Rodriguez...", expanded: "Through systematic investigation, Ms. Rodriguez implemented..." },
+        { basic: "Surveillance revealed...", expanded: "Comprehensive surveillance ultimately revealed..." },
+        { basic: "Resolution was achieved...", expanded: "Resolution was achieved when Ms. Rodriguez..." }
+      ]
+    }
+  },
+  "science_fair": {
+    title: "The Volcano Project",
+    "very-simple": {
+      text: `Carlos wanted to make a volcano. Carlos got supplies at the store. Carlos built the volcano with clay. The volcano bubbled and looked like lava. Carlos was excited.`,
+      mainIdea: {
+        question: "What did Carlos make?",
+        choices: [
+          "Carlos made a volcano",
+          "Carlos went to the store",
+          "Carlos was excited"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "supplies",
+          sentence: "Carlos got supplies at the store.",
+          context: "Carlos bought things he needed to make the volcano.",
+          clues: ["bought things", "needed", "make the volcano"],
+          question: "What are 'supplies'?",
+          answer: "things you need to make something"
+        }
+      ],
+      sequence: [
+        { basic: "First, Carlos...", expanded: "First, Carlos wanted to..." },
+        { basic: "Next, Carlos...", expanded: "Next, Carlos got..." },
+        { basic: "Then, Carlos...", expanded: "Then, Carlos built..." },
+        { basic: "Finally, Carlos...", expanded: "Finally, Carlos was..." }
+      ]
+    },
+    simple: {
+      text: `Carlos wanted to do a volcano project for the science fair. He had seen volcano experiments before and thought they looked fun and exciting.
+
+Carlos looked up how to make a volcano on the internet with his mom. They found a recipe that used baking soda, vinegar, and red food coloring. They bought the supplies at the store.
+
+At home, Carlos built a volcano shape out of clay around a small bottle. He put the baking soda inside the bottle. Then he mixed vinegar with red food coloring in a cup.
+
+When Carlos poured the red vinegar into the bottle, it bubbled up and looked like lava! His volcano worked perfectly. Carlos was excited to show it at the science fair.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Carlos made a volcano project that worked well for the science fair",
+          "Science fairs are too hard for most students to participate in",
+          "Internet recipes don't usually work when you try them at home"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "recipe",
+          sentence: "They found a recipe that used baking soda, vinegar, and red food coloring.",
+          context: "Carlos and his mom found instructions that told them what ingredients to use to make the volcano work.",
+          clues: ["instructions", "what ingredients to use", "make the volcano work"],
+          question: "What is a 'recipe'?",
+          answer: "a set of instructions that tell you what to use and how to make something"
+        }
+      ],
+      sequence: [
+        { basic: "First, Carlos...", expanded: "First, Carlos wanted to..." },
+        { basic: "Next, Carlos...", expanded: "Next, Carlos researched and..." },
+        { basic: "Then, Carlos...", expanded: "Then, Carlos built and..." },
+        { basic: "Finally, Carlos...", expanded: "Finally, Carlos tested and..." }
+      ]
+    },
+    middle: {
+      text: `Carlos had always been fascinated by volcanoes and decided to create an erupting volcano model for the upcoming science fair. He wanted to demonstrate how chemical reactions could simulate a real volcanic eruption.
+
+With his mother's assistance, Carlos researched different volcano experiment methods online. They discovered that combining sodium bicarbonate (baking soda) with acetic acid (vinegar) would create the bubbling reaction they needed. They purchased the necessary materials, including modeling clay, food coloring, and a small plastic bottle.
+
+Carlos carefully constructed his volcano by molding clay around the bottle to create a realistic mountain shape. He prepared the chemical components, measuring the baking soda precisely and mixing the vinegar with red food coloring to resemble molten lava.
+
+During his demonstration, Carlos explained the scientific principles behind the reaction while slowly pouring the vinegar mixture into the bottle. The resulting eruption exceeded his expectations, impressing both judges and spectators. His project successfully combined entertainment with scientific education.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Carlos created an impressive volcano demonstration that combined scientific principles with visual appeal",
+          "Science fair projects require extensive research and expensive materials to be successful",
+          "Chemical reactions are too dangerous for middle school students to experiment with safely"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "simulate",
+          sentence: "He wanted to demonstrate how chemical reactions could simulate a real volcanic eruption.",
+          context: "Carlos wanted to show how mixing chemicals could copy or imitate what happens in a real volcano.",
+          clues: ["copy", "imitate", "what happens in a real volcano"],
+          question: "What does 'simulate' mean?",
+          answer: "to copy or imitate something real"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, Carlos...", expanded: "Initially, Carlos decided to..." },
+        { basic: "During research, Carlos...", expanded: "During research, Carlos discovered..." },
+        { basic: "While constructing, Carlos...", expanded: "While constructing, Carlos carefully..." },
+        { basic: "During demonstration, Carlos...", expanded: "During demonstration, Carlos successfully..." }
+      ]
+    },
+    complex: {
+      text: `Carlos had maintained a profound fascination with geological phenomena and resolved to construct an authentic volcanic eruption simulation for the institution's prestigious annual science exposition. His objective was to demonstrate the fundamental chemical principles underlying volcanic activity while creating an engaging educational presentation.
+
+Through comprehensive internet research conducted with maternal guidance, Carlos investigated various methodological approaches to volcano experimentation. They determined that the reaction between sodium bicarbonate and acetic acid would generate the optimal effervescent response, necessitating the procurement of specialized materials including sculptural clay, chromatic additives, and appropriate laboratory apparatus.
+
+Carlos meticulously engineered his volcanic structure by skillfully manipulating clay around a central receptacle to achieve geological authenticity. He calibrated the reactant proportions with scientific precision, incorporating chromatic enhancement to accurately represent magmatic discharge characteristics.
+
+During his formal presentation, Carlos articulated the underlying chemical mechanisms while systematically introducing the acidic solution into the reaction chamber. The subsequent eruption surpassed his theoretical projections, garnering substantial appreciation from the adjudicating panel and assembled observers. His project exemplified the successful integration of scientific rigor with compelling visual demonstration.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Carlos executed a scientifically rigorous volcanic demonstration that successfully integrated educational content with compelling presentation",
+          "Institutional science expositions require participants to demonstrate advanced understanding of complex chemical processes",
+          "Geological phenomena presentations necessitate expensive laboratory equipment and extensive parental supervision"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "calibrated",
+          sentence: "He calibrated the reactant proportions with scientific precision, incorporating chromatic enhancement to accurately represent magmatic discharge characteristics.",
+          context: "Carlos carefully measured and adjusted the amounts of chemicals to get exactly the right reaction for his volcano.",
+          clues: ["carefully measured", "adjusted", "amounts of chemicals", "right reaction"],
+          question: "What does 'calibrated' mean?",
+          answer: "carefully measured and adjusted to achieve precision"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, Carlos...", expanded: "Initially, Carlos resolved to construct..." },
+        { basic: "Through research, Carlos...", expanded: "Through comprehensive research, Carlos investigated..." },
+        { basic: "During construction, Carlos...", expanded: "During construction, Carlos meticulously engineered..." },
+        { basic: "At presentation, Carlos...", expanded: "At presentation, Carlos successfully demonstrated..." }
+      ]
+    }
+  },
+  "new_student": {
+    title: "The New Student",
+    "very-simple": {
+      text: `Sophia was new at school. Sophia sat alone at lunch. Jake saw Sophia was sad. Jake sat with Sophia. Now Sophia has a friend.`,
+      mainIdea: {
+        question: "What happened at school?",
+        choices: [
+          "Jake helped Sophia make a friend",
+          "Sophia ate lunch alone",
+          "Jake was hungry"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "alone",
+          sentence: "Sophia sat alone at lunch.",
+          context: "Sophia had no friends to sit with at lunch time.",
+          clues: ["no friends", "sit with", "lunch time"],
+          question: "What does 'alone' mean?",
+          answer: "by yourself with no one else"
+        }
+      ],
+      sequence: [
+        { basic: "First, Sophia...", expanded: "First, Sophia was..." },
+        { basic: "Next, Jake...", expanded: "Next, Jake saw..." },
+        { basic: "Then, Jake...", expanded: "Then, Jake sat..." },
+        { basic: "Finally, Sophia...", expanded: "Finally, Sophia has..." }
+      ]
+    },
+    simple: {
+      text: `A new girl named Sophia started at Jake's school in the middle of the year. She looked sad and scared because she didn't know anyone. At lunch, Sophia sat by herself at an empty table.
+
+Jake saw Sophia sitting alone and felt bad for her. He remembered how hard it was when he moved to a new school last year. Jake decided to go talk to her and be friendly.
+
+Jake walked over to Sophia's table and asked if he could sit with her. Sophia smiled and said yes. Jake introduced her to his friends, and they all talked about their favorite classes and hobbies.
+
+By the end of the week, Sophia had made several new friends and was much happier. She thanked Jake for being so kind and helping her feel welcome at her new school.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Jake helped a new student feel welcome and make friends at school",
+          "New students always have trouble making friends at different schools",
+          "School lunch rooms are good places to meet and talk to people"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "introduced",
+          sentence: "Jake introduced her to his friends, and they all talked about their favorite classes and hobbies.",
+          context: "Jake helped Sophia meet his friends by telling them her name and helping them start talking to each other.",
+          clues: ["helped meet", "telling them her name", "start talking"],
+          question: "What does 'introduced' mean?",
+          answer: "helped people meet each other by telling them each other's names"
+        }
+      ],
+      sequence: [
+        { basic: "First, Sophia...", expanded: "First, Sophia started..." },
+        { basic: "Next, Jake...", expanded: "Next, Jake noticed and..." },
+        { basic: "Then, Jake...", expanded: "Then, Jake approached and..." },
+        { basic: "Finally, Sophia...", expanded: "Finally, Sophia made friends and..." }
+      ]
+    },
+    middle: {
+      text: `Sophia transferred to Lincoln Middle School in January, midway through the academic year. The transition was challenging as she knew no one and felt overwhelmed by the unfamiliar environment. During her first lunch period, she sat isolated at an empty table, observing other students interacting in their established social groups.
+
+Jake noticed the new student sitting alone and empathized with her situation. Having experienced a similar transition the previous year when his family relocated, he understood the difficulties of adjusting to a new school environment. Jake made a conscious decision to reach out and offer friendship.
+
+Approaching Sophia's table, Jake politely requested permission to join her for lunch. Sophia's expression brightened considerably, and she gratefully accepted his company. Jake facilitated introductions with his circle of friends, who warmly welcomed her into their group. They engaged in conversations about academic preferences, extracurricular interests, and shared hobbies.
+
+Within a week, Sophia had successfully integrated into the school's social fabric and developed meaningful friendships. She expressed sincere gratitude to Jake for his kindness and credited him with making her transition significantly more positive. The experience reinforced Jake's understanding of how small acts of kindness can profoundly impact others.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Jake's empathetic outreach helped a new student successfully integrate into the school community",
+          "Academic institutions should implement formal programs to assist students during school transitions",
+          "Mid-year student transfers typically result in significant social and academic adjustment difficulties"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "empathized",
+          sentence: "Jake noticed the new student sitting alone and empathized with her situation.",
+          context: "Jake understood how Sophia felt because he had been in the same situation before when he moved schools.",
+          clues: ["understood", "how she felt", "same situation before"],
+          question: "What does 'empathized' mean?",
+          answer: "understood and shared someone's feelings"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, Sophia...", expanded: "Initially, Sophia transferred and..." },
+        { basic: "Jake noticed and...", expanded: "Jake noticed and empathized..." },
+        { basic: "By approaching, Jake...", expanded: "By approaching, Jake facilitated..." },
+        { basic: "Ultimately, Sophia...", expanded: "Ultimately, Sophia successfully integrated..." }
+      ]
+    },
+    complex: {
+      text: `Sophia commenced her enrollment at Lincoln Middle School during the midpoint of the academic semester, necessitating a formidable adjustment to an entirely unfamiliar institutional environment. The transition proved particularly arduous as she possessed no established social connections and felt overwhelmed by the complex dynamics of pre-existing peer relationships. During her inaugural cafeteria experience, she maintained isolation at an unoccupied table, observing the intricate social interactions occurring within well-established cliques.
+
+Jake discerned the newly arrived student's solitary predicament and experienced profound empathy regarding her circumstances. Having endured a comparable transitional challenge during the previous academic year when his family's relocation necessitated educational institution transfer, he possessed intimate comprehension of the psychological difficulties inherent in scholastic environmental adaptation. Jake formulated a deliberate resolution to extend genuine friendship and social inclusion.
+
+Approaching Sophia's location with respectful consideration, Jake courteously solicited permission to share her dining space. Sophia's countenance demonstrated marked improvement, and she expressed genuine appreciation for his companionship. Jake orchestrated systematic introductions with his established peer network, who demonstrated remarkable receptivity and warmth toward her inclusion. Their discourse encompassed academic predilections, extracurricular pursuits, and mutual recreational interests.
+
+Within a single week, Sophia had achieved successful assimilation into the institution's social infrastructure and cultivated authentic interpersonal relationships. She conveyed heartfelt gratitude to Jake for his compassionate intervention and attributed her positive transitional experience to his considerate actions. This experience reinforced Jake's comprehension regarding the transformative potential of empathetic gestures in ameliorating others' circumstances.`,
+      mainIdea: {
+        question: "What is the main idea of this story?",
+        choices: [
+          "Jake's deliberate empathetic intervention facilitated a new student's successful social assimilation and institutional adaptation",
+          "Educational institutions require comprehensive systematic approaches to address transitional challenges faced by relocated students",
+          "Adolescent social dynamics within academic environments typically exclude newcomers from established peer networks"
+        ],
+        correct: 0
+      },
+      contextClues: [
+        {
+          word: "assimilation",
+          sentence: "Within a single week, Sophia had achieved successful assimilation into the institution's social infrastructure.",
+          context: "Sophia had successfully become part of the school's social structure, fitting in and becoming accepted by other students.",
+          clues: ["successfully become part", "social structure", "fitting in", "accepted"],
+          question: "What does 'assimilation' mean?",
+          answer: "the process of becoming part of or fitting into a group or community"
+        }
+      ],
+      sequence: [
+        { basic: "Initially, Sophia...", expanded: "Initially, Sophia commenced enrollment and..." },
+        { basic: "Jake discerned and...", expanded: "Jake discerned the situation and..." },
+        { basic: "Through intervention, Jake...", expanded: "Through deliberate intervention, Jake orchestrated..." },
+        { basic: "Consequently, Sophia...", expanded: "Consequently, Sophia achieved successful..." }
+      ]
+    }
+  }
+};
+
+let currentLevel = 'very-simple';
+let selectedObjectives = [];
+let currentStory = 'garden';
+let currentActivity = 'main-idea';
+
+// Picture storage key
+const PICTURES_STORAGE_KEY = 'reading_comp_pictures';
+
+// Initialize the app
+document.addEventListener('DOMContentLoaded', initializeApp);
+
+function initializeApp() {
+  setupEventListeners();
+  updateSetupSummary();
+}
+
+function setupEventListeners() {
+  // Level selector
+  document.querySelectorAll('.level-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentLevel = btn.dataset.level;
+      updateSetupSummary();
+    });
+  });
+
+  // Objective selector
+  document.querySelectorAll('.objective-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const checkbox = card.querySelector('input[type="checkbox"]');
+      checkbox.checked = !checkbox.checked;
+      
+      if (checkbox.checked) {
+        card.classList.add('selected');
+      } else {
+        card.classList.remove('selected');
+      }
+      
+      updateSelectedObjectives();
+      updateSetupSummary();
+    });
+  });
+
+  // Start session button
+  document.getElementById('startSession').addEventListener('click', startSession);
+
+  // Back to setup button
+  document.getElementById('backToSetup').addEventListener('click', backToSetup);
+
+  // Reset activity button
+  document.getElementById('resetActivity').addEventListener('click', resetCurrentActivity);
+
+  // Picture functionality
+  document.getElementById('addPicture').addEventListener('click', () => {
+    document.getElementById('pictureUpload').classList.toggle('show');
+  });
+
+  document.getElementById('pictureInput').addEventListener('change', handlePictureUpload);
+  document.getElementById('removePicture').addEventListener('click', removePicture);
+}
+
+function updateSelectedObjectives() {
+  selectedObjectives = [];
+  document.querySelectorAll('.objective-card input:checked').forEach(checkbox => {
+    selectedObjectives.push(checkbox.closest('.objective-card').dataset.objective);
+  });
+}
+
+function updateSetupSummary() {
+  const summaryEl = document.getElementById('selectionSummary');
+  const startBtn = document.getElementById('startSession');
+  
+  if (selectedObjectives.length === 0) {
+    summaryEl.textContent = 'Select a reading level and at least one objective to begin';
+    startBtn.disabled = true;
+  } else {
+    const levelText = currentLevel.replace('-', ' ').charAt(0).toUpperCase() + currentLevel.replace('-', ' ').slice(1);
+    const objectiveText = selectedObjectives.length === 1 ? '1 objective' : `${selectedObjectives.length} objectives`;
+    summaryEl.innerHTML = `Ready to start: <strong>${levelText} Level</strong> with <strong>${objectiveText} selected</strong>`;
+    startBtn.disabled = false;
+  }
+}
+
+function startSession() {
+  document.getElementById('setupPanel').style.display = 'none';
+  document.getElementById('mainActivity').style.display = 'block';
+  document.getElementById('backToSetup').style.display = 'inline-block';
+  document.getElementById('resetActivity').style.display = 'inline-block';
+  document.getElementById('addPicture').style.display = 'inline-block';
+  document.getElementById('teacherInfo').style.display = 'inline-block';
+  
+  updateTeacherInfo();
+  initializeMainActivity();
+}
+
+function backToSetup() {
+  document.getElementById('setupPanel').style.display = 'block';
+  document.getElementById('mainActivity').style.display = 'none';
+  document.getElementById('backToSetup').style.display = 'none';
+  document.getElementById('resetActivity').style.display = 'none';
+  document.getElementById('addPicture').style.display = 'none';
+  document.getElementById('teacherInfo').style.display = 'none';
+  document.getElementById('pictureUpload').classList.remove('show');
+}
+
+function updateTeacherInfo() {
+  const teacherInfo = document.getElementById('teacherInfo');
+  const levelText = currentLevel.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+  teacherInfo.textContent = `Level: ${levelText}`;
+  teacherInfo.className = `teacher-info ${currentLevel}`;
+}
+
+function initializeMainActivity() {
+  createStorySelector();
+  createActivityToggle();
+  loadStory(currentStory);
+  setupMainActivityListeners();
+}
+
+function createStorySelector() {
+  const selector = document.getElementById('storySelector');
+  selector.innerHTML = '';
+  
+  Object.keys(storyData).forEach((storyKey, index) => {
+    const btn = document.createElement('button');
+    btn.className = `story-btn ${storyKey === currentStory ? 'active' : ''}`;
+    btn.dataset.story = storyKey;
+    btn.textContent = `Story ${index + 1}`;
+    selector.appendChild(btn);
+  });
+}
+
+function createActivityToggle() {
+  const toggle = document.getElementById('activityToggle');
+  toggle.innerHTML = '';
+  
+  const activityMappings = {
+    'main-idea': '🎯 Main Idea',
+    'context-clues': '🔍 Context Clues', 
+    'sequence': '📝 Story Sequence'
+  };
+  
+  selectedObjectives.forEach((objective, index) => {
+    const btn = document.createElement('button');
+    btn.className = `toggle-btn ${index === 0 ? 'active' : ''}`;
+    btn.dataset.activity = objective;
+    btn.textContent = activityMappings[objective];
+    toggle.appendChild(btn);
+  });
+  
+  if (selectedObjectives.length > 0) {
+    currentActivity = selectedObjectives[0];
+  }
+}
+
+function loadStory(storyKey) {
+  currentStory = storyKey;
+  const story = storyData[storyKey][currentLevel];
+  
+  // Update story header
+  document.getElementById('storyTitle').textContent = storyData[storyKey].title;
+  
+  // Load saved picture if exists
+  loadStoryPicture(storyKey);
+  
+  // Update story text
+  const storyText = document.getElementById('storyText');
+  storyText.className = `story-text ${currentLevel}`;
+  storyText.innerHTML = story.text.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
+  
+  // Update story selector
+  document.querySelectorAll('.story-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.story === storyKey);
+  });
+  
+  // Load activities
+  loadMainIdeaActivity(story);
+  loadContextCluesActivity(story);
+  loadSequenceActivity(story);
+  
+  // Show current activity
+  showActivity(currentActivity);
+}
+
+function loadStoryPicture(storyKey) {
+  const savedPictures = JSON.parse(localStorage.getItem(PICTURES_STORAGE_KEY) || '{}');
+  const pictureData = savedPictures[storyKey];
+  const pictureEl = document.getElementById('storyPicture');
+  
+  if (pictureData) {
+    pictureEl.src = pictureData;
+    pictureEl.style.display = 'block';
+  } else {
+    pictureEl.style.display = 'none';
+  }
+}
+
+function handlePictureUpload(event) {
+  const file = event.target.files[0];
+  if (file && file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const imageData = e.target.result;
+      
+      // Save to localStorage
+      const savedPictures = JSON.parse(localStorage.getItem(PICTURES_STORAGE_KEY) || '{}');
+      savedPictures[currentStory] = imageData;
+      localStorage.setItem(PICTURES_STORAGE_KEY, JSON.stringify(savedPictures));
+      
+      // Display the image
+      const pictureEl = document.getElementById('storyPicture');
+      pictureEl.src = imageData;
+      pictureEl.style.display = 'block';
+      
+      // Update file name display
+      document.getElementById('pictureFileName').textContent = file.name;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function removePicture() {
+  // Remove from localStorage
+  const savedPictures = JSON.parse(localStorage.getItem(PICTURES_STORAGE_KEY) || '{}');
+  delete savedPictures[currentStory];
+  localStorage.setItem(PICTURES_STORAGE_KEY, JSON.stringify(savedPictures));
+  
+  // Hide the image
+  document.getElementById('storyPicture').style.display = 'none';
+  
+  // Clear the input and filename
+  document.getElementById('pictureInput').value = '';
+  document.getElementById('pictureFileName').textContent = '';
+}
+
+function loadMainIdeaActivity(story) {
+  if (!selectedObjectives.includes('main-idea')) return;
+  
+  const choicesContainer = document.getElementById('mainIdeaChoices');
+  choicesContainer.innerHTML = '';
+  
+  story.mainIdea.choices.forEach((choice, index) => {
+    const choiceEl = document.createElement('div');
+    choiceEl.className = 'main-idea-choice';
+    choiceEl.dataset.choice = index;
+    choiceEl.textContent = choice;
+    choiceEl.addEventListener('click', () => selectMainIdeaChoice(index));
+    choicesContainer.appendChild(choiceEl);
+  });
+  
+  document.getElementById('mainIdeaFeedback').classList.remove('show');
+}
+
+function loadContextCluesActivity(story) {
+  if (!selectedObjectives.includes('context-clues')) return;
+  
+  const container = document.getElementById('contextCluesActivity');
+  container.innerHTML = '';
+  
+  story.contextClues.forEach((item, index) => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'vocab-word';
+    itemDiv.innerHTML = `
+      <div class="vocab-word-title">Context Clues: "${item.word}"</div>
+      
+      <div class="vocab-sentence">
+        ${item.sentence.replace(item.word, `<span class="vocab-target">${item.word}</span>`)}
+      </div>
+      
+      <div class="vocab-question" style="margin: 15px 0;">
+        ${item.question}
+      </div>
+      
+      <textarea class="vocab-input" id="context_${index}" 
+                placeholder="Use the context clues in the sentence to figure out what this word means..."></textarea>
+      
+      <div style="display: flex; gap: 10px; align-items: center; margin: 10px 0;">
+        <button class="warning small" onclick="showContextHelp(${index})">💡 I need help</button>
+        <button class="primary" onclick="checkContextAnswer(${index})">✓ Check My Answer</button>
+      </div>
+      
+      <div class="context-clues-section" id="contextHelp_${index}">
+        <h4>🔍 Context Clues to Help You:</h4>
+        <p>${item.context}</p>
+        <p><strong>Key clues:</strong> ${item.clues.map(clue => `<span class="clue-highlight">${clue}</span>`).join(', ')}</p>
+      </div>
+      
+      <div class="feedback" id="contextFeedback_${index}"></div>
+    `;
+    
+    container.appendChild(itemDiv);
+  });
+}
+
+function loadSequenceActivity(story) {
+  if (!selectedObjectives.includes('sequence')) return;
+  
+  const container = document.getElementById('sequenceSteps');
+  container.innerHTML = '';
+  
+  story.sequence.forEach((starterObj, index) => {
+    const stepDiv = document.createElement('div');
+    stepDiv.className = 'sequence-step';
+    stepDiv.innerHTML = `
+      <div class="step-number">${index + 1}</div>
+      <div class="step-content">
+        <div class="sentence-starter" id="starter_${index}">${starterObj.basic}</div>
+        <textarea class="sequence-input" id="sequence_${index}" 
+                  placeholder="Complete this part of the story..."></textarea>
+        <div class="step-help-section">
+          <button class="warning small" onclick="showSequenceHelp(${index})">💡 I need help</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(stepDiv);
+  });
+  
+  document.getElementById('sequenceFeedback').classList.remove('show');
+}
+
+function setupMainActivityListeners() {
+  // Story selector
+  document.getElementById('storySelector').addEventListener('click', (e) => {
+    if (e.target.classList.contains('story-btn')) {
+      loadStory(e.target.dataset.story);
+    }
+  });
+
+  // Activity toggle
+  document.getElementById('activityToggle').addEventListener('click', (e) => {
+    if (e.target.classList.contains('toggle-btn')) {
+      currentActivity = e.target.dataset.activity;
+      document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.activity === currentActivity);
+      });
+      showActivity(currentActivity);
+    }
+  });
+
+  // Check buttons
+  document.getElementById('checkMainIdea')?.addEventListener('click', checkMainIdea);
+  document.getElementById('checkSequence')?.addEventListener('click', checkSequence);
+}
+
+function showActivity(activityType) {
+  document.querySelectorAll('.activity-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  
+  const sectionMap = {
+    'main-idea': 'mainIdeaSection',
+    'context-clues': 'contextCluesSection',
+    'sequence': 'sequenceSection'
+  };
+  
+  const targetSection = document.getElementById(sectionMap[activityType]);
+  if (targetSection) {
+    targetSection.classList.add('active');
+  }
+}
+
+function selectMainIdeaChoice(choiceIndex) {
+  document.querySelectorAll('.main-idea-choice').forEach(choice => {
+    choice.classList.remove('selected');
+  });
+  document.querySelector(`[data-choice="${choiceIndex}"]`).classList.add('selected');
+}
+
+function checkMainIdea() {
+  const selected = document.querySelector('.main-idea-choice.selected');
+  const story = storyData[currentStory][currentLevel];
+  const feedback = document.getElementById('mainIdeaFeedback');
+  
+  if (!selected) {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please select an answer first!</strong>';
+    return;
+  }
+  
+  const selectedIndex = parseInt(selected.dataset.choice);
+  const isCorrect = selectedIndex === story.mainIdea.correct;
+  
+  // Mark all choices
+  document.querySelectorAll('.main-idea-choice').forEach((choice, index) => {
+    choice.classList.remove('correct', 'incorrect');
+    if (index === story.mainIdea.correct) {
+      choice.classList.add('correct');
+    } else if (choice.classList.contains('selected')) {
+      choice.classList.add('incorrect');
+    }
+  });
+  
+  if (isCorrect) {
+    feedback.className = 'feedback success show';
+    feedback.innerHTML = '<strong>🎉 Excellent!</strong> You correctly identified the main idea!';
+  } else {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Not quite.</strong> The correct answer is highlighted in green. The main idea tells what the whole story is mostly about.';
+  }
+}
+
+function showContextHelp(index) {
+  const helpSection = document.getElementById(`contextHelp_${index}`);
+  helpSection.classList.add('show');
+}
+
+function checkContextAnswer(index) {
+  const input = document.getElementById(`context_${index}`);
+  const feedback = document.getElementById(`contextFeedback_${index}`);
+  const story = storyData[currentStory][currentLevel];
+  const item = story.contextClues[index];
+  
+  if (input.value.trim() === '') {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please write your answer first!</strong>';
+    return;
+  }
+  
+  feedback.className = 'feedback success show';
+  feedback.innerHTML = `
+    <strong>Your answer:</strong> "${input.value}"<br>
+    <strong>Sample answer:</strong> "${item.answer}"<br>
+    <em>Great job using context clues! Even if your words are different, you likely understood the meaning.</em>
+  `;
+}
+
+function showSequenceHelp(index) {
+  const starterEl = document.getElementById(`starter_${index}`);
+  const story = storyData[currentStory][currentLevel];
+  const expanded = story.sequence[index].expanded;
+  
+  starterEl.textContent = expanded;
+  starterEl.classList.add('expanded');
+}
+
+function checkSequence() {
+  const inputs = document.querySelectorAll('[id^="sequence_"]');
+  let completedSteps = 0;
+  let feedback = [];
+  
+  inputs.forEach((input, index) => {
+    if (input.value.trim() !== '') {
+      completedSteps++;
+    } else {
+      feedback.push(`Step ${index + 1} needs to be completed`);
+    }
+  });
+  
+  const feedbackEl = document.getElementById('sequenceFeedback');
+  
+  if (completedSteps === inputs.length) {
+    feedbackEl.className = 'feedback success show';
+    feedbackEl.innerHTML = `
+      <strong>🎉 Great job!</strong> You retold the story in sequence using the sentence starters. 
+      This shows you understand the order of events in the story!
+    `;
+  } else {
+    feedbackEl.className = 'feedback error show';
+    feedbackEl.innerHTML = `
+      <strong>Almost there!</strong> You completed ${completedSteps} out of ${inputs.length} steps.<br>
+      ${feedback.join('<br>')}
+    `;
+  }
+}
+
+function resetCurrentActivity() {
+  if (currentActivity === 'main-idea') {
+    document.querySelectorAll('.main-idea-choice').forEach(choice => {
+      choice.classList.remove('selected', 'correct', 'incorrect');
+    });
+    document.getElementById('mainIdeaFeedback').classList.remove('show');
+  } else if (currentActivity === 'context-clues') {
+    document.querySelectorAll('[id^="context_"]').forEach(input => {
+      input.value = '';
+    });
+    document.querySelectorAll('[id^="contextFeedback_"]').forEach(feedback => {
+      feedback.classList.remove('show');
+    });
+    document.querySelectorAll('[id^="contextHelp_"]').forEach(help => {
+      help.classList.remove('show');
+    });
+  } else if (currentActivity === 'sequence') {
+    document.querySelectorAll('[id^="sequence_"]').forEach(input => {
+      input.value = '';
+    });
+    document.querySelectorAll('[id^="starter_"]').forEach(starter => {
+      starter.classList.remove('expanded');
+      // Reset to basic starter text
+      const index = parseInt(starter.id.split('_')[1]);
+      const story = storyData[currentStory][currentLevel];
+      starter.textContent = story.sequence[index].basic;
+    });
+    document.getElementById('sequenceFeedback').classList.remove('show');
+  }
+}
+</script>
+</body>
+</html>

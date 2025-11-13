@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiple-Meaning Words - Therapy Activity</title>
+<style>
+  :root {
+    --w: 1100px;
+    --accent: #7c3aed;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #f59e0b;
+    --blue: #0ea5e9;
+    --green: #10b981;
+    --purple: #a855f7;
+    --pink: #ec4899;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .progress-info {
+    background: #f1f5f9;
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 14px;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+  
+  .word-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 30px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  .word-btn {
+    padding: 12px 8px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .word-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  }
+  
+  .word-btn.completed {
+    background: var(--ok);
+    border-color: var(--ok);
+    color: white;
+  }
+  
+  .word-btn.completed::after {
+    content: "✓";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: white;
+    color: var(--ok);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid var(--ok);
+  }
+  
+  .activity-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .word-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .current-word {
+    background: linear-gradient(135deg, var(--accent), var(--pink));
+    color: white;
+    font-size: 48px;
+    font-weight: 900;
+    padding: 20px 40px;
+    border-radius: 25px;
+    display: inline-block;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
+  }
+  
+  .word-explanation {
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .matching-area {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 20px;
+    margin: 30px 0;
+  }
+  
+  .sentences-bank {
+    background: #fef3c7;
+    border: 3px dashed var(--warning);
+    border-radius: 16px;
+    padding: 25px;
+    min-height: 400px;
+  }
+  
+  .sentences-bank h3 {
+    color: #92400e;
+    margin: 0 0 20px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+  }
+  
+  .definitions-side {
+    display: grid;
+    gap: 20px;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  .definition-zone {
+    border: 3px dashed #cbd5e1;
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .definition-zone.zone1 {
+    background: #eff6ff;
+    border-color: var(--blue);
+  }
+  
+  .definition-zone.zone2 {
+    background: #f0fdf4;
+    border-color: var(--green);
+  }
+  
+  .definition-zone.drag-over {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .definition-zone.zone1.drag-over {
+    border-color: #0284c7;
+    background: #dbeafe;
+  }
+  
+  .definition-zone.zone2.drag-over {
+    border-color: #059669;
+    background: #dcfce7;
+  }
+  
+  .definition-header {
+    background: var(--blue);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .definition-zone.zone2 .definition-header {
+    background: var(--green);
+  }
+  
+  .definition-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e40af;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    border: 2px solid #dbeafe;
+  }
+  
+  .definition-zone.zone2 .definition-text {
+    color: #065f46;
+    border-color: #dcfce7;
+  }
+  
+  .arrow-connector {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: var(--accent);
+  }
+  
+  .arrow {
+    font-size: 30px;
+    margin: 10px 0;
+    animation: pulse 2s infinite;
+  }
+  
+  .sentence-card {
+    background: white;
+    border: 3px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 15px;
+    cursor: move;
+    transition: all 0.2s ease;
+    font-size: 16px;
+    line-height: 1.5;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+  }
+  
+  .sentence-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  
+  .sentence-card.dragging {
+    opacity: 0.6;
+    transform: rotate(3deg) scale(0.95);
+  }
+  
+  .sentence-card.placed {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .sentence-card.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  .sentence-number {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: var(--accent);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .drop-zone-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .empty-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
+    pointer-events: none;
+    font-size: 14px;
+  }
+  
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #6d28d9;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 25px;
+    display: none;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .feedback.show {
+    display: block;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .feedback.success {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border-color: var(--err);
+    color: #991b1b;
+  }
+  
+  .celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .celebration-content {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 400px;
+    animation: celebrationBounce 0.6s ease-out;
+  }
+  
+  .celebration-content h3 {
+    color: var(--ok);
+    font-size: 32px;
+    margin: 0 0 20px;
+  }
+  
+  .celebration-content p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: var(--ink);
+  }
+  
+  .final-celebration {
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color: white;
+  }
+  
+  .final-celebration h3 {
+    color: white;
+    font-size: 36px;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes celebrationBounce {
+    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+    50% { transform: scale(1.05) rotate(-5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  
+  @media (max-width: 768px) {
+    .matching-area {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .sentences-bank {
+      order: -1;
+    }
+    
+    .arrow-connector {
+      display: none;
+    }
+    
+    .current-word {
+      font-size: 36px;
+      padding: 15px 30px;
+    }
+    
+    .word-selector {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>🎯 Multiple-Meaning Words</h1>
+      <div class="progress-info" id="progressInfo">Word 1 of 15</div>
+      <div class="controls">
+        <button id="resetWord" class="warning">🔄 Reset Word</button>
+        <button id="showAllWords" class="success">📋 Show All</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="word-selector" id="wordSelector">
+      <!-- Word buttons will be generated -->
+    </div>
+
+    <div class="activity-container">
+      <div class="word-header">
+        <div class="current-word" id="currentWord">BAT</div>
+        <div class="word-explanation">
+          This word has more than one meaning! Read each sentence and drag it to match the correct definition.
+        </div>
+      </div>
+
+      <div class="matching-area">
+        <div class="sentences-bank">
+          <h3>📝 Drag These Sentences</h3>
+          <div id="sentencesBank">
+            <!-- Sentence cards will be populated here -->
+          </div>
+        </div>
+
+        <div class="arrow-connector">
+          <div class="arrow">➡️</div>
+          <div style="font-size: 14px; font-weight: 600; text-align: center;">Match<br>meanings!</div>
+          <div class="arrow">➡️</div>
+        </div>
+
+        <div class="definitions-side">
+          <div class="definition-zone zone1" data-zone="1">
+            <div class="definition-header">Meaning #1</div>
+            <div class="definition-text" id="definition1">Definition will appear here</div>
+            <div class="drop-zone-content" id="dropZone1">
+              <div class="empty-message">Drag sentences that match this meaning here</div>
+            </div>
+          </div>
+
+          <div class="definition-zone zone2" data-zone="2">
+            <div class="definition-header">Meaning #2</div>
+            <div class="definition-text" id="definition2">Definition will appear here</div>
+            <div class="drop-zone-content" id="dropZone2">
+              <div class="empty-message">Drag sentences that match this meaning here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <button id="checkAnswers" class="primary">✓ Check My Matches</button>
+      </div>
+
+      <div class="feedback" id="feedback">
+        <p id="feedbackText"></p>
+      </div>
+    </div>
+  </main>
+
+  <div class="celebration" id="celebration">
+    <div class="celebration-content" id="celebrationContent">
+      <h3>🎉 Great Job!</h3>
+      <p>You matched all the meanings correctly!</p>
+      <button class="primary" onclick="closeCelebration()">Continue Learning</button>
+    </div>
+  </div>
+
+<script>
+const wordsData = [
+  {
+    word: "BAT",
+    definitions: [
+      "A flying animal that sleeps during the day",
+      "A wooden stick used to hit a ball in sports"
+    ],
+    sentences: [
+      { text: "The baseball player swung the bat hard.", meaning: 2 },
+      { text: "A bat flew out of the dark cave.", meaning: 1 },
+      { text: "Mom bought me a new bat for Little League.", meaning: 2 },
+      { text: "The bat hangs upside down from the tree branch.", meaning: 1 }
+    ]
+  },
+  {
+    word: "BARK",
+    definitions: [
+      "The sound a dog makes",
+      "The outside covering of a tree trunk"
+    ],
+    sentences: [
+      { text: "My dog likes to bark at the mailman.", meaning: 1 },
+      { text: "The bark on the old oak tree is rough and bumpy.", meaning: 2 },
+      { text: "I heard the bark of a dog in the distance.", meaning: 1 },
+      { text: "We carved our initials in the bark of the tree.", meaning: 2 }
+    ]
+  },
+  {
+    word: "RING",
+    definitions: [
+      "A piece of jewelry worn on a finger",
+      "A sound that bells or phones make"
+    ],
+    sentences: [
+      { text: "The church bell will ring at noon.", meaning: 2 },
+      { text: "She wore her grandmother's ring to the wedding.", meaning: 1 },
+      { text: "I heard the phone ring three times.", meaning: 2 },
+      { text: "The diamond ring sparkled in the sunlight.", meaning: 1 }
+    ]
+  },
+  {
+    word: "BANK",
+    definitions: [
+      "A place where people keep their money",
+      "The land along the edge of a river or lake"
+    ],
+    sentences: [
+      { text: "Dad went to the bank to deposit his paycheck.", meaning: 1 },
+      { text: "We sat on the bank of the river to fish.", meaning: 2 },
+      { text: "The bank closes at 5 o'clock on Friday.", meaning: 1 },
+      { text: "Beautiful flowers grow along the bank of the stream.", meaning: 2 }
+    ]
+  },
+  {
+    word: "ROCK",
+    definitions: [
+      "A hard piece of stone",
+      "To move gently back and forth"
+    ],
+    sentences: [
+      { text: "I found a smooth rock on the beach.", meaning: 1 },
+      { text: "The baby likes to rock in the rocking chair.", meaning: 2 },
+      { text: "There was a big rock blocking the path.", meaning: 1 },
+      { text: "The boat began to rock on the waves.", meaning: 2 }
+    ]
+  },
+  {
+    word: "PEN",
+    definitions: [
+      "A tool used for writing with ink",
+      "A fenced area where animals are kept"
+    ],
+    sentences: [
+      { text: "I need a pen to sign this paper.", meaning: 1 },
+      { text: "The pigs are sleeping in their pen.", meaning: 2 },
+      { text: "My pen ran out of ink during the test.", meaning: 1 },
+      { text: "The farmer built a new pen for the sheep.", meaning: 2 }
+    ]
+  },
+  {
+    word: "BEAR",
+    definitions: [
+      "A large, furry animal that lives in the woods",
+      "To carry or hold something heavy"
+    ],
+    sentences: [
+      { text: "We saw a black bear near the campground.", meaning: 1 },
+      { text: "This box is too heavy for me to bear alone.", meaning: 2 },
+      { text: "The bear caught fish in the stream.", meaning: 1 },
+      { text: "I cannot bear to watch scary movies.", meaning: 2 }
+    ]
+  },
+  {
+    word: "TIRE",
+    definitions: [
+      "A rubber wheel on a car or bicycle",
+      "To become sleepy or exhausted"
+    ],
+    sentences: [
+      { text: "Dad had to change the flat tire on our car.", meaning: 1 },
+      { text: "Running up the hill will tire you out quickly.", meaning: 2 },
+      { text: "The bike tire needs more air.", meaning: 1 },
+      { text: "Don't tire yourself before the big game.", meaning: 2 }
+    ]
+  },
+  {
+    word: "FAIR",
+    definitions: [
+      "A fun event with games, rides, and food",
+      "Treating everyone equally and justly"
+    ],
+    sentences: [
+      { text: "We rode the Ferris wheel at the county fair.", meaning: 1 },
+      { text: "It's not fair that she gets more candy than me.", meaning: 2 },
+      { text: "The school fair has a dunking booth this year.", meaning: 1 },
+      { text: "The teacher tries to be fair to all students.", meaning: 2 }
+    ]
+  },
+  {
+    word: "COLD",
+    definitions: [
+      "Having a low temperature; not warm",
+      "An illness that makes you sneeze and cough"
+    ],
+    sentences: [
+      { text: "The ice cream is too cold to eat right now.", meaning: 1 },
+      { text: "I stayed home from school because I had a cold.", meaning: 2 },
+      { text: "It's cold outside, so wear your coat.", meaning: 1 },
+      { text: "Mom gave me medicine for my cold.", meaning: 2 }
+    ]
+  },
+  {
+    word: "DUCK",
+    definitions: [
+      "A water bird with webbed feet and a flat bill",
+      "To quickly lower your head or body"
+    ],
+    sentences: [
+      { text: "The duck swam across the pond.", meaning: 1 },
+      { text: "Duck down so they don't see you!", meaning: 2 },
+      { text: "We fed bread crumbs to the duck at the park.", meaning: 1 },
+      { text: "I had to duck under the low branch.", meaning: 2 }
+    ]
+  },
+  {
+    word: "WATCH",
+    definitions: [
+      "A small clock worn on the wrist",
+      "To look at something carefully"
+    ],
+    sentences: [
+      { text: "My watch says it's already 3 o'clock.", meaning: 1 },
+      { text: "Let's watch the movie together tonight.", meaning: 2 },
+      { text: "I got a new watch for my birthday.", meaning: 1 },
+      { text: "Watch the baby while I make dinner.", meaning: 2 }
+    ]
+  },
+  {
+    word: "LIGHT",
+    definitions: [
+      "Brightness that helps you see",
+      "Not heavy in weight"
+    ],
+    sentences: [
+      { text: "Turn on the light so I can read this book.", meaning: 1 },
+      { text: "This feather is very light.", meaning: 2 },
+      { text: "The light from the sun warms the earth.", meaning: 1 },
+      { text: "The empty box is light enough for you to carry.", meaning: 2 }
+    ]
+  },
+  {
+    word: "MATCH",
+    definitions: [
+      "A small stick that makes fire when struck",
+      "To go well together or be the same"
+    ],
+    sentences: [
+      { text: "Dad used a match to light the campfire.", meaning: 1 },
+      { text: "Your socks don't match your shirt.", meaning: 2 },
+      { text: "Be careful with that match near the paper.", meaning: 1 },
+      { text: "These puzzle pieces match perfectly.", meaning: 2 }
+    ]
+  },
+  {
+    word: "STAR",
+    definitions: [
+      "A bright point of light in the night sky",
+      "A famous person, especially in movies or sports"
+    ],
+    sentences: [
+      { text: "I made a wish on the brightest star.", meaning: 1 },
+      { text: "My favorite movie star is coming to town.", meaning: 2 },
+      { text: "That star twinkles more than the others.", meaning: 1 },
+      { text: "The basketball star scored 30 points.", meaning: 2 }
+    ]
+  }
+];
+
+let currentWordIndex = 0;
+let completedWords = new Set();
+let draggedElement = null;
+
+function initializeActivity() {
+  createWordSelector();
+  loadWord(0);
+  setupEventListeners();
+  updateProgress();
+}
+
+function createWordSelector() {
+  const selector = document.getElementById('wordSelector');
+  selector.innerHTML = '';
+  
+  wordsData.forEach((wordData, index) => {
+    const btn = document.createElement('button');
+    btn.className = `word-btn ${index === 0 ? 'active' : ''}`;
+    btn.dataset.wordIndex = index;
+    btn.textContent = wordData.word;
+    selector.appendChild(btn);
+  });
+}
+
+function loadWord(index) {
+  currentWordIndex = index;
+  const wordData = wordsData[index];
+  
+  // Update current word display
+  document.getElementById('currentWord').textContent = wordData.word;
+  
+  // Update definitions
+  document.getElementById('definition1').textContent = wordData.definitions[0];
+  document.getElementById('definition2').textContent = wordData.definitions[1];
+  
+  // Clear zones
+  document.getElementById('dropZone1').innerHTML = '<div class="empty-message">Drag sentences that match this meaning here</div>';
+  document.getElementById('dropZone2').innerHTML = '<div class="empty-message">Drag sentences that match this meaning here</div>';
+  
+  // Create sentence cards
+  const sentencesBank = document.getElementById('sentencesBank');
+  sentencesBank.innerHTML = '';
+  
+  // Shuffle sentences for variety
+  const shuffledSentences = [...wordData.sentences].sort(() => Math.random() - 0.5);
+  
+  shuffledSentences.forEach((sentence, idx) => {
+    const card = document.createElement('div');
+    card.className = 'sentence-card';
+    card.draggable = true;
+    card.dataset.meaning = sentence.meaning;
+    card.innerHTML = `
+      <div class="sentence-number">${idx + 1}</div>
+      ${sentence.text}
+    `;
+    
+    // Add drag event listeners
+    card.addEventListener('dragstart', handleDragStart);
+    card.addEventListener('dragend', handleDragEnd);
+    
+    sentencesBank.appendChild(card);
+  });
+  
+  // Update word selector
+  document.querySelectorAll('.word-btn').forEach((btn, idx) => {
+    btn.classList.remove('active');
+    if (idx === index) {
+      btn.classList.add('active');
+    }
+    if (completedWords.has(idx)) {
+      btn.classList.add('completed');
+    }
+  });
+  
+  // Setup drop zones
+  setupDropZones();
+  
+  // Hide feedback
+  document.getElementById('feedback').classList.remove('show');
+  
+  updateProgress();
+}
+
+function setupDropZones() {
+  const dropZones = document.querySelectorAll('.definition-zone');
+  
+  dropZones.forEach(zone => {
+    zone.addEventListener('dragover', handleDragOver);
+    zone.addEventListener('drop', handleDrop);
+    zone.addEventListener('dragenter', handleDragEnter);
+    zone.addEventListener('dragleave', handleDragLeave);
+  });
+}
+
+function handleDragStart(e) {
+  draggedElement = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragEnd(e) {
+  e.target.classList.remove('dragging');
+  draggedElement = null;
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+}
+
+function handleDragEnter(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+
+function handleDragLeave(e) {
+  if (!e.currentTarget.contains(e.relatedTarget)) {
+    e.currentTarget.classList.remove('drag-over');
+  }
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  
+  if (draggedElement) {
+    const dropZone = e.currentTarget.querySelector('.drop-zone-content');
+    
+    // Remove from previous location
+    draggedElement.remove();
+    
+    // Add to new location
+    dropZone.appendChild(draggedElement);
+    
+    // Update empty messages
+    updateEmptyMessages();
+    
+    // Add placed styling
+    draggedElement.classList.add('placed');
+    draggedElement.classList.remove('incorrect');
+  }
+}
+
+function updateEmptyMessages() {
+  ['dropZone1', 'dropZone2'].forEach(zoneId => {
+    const zone = document.getElementById(zoneId);
+    const message = zone.querySelector('.empty-message');
+    const cards = zone.querySelectorAll('.sentence-card');
+    
+    if (message) {
+      message.style.display = cards.length > 0 ? 'none' : 'block';
+    }
+  });
+}
+
+function checkAnswers() {
+  const zone1 = document.getElementById('dropZone1');
+  const zone2 = document.getElementById('dropZone2');
+  
+  const zone1Cards = zone1.querySelectorAll('.sentence-card');
+  const zone2Cards = zone2.querySelectorAll('.sentence-card');
+  
+  let correct = 0;
+  let total = 0;
+  let allPlaced = zone1Cards.length + zone2Cards.length === 4;
+  
+  if (!allPlaced) {
+    showFeedback(false, "Please place all sentences in the meaning boxes first!");
+    return;
+  }
+  
+  // Check zone 1 (meaning 1)
+  zone1Cards.forEach(card => {
+    total++;
+    if (parseInt(card.dataset.meaning) === 1) {
+      correct++;
+      card.classList.remove('incorrect');
+      card.classList.add('placed');
+    } else {
+      card.classList.add('incorrect');
+    }
+  });
+  
+  // Check zone 2 (meaning 2)
+  zone2Cards.forEach(card => {
+    total++;
+    if (parseInt(card.dataset.meaning) === 2) {
+      correct++;
+      card.classList.remove('incorrect');
+      card.classList.add('placed');
+    } else {
+      card.classList.add('incorrect');
+    }
+  });
+  
+  const isComplete = correct === total && total === 4;
+  
+  if (isComplete) {
+    completedWords.add(currentWordIndex);
+    showFeedback(true, `🎉 Perfect! You matched all the meanings of "${wordsData[currentWordIndex].word}" correctly!`);
+    showCelebration();
+    updateWordSelector();
+    
+    // Check if all words completed
+    if (completedWords.size === wordsData.length) {
+      setTimeout(() => showFinalCelebration(), 2000);
+    }
+  } else {
+    showFeedback(false, `You got ${correct} out of ${total} correct. Look at the sentences with red borders and try moving them to the other meaning box.`);
+  }
+}
+
+function showFeedback(success, message) {
+  const feedback = document.getElementById('feedback');
+  const feedbackText = document.getElementById('feedbackText');
+  
+  feedback.className = success ? 'feedback success show' : 'feedback error show';
+  feedbackText.innerHTML = message;
+}
+
+function showCelebration() {
+  document.getElementById('celebration').style.display = 'flex';
+}
+
+function closeCelebration() {
+  document.getElementById('celebration').style.display = 'none';
+}
+
+function showFinalCelebration() {
+  const celebration = document.getElementById('celebration');
+  const content = document.getElementById('celebrationContent');
+  
+  content.className = 'celebration-content final-celebration';
+  content.innerHTML = `
+    <h3>🌟 AMAZING WORK! 🌟</h3>
+    <p>You've mastered all 15 multiple-meaning words!</p>
+    <p>You're becoming a vocabulary expert!</p>
+    <button class="primary" onclick="closeCelebration()">I'm Ready for More!</button>
+  `;
+  
+  celebration.style.display = 'flex';
+}
+
+function updateWordSelector() {
+  document.querySelectorAll('.word-btn').forEach((btn, index) => {
+    if (completedWords.has(index)) {
+      btn.classList.add('completed');
+    }
+  });
+}
+
+function updateProgress() {
+  const progressInfo = document.getElementById('progressInfo');
+  const completedCount = completedWords.size;
+  progressInfo.textContent = `Completed: ${completedCount} of ${wordsData.length}`;
+}
+
+function resetCurrentWord() {
+  // Move all cards back to the bank
+  const allCards = document.querySelectorAll('.sentence-card');
+  const sentencesBank = document.getElementById('sentencesBank');
+  
+  allCards.forEach(card => {
+    card.classList.remove('placed', 'incorrect');
+    sentencesBank.appendChild(card);
+  });
+  
+  // Clear zones and restore empty messages
+  document.getElementById('dropZone1').innerHTML = '<div class="empty-message">Drag sentences that match this meaning here</div>';
+  document.getElementById('dropZone2').innerHTML = '<div class="empty-message">Drag sentences that match this meaning here</div>';
+  
+  // Hide feedback
+  document.getElementById('feedback').classList.remove('show');
+  
+  // Remove from completed set
+  completedWords.delete(currentWordIndex);
+  updateWordSelector();
+  updateProgress();
+}
+
+function setupEventListeners() {
+  // Word selector
+  document.getElementById('wordSelector').addEventListener('click', (e) => {
+    if (e.target.classList.contains('word-btn')) {
+      const wordIndex = parseInt(e.target.dataset.wordIndex);
+      loadWord(wordIndex);
+    }
+  });
+  
+  // Control buttons
+  document.getElementById('checkAnswers').addEventListener('click', checkAnswers);
+  document.getElementById('resetWord').addEventListener('click', resetCurrentWord);
+  
+  document.getElementById('showAllWords').addEventListener('click', () => {
+    const firstIncomplete = wordsData.findIndex((_, index) => !completedWords.has(index));
+    if (firstIncomplete !== -1) {
+      loadWord(firstIncomplete);
+    }
+  });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initializeActivity);
+</script>
+</body>
+</html>

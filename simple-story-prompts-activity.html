@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Story Prompts - Speech Therapy Activity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .navbar-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #8b5cf6;
+            margin-bottom: 15px;
+        }
+        
+        .topic-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        
+        .topic-btn:hover {
+            background-color: #faf5ff;
+            color: #8b5cf6;
+            border-color: #8b5cf6;
+            transform: translateY(-2px);
+        }
+        
+        .topic-btn.active {
+            background-color: #8b5cf6;
+            color: white;
+            border-color: #8b5cf6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .story-card {
+            display: none;
+            background-color: white;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .story-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .story-number {
+            display: inline-block;
+            background: #8b5cf6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .story-section {
+            margin-bottom: 32px;
+        }
+        
+        .section-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .story-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #0f172a;
+            background-color: #f8fafc;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid #8b5cf6;
+        }
+        
+        .prompt-section {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin-top: 32px;
+        }
+        
+        .prompt-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .prompt-text {
+            font-size: 22px;
+            color: white;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .story-helper {
+            margin-top: 24px;
+        }
+        
+        .helper-toggle {
+            width: 100%;
+            background: white;
+            border: 2px solid #f59e0b;
+            color: #f59e0b;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        
+        .helper-toggle:hover {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .toggle-icon {
+            font-size: 12px;
+        }
+        
+        .helper-content {
+            display: none;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 12px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .helper-content.show {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .question-group {
+            margin-bottom: 20px;
+        }
+        
+        .question-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .question-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        
+        .story-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        
+        .story-input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+        
+        textarea.story-input {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .story-structure {
+            margin-top: 32px;
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .structure-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #8b5cf6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .story-part {
+            margin-bottom: 20px;
+        }
+        
+        .story-part:last-child {
+            margin-bottom: 0;
+        }
+        
+        .part-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        
+        .part-icon {
+            font-size: 20px;
+        }
+        
+        .story-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+            transition: border-color 0.2s;
+        }
+        
+        .story-textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+        
+        .part-hint {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 6px;
+            font-style: italic;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            gap: 12px;
+        }
+        
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1;
+        }
+        
+        .prev-btn {
+            background-color: white;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .prev-btn:hover:not(:disabled) {
+            border-color: #8b5cf6;
+            color: #8b5cf6;
+            transform: translateY(-1px);
+        }
+        
+        .prev-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .next-btn {
+            background: #8b5cf6;
+            color: white;
+        }
+        
+        .next-btn:hover:not(:disabled) {
+            background: #7c3aed;
+            transform: translateY(-1px);
+        }
+        
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+                margin: 20px auto;
+            }
+            
+            .story-card {
+                padding: 24px;
+            }
+            
+            .story-text {
+                font-size: 16px;
+                padding: 20px;
+            }
+            
+            .prompt-text {
+                font-size: 20px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-title">📚 Simple Story Prompts</div>
+        <button class="topic-btn" onclick="goToStory(0)">My Pet</button>
+        <button class="topic-btn" onclick="goToStory(1)">At School</button>
+        <button class="topic-btn" onclick="goToStory(2)">Playing</button>
+        <button class="topic-btn" onclick="goToStory(3)">Got Hurt</button>
+        <button class="topic-btn" onclick="goToStory(4)">Helped Someone</button>
+        <button class="topic-btn" onclick="goToStory(5)">Lost Something</button>
+        <button class="topic-btn" onclick="goToStory(6)">Made a Mistake</button>
+        <button class="topic-btn" onclick="goToStory(7)">Tried Something New</button>
+        <button class="topic-btn" onclick="goToStory(8)">Scared or Worried</button>
+        <button class="topic-btn" onclick="goToStory(9)">Birthday or Party</button>
+    </div>
+
+    <div class="container">
+        <div class="story-card active" data-story="0">
+            <span class="story-number">Story 1 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I have a dog named Max. He is brown and fluffy. One day Max ran away when I opened the door. I was scared! I called his name and looked everywhere. I found him in the backyard eating my dad's flowers.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about your pet or an animal you saw</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(0)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-0">
+                    <div class="question-group">
+                        <label class="question-label">What pet or animal?</label>
+                        <input type="text" class="story-input" placeholder="Dog, cat, bird...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What does it look like?</label>
+                        <input type="text" class="story-input" placeholder="Brown, big, fluffy...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did it do?</label>
+                        <textarea class="story-input" rows="2" placeholder="Played, ran, slept..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()" disabled>← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="1">
+            <span class="story-number">Story 2 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was in math class. The teacher asked a hard question. I raised my hand to answer. I was nervous but I got it right! Everyone clapped for me. I felt proud.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about something that happened at school</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(1)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-1">
+                    <div class="question-group">
+                        <label class="question-label">Where at school?</label>
+                        <input type="text" class="story-input" placeholder="In class, at lunch, at recess...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened?</label>
+                        <textarea class="story-input" rows="2" placeholder="Answered a question, played a game, learned something new..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did you feel?</label>
+                        <input type="text" class="story-input" placeholder="Happy, proud, excited...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="2">
+            <span class="story-number">Story 3 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    My friend and I played basketball. We took turns shooting. I made three baskets! Then we got water and sat under a tree. It was a fun day.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you played with a friend</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(2)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-2">
+                    <div class="question-group">
+                        <label class="question-label">Who did you play with?</label>
+                        <input type="text" class="story-input" placeholder="My friend, my brother, my neighbor...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did you play?</label>
+                        <input type="text" class="story-input" placeholder="Tag, video games, sports...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened while you played?</label>
+                        <textarea class="story-input" rows="2" placeholder="We laughed, I won, we made up a game..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="3">
+            <span class="story-number">Story 4 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I was riding my bike fast. I hit a bump and fell off. I scraped my knee. It hurt and I cried. My mom cleaned it and put on a bandage. She gave me a hug.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you got hurt</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(3)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-3">
+                    <div class="question-group">
+                        <label class="question-label">What were you doing?</label>
+                        <input type="text" class="story-input" placeholder="Playing, running, climbing...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened?</label>
+                        <input type="text" class="story-input" placeholder="Fell down, bumped into something...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">Who helped you?</label>
+                        <input type="text" class="story-input" placeholder="My mom, the nurse, my teacher...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="4">
+            <span class="story-number">Story 5 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    My little sister dropped all her toys. They went everywhere! I helped her pick them up. We put them in the box together. She said thank you and smiled.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you helped someone</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(4)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-4">
+                    <div class="question-group">
+                        <label class="question-label">Who did you help?</label>
+                        <input type="text" class="story-input" placeholder="My mom, my friend, my teacher...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did they need help with?</label>
+                        <input type="text" class="story-input" placeholder="Carrying something, finding something...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did you help?</label>
+                        <textarea class="story-input" rows="2" placeholder="I carried it, I helped them look..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="5">
+            <span class="story-number">Story 6 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I couldn't find my favorite toy car. I looked in my room. I looked in the living room. Then I remembered I left it outside! I ran out and found it by the swing.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you lost something</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(5)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-5">
+                    <div class="question-group">
+                        <label class="question-label">What did you lose?</label>
+                        <input type="text" class="story-input" placeholder="My toy, my book, my shoe...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">Where did you look?</label>
+                        <input type="text" class="story-input" placeholder="In my room, at school...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">Did you find it? Where?</label>
+                        <textarea class="story-input" rows="2" placeholder="Yes, I found it in... / No, I never found it"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="6">
+            <span class="story-number">Story 7 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I spilled juice on the floor. It made a big mess! I tried to clean it with paper towels but it was too much. I told my dad. He wasn't mad. He helped me clean it up.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you made a mistake</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(6)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-6">
+                    <div class="question-group">
+                        <label class="question-label">What mistake did you make?</label>
+                        <input type="text" class="story-input" placeholder="Spilled something, broke something...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did you do about it?</label>
+                        <textarea class="story-input" rows="2" placeholder="I tried to fix it, I told someone..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What happened next?</label>
+                        <input type="text" class="story-input" placeholder="Someone helped me, I cleaned it up...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="7">
+            <span class="story-number">Story 8 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I tried pizza with mushrooms for the first time. I wasn't sure if I would like it. I took a small bite. It was good! Now mushroom pizza is my favorite.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you tried something new</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(7)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-7">
+                    <div class="question-group">
+                        <label class="question-label">What new thing did you try?</label>
+                        <input type="text" class="story-input" placeholder="New food, new game, new activity...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">How did you feel before you tried it?</label>
+                        <input type="text" class="story-input" placeholder="Nervous, excited, scared...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">Did you like it?</label>
+                        <textarea class="story-input" rows="2" placeholder="Yes, I loved it! / No, I didn't like it / It was okay"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="8">
+            <span class="story-number">Story 9 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    I heard a loud noise at night. I didn't know what it was! I was scared and hid under my blanket. Then I heard my dad laugh. It was just the cat knocking over a pot.
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a time you felt scared or worried</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(8)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-8">
+                    <div class="question-group">
+                        <label class="question-label">What made you scared or worried?</label>
+                        <input type="text" class="story-input" placeholder="A loud noise, the dark, something new...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did you do?</label>
+                        <textarea class="story-input" rows="2" placeholder="I called for help, I hid, I told someone..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What helped you feel better?</label>
+                        <input type="text" class="story-input" placeholder="Someone came to help, I found out it was okay...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()">Next →</button>
+            </div>
+        </div>
+
+        <div class="story-card" data-story="9">
+            <span class="story-number">Story 10 of 10</span>
+            
+            <div class="story-section">
+                <div class="section-label">Example Story</div>
+                <div class="story-text">
+                    It was my birthday party. All my friends came over. We played games and ate cake. I got lots of presents! My favorite was a new video game. It was the best day ever!
+                </div>
+            </div>
+            
+            <div class="prompt-section">
+                <div class="prompt-label">Your Turn</div>
+                <div class="prompt-text">Tell me about a birthday or party you went to</div>
+            </div>
+            
+            <div class="story-helper">
+                <button class="helper-toggle" onclick="toggleHelper(9)">
+                    <span>💡 Need help getting started?</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="helper-content" id="helper-9">
+                    <div class="question-group">
+                        <label class="question-label">Whose birthday or party?</label>
+                        <input type="text" class="story-input" placeholder="My birthday, my friend's party...">
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What did you do at the party?</label>
+                        <textarea class="story-input" rows="2" placeholder="Played games, ate cake, opened presents..."></textarea>
+                    </div>
+                    <div class="question-group">
+                        <label class="question-label">What was your favorite part?</label>
+                        <input type="text" class="story-input" placeholder="The games, the cake, seeing my friends...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-structure">
+                <div class="structure-title">📝 Tell Your Story</div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🌟</span>
+                        <span>Beginning:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did your story start? Who was there? Where were you?"></textarea>
+                    <div class="part-hint">Start by setting the scene</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">⚡</span>
+                        <span>Middle:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="What happened? What did you do? What did others do?"></textarea>
+                    <div class="part-hint">Tell what happened in detail</div>
+                </div>
+                
+                <div class="story-part">
+                    <div class="part-label">
+                        <span class="part-icon">🎯</span>
+                        <span>End:</span>
+                    </div>
+                    <textarea class="story-textarea" placeholder="How did it end? How did you feel? What happened at the end?"></textarea>
+                    <div class="part-hint">Wrap up your story</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn prev-btn" onclick="previousStory()">← Previous</button>
+                <button class="nav-btn next-btn" onclick="nextStory()" disabled>Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        const totalStories = 10;
+
+        function updateDisplay() {
+            document.querySelectorAll('.story-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-story="${currentStory}"]`).classList.add('active');
+            
+            document.querySelectorAll('.topic-btn').forEach((btn, index) => {
+                btn.classList.toggle('active', index === currentStory);
+            });
+            
+            const prevBtn = document.querySelector('.story-card.active .prev-btn');
+            const nextBtn = document.querySelector('.story-card.active .next-btn');
+            
+            if (prevBtn) prevBtn.disabled = currentStory === 0;
+            if (nextBtn) nextBtn.disabled = currentStory === totalStories - 1;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStory() {
+            if (currentStory < totalStories - 1) {
+                currentStory++;
+                updateDisplay();
+            }
+        }
+
+        function previousStory() {
+            if (currentStory > 0) {
+                currentStory--;
+                updateDisplay();
+            }
+        }
+
+        function goToStory(index) {
+            currentStory = index;
+            updateDisplay();
+        }
+
+        function toggleHelper(storyIndex) {
+            const helper = document.getElementById(`helper-${storyIndex}`);
+            const toggleIcon = event.currentTarget.querySelector('.toggle-icon');
+            
+            if (helper.classList.contains('show')) {
+                helper.classList.remove('show');
+                toggleIcon.textContent = '▼';
+            } else {
+                helper.classList.add('show');
+                toggleIcon.textContent = '▲';
+            }
+        }
+
+        updateDisplay();
+    </script>
+</body>
+</html>

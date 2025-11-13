@@ -1,0 +1,116 @@
+{
+  "id": "sBlends",
+  "name": "S-Blends",
+  "blends": {
+    "sp": [
+      {
+        "text": "spoon",
+        "pos": "noun"
+      },
+      {
+        "text": "spider",
+        "pos": "noun"
+      },
+      {
+        "text": "spot",
+        "pos": "noun"
+      },
+      {
+        "text": "spin",
+        "pos": "verb"
+      },
+      {
+        "text": "spill",
+        "pos": "verb"
+      },
+      {
+        "text": "speak",
+        "pos": "verb"
+      }
+    ],
+    "st": [
+      {
+        "text": "stool",
+        "pos": "noun"
+      },
+      {
+        "text": "store",
+        "pos": "noun"
+      },
+      {
+        "text": "stop",
+        "pos": "verb"
+      },
+      {
+        "text": "strong",
+        "pos": "adjective"
+      },
+      {
+        "text": "smart",
+        "pos": "adjective"
+      }
+    ],
+    "sn": [
+      {
+        "text": "snake",
+        "pos": "noun"
+      },
+      {
+        "text": "snack",
+        "pos": "noun"
+      },
+      {
+        "text": "snap",
+        "pos": "verb"
+      }
+    ],
+    "sk": [
+      {
+        "text": "skate",
+        "pos": "noun"
+      },
+      {
+        "text": "skip",
+        "pos": "verb"
+      }
+    ],
+    "sl": [
+      {
+        "text": "sled",
+        "pos": "noun"
+      },
+      {
+        "text": "sleep",
+        "pos": "verb"
+      },
+      {
+        "text": "sleepy",
+        "pos": "adjective"
+      },
+      {
+        "text": "slow",
+        "pos": "adjective"
+      }
+    ],
+    "sw": [
+      {
+        "text": "swim",
+        "pos": "verb"
+      }
+    ],
+    "sm": [
+      {
+        "text": "smoke",
+        "pos": "noun"
+      },
+      {
+        "text": "small",
+        "pos": "adjective"
+      },
+      {
+        "text": "smooth",
+        "pos": "adjective"
+      }
+    ]
+  }
+}

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Descriptors to Stories</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .instructions {
+            background: #fff9e6;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        .story-selector {
+            margin-bottom: 20px;
+        }
+        .story-selector label {
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .story-selector select {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+        }
+        .counter {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            color: #2e7d32;
+        }
+        .counter.full {
+            background: #d4edda;
+            color: #155724;
+        }
+        .story-container {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            line-height: 2.2;
+            font-size: 19px;
+            border: 3px solid #3498db;
+        }
+        .clickable {
+            cursor: pointer;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            display: inline-block;
+            background: #ffe5b4;
+            border: 2px dashed #f39c12;
+            font-weight: 500;
+        }
+        .clickable:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+            border-style: solid;
+        }
+        .clickable.selected {
+            background: #74b9ff;
+            color: white;
+            font-weight: bold;
+            border: 2px solid #0984e3;
+        }
+        .descriptor-inputs {
+            margin: 25px 0;
+            display: none;
+        }
+        .descriptor-inputs.show {
+            display: block;
+        }
+        .descriptor-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+        }
+        .descriptor-item label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #1976d2;
+            font-size: 16px;
+        }
+        .descriptor-hint {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        .descriptor-item textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #90caf9;
+            border-radius: 5px;
+            box-sizing: border-box;
+            min-height: 60px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .results {
+            display: none;
+            margin-top: 30px;
+        }
+        .results.show {
+            display: block;
+        }
+        .story-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .story-version {
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 2;
+            font-size: 18px;
+        }
+        .original-version {
+            background: #f5f5f5;
+            border: 2px solid #95a5a6;
+        }
+        .improved-version {
+            background: #d4edda;
+            border: 3px solid #28a745;
+        }
+        .version-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+        .original-version .version-title {
+            color: #7f8c8d;
+        }
+        .improved-version .version-title {
+            color: #155724;
+        }
+        .highlight {
+            background: #a8e6cf;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .story-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Add Descriptors to Stories</h1>
+        
+        <div class="instructions">
+            <strong>Instructions:</strong> Choose a story below. Then click on <strong>at least 3</strong> highlighted words or phrases you want to make more descriptive (you can pick more than 3!). After selecting, you'll add detailed descriptions to bring the story to life!
+        </div>
+
+        <div class="story-selector">
+            <label for="storySelect">Choose a story:</label>
+            <select id="storySelect" onchange="loadStory()">
+                <option value="0">Story 1 - The Library</option>
+                <option value="1">Story 2 - The Lunch</option>
+                <option value="2">Story 3 - The Park</option>
+                <option value="3">Story 4 - The Lab</option>
+                <option value="4">Story 5 - Going Home</option>
+                <option value="5">Story 6 - The Test</option>
+                <option value="6">Story 7 - The Forest</option>
+                <option value="7">Story 8 - The Package</option>
+                <option value="8">Story 9 - The Kitchen</option>
+                <option value="9">Story 10 - The Game</option>
+            </select>
+        </div>
+
+        <div class="counter" id="counter">
+            Click at least 3 words or phrases to describe
+        </div>
+
+        <div class="story-container" id="storyContainer"></div>
+
+        <div class="descriptor-inputs" id="descriptorInputs"></div>
+
+        <button id="generateBtn" onclick="generateImprovedStory()" disabled>
+            Create Improved Story
+        </button>
+
+        <div class="results" id="results">
+            <h2 style="text-align: center; color: #2c3e50;">Compare the Stories:</h2>
+            <div class="story-comparison">
+                <div class="story-version original-version">
+                    <div class="version-title">📖 Original Story</div>
+                    <div id="originalStory"></div>
+                </div>
+                <div class="story-version improved-version">
+                    <div class="version-title">✨ Improved Story</div>
+                    <div id="improvedStory"></div>
+                </div>
+            </div>
+            <button onclick="startOver()">Try Another Story</button>
+        </div>
+    </div>
+
+    <script>
+        const stories = [
+            {
+                title: "The Library",
+                text: "A {girl} walked into the {library}. A {cat} was sleeping on her favorite chair. The cat {looked up} at her. The girl {smiled} and found a different seat.",
+                prompts: {
+                    "girl": "Add words to describe this girl (appearance, age, mood, or how she's feeling)",
+                    "library": "Add words to describe this library (size, atmosphere, condition, or lighting)",
+                    "cat": "Add words to describe this cat (color, size, appearance, or personality)",
+                    "looked up": "Add words to describe HOW the cat looked up (sleepily, curiously, lazily, etc.)",
+                    "smiled": "Add words to describe HOW she smiled (warmly, softly, sweetly, etc.)"
+                }
+            },
+            {
+                title: "The Lunch",
+                text: "A {boy} opened his {lunchbox}. He pulled out a {sandwich} and took a bite. His face {changed}. He threw the sandwich away and went to buy something else.",
+                prompts: {
+                    "boy": "Add words to describe this boy (age, appearance, mood, or condition)",
+                    "lunchbox": "Add words to describe this lunchbox (color, condition, size, or style)",
+                    "sandwich": "Add words to describe this sandwich (appearance, smell, ingredients, or condition)",
+                    "changed": "Add words to describe HOW his face changed (twisted, scrunched up, turned green, etc.)"
+                }
+            },
+            {
+                title: "The Park",
+                text: "A {dog} was running through the {park}. It spotted a {squirrel} near a tree. The dog {barked} and chased after it. The squirrel escaped up the tree just in time.",
+                prompts: {
+                    "dog": "Add words to describe this dog (breed, size, color, or energy level)",
+                    "park": "Add words to describe this park (condition, atmosphere, time of day, or how busy it is)",
+                    "squirrel": "Add words to describe this squirrel (size, color, speed, or behavior)",
+                    "barked": "Add words to describe HOW it barked (loudly, excitedly, frantically, etc.)"
+                }
+            },
+            {
+                title: "The Lab",
+                text: "The {scientist} was watching a {beaker} on the table. {Liquid} inside started bubbling. The scientist {grabbed} her notebook. She wrote down what was happening with excitement.",
+                prompts: {
+                    "scientist": "Add words to describe this scientist (age, appearance, expertise, or mood)",
+                    "beaker": "Add words to describe this beaker (size, contents, condition, or what's special about it)",
+                    "Liquid": "Add words to describe this liquid (color, consistency, behavior, or what it looks like)",
+                    "grabbed": "Add words to describe HOW she grabbed it (quickly, frantically, eagerly, etc.)"
+                }
+            },
+            {
+                title: "Going Home",
+                text: "A {student} was walking home from school. {Rain} started falling. The student had no umbrella. They {ran} the rest of the way home.",
+                prompts: {
+                    "student": "Add words to describe this student (age, appearance, mood, or what they're carrying)",
+                    "Rain": "Add words to describe this rain (intensity, temperature, suddenness, or type)",
+                    "ran": "Add words to describe HOW they ran (frantically, desperately, clumsily, etc.)"
+                }
+            },
+            {
+                title: "The Test",
+                text: "The {teacher} handed out a {test}. A {student} looked at the first question. It was very difficult. The student {took a breath} and started trying anyway.",
+                prompts: {
+                    "teacher": "Add words to describe this teacher (appearance, demeanor, mood, or teaching style)",
+                    "test": "Add words to describe this test (length, difficulty, subject, or appearance)",
+                    "student": "Add words to describe this student (age, appearance, mood, or usual performance)",
+                    "took a breath": "Add words to describe HOW they took a breath (deeply, nervously, slowly, etc.)"
+                }
+            },
+            {
+                title: "The Forest",
+                text: "A {fox} found some {bread} on the ground. Another fox came over and wanted it too. The first fox {growled}. The other fox backed away and left.",
+                prompts: {
+                    "fox": "Add words to describe this fox (size, color, age, or condition)",
+                    "bread": "Add words to describe this bread (type, condition, size, or freshness)",
+                    "growled": "Add words to describe HOW it growled (fiercely, loudly, menacingly, etc.)"
+                }
+            },
+            {
+                title: "The Package",
+                text: "A {woman} heard a knock at the door. She went outside and saw a {box} on the porch. She {picked it up} and shook it. Inside was the gift she had been waiting for.",
+                prompts: {
+                    "woman": "Add words to describe this woman (age, appearance, mood, or reaction)",
+                    "box": "Add words to describe this box (size, weight, condition, or wrapping)",
+                    "picked it up": "Add words to describe HOW she picked it up (carefully, excitedly, curiously, etc.)"
+                }
+            },
+            {
+                title: "The Kitchen",
+                text: "A {chef} was stirring a {pot} on the stove. {Steam} rose from the soup. The chef tasted it and {added} more salt. A customer smiled when they tried the soup.",
+                prompts: {
+                    "chef": "Add words to describe this chef (experience level, appearance, mood, or expertise)",
+                    "pot": "Add words to describe this pot (size, type, contents, or condition)",
+                    "Steam": "Add words to describe this steam (amount, smell, appearance, or thickness)",
+                    "added": "Add words to describe HOW they added salt (carefully, thoughtfully, generously, etc.)"
+                }
+            },
+            {
+                title: "The Game",
+                text: "A {player} stood at the free throw line on the {court}. The {crowd} fell silent and watched. The player {took a shot}. The ball went through the hoop perfectly.",
+                prompts: {
+                    "player": "Add words to describe this player (skill level, appearance, mood, or confidence)",
+                    "court": "Add words to describe this court (condition, location, atmosphere, or lighting)",
+                    "crowd": "Add words to describe this crowd (size, noise level, mood, or energy)",
+                    "took a shot": "Add words to describe HOW they took the shot (confidently, nervously, smoothly, etc.)"
+                }
+            }
+        ];
+
+        let currentStory = 0;
+        let selections = [];
+        let clickableElements = [];
+
+        function loadStory() {
+            currentStory = parseInt(document.getElementById('storySelect').value);
+            selections = [];
+            clickableElements = [];
+            
+            // Parse story and create clickable elements
+            const storyText = stories[currentStory].text;
+            let html = '';
+            let counter = 0;
+            
+            // Replace {text} with clickable spans
+            html = storyText.replace(/\{([^}]+)\}/g, function(match, text) {
+                const id = `clickable-${counter}`;
+                counter++;
+                return `<span class="clickable" id="${id}" onclick="toggleSelection('${id}', '${text.replace(/'/g, "\\'")}')">${text}</span>`;
+            });
+            
+            document.getElementById('storyContainer').innerHTML = html;
+            document.getElementById('descriptorInputs').innerHTML = '';
+            document.getElementById('descriptorInputs').classList.remove('show');
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('generateBtn').disabled = true;
+            
+            updateCounter();
+        }
+
+        function toggleSelection(id, text) {
+            const element = document.getElementById(id);
+            
+            if (element.classList.contains('selected')) {
+                // Deselect
+                element.classList.remove('selected');
+                selections = selections.filter(s => s.id !== id);
+            } else {
+                // Select (no limit)
+                element.classList.add('selected');
+                selections.push({id: id, text: text, descriptor: ''});
+            }
+            
+            updateCounter();
+            
+            if (selections.length >= 3) {
+                showDescriptorInputs();
+            } else {
+                document.getElementById('descriptorInputs').classList.remove('show');
+                document.getElementById('generateBtn').disabled = true;
+            }
+        }
+
+        function updateCounter() {
+            const count = selections.length;
+            const counter = document.getElementById('counter');
+            
+            if (count >= 3) {
+                counter.textContent = `✓ You selected ${count}! Now add descriptive words below.`;
+                counter.classList.add('full');
+            } else {
+                const remaining = 3 - count;
+                counter.textContent = `Click ${remaining} more word${remaining === 1 ? '' : 's'} or phrase${remaining === 1 ? '' : 's'} to describe (minimum 3)`;
+                counter.classList.remove('full');
+            }
+        }
+
+        function showDescriptorInputs() {
+            const container = document.getElementById('descriptorInputs');
+            let html = '<h3 style="color: #2c3e50; margin-top: 30px;">Add Your Descriptive Words:</h3>';
+            
+            const prompts = stories[currentStory].prompts;
+            
+            selections.forEach((selection, index) => {
+                const prompt = prompts[selection.text] || "Add descriptive words or phrases:";
+                html += `
+                    <div class="descriptor-item">
+                        <label>Describe: "${selection.text}"</label>
+                        <div class="descriptor-hint">${prompt}</div>
+                        <textarea id="desc-${index}" 
+                               placeholder="Type descriptive words here..."
+                               onkeyup="checkInputs()"></textarea>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            container.classList.add('show');
+        }
+
+        function checkInputs() {
+            let allFilled = true;
+            selections.forEach((selection, index) => {
+                const input = document.getElementById(`desc-${index}`);
+                if (!input.value.trim()) {
+                    allFilled = false;
+                }
+            });
+            
+            document.getElementById('generateBtn').disabled = !allFilled;
+        }
+
+        function generateImprovedStory() {
+            // Collect descriptors
+            selections.forEach((selection, index) => {
+                const input = document.getElementById(`desc-${index}`);
+                selection.descriptor = input.value.trim();
+            });
+            
+            // Generate both versions
+            const originalText = stories[currentStory].text.replace(/\{([^}]+)\}/g, '$1');
+            let improvedText = stories[currentStory].text;
+            
+            // Replace selected items with descriptive versions
+            selections.forEach(selection => {
+                const original = selection.text;
+                const withDescriptor = `<span class="highlight">${selection.descriptor} ${original}</span>`;
+                improvedText = improvedText.replace(`{${original}}`, withDescriptor);
+            });
+            
+            // Clean up remaining brackets
+            improvedText = improvedText.replace(/\{([^}]+)\}/g, '$1');
+            
+            // Display results
+            document.getElementById('originalStory').innerHTML = originalText;
+            document.getElementById('improvedStory').innerHTML = improvedText;
+            document.getElementById('results').classList.add('show');
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startOver() {
+            document.getElementById('results').classList.remove('show');
+            loadStory();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Load first story on page load
+        loadStory();
+    </script>
+</body>
+</html>

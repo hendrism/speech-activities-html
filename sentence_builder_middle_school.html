@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Builder - Middle School Level</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .level-badge {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #764ba2;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .instructions {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+        }
+
+        .word-selector {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .word-selector label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #333;
+        }
+
+        .word-selector select {
+            font-size: 16px;
+            padding: 8px 15px;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .word-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .word-title {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .definition {
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.6;
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .definition strong {
+            color: #ffd93d;
+        }
+
+        .sentence-input-section {
+            margin: 30px 0;
+        }
+
+        .sentence-label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .sentence-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .sentence-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .help-section {
+            margin-top: 20px;
+        }
+
+        .help-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .help-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .hint-btn {
+            background: #ffd93d;
+            color: #333;
+        }
+
+        .hint-btn:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+        }
+
+        .example-btn {
+            background: #6bcf7f;
+            color: white;
+        }
+
+        .example-btn:hover {
+            background: #7de68f;
+            transform: translateY(-2px);
+        }
+
+        .starter-btn {
+            background: #ff6b9d;
+            color: white;
+        }
+
+        .starter-btn:hover {
+            background: #ff85b0;
+            transform: translateY(-2px);
+        }
+
+        .help-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .help-content {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hint-content {
+            background: #fff9e6;
+            border-left: 4px solid #ffd93d;
+        }
+
+        .example-content {
+            background: #e8f8ec;
+            border-left: 4px solid #6bcf7f;
+        }
+
+        .starter-content {
+            background: #ffe8f0;
+            border-left: 4px solid #ff6b9d;
+        }
+
+        .starter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .starter-option {
+            padding: 10px 15px;
+            background: white;
+            border: 2px solid #ff6b9d;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .starter-option:hover {
+            background: #ff6b9d;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .check-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 40px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .check-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .feedback.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .feedback.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+
+        .feedback.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 30px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .reset-btn:hover {
+            background: #5a6268;
+        }
+
+        .progress-tracker {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Sentence Builder Activity</h1>
+
+        <div class="level-badge">
+            <span class="badge">Middle School Level</span>
+        </div>
+
+        <div class="instructions">
+            <strong>Instructions:</strong> Read the word and its definition carefully. Then, create your own sentence using the word correctly. Your sentence should show that you understand what the word means. Need help? Use the progressive help buttons below!
+        </div>
+
+        <div class="progress-tracker">
+            <div class="progress-text">Progress: <span id="progressText">0 of 20 completed</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="word-selector">
+            <label for="wordSelect">Choose a word:</label>
+            <select id="wordSelect"></select>
+        </div>
+
+        <div class="word-card">
+            <div class="word-title" id="currentWord"></div>
+            <div class="definition" id="currentDefinition"></div>
+        </div>
+
+        <div class="sentence-input-section">
+            <label class="sentence-label" for="sentenceInput">
+                ✍️ Write your sentence using the word:
+            </label>
+            <textarea
+                id="sentenceInput"
+                class="sentence-textarea"
+                placeholder="Type your sentence here..."
+            ></textarea>
+
+            <div class="help-section">
+                <div class="help-buttons">
+                    <button class="help-btn hint-btn" onclick="toggleHelp('hint')">
+                        💡 Show Hint
+                    </button>
+                    <button class="help-btn example-btn" onclick="toggleHelp('example')">
+                        📖 Show Example
+                    </button>
+                    <button class="help-btn starter-btn" onclick="toggleHelp('starter')">
+                        🚀 Sentence Starters
+                    </button>
+                </div>
+
+                <div class="help-content hint-content" id="hintContent"></div>
+                <div class="help-content example-content" id="exampleContent"></div>
+                <div class="help-content starter-content" id="starterContent"></div>
+            </div>
+        </div>
+
+        <button class="check-btn" onclick="checkSentence()">✓ Submit Sentence</button>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="reset-btn" onclick="nextWord()">→ Next Word</button>
+    </div>
+
+    <script>
+        const words = [
+            {
+                word: "Advocate",
+                definition: "A person who publicly supports or recommends a particular cause or policy; to speak in favor of something",
+                hint: "Think about someone fighting for a cause they believe in, like environmental protection or animal rights.",
+                example: "My sister is a strong advocate for recycling and often organizes community clean-up events.",
+                starters: [
+                    "I want to advocate for...",
+                    "She became an advocate when...",
+                    "As an advocate of...",
+                    "The advocate argued that..."
+                ]
+            },
+            {
+                word: "Collaborate",
+                definition: "To work together with others on a project or task",
+                hint: "Consider a group project where everyone contributes their skills and ideas.",
+                example: "Our science team decided to collaborate on the research project, combining our different strengths.",
+                starters: [
+                    "We will collaborate to...",
+                    "When we collaborate...",
+                    "Scientists collaborate because...",
+                    "The ability to collaborate is..."
+                ]
+            },
+            {
+                word: "Perspective",
+                definition: "A particular way of viewing or understanding something; a point of view",
+                hint: "Think about how two people might see the same situation differently based on their experiences.",
+                example: "From my perspective, starting homework early reduces stress, but my friend prefers to work under pressure.",
+                starters: [
+                    "From my perspective...",
+                    "Her perspective changed when...",
+                    "Understanding different perspectives helps...",
+                    "The story was told from the perspective of..."
+                ]
+            },
+            {
+                word: "Resilient",
+                definition: "Able to recover quickly from difficulties; tough and flexible",
+                hint: "Think of someone who faces challenges but keeps trying and bouncing back.",
+                example: "Despite failing the test, she remained resilient and studied harder for the next one.",
+                starters: [
+                    "He proved to be resilient when...",
+                    "Resilient people can...",
+                    "The community was resilient after...",
+                    "To become more resilient, I..."
+                ]
+            },
+            {
+                word: "Innovative",
+                definition: "Introducing new ideas or methods; creative and original",
+                hint: "Think about inventions or creative solutions that haven't been tried before.",
+                example: "The innovative design of the new phone includes a screen that folds in half.",
+                starters: [
+                    "Her innovative idea was...",
+                    "Innovative solutions can...",
+                    "The most innovative thing I've seen...",
+                    "Companies need innovative thinkers to..."
+                ]
+            },
+            {
+                word: "Analyze",
+                definition: "To examine something carefully and in detail to understand it better",
+                hint: "Think about breaking down information to understand how it works or what it means.",
+                example: "We had to analyze the poem to understand the author's message and literary techniques.",
+                starters: [
+                    "When I analyze...",
+                    "Scientists analyze data to...",
+                    "To analyze the problem, we...",
+                    "After analyzing the situation..."
+                ]
+            },
+            {
+                word: "Empathy",
+                definition: "The ability to understand and share the feelings of another person",
+                hint: "Think about putting yourself in someone else's shoes to feel what they feel.",
+                example: "She showed great empathy by comforting her friend who was going through a difficult time.",
+                starters: [
+                    "Showing empathy means...",
+                    "I felt empathy when...",
+                    "Empathy is important because...",
+                    "People with empathy can..."
+                ]
+            },
+            {
+                word: "Substantial",
+                definition: "Of considerable importance, size, or worth; large in amount",
+                hint: "Think about something that is significant and not small or trivial.",
+                example: "She made substantial improvements in her grades after working with a tutor.",
+                starters: [
+                    "There was a substantial difference between...",
+                    "A substantial amount of...",
+                    "The substantial evidence showed...",
+                    "He made substantial progress in..."
+                ]
+            },
+            {
+                word: "Eloquent",
+                definition: "Fluent and persuasive in speaking or writing; expressing oneself clearly",
+                hint: "Think of someone who speaks beautifully and convincingly, like a great speaker or poet.",
+                example: "The valedictorian gave an eloquent speech that moved many people to tears.",
+                starters: [
+                    "Her eloquent words...",
+                    "An eloquent speaker can...",
+                    "He was eloquent when describing...",
+                    "The eloquent argument convinced..."
+                ]
+            },
+            {
+                word: "Meticulous",
+                definition: "Showing great attention to detail; very careful and precise",
+                hint: "Think about someone who is extremely careful and doesn't miss any small details.",
+                example: "The artist was meticulous in her work, spending hours perfecting each brushstroke.",
+                starters: [
+                    "He was meticulous about...",
+                    "Meticulous planning ensures...",
+                    "The meticulous detective...",
+                    "Being meticulous is important when..."
+                ]
+            },
+            {
+                word: "Paradox",
+                definition: "A statement or situation that seems contradictory but may be true",
+                hint: "Think about something that seems impossible but somehow makes sense, like 'less is more.'",
+                example: "It's a paradox that the more connected we are through technology, the more isolated some people feel.",
+                starters: [
+                    "The paradox is that...",
+                    "This creates a paradox because...",
+                    "One interesting paradox in life...",
+                    "The story presents a paradox when..."
+                ]
+            },
+            {
+                word: "Hypothesis",
+                definition: "A proposed explanation or educated guess that can be tested through research",
+                hint: "Think about the first step in a science experiment - your prediction about what will happen.",
+                example: "Our hypothesis was that plants grow faster with music, so we designed an experiment to test it.",
+                starters: [
+                    "My hypothesis is that...",
+                    "The scientist's hypothesis suggested...",
+                    "To test the hypothesis...",
+                    "Based on the hypothesis..."
+                ]
+            },
+            {
+                word: "Legitimate",
+                definition: "Conforming to the law or rules; genuine and valid",
+                hint: "Think about something that is real, official, and accepted as proper.",
+                example: "She had a legitimate excuse for being late because her bus broke down.",
+                starters: [
+                    "That is a legitimate concern...",
+                    "The legitimate winner was...",
+                    "He had legitimate reasons to...",
+                    "A legitimate business must..."
+                ]
+            },
+            {
+                word: "Ambiguous",
+                definition: "Having more than one possible meaning; unclear or uncertain",
+                hint: "Think about a statement that could be understood in different ways.",
+                example: "The ending of the movie was ambiguous, leaving viewers to interpret what really happened.",
+                starters: [
+                    "The message was ambiguous because...",
+                    "Ambiguous instructions can...",
+                    "The ambiguous statement led to...",
+                    "When something is ambiguous..."
+                ]
+            },
+            {
+                word: "Contemplate",
+                definition: "To think about something carefully and for a long time",
+                hint: "Think about deeply considering something, like a major decision or philosophical question.",
+                example: "I took a walk in the park to contemplate which high school elective courses to choose.",
+                starters: [
+                    "I sat down to contemplate...",
+                    "While contemplating the question...",
+                    "He often contemplates...",
+                    "It's worth contemplating whether..."
+                ]
+            },
+            {
+                word: "Diligent",
+                definition: "Showing careful and persistent effort in work or tasks",
+                hint: "Think about someone who works hard consistently and doesn't give up easily.",
+                example: "Through diligent practice every day, she finally mastered the difficult piano piece.",
+                starters: [
+                    "A diligent student will...",
+                    "He was diligent in his efforts to...",
+                    "Diligent work habits include...",
+                    "Being diligent means..."
+                ]
+            },
+            {
+                word: "Inevitable",
+                definition: "Certain to happen; unavoidable",
+                hint: "Think about something that will definitely occur no matter what.",
+                example: "As the storm clouds gathered, rain seemed inevitable within the next hour.",
+                starters: [
+                    "It was inevitable that...",
+                    "Change is inevitable because...",
+                    "The inevitable result was...",
+                    "We knew it was inevitable when..."
+                ]
+            },
+            {
+                word: "Scrutinize",
+                definition: "To examine something very carefully and critically",
+                hint: "Think about looking at something with great attention, searching for details or flaws.",
+                example: "The teacher will scrutinize our essays for grammar errors and weak arguments.",
+                starters: [
+                    "We must scrutinize...",
+                    "After scrutinizing the evidence...",
+                    "Experts scrutinize data to...",
+                    "When you scrutinize something..."
+                ]
+            },
+            {
+                word: "Compassion",
+                definition: "Sympathetic concern for the suffering of others, accompanied by a desire to help",
+                hint: "Think about feeling sorry for someone who is struggling and wanting to make things better.",
+                example: "The volunteers showed great compassion by helping families affected by the natural disaster.",
+                starters: [
+                    "She showed compassion by...",
+                    "Compassion is important because...",
+                    "Acts of compassion include...",
+                    "I felt compassion when..."
+                ]
+            },
+            {
+                word: "Enhance",
+                definition: "To improve or increase the quality, value, or extent of something",
+                hint: "Think about making something better or adding to its positive qualities.",
+                example: "Adding colorful images will enhance your presentation and make it more engaging.",
+                starters: [
+                    "This will enhance...",
+                    "To enhance my skills, I...",
+                    "Technology can enhance learning by...",
+                    "We can enhance the experience by..."
+                ]
+            }
+        ];
+
+        let currentWordIndex = 0;
+        let completedWords = new Set();
+
+        function loadWord(index) {
+            currentWordIndex = index;
+            const word = words[index];
+
+            document.getElementById('currentWord').textContent = word.word;
+            document.getElementById('currentDefinition').innerHTML = `<strong>Definition:</strong> ${word.definition}`;
+
+            // Load help content
+            document.getElementById('hintContent').innerHTML = `<strong>💡 Hint:</strong> ${word.hint}`;
+            document.getElementById('exampleContent').innerHTML = `<strong>📖 Example Sentence:</strong> ${word.example}`;
+
+            let startersHTML = '<strong>🚀 Choose a sentence starter:</strong><div class="starter-options">';
+            word.starters.forEach(starter => {
+                startersHTML += `<div class="starter-option" onclick="useStarter('${starter.replace(/'/g, "\\'")}')">${starter}</div>`;
+            });
+            startersHTML += '</div>';
+            document.getElementById('starterContent').innerHTML = startersHTML;
+
+            // Reset input and hide help
+            document.getElementById('sentenceInput').value = '';
+            hideAllHelp();
+            document.getElementById('feedback').style.display = 'none';
+
+            updateProgress();
+        }
+
+        function hideAllHelp() {
+            document.querySelectorAll('.help-content').forEach(el => el.style.display = 'none');
+        }
+
+        function toggleHelp(type) {
+            const contentId = type + 'Content';
+            const element = document.getElementById(contentId);
+
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+            } else {
+                hideAllHelp();
+                element.style.display = 'block';
+            }
+        }
+
+        function useStarter(starter) {
+            const textarea = document.getElementById('sentenceInput');
+            textarea.value = starter + ' ';
+            textarea.focus();
+            document.getElementById('starterContent').style.display = 'none';
+        }
+
+        function checkSentence() {
+            const sentence = document.getElementById('sentenceInput').value.trim();
+            const word = words[currentWordIndex].word.toLowerCase();
+            const feedback = document.getElementById('feedback');
+
+            if (!sentence) {
+                feedback.textContent = '⚠️ Please write a sentence before submitting.';
+                feedback.className = 'feedback warning';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            const sentenceLower = sentence.toLowerCase();
+            const containsWord = sentenceLower.includes(word);
+
+            if (!containsWord) {
+                feedback.textContent = `⚠️ Your sentence must include the word "${words[currentWordIndex].word}". Try again!`;
+                feedback.className = 'feedback warning';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            const wordCount = sentence.split(/\s+/).length;
+            if (wordCount < 5) {
+                feedback.textContent = '⚠️ Try to write a more complete sentence (at least 5 words).';
+                feedback.className = 'feedback info';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            const endsWithPunctuation = /[.!?]$/.test(sentence.trim());
+            if (!endsWithPunctuation) {
+                feedback.textContent = '💡 Good sentence! Don\'t forget to add punctuation at the end (. ! or ?).';
+                feedback.className = 'feedback info';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            // Success!
+            completedWords.add(currentWordIndex);
+            feedback.textContent = `✅ Excellent work! Your sentence "${sentence}" correctly uses the word "${words[currentWordIndex].word}"!`;
+            feedback.className = 'feedback success';
+            feedback.style.display = 'block';
+
+            updateProgress();
+        }
+
+        function nextWord() {
+            const currentIndex = parseInt(document.getElementById('wordSelect').value);
+            const nextIndex = (currentIndex + 1) % words.length;
+            document.getElementById('wordSelect').value = nextIndex;
+            loadWord(nextIndex);
+        }
+
+        function updateProgress() {
+            const completed = completedWords.size;
+            const total = words.length;
+            const percentage = (completed / total) * 100;
+
+            document.getElementById('progressText').textContent = `${completed} of ${total} completed`;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        // Initialize word selector
+        const select = document.getElementById('wordSelect');
+        words.forEach((word, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${index + 1}. ${word.word}`;
+            select.appendChild(option);
+        });
+
+        // Event listener for word selection
+        select.addEventListener('change', function() {
+            loadWord(parseInt(this.value));
+        });
+
+        // Load first word
+        loadWord(0);
+    </script>
+</body>
+</html>

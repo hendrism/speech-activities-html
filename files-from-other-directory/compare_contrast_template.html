@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare & Contrast - Editable Template Builder</title>
+<style>
+  :root {
+    --w: 1200px;
+    --accent: #8b5cf6;
+    --bg: #f8fafc;
+    --ink: #0b1021;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #d97706;
+    --blue: #0ea5e9;
+    --green: #10b981;
+    --purple: #a855f7;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.5;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 2px solid #e5e7eb; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 16px 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto auto; 
+    gap: 15px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 20px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 8px; 
+    align-items: center; 
+  }
+  
+  .mode-toggle {
+    background: var(--warning);
+    color: white;
+    border: 2px solid var(--warning);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .mode-toggle:hover {
+    background: #b45309;
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 24px auto; 
+    padding: 0 20px; 
+  }
+  
+  .edit-mode {
+    background: #fff7ed;
+    border: 3px solid var(--warning);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    display: none;
+  }
+  
+  .edit-mode.active {
+    display: block;
+  }
+  
+  .edit-mode h3 {
+    color: var(--warning);
+    margin: 0 0 16px;
+  }
+  
+  .activity-editor {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .editor-controls {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .topic-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .item-column {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 12px;
+  }
+  
+  .item-column h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    text-align: center;
+    padding: 6px;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .similarities-col h4 { background: var(--green); }
+  .item1-col h4 { background: var(--blue); }
+  .item2-col h4 { background: var(--purple); }
+  
+  .item-input {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+  
+  .add-item-btn {
+    width: 100%;
+    padding: 4px;
+    background: #f1f5f9;
+    border: 1px dashed #cbd5e1;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #64748b;
+    cursor: pointer;
+  }
+  
+  .activity-container {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+  }
+  
+  .activity-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .activity-header h2 {
+    color: var(--accent);
+    font-size: 24px;
+    margin: 0 0 8px;
+  }
+  
+  .comparison-topic {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  
+  .instructions {
+    background: #f0f9ff;
+    border: 2px solid #0ea5e9;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .instructions p {
+    margin: 0;
+    color: #0c4a6e;
+    font-weight: 500;
+  }
+  
+  .workspace {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .item-bank {
+    background: #fffbeb;
+    border: 3px dashed #f59e0b;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 500px;
+  }
+  
+  .item-bank h3 {
+    color: #92400e;
+    margin: 0 0 12px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .comparison-zones {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .similarities-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+  .differences-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .drop-zone {
+    min-height: 200px;
+    border: 3px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .drop-zone h3 {
+    text-align: center;
+    margin: 0 0 12px;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .similarities-zone {
+    background: #f0fdf4;
+    border-color: var(--green);
+  }
+  
+  .similarities-zone h3 {
+    background: var(--green);
+    color: white;
+  }
+  
+  .item1-zone {
+    background: #eff6ff;
+    border-color: var(--blue);
+  }
+  
+  .item1-zone h3 {
+    background: var(--blue);
+    color: white;
+  }
+  
+  .item2-zone {
+    background: #faf5ff;
+    border-color: var(--purple);
+  }
+  
+  .item2-zone h3 {
+    background: var(--purple);
+    color: white;
+  }
+  
+  .drop-zone.drag-over {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .similarities-zone.drag-over {
+    border-color: #15803d;
+    background: #dcfce7;
+  }
+  
+  .item1-zone.drag-over {
+    border-color: #0284c7;
+    background: #dbeafe;
+  }
+  
+  .item2-zone.drag-over {
+    border-color: #9333ea;
+    background: #f3e8ff;
+  }
+  
+  .draggable-item {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: move;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .draggable-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .draggable-item.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+  }
+  
+  .draggable-item.placed {
+    border-color: #10b981;
+    background: #f0fdf4;
+  }
+  
+  .draggable-item.incorrect {
+    border-color: #ef4444;
+    background: #fef2f2;
+  }
+  
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #7c3aed;
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.danger {
+    background: var(--err);
+    color: white;
+    border-color: var(--err);
+  }
+  
+  button.small {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+    display: none;
+  }
+  
+  .feedback.show {
+    display: block;
+  }
+  
+  .feedback.success {
+    background: #f0fdf4;
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: #fef2f2;
+    border-color: var(--err);
+    color: #991b1b;
+  }
+  
+  .progress-indicator {
+    text-align: center;
+    margin: 16px 0;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  
+  .activity-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .activity-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  
+  .activity-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .completion-celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .celebration-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    animation: celebrationPop 0.6s ease-out;
+  }
+  
+  .celebration-content h3 {
+    color: var(--ok);
+    font-size: 28px;
+    margin: 0 0 16px;
+  }
+  
+  @keyframes celebrationPop {
+    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  
+  .save-section {
+    background: #f0fdf4;
+    border: 2px solid var(--ok);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+  }
+  
+  .save-section h4 {
+    color: var(--ok);
+    margin: 0 0 12px;
+  }
+  
+  .filename-input {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    margin-right: 8px;
+    width: 200px;
+  }
+  
+  .empty-zone-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
+    pointer-events: none;
+    font-size: 13px;
+  }
+  
+  .zone-content {
+    min-height: 150px;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .workspace {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .differences-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .item-bank {
+      order: -1;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      text-align: center;
+    }
+    
+    .controls {
+      justify-content: center;
+    }
+    
+    .items-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>Compare & Contrast - Template Builder</h1>
+      <div class="progress-indicator" id="progressIndicator">Activity 1 of 2</div>
+      <div class="controls">
+        <button id="editModeBtn" class="mode-toggle">📝 Edit Mode</button>
+        <button id="checkAnswers" class="primary">✓ Check Answers</button>
+        <button id="resetActivity">🔄 Reset</button>
+        <button id="nextActivity" class="success" style="display:none;">Next Activity →</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Edit Mode Panel -->
+    <div class="edit-mode" id="editMode">
+      <h3>✏️ Activity Editor</h3>
+      <div id="activityEditors">
+        <!-- Activity editors will be populated here -->
+      </div>
+      
+      <div style="text-align: center; margin: 16px 0;">
+        <button id="addActivityBtn" class="primary">+ Add New Activity</button>
+      </div>
+      
+      <div class="save-section">
+        <h4>💾 Save Your Custom Worksheet</h4>
+        <p>Save your activities as a new HTML file to use in therapy sessions:</p>
+        <input type="text" class="filename-input" id="filenameInput" placeholder="my-compare-contrast" value="my-compare-contrast">
+        <button id="saveFileBtn" class="success">Download HTML File</button>
+      </div>
+    </div>
+
+    <div class="activity-selector" id="activitySelector">
+      <!-- Activity buttons will be generated automatically -->
+    </div>
+
+    <div class="activity-container">
+      <div class="activity-header">
+        <h2>Compare and Contrast</h2>
+        <div class="comparison-topic" id="comparisonTopic">Loading...</div>
+      </div>
+
+      <div class="instructions">
+        <p><strong>Instructions:</strong> Drag the statements from the bank on the left into the correct zones. Put statements that are true for BOTH items in "Similarities". Put statements that are unique to each item in their specific boxes.</p>
+      </div>
+
+      <div class="workspace">
+        <div class="item-bank">
+          <h3>📝 Drag Items</h3>
+          <div id="itemBank">
+            <!-- Items will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="comparison-zones">
+          <div class="similarities-row">
+            <div class="drop-zone similarities-zone" data-zone="similarity">
+              <h3>🤝 Similarities</h3>
+              <div class="zone-content" id="similarityZone">
+                <div class="empty-zone-message">Things both share</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="differences-row">
+            <div class="drop-zone item1-zone" data-zone="item1">
+              <h3 id="item1Header">📍 Item 1</h3>
+              <div class="zone-content" id="item1Zone">
+                <div class="empty-zone-message">Unique to first item</div>
+              </div>
+            </div>
+
+            <div class="drop-zone item2-zone" data-zone="item2">
+              <h3 id="item2Header">📍 Item 2</h3>
+              <div class="zone-content" id="item2Zone">
+                <div class="empty-zone-message">Unique to second item</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feedback" id="feedback">
+        <p id="feedbackText"></p>
+      </div>
+    </div>
+  </main>
+
+  <div class="completion-celebration" id="completionCelebration">
+    <div class="celebration-content">
+      <h3>🎉 Fantastic Work!</h3>
+      <p>You've successfully completed this compare and contrast activity!</p>
+      <button class="primary" onclick="closeCelebration()">Continue</button>
+    </div>
+  </div>
+
+<script>
+// Default activities for the template
+let activities = [
+  {
+    topic: "Cats vs Dogs",
+    item1: "Cats",
+    item2: "Dogs",
+    items: [
+      { text: "Both have fur", type: "similarity" },
+      { text: "Both are pets", type: "similarity" },
+      { text: "Both need food daily", type: "similarity" },
+      { text: "Meow and purr", type: "item1" },
+      { text: "Use litter boxes", type: "item1" },
+      { text: "Very independent", type: "item1" },
+      { text: "Bark and howl", type: "item2" },
+      { text: "Need daily walks", type: "item2" },
+      { text: "Very social with strangers", type: "item2" }
+    ]
+  },
+  {
+    topic: "Summer vs Winter",
+    item1: "Summer",
+    item2: "Winter", 
+    items: [
+      { text: "Both are seasons", type: "similarity" },
+      { text: "Both last 3 months", type: "similarity" },
+      { text: "People dress differently in each", type: "similarity" },
+      { text: "Hot temperatures", type: "item1" },
+      { text: "Swimming is popular", type: "item1" },
+      { text: "Long daylight hours", type: "item1" },
+      { text: "Cold temperatures", type: "item2" },
+      { text: "Skiing and snowboarding", type: "item2" },
+      { text: "Short daylight hours", type: "item2" }
+    ]
+  }
+];
+
+let currentActivity = 0;
+let draggedElement = null;
+let editMode = false;
+
+function toggleEditMode() {
+  editMode = !editMode;
+  const editPanel = document.getElementById('editMode');
+  const editBtn = document.getElementById('editModeBtn');
+  
+  if (editMode) {
+    editPanel.classList.add('active');
+    editBtn.textContent = '🎮 Play Mode';
+    editBtn.style.background = '#059669';
+    editBtn.style.borderColor = '#059669';
+    buildActivityEditors();
+  } else {
+    editPanel.classList.remove('active');
+    editBtn.textContent = '📝 Edit Mode';
+    editBtn.style.background = '#d97706';
+    editBtn.style.borderColor = '#d97706';
+    initializeActivity(currentActivity);
+  }
+}
+
+function buildActivityEditors() {
+  const container = document.getElementById('activityEditors');
+  container.innerHTML = '';
+  
+  activities.forEach((activity, index) => {
+    const editor = document.createElement('div');
+    editor.className = 'activity-editor';
+    editor.innerHTML = `
+      <div class="editor-header">
+        <h4>Activity ${index + 1}</h4>
+        <div class="editor-controls">
+          <button class="small danger" onclick="deleteActivity(${index})">Delete</button>
+        </div>
+      </div>
+      
+      <input type="text" class="topic-input" placeholder="Topic (e.g., Cats vs Dogs)" 
+             value="${activity.topic}" onchange="updateActivityTopic(${index}, this.value)">
+      
+      <div class="items-grid">
+        <div class="item-column similarities-col">
+          <h4>Similarities</h4>
+          <div id="simItems_${index}">
+            ${activity.items.filter(item => item.type === 'similarity')
+              .map((item, i) => `<input type="text" class="item-input" value="${item.text}" 
+                                  onchange="updateItem(${index}, 'similarity', ${i}, this.value)">`).join('')}
+          </div>
+          <button class="add-item-btn" onclick="addItem(${index}, 'similarity')">+ Add Similarity</button>
+        </div>
+        
+        <div class="item-column item1-col">
+          <h4><input type="text" style="background:transparent;border:none;color:white;text-align:center;width:100%" 
+                     value="${activity.item1}" onchange="updateActivityItem1(${index}, this.value)"></h4>
+          <div id="item1Items_${index}">
+            ${activity.items.filter(item => item.type === 'item1')
+              .map((item, i) => `<input type="text" class="item-input" value="${item.text}" 
+                                  onchange="updateItem(${index}, 'item1', ${i}, this.value)">`).join('')}
+          </div>
+          <button class="add-item-btn" onclick="addItem(${index}, 'item1')">+ Add ${activity.item1} Trait</button>
+        </div>
+        
+        <div class="item-column item2-col">
+          <h4><input type="text" style="background:transparent;border:none;color:white;text-align:center;width:100%" 
+                     value="${activity.item2}" onchange="updateActivityItem2(${index}, this.value)"></h4>
+          <div id="item2Items_${index}">
+            ${activity.items.filter(item => item.type === 'item2')
+              .map((item, i) => `<input type="text" class="item-input" value="${item.text}" 
+                                  onchange="updateItem(${index}, 'item2', ${i}, this.value)">`).join('')}
+          </div>
+          <button class="add-item-btn" onclick="addItem(${index}, 'item2')">+ Add ${activity.item2} Trait</button>
+        </div>
+      </div>
+    `;
+    
+    container.appendChild(editor);
+  });
+}
+
+function updateActivityTopic(index, value) {
+  activities[index].topic = value;
+}
+
+function updateActivityItem1(index, value) {
+  activities[index].item1 = value;
+  buildActivityEditors(); // Rebuild to update button text
+}
+
+function updateActivityItem2(index, value) {
+  activities[index].item2 = value;
+  buildActivityEditors(); // Rebuild to update button text
+}
+
+function updateItem(activityIndex, type, itemIndex, value) {
+  const items = activities[activityIndex].items.filter(item => item.type === type);
+  if (items[itemIndex]) {
+    items[itemIndex].text = value;
+  }
+}
+
+function addItem(activityIndex, type) {
+  activities[activityIndex].items.push({ text: `New ${type} item`, type: type });
+  buildActivityEditors();
+}
+
+function deleteActivity(index) {
+  if (confirm('Are you sure you want to delete this activity?')) {
+    activities.splice(index, 1);
+    if (activities.length === 0) {
+      addNewActivity();
+    }
+    buildActivityEditors();
+  }
+}
+
+function addNewActivity() {
+  activities.push({
+    topic: "New Comparison",
+    item1: "Item A",
+    item2: "Item B",
+    items: [
+      { text: "Both have this trait", type: "similarity" },
+      { text: "Unique to first item", type: "item1" },
+      { text: "Unique to second item", type: "item2" }
+    ]
+  });
+  buildActivityEditors();
+}
+
+function saveCustomFile() {
+  const filename = document.getElementById('filenameInput').value || 'my-compare-contrast';
+  
+  const htmlContent = generateCustomHTML();
+  const blob = new Blob([htmlContent], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename + '.html';
+  a.click();
+  
+  URL.revokeObjectURL(url);
+  alert('File saved! You can now use this custom worksheet for therapy sessions.');
+}
+
+function generateCustomHTML() {
+  // Generate a clean, standalone HTML file with the current activities
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare & Contrast - Custom Worksheet</title>
+<style>
+${document.querySelector('style').textContent.replace('.edit-mode', '.edit-mode-hidden')}
+</style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <h1>Compare & Contrast Worksheet</h1>
+      <div class="progress-indicator" id="progressIndicator">Activity 1 of ${activities.length}</div>
+      <div class="controls">
+        <button id="checkAnswers" class="primary">✓ Check Answers</button>
+        <button id="resetActivity">🔄 Reset</button>
+        <button id="nextActivity" class="success" style="display:none;">Next Activity →</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="activity-selector" id="activitySelector"></div>
+
+    <div class="activity-container">
+      <div class="activity-header">
+        <h2>Compare and Contrast</h2>
+        <div class="comparison-topic" id="comparisonTopic">Loading...</div>
+      </div>
+
+      <div class="instructions">
+        <p><strong>Instructions:</strong> Drag the statements from the bank on the left into the correct zones. Put statements that are true for BOTH items in "Similarities". Put statements that are unique to each item in their specific boxes.</p>
+      </div>
+
+      <div class="workspace">
+        <div class="item-bank">
+          <h3>📝 Drag Items</h3>
+          <div id="itemBank"></div>
+        </div>
+
+        <div class="comparison-zones">
+          <div class="similarities-row">
+            <div class="drop-zone similarities-zone" data-zone="similarity">
+              <h3>🤝 Similarities</h3>
+              <div class="zone-content" id="similarityZone">
+                <div class="empty-zone-message">Things both share</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="differences-row">
+            <div class="drop-zone item1-zone" data-zone="item1">
+              <h3 id="item1Header">📍 Item 1</h3>
+              <div class="zone-content" id="item1Zone">
+                <div class="empty-zone-message">Unique to first item</div>
+              </div>
+            </div>
+
+            <div class="drop-zone item2-zone" data-zone="item2">
+              <h3 id="item2Header">📍 Item 2</h3>
+              <div class="zone-content" id="item2Zone">
+                <div class="empty-zone-message">Unique to second item</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feedback" id="feedback">
+        <p id="feedbackText"></p>
+      </div>
+    </div>
+  </main>
+
+  <div class="completion-celebration" id="completionCelebration">
+    <div class="celebration-content">
+      <h3>🎉 Fantastic Work!</h3>
+      <p>You've successfully completed this compare and contrast activity!</p>
+      <button class="primary" onclick="closeCelebration()">Continue</button>
+    </div>
+  </div>
+
+<script>
+const activities = ${JSON.stringify(activities, null, 2)};
+
+// [Rest of the game logic would go here - same as below but without edit mode]
+let currentActivity = 0;
+let draggedElement = null;
+
+function initializeActivity(activityIndex) {
+  currentActivity = activityIndex;
+  const activity = activities[activityIndex];
+  
+  document.getElementById('comparisonTopic').textContent = activity.topic;
+  document.getElementById('item1Header').textContent = '📍 ' + activity.item1;
+  document.getElementById('item2Header').textContent = '📍 ' + activity.item2;
+  
+  document.getElementById('itemBank').innerHTML = '';
+  document.getElementById('similarityZone').innerHTML = '<div class="empty-zone-message">Things both share</div>';
+  document.getElementById('item1Zone').innerHTML = '<div class="empty-zone-message">Unique to ' + activity.item1.toLowerCase() + '</div>';
+  document.getElementById('item2Zone').innerHTML = '<div class="empty-zone-message">Unique to ' + activity.item2.toLowerCase() + '</div>';
+  
+  const shuffledItems = [...activity.items].sort(() => Math.random() - 0.5);
+  
+  shuffledItems.forEach((item, index) => {
+    const itemElement = document.createElement('div');
+    itemElement.className = 'draggable-item';
+    itemElement.draggable = true;
+    itemElement.textContent = item.text;
+    itemElement.dataset.type = item.type;
+    itemElement.dataset.index = index;
+    
+    itemElement.addEventListener('dragstart', handleDragStart);
+    itemElement.addEventListener('dragend', handleDragEnd);
+    
+    document.getElementById('itemBank').appendChild(itemElement);
+  });
+  
+  document.getElementById('progressIndicator').textContent = \`Activity \${activityIndex + 1} of \${activities.length}\`;
+  updateActivitySelector();
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('nextActivity').style.display = 'none';
+}
+
+// [Include all other game functions here...]
+${getGameLogicCode()}
+<\/script>
+</body>
+</html>`;
+}
+
+function getGameLogicCode() {
+  return `
+function updateActivitySelector() {
+  const selector = document.getElementById('activitySelector');
+  selector.innerHTML = '';
+  
+  activities.forEach((activity, index) => {
+    const btn = document.createElement('button');
+    btn.className = \`activity-btn \${index === currentActivity ? 'active' : ''}\`;
+    btn.dataset.activity = index;
+    btn.textContent = activity.topic;
+    selector.appendChild(btn);
+  });
+}
+
+function handleDragStart(e) {
+  draggedElement = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragEnd(e) {
+  e.target.classList.remove('dragging');
+  draggedElement = null;
+}
+
+function setupDropZones() {
+  const dropZones = document.querySelectorAll('.drop-zone');
+  
+  dropZones.forEach(zone => {
+    zone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+    });
+    
+    zone.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    });
+    
+    zone.addEventListener('dragleave', (e) => {
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        e.currentTarget.classList.remove('drag-over');
+      }
+    });
+    
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      
+      if (draggedElement) {
+        const zoneContent = e.currentTarget.querySelector('.zone-content');
+        draggedElement.remove();
+        zoneContent.appendChild(draggedElement);
+        updateEmptyMessages();
+        draggedElement.classList.add('placed');
+        draggedElement.classList.remove('incorrect');
+      }
+    });
+  });
+}
+
+function updateEmptyMessages() {
+  ['similarityZone', 'item1Zone', 'item2Zone'].forEach(zoneId => {
+    const zone = document.getElementById(zoneId);
+    const message = zone.querySelector('.empty-zone-message');
+    const items = zone.querySelectorAll('.draggable-item');
+    if (message) message.style.display = items.length > 0 ? 'none' : 'block';
+  });
+}
+
+function checkAnswers() {
+  const zones = ['similarityZone', 'item1Zone', 'item2Zone'];
+  const zoneTypes = ['similarity', 'item1', 'item2'];
+  
+  let correct = 0;
+  let total = 0;
+  let feedback = [];
+  
+  zones.forEach((zoneId, zoneIndex) => {
+    const zone = document.getElementById(zoneId);
+    const items = zone.querySelectorAll('.draggable-item');
+    const expectedType = zoneTypes[zoneIndex];
+    
+    items.forEach(item => {
+      total++;
+      if (item.dataset.type === expectedType) {
+        correct++;
+        item.classList.remove('incorrect');
+        item.classList.add('placed');
+      } else {
+        item.classList.add('incorrect');
+        const correctZone = zoneTypes.indexOf(item.dataset.type);
+        const zoneName = ['Similarities', activities[currentActivity].item1, activities[currentActivity].item2][correctZone];
+        feedback.push(\`"\${item.textContent}" belongs in \${zoneName}\`);
+      }
+    });
+  });
+  
+  const feedbackEl = document.getElementById('feedback');
+  const feedbackText = document.getElementById('feedbackText');
+  
+  if (correct === total && total === activities[currentActivity].items.length) {
+    feedbackEl.className = 'feedback success show';
+    feedbackText.innerHTML = \`
+      <strong>🎉 Excellent work!</strong><br>
+      You correctly sorted all \${total} items!
+    \`;
+    showCelebration();
+    if (currentActivity < activities.length - 1) {
+      document.getElementById('nextActivity').style.display = 'inline-block';
+    }
+  } else {
+    feedbackEl.className = 'feedback error show';
+    feedbackText.innerHTML = \`
+      <strong>Score: \${correct} out of \${total}</strong><br>
+      \${feedback.length > 0 ? 'Try moving these items:<br>• ' + feedback.join('<br>• ') : ''}
+    \`;
+  }
+}
+
+function resetActivity() {
+  const allItems = document.querySelectorAll('.draggable-item');
+  const itemBank = document.getElementById('itemBank');
+  
+  allItems.forEach(item => {
+    item.classList.remove('placed', 'incorrect');
+    itemBank.appendChild(item);
+  });
+  
+  const activity = activities[currentActivity];
+  document.getElementById('similarityZone').innerHTML = '<div class="empty-zone-message">Things both share</div>';
+  document.getElementById('item1Zone').innerHTML = '<div class="empty-zone-message">Unique to ' + activity.item1.toLowerCase() + '</div>';
+  document.getElementById('item2Zone').innerHTML = '<div class="empty-zone-message">Unique to ' + activity.item2.toLowerCase() + '</div>';
+  
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('nextActivity').style.display = 'none';
+}
+
+function showCelebration() {
+  document.getElementById('completionCelebration').style.display = 'flex';
+  createConfetti();
+}
+
+function closeCelebration() {
+  document.getElementById('completionCelebration').style.display = 'none';
+}
+
+function createConfetti() {
+  const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+  for (let i = 0; i < 20; i++) {
+    const confetti = document.createElement('div');
+    confetti.style.cssText = \`
+      position: fixed;
+      left: \${Math.random() * window.innerWidth}px;
+      top: -10px;
+      width: 8px;
+      height: 8px;
+      background: \${colors[Math.floor(Math.random() * colors.length)]};
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 1001;
+      animation: confetti 3s ease-out forwards;
+    \`;
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 3000);
+  }
+}
+
+document.getElementById('checkAnswers').addEventListener('click', checkAnswers);
+document.getElementById('resetActivity').addEventListener('click', resetActivity);
+document.getElementById('nextActivity').addEventListener('click', () => {
+  if (currentActivity < activities.length - 1) {
+    initializeActivity(currentActivity + 1);
+  }
+});
+
+document.getElementById('activitySelector').addEventListener('click', (e) => {
+  if (e.target.classList.contains('activity-btn')) {
+    const activityIndex = parseInt(e.target.dataset.activity);
+    initializeActivity(activityIndex);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupDropZones();
+  initializeActivity(0);
+});
+
+const style = document.createElement('style');
+style.textContent = \`
+  @keyframes confetti {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(calc(100vh + 10px)) rotate(360deg); opacity: 0; }
+  }
+\`;
+document.head.appendChild(style);
+  `;
+}
+
+// Main game logic (same as generated code but for the template)
+function initializeActivity(activityIndex) {
+  currentActivity = activityIndex;
+  const activity = activities[activityIndex];
+  
+  // Update display
+  document.getElementById('comparisonTopic').textContent = activity.topic;
+  document.getElementById('item1Header').textContent = '📍 ' + activity.item1;
+  document.getElementById('item2Header').textContent = '📍 ' + activity.item2;
+  
+  // Clear zones
+  document.getElementById('itemBank').innerHTML = '';
+  document.getElementById('similarityZone').innerHTML = '<div class="empty-zone-message">Things both share</div>';
+  document.getElementById('item1Zone').innerHTML = '<div class="empty-zone-message">Unique to ' + activity.item1.toLowerCase() + '</div>';
+  document.getElementById('item2Zone').innerHTML = '<div class="empty-zone-message">Unique to ' + activity.item2.toLowerCase() + '</div>';
+  
+  // Create items
+  const shuffledItems = [...activity.items].sort(() => Math.random() - 0.5);
+  shuffledItems.forEach((item, index) => {
+    const itemElement = document.createElement('div');
+    itemElement.className = 'draggable-item';
+    itemElement.draggable = true;
+    itemElement.textContent = item.text;
+    itemElement.dataset.type = item.type;
+    itemElement.dataset.index = index;
+    
+    itemElement.addEventListener('dragstart', handleDragStart);
+    itemElement.addEventListener('dragend', handleDragEnd);
+    
+    document.getElementById('itemBank').appendChild(itemElement);
+  });
+  
+  document.getElementById('progressIndicator').textContent = `Activity ${activityIndex + 1} of ${activities.length}`;
+  updateActivitySelector();
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('nextActivity').style.display = 'none';
+}
+
+function updateActivitySelector() {
+  const selector = document.getElementById('activitySelector');
+  selector.innerHTML = '';
+  
+  activities.forEach((activity, index) => {
+    const btn = document.createElement('button');
+    btn.className = `activity-btn ${index === currentActivity ? 'active' : ''}`;
+    btn.dataset.activity = index;
+    btn.textContent = activity.topic;
+    selector.appendChild(btn);
+  });
+}
+
+function handleDragStart(e) {
+  draggedElement = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragEnd(e) {
+  e.target.classList.remove('dragging');
+  draggedElement = null;
+}
+
+function setupDropZones() {
+  const dropZones = document.querySelectorAll('.drop-zone');
+  
+  dropZones.forEach(zone => {
+    zone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+    });
+    
+    zone.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    });
+    
+    zone.addEventListener('dragleave', (e) => {
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        e.currentTarget.classList.remove('drag-over');
+      }
+    });
+    
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      
+      if (draggedElement) {
+        const zoneContent = e.currentTarget.querySelector('.zone-content');
+        draggedElement.remove();
+        zoneContent.appendChild(draggedElement);
+        updateEmptyMessages();
+        draggedElement.classList.add('placed');
+        draggedElement.classList.remove('incorrect');
+      }
+    });
+  });
+}
+
+function updateEmptyMessages() {
+  ['similarityZone', 'item1Zone', 'item2Zone'].forEach(zoneId => {
+    const zone = document.getElementById(zoneId);
+    const message = zone.querySelector('.empty-zone-message');
+    const items = zone.querySelectorAll('.draggable-item');
+    if (message) message.style.display = items.length > 0 ? 'none' : 'block';
+  });
+}
+
+function checkAnswers() {
+  const zones = ['similarityZone', 'item1Zone', 'item2Zone'];
+  const zoneTypes = ['similarity', 'item1', 'item2'];
+  
+  let correct = 0;
+  let total = 0;
+  let feedback = [];
+  
+  zones.forEach((zoneId, zoneIndex) => {
+    const zone = document.getElementById(zoneId);
+    const items = zone.querySelectorAll('.draggable-item');
+    const expectedType = zoneTypes[zoneIndex];
+    
+    items.forEach(item => {
+      total++;
+      if (item.dataset.type === expectedType) {
+        correct++;
+        item.classList.remove('incorrect');
+        item.classList.add('placed');
+      } else {
+        item.classList.add('incorrect');
+        const correctZone = zoneTypes.indexOf(item.dataset.type);
+        const zoneName = ['Similarities', activities[currentActivity].item1, activities[currentActivity].item2][correctZone];
+        feedback.push(`"${item.textContent}" belongs in ${zoneName}`);
+      }
+    });
+  });
+  
+  const feedbackEl = document.getElementById('feedback');
+  const feedbackText = document.getElementById('feedbackText');
+  
+  if (correct === total && total === activities[currentActivity].items.length) {
+    feedbackEl.className = 'feedback success show';
+    feedbackText.innerHTML = `
+      <strong>🎉 Excellent work!</strong><br>
+      You correctly sorted all ${total} items!
+    `;
+    showCelebration();
+    if (currentActivity < activities.length - 1) {
+      document.getElementById('nextActivity').style.display = 'inline-block';
+    }
+  } else {
+    feedbackEl.className = 'feedback error show';
+    feedbackText.innerHTML = `
+      <strong>Score: ${correct} out of ${total}</strong><br>
+      ${feedback.length > 0 ? 'Try moving these items:<br>• ' + feedback.join('<br>• ') : ''}
+    `;
+  }
+}
+
+function resetActivity() {
+  const allItems = document.querySelectorAll('.draggable-item');
+  const itemBank = document.getElementById('itemBank');
+  
+  allItems.forEach(item => {
+    item.classList.remove('placed', 'incorrect');
+    itemBank.appendChild(item);
+  });
+  
+  const activity = activities[currentActivity];
+  document.getElementById('similarityZone').innerHTML = '<div class="empty-zone-message">Things both share</div>';
+  document.getElementById('item1Zone').innerHTML = '<div class="empty-zone-message">Unique to ' + activity.item1.toLowerCase() + '</div>';
+  document.getElementById('item2Zone').innerHTML = '<div class="empty-zone-message">Unique to ' + activity.item2.toLowerCase() + '</div>';
+  
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('nextActivity').style.display = 'none';
+}
+
+function showCelebration() {
+  document.getElementById('completionCelebration').style.display = 'flex';
+  createConfetti();
+}
+
+function closeCelebration() {
+  document.getElementById('completionCelebration').style.display = 'none';
+}
+
+function createConfetti() {
+  const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+  for (let i = 0; i < 20; i++) {
+    const confetti = document.createElement('div');
+    confetti.style.cssText = `
+      position: fixed;
+      left: ${Math.random() * window.innerWidth}px;
+      top: -10px;
+      width: 8px;
+      height: 8px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 1001;
+      animation: confetti 3s ease-out forwards;
+    `;
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 3000);
+  }
+}
+
+// Event listeners
+document.getElementById('editModeBtn').addEventListener('click', toggleEditMode);
+document.getElementById('addActivityBtn').addEventListener('click', addNewActivity);
+document.getElementById('saveFileBtn').addEventListener('click', saveCustomFile);
+document.getElementById('checkAnswers').addEventListener('click', checkAnswers);
+document.getElementById('resetActivity').addEventListener('click', resetActivity);
+document.getElementById('nextActivity').addEventListener('click', () => {
+  if (currentActivity < activities.length - 1) {
+    initializeActivity(currentActivity + 1);
+  }
+});
+
+document.getElementById('activitySelector').addEventListener('click', (e) => {
+  if (e.target.classList.contains('activity-btn')) {
+    const activityIndex = parseInt(e.target.dataset.activity);
+    initializeActivity(activityIndex);
+  }
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  setupDropZones();
+  initializeActivity(0);
+});
+
+// Add confetti animation CSS
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes confetti {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(calc(100vh + 10px)) rotate(360deg); opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>

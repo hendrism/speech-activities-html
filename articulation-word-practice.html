@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articulation Word Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --awp-bg: #f8fafc;
+            --awp-surface: #ffffff;
+            --awp-border: #e2e8f0;
+            --awp-ink: #0f172a;
+            --awp-muted: #475569;
+            --awp-primary: #2563eb;
+            --awp-primary-dark: #1d4ed8;
+            --awp-noun: #2563eb;
+            --awp-verb: #059669;
+            --awp-adjective: #8b5cf6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: clamp(16px, 3vw, 32px);
+        }
+
+        .awp-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .awp-card {
+            background: var(--awp-surface);
+            border-radius: 24px;
+            padding: clamp(24px, 3vw, 36px);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+        }
+
+        .awp-header h1 {
+            font-size: clamp(28px, 3vw, 40px);
+            color: var(--awp-ink);
+            margin-bottom: 12px;
+        }
+
+        .awp-header p {
+            color: var(--awp-muted);
+            max-width: 720px;
+        }
+
+        .awp-category-grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .awp-category-btn {
+            border: 1px solid var(--awp-border);
+            border-radius: 16px;
+            padding: 16px;
+            background: rgba(148, 163, 184, 0.12);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .awp-category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(37, 99, 235, 0.18);
+        }
+
+        .awp-category-btn.selected {
+            background: var(--awp-primary);
+            color: white;
+            border-color: transparent;
+        }
+
+        .awp-blend-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .awp-blend-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .awp-secondary-btn,
+        .awp-primary-btn,
+        .awp-tertiary-btn {
+            border-radius: 999px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .awp-primary-btn {
+            background: var(--awp-primary);
+            color: white;
+        }
+
+        .awp-secondary-btn {
+            background: rgba(37, 99, 235, 0.12);
+            color: var(--awp-ink);
+        }
+
+        .awp-tertiary-btn {
+            background: transparent;
+            color: var(--awp-muted);
+        }
+
+        .awp-primary-btn:disabled {
+            background: rgba(148, 163, 184, 0.4);
+            cursor: not-allowed;
+        }
+
+        .awp-button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .awp-word-summary {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .awp-chip {
+            border-radius: 999px;
+            padding: 10px 16px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .awp-chip.noun {
+            background: var(--awp-noun);
+        }
+
+        .awp-chip.verb {
+            background: var(--awp-verb);
+        }
+
+        .awp-chip.adjective {
+            background: var(--awp-adjective);
+        }
+
+        .awp-word-groups {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .awp-word-group {
+            background: rgba(148, 163, 184, 0.12);
+            border-radius: 18px;
+            padding: 16px;
+            border: 1px solid var(--awp-border);
+        }
+
+        .awp-word-group h3 {
+            margin-bottom: 12px;
+            color: var(--awp-ink);
+            font-size: 18px;
+        }
+
+        .awp-word-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .awp-word-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            background: rgba(148, 163, 184, 0.18);
+            border-radius: 12px;
+            padding: 8px 12px;
+            color: var(--awp-muted);
+            font-weight: 500;
+        }
+
+        .awp-word-pos {
+            font-weight: 600;
+            color: var(--awp-ink);
+        }
+
+        .awp-practice-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .awp-word-display {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 800;
+            color: var(--awp-ink);
+        }
+
+        .awp-word-meta {
+            font-size: 18px;
+            color: var(--awp-muted);
+        }
+
+        .awp-progress {
+            font-weight: 600;
+            color: var(--awp-muted);
+        }
+
+        .awp-history {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .awp-history li {
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-weight: 600;
+            color: var(--awp-ink);
+        }
+
+        .awp-warning {
+            color: #b91c1c;
+            font-weight: 600;
+        }
+
+        @media (max-width: 720px) {
+            .awp-word-display {
+                font-size: clamp(36px, 9vw, 48px);
+            }
+
+            .awp-button-group {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="awp-container">
+        <section class="awp-card awp-header">
+            <h1>Articulation Word Practice</h1>
+            <p>Select a speech sound, preview the words grouped by position, then cycle through randomized word cards for focused practice.</p>
+        </section>
+
+        <div id="app"></div>
+    </div>
+
+    <script>
+        const articulationWordData = {};
+
+        const dynamicWordSources = [
+            {
+                id: 'sBlends',
+                name: 'S-Blends',
+                file: 'resources/word-lists/articulation-s-blends.json'
+            },
+            {
+                id: 'rBlends',
+                name: 'R-Blends',
+                file: 'resources/word-lists/articulation-r-blends.json'
+            },
+            {
+                id: 'initialR',
+                name: 'Initial /r/',
+                file: 'resources/word-lists/articulation-initial-r.json'
+            },
+            {
+                id: 'lBlends',
+                name: 'L-Blends',
+                file: 'resources/word-lists/articulation-l-blends.json'
+            },
+            {
+                id: 'otherSounds',
+                name: 'Other Sounds (/k/, /g/, /sh/, /f/, /l/, /s/)',
+                file: 'resources/word-lists/articulation-other-sounds.json'
+            },
+            {
+                id: 'sSound',
+                name: '/s/ Sound (All Positions)',
+                file: 'resources/word-lists/s-all-positions.json'
+            },
+            {
+                id: 'shSound',
+                name: '"Sh" Sound (All Positions)',
+                file: 'resources/word-lists/sh-all-positions.json'
+            }
+        ];
+
+        const baseCategoryOrder = dynamicWordSources.map((source) => source.id);
+        const categoryOrder = [...baseCategoryOrder];
+
+        const POS_LABELS = {
+            noun: 'Noun',
+            verb: 'Verb',
+            adjective: 'Adjective'
+        };
+
+        const POS_EMOJI = {
+            noun: '🔵',
+            verb: '🟢',
+            adjective: '🟣'
+        };
+
+        let state = {
+            showSetup: true,
+            selectedCategory: null,
+            selectedBlends: [],
+            deck: [],
+            currentIndex: 0,
+            practicedWords: [],
+            history: [],
+            loadingWordLists: false,
+            loadErrors: []
+        };
+
+        function shuffleArray(array) {
+            const copy = [...array];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function formatBlendLabel(blendKey) {
+            if (!blendKey) return '';
+            if (blendKey.length <= 3) {
+                return blendKey.toUpperCase();
+            }
+            return blendKey.charAt(0).toUpperCase() + blendKey.slice(1);
+        }
+
+        function normalizeWordEntry(entry) {
+            if (typeof entry === 'string') {
+                return { text: entry, pos: 'noun' };
+            }
+
+            if (!entry || !entry.text) {
+                return null;
+            }
+
+            const allowedPos = ['noun', 'verb', 'adjective'];
+            const normalizedPos = (entry.pos || 'noun').toLowerCase();
+            return {
+                text: entry.text,
+                pos: allowedPos.includes(normalizedPos) ? normalizedPos : 'noun'
+            };
+        }
+
+        function transformWordListToBlends(wordList) {
+            if (!wordList) {
+                return {};
+            }
+
+            const processedBlends = {};
+
+            if (wordList.blends && typeof wordList.blends === 'object') {
+                Object.entries(wordList.blends).forEach(([blendKey, entries]) => {
+                    const words = Array.isArray(entries) ? entries : [];
+                    const normalized = words.map(normalizeWordEntry).filter(Boolean);
+                    if (normalized.length > 0) {
+                        processedBlends[blendKey] = normalized;
+                    }
+                });
+                return processedBlends;
+            }
+
+            const positions = wordList.positions && typeof wordList.positions === 'object'
+                ? wordList.positions
+                : {};
+
+            Object.entries(positions).forEach(([positionKey, entries]) => {
+                const words = Array.isArray(entries) ? entries : [];
+                const normalized = words.map(normalizeWordEntry).filter(Boolean);
+                if (normalized.length > 0) {
+                    processedBlends[positionKey] = normalized;
+                }
+            });
+
+            return processedBlends;
+        }
+
+        function registerDynamicCategory(id, name, blends) {
+            if (!blends || Object.keys(blends).length === 0) {
+                return;
+            }
+
+            articulationWordData[id] = { name, blends };
+
+            if (!categoryOrder.includes(id)) {
+                categoryOrder.push(id);
+            }
+        }
+
+        async function loadExternalWordLists() {
+            state.loadingWordLists = true;
+            render();
+
+            dynamicWordSources.forEach((source) => {
+                if (articulationWordData[source.id]) {
+                    delete articulationWordData[source.id];
+                }
+            });
+            categoryOrder.length = 0;
+            categoryOrder.push(...baseCategoryOrder);
+
+            const results = await Promise.allSettled(
+                dynamicWordSources.map(async (source) => {
+                    try {
+                        const response = await fetch(source.file, { cache: 'no-store' });
+                        if (!response.ok) {
+                            throw new Error(`status ${response.status}`);
+                        }
+                        const data = await response.json();
+                        return { source, data };
+                    } catch (err) {
+                        const listLabel = source.name || source.file;
+                        const reason = err?.message ? err.message : 'unknown error';
+                        throw new Error(`Could not load ${listLabel}: ${reason}`);
+                    }
+                })
+            );
+
+            const errors = [];
+
+            results.forEach((result) => {
+                if (result.status === 'fulfilled') {
+                    const { source, data } = result.value;
+                    const categoryId = source.id || data.id;
+                    const categoryName = source.name || data.name || data.description || 'Custom Word List';
+                    const blends = transformWordListToBlends(data);
+                    registerDynamicCategory(categoryId, categoryName, blends);
+                } else {
+                    errors.push(result.reason?.message || String(result.reason));
+                }
+            });
+
+            state.loadingWordLists = false;
+            state.loadErrors = errors;
+
+            if (state.selectedCategory && !articulationWordData[state.selectedCategory]) {
+                state.selectedCategory = null;
+                state.selectedBlends = [];
+            }
+
+            render();
+        }
+
+        function handleCategorySelect(categoryId) {
+            if (!articulationWordData[categoryId]) return;
+
+            state.selectedCategory = categoryId;
+            state.selectedBlends = [];
+            state.deck = [];
+            state.currentIndex = 0;
+            state.practicedWords = [];
+            state.history = [];
+            render();
+        }
+
+        function handleBlendToggle(blend) {
+            if (state.selectedBlends.includes(blend)) {
+                state.selectedBlends = state.selectedBlends.filter((item) => item !== blend);
+            } else {
+                state.selectedBlends.push(blend);
+            }
+            render();
+        }
+
+        function handleSelectAll() {
+            if (!state.selectedCategory) return;
+            state.selectedBlends = Object.keys(articulationWordData[state.selectedCategory].blends);
+            render();
+        }
+
+        function handleClearAll() {
+            state.selectedBlends = [];
+            render();
+        }
+
+        function getSelectedWords() {
+            if (!state.selectedCategory) return [];
+            const category = articulationWordData[state.selectedCategory];
+            const blends = state.selectedBlends.length > 0 ? state.selectedBlends : Object.keys(category.blends);
+
+            return blends.flatMap((blendKey) => {
+                const entries = category.blends[blendKey] || [];
+                return entries.map((word, index) => ({
+                    ...word,
+                    id: `${blendKey}-${index}-${word.text}`,
+                    blend: blendKey
+                }));
+            });
+        }
+
+        function handleStartPractice() {
+            const words = getSelectedWords();
+            if (words.length === 0) return;
+
+            state.deck = shuffleArray(words);
+            state.currentIndex = 0;
+            state.practicedWords = [];
+            state.history = [];
+            state.showSetup = false;
+            render();
+        }
+
+        function handleRestart() {
+            state.showSetup = true;
+            state.deck = [];
+            state.currentIndex = 0;
+            state.practicedWords = [];
+            state.history = [];
+            render();
+        }
+
+        function handleNextWord() {
+            if (state.deck.length === 0) return;
+            const current = state.deck[state.currentIndex];
+            if (current && !state.practicedWords.includes(current.id)) {
+                state.practicedWords.push(current.id);
+                state.history.push(current);
+            }
+
+            state.currentIndex = (state.currentIndex + 1) % state.deck.length;
+            render();
+        }
+
+        function handlePrevWord() {
+            if (state.deck.length === 0) return;
+            state.currentIndex = (state.currentIndex - 1 + state.deck.length) % state.deck.length;
+            render();
+        }
+
+        function handleShuffleRemaining() {
+            const practicedSet = new Set(state.practicedWords);
+            const remaining = state.deck.filter((word) => !practicedSet.has(word.id));
+            const practiced = state.deck.filter((word) => practicedSet.has(word.id));
+            state.deck = [...practiced, ...shuffleArray(remaining)];
+            state.currentIndex = practiced.length % state.deck.length;
+            render();
+        }
+
+        function renderSetup() {
+            const categoryData = state.selectedCategory ? articulationWordData[state.selectedCategory] : null;
+            const categoryButtons = categoryOrder
+                .filter((categoryId) => articulationWordData[categoryId])
+                .map((categoryId) => {
+                    const info = articulationWordData[categoryId];
+                    const label = info?.name || categoryId;
+                    return `
+                        <button
+                            type="button"
+                            class="awp-category-btn ${state.selectedCategory === categoryId ? 'selected' : ''}"
+                            onclick="handleCategorySelect('${categoryId}')"
+                        >
+                            ${label}
+                        </button>
+                    `;
+                })
+                .join('');
+
+            const blendGroupsHtml = categoryData
+                ? Object.entries(categoryData.blends).map(([blendKey, entries]) => {
+                    if (!Array.isArray(entries) || entries.length === 0) return '';
+                    const wordsHtml = entries.map((word) => {
+                        const label = POS_LABELS[word.pos] || (word.pos ? word.pos.toUpperCase() : '');
+                        return `
+                            <li class="awp-word-item">
+                                <span>${word.text}</span>
+                                ${label ? `<span class="awp-word-pos">${label}</span>` : ''}
+                            </li>
+                        `;
+                    }).join('');
+                    return `
+                        <div class="awp-word-group">
+                            <h3>${formatBlendLabel(blendKey)}</h3>
+                            <ul class="awp-word-list">
+                                ${wordsHtml}
+                            </ul>
+                        </div>
+                    `;
+                }).filter(Boolean).join('')
+                : '';
+
+            const loadingMessage = state.loadingWordLists
+                ? '<p class="awp-warning">Loading word lists…</p>'
+                : '';
+
+            const errorMessage = state.loadErrors.length > 0
+                ? `<p class="awp-warning">${state.loadErrors.map((err) => `⚠️ ${err}`).join('<br>')}</p>`
+                : '';
+
+            const selectedWords = getSelectedWords();
+            const wordsByPos = selectedWords.reduce((acc, word) => {
+                if (!acc[word.pos]) {
+                    acc[word.pos] = 0;
+                }
+                acc[word.pos]++;
+                return acc;
+            }, { noun: 0, verb: 0, adjective: 0 });
+
+            const blendCheckboxes = categoryData
+                ? Object.keys(categoryData.blends).map((blend) => `
+                    <label class="awp-blend-option">
+                        <input
+                            type="checkbox"
+                            ${state.selectedBlends.includes(blend) ? 'checked' : ''}
+                            onchange="handleBlendToggle('${blend}')"
+                        />
+                        <span>${formatBlendLabel(blend)}</span>
+                    </label>
+                `).join('')
+                : '';
+
+            return `
+                <section class="awp-card">
+                    <h2>Select Target Sound</h2>
+                    <div class="awp-category-grid">
+                        ${categoryButtons || '<p class="awp-warning">No categories available.</p>'}
+                    </div>
+                    ${loadingMessage}
+                    ${errorMessage}
+                </section>
+
+                ${categoryData ? `
+                    <section class="awp-card">
+                        <div class="awp-button-group" style="justify-content: space-between; flex-wrap: wrap;">
+                            <h2>Select Blends or Word Positions</h2>
+                            <div class="awp-button-group">
+                                <button type="button" class="awp-secondary-btn" onclick="handleSelectAll()">
+                                    Select All ${categoryData.name}
+                                </button>
+                                <button type="button" class="awp-tertiary-btn" onclick="handleClearAll()">
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                        <div class="awp-blend-list">
+                            ${blendCheckboxes || '<p class="awp-warning">No word groups available.</p>'}
+                        </div>
+                    </section>
+
+                    ${blendGroupsHtml ? `
+                        <section class="awp-card">
+                            <h2>Words in ${categoryData.name}</h2>
+                            <div class="awp-word-groups">
+                                ${blendGroupsHtml}
+                            </div>
+                        </section>
+                    ` : ''}
+                ` : ''}
+
+                ${selectedWords.length > 0 ? `
+                    <section class="awp-card">
+                        <h2>Selected Word Summary</h2>
+                        <div class="awp-word-summary">
+                            <span class="awp-chip noun">🔵 Nouns: ${wordsByPos.noun}</span>
+                            <span class="awp-chip verb">🟢 Verbs: ${wordsByPos.verb}</span>
+                            <span class="awp-chip adjective">🟣 Adjectives: ${wordsByPos.adjective}</span>
+                        </div>
+                        <p style="margin: 16px 0 24px; color: var(--awp-muted);">
+                            Start practice to cycle through randomized word cards. Use the shuffle option to revisit remaining targets.
+                        </p>
+                        <button
+                            type="button"
+                            class="awp-primary-btn"
+                            onclick="handleStartPractice()"
+                            ${selectedWords.length === 0 ? 'disabled' : ''}
+                        >
+                            Start Word Practice
+                        </button>
+                    </section>
+                ` : ''}
+            `;
+        }
+
+        function renderPractice() {
+            if (state.deck.length === 0) {
+                return `
+                    <section class="awp-card">
+                        <p class="awp-warning">No words available. Return to setup and select at least one group.</p>
+                        <button type="button" class="awp-secondary-btn" onclick="handleRestart()">
+                            Back to Setup
+                        </button>
+                    </section>
+                `;
+            }
+
+            const currentWord = state.deck[state.currentIndex];
+            const progress = `${state.currentIndex + 1} / ${state.deck.length}`;
+            const practicedSet = new Set(state.practicedWords);
+            const remainingCount = state.deck.filter((word) => !practicedSet.has(word.id)).length;
+
+            return `
+                <section class="awp-card">
+                    <div class="awp-practice-card">
+                        <div class="awp-progress">
+                            Word ${progress} · Remaining: ${remainingCount}
+                        </div>
+                        <div class="awp-word-display">${currentWord.text}</div>
+                        <div class="awp-word-meta">
+                            ${POS_EMOJI[currentWord.pos] || ''} ${POS_LABELS[currentWord.pos] || 'Word'}
+                            · ${formatBlendLabel(currentWord.blend)}
+                        </div>
+                        <div class="awp-button-group" style="justify-content:center;">
+                            <button type="button" class="awp-secondary-btn" onclick="handlePrevWord()">
+                                ← Previous
+                            </button>
+                            <button type="button" class="awp-primary-btn" onclick="handleNextWord()">
+                                Next →
+                            </button>
+                            <button type="button" class="awp-tertiary-btn" onclick="handleShuffleRemaining()">
+                                Shuffle Remaining
+                            </button>
+                        </div>
+                        <div class="awp-button-group" style="justify-content:center;">
+                            <button type="button" class="awp-tertiary-btn" onclick="handleRestart()">
+                                Back to Setup
+                            </button>
+                        </div>
+                        ${state.history.length > 0 ? `
+                            <div style="text-align:left;">
+                                <h3 style="margin-bottom: 12px;">Practiced Words</h3>
+                                <ul class="awp-history">
+                                    ${state.history.map((word) => `
+                                        <li>${word.text}</li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                </section>
+            `;
+        }
+
+        function render() {
+            const app = document.getElementById('app');
+            app.innerHTML = state.showSetup ? renderSetup() : renderPractice();
+        }
+
+        render();
+        loadExternalWordLists();
+    </script>
+</body>
+</html>

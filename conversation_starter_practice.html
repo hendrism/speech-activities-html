@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversation Starter Practice - Interactive Activity</title>
+<style>
+  :root {
+    --w: 900px;
+    --accent: #8b5cf6;
+    --blue: #0ea5e9;
+    --green: #10b981;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #d97706;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid var(--accent); 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 18px 24px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .bar h1 { 
+    font-size: 22px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 10px; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 24px auto; 
+    padding: 0 24px; 
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #7c3aed;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--ink);
+    border: 2px solid #e2e8f0;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .scenario-selector {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .scenario-selector h2 {
+    margin: 0 0 16px;
+    color: var(--accent);
+    font-size: 20px;
+  }
+
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+  }
+
+  .scenario-btn {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 15px;
+  }
+
+  .scenario-btn:hover {
+    border-color: var(--accent);
+    background: #faf5ff;
+  }
+
+  .scenario-btn.active {
+    border-color: var(--accent);
+    background: #faf5ff;
+    border-width: 3px;
+  }
+
+  .activity-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .scenario-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .scenario-display h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .scenario-text {
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .response-section {
+    margin-bottom: 32px;
+  }
+
+  .step-builder {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .step-card {
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  }
+
+  .step-card h4 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: var(--accent);
+  }
+
+  .step-prompt {
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: #475569;
+  }
+
+  .response-type-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 16px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .response-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .response-number {
+    background: var(--accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .response-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--ink);
+  }
+
+  .response-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 100px;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+
+  .response-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .step-input {
+    min-height: 70px;
+    background: white;
+  }
+
+  .final-builder {
+    background: #fff7ed;
+    border: 2px solid rgba(234, 179, 8, 0.35);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .final-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .final-header h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #92400e;
+  }
+
+  .final-prompt {
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: #7c2d12;
+  }
+
+  .final-input {
+    min-height: 110px;
+    background: white;
+  }
+
+  .btn-tertiary {
+    border: 2px dashed rgba(234, 179, 8, 0.6);
+    background: rgba(254, 243, 199, 0.6);
+    color: #b45309;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-tertiary:hover {
+    background: rgba(251, 191, 36, 0.25);
+    border-color: #f59e0b;
+    color: #92400e;
+  }
+
+  .hint-system {
+    margin-top: 16px;
+  }
+
+  .hint-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .hint-btn {
+    padding: 8px 16px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hint-btn:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .hint-btn.active {
+    background: #fff7ed;
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .hint-icon {
+    font-size: 16px;
+  }
+
+  .hint-content {
+    background: #fef3c7;
+    border: 2px solid var(--warning);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .hint-content.show {
+    display: block;
+  }
+
+  .hint-content h4 {
+    margin: 0 0 8px;
+    color: #92400e;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .hint-content p {
+    margin: 0;
+    color: #78350f;
+    line-height: 1.6;
+  }
+
+  .hint-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+  }
+
+  .hint-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    color: #78350f;
+  }
+
+  .hint-list li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: var(--warning);
+  }
+
+  .prediction-section {
+    background: #eff6ff;
+    border: 2px solid var(--blue);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 32px;
+  }
+
+  .prediction-section h3 {
+    margin: 0 0 16px;
+    color: #0c4a6e;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prediction-icon {
+    font-size: 24px;
+  }
+
+  .prediction-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #bae6fd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 80px;
+    resize: vertical;
+    background: white;
+  }
+
+  .prediction-input:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+
+  .response-differences {
+    background: #f0fdf4;
+    border: 2px solid var(--green);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+
+  .response-differences h3 {
+    margin: 0 0 16px;
+    color: #065f46;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .difference-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #86efac;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 80px;
+    resize: vertical;
+    background: white;
+  }
+
+  .difference-input:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+
+  .example-section {
+    background: #fef3c7;
+    border: 2px dashed var(--warning);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 24px;
+  }
+
+  .example-section h4 {
+    margin: 0 0 12px;
+    color: #92400e;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .example-text {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    color: #78350f;
+    font-style: italic;
+  }
+
+  .example-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .progress-indicator {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .progress-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e2e8f0;
+    color: #475569;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 4px 6px 0 0;
+  }
+
+  .progress-text {
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  #progressCheckmarks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .checkmark {
+    color: var(--ok);
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .scenario-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+    }
+    
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <h1>🗣️ Conversation Starter Practice</h1>
+    <div class="controls">
+      <button class="btn btn-secondary" id="resetBtn">Reset</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="scenario-selector">
+    <h2>Choose a Scenario</h2>
+    <div class="scenario-grid" id="scenarioGrid"></div>
+  </div>
+
+  <div class="activity-container" id="activityContainer" style="display: none;">
+    <div class="progress-indicator">
+      <span class="progress-text">Complete the steps and full starters to finish this scenario</span>
+      <span id="progressCheckmarks"></span>
+    </div>
+
+    <div class="scenario-display" id="scenarioDisplay"></div>
+
+    <!-- Starter 1 -->
+    <div class="response-section starter-section">
+      <div class="response-header">
+        <div class="response-number">1</div>
+        <h3>First Way to Start the Conversation</h3>
+      </div>
+
+      <div class="response-type-badge" id="type-1"></div>
+
+      <div class="step-builder" id="starter1Steps"></div>
+
+      <div class="final-builder">
+        <div class="final-header">
+          <h4>Put it together</h4>
+          <button class="btn-tertiary" type="button" data-build="1">Build from steps</button>
+        </div>
+        <p class="final-prompt">Combine your pieces into a complete Starter #1.</p>
+        <textarea 
+          class="response-input final-input" 
+          id="starter1Final" 
+          placeholder="Use your step notes to draft your full conversation starter..."
+        ></textarea>
+      </div>
+
+      <div class="hint-system">
+        <div class="hint-buttons">
+          <button class="hint-btn" data-hint="1" data-response="1">
+            <span class="hint-icon">💡</span> Hint 1: More Details
+          </button>
+          <button class="hint-btn" data-hint="2" data-response="1">
+            <span class="hint-icon">💡</span> Hint 2: Sentence Starter
+          </button>
+          <button class="hint-btn" data-hint="3" data-response="1">
+            <span class="hint-icon">💡</span> Hint 3: Full Example
+          </button>
+        </div>
+        <div class="hint-content" id="hint1-1"></div>
+        <div class="hint-content" id="hint2-1"></div>
+        <div class="hint-content" id="hint3-1"></div>
+      </div>
+    </div>
+
+    <!-- Starter 2 -->
+    <div class="response-section starter-section">
+      <div class="response-header">
+        <div class="response-number">2</div>
+        <h3>Second Way to Start (Different from #1)</h3>
+      </div>
+
+      <div class="response-type-badge" id="type-2"></div>
+
+      <div class="step-builder" id="starter2Steps"></div>
+
+      <div class="final-builder">
+        <div class="final-header">
+          <h4>Put it together</h4>
+          <button class="btn-tertiary" type="button" data-build="2">Build from steps</button>
+        </div>
+        <p class="final-prompt">Combine your pieces into a complete Starter #2.</p>
+        <textarea 
+          class="response-input final-input" 
+          id="starter2Final" 
+          placeholder="Use your step notes to draft your full conversation starter..."
+        ></textarea>
+      </div>
+
+      <div class="hint-system">
+        <div class="hint-buttons">
+          <button class="hint-btn" data-hint="1" data-response="2">
+            <span class="hint-icon">💡</span> Hint 1: More Details
+          </button>
+          <button class="hint-btn" data-hint="2" data-response="2">
+            <span class="hint-icon">💡</span> Hint 2: Sentence Starter
+          </button>
+          <button class="hint-btn" data-hint="3" data-response="2">
+            <span class="hint-icon">💡</span> Hint 3: Full Example
+          </button>
+        </div>
+        <div class="hint-content" id="hint1-2"></div>
+        <div class="hint-content" id="hint2-2"></div>
+        <div class="hint-content" id="hint3-2"></div>
+      </div>
+    </div>
+
+    <!-- Response Differences -->
+    <div class="response-differences">
+      <h3>
+        <span>✨</span>
+        How are your two conversation starters different?
+      </h3>
+      <textarea 
+        class="difference-input" 
+        id="differences" 
+        placeholder="Explain how Starter #1 and Starter #2 are different from each other..."
+      ></textarea>
+    </div>
+
+    <!-- Prediction Section -->
+    <div class="prediction-section">
+      <h3>
+        <span class="prediction-icon">🔮</span>
+        Predict: How might the other person respond?
+      </h3>
+      <p style="margin: 0 0 12px; color: #0c4a6e;">Think about Starter #1. What might they say or do next?</p>
+      <textarea 
+        class="prediction-input" 
+        id="prediction1" 
+        placeholder="If I start with Starter #1, they might..."
+      ></textarea>
+      
+      <p style="margin: 16px 0 12px; color: #0c4a6e;">Now think about Starter #2. What might they say or do next?</p>
+      <textarea 
+        class="prediction-input" 
+        id="prediction2" 
+        placeholder="If I start with Starter #2, they might..."
+      ></textarea>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn btn-primary" id="nextScenarioBtn">Next Scenario ➜</button>
+      <button class="btn btn-secondary" id="changeScenarioBtn">Choose Different Scenario</button>
+    </div>
+  </div>
+</main>
+
+<script>
+const scenarios = [
+  {
+    "id": 1,
+    "title": "Chem Lab Make-Up",
+    "text": "You missed Monday's chemistry lab because of a doctor's appointment. After class you need to start a conversation with your teacher to ask about making it up. Think of two different ways you could begin that conversation.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Appreciative Greeting",
+          "content": "Open with a friendly greeting and gratitude for their time before mentioning the missed lab."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hi Ms. Patel, do you have a minute? Thanks for staying after class.\"",
+            "\"I appreciated the lab notes today. Could I talk to you about something quick?\"",
+            "\"Hey Mr. Lopez, thanks for the demo earlier. Can I ask about the lab I missed?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hi Ms. Patel, thanks for hanging back. I wanted to ask about making up the lab I missed on Monday if that's possible.\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Direct and Prepared",
+          "content": "Lead with the reason you're talking and show you already have a plan for the make-up."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"I missed the titration lab on Monday and already printed the data sheet. Could we schedule a make-up?\"",
+            "\"I know I was out for the lab. Could I come by tomorrow during lunch to redo it?\"",
+            "\"Since I was absent for the lab, I'm hoping to complete it after school. When would work for you?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Ms. Patel, I missed Monday's lab for a doctor's appointment. Could I come in during flex tomorrow to complete it? I already talked to the office about leaving study hall.\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Friendly greeting",
+          "prompt": "How will you politely get your teacher's attention?",
+          "placeholder": "Hi Ms. Patel, do you have a minute?"
+        },
+        {
+          "label": "Appreciation or positive note",
+          "prompt": "What can you thank them for or acknowledge before bringing up the lab?",
+          "placeholder": "Thanks for walking us through the lab directions today."
+        },
+        {
+          "label": "Mention the missed lab",
+          "prompt": "How will you explain why you missed the lab?",
+          "placeholder": "I had a doctor's appointment Monday and missed the titration lab."
+        },
+        {
+          "label": "Make your request",
+          "prompt": "What are you asking for so you can make it up?",
+          "placeholder": "Could I come in during flex tomorrow to complete it?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Check if it is a good time",
+          "prompt": "How will you open the conversation and be sure they can talk?",
+          "placeholder": "Ms. Patel, is now an okay time for a quick question?"
+        },
+        {
+          "label": "State the reason you missed",
+          "prompt": "How will you briefly explain the absence?",
+          "placeholder": "I was out on Monday for a doctor appointment and missed the lab. "
+        },
+        {
+          "label": "Share your make-up plan",
+          "prompt": "What plan or preparation have you already done?",
+          "placeholder": "I printed the data sheet and can stay after school tomorrow."
+        },
+        {
+          "label": "Ask for approval",
+          "prompt": "How will you ask to schedule the make-up?",
+          "placeholder": "Would that work for you so I can stay caught up?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "Check on Friend After Club Meeting",
+    "text": "Yesterday at art club you noticed your friend Maya pack up early and she looked upset. Today you want to start a conversation to see how she’s doing. Create two different openers you could use.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Supportive Observation",
+          "content": "Mention what you noticed at club and gently invite her to share while keeping your tone calm."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey Maya, I saw you headed out of art club early yesterday. Are you okay?\"",
+            "\"You looked kind of stressed after we cleaned up paints. Want to talk about it?\"",
+            "\"I noticed you packed up fast last night. Do you want to walk to class together and chat?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hey Maya, I noticed you left art club early yesterday and seemed really quiet. I just wanted to check in and make sure everything’s alright.\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Offer a Specific Support",
+          "content": "Lead with what you can help with and let her know you’re available later too."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"If the mural sketch was a lot, want to finish it together before homeroom tomorrow?\"",
+            "\"I brought extra watercolor paper if you need it. Do you want to meet in the art room after school?\"",
+            "\"I’m free for lunch if you need a break today. Want to sit together and talk?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Maya, I saw you leave club so quickly yesterday. I’m finishing my sketch during flex—want to join me so we can work and talk?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Warm greeting",
+          "prompt": "How will you greet Maya in a friendly way?",
+          "placeholder": "Hey Maya, do you have a second?"
+        },
+        {
+          "label": "Observation",
+          "prompt": "What did you notice during art club?",
+          "placeholder": "I noticed you packed up really fast yesterday."
+        },
+        {
+          "label": "Share concern",
+          "prompt": "How will you show you care without being pushy?",
+          "placeholder": "You seemed a little stressed and I wanted to check in."
+        },
+        {
+          "label": "Invite her to share",
+          "prompt": "What question can you ask to keep the conversation going?",
+          "placeholder": "Is everything okay or do you want to talk about it?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Ask if she has time",
+          "prompt": "How will you see if she can talk now or later?",
+          "placeholder": "Do you have a minute before class?"
+        },
+        {
+          "label": "Offer help or plan",
+          "prompt": "What specific support can you offer?",
+          "placeholder": "I can meet you in the art room during flex if you want help with the mural sketch."
+        },
+        {
+          "label": "Show you care",
+          "prompt": "How will you remind her you’re on her side?",
+          "placeholder": "I hate seeing you stressed and I’m here if you need anything."
+        },
+        {
+          "label": "Gentle question",
+          "prompt": "How will you invite her to respond?",
+          "placeholder": "Would that help or is there something else you’d rather do?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "title": "Shift Swap at the Smoothie Shop",
+    "text": "You need to talk to your shift manager Ray about switching your Friday closing shift because you have the SAT early Saturday morning. Plan two different ways to start that conversation.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Courteous Check-In",
+          "content": "Begin with a friendly greeting and acknowledge their busy schedule before bringing up the shift request."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey Ray, do you have a second? I know the schedule's been tight this week.\"",
+            "\"Thanks for handling the rush tonight. Could I ask you something about Friday's schedule?\"",
+            "\"Hi Ray, I appreciate you juggling everything. Can we look at the weekend shifts for a minute?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hey Ray, thanks for covering the register. Can I grab you for a quick question about Friday's close?\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Solution-Forward",
+          "content": "Lead with the reason you need the change and show the backup plan you already arranged."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Ray, I have the SAT early Saturday, so I was hoping to swap Friday's close with Sam. He already said yes.\"",
+            "\"I wanted to check about Friday night. I can cover Sunday morning if someone can take my close.\"",
+            "\"Since I have a conflict Friday, could we move me to Thursday's closing shift instead?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Ray, I have the SAT on Saturday. I asked Sam and she's willing to cover my Friday close if I'm good to take her shift on Sunday afternoon. Could we make that switch?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Greeting",
+          "prompt": "How will you greet Ray politely?",
+          "placeholder": "Hey Ray,"
+        },
+        {
+          "label": "Acknowledge their workload",
+          "prompt": "How can you recognize the busy schedule or effort?",
+          "placeholder": "Thanks for juggling the schedule and tonight's rush."
+        },
+        {
+          "label": "Explain the situation",
+          "prompt": "What do you need Ray to know before you ask?",
+          "placeholder": "I have the SAT early Saturday morning."
+        },
+        {
+          "label": "Make your request",
+          "prompt": "How will you ask about switching the shift?",
+          "placeholder": "Could we look at swapping my Friday close for another shift?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Direct opener",
+          "prompt": "How will you open with the reason you are talking?",
+          "placeholder": "Ray, I need to switch my Friday closing shift."
+        },
+        {
+          "label": "State the conflict",
+          "prompt": "What is the conflict you want to solve?",
+          "placeholder": "I have the SAT first thing Saturday morning."
+        },
+        {
+          "label": "Present your solution",
+          "prompt": "What swap plan or coverage have you arranged?",
+          "placeholder": "Sam said she can take Friday if I cover her Sunday afternoon."
+        },
+        {
+          "label": "Check for approval",
+          "prompt": "How will you confirm the change works?",
+          "placeholder": "Would that trade work for the schedule?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "title": "Plan the Group Project",
+    "text": "Your history group presentation is due next week and no one has coordinated yet. You want to start a conversation with your group today to get organized. Brainstorm two different conversation starters.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Collaborative Energy",
+          "content": "Show excitement about working together and invite everyone to plan as a team."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey team, want to meet for five minutes after class to map out our parts?\"",
+            "\"I'm excited about this project. Can we pull our chairs together and figure out a game plan?\"",
+            "\"Could we huddle up now so we can decide who wants each section?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hey everyone, I'm pumped about this topic. Can we take five minutes right now to list the sections and see who wants what?\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Clear Agenda",
+          "content": "Lead with the deadline and a specific plan so people know exactly what you're proposing."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Our presentation's next Thursday. Can we set deadlines for research and slides today?\"",
+            "\"I'd love to leave class knowing who's covering intro, evidence, and visuals. Can we decide that now?\"",
+            "\"Could we make a quick checklist together so we each know what to finish tonight?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Since this is due in a week, could we spend a few minutes now dividing the sections and picking a time to meet after school?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Friendly opener to group",
+          "prompt": "How will you get everyone's attention?",
+          "placeholder": "Hey team,"
+        },
+        {
+          "label": "Positive tone",
+          "prompt": "How can you show enthusiasm or encouragement?",
+          "placeholder": "I'm excited about this presentation topic."
+        },
+        {
+          "label": "Suggest quick plan time",
+          "prompt": "What will you suggest so you can organize now?",
+          "placeholder": "Can we take five minutes right now to map out our sections?"
+        },
+        {
+          "label": "Invite collaboration",
+          "prompt": "How will you invite everyone to share ideas or pick tasks?",
+          "placeholder": "Let's list the parts and see who wants which section."
+        }
+      ],
+      "starter2": [
+        {
+          "label": "State the deadline",
+          "prompt": "How will you remind the group about timing?",
+          "placeholder": "Our presentation is due next Thursday."
+        },
+        {
+          "label": "Name the goal",
+          "prompt": "What do you want to accomplish in this conversation?",
+          "placeholder": "I want us to leave class knowing who is doing each piece."
+        },
+        {
+          "label": "Outline the plan",
+          "prompt": "What steps do you suggest taking right now?",
+          "placeholder": "Could we divide intro, research, visuals, and conclusion?"
+        },
+        {
+          "label": "Ask for agreement",
+          "prompt": "How will you check that everyone is on board?",
+          "placeholder": "Does that plan work for everyone so we stay on track?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "title": "Counselor Schedule Question",
+    "text": "You want to talk to your school counselor Ms. Rivera about switching from concert band to AP Statistics next semester. Plan two different ways to open that conversation during your appointment.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Warm Greeting",
+          "content": "Start with a friendly tone and appreciation before introducing the schedule topic."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hi Ms. Rivera, thanks for meeting with me! I wanted to ask about my spring schedule.\"",
+            "\"I appreciate you squeezing me in today. Could we look at my electives for next semester?\"",
+            "\"Thanks for taking time to see me. I had a quick question about a schedule change.\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hi Ms. Rivera, thanks for meeting with me. I wanted to get your help with a possible schedule change.\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Straight-to-Reason",
+          "content": "Lead with the class you want to change and why it's important to you."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"I'm hoping to switch from concert band to AP Statistics next semester because it lines up with my college major plans.\"",
+            "\"Could we look at replacing band with AP Stats? I just got approval from the math department.\"",
+            "\"I wanted to see if it's possible to move into AP Statistics. I have room in my schedule if we adjust my electives.\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Ms. Rivera, I'm interested in switching into AP Statistics because I'm thinking about an engineering major. Could we check if there's room in my schedule?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Warm greeting",
+          "prompt": "How will you greet Ms. Rivera?",
+          "placeholder": "Hi Ms. Rivera,"
+        },
+        {
+          "label": "Show appreciation",
+          "prompt": "What gratitude can you express for meeting with you?",
+          "placeholder": "Thanks for meeting with me today."
+        },
+        {
+          "label": "Introduce the topic",
+          "prompt": "How will you bring up your schedule question?",
+          "placeholder": "I wanted to talk through my spring schedule."
+        },
+        {
+          "label": "Ask your question",
+          "prompt": "What do you want to know or adjust?",
+          "placeholder": "Could we look at switching one of my electives?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Purpose first",
+          "prompt": "How will you immediately state what you need?",
+          "placeholder": "I'm hoping to move from concert band into AP Statistics next semester."
+        },
+        {
+          "label": "Add your reason",
+          "prompt": "Why do you want this change?",
+          "placeholder": "It lines up better with the colleges I'm looking at."
+        },
+        {
+          "label": "Mention preparation",
+          "prompt": "What steps have you already taken?",
+          "placeholder": "I talked with the math department and they approved it."
+        },
+        {
+          "label": "Ask what is possible",
+          "prompt": "How will you invite Ms. Rivera to help problem-solve?",
+          "placeholder": "Could we see if there is room in my schedule for the switch?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "title": "Clear Up a Text Misunderstanding",
+    "text": "Last night you sent a sarcastic text to your friend Avery and they replied with \"whatever\" and stopped answering. Before first period you want to start a conversation to clear things up. Plan two openers.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Own the Impact",
+          "content": "Start by acknowledging the weird text exchange and take responsibility for your words."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey Avery, that text I sent last night came out wrong. Can we talk?\"",
+            "\"I wanted to apologize for the way my text sounded. Do you have a second before class?\"",
+            "\"About last night's message - I feel bad about it. Can we reset?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hey Avery, I realized that text probably sounded harsh. I'm really sorry about that. Can we talk for a minute?\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Ask for Their Perspective",
+          "content": "Invite them to share how the message landed and show you're ready to listen."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"That \\\"whatever\\\" reply told me something felt off. How did my text land for you?\"",
+            "\"I feel like I messed up in that conversation. Can you tell me how it came across?\"",
+            "\"I'd really like to hear how that text sounded on your end. Can we talk?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Avery, I got the sense my joke didn't land. Can you tell me how it felt so I can make it right?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Check in",
+          "prompt": "How will you start the face-to-face conversation?",
+          "placeholder": "Hey Avery,"
+        },
+        {
+          "label": "Name the text exchange",
+          "prompt": "How will you mention the message from last night?",
+          "placeholder": "About that text I sent last night..."
+        },
+        {
+          "label": "Own the impact",
+          "prompt": "How can you take responsibility or apologize?",
+          "placeholder": "I realize it probably sounded harsher than I meant."
+        },
+        {
+          "label": "Invite a reset",
+          "prompt": "What question can you ask to talk it through?",
+          "placeholder": "Can we talk for a minute so I can fix it?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Ask for a moment",
+          "prompt": "How will you see if they have time to talk?",
+          "placeholder": "Do you have a second before class?"
+        },
+        {
+          "label": "Share what you noticed",
+          "prompt": "How will you show you sensed something was off?",
+          "placeholder": "I could tell from the \"whatever\" reply that my joke didn't land."
+        },
+        {
+          "label": "Invite their perspective",
+          "prompt": "What question can you ask so they can share how it felt?",
+          "placeholder": "Could you tell me how it came across to you?"
+        },
+        {
+          "label": "Express your goal",
+          "prompt": "How will you show you want to fix it?",
+          "placeholder": "I want to make it right and be sure we're good."
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "title": "Welcome the New Club Member",
+    "text": "A new student just joined robotics club and is sitting alone setting up their laptop. You want to start a conversation so they feel included. Create two different openers.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Warm Welcome",
+          "content": "Introduce yourself, smile, and make it clear you're glad they're there."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey, I'm Sam. I'm glad you're here! Do you want help finding parts?\"",
+            "\"Hi, I'm really excited you're joining us. I'm on the drive team. What's your name?\"",
+            "\"Welcome to robotics! I'm Maya. Want to sit with us while we plan?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hi! I'm Alex and I help with programming. I'm really glad you're here. Want to join us at this table while we sketch ideas?\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Invite Participation",
+          "content": "Open with a question about their interests and offer a specific way to jump in."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Have you built bots before? We could really use help on the sensor team if you're into that.\"",
+            "\"What part of robotics are you most excited about? There's a spot open at the CAD station if you want it.\"",
+            "\"Do you want to see what we're prototyping today? I can walk you through it first.\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"What part of robotics do you like best? We are rebuilding the climber right now if you want to jump in with us.\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Friendly introduction",
+          "prompt": "How will you introduce yourself?",
+          "placeholder": "Hi, I'm Alex."
+        },
+        {
+          "label": "Welcome message",
+          "prompt": "What can you say to make them feel included?",
+          "placeholder": "I'm really glad you joined robotics."
+        },
+        {
+          "label": "Offer support",
+          "prompt": "How will you offer help or a place to sit?",
+          "placeholder": "Do you want to set up over here with us?"
+        },
+        {
+          "label": "Invite further connection",
+          "prompt": "What question can keep the conversation going?",
+          "placeholder": "What part of robotics are you most excited about?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Ask about their interests",
+          "prompt": "What question can you ask about their experience?",
+          "placeholder": "Have you built bots before?"
+        },
+        {
+          "label": "Connect to current work",
+          "prompt": "How will you mention what the team is doing today?",
+          "placeholder": "We're rebuilding the climber right now."
+        },
+        {
+          "label": "Offer a specific role",
+          "prompt": "How can they jump in right away?",
+          "placeholder": "We could use help on the sensor team if you're into that."
+        },
+        {
+          "label": "Invite them to join",
+          "prompt": "What question or prompt will let them say yes?",
+          "placeholder": "Want to come over and work on it with us?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "title": "Ask Art Teacher for Extra Studio Time",
+    "text": "You have a big art project due next week and need more time in the studio to finish the details. After class you want to ask Ms. Lin if you can stay after school tomorrow to work on it. Create two conversation starters.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Appreciation + Request",
+          "content": "Thank her for something from class before you explain what you need."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hi Ms. Lin, thanks for the feedback on my portrait today. Could I stay after tomorrow to keep working on it?\"",
+            "\"I appreciated your tips during class. Would it be okay if I used the studio after school to finish my background?\"",
+            "\"Thanks for checking my sketch. Could I come in after the bell tomorrow to work for an hour?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hi Ms. Lin, thank you for walking me through the shading today. Could I stay after school tomorrow for about forty-five minutes to finish the layering?\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Prepared Plan",
+          "content": "Lead with what you already arranged so it’s easy for her to say yes."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"I checked with the office and they said I can stay after tomorrow. Would you be available to unlock the studio at 3:15?\"",
+            "\"I have all my supplies packed and can clean up before the custodians come. Would that work for you?\"",
+            "\"Could I use the back tables after school tomorrow? I’ll bring headphones and keep things tidy.\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Ms. Lin, I coordinated a ride home so I can stay after school tomorrow. Could I work in the studio from 3:15 to 4:00 to finish my mixed media piece?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Greeting and thanks",
+          "prompt": "How will you thank Ms. Lin or mention something positive from class?",
+          "placeholder": "Hi Ms. Lin, thanks for helping me with the color palette earlier."
+        },
+        {
+          "label": "State what you’re working on",
+          "prompt": "How will you mention the project or deadline?",
+          "placeholder": "I really want the background blended before the show next week."
+        },
+        {
+          "label": "Make your request",
+          "prompt": "How will you ask for extra studio time?",
+          "placeholder": "Could I stay after school tomorrow to work on it a little longer?"
+        },
+        {
+          "label": "Show responsibility",
+          "prompt": "What will you say to reassure her you’ll respect the space?",
+          "placeholder": "I’ll clean the brushes and put everything away before I leave."
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Check availability",
+          "prompt": "How will you see if tomorrow works for her?",
+          "placeholder": "Do you have a minute tomorrow after class to let me in?"
+        },
+        {
+          "label": "Share your plan",
+          "prompt": "What details will you share to show you’re prepared?",
+          "placeholder": "I can start at 3:15 and be wrapped up by 4."
+        },
+        {
+          "label": "Explain why it helps",
+          "prompt": "How will you connect the extra time to your progress?",
+          "placeholder": "That extra time would let me finish the layering before it dries unevenly."
+        },
+        {
+          "label": "Ask for confirmation",
+          "prompt": "How will you ask if that plan works?",
+          "placeholder": "Would that be okay with you?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "title": "Ask a Neighbor About Carpooling",
+    "text": "Your neighbor Alex drives to school at the same time you do. You want to start a conversation about carpooling on the mornings your parents work early. Plan two different openers.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Friendly Small Talk",
+          "content": "Begin with a casual greeting and mention the shared routine before bringing up your idea."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey Alex, morning! I keep seeing you pull out around 7. Do you usually go straight to school then?\"",
+            "\"Hi! I noticed we're leaving at the same time most days. How's your drive been lately?\"",
+            "\"Good morning! I feel like we take the same route every day.\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hey Alex, I realize we leave around the same time each morning. Do you have a second? I wanted to run a carpool idea by you.\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Direct Logistics",
+          "content": "State your reason right away and highlight how you'd make the arrangement work for both of you."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Alex, my parents start work early on Tuesdays and Thursdays. Would you be open to carpooling those mornings if I help with gas?\"",
+            "\"I was wondering if we could alternate driving a couple days a week. I'd cover pick-up in the afternoons.\"",
+            "\"Would you be interested in riding together on the days my parents can't take me? I can bring coffee and chip in for gas.\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Alex, my parents have to leave before 6 on Thursdays. Would you be willing to carpool if I cover Friday drop-offs and help with gas?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Friendly greeting",
+          "prompt": "How will you say hello to Alex?",
+          "placeholder": "Morning Alex!"
+        },
+        {
+          "label": "Mention the shared routine",
+          "prompt": "What do you notice about your schedules?",
+          "placeholder": "I keep seeing us pull out of the driveway at the same time."
+        },
+        {
+          "label": "Transition to your idea",
+          "prompt": "How will you shift toward the carpool topic?",
+          "placeholder": "I had an idea I wanted to run by you."
+        },
+        {
+          "label": "Ask to talk about it",
+          "prompt": "What question invites a quick conversation?",
+          "placeholder": "Do you have a minute to chat about rides?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "State your request right away",
+          "prompt": "How will you lead with the main idea?",
+          "placeholder": "Alex, would you be open to carpooling a couple mornings each week?"
+        },
+        {
+          "label": "Explain why you are asking",
+          "prompt": "What is happening with your family's schedule?",
+          "placeholder": "My parents have to leave before 6 on Tuesdays and Thursdays."
+        },
+        {
+          "label": "Offer your part of the plan",
+          "prompt": "How can you show this is fair?",
+          "placeholder": "I can cover pick-ups on those days and help with gas."
+        },
+        {
+          "label": "Check their interest",
+          "prompt": "What question lets them respond?",
+          "placeholder": "Would that work for you?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "title": "Talk About a Grade Dip",
+    "text": "Your English grade dropped after the last essay and you want to ask Ms. Chen how to improve before the quarter ends. Plan two different ways to start that conversation after class.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Appreciation First",
+          "content": "Thank your teacher and acknowledge their feedback before asking for help."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Ms. Chen, thanks for the comments on my essay. Do you have a minute to talk about how I can raise my grade?\"",
+            "\"I appreciate the time you put into grading. Could we chat quickly about what I should focus on next?\"",
+            "\"Thanks for all the feedback this quarter. Could I ask for advice on improving before the quarter ends?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Ms. Chen, I really appreciate your detailed comments. Could we talk for a minute about what I can do to pull my grade back up?\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Focus on Data",
+          "content": "Reference your current grade and show you're ready with ideas to improve."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"I'm at an 82 right now and I'd like to get back to an A-. Could you help me plan the best steps?\"",
+            "\"I noticed the essay dropped my average by six points. Could we talk about the top priorities for me?\"",
+            "\"I'm aiming to raise my grade before progress reports. Could we go over what would make the biggest difference?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Ms. Chen, my grade is at an 82 after that essay. Could you help me figure out the two most important things to work on before the next assignment?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Respectful greeting",
+          "prompt": "How will you greet Ms. Chen?",
+          "placeholder": "Hi Ms. Chen,"
+        },
+        {
+          "label": "Thank them for feedback",
+          "prompt": "What appreciation can you share?",
+          "placeholder": "Thanks for all the comments on my last essay."
+        },
+        {
+          "label": "Share your goal",
+          "prompt": "Why are you starting this conversation?",
+          "placeholder": "I want to raise my grade before the quarter ends."
+        },
+        {
+          "label": "Ask for next steps",
+          "prompt": "What help or guidance do you want?",
+          "placeholder": "Could we go over the main things I should focus on?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "State your current data",
+          "prompt": "How will you share the grade information?",
+          "placeholder": "I'm at an 82 right now after the last essay."
+        },
+        {
+          "label": "Explain your plan or effort",
+          "prompt": "What are you ready to do about it?",
+          "placeholder": "I'm ready to revise and put in extra work."
+        },
+        {
+          "label": "Ask for priorities",
+          "prompt": "What guidance do you need from Ms. Chen?",
+          "placeholder": "Could you point me to the two biggest areas to improve?"
+        },
+        {
+          "label": "Invite feedback",
+          "prompt": "How will you keep the conversation going?",
+          "placeholder": "Does that sound like a good plan to you?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "title": "Join a Lunch Table Conversation",
+    "text": "At lunch you see a few classmates from English discussing weekend plans. You want to join the conversation without feeling awkward. Create two different conversation starters.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Friendly Comment",
+          "content": "Use a warm greeting and mention the topic they’re already discussing."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey Riley, I heard you talking about the new cafe downtown. How was it?\"",
+            "\"Hi everyone! I caught part of your conversation about weekend plans—mind if I join?\"",
+            "\"Hey, that sounds fun! I’ve been looking for new places to go too.\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hey Riley, I heard you mention the thrift pop-up on Saturday. How was it? I’ve been wanting to check it out.\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Ask a Curious Question",
+          "content": "Lead with a question that lets them keep talking and gives you an easy way to join."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"What was the highlight of your weekend hangout?\"",
+            "\"Did you all end up seeing that new movie? I’ve heard mixed reviews.\"",
+            "\"Are you planning anything else this week? I’m looking for ideas.\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"That sounds awesome! What was the best part of the open mic night? I love discovering new performers.\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Friendly greeting",
+          "prompt": "How will you say hello or get their attention?",
+          "placeholder": "Hey Riley!"
+        },
+        {
+          "label": "Reference their topic",
+          "prompt": "What part of their conversation will you mention?",
+          "placeholder": "I heard you mention the new cafe downtown."
+        },
+        {
+          "label": "Share your connection",
+          "prompt": "How will you show you relate or are interested?",
+          "placeholder": "I’ve been looking for a new place to hang out after school."
+        },
+        {
+          "label": "Ask to join",
+          "prompt": "What question can you ask so you can jump into the conversation?",
+          "placeholder": "How was it when you went?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Open with curiosity",
+          "prompt": "What question can you ask about their plans?",
+          "placeholder": "What did you end up doing this weekend?"
+        },
+        {
+          "label": "Encourage more sharing",
+          "prompt": "How will you show genuine interest?",
+          "placeholder": "That sounds cool—tell me more about it."
+        },
+        {
+          "label": "Add your own idea",
+          "prompt": "What related idea or experience can you share?",
+          "placeholder": "I saw photos online and it looked awesome."
+        },
+        {
+          "label": "Keep conversation going",
+          "prompt": "What follow-up question will you ask?",
+          "placeholder": "Are you planning to go again soon?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "title": "Invite a Friend to a Study Session",
+    "text": "There’s a biology quiz on Friday and you’d feel better studying with a friend. You want to invite your friend Avery to review together after school in the library. Create two different openers.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Shared Goal",
+          "content": "Start by mentioning the quiz so Avery knows why you’re asking."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey Avery, are you studying for the bio quiz tonight? Want to review vocab together after school?\"",
+            "\"The cell cycle definitions are a lot. Do you want to meet in the library so we can quiz each other?\"",
+            "\"I’m planning a review session for Friday’s quiz. Want to join me?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hey Avery, I’m reviewing the cell cycle after school tomorrow. Want to meet in the library and quiz each other?\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Offer Something Helpful",
+          "content": "Share what you can bring or how studying together could help both of you."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"I made flashcards for the vocab. Want to use them together after school?\"",
+            "\"I booked a quiet table in the library at 3:30 if you want to join.\"",
+            "\"I can bring snacks and we can split the review guide. Interested?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Avery, I reserved a study room tomorrow at 3:30 and made flashcards. Do you want to join me so we’re both ready for the quiz?\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Friendly opener",
+          "prompt": "How will you greet Avery?",
+          "placeholder": "Hey Avery!"
+        },
+        {
+          "label": "Mention the quiz",
+          "prompt": "How will you bring up the upcoming quiz?",
+          "placeholder": "The biology quiz on Friday is a lot."
+        },
+        {
+          "label": "Suggest studying",
+          "prompt": "How will you invite them to review together?",
+          "placeholder": "Do you want to study right after school?"
+        },
+        {
+          "label": "Share details",
+          "prompt": "What detail will make it easier to say yes?",
+          "placeholder": "We could meet in the library for about an hour."
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Offer something helpful",
+          "prompt": "What can you bring or do to help?",
+          "placeholder": "I made flashcards for the vocab section."
+        },
+        {
+          "label": "Explain the benefit",
+          "prompt": "How will you say it helps you both?",
+          "placeholder": "It might be easier if we quiz each other."
+        },
+        {
+          "label": "Suggest time/place",
+          "prompt": "When and where will you meet?",
+          "placeholder": "Want to meet in the library at 3:30?"
+        },
+        {
+          "label": "Invite a response",
+          "prompt": "What will you ask so they can respond?",
+          "placeholder": "Would that work for you?"
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "title": "Check on a Friend Who Left the Group Chat",
+    "text": "Your friend Lina muted the group chat after a confusing conversation last night. You want to send a private message to check in and clear the air. Draft two different conversation starters.",
+    "hints": {
+      "response1": {
+        "hint1": {
+          "title": "Starter Style: Private Check-In",
+          "content": "Send a calm message that shows you noticed and care about how she’s feeling."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"Hey Lina, I saw you muted the chat last night. Are you okay?\"",
+            "\"Just wanted to check on you after the group texts. Everything alright?\"",
+            "\"I noticed you stepped away from the chat. Want to talk privately?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Hey Lina, I noticed you muted the chat and wanted to see how you’re doing. I’m here if you want to share what felt off.\""
+        }
+      },
+      "response2": {
+        "hint1": {
+          "title": "Starter Style: Take Responsibility",
+          "content": "If the chat felt confusing, lead with understanding and invite her to explain."
+        },
+        "hint2": {
+          "title": "Try starting with:",
+          "list": [
+            "\"I think the chat got messy yesterday. Want to tell me what felt weird so we can fix it?\"",
+            "\"If my comment sounded sharp, I’m sorry. Can we talk it through?\"",
+            "\"I’m not sure if the inside joke felt uncomfortable. Want to rewrite it together?\""
+          ]
+        },
+        "hint3": {
+          "title": "Full Example:",
+          "content": "\"Lina, I’m sorry if my joke sounded rude. I’d love to understand what felt off so we can make the chat comfortable again.\""
+        }
+      }
+    },
+    "steps": {
+      "starter1": [
+        {
+          "label": "Friendly greeting",
+          "prompt": "How will you open the message?",
+          "placeholder": "Hey Lina!"
+        },
+        {
+          "label": "Acknowledge what you noticed",
+          "prompt": "What happened in the group chat?",
+          "placeholder": "I saw you muted the chat last night."
+        },
+        {
+          "label": "Express care",
+          "prompt": "How will you show you care about her feelings?",
+          "placeholder": "I wanted to make sure you’re okay."
+        },
+        {
+          "label": "Invite a response",
+          "prompt": "How will you let her know you’re ready to listen?",
+          "placeholder": "Do you want to talk about it?"
+        }
+      ],
+      "starter2": [
+        {
+          "label": "Take responsibility",
+          "prompt": "What will you say if your words may have caused confusion?",
+          "placeholder": "I’m sorry if my message sounded harsh."
+        },
+        {
+          "label": "Name your goal",
+          "prompt": "What do you want to fix?",
+          "placeholder": "I don’t want the group chat to feel uncomfortable."
+        },
+        {
+          "label": "Ask for her perspective",
+          "prompt": "How will you invite her to share her side?",
+          "placeholder": "Could you tell me what felt off for you?"
+        },
+        {
+          "label": "Offer next step",
+          "prompt": "How will you suggest moving forward together?",
+          "placeholder": "Maybe we can adjust what we post so it feels better."
+        }
+      ]
+    }
+  }
+];
+
+function getApproachLabel(raw) {
+  return raw
+    .replace('Starter Style: ', '')
+    .replace('Starter Approach: ', '')
+    .replace('Response Type: ', '')
+    .replace('Different Approach: ', '');
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+let currentScenario = null;
+let activeHints = { 1: new Set(), 2: new Set() };
+
+// Initialize the app
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
+  renderScenarioButtons();
+  setupEventListeners();
+}
+
+function renderScenarioButtons() {
+  const grid = document.getElementById('scenarioGrid');
+  grid.innerHTML = scenarios.map(scenario => `
+    <button class="scenario-btn" data-id="${scenario.id}">
+      <strong>${scenario.title}</strong>
+    </button>
+  `).join('');
+}
+
+function setupEventListeners() {
+  // Scenario selection
+  document.getElementById('scenarioGrid').addEventListener('click', (e) => {
+    const btn = e.target.closest('.scenario-btn');
+    if (btn) {
+      const id = parseInt(btn.dataset.id);
+      loadScenario(id);
+    }
+  });
+
+  // Hint buttons
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.hint-btn');
+    if (btn) {
+      toggleHint(btn);
+    }
+  });
+
+  // Build buttons
+  document.addEventListener('click', (e) => {
+    const buildBtn = e.target.closest('[data-build]');
+    if (buildBtn) {
+      const starterNum = parseInt(buildBtn.dataset.build, 10);
+      buildStarterDraft(starterNum);
+    }
+  });
+
+  // Final starter inputs - track progress
+  document.getElementById('starter1Final').addEventListener('input', updateProgress);
+  document.getElementById('starter2Final').addEventListener('input', updateProgress);
+
+  // Action buttons
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  document.getElementById('nextScenarioBtn').addEventListener('click', loadNextScenario);
+  document.getElementById('changeScenarioBtn').addEventListener('click', () => {
+    document.querySelector('.scenario-selector').scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+function loadScenario(id) {
+  currentScenario = scenarios.find(s => s.id === id);
+  if (!currentScenario) return;
+
+  // Update active button
+  document.querySelectorAll('.scenario-btn').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.id) === id);
+  });
+
+  // Show activity container
+  document.getElementById('activityContainer').style.display = 'block';
+  
+  // Display scenario
+  document.getElementById('scenarioDisplay').innerHTML = `
+    <h3>Scenario ${currentScenario.id}</h3>
+    <p class="scenario-text">${currentScenario.text}</p>
+  `;
+
+  // Load hints
+  loadHintsForScenario();
+
+  // Load step builders
+  renderStarterSteps(1, currentScenario.steps.starter1);
+  renderStarterSteps(2, currentScenario.steps.starter2);
+
+  // Clear all inputs and hints
+  document.getElementById('starter1Final').value = '';
+  document.getElementById('starter2Final').value = '';
+  document.getElementById('differences').value = '';
+  document.getElementById('prediction1').value = '';
+  document.getElementById('prediction2').value = '';
+  document.querySelectorAll('.step-builder textarea').forEach(textarea => {
+    textarea.value = '';
+  });
+  
+  activeHints = { 1: new Set(), 2: new Set() };
+  document.querySelectorAll('.hint-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.hint-content').forEach(content => content.classList.remove('show'));
+
+  updateProgress();
+
+  // Scroll to activity
+  document.getElementById('activityContainer').scrollIntoView({ behavior: 'smooth' });
+}
+
+function loadHintsForScenario() {
+  // Display response types as visible badges
+  const r1Type = getApproachLabel(currentScenario.hints.response1.hint1.title);
+  const r2Type = getApproachLabel(currentScenario.hints.response2.hint1.title);
+  
+  document.getElementById('type-1').textContent = '💡 ' + r1Type;
+  document.getElementById('type-2').textContent = '💡 ' + r2Type;
+
+  // Load hints for Response 1 (now hint1 is the old hint2, etc.)
+  const r1Hints = currentScenario.hints.response1;
+  loadHint(1, 1, { title: 'More Details', content: r1Hints.hint1.content });
+  loadHint(1, 2, r1Hints.hint2);
+  loadHint(1, 3, r1Hints.hint3);
+
+  // Load hints for Response 2
+  const r2Hints = currentScenario.hints.response2;
+  loadHint(2, 1, { title: 'More Details', content: r2Hints.hint1.content });
+  loadHint(2, 2, r2Hints.hint2);
+  loadHint(2, 3, r2Hints.hint3);
+}
+
+function renderStarterSteps(starterNum, steps) {
+  const container = document.getElementById(`starter${starterNum}Steps`);
+  if (!container) return;
+
+  container.innerHTML = steps.map((step, index) => `
+    <div class="step-card">
+      <h4>Step ${index + 1}: ${escapeHtml(step.label)}</h4>
+      <p class="step-prompt">${escapeHtml(step.prompt)}</p>
+      <textarea 
+        class="response-input step-input" 
+        data-starter="${starterNum}" 
+        data-step="${index}" 
+        placeholder="${escapeHtml(step.placeholder)}"
+      ></textarea>
+    </div>
+  `).join('');
+
+  container.querySelectorAll('textarea').forEach(textarea => {
+    textarea.addEventListener('input', updateProgress);
+  });
+}
+
+function loadHint(responseNum, hintNum, hintData) {
+  const hintElement = document.getElementById(`hint${hintNum}-${responseNum}`);
+  
+  let content = `<h4>${hintData.title}</h4>`;
+  
+  if (hintData.content) {
+    content += `<p>${hintData.content}</p>`;
+  }
+  
+  if (hintData.list) {
+    content += '<ul class="hint-list">';
+    hintData.list.forEach(item => {
+      content += `<li>${item}</li>`;
+    });
+    content += '</ul>';
+  }
+  
+  hintElement.innerHTML = content;
+}
+
+function toggleHint(btn) {
+  const hintNum = btn.dataset.hint;
+  const responseNum = btn.dataset.response;
+  const hintContent = document.getElementById(`hint${hintNum}-${responseNum}`);
+  
+  const isActive = btn.classList.contains('active');
+  
+  if (isActive) {
+    btn.classList.remove('active');
+    hintContent.classList.remove('show');
+    activeHints[responseNum].delete(hintNum);
+  } else {
+    btn.classList.add('active');
+    hintContent.classList.add('show');
+    activeHints[responseNum].add(hintNum);
+  }
+}
+
+function updateProgress() {
+  const markers = [];
+
+  if (areStepsComplete(1)) {
+    markers.push(progressChip('Starter 1 Steps'));
+  }
+  if (document.getElementById('starter1Final').value.trim().length > 10) {
+    markers.push(progressChip('Starter 1 Draft'));
+  }
+  if (areStepsComplete(2)) {
+    markers.push(progressChip('Starter 2 Steps'));
+  }
+  if (document.getElementById('starter2Final').value.trim().length > 10) {
+    markers.push(progressChip('Starter 2 Draft'));
+  }
+
+  document.getElementById('progressCheckmarks').innerHTML = markers.join(' ');
+}
+
+function progressChip(label) {
+  return `<span class="progress-chip"><span class="checkmark">✓</span>${label}</span>`;
+}
+
+function getStepInputs(starterNum) {
+  return Array.from(document.querySelectorAll(`textarea[data-starter="${starterNum}"][data-step]`));
+}
+
+function areStepsComplete(starterNum) {
+  const inputs = getStepInputs(starterNum);
+  if (!inputs.length) return false;
+  return inputs.every(input => input.value.trim().length > 0);
+}
+
+function buildStarterDraft(starterNum) {
+  const inputs = getStepInputs(starterNum);
+  if (!inputs.length) return;
+  const sentences = inputs
+    .map(input => input.value.trim())
+    .filter(Boolean);
+  const finalField = document.getElementById(`starter${starterNum}Final`);
+  if (!finalField) return;
+  finalField.value = sentences.join(' ');
+  finalField.focus();
+  updateProgress();
+}
+
+function loadNextScenario() {
+  if (!currentScenario) return;
+  
+  const currentIndex = scenarios.findIndex(s => s.id === currentScenario.id);
+  const nextIndex = (currentIndex + 1) % scenarios.length;
+  loadScenario(scenarios[nextIndex].id);
+}
+
+function resetAll() {
+  if (confirm('Are you sure you want to reset? This will clear all your responses.')) {
+    currentScenario = null;
+    document.getElementById('activityContainer').style.display = 'none';
+    document.querySelectorAll('.scenario-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.step-builder textarea, .final-input, .difference-input, .prediction-input').forEach(textarea => {
+      textarea.value = '';
+    });
+    activeHints = { 1: new Set(), 2: new Set() };
+    document.querySelectorAll('.hint-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.hint-content').forEach(content => content.classList.remove('show'));
+    document.getElementById('progressCheckmarks').innerHTML = '';
+    updateProgress();
+    document.querySelector('.scenario-selector').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+</script>
+
+</body>
+</html>

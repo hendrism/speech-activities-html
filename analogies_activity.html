@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analogies Activity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .nav-bar {
+            background: #4a5568;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #48bb78;
+            color: white;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .analogy-page {
+            display: none;
+        }
+
+        .analogy-page.active {
+            display: block;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .full-analogy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .analogy-pair {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .analogy-pair .word {
+            margin: 0 10px;
+            color: #2d3748;
+        }
+
+        .analogy-pair .arrow {
+            color: #667eea;
+            font-size: 30px;
+            margin: 0 10px;
+        }
+
+        .analogy-pair .blank {
+            color: #e53e3e;
+            font-style: italic;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            min-width: 80px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .separator {
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .analogy-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 10px 0;
+            background: #f7fafc;
+            border-radius: 10px;
+            border: 3px solid #cbd5e0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .analogy-row.first-pair {
+            border-color: #9f7aea;
+            background: #faf5ff;
+        }
+
+        .analogy-row.second-pair {
+            border-color: #667eea;
+            background: #ebf4ff;
+        }
+
+        .word {
+            margin: 0 15px;
+            color: #2d3748;
+        }
+
+        .arrow {
+            color: #667eea;
+            font-size: 36px;
+            margin: 0 20px;
+        }
+
+        .blank {
+            color: #e53e3e;
+            font-style: italic;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            font-size: 32px;
+            min-width: 100px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .step-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .step-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .relationship-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .relationship-btn {
+            padding: 15px;
+            background: #f7fafc;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .relationship-btn:hover {
+            background: #e2e8f0;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .relationship-btn.selected {
+            background: #d6bcfa;
+            border-color: #9f7aea;
+            color: #44337a;
+        }
+
+        .relationship-btn.correct {
+            background: #c6f6d5;
+            border-color: #48bb78;
+            color: #22543d;
+        }
+
+        .relationship-btn.incorrect {
+            background: #fed7d7;
+            border-color: #e53e3e;
+            color: #742a2a;
+        }
+
+        .step-content {
+            margin-top: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .example-box {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .example-text {
+            color: #234e52;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .example-explanation {
+            color: #2c7a7b;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .instruction-box {
+            background: #ebf8ff;
+            border: 2px solid #4299e1;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .instruction-text {
+            color: #2c5282;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-check {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-check:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+        }
+
+        .btn-help {
+            background: #ed8936;
+            color: white;
+        }
+
+        .btn-help:hover {
+            background: #dd6b20;
+            transform: translateY(-2px);
+        }
+
+        .btn-more-help {
+            background: #4299e1;
+            color: white;
+            display: none;
+        }
+
+        .btn-more-help:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        .hint-box {
+            background: #fef5e7;
+            border-left: 4px solid #ed8936;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .hint-box.show {
+            display: block;
+        }
+
+        .hint-text {
+            color: #744210;
+            font-size: 16px;
+        }
+
+        .choices {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .choices.show {
+            display: block;
+        }
+
+        .choice-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #e2e8f0;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .choice-btn:hover {
+            background: #cbd5e0;
+            transform: translateX(5px);
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #c6f6d5;
+            color: #22543d;
+            border-left: 4px solid #48bb78;
+        }
+
+        .feedback.incorrect {
+            background: #fed7d7;
+            color: #742a2a;
+            border-left: 4px solid #e53e3e;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 20px;
+            }
+
+            .analogy-text {
+                font-size: 20px;
+            }
+
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar" id="navBar"></div>
+        
+        <div class="content" id="content"></div>
+    </div>
+
+    <script>
+        const analogies = [
+            {
+                word1: "Hot",
+                word2: "Cold",
+                word3: "Day",
+                answer: "night",
+                relationshipType: "opposites",
+                relationshipOptions: ["Opposites", "Same meaning", "Part of something", "Goes together"],
+                relationshipExplanation: "Hot and cold are opposites.",
+                hint: "What is the opposite of day?",
+                choices: ["morning", "night", "afternoon"]
+            },
+            {
+                word1: "Cat",
+                word2: "Meow",
+                word3: "Dog",
+                answer: "bark",
+                relationshipType: "makes this sound",
+                relationshipOptions: ["Opposites", "Same meaning", "Makes this sound", "Part of something"],
+                relationshipExplanation: "A cat says meow.",
+                hint: "What sound does a dog make?",
+                choices: ["bark", "purr", "chirp"]
+            },
+            {
+                word1: "Happy",
+                word2: "Sad",
+                word3: "Up",
+                answer: "down",
+                relationshipType: "opposites",
+                relationshipOptions: ["Opposites", "Same meaning", "Goes together", "Type of something"],
+                relationshipExplanation: "Happy and sad are opposites.",
+                hint: "What is the opposite of up?",
+                choices: ["down", "sideways", "forward"]
+            },
+            {
+                word1: "Teacher",
+                word2: "School",
+                word3: "Doctor",
+                answer: "hospital",
+                relationshipType: "works at this place",
+                relationshipOptions: ["Opposites", "Works at this place", "Same meaning", "Part of something"],
+                relationshipExplanation: "A teacher works at a school.",
+                hint: "Where does a doctor work to help sick people?",
+                choices: ["office", "hospital", "store"]
+            },
+            {
+                word1: "Pen",
+                word2: "Write",
+                word3: "Fork",
+                answer: "eat",
+                relationshipType: "used to do this",
+                relationshipOptions: ["Opposites", "Same meaning", "Used to do this", "Part of something"],
+                relationshipExplanation: "You use a pen to write.",
+                hint: "What do you use a fork to do at mealtime?",
+                choices: ["cook", "eat", "clean"]
+            },
+            {
+                word1: "Bird",
+                word2: "Fly",
+                word3: "Fish",
+                answer: "swim",
+                relationshipType: "can do this action",
+                relationshipOptions: ["Opposites", "Can do this action", "Same meaning", "Part of something"],
+                relationshipExplanation: "A bird can fly.",
+                hint: "What action can a fish do in water?",
+                choices: ["swim", "walk", "jump"]
+            },
+            {
+                word1: "Book",
+                word2: "Read",
+                word3: "Song",
+                answer: "listen",
+                relationshipType: "you do this with it",
+                relationshipOptions: ["Opposites", "You do this with it", "Same meaning", "Part of something"],
+                relationshipExplanation: "You read a book.",
+                hint: "What do you do with a song?",
+                choices: ["write", "listen", "look"]
+            },
+            {
+                word1: "Winter",
+                word2: "Cold",
+                word3: "Summer",
+                answer: "hot",
+                relationshipType: "has this weather",
+                relationshipOptions: ["Opposites", "Has this weather", "Same meaning", "Part of something"],
+                relationshipExplanation: "Winter has cold weather.",
+                hint: "What kind of weather does summer have?",
+                choices: ["hot", "cool", "freezing"]
+            },
+            {
+                word1: "Big",
+                word2: "Small",
+                word3: "Fast",
+                answer: "slow",
+                relationshipType: "opposites",
+                relationshipOptions: ["Opposites", "Same meaning", "Goes together", "Type of something"],
+                relationshipExplanation: "Big and small are opposites.",
+                hint: "What is the opposite of fast?",
+                choices: ["quick", "slow", "speedy"]
+            },
+            {
+                word1: "Hand",
+                word2: "Glove",
+                word3: "Foot",
+                answer: "sock",
+                relationshipType: "you wear this on it",
+                relationshipOptions: ["Opposites", "You wear this on it", "Same meaning", "Part of something"],
+                relationshipExplanation: "You wear a glove on your hand.",
+                hint: "What do you wear on your foot?",
+                choices: ["hat", "shoe", "sock"]
+            },
+            {
+                word1: "Mom",
+                word2: "Mother",
+                word3: "Dad",
+                answer: "father",
+                relationshipType: "same meaning",
+                relationshipOptions: ["Opposites", "Same meaning", "Goes together", "Part of something"],
+                relationshipExplanation: "Mom and mother mean the same thing.",
+                hint: "What is another word for dad?",
+                choices: ["brother", "father", "uncle"]
+            },
+            {
+                word1: "Car",
+                word2: "Road",
+                word3: "Boat",
+                answer: "water",
+                relationshipType: "travels on this",
+                relationshipOptions: ["Opposites", "Travels on this", "Same meaning", "Part of something"],
+                relationshipExplanation: "A car travels on a road.",
+                hint: "What does a boat travel on?",
+                choices: ["sky", "land", "water"]
+            },
+            {
+                word1: "Hungry",
+                word2: "Eat",
+                word3: "Thirsty",
+                answer: "drink",
+                relationshipType: "you do this when you feel this way",
+                relationshipOptions: ["Opposites", "You do this when you feel this way", "Same meaning", "Part of something"],
+                relationshipExplanation: "When you are hungry, you eat.",
+                hint: "What do you do when you are thirsty?",
+                choices: ["drink", "sleep", "run"]
+            },
+            {
+                word1: "Beginning",
+                word2: "End",
+                word3: "Start",
+                answer: "finish",
+                relationshipType: "opposites",
+                relationshipOptions: ["Opposites", "Same meaning", "Goes together", "Part of something"],
+                relationshipExplanation: "Beginning and end are opposites.",
+                hint: "What is the opposite of start?",
+                choices: ["middle", "finish", "continue"]
+            },
+            {
+                word1: "Laugh",
+                word2: "Happy",
+                word3: "Cry",
+                answer: "sad",
+                relationshipType: "you do this when you feel this way",
+                relationshipOptions: ["Opposites", "You do this when you feel this way", "Same meaning", "Part of something"],
+                relationshipExplanation: "You laugh when you are happy.",
+                hint: "What feeling makes people cry?",
+                choices: ["excited", "angry", "sad"]
+            }
+        ];
+
+        let currentPage = 0;
+
+        function createNavBar() {
+            const navBar = document.getElementById('navBar');
+            for (let i = 0; i < analogies.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn';
+                btn.textContent = i + 1;
+                btn.onclick = () => goToPage(i);
+                navBar.appendChild(btn);
+            }
+        }
+
+        function shuffleChoices(choices, correctAnswer) {
+            // Create a copy of choices with the correct answer
+            let allChoices = [...choices];
+            if (!allChoices.includes(correctAnswer)) {
+                allChoices = [correctAnswer, ...choices.slice(0, 2)];
+            }
+            
+            // Shuffle the array
+            for (let i = allChoices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [allChoices[i], allChoices[j]] = [allChoices[j], allChoices[i]];
+            }
+            
+            return allChoices;
+        }
+
+        function createPages() {
+            const content = document.getElementById('content');
+            
+            analogies.forEach((analogy, index) => {
+                const page = document.createElement('div');
+                page.className = 'analogy-page';
+                page.id = `page-${index}`;
+                
+                const shuffledChoices = shuffleChoices(analogy.choices, analogy.answer);
+                
+                page.innerHTML = `
+                    <div class="question-number">Question ${index + 1} of ${analogies.length}</div>
+                    
+                    <div class="instruction-box">
+                        <div class="instruction-text">Complete the analogy by finding the pattern</div>
+                    </div>
+                    
+                    <!-- Show full analogy -->
+                    <div class="full-analogy">
+                        <div class="analogy-pair">
+                            <span class="word">${analogy.word1}</span>
+                            <span class="arrow">→</span>
+                            <span class="word">${analogy.word2}</span>
+                        </div>
+                        <span class="separator">:</span>
+                        <div class="analogy-pair">
+                            <span class="word">${analogy.word3}</span>
+                            <span class="arrow">→</span>
+                            <span class="blank">____</span>
+                        </div>
+                    </div>
+                    
+                    <!-- STEP 1: Identify the relationship -->
+                    <div class="step-section">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <span>Look at these two words. How are they related?</span>
+                        </div>
+                        
+                        <div class="analogy-row first-pair">
+                            <span class="word">${analogy.word1}</span>
+                            <span class="arrow">→</span>
+                            <span class="word">${analogy.word2}</span>
+                        </div>
+                        
+                        <div class="relationship-options" id="rel-options-${index}">
+                            ${analogy.relationshipOptions.map((option, optIndex) => `
+                                <button class="relationship-btn" onclick="checkRelationship(${index}, '${option.toLowerCase()}', ${optIndex})" id="rel-btn-${index}-${optIndex}">
+                                    ${option}
+                                </button>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="feedback" id="rel-feedback-${index}"></div>
+                    </div>
+                    
+                    <!-- STEP 2: Apply the same relationship -->
+                    <div class="step-section hidden" id="step2-${index}">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <span>Now use the same relationship to complete this pair</span>
+                        </div>
+                        
+                        <div class="example-box">
+                            <div class="example-text">${analogy.relationshipExplanation}</div>
+                        </div>
+                        
+                        <div class="analogy-row second-pair">
+                            <span class="word">${analogy.word3}</span>
+                            <span class="arrow">→</span>
+                            <span class="blank">____</span>
+                        </div>
+                        
+                        <div class="input-section">
+                            <input type="text" class="answer-input" id="answer-${index}" placeholder="Type your answer here...">
+                            
+                            <div class="button-group">
+                                <button class="btn btn-check" onclick="checkAnswer(${index})">Check Answer</button>
+                                <button class="btn btn-help" onclick="showHint(${index})">I Need Help</button>
+                                <button class="btn btn-more-help" id="more-help-${index}" onclick="showChoices(${index})">I Need More Help</button>
+                            </div>
+                        </div>
+                        
+                        <div class="hint-box" id="hint-${index}">
+                            <div class="hint-text">💡 ${analogy.hint}</div>
+                        </div>
+                        
+                        <div class="choices" id="choices-${index}">
+                            <p style="margin-bottom: 10px; font-weight: bold; color: #2d3748;">Choose one of these answers:</p>
+                            ${shuffledChoices.map(choice => `
+                                <button class="choice-btn" onclick="selectChoice(${index}, '${choice}')">${choice}</button>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="feedback" id="feedback-${index}"></div>
+                    </div>
+                `;
+                
+                content.appendChild(page);
+            });
+        }
+
+        function goToPage(pageNum) {
+            // Hide all pages
+            document.querySelectorAll('.analogy-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach((btn, index) => {
+                btn.classList.remove('active');
+                if (index === pageNum) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Show selected page
+            document.getElementById(`page-${pageNum}`).classList.add('active');
+            currentPage = pageNum;
+            
+            // Reset the page state
+            document.getElementById(`answer-${pageNum}`).value = '';
+            document.getElementById(`hint-${pageNum}`).classList.remove('show');
+            document.getElementById(`choices-${pageNum}`).classList.remove('show');
+            document.getElementById(`feedback-${pageNum}`).classList.remove('show');
+            document.getElementById(`rel-feedback-${pageNum}`).classList.remove('show');
+            document.getElementById(`more-help-${pageNum}`).style.display = 'none';
+            document.getElementById(`step2-${pageNum}`).classList.add('hidden');
+            
+            // Reset relationship buttons
+            document.querySelectorAll(`#rel-options-${pageNum} .relationship-btn`).forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'incorrect');
+            });
+        }
+
+        function checkRelationship(index, selectedType, buttonIndex) {
+            const correctType = analogies[index].relationshipType;
+            const feedback = document.getElementById(`rel-feedback-${index}`);
+            const selectedBtn = document.getElementById(`rel-btn-${index}-${buttonIndex}`);
+            
+            // Clear previous selections
+            document.querySelectorAll(`#rel-options-${index} .relationship-btn`).forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            feedback.classList.remove('correct', 'incorrect');
+            feedback.classList.add('show');
+            
+            if (selectedType === correctType) {
+                selectedBtn.classList.add('correct');
+                feedback.className = 'feedback show correct';
+                feedback.textContent = '✓ Great! You found the relationship! Now move to Step 2.';
+                
+                // Show Step 2 after a brief delay
+                setTimeout(() => {
+                    document.getElementById(`step2-${index}`).classList.remove('hidden');
+                    document.getElementById(`step2-${index}`).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 1000);
+            } else {
+                selectedBtn.classList.add('incorrect');
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = '✗ Not quite. Try another option.';
+            }
+        }
+
+        function showHint(index) {
+            const hintBox = document.getElementById(`hint-${index}`);
+            hintBox.classList.add('show');
+            
+            // Show the "I Need More Help" button
+            document.getElementById(`more-help-${index}`).style.display = 'inline-block';
+        }
+
+        function showChoices(index) {
+            const choicesDiv = document.getElementById(`choices-${index}`);
+            choicesDiv.classList.add('show');
+        }
+
+        function selectChoice(index, choice) {
+            document.getElementById(`answer-${index}`).value = choice;
+            checkAnswer(index);
+        }
+
+        function checkAnswer(index) {
+            const userAnswer = document.getElementById(`answer-${index}`).value.trim().toLowerCase();
+            const correctAnswer = analogies[index].answer.toLowerCase();
+            const feedback = document.getElementById(`feedback-${index}`);
+            
+            feedback.classList.remove('correct', 'incorrect');
+            feedback.classList.add('show');
+            
+            if (userAnswer === correctAnswer) {
+                feedback.className = 'feedback show correct';
+                feedback.textContent = '✓ Great job! That\'s correct!';
+                
+                // Update nav button color
+                document.querySelectorAll('.nav-btn')[index].style.background = '#48bb78';
+                document.querySelectorAll('.nav-btn')[index].style.color = 'white';
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = '✗ Not quite right. Try again or use the help buttons.';
+            }
+        }
+
+        // Initialize the activity
+        createNavBar();
+        createPages();
+        goToPage(0);
+    </script>
+</body>
+</html>

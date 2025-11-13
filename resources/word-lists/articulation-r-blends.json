@@ -1,0 +1,308 @@
+{
+  "id": "rBlends",
+  "name": "R-Blends",
+  "blends": {
+    "fr": [
+      {
+        "text": "fries",
+        "pos": "noun"
+      },
+      {
+        "text": "frog",
+        "pos": "noun"
+      },
+      {
+        "text": "fruit",
+        "pos": "noun"
+      },
+      {
+        "text": "frame",
+        "pos": "noun"
+      },
+      {
+        "text": "friend",
+        "pos": "noun"
+      },
+      {
+        "text": "freeze",
+        "pos": "verb"
+      },
+      {
+        "text": "fry",
+        "pos": "verb"
+      },
+      {
+        "text": "frost",
+        "pos": "verb"
+      },
+      {
+        "text": "frolic",
+        "pos": "verb"
+      },
+      {
+        "text": "fresh",
+        "pos": "adjective"
+      },
+      {
+        "text": "free",
+        "pos": "adjective"
+      },
+      {
+        "text": "friendly",
+        "pos": "adjective"
+      },
+      {
+        "text": "frilly",
+        "pos": "adjective"
+      },
+      {
+        "text": "frosty",
+        "pos": "adjective"
+      },
+      {
+        "text": "fragrant",
+        "pos": "adjective"
+      },
+      {
+        "text": "frantic",
+        "pos": "adjective"
+      },
+      {
+        "text": "frozen",
+        "pos": "adjective"
+      }
+    ],
+    "kr": [
+      {
+        "text": "crown",
+        "pos": "noun"
+      },
+      {
+        "text": "crab",
+        "pos": "noun"
+      },
+      {
+        "text": "crayon",
+        "pos": "noun"
+      },
+      {
+        "text": "cream",
+        "pos": "noun"
+      },
+      {
+        "text": "crop",
+        "pos": "noun"
+      },
+      {
+        "text": "crash",
+        "pos": "verb"
+      },
+      {
+        "text": "crawl",
+        "pos": "verb"
+      },
+      {
+        "text": "crackle",
+        "pos": "verb"
+      },
+      {
+        "text": "crank",
+        "pos": "verb"
+      },
+      {
+        "text": "crazy",
+        "pos": "adjective"
+      },
+      {
+        "text": "crispy",
+        "pos": "adjective"
+      },
+      {
+        "text": "crunchy",
+        "pos": "adjective"
+      },
+      {
+        "text": "crafty",
+        "pos": "adjective"
+      },
+      {
+        "text": "creaky",
+        "pos": "adjective"
+      },
+      {
+        "text": "cranky",
+        "pos": "adjective"
+      }
+    ],
+    "tr": [
+      {
+        "text": "tree",
+        "pos": "noun"
+      },
+      {
+        "text": "truck",
+        "pos": "noun"
+      },
+      {
+        "text": "train",
+        "pos": "noun"
+      },
+      {
+        "text": "trash",
+        "pos": "noun"
+      },
+      {
+        "text": "track",
+        "pos": "noun"
+      },
+      {
+        "text": "trip",
+        "pos": "verb"
+      },
+      {
+        "text": "try",
+        "pos": "verb"
+      },
+      {
+        "text": "trick",
+        "pos": "verb"
+      }
+    ],
+    "br": [
+      {
+        "text": "bread",
+        "pos": "noun"
+      },
+      {
+        "text": "brush",
+        "pos": "noun"
+      },
+      {
+        "text": "brick",
+        "pos": "noun"
+      },
+      {
+        "text": "branch",
+        "pos": "noun"
+      },
+      {
+        "text": "break",
+        "pos": "verb"
+      },
+      {
+        "text": "bring",
+        "pos": "verb"
+      },
+      {
+        "text": "brown",
+        "pos": "adjective"
+      },
+      {
+        "text": "brave",
+        "pos": "adjective"
+      },
+      {
+        "text": "bright",
+        "pos": "adjective"
+      }
+    ],
+    "gr": [
+      {
+        "text": "grass",
+        "pos": "noun"
+      },
+      {
+        "text": "grapes",
+        "pos": "noun"
+      },
+      {
+        "text": "ground",
+        "pos": "noun"
+      },
+      {
+        "text": "grow",
+        "pos": "verb"
+      },
+      {
+        "text": "grab",
+        "pos": "verb"
+      },
+      {
+        "text": "green",
+        "pos": "adjective"
+      },
+      {
+        "text": "great",
+        "pos": "adjective"
+      },
+      {
+        "text": "gray",
+        "pos": "adjective"
+      }
+    ],
+    "pr": [
+      {
+        "text": "prize",
+        "pos": "noun"
+      },
+      {
+        "text": "prince",
+        "pos": "noun"
+      },
+      {
+        "text": "present",
+        "pos": "noun"
+      },
+      {
+        "text": "pray",
+        "pos": "verb"
+      },
+      {
+        "text": "practice",
+        "pos": "verb"
+      },
+      {
+        "text": "pretty",
+        "pos": "adjective"
+      },
+      {
+        "text": "proud",
+        "pos": "adjective"
+      }
+    ],
+    "dr": [
+      {
+        "text": "drum",
+        "pos": "noun"
+      },
+      {
+        "text": "dress",
+        "pos": "noun"
+      },
+      {
+        "text": "dragon",
+        "pos": "noun"
+      },
+      {
+        "text": "dream",
+        "pos": "noun"
+      },
+      {
+        "text": "drive",
+        "pos": "verb"
+      },
+      {
+        "text": "draw",
+        "pos": "verb"
+      },
+      {
+        "text": "drink",
+        "pos": "verb"
+      },
+      {
+        "text": "drop",
+        "pos": "verb"
+      }
+    ]
+  }
+}

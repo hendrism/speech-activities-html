@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Final /l/ Consonant Blend Stories</title>
+  <style>
+    :root{
+      --bg:#0a0e1a;
+      --card:#151b2e;
+      --card-hover:#1a2136;
+      --text:#f8fafc;
+      --text-muted:#94a3b8;
+      --accent:#06b6d4;
+      --accent-2:#8b5cf6;
+      --accent-glow: rgba(6, 182, 212, 0.15);
+      --accent-2-glow: rgba(139, 92, 246, 0.15);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+    
+    html{
+      scroll-behavior: smooth;
+    }
+    
+    body{
+      min-height:100vh;
+      margin:0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background: 
+        radial-gradient(ellipse 1400px 900px at 10% -5%, var(--accent-glow), transparent 60%),
+        radial-gradient(ellipse 1400px 900px at 90% 5%, var(--accent-2-glow), transparent 60%),
+        radial-gradient(circle 800px at 50% 100%, rgba(6, 182, 212, 0.05), transparent),
+        var(--bg);
+      line-height:1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    .container{
+      max-width:920px;
+      margin:0 auto;
+      padding:clamp(1.5rem, 4vw, 3rem);
+    }
+    
+    /* Header Styles */
+    header{
+      margin-bottom:2.5rem;
+      animation: fadeInDown 0.6s ease-out;
+    }
+    
+    header h1{
+      font-size:clamp(2rem, 5vw, 2.75rem);
+      font-weight:800;
+      letter-spacing:-0.02em;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom:0.75rem;
+    }
+    
+    header p{
+      color:var(--text-muted);
+      font-size:1.05rem;
+      line-height:1.6;
+    }
+    
+    header em{
+      color:var(--accent);
+      font-style:normal;
+      font-weight:600;
+    }
+
+    /* Controls */
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.75rem;
+      align-items:center;
+      margin-bottom:2rem;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+    
+    .controls .spacer{
+      flex:1;
+      min-width:1rem;
+    }
+
+    /* Select Dropdown */
+    .select{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      background: rgba(255, 255, 255, 0.03);
+      border:1px solid var(--border);
+      border-radius:0.75rem;
+      padding:0.65rem 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+    }
+    
+    .select:hover{
+      background: rgba(255, 255, 255, 0.05);
+      border-color:var(--border-hover);
+      transform: translateY(-1px);
+    }
+    
+    .select:focus-within{
+      outline:none;
+      border-color:var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow-sm);
+    }
+    
+    .select select{
+      appearance:none;
+      border:none;
+      background:transparent;
+      color:var(--text);
+      font:inherit;
+      font-size:0.95rem;
+      padding-right:1.75rem;
+      cursor:pointer;
+      outline:none;
+    }
+    
+    .select:after{
+      content:"▼";
+      position:absolute;
+      right:0.75rem;
+      pointer-events:none;
+      color:var(--text-muted);
+      font-size:0.7rem;
+      transition: transform 0.2s ease;
+    }
+    
+    .select:focus-within:after{
+      transform: translateY(2px);
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:0.5rem;
+      border:1px solid var(--border);
+      background:rgba(255, 255, 255, 0.03);
+      color:var(--text);
+      padding:0.65rem 1.1rem;
+      border-radius:0.75rem;
+      font:inherit;
+      font-size:0.95rem;
+      cursor:pointer;
+      user-select:none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+      font-weight:500;
+    }
+    
+    .btn:hover:not([disabled]){
+      background:rgba(255, 255, 255, 0.06);
+      border-color:var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .btn:active:not([disabled]){
+      transform: translateY(0);
+    }
+    
+    .btn[disabled]{
+      opacity:0.4;
+      cursor:not-allowed;
+      transform: none !important;
+    }
+    
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      border-color:transparent;
+      color:#fff;
+      font-weight:600;
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+    }
+    
+    .btn.primary:hover:not([disabled]){
+      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.3);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Badge */
+    .badge{
+      font-variant-numeric: tabular-nums;
+      border:1px solid var(--border);
+      padding:0.5rem 0.85rem;
+      border-radius:0.65rem;
+      color:var(--text-muted);
+      background:rgba(255, 255, 255, 0.02);
+      font-size:0.9rem;
+      font-weight:600;
+      letter-spacing:0.02em;
+    }
+
+    /* Checkbox */
+    .checkbox{
+      display:inline-flex;
+      align-items:center;
+      gap:0.6rem;
+      padding:0.65rem 1rem;
+      border-radius:0.75rem;
+      border:1px solid var(--border);
+      background:rgba(255, 255, 255, 0.03);
+      cursor:pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size:0.95rem;
+      backdrop-filter: blur(12px);
+    }
+    
+    .checkbox:hover{
+      background:rgba(255, 255, 255, 0.05);
+      border-color:var(--border-hover);
+    }
+    
+    .checkbox input[type="checkbox"]{
+      width:1.1rem;
+      height:1.1rem;
+      cursor:pointer;
+      accent-color:var(--accent);
+    }
+
+    /* Card */
+    .card{
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.03) 0%, 
+        rgba(255, 255, 255, 0.01) 100%);
+      border:1px solid var(--border);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-radius:1.25rem;
+      padding:2rem;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .card:before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:1px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(6, 182, 212, 0.3) 50%, 
+        transparent);
+    }
+    
+    .card h2{
+      font-size:1.65rem;
+      font-weight:700;
+      margin-bottom:1.25rem;
+      letter-spacing:-0.01em;
+      color:var(--text);
+    }
+    
+    .card p{
+      margin:1rem 0;
+      font-size:1.1rem;
+      line-height:1.8;
+      color:var(--text);
+    }
+
+    /* Questions Section */
+    .questions{
+      margin-top:2rem;
+      padding-top:2rem;
+      border-top:1px solid var(--border);
+    }
+    
+    .questions h3{
+      font-size:1.15rem;
+      font-weight:700;
+      color:var(--text-muted);
+      margin-bottom:1.25rem;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      font-size:0.85rem;
+    }
+    
+    .questions ol{
+      list-style:none;
+      counter-reset:question;
+      margin:0;
+      padding:0;
+    }
+    
+    .questions li{
+      counter-increment:question;
+      margin-bottom:1.75rem;
+      position:relative;
+    }
+    
+    .questions li:before{
+      content:counter(question);
+      position:absolute;
+      left:-2.5rem;
+      top:0;
+      width:1.75rem;
+      height:1.75rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#fff;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.85rem;
+      font-weight:700;
+      box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+    }
+    
+    .questions li > span{
+      display:block;
+      font-weight:600;
+      margin-bottom:0.75rem;
+      color:var(--text);
+      font-size:1.05rem;
+    }
+    
+    .questions label{
+      display:block;
+      font-size:0.85rem;
+      color:var(--text-muted);
+      margin-bottom:0.5rem;
+      font-weight:500;
+    }
+    
+    .questions textarea{
+      width:100%;
+      min-height:4rem;
+      padding:0.85rem 1rem;
+      border-radius:0.75rem;
+      border:1px solid var(--border);
+      background:rgba(255, 255, 255, 0.02);
+      color:var(--text);
+      font:inherit;
+      font-size:1rem;
+      line-height:1.6;
+      resize:vertical;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .questions textarea::placeholder{
+      color:var(--text-muted);
+      opacity:0.6;
+    }
+    
+    .questions textarea:hover{
+      border-color:var(--border-hover);
+      background:rgba(255, 255, 255, 0.03);
+    }
+    
+    .questions textarea:focus{
+      outline:none;
+      border-color:var(--accent);
+      background:rgba(255, 255, 255, 0.04);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    /* Highlight */
+    mark.blend{
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color:#1a1a1a;
+      padding:0.15rem 0.35rem;
+      border-radius:0.35rem;
+      font-weight:600;
+      box-shadow: 0 2px 4px rgba(251, 191, 36, 0.2);
+      transition: all 0.2s ease;
+    }
+    
+    mark.blend:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(251, 191, 36, 0.3);
+    }
+
+    /* Footer */
+    .footer{
+      display:flex;
+      gap:0.75rem;
+      align-items:center;
+      margin-top:2rem;
+      padding-top:2rem;
+      border-top:1px solid var(--border);
+      color:var(--text-muted);
+      font-size:0.9rem;
+      animation: fadeIn 0.6s ease-out 0.5s both;
+    }
+    
+    .footer kbd{
+      background:rgba(255, 255, 255, 0.06);
+      padding:0.15rem 0.4rem;
+      border-radius:0.35rem;
+      border:1px solid var(--border);
+      font-family: ui-monospace, monospace;
+      font-size:0.85em;
+      font-weight:600;
+    }
+
+    /* Animations */
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+      }
+      to{
+        opacity:1;
+      }
+    }
+    
+    @keyframes fadeInDown{
+      from{
+        opacity:0;
+        transform: translateY(-20px);
+      }
+      to{
+        opacity:1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp{
+      from{
+        opacity:0;
+        transform: translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Light mode */
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f1f5f9;
+        --card:#ffffff;
+        --card-hover:#f8fafc;
+        --text:#0f172a;
+        --text-muted:#475569;
+        --border: rgba(0, 0, 0, 0.08);
+        --border-hover: rgba(0, 0, 0, 0.12);
+        --accent-glow: rgba(6, 182, 212, 0.08);
+        --accent-2-glow: rgba(139, 92, 246, 0.08);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      body{
+        background: 
+          radial-gradient(ellipse 1400px 900px at 10% -5%, var(--accent-glow), transparent 60%),
+          radial-gradient(ellipse 1400px 900px at 90% 5%, var(--accent-2-glow), transparent 60%),
+          var(--bg);
+      }
+      
+      .select, .btn, .checkbox, .badge{
+        background:rgba(0, 0, 0, 0.02);
+      }
+      
+      .select:hover, .btn:hover:not([disabled]), .checkbox:hover{
+        background:rgba(0, 0, 0, 0.04);
+      }
+      
+      .card{
+        background: linear-gradient(135deg, 
+          rgba(255, 255, 255, 0.9) 0%, 
+          rgba(255, 255, 255, 0.7) 100%);
+      }
+      
+      .questions textarea{
+        background:rgba(0, 0, 0, 0.02);
+      }
+      
+      .questions textarea:hover{
+        background:rgba(0, 0, 0, 0.03);
+      }
+      
+      .questions textarea:focus{
+        background:rgba(0, 0, 0, 0.04);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px){
+      .controls{
+        gap:0.5rem;
+      }
+      
+      .controls .spacer{
+        display:none;
+      }
+      
+      .card{
+        padding:1.5rem;
+      }
+      
+      .questions li:before{
+        position:static;
+        display:inline-flex;
+        margin-right:0.75rem;
+        margin-bottom:0.5rem;
+      }
+      
+      .questions li{
+        padding-left:0;
+      }
+    }
+
+    /* Print styles */
+    @media print{
+      body{
+        background:#fff;
+        color:#000;
+      }
+      
+      .controls, .footer{
+        display:none;
+      }
+      
+      .card{
+        box-shadow:none;
+        border:1px solid #ddd;
+        page-break-inside:avoid;
+      }
+      
+      .questions textarea{
+        border:none;
+        border-bottom:1px solid #ddd;
+        background:transparent;
+        min-height:2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Final /l/ Consonant Blend Stories</h1>
+      <p>Shows one story at a time with open-ended questions. Toggle highlighting to see words ending in <em>-ld, -lt, -lf, -lp, -lk, -lm</em>.</p>
+    </header>
+
+    <div class="controls" role="group" aria-label="Story controls">
+      <div class="select" title="Choose story">
+        <label class="sr-only" for="storySelect">Story</label>
+        <select id="storySelect" aria-label="Select story"></select>
+      </div>
+
+      <button id="prevBtn" class="btn" aria-label="Previous story">◀ Previous</button>
+      <span id="progress" class="badge" aria-live="polite">1 / 6</span>
+      <button id="nextBtn" class="btn primary" aria-label="Next story">Next ▶</button>
+
+      <div class="spacer"></div>
+
+      <label class="checkbox" for="highlight">
+        <input id="highlight" type="checkbox" /> Highlight /l/ blends
+      </label>
+      <button id="printBtn" class="btn" aria-label="Print this story">🖨 Print</button>
+    </div>
+
+    <article id="card" class="card" aria-live="polite">
+      <h2 id="title"></h2>
+      <div id="text"></div>
+      <section class="questions">
+        <h3>Questions</h3>
+        <ol id="qs"></ol>
+      </section>
+    </article>
+
+    <div class="footer">
+      <span>Tip: Press <kbd>J</kbd> / <kbd>K</kbd> to go previous / next. Press <kbd>H</kbd> to toggle highlight.</span>
+    </div>
+  </div>
+
+  <script>
+    // --- Data ---
+    const stories = [
+      {
+        title: "1. The Cold Morning",
+        text: "Liam woke up early and pulled on his thick quilt. The air felt cold, and frost covered the field behind his house. He built a small fire in the fireplace to help warm up the room. His mom poured him a glass of milk while they watched the sun rise over the hills.\n\nAfter breakfast he pulled on his coat and belt and went outside to feed the calf. The metal pail felt cold, so he held it with a glove. Liam walked across the field and helped his neighbor stack wood on the shelf by the shed.",
+        questions: [
+          { q: "What helps you feel warm on a cold morning?", starter: "On a cold morning, I help myself feel warm by " },
+          { q: "What do you like to do when you wake up early?", starter: "When I wake up early, I like to " }
+        ]
+      },
+      {
+        title: "2. The Lost Calf",
+        text: "Mila and her dad walked through the tall grass, trying to find the lost calf. They followed small tracks that led down to the stream. When they finally found the calf, it stood still and looked scared. Mila helped her dad guide it back to the field.\n\nOn the hill by the fence, the wind felt cold and sharp. Mila held the rope while her dad fixed a split board with a new bolt. Back at the barn, they filled a small pail with warm milk to help the calf feel calm.",
+        questions: [
+          { q: "Have you ever helped take care of an animal?", starter: "I helped take care of an animal when " },
+          { q: "How would you feel if you found something that was lost?", starter: "If I found something that was lost, I would feel " }
+        ]
+      },
+      {
+        title: "3. The Quilt Contest",
+        text: "At school, the class built a colorful quilt made of small fabric squares. Each student added one piece to help. When they finished, they felt proud of their work. The quilt hung in the hall for everyone to see.\n\nDuring lunch, the group held a small vote to pick a title. Liam sketched a wolf and a hill on a label and slipped it under the last quilt block. The art club helped install the quilt on a sturdy rail so it would not tilt.",
+        questions: [
+          { q: "What project have you helped make with a group?", starter: "A project I helped make with a group was " },
+          { q: "Why do you think people feel proud when they build something together?", starter: "People feel proud when they build something together because " }
+        ]
+      },
+      {
+        title: "4. The Milk Spill",
+        text: "Caleb grabbed the jug of milk, but it slipped from his hand and spilled all over the shelf. He ran to get a towel to help clean it up. His sister laughed, but then she helped too. They both learned to be more careful next time.\n\nThey filled a small bowl with soap and warm water and wiped the shelf until it felt smooth. Caleb built a little lip out of wood to keep things from sliding. He told himself to hold the handle with both hands so the jug would not tilt and fall.",
+        questions: [
+          { q: "What is something that went wrong but you fixed it?", starter: "Something went wrong when " },
+          { q: "How do you feel when someone helps you after a mistake?", starter: "When someone helps me after a mistake, I feel " }
+        ]
+      },
+      {
+        title: "5. The Hike on the Hill",
+        text: "Talia and her friends climbed up the steep hill to look at the sunset. They felt tired but happy when they reached the top. The world looked calm and still. They talked quietly and shared snacks from their small pack.\n\nOn the trail down, they stepped over a small stream and held the rail on a short bridge. The air smelled like salt from the gulf far away. At the bottom, Talia helped fold a quilt and built a small fire to keep the chill off while they told stories.",
+        questions: [
+          { q: "What do you like about being outside?", starter: "I like being outside because " },
+          { q: "How do you feel when you reach a goal that took a lot of effort?", starter: "When I reach a goal after hard work, I feel " }
+        ]
+      },
+      {
+        title: "6. The Wolf in the Woods",
+        text: "Ben read a story about a wolf that lived deep in the woods. The wolf was not mean; it helped lost animals find their way home. Ben felt calm when he read the story before bed, under a soft blanket.\n\nThe next day, Ben built a small model den on a shelf and labeled a hill, a trail, and a cold stream on a map. He told his class how a gentle wolf could still be bold and helpful, and his friends held up cards to clap in silent applause.",
+        questions: [
+          { q: "What kind of stories help you feel calm?", starter: "A story that helps me feel calm is about " },
+          { q: "Why do you think people sometimes write stories about animals?", starter: "People write stories about animals because " }
+        ]
+      }
+    ];
+
+    // --- Utilities ---
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#39;');
+    }
+
+    // Highlight words that end with ld, lt, lf, lp, lk, lm (case-insensitive)
+    const blendEnding = /(\b)([A-Za-z]+)(ld|lt|lf|lp|lk|lm)(\b)/gi;
+    function maybeHighlight(text){
+      if(!highlight.checked) return escapeHtml(text);
+      return escapeHtml(text).replace(blendEnding, (m, b1, root, end, b2) => `${b1}<mark class="blend">${root}${end}</mark>${b2}`);
+    }
+
+    // --- Render ---
+    const titleEl = document.getElementById('title');
+    const textEl = document.getElementById('text');
+    const qsEl = document.getElementById('qs');
+    const selectEl = document.getElementById('storySelect');
+    const progressEl = document.getElementById('progress');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const highlight = document.getElementById('highlight');
+
+    let idx = 0;
+
+    function populateSelect(){
+      selectEl.innerHTML = stories.map((s,i)=>`<option value="${i}">${s.title}</option>`).join('');
+    }
+
+    function render(){
+      const s = stories[idx];
+      titleEl.textContent = s.title;
+      // Split paragraphs on double newline and wrap each in <p>
+      const paras = s.text
+        .split(/\n\s*\n+/)
+        .map(p=>`<p>${maybeHighlight(p)}</p>`)
+        .join('');
+      textEl.innerHTML = paras;
+      // Render questions with sentence starters and textareas
+      qsEl.innerHTML = s.questions.map((obj,i)=>{
+        const id = `q_${idx}_${i}`;
+        const safeQ = escapeHtml(obj.q);
+        const safeStarter = escapeHtml(obj.starter || "");
+        return `<li><span>${safeQ}</span><label for="${id}">Sentence starter:</label><textarea id="${id}">${safeStarter}</textarea></li>`;
+      }).join('');
+      selectEl.value = String(idx);
+      progressEl.textContent = `${idx+1} / ${stories.length}`;
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx === stories.length - 1;
+    }
+
+    // --- Events --- 
+    prevBtn.addEventListener('click', ()=>{ if(idx>0){ idx--; render(); }});
+    nextBtn.addEventListener('click', ()=>{ if(idx<stories.length-1){ idx++; render(); }});
+    selectEl.addEventListener('change', (e)=>{ idx = Number(e.target.value); render(); });
+    highlight.addEventListener('change', ()=> render());
+    document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+    // Keyboard shortcuts: J (prev), K (next), H (highlight)
+    window.addEventListener('keydown', (e)=>{
+      const tag = (e.target && e.target.tagName) || '';
+      if(tag === 'INPUT' || tag === 'TEXTAREA' || e.metaKey || e.ctrlKey || e.altKey) return;
+      if(e.key.toLowerCase()==='j'){ prevBtn.click(); }
+      if(e.key.toLowerCase()==='k'){ nextBtn.click(); }
+      if(e.key.toLowerCase()==='h'){ highlight.checked = !highlight.checked; render(); }
+    });
+
+    // --- Init + basic runtime tests ---
+    function runTests(){
+      const assert = (condition, message) => {
+        if (!condition && console && console.error) {
+          console.error('Assertion failed:', message);
+        }
+      };
+      
+      assert(Array.isArray(stories) && stories.length === 6, 'Expected 6 stories');
+      render();
+      // After first render
+      assert(titleEl.textContent.length > 0, 'Title should not be empty');
+      assert(qsEl.children.length === stories[0].questions.length, 'Questions count should match');
+      // Toggle highlight to ensure no syntax errors in regex
+      const prev = highlight.checked; highlight.checked = true; render(); highlight.checked = prev; render();
+      assert(progressEl.textContent.trim().startsWith('1 /'), 'Progress should start at 1');
+    }
+
+    populateSelect();
+    runTests();
+  </script>
+</body>
+</html>

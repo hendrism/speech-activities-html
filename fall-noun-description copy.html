@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fall Nouns - Category & Function</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #fef5e7, #fdebd0);
+            min-height: 100vh;
+        }
+        h1 {
+            color: #d35400;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #e67e22;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .navigation {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            text-align: center;
+        }
+        .nav-btn {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover {
+            background: #e67e22;
+        }
+        .nav-btn.active {
+            background: #d35400;
+            transform: scale(1.1);
+        }
+        .item-container {
+            display: none;
+        }
+        .item-container.active {
+            display: block;
+        }
+        .item-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+        }
+        .noun-display {
+            text-align: center;
+            font-size: 3em;
+            color: #d35400;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .sentence-frame {
+            background: #fef9f3;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #f39c12;
+        }
+        .frame-part {
+            margin: 25px 0;
+            font-size: 1.3em;
+            color: #2c3e50;
+        }
+        .frame-label {
+            display: block;
+            font-weight: bold;
+            color: #e67e22;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .frame-text {
+            display: inline;
+            font-size: 1.3em;
+        }
+        .text-input {
+            width: 300px;
+            padding: 12px;
+            border: 3px solid #f39c12;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            margin: 0 10px;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #d35400;
+            background: #fff8f0;
+        }
+        .help-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .help-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .help-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        .help-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .choices-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #ebf5fb;
+            border-radius: 10px;
+        }
+        .choices-container.show {
+            display: block;
+        }
+        .choice-btn {
+            display: block;
+            width: 100%;
+            background: white;
+            border: 2px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            text-align: left;
+        }
+        .choice-btn:hover {
+            background: #d6eaf8;
+            transform: translateX(5px);
+        }
+        .choice-btn.correct {
+            background: #d5f4e6;
+            border-color: #27ae60;
+            font-weight: bold;
+        }
+        .choice-btn.incorrect {
+            background: #fadbd8;
+            border-color: #e74c3c;
+        }
+        .choice-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .nav-arrow-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .nav-arrow-btn:hover:not(:disabled) {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+        .nav-arrow-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍂 Fall Nouns 🍁</h1>
+    <div class="subtitle">Describe the Category & Function</div>
+    
+    <div class="navigation" id="navigation"></div>
+    
+    <div id="items-container"></div>
+
+    <script>
+        let currentItem = 0;
+        
+        const items = [
+            {
+                noun: "Apple",
+                article: "An",
+                category: "fruit",
+                categoryChoices: ["vegetable", "tool", "fruit"],
+                function: "eat it",
+                functionChoices: ["wear it", "eat it", "rake with it"]
+            },
+            {
+                noun: "Pumpkin",
+                article: "A",
+                category: "fruit",
+                categoryChoices: ["fruit", "vegetable", "tool"],
+                function: "carve it",
+                functionChoices: ["throw it away", "wear it", "carve it"]
+            },
+            {
+                noun: "Rake",
+                article: "A",
+                category: "tool",
+                categoryChoices: ["toy", "tool", "food"],
+                function: "clean up leaves",
+                functionChoices: ["eat it", "clean up leaves", "wear it"]
+            },
+            {
+                noun: "Scarf",
+                article: "A",
+                category: "clothing",
+                categoryChoices: ["food", "tool", "clothing"],
+                function: "wear it to stay warm",
+                functionChoices: ["eat it", "throw it", "wear it to stay warm"]
+            },
+            {
+                noun: "Corn",
+                article: "",
+                category: "food or vegetable",
+                categoryChoices: ["tool", "clothing", "food or vegetable"],
+                function: "eat it",
+                functionChoices: ["wear it", "rake with it", "eat it"]
+            },
+            {
+                noun: "Acorn",
+                article: "An",
+                category: "nut or seed",
+                categoryChoices: ["vegetable", "nut or seed", "tool"],
+                function: "feed animals",
+                functionChoices: ["eat it yourself", "feed animals", "wear it"]
+            },
+            {
+                noun: "Leaf",
+                article: "A",
+                category: "plant part",
+                categoryChoices: ["animal", "plant part", "food"],
+                function: "rake it",
+                functionChoices: ["eat it", "wear it", "rake it"]
+            },
+            {
+                noun: "Sweater",
+                article: "A",
+                category: "clothing",
+                categoryChoices: ["food", "clothing", "tool"],
+                function: "wear it to stay warm",
+                functionChoices: ["eat it", "wear it to stay warm", "throw it"]
+            },
+            {
+                noun: "Cider",
+                article: "",
+                category: "drink or beverage",
+                categoryChoices: ["food", "drink or beverage", "tool"],
+                function: "drink it",
+                functionChoices: ["wear it", "drink it", "throw it"]
+            },
+            {
+                noun: "Hayride",
+                article: "A",
+                category: "activity or ride",
+                categoryChoices: ["food", "activity or ride", "tool"],
+                function: "ride on it",
+                functionChoices: ["eat it", "wear it", "ride on it"]
+            },
+            {
+                noun: "Scarecrow",
+                article: "A",
+                category: "decoration",
+                categoryChoices: ["person", "animal", "decoration"],
+                function: "scare birds away",
+                functionChoices: ["eat it", "scare birds away", "wear it"]
+            },
+            {
+                noun: "Football",
+                article: "A",
+                category: "sports equipment or toy",
+                categoryChoices: ["food", "sports equipment or toy", "clothing"],
+                function: "throw it or play with it",
+                functionChoices: ["eat it", "wear it", "throw it or play with it"]
+            }
+        ];
+
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function createItemCard(item, index) {
+            const container = document.createElement('div');
+            container.className = index === 0 ? 'item-container active' : 'item-container';
+            container.id = `item-${index}`;
+            
+            container.innerHTML = `
+                <div class="item-card">
+                    <div class="noun-display">${item.noun}</div>
+                    
+                    <div class="sentence-frame">
+                        <div class="frame-part">
+                            <span class="frame-label">Category:</span>
+                            <span class="frame-text">${item.article} ${item.noun} is a</span>
+                            <input type="text" class="text-input" id="category-${index}" placeholder="type here">
+                        </div>
+                        
+                        <div class="frame-part">
+                            <span class="frame-label">Function:</span>
+                            <span class="frame-text">You can</span>
+                            <input type="text" class="text-input" id="function-${index}" placeholder="type here">
+                        </div>
+                    </div>
+                    
+                    <div class="help-section">
+                        <button class="help-btn" id="cat-help-${index}" onclick="showCategoryHelp(${index})">
+                            Help with Category
+                        </button>
+                        <button class="help-btn" id="func-help-${index}" onclick="showFunctionHelp(${index})">
+                            Help with Function
+                        </button>
+                        
+                        <div class="choices-container" id="cat-choices-${index}"></div>
+                        <div class="choices-container" id="func-choices-${index}"></div>
+                    </div>
+                    
+                    <div class="navigation-buttons">
+                        <button class="nav-arrow-btn" onclick="previousItem()" ${index === 0 ? 'disabled' : ''}>
+                            ← Previous
+                        </button>
+                        <button class="nav-arrow-btn" onclick="nextItem()" ${index === items.length - 1 ? 'disabled' : ''}>
+                            Next →
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return container;
+        }
+
+        function showCategoryHelp(index) {
+            const item = items[index];
+            const choicesDiv = document.getElementById(`cat-choices-${index}`);
+            const btn = document.getElementById(`cat-help-${index}`);
+            
+            if (choicesDiv.classList.contains('show')) {
+                return; // Already showing
+            }
+            
+            const shuffledChoices = shuffle(item.categoryChoices);
+            
+            choicesDiv.innerHTML = '<strong>Choose the category:</strong>';
+            shuffledChoices.forEach(choice => {
+                const choiceBtn = document.createElement('button');
+                choiceBtn.className = 'choice-btn';
+                choiceBtn.textContent = choice;
+                
+                choiceBtn.onclick = () => {
+                    // Only fill in the text box if correct
+                    if (choice === item.category) {
+                        document.getElementById(`category-${index}`).value = choice;
+                    }
+                    
+                    // Disable all choice buttons
+                    const allChoices = choicesDiv.querySelectorAll('.choice-btn');
+                    allChoices.forEach(btn => {
+                        btn.disabled = true;
+                        // Show which was correct
+                        if (btn.textContent === item.category) {
+                            btn.classList.add('correct');
+                        }
+                    });
+                    
+                    // Show if their choice was wrong
+                    if (choice !== item.category) {
+                        choiceBtn.classList.add('incorrect');
+                    }
+                };
+                
+                choicesDiv.appendChild(choiceBtn);
+            });
+            
+            choicesDiv.classList.add('show');
+            btn.disabled = true;
+            btn.textContent = 'Help Shown';
+        }
+
+        function showFunctionHelp(index) {
+            const item = items[index];
+            const choicesDiv = document.getElementById(`func-choices-${index}`);
+            const btn = document.getElementById(`func-help-${index}`);
+            
+            if (choicesDiv.classList.contains('show')) {
+                return; // Already showing
+            }
+            
+            const shuffledChoices = shuffle(item.functionChoices);
+            
+            choicesDiv.innerHTML = '<strong>Choose the function:</strong>';
+            shuffledChoices.forEach(choice => {
+                const choiceBtn = document.createElement('button');
+                choiceBtn.className = 'choice-btn';
+                choiceBtn.textContent = choice;
+                
+                choiceBtn.onclick = () => {
+                    // Only fill in the text box if correct
+                    if (choice === item.function) {
+                        document.getElementById(`function-${index}`).value = choice;
+                    }
+                    
+                    // Disable all choice buttons
+                    const allChoices = choicesDiv.querySelectorAll('.choice-btn');
+                    allChoices.forEach(btn => {
+                        btn.disabled = true;
+                        // Show which was correct
+                        if (btn.textContent === item.function) {
+                            btn.classList.add('correct');
+                        }
+                    });
+                    
+                    // Show if their choice was wrong
+                    if (choice !== item.function) {
+                        choiceBtn.classList.add('incorrect');
+                    }
+                };
+                
+                choicesDiv.appendChild(choiceBtn);
+            });
+            
+            choicesDiv.classList.add('show');
+            btn.disabled = true;
+            btn.textContent = 'Help Shown';
+        }
+
+        function goToItem(index) {
+            currentItem = index;
+            
+            // Hide all items
+            document.querySelectorAll('.item-container').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected item
+            document.getElementById(`item-${index}`).classList.add('active');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function nextItem() {
+            if (currentItem < items.length - 1) {
+                goToItem(currentItem + 1);
+            }
+        }
+
+        function previousItem() {
+            if (currentItem > 0) {
+                goToItem(currentItem - 1);
+            }
+        }
+
+        // Initialize
+        const navigation = document.getElementById('navigation');
+        const container = document.getElementById('items-container');
+        
+        // Create navigation buttons
+        items.forEach((item, index) => {
+            const navBtn = document.createElement('button');
+            navBtn.className = index === 0 ? 'nav-btn active' : 'nav-btn';
+            navBtn.textContent = item.noun;
+            navBtn.onclick = () => goToItem(index);
+            navigation.appendChild(navBtn);
+        });
+        
+        // Create all item cards
+        items.forEach((item, index) => {
+            container.appendChild(createItemCard(item, index));
+        });
+    </script>
+</body>
+</html>

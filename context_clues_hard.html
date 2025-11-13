@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Clues - Hard Level</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 3px solid #8b5cf6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            color: #8b5cf6;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: #8b5cf6;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 {
+            color: #8b5cf6;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .sentence-card {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .sentence-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #8b5cf6;
+            transition: width 0.3s ease;
+        }
+
+        .sentence-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sentence-number {
+            background: #8b5cf6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .clue-type {
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #8b5cf6;
+        }
+
+        .sentence-display {
+            background: #f9fafb;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .sentence-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #1f2937;
+        }
+
+        .target-word {
+            font-weight: 700;
+            color: #8b5cf6;
+            background: #ede9fe;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .question-section {
+            margin-bottom: 24px;
+        }
+
+        .question-text {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+
+        .hint-system {
+            margin: 24px 0;
+        }
+
+        .hint-btn {
+            background: white;
+            border: 2px solid #f59e0b;
+            color: #f59e0b;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .hint-btn:hover {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .hint-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .hint-content {
+            display: none;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .hint-content.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hint-content h4 {
+            font-size: 15px;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .hint-content p {
+            font-size: 15px;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .choices-container {
+            display: none;
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .choices-container.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .choices-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 12px;
+        }
+
+        .choice-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .choice-item:hover {
+            border-color: #3b82f6;
+            transform: translateX(4px);
+        }
+
+        .choice-item input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .feedback {
+            display: none;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback.positive {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+        }
+
+        .prev-btn {
+            background: white;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+        }
+
+        .prev-btn:hover:not(:disabled) {
+            border-color: #8b5cf6;
+            color: #8b5cf6;
+        }
+
+        .prev-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .next-btn {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            background: #7c3aed;
+        }
+
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🔍 Context Clues Activity</h1>
+            <div class="level-badge">Hard Level</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="info-box">
+            <h3>About This Activity</h3>
+            <p>Context clues help you figure out the meaning of unfamiliar words by looking at the words and sentences around them. Read each sentence carefully and use the clues to determine what the highlighted word means!</p>
+        </div>
+
+        <div id="sentenceContainer"></div>
+    </div>
+
+    <script>
+        const sentences = [
+            // Definition clues - rewritten to use context
+            {
+                text: "The <span class='target-word'>architect</span>, a professional who designs buildings and oversees their construction, presented plans for the new library.",
+                type: "Definition",
+                word: "architect",
+                hint: "The sentence explains what an architect does right after the word.",
+                choices: ["professional who designs buildings", "person who teaches students", "doctor who treats patients", "lawyer who defends clients"]
+            },
+            {
+                text: "The poet used a clever <span class='target-word'>metaphor</span>, a figure of speech that compares two things without using 'like' or 'as', to describe the sunset as a burning canvas.",
+                type: "Definition",
+                word: "metaphor",
+                hint: "Look for the explanation of what this literary device is.",
+                choices: ["comparison without 'like' or 'as'", "rhyming words at line ends", "repeated sounds in words", "exaggeration for effect"]
+            },
+            {
+                text: "Scientists must <span class='target-word'>analyze</span>, which means to examine something carefully and in detail to understand it better, the data from their experiments.",
+                type: "Definition",
+                word: "analyze",
+                hint: "The definition comes after 'which means'.",
+                choices: ["examine in detail", "ignore completely", "create quickly", "memorize perfectly"]
+            },
+            {
+                text: "In a <span class='target-word'>democracy</span>, a form of government where citizens have the power to elect their leaders, every vote matters.",
+                type: "Definition",
+                word: "democracy",
+                hint: "Find the part that explains this type of government.",
+                choices: ["government where citizens elect leaders", "government ruled by one person", "government with no laws", "government controlled by military"]
+            },
+            {
+                text: "She wrote her <span class='target-word'>autobiography</span>, a book in which the author writes about their own life, covering her childhood through her career.",
+                type: "Definition",
+                word: "autobiography",
+                hint: "The sentence tells you who writes this type of book and what it's about.",
+                choices: ["book about one's own life", "book about famous people", "book about science", "book about history"]
+            },
+
+            // Synonym clues
+            {
+                text: "The evidence was <span class='target-word'>substantial</span>, providing significant and considerable proof to support the scientific claim.",
+                type: "Synonym",
+                word: "substantial",
+                hint: "Look for words that mean the same as substantial.",
+                choices: ["significant and considerable", "weak and insufficient", "confusing and unclear", "simple and basic"]
+            },
+            {
+                text: "Her achievement was <span class='target-word'>remarkable</span>, truly exceptional and worthy of special attention and praise.",
+                type: "Synonym",
+                word: "remarkable",
+                hint: "Find other words that describe something impressive.",
+                choices: ["exceptional and noteworthy", "ordinary and common", "disappointing and poor", "accidental and unplanned"]
+            },
+            {
+                text: "The situation was <span class='target-word'>precarious</span>, dangerously unstable and uncertain, requiring immediate attention.",
+                type: "Synonym",
+                word: "precarious",
+                hint: "What words describe something dangerous and unstable?",
+                choices: ["unstable and uncertain", "safe and secure", "normal and routine", "pleasant and comfortable"]
+            },
+            {
+                text: "The author's writing style was <span class='target-word'>eloquent</span>, remarkably fluent and persuasive in expression.",
+                type: "Synonym",
+                word: "eloquent",
+                hint: "Look for words that describe impressive speaking or writing.",
+                choices: ["fluent and persuasive", "awkward and clumsy", "boring and dull", "brief and short"]
+            },
+            {
+                text: "The professor's explanation was <span class='target-word'>lucid</span>, remarkably clear and easy to understand despite the complex topic.",
+                type: "Synonym",
+                word: "lucid",
+                hint: "Find words that mean the opposite of confusing.",
+                choices: ["clear and understandable", "confusing and vague", "lengthy and detailed", "technical and specialized"]
+            },
+
+            // Antonym clues
+            {
+                text: "The speech was <span class='target-word'>concise</span>, not lengthy or wordy, getting straight to the point in just five minutes.",
+                type: "Antonym",
+                word: "concise",
+                hint: "The sentence tells you what concise is NOT.",
+                choices: ["not lengthy or wordy", "not short or brief", "not clear or simple", "not loud or quiet"]
+            },
+            {
+                text: "Her opinion was <span class='target-word'>objective</span>, not biased or influenced by personal feelings, based purely on facts.",
+                type: "Antonym",
+                word: "objective",
+                hint: "Look for what objective is NOT to understand what it IS.",
+                choices: ["not biased or emotional", "not factual or accurate", "not important or relevant", "not simple or easy"]
+            },
+            {
+                text: "The research findings were <span class='target-word'>significant</span>, not trivial or minor, fundamentally changing how scientists understood the disease.",
+                type: "Antonym",
+                word: "significant",
+                hint: "Find the opposite words to determine the meaning.",
+                choices: ["not trivial or minor", "not accurate or correct", "not interesting or engaging", "not recent or new"]
+            },
+            {
+                text: "The student's argument was <span class='target-word'>logical</span>, not irrational or emotional, with each point building systematically on the previous one.",
+                type: "Antonym",
+                word: "logical",
+                hint: "The sentence shows what logical is NOT.",
+                choices: ["not irrational", "not lengthy", "not creative", "not simple"]
+            },
+            {
+                text: "The procedure was <span class='target-word'>systematic</span>, not random or haphazard, following a clear organized method every time.",
+                type: "Antonym",
+                word: "systematic",
+                hint: "Look for the opposite of systematic to understand its meaning.",
+                choices: ["not random or disorganized", "not quick or fast", "not difficult or complex", "not expensive or costly"]
+            },
+
+            // Example clues
+            {
+                text: "The conference included <span class='target-word'>delegates</span> from various countries, such as representatives from Japan, Brazil, South Africa, and Germany.",
+                type: "Example",
+                word: "delegates",
+                hint: "What are the people from different countries examples of?",
+                choices: ["official representatives", "tourists visiting", "athletes competing", "students learning"]
+            },
+            {
+                text: "The museum displayed many historical <span class='target-word'>manuscripts</span>, including handwritten letters from Lincoln, ancient scrolls, and original documents from the Revolutionary War.",
+                type: "Example",
+                word: "manuscripts",
+                hint: "Think about what letters, scrolls, and documents all are.",
+                choices: ["handwritten historical documents", "modern printed books", "electronic devices", "artistic paintings"]
+            },
+            {
+                text: "We studied various natural <span class='target-word'>phenomena</span> in science class, such as gravity, magnetism, lightning, and photosynthesis.",
+                type: "Example",
+                word: "phenomena",
+                hint: "What do gravity, magnetism, and lightning all represent?",
+                choices: ["observable natural events", "man-made inventions", "mathematical equations", "historical periods"]
+            },
+            {
+                text: "The patient experienced multiple <span class='target-word'>symptoms</span>, including persistent fever, severe headache, fatigue, and loss of appetite.",
+                type: "Example",
+                word: "symptoms",
+                hint: "What do fever, headache, and fatigue indicate?",
+                choices: ["signs of illness", "types of medicine", "medical treatments", "healthy behaviors"]
+            },
+            {
+                text: "The company implemented new <span class='target-word'>protocols</span>, such as safety procedures, quality control checks, and communication guidelines for all employees.",
+                type: "Example",
+                word: "protocols",
+                hint: "Think about what procedures, checks, and guidelines all are.",
+                choices: ["official procedures or rules", "computer programs", "employee benefits", "building materials"]
+            },
+
+            // Inference clues
+            {
+                text: "The <span class='target-word'>plaintiff</span> brought the case to court, claiming that the company had wronged them and seeking financial compensation for damages.",
+                type: "Inference",
+                word: "plaintiff",
+                hint: "Think about who brings a case to court seeking compensation.",
+                choices: ["person filing a lawsuit", "judge making decisions", "lawyer defending someone", "witness providing testimony"]
+            },
+            {
+                text: "Due to the severe <span class='target-word'>drought</span>, the farmers watched helplessly as their crops withered and died without any rainfall for six months.",
+                type: "Inference",
+                word: "drought",
+                hint: "What causes crops to die from lack of water?",
+                choices: ["extended period without rain", "severe winter storm", "spring flooding", "summer heat wave"]
+            },
+            {
+                text: "The team worked tirelessly to <span class='target-word'>decipher</span> the coded message, trying various methods and techniques to figure out its hidden meaning.",
+                type: "Inference",
+                word: "decipher",
+                hint: "What are they trying to do with a coded message?",
+                choices: ["decode or figure out", "create or write", "memorize or remember", "destroy or erase"]
+            },
+            {
+                text: "The government issued a <span class='target-word'>mandate</span> requiring all businesses to follow the new safety regulations or face substantial penalties and fines.",
+                type: "Inference",
+                word: "mandate",
+                hint: "Think about what governments issue when they require people to do something.",
+                choices: ["official order or requirement", "helpful suggestion", "polite request", "optional guideline"]
+            },
+            {
+                text: "The leaders tried to <span class='target-word'>negotiate</span> a peace agreement, meeting for hours to find terms and conditions that both sides could accept.",
+                type: "Inference",
+                word: "negotiate",
+                hint: "What are leaders doing when they try to reach an agreement?",
+                choices: ["discuss to reach agreement", "fight against each other", "avoid all contact", "celebrate a victory"]
+            }
+        ];
+
+        let currentIndex = 0;
+        const shuffledSentences = shuffleArray([...sentences]);
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function loadSentences() {
+            const container = document.getElementById('sentenceContainer');
+            container.innerHTML = '';
+
+            shuffledSentences.forEach((sentence, index) => {
+                const shuffledChoices = shuffleArray([...sentence.choices]);
+                const card = document.createElement('div');
+                card.className = 'sentence-card';
+                if (index === 0) card.classList.add('active');
+                card.dataset.index = index;
+
+                const progress = ((index + 1) / shuffledSentences.length) * 100;
+
+                card.innerHTML = `
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
+                    </div>
+
+                    <div class="sentence-info">
+                        <span class="sentence-number">Question ${index + 1} of ${shuffledSentences.length}</span>
+                        <span class="clue-type">${sentence.type} Clue</span>
+                    </div>
+
+                    <div class="sentence-display">
+                        <div class="sentence-text">${sentence.text}</div>
+                    </div>
+
+                    <div class="question-section">
+                        <div class="question-text">What does "<strong>${sentence.word}</strong>" mean?</div>
+                        <textarea class="answer-input" id="answer-${index}" placeholder="Type your answer here..."></textarea>
+                    </div>
+
+                    <div class="hint-system">
+                        <button class="hint-btn" onclick="showHint(${index})">💡 Need a Hint?</button>
+                        <div class="hint-content" id="hint-${index}">
+                            <h4>💡 Hint:</h4>
+                            <p>${sentence.hint}</p>
+                        </div>
+
+                        <button class="hint-btn" id="choices-btn-${index}" onclick="showChoices(${index})" style="display:none;">📋 Show Answer Choices</button>
+                        <div class="choices-container" id="choices-${index}">
+                            <div class="choices-title">Choose the best answer:</div>
+                            ${shuffledChoices.map((choice, i) => `
+                                <label class="choice-item">
+                                    <input type="radio" name="choice-${index}" value="${choice}" onchange="selectChoice(${index}, '${choice.replace(/'/g, "\\'")}')">
+                                    <span>${choice}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="feedback positive" id="feedback-${index}">
+                        Outstanding work! Your context clue skills are excellent!
+                    </div>
+
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" onclick="previousSentence()" ${index === 0 ? 'disabled' : ''}>← Previous</button>
+                        <button class="nav-btn next-btn" onclick="nextSentence()" ${index === shuffledSentences.length - 1 ? 'disabled' : ''}>Next →</button>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function showHint(index) {
+            const hintElement = document.getElementById(`hint-${index}`);
+            const choicesBtn = document.getElementById(`choices-btn-${index}`);
+            const feedbackElement = document.getElementById(`feedback-${index}`);
+
+            hintElement.classList.add('show');
+            choicesBtn.style.display = 'block';
+            event.target.disabled = true;
+
+            if (!feedbackElement.classList.contains('show')) {
+                feedbackElement.classList.add('show');
+            }
+        }
+
+        function showChoices(index) {
+            const choicesElement = document.getElementById(`choices-${index}`);
+            choicesElement.classList.add('show');
+            event.target.disabled = true;
+        }
+
+        function selectChoice(index, choice) {
+            const textarea = document.getElementById(`answer-${index}`);
+            textarea.value = choice;
+        }
+
+        function nextSentence() {
+            if (currentIndex < shuffledSentences.length - 1) {
+                currentIndex++;
+                updateDisplay();
+            }
+        }
+
+        function previousSentence() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            document.querySelectorAll('.sentence-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            const activeCard = document.querySelector(`[data-index="${currentIndex}"]`);
+            if (activeCard) {
+                activeCard.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        loadSentences();
+    </script>
+</body>
+</html>

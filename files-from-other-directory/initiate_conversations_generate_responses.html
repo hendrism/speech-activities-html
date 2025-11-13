@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Response Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 36px rgba(15, 23, 42, 0.35);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
+            color: white;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .nav-bar {
+            background: #f8fafc;
+            padding: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .nav-buttons {
+            display: inline-flex;
+            gap: 8px;
+        }
+        
+        .nav-btn {
+            padding: 8px 16px;
+            border: none;
+            background: white;
+            color: #6366f1;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .nav-btn:hover {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        
+        .nav-btn.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        
+        .scenario {
+            display: none;
+            padding: 40px;
+        }
+        
+        .scenario.active {
+            display: block;
+        }
+        
+        .scenario-header {
+            margin-bottom: 28px;
+        }
+        
+        .scenario-title {
+            color: #6366f1;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .difficulty.easy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .difficulty.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .difficulty.hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .scenario-description {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #6366f1;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+        
+        .scenario-instruction {
+            background: rgba(99, 102, 241, 0.12);
+            border: 2px solid rgba(99, 102, 241, 0.25);
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            color: #4338ca;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .speaker-line {
+            background: #f1f5ff;
+            border: 2px solid rgba(99, 102, 241, 0.35);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .speaker-icon {
+            background: #6366f1;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .speaker-text {
+            font-size: 15px;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+        
+        .exchange {
+            margin-bottom: 24px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .exchange-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .exchange-number {
+            font-weight: 700;
+            color: #6366f1;
+            font-size: 18px;
+        }
+        
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .remove-btn:hover {
+            background: #c82333;
+        }
+        
+        .input-group {
+            margin-bottom: 16px;
+        }
+        
+        .input-label {
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 90px;
+            transition: border-color 0.3s;
+            background: white;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        
+        .add-exchange-btn {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 18px;
+            transition: background 0.3s;
+        }
+        
+        .add-exchange-btn:hover {
+            background: #0284c7;
+        }
+        
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .next-btn, .prev-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .next-btn:hover, .prev-btn:hover {
+            background: #4f46e5;
+        }
+        
+        .prev-btn:disabled, .next-btn:disabled {
+            background: #cbd5f5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Conversation Response Generator</h1>
+            <p>For each scenario, read what the other person says. Create at least two different ways you could respond, and predict how they might reply to each option.</p>
+        </div>
+        
+        <div class="nav-bar">
+            <div class="nav-buttons" id="navButtons"></div>
+        </div>
+        
+        <div id="scenarios"></div>
+    </div>
+
+    <script>
+        const scenarios = [
+            {
+                name: "Group Chat Mix-Up",
+                difficulty: "easy",
+                description: "You texted a funny inside joke meant for your close friend Alex, but it accidentally sent to your whole study group.",
+                person: "Close friend (friendly tone)",
+                comment: "\"Lol that was meant for me, right? What are you doing?\""
+            },
+            {
+                name: "Coach Feedback",
+                difficulty: "easy",
+                description: "After practice, your coach pulls you aside about the way you handled a drill.",
+                person: "Coach (supportive but firm)",
+                comment: "\"I noticed you rushed that drill—what happened out there?\""
+            },
+            {
+                name: "Teacher Check-In",
+                difficulty: "medium",
+                description: "Your teacher emailed your parent about missing homework. The next day, the teacher asks you about it before class starts.",
+                person: "Teacher (concerned tone)",
+                comment: "\"We need to talk about those missing assignments. Can you explain what's going on?\""
+            },
+            {
+                name: "Classmate Critique",
+                difficulty: "medium",
+                description: "A classmate you don’t know well was assigned to peer review your essay. They hand it back with several notes.",
+                person: "Peer reviewer (neutral tone)",
+                comment: "\"I marked a bunch of spots. Do you want me to explain any of them?\""
+            },
+            {
+                name: "Sibling Interrupts",
+                difficulty: "medium",
+                description: "You're talking on the phone with a friend when your younger sibling barges in and complains loudly.",
+                person: "Younger sibling (annoyed tone)",
+                comment: "\"Can you get off the phone? You promised I'd get the room in five minutes!\""
+            },
+            {
+                name: "Group Project Disagreement",
+                difficulty: "medium",
+                description: "During a group meeting, one member dismisses your suggestion without listening.",
+                person: "Group member (dismissive tone)",
+                comment: "\"Yeah, that idea won’t work. Let’s move on.\""
+            },
+            {
+                name: "New Student Introduction",
+                difficulty: "medium",
+                description: "A new student sits next to you at lunch; you’ve never met before.",
+                person: "New student (friendly tone)",
+                comment: "\"Hi, I’m Jordan. I don’t really know anyone yet—do you mind if I sit here?\""
+            },
+            {
+                name: "Bus Ride Conflict",
+                difficulty: "hard",
+                description: "On the bus, someone you don’t get along with sits beside you and makes a sarcastic comment about your outfit.",
+                person: "Acquaintance (sarcastic tone)",
+                comment: "\"Wow, bold outfit today. Trying to get noticed?\""
+            },
+            {
+                name: "Boss at Part-Time Job",
+                difficulty: "hard",
+                description: "Your manager at your after-school job is frustrated because you arrived five minutes late.",
+                person: "Manager (frustrated tone)",
+                comment: "\"This keeps happening. Do you take this job seriously or not?\""
+            },
+            {
+                name: "Friend in Crisis",
+                difficulty: "hard",
+                description: "Your best friend calls you crying after a big argument with their parent.",
+                person: "Close friend (upset tone)",
+                comment: "\"I can’t believe they said that to me. I don’t even know what to do.\""
+            }
+        ];
+
+        let currentScenario = 0;
+        const scenarioData = {};
+
+        function initializeData() {
+            scenarios.forEach((scenario, index) => {
+                scenarioData[index] = {
+                    exchanges: [
+                        { response: '', predicted: '' },
+                        { response: '', predicted: '' }
+                    ]
+                };
+            });
+        }
+
+        function createNavButtons() {
+            const navContainer = document.getElementById('navButtons');
+            scenarios.forEach((scenario, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn';
+                btn.textContent = scenario.name;
+                btn.onclick = () => showScenario(index);
+                navContainer.appendChild(btn);
+            });
+        }
+
+        function createScenarios() {
+            const container = document.getElementById('scenarios');
+            scenarios.forEach((scenario, index) => {
+                const scenarioDiv = document.createElement('div');
+                scenarioDiv.className = 'scenario';
+                scenarioDiv.id = `scenario-${index}`;
+                
+                scenarioDiv.innerHTML = `
+                    <div class="scenario-header">
+                        <h2 class="scenario-title">${scenario.name}</h2>
+                        <span class="difficulty ${scenario.difficulty}">${scenario.difficulty.toUpperCase()}</span>
+                        <div class="scenario-description">${scenario.description}</div>
+                        <div class="scenario-instruction">
+                            Listener: <strong>${scenario.person}</strong>
+                        </div>
+                        <div class="speaker-line">
+                            <div class="speaker-icon">🙋‍♂️</div>
+                            <div class="speaker-text"><strong>They say:</strong> ${scenario.comment}</div>
+                        </div>
+                        <div class="scenario-instruction">
+                            Create at least two ways to respond or follow up. For each option, predict how the other person might answer.
+                        </div>
+                    </div>
+                    <div id="exchanges-${index}"></div>
+                    <button class="add-exchange-btn" onclick="addExchange(${index})">+ Add Another Response Option</button>
+                    <div class="bottom-nav">
+                        <button class="prev-btn" onclick="previousScenario()" ${index === 0 ? 'disabled' : ''}>← Previous</button>
+                        <button class="next-btn" onclick="nextScenario()" ${index === scenarios.length - 1 ? 'disabled' : ''}>Next →</button>
+                    </div>
+                `;
+                
+                container.appendChild(scenarioDiv);
+            });
+        }
+
+        function renderExchanges(scenarioIndex) {
+            const exchangesContainer = document.getElementById(`exchanges-${scenarioIndex}`);
+            const data = scenarioData[scenarioIndex];
+            
+            exchangesContainer.innerHTML = '';
+            
+            data.exchanges.forEach((exchange, exchangeIndex) => {
+                const exchangeDiv = document.createElement('div');
+                exchangeDiv.className = 'exchange';
+                
+                exchangeDiv.innerHTML = `
+                    <div class="exchange-header">
+                        <span class="exchange-number">Response Option ${exchangeIndex + 1}</span>
+                        ${data.exchanges.length > 2 ? `<button class="remove-btn" onclick="removeExchange(${scenarioIndex}, ${exchangeIndex})">Remove</button>` : ''}
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">What I'll say / follow up with:</label>
+                            <textarea 
+                                placeholder="Write a possible response or follow-up question..."
+                                oninput="updateData(${scenarioIndex}, ${exchangeIndex}, 'response', this.value)"
+                            >${exchange.response}</textarea>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Predicted reaction:</label>
+                            <textarea 
+                                placeholder="How might they answer or react to your response?"
+                                oninput="updateData(${scenarioIndex}, ${exchangeIndex}, 'predicted', this.value)"
+                            >${exchange.predicted}</textarea>
+                        </div>
+                    </div>
+                `;
+                
+                exchangesContainer.appendChild(exchangeDiv);
+            });
+        }
+
+        function updateData(scenarioIndex, exchangeIndex, field, value) {
+            scenarioData[scenarioIndex].exchanges[exchangeIndex][field] = value;
+        }
+
+        function addExchange(scenarioIndex) {
+            scenarioData[scenarioIndex].exchanges.push({ response: '', predicted: '' });
+            renderExchanges(scenarioIndex);
+        }
+
+        function removeExchange(scenarioIndex, exchangeIndex) {
+            if (scenarioData[scenarioIndex].exchanges.length <= 2) return;
+            scenarioData[scenarioIndex].exchanges.splice(exchangeIndex, 1);
+            renderExchanges(scenarioIndex);
+        }
+
+        function showScenario(index) {
+            document.querySelectorAll('.scenario').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(`scenario-${index}`).classList.add('active');
+            document.querySelectorAll('.nav-btn')[index].classList.add('active');
+            
+            currentScenario = index;
+            renderExchanges(index);
+        }
+
+        function nextScenario() {
+            if (currentScenario < scenarios.length - 1) {
+                showScenario(currentScenario + 1);
+            }
+        }
+
+        function previousScenario() {
+            if (currentScenario > 0) {
+                showScenario(currentScenario - 1);
+            }
+        }
+
+        // Initialize
+        initializeData();
+        createNavButtons();
+        createScenarios();
+        showScenario(0);
+    </script>
+</body>
+</html>

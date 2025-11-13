@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Clues - Easy Level</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 3px solid #22c55e;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            color: #22c55e;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 {
+            color: #22c55e;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .sentence-card {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .sentence-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #22c55e;
+            transition: width 0.3s ease;
+        }
+
+        .sentence-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sentence-number {
+            background: #22c55e;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .clue-type {
+            background: #dcfce7;
+            color: #166534;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #22c55e;
+        }
+
+        .sentence-display {
+            background: #f9fafb;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            border-left: 4px solid #22c55e;
+        }
+
+        .sentence-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #1f2937;
+        }
+
+        .target-word {
+            font-weight: 700;
+            color: #22c55e;
+            background: #dcfce7;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .question-section {
+            margin-bottom: 24px;
+        }
+
+        .question-text {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #22c55e;
+        }
+
+        .hint-system {
+            margin: 24px 0;
+        }
+
+        .hint-btn {
+            background: white;
+            border: 2px solid #f59e0b;
+            color: #f59e0b;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .hint-btn:hover {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .hint-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .hint-content {
+            display: none;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .hint-content.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hint-content h4 {
+            font-size: 15px;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .hint-content p {
+            font-size: 15px;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .choices-container {
+            display: none;
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .choices-container.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .choices-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 12px;
+        }
+
+        .choice-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .choice-item:hover {
+            border-color: #3b82f6;
+            transform: translateX(4px);
+        }
+
+        .choice-item input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .feedback {
+            display: none;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback.positive {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+        }
+
+        .prev-btn {
+            background: white;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+        }
+
+        .prev-btn:hover:not(:disabled) {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .prev-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .next-btn {
+            background: #22c55e;
+            color: white;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            background: #16a34a;
+        }
+
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🔍 Context Clues Activity</h1>
+            <div class="level-badge">Easy Level</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="info-box">
+            <h3>About This Activity</h3>
+            <p>Context clues help you figure out the meaning of unfamiliar words by looking at the words and sentences around them. Read each sentence carefully and use the clues to determine what the highlighted word means!</p>
+        </div>
+
+        <div id="sentenceContainer"></div>
+    </div>
+
+    <script>
+        const sentences = [
+            // Definition clues - rewritten to use context
+            {
+                text: "My best <span class='target-word'>friend</span>, someone who likes me and I like them back, invited me to her birthday party.",
+                type: "Definition",
+                word: "friend",
+                hint: "Look for the part that explains what a friend is. It's right after the word.",
+                choices: ["a person you like and who likes you", "a book you read", "a game you play", "a place you visit"]
+            },
+            {
+                text: "Mom told us to <span class='target-word'>whisper</span>, to talk very quietly, because the baby was sleeping.",
+                type: "Definition",
+                word: "whisper",
+                hint: "The sentence tells you how to whisper. What does it mean to talk this way?",
+                choices: ["to talk very quietly", "to talk very loudly", "to run very fast", "to walk very slowly"]
+            },
+            {
+                text: "I jumped over the <span class='target-word'>puddle</span>, a small pool of water on the ground, so my shoes wouldn't get wet.",
+                type: "Definition",
+                word: "puddle",
+                hint: "Look for what a puddle is described as - it comes right after the word.",
+                choices: ["a small pool of water", "a big rock", "a tall tree", "a soft pillow"]
+            },
+            {
+                text: "The joke made me <span class='target-word'>giggle</span>, which means to laugh in a silly, quiet way.",
+                type: "Definition",
+                word: "giggle",
+                hint: "The sentence explains what giggling means. Look after the word 'means'.",
+                choices: ["to laugh quietly", "to cry loudly", "to run quickly", "to sleep deeply"]
+            },
+            {
+                text: "I ate a <span class='target-word'>snack</span>, a small amount of food between meals, because I was a little hungry.",
+                type: "Definition",
+                word: "snack",
+                hint: "Find the part that tells you when and how much food a snack is.",
+                choices: ["a small amount of food", "a big dinner", "a warm drink", "a cold dessert"]
+            },
+
+            // Synonym clues
+            {
+                text: "The puppy was <span class='target-word'>tiny</span>; it was so small it fit in my hand!",
+                type: "Synonym",
+                word: "tiny",
+                hint: "Look for another word in the sentence that means the same as tiny.",
+                choices: ["very small", "very large", "very loud", "very quiet"]
+            },
+            {
+                text: "I was <span class='target-word'>glad</span> to see my friend; I felt so happy when she arrived.",
+                type: "Synonym",
+                word: "glad",
+                hint: "Find a word that means the same thing as glad.",
+                choices: ["happy", "angry", "tired", "hungry"]
+            },
+            {
+                text: "The baby was <span class='target-word'>sleepy</span> and tired after playing all day.",
+                type: "Synonym",
+                word: "sleepy",
+                hint: "What word in the sentence means the same as sleepy?",
+                choices: ["tired", "awake", "excited", "scared"]
+            },
+            {
+                text: "The ice cream was <span class='target-word'>delicious</span>; it tasted really good and I wanted more.",
+                type: "Synonym",
+                word: "delicious",
+                hint: "Look for words that tell you how the ice cream tasted.",
+                choices: ["tasted really good", "tasted really bad", "looked very big", "felt very cold"]
+            },
+            {
+                text: "The test was <span class='target-word'>easy</span>; it was so simple that I finished quickly.",
+                type: "Synonym",
+                word: "easy",
+                hint: "Find another word that describes something that's not hard.",
+                choices: ["simple", "difficult", "long", "short"]
+            },
+
+            // Antonym clues
+            {
+                text: "The pillow was <span class='target-word'>soft</span>, not hard like a rock.",
+                type: "Antonym",
+                word: "soft",
+                hint: "The sentence tells you what soft is NOT. Think of the opposite.",
+                choices: ["not hard", "not small", "not fast", "not cold"]
+            },
+            {
+                text: "My backpack was <span class='target-word'>heavy</span>, not light, and it hurt my shoulders.",
+                type: "Antonym",
+                word: "heavy",
+                hint: "Look for the word 'not' - it shows you the opposite of heavy.",
+                choices: ["not light", "not dark", "not big", "not wet"]
+            },
+            {
+                text: "The turtle was <span class='target-word'>slow</span>, not fast like the rabbit.",
+                type: "Antonym",
+                word: "slow",
+                hint: "What is the opposite of slow? The sentence tells you.",
+                choices: ["not fast", "not big", "not small", "not green"]
+            },
+            {
+                text: "The room was <span class='target-word'>dark</span>, not bright, so we turned on the lights.",
+                type: "Antonym",
+                word: "dark",
+                hint: "Find what dark is NOT to understand what it IS.",
+                choices: ["not bright", "not clean", "not messy", "not quiet"]
+            },
+            {
+                text: "My hands were <span class='target-word'>dirty</span>, not clean, after playing in the mud.",
+                type: "Antonym",
+                word: "dirty",
+                hint: "The opposite of dirty is mentioned in the sentence.",
+                choices: ["not clean", "not dry", "not warm", "not soft"]
+            },
+
+            // Example clues
+            {
+                text: "We saw many <span class='target-word'>insects</span>, like bees, ants, and butterflies, in the garden.",
+                type: "Example",
+                word: "insects",
+                hint: "Look at the examples given. What are bees, ants, and butterflies?",
+                choices: ["small bugs", "big animals", "pretty flowers", "tall trees"]
+            },
+            {
+                text: "I like to eat <span class='target-word'>fruit</span>, such as apples, bananas, and grapes, for a healthy snack.",
+                type: "Example",
+                word: "fruit",
+                hint: "The examples tell you what fruit is. What do apples, bananas, and grapes have in common?",
+                choices: ["healthy foods from plants", "types of candy", "different drinks", "kinds of bread"]
+            },
+            {
+                text: "The farm had many <span class='target-word'>animals</span>, including cows, pigs, and chickens.",
+                type: "Example",
+                word: "animals",
+                hint: "Think about what cows, pigs, and chickens all are.",
+                choices: ["living creatures", "farm buildings", "types of food", "kinds of plants"]
+            },
+            {
+                text: "We played different <span class='target-word'>games</span>, like tag, hide and seek, and hopscotch, at recess.",
+                type: "Example",
+                word: "games",
+                hint: "What do tag, hide and seek, and hopscotch have in common?",
+                choices: ["fun activities to play", "things to eat", "books to read", "places to visit"]
+            },
+            {
+                text: "Mom bought <span class='target-word'>vegetables</span>, such as carrots, broccoli, and tomatoes, at the store.",
+                type: "Example",
+                word: "vegetables",
+                hint: "Look at the examples. What kind of foods are carrots, broccoli, and tomatoes?",
+                choices: ["healthy plant foods", "sweet desserts", "cold drinks", "hot soups"]
+            },
+
+            // Inference clues
+            {
+                text: "She was <span class='target-word'>hungry</span> because she hadn't eaten all day and her stomach was growling loudly.",
+                type: "Inference",
+                word: "hungry",
+                hint: "Think about how you feel when you haven't eaten and your stomach growls.",
+                choices: ["wanting to eat food", "wanting to sleep", "wanting to play", "wanting to read"]
+            },
+            {
+                text: "The boy was <span class='target-word'>excited</span> about his birthday party and couldn't stop smiling and jumping around.",
+                type: "Inference",
+                word: "excited",
+                hint: "When someone smiles a lot and jumps around, how are they feeling?",
+                choices: ["very happy and eager", "very sad and upset", "very tired and sleepy", "very angry and mad"]
+            },
+            {
+                text: "After playing outside in the hot sun all day, I was really <span class='target-word'>thirsty</span> and drank three glasses of water.",
+                type: "Inference",
+                word: "thirsty",
+                hint: "What do you need when you've been in the sun and you drink lots of water?",
+                choices: ["needing a drink", "needing food", "needing sleep", "needing a bath"]
+            },
+            {
+                text: "The kitten was <span class='target-word'>afraid</span> of the loud thunder and hid under the bed shaking.",
+                type: "Inference",
+                word: "afraid",
+                hint: "When someone hides and shakes because of loud noises, what are they feeling?",
+                choices: ["scared or frightened", "happy or joyful", "hungry or starving", "tired or sleepy"]
+            },
+            {
+                text: "She felt <span class='target-word'>proud</span> when she won first place in the race and smiled as everyone clapped for her.",
+                type: "Inference",
+                word: "proud",
+                hint: "How do you feel when you win something and people clap for you?",
+                choices: ["feeling good about yourself", "feeling bad about yourself", "feeling sick", "feeling cold"]
+            }
+        ];
+
+        let currentIndex = 0;
+        const shuffledSentences = shuffleArray([...sentences]);
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function loadSentences() {
+            const container = document.getElementById('sentenceContainer');
+            container.innerHTML = '';
+
+            shuffledSentences.forEach((sentence, index) => {
+                const shuffledChoices = shuffleArray([...sentence.choices]);
+                const card = document.createElement('div');
+                card.className = 'sentence-card';
+                if (index === 0) card.classList.add('active');
+                card.dataset.index = index;
+
+                const progress = ((index + 1) / shuffledSentences.length) * 100;
+
+                card.innerHTML = `
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
+                    </div>
+
+                    <div class="sentence-info">
+                        <span class="sentence-number">Question ${index + 1} of ${shuffledSentences.length}</span>
+                        <span class="clue-type">${sentence.type} Clue</span>
+                    </div>
+
+                    <div class="sentence-display">
+                        <div class="sentence-text">${sentence.text}</div>
+                    </div>
+
+                    <div class="question-section">
+                        <div class="question-text">What does "<strong>${sentence.word}</strong>" mean?</div>
+                        <textarea class="answer-input" id="answer-${index}" placeholder="Type your answer here..."></textarea>
+                    </div>
+
+                    <div class="hint-system">
+                        <button class="hint-btn" onclick="showHint(${index})">💡 Need a Hint?</button>
+                        <div class="hint-content" id="hint-${index}">
+                            <h4>💡 Hint:</h4>
+                            <p>${sentence.hint}</p>
+                        </div>
+
+                        <button class="hint-btn" id="choices-btn-${index}" onclick="showChoices(${index})" style="display:none;">📋 Show Answer Choices</button>
+                        <div class="choices-container" id="choices-${index}">
+                            <div class="choices-title">Choose the best answer:</div>
+                            ${shuffledChoices.map((choice, i) => `
+                                <label class="choice-item">
+                                    <input type="radio" name="choice-${index}" value="${choice}" onchange="selectChoice(${index}, '${choice.replace(/'/g, "\\'")}')">
+                                    <span>${choice}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="feedback positive" id="feedback-${index}">
+                        Great job! Keep using context clues to figure out word meanings!
+                    </div>
+
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" onclick="previousSentence()" ${index === 0 ? 'disabled' : ''}>← Previous</button>
+                        <button class="nav-btn next-btn" onclick="nextSentence()" ${index === shuffledSentences.length - 1 ? 'disabled' : ''}>Next →</button>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function showHint(index) {
+            const hintElement = document.getElementById(`hint-${index}`);
+            const choicesBtn = document.getElementById(`choices-btn-${index}`);
+            const feedbackElement = document.getElementById(`feedback-${index}`);
+
+            hintElement.classList.add('show');
+            choicesBtn.style.display = 'block';
+            event.target.disabled = true;
+
+            if (!feedbackElement.classList.contains('show')) {
+                feedbackElement.classList.add('show');
+            }
+        }
+
+        function showChoices(index) {
+            const choicesElement = document.getElementById(`choices-${index}`);
+            choicesElement.classList.add('show');
+            event.target.disabled = true;
+        }
+
+        function selectChoice(index, choice) {
+            const textarea = document.getElementById(`answer-${index}`);
+            textarea.value = choice;
+        }
+
+        function nextSentence() {
+            if (currentIndex < shuffledSentences.length - 1) {
+                currentIndex++;
+                updateDisplay();
+            }
+        }
+
+        function previousSentence() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            document.querySelectorAll('.sentence-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            const activeCard = document.querySelector(`[data-index="${currentIndex}"]`);
+            if (activeCard) {
+                activeCard.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        loadSentences();
+    </script>
+</body>
+</html>

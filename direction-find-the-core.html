@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find the Core Highlighter</title>
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --purple-dark: #5b21b6;
+      --green: #10b981;
+      --muted: #6b7280;
+      --ink: #111827;
+      --surface: #ffffff;
+      --bg: radial-gradient(circle at top, #ede9fe 0%, #f8fafc 55%, #eef2ff 100%);
+      --shadow: 0 16px 28px rgba(124, 58, 237, 0.16);
+      --border: 1px solid rgba(124, 58, 237, 0.18);
+      --radius: 20px;
+      --max: 860px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      width: min(94%, var(--max));
+      padding: 40px 0 64px;
+      display: grid;
+      gap: 24px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px 26px 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 32px);
+      color: var(--purple-dark);
+    }
+
+    .quick-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .quick-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.14);
+      color: var(--purple-dark);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      gap: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--purple-dark);
+    }
+
+    .direction-card {
+      background: rgba(248, 250, 252, 0.95);
+      border-radius: 18px;
+      border: 2px solid rgba(124, 58, 237, 0.16);
+      padding: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.16);
+      color: var(--purple-dark);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .direction-text {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .token-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .token {
+      padding: 8px 11px;
+      border-radius: 12px;
+      border: 2px dashed rgba(148, 163, 184, 0.4);
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.92);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .token:hover {
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .token.selected {
+      border-color: var(--purple);
+      border-style: solid;
+      background: rgba(233, 213, 255, 0.52);
+      box-shadow: 0 10px 20px rgba(124, 58, 237, 0.16);
+    }
+
+    .token.correct {
+      border-color: var(--green);
+      background: rgba(209, 250, 229, 0.8);
+      color: #065f46;
+    }
+
+    .token.missed {
+      border-color: #f97316;
+      background: rgba(254, 215, 170, 0.7);
+      color: #7c2d12;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(124, 58, 237, 0.12);
+      color: var(--purple-dark);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: #fff;
+      box-shadow: 0 14px 24px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-outline {
+      background: #fff;
+      border: 2px solid rgba(124, 58, 237, 0.28);
+      color: var(--purple-dark);
+    }
+
+    .btn-primary:hover,
+    .btn-outline:hover {
+      transform: translateY(-1px);
+    }
+
+    .feedback {
+      display: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .feedback.good {
+      background: rgba(16, 185, 129, 0.18);
+      color: #047857;
+      border: 2px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .feedback.try {
+      background: rgba(234, 179, 8, 0.18);
+      color: #713f12;
+      border: 2px solid rgba(234, 179, 8, 0.35);
+    }
+
+    .mini-title {
+      margin: 10px 0 2px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scenario-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .scenario-btn {
+      border: 2px dashed rgba(124, 58, 237, 0.28);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--purple-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 12px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .scenario-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--purple);
+    }
+
+    .scenario-btn.active {
+      border-style: solid;
+      background: rgba(233, 213, 255, 0.55);
+      box-shadow: 0 8px 18px rgba(124, 58, 237, 0.18);
+    }
+
+    @media (max-width: 600px) {
+      header, section {
+        padding: 22px;
+      }
+      .quick-tag {
+        font-size: 13px;
+      }
+      .token {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Find the Core</h1>
+      <div class="quick-steps">
+        <span class="quick-tag">👀 Tap the verbs and must-do parts</span>
+        <span class="quick-tag">📝 Shrink the sentence to the command</span>
+        <span class="quick-tag">🚫 Ignore extra reasons or comments</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Highlight what matters</h2>
+      <div class="direction-card">
+        <span class="badge" id="scenarioTag"></span>
+        <div class="direction-text" id="directionText"></div>
+        <div class="token-grid" id="tokenGrid"></div>
+      </div>
+
+      <div class="chip-row" id="strategyRow"></div>
+
+      <div class="btn-row">
+        <button class="btn-primary" id="checkBtn">Check picks</button>
+        <button class="btn-outline" id="revealBtn">Show answer</button>
+        <button class="btn-outline" id="nextBtn">New direction</button>
+      </div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <div>
+        <div class="mini-title">Quick pick</div>
+        <div class="scenario-list" id="scenarioList"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const scenarios = [
+      {
+        name: "Underline Title",
+        tag: "Warm-Up",
+        chunks: [
+          { text: "underline the title on your worksheet", key: true },
+          { text: "even though we won't grade it today", key: false }
+        ],
+        direction: "Please underline the title on your worksheet, even though we won't grade it today.",
+        tips: ["Underline the action words.", "Ask: what would I tell a friend in five words?", "Ignore the reason that follows the comma."]
+      },
+      {
+        name: "Planner Reminder",
+        tag: "Organization",
+        chunks: [
+          { text: "highlight today's homework line in your planner", key: true },
+          { text: "not the entire page", key: false }
+        ],
+        direction: "Highlight today's homework line in your planner, not the entire page.",
+        tips: ["Say the command out loud.", "Focus on the verb + object.", "Skip the extra warning."]
+      },
+      {
+        name: "Email Ms. Rivera",
+        tag: "School",
+        chunks: [
+          { text: "email the science lab reflection to Ms. Rivera", key: true },
+          { text: "even if the portal still says draft", key: false }
+        ],
+        direction: "Email the science lab reflection to Ms. Rivera, even if the portal still says draft.",
+        tips: ["Circle the main verb.", "Repeat the short direction in your own words.", "Let the 'even if' part go."]
+      },
+      {
+        name: "Chromebook Return",
+        tag: "Technology",
+        chunks: [
+          { text: "place your Chromebook on shelf three", key: true },
+          { text: "after the bell rings", key: false },
+          { text: "even though the carts look empty", key: false }
+        ],
+        direction: "Place your Chromebook on shelf three after the bell rings, even though the carts look empty.",
+        tips: ["Keep the shelf location; drop the timing and comment.", "Visualize the core action.", "Use finger counting if needed."]
+      },
+      {
+        name: "Bring Pink Sheet",
+        tag: "Meeting Prep",
+        chunks: [
+          { text: "bring the pink data sheet to the meeting", key: true },
+          { text: "not the white one from last week", key: false }
+        ],
+        direction: "Bring the pink data sheet to the meeting, not the white one from last week.",
+        tips: ["Say the instruction without the comma.", "Highlight the noun that matters.", "Ignore the comparison detail."]
+      },
+      {
+        name: "Sign Clipboard",
+        tag: "Attendance",
+        chunks: [
+          { text: "sign the attendance clipboard on the counter", key: true },
+          { text: "regardless of whether you signed in online", key: false }
+        ],
+        direction: "Sign the attendance clipboard on the counter, regardless of whether you signed in online.",
+        tips: ["Look for the must-do verb.", "Imagine yourself doing only that part.", "Let the 'regardless' phrase fade out."]
+      },
+      {
+        name: "Recycle Note",
+        tag: "Daily Life",
+        chunks: [
+          { text: "recycle the flyer next to the printer", key: true },
+          { text: "even though it looks brand new", key: false }
+        ],
+        direction: "Recycle the flyer next to the printer, even though it looks brand new.",
+        tips: ["Focus on recycle + object.", "Read the sentence without the extra clause.", "Restate the short direction."]
+      },
+      {
+        name: "Turn In Form",
+        tag: "Office",
+        chunks: [
+          { text: "turn in your field trip form to the bin by the door", key: true },
+          { text: "despite the note saying Friday", key: false }
+        ],
+        direction: "Turn in your field trip form to the bin by the door, despite the note saying Friday.",
+        tips: ["Underline the command first.", "Decide if the rest changes the action.", "Keep the location if it matters to completing it."]
+      },
+      {
+        name: "Jacket Hook",
+        tag: "Hallway",
+        chunks: [
+          { text: "hang your jacket on hook number four", key: true },
+          { text: "even if the first hook is open", key: false }
+        ],
+        direction: "Hang your jacket on hook number four, even if the first hook is open.",
+        tips: ["Notice the verb hang.", "Keep the hook number; skip the extra option.", "Say the short version: hang it on hook four."]
+      },
+      {
+        name: "Homework Tray",
+        tag: "Classroom Routine",
+        chunks: [
+          { text: "place tonight's homework in the blue tray", key: true },
+          { text: "not on my desk like yesterday", key: false }
+        ],
+        direction: "Place tonight's homework in the blue tray, not on my desk like yesterday.",
+        tips: ["Spot place + blue tray.", "The comma phrase is just a reminder.", "Restate the core: put it in the blue tray."]
+      },
+      {
+        name: "Voice Level",
+        tag: "Group Work",
+        chunks: [
+          { text: "use a level-two voice to share your idea", key: true },
+          { text: "even though the class next door is loud", key: false }
+        ],
+        direction: "Use a level-two voice to share your idea, even though the class next door is loud.",
+        tips: ["Underline the instruction use.", "Ignore the comparison to other noise.", "Practice saying just the core direction."]
+      },
+      {
+        name: "Return Library Book",
+        tag: "Library",
+        chunks: [
+          { text: "return your overdue library book to the bin by the door", key: true },
+          { text: "before you browse for new ones", key: false }
+        ],
+        direction: "Return your overdue library book to the bin by the door before you browse for new ones.",
+        tips: ["Keep return the book + location.", "The timing detail is extra.", "Say the command without the last clause."]
+      },
+      {
+        name: "Raise Hand",
+        tag: "Participation",
+        chunks: [
+          { text: "raise your hand if you have a question", key: true },
+          { text: "instead of calling out this time", key: false }
+        ],
+        direction: "Raise your hand if you have a question, instead of calling out this time.",
+        tips: ["Find the core action raise your hand.", "Set aside the comparison phrase.", "Repeat the main idea in your own words."]
+      },
+      {
+        name: "Backpack Spot",
+        tag: "Dismissal",
+        chunks: [
+          { text: "set your backpack on the second shelf", key: true },
+          { text: "even though the floor looks clean", key: false }
+        ],
+        direction: "Set your backpack on the second shelf, even though the floor looks clean.",
+        tips: ["Mark the verb set.", "Ignore the comment about the floor.", "Restate: backpack goes on the second shelf."]
+      },
+      {
+        name: "Tablet Charge",
+        tag: "Technology",
+        chunks: [
+          { text: "plug your tablet into the charging cart labeled B", key: true },
+          { text: "even if cart A looks empty", key: false }
+        ],
+        direction: "Plug your tablet into the charging cart labeled B, even if cart A looks empty.",
+        tips: ["Keep plug + cart B.", "Let the comparison go.", "Picture yourself doing just the core step."]
+      },
+      {
+        name: "Seat Sticker",
+        tag: "Morning Routine",
+        chunks: [
+          { text: "sit in the seat with your name sticker", key: true },
+          { text: "not the one your friend used yesterday", key: false }
+        ],
+        direction: "Sit in the seat with your name sticker, not the one your friend used yesterday.",
+        tips: ["Underline sit in the seat.", "Notice the sticker clue and skip the rest.", "Say the short command aloud."]
+      },
+      {
+        name: "Folder Turn-In",
+        tag: "Office",
+        chunks: [
+          { text: "drop your signed form inside the red folder", key: true },
+          { text: "even if the bin is closer", key: false }
+        ],
+        direction: "Drop your signed form inside the red folder, even if the bin is closer.",
+        tips: ["Focus on drop + red folder.", "Ignore the nearby option.", "Repeat only the must-do direction."]
+      },
+      {
+        name: "Notes to Locker",
+        tag: "Hallway",
+        chunks: [
+          { text: "take the note back to your locker", key: true },
+          { text: "even though the teacher said you could read it later", key: false }
+        ],
+        direction: "Take the note back to your locker, even though the teacher said you could read it later.",
+        tips: ["Keep the action take the note back.", "The permission detail is extra.", "Summarize the action in one short phrase."]
+      }
+    ];
+
+    const scenarioTag = document.getElementById('scenarioTag');
+    const directionText = document.getElementById('directionText');
+    const tokenGrid = document.getElementById('tokenGrid');
+    const feedback = document.getElementById('feedback');
+    const strategyRow = document.getElementById('strategyRow');
+    const checkBtn = document.getElementById('checkBtn');
+    const revealBtn = document.getElementById('revealBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const scenarioList = document.getElementById('scenarioList');
+
+    let currentIndex = 0;
+    let current = scenarios[currentIndex];
+    let selected = new Set();
+    let locked = false;
+
+    function renderScenario() {
+      current = scenarios[currentIndex];
+      locked = false;
+      selected = new Set();
+      scenarioTag.textContent = current.tag;
+      directionText.textContent = current.direction;
+      tokenGrid.innerHTML = current.chunks.map((chunk, index) => `
+        <span class="token" data-index="${index}">${chunk.text}</span>
+      `).join('');
+      strategyRow.innerHTML = current.tips.map(tip => `<span class="chip">${tip}</span>`).join('');
+      feedback.style.display = 'none';
+      feedback.className = 'feedback';
+
+      renderScenarioList();
+
+      tokenGrid.querySelectorAll('.token').forEach(token => {
+        token.classList.remove('correct', 'missed', 'selected');
+        token.addEventListener('click', () => {
+          if (locked) return;
+          const index = Number(token.dataset.index);
+          if (selected.has(index)) {
+            selected.delete(index);
+            token.classList.remove('selected');
+          } else {
+            selected.add(index);
+            token.classList.add('selected');
+          }
+        });
+      });
+    }
+
+    function check() {
+      if (locked) return;
+      if (selected.size === 0) {
+        feedback.textContent = "Tap the verbs, deadlines, or names that matter most.";
+        feedback.classList.add('try');
+        feedback.style.display = 'block';
+        return;
+      }
+
+      let hits = 0;
+      tokenGrid.querySelectorAll('.token').forEach(token => {
+        const index = Number(token.dataset.index);
+        const chunk = current.chunks[index];
+        const choose = selected.has(index);
+        token.classList.remove('correct', 'missed');
+        if (chunk.key && choose) {
+          token.classList.add('correct');
+          hits++;
+        } else if (!chunk.key && choose) {
+          token.classList.add('missed');
+        } else if (chunk.key && !choose) {
+          token.classList.add('missed');
+        }
+      });
+
+      const total = current.chunks.filter(chunk => chunk.key).length;
+      feedback.textContent = hits === total
+        ? "Nice catch! Tell which strategy you’ll use to follow it."
+        : `You grabbed ${hits} of ${total}. Check for any verbs or time words you missed.`;
+
+      feedback.classList.add(hits === total ? 'good' : 'try');
+      feedback.style.display = 'block';
+      locked = true;
+    }
+
+    function reveal() {
+      tokenGrid.querySelectorAll('.token').forEach(token => {
+        const index = Number(token.dataset.index);
+        const chunk = current.chunks[index];
+        token.classList.remove('selected', 'missed');
+        token.classList.toggle('correct', chunk.key);
+      });
+      feedback.textContent = "Green = worth planning for. Say the steps in order before you start.";
+      feedback.className = 'feedback good';
+      feedback.style.display = 'block';
+      locked = true;
+    }
+
+    function renderScenarioList() {
+      scenarioList.innerHTML = scenarios.map((item, index) => `
+        <button type="button" class="scenario-btn${index === currentIndex ? ' active' : ''}" data-index="${index}">
+          ${item.name}
+        </button>
+      `).join('');
+
+      scenarioList.querySelectorAll('.scenario-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = Number(btn.dataset.index);
+          if (index === currentIndex) return;
+          currentIndex = index;
+          renderScenario();
+        });
+      });
+    }
+
+    checkBtn.addEventListener('click', check);
+    revealBtn.addEventListener('click', reveal);
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % scenarios.length;
+      renderScenario();
+    });
+
+    renderScenario();
+  </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 'Huh?' Detector Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- Application Structure Plan: The infographic follows a clear narrative flow on a single scrollable page. It starts with a hook and an introductory paragraph. This is immediately followed by a key data visualization—a donut chart—that provides a high-level summary of the signal categories. The application then dives into three distinct sections for Non-Verbal, Verbal, and Action-Based signals. Each section uses a responsive grid of cards to present information in digestible, visually appealing chunks. This structure was chosen to guide the user from a general overview to specific details in a logical, engaging manner, which is more effective for learning than a simple text document. -->
+    <!-- Visualization & Content Choices: Data Point: Breakdown of signal types. Goal: Inform/Compare. Viz/Method: Donut Chart. Interaction: Hover (tooltips). Justification: Provides a quick, quantitative summary of the qualitative data, making it more impactful. Library: Chart.js (Canvas), NO SVG. || Data Point: Individual communication signals. Goal: Organize/Inform. Viz/Method: Styled HTML Cards with Unicode icons. Interaction: None (static display). Justification: Cards break down complex information into manageable pieces, and Unicode icons add visual flair without using restricted graphics formats. Library: HTML/Tailwind, NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-600 mb-4">The "Huh?" Detector</h1>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto">Learning to spot confusion is a communication superpower. When your message isn't landing, people send signals—often without realizing it. This guide breaks down the 12 most common signs that someone didn't understand you, giving you the cue to pause, clarify, and connect.</p>
+        </header>
+
+        <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">A Quick Look at the Signals</h2>
+            <p class="text-center text-slate-600 mb-6">Most signals of confusion are unspoken. Your first clue often comes from body language before a single word is said. Here's how the different types of signals break down.</p>
+            <div class="chart-container">
+                <canvas id="signalsChart"></canvas>
+            </div>
+        </section>
+
+        <section id="non-verbal" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-600">1. Non-Verbal Signals (Body Language)</h2>
+             <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">These are the fastest and most reliable clues because they are often subconscious. Watch for these physical reactions to see if your message is clear.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">🤔</div>
+                    <h3 class="font-bold text-xl mb-2">The Furrowed Brow</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Looks Like:</p>
+                    <p class="text-slate-600">A scrunched forehead, often with a slight head tilt or squinting.</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">They're trying, but the information isn't fitting together logically.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">🤷</div>
+                    <h3 class="font-bold text-xl mb-2">Physical Hesitation</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Looks Like:</p>
+                    <p class="text-slate-600">A sudden stop in their action or a slight shoulder shrug.</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">They don't know what to do next because the instruction was unclear.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">👀</div>
+                    <h3 class="font-bold text-xl mb-2">Darting Eyes</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Looks Like:</p>
+                    <p class="text-slate-600">Their eyes quickly look away or shift around the room.</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">They're mentally lost and searching for a clue to understand.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">😐</div>
+                    <h3 class="font-bold text-xl mb-2">The "Flat" Response</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Looks Like:</p>
+                    <p class="text-slate-600">A blank expression, or a mechanical nod without verbal confirmation.</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">They heard the sounds but haven't grasped the meaning.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">🙅</div>
+                    <h3 class="font-bold text-xl mb-2">Mirroring Stop</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Looks Like:</p>
+                    <p class="text-slate-600">They suddenly lean back, cross their arms, or disengage physically.</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">They've mentally disconnected, possibly due to confusion.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="verbal" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-600">2. Verbal Signals (The Words They Use)</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">When people are confused, their words (or lack thereof) can be a dead giveaway. Listen carefully to *how* they respond to find clues about their level of understanding.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">❓</div>
+                    <h3 class="font-bold text-xl mb-2">The Vague Ask</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Sounds Like:</p>
+                    <p class="text-slate-600">"Wait, what?", "Can you say that again?", or just "Huh?"</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">It's a direct request for help, but you need to find out *what* part was confusing.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">🔄</div>
+                    <h3 class="font-bold text-xl mb-2">The Rephrase Fail</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Sounds Like:</p>
+                    <p class="text-slate-600">They try to summarize your point but get the main idea wrong.</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">A major gap in understanding. They think they get it, but they don't.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">💬</div>
+                    <h3 class="font-bold text-xl mb-2">Filler Noise / Stall</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Sounds Like:</p>
+                    <p class="text-slate-600">Excessive "Umm," "Uh," "Well," or "Let me see..."</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">They are stalling for time while they try to process what you said.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">👍</div>
+                    <h3 class="font-bold text-xl mb-2">Overly Simple Confirmation</h3>
+                    <p class="text-slate-600 font-semibold mb-2">Sounds Like:</p>
+                    <p class="text-slate-600">A fast, abrupt "Got it," "K," or "Okay," followed by a quick subject change.</p>
+                    <p class="text-slate-600 font-semibold mt-4 mb-2">Means:</p>
+                    <p class="text-slate-600">They may be trying to hide their confusion by ending the topic quickly.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="action-based" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-600">3. Action-Based Signals (The Outcome)</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-10">The ultimate test of understanding is what happens next. If the conversation required a follow-up task, their next move is the clearest signal of all.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">⏳</div>
+                    <h3 class="font-bold text-xl mb-2">Delayed Action</h3>
+                    <p class="text-slate-600">After you ask them to do something, they pause for several seconds, looking unsure of where or how to start.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="font-bold text-xl mb-2">The Wrong Tool</h3>
+                    <p class="text-slate-600">They use the wrong item or method for the task, showing they understood the goal but not the specific details.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-4xl mb-4">⁉️</div>
+                    <h3 class="font-bold text-xl mb-2">Irrelevant Question</h3>
+                    <p class="text-slate-600">They ask a follow-up question that seems to come from left field, indicating they got stuck on an earlier point.</p>
+                </div>
+            </div>
+        </section>
+        
+    </div>
+
+    <script>
+        const ctx = document.getElementById('signalsChart').getContext('2d');
+        const signalsChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Non-Verbal Signals', 'Verbal Signals', 'Action-Based Signals'],
+                datasets: [{
+                    label: 'Number of Signals',
+                    data: [5, 4, 3],
+                    backgroundColor: [
+                        '#007BFF',
+                        '#4cA1ff',
+                        '#8ec2ff'
+                    ],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

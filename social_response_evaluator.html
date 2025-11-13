@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Response Evaluator</title>
+  <style>
+    :root {
+      --accent: #8b5cf6;
+      --accent-dark: #5b21b6;
+      --blue: #0ea5e9;
+      --green: #10b981;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --ink: #111827;
+      --muted: #6b7280;
+      --bg: #f3f4ff;
+      --surface: #ffffff;
+      --shadow: 0 20px 36px rgba(79, 70, 229, 0.12);
+      --radius: 18px;
+      --max-width: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top, #ede9fe 0%, #f8fafc 60%, #eef2ff 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 4px solid rgba(139, 92, 246, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      box-shadow: 0 16px 24px rgba(79, 70, 229, 0.15);
+    }
+
+    .bar {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .bar h1 {
+      margin: 0;
+      font-size: 26px;
+      color: var(--accent-dark);
+    }
+
+    .bar p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 36px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      gap: 28px;
+    }
+
+    section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    section h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .scenario-card {
+      border: 2px solid rgba(148, 163, 184, 0.3);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(248, 250, 252, 0.85);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      display: grid;
+      gap: 8px;
+      min-height: 120px;
+    }
+
+    .scenario-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: rgba(233, 213, 255, 0.4);
+    }
+
+    .scenario-card.active {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(14, 165, 233, 0.2));
+      box-shadow: 0 15px 24px rgba(79, 70, 229, 0.25);
+    }
+
+    .scenario-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .scenario-tag {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scenario-detail {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .conflict-card {
+      border-radius: 18px;
+      background: rgba(248, 250, 252, 0.94);
+      border: 2px solid rgba(139, 92, 246, 0.2);
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .conflict-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .conflict-heading {
+      font-weight: 700;
+      color: var(--accent-dark);
+      font-size: 16px;
+    }
+
+    .conflict-text {
+      font-size: 16px;
+      color: #1f2937;
+      line-height: 1.7;
+    }
+
+    .responses-note {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .responses-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .response-card {
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(248, 250, 252, 0.92);
+      display: grid;
+      gap: 16px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .response-header {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .response-number {
+      background: var(--accent);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .response-text {
+      margin: 0;
+      font-size: 15px;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .response-ratings {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .response-rating {
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: white;
+      display: grid;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .response-rating:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .response-rating.active[data-rating="helpful"] {
+      border-color: var(--green);
+      background: rgba(16, 185, 129, 0.12);
+    }
+
+    .response-rating.active[data-rating="hurtful"] {
+      border-color: var(--red);
+      background: rgba(239, 68, 68, 0.12);
+    }
+
+    .response-rating-label {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .response-rating-helper {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .response-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .response-field label {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--accent-dark);
+    }
+
+    .response-input {
+      width: 100%;
+      min-height: 100px;
+      border-radius: 12px;
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      padding: 14px;
+      font-size: 15px;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .response-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18);
+    }
+
+    .response-revision {
+      display: none;
+    }
+
+    .response-revision.active {
+      display: grid;
+    }
+
+    .response-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .save-status {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 16px 26px rgba(139, 92, 246, 0.25);
+    }
+
+    .btn-primary:hover:not([disabled]) {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 30px rgba(139, 92, 246, 0.35);
+    }
+
+    .btn-primary[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(139, 92, 246, 0.35);
+      background: white;
+      color: var(--accent-dark);
+      padding: 10px 20px;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .summary-log {
+      background: rgba(248, 250, 252, 0.9);
+      border: 2px dashed rgba(148, 163, 184, 0.4);
+      border-radius: 16px;
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .log-entry {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      display: grid;
+      gap: 6px;
+    }
+
+    .log-entry strong {
+      color: var(--accent-dark);
+    }
+
+    .log-time {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+      .bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      section {
+        padding: 22px;
+      }
+      .scenario-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div>
+        <h1>Social Response Evaluator</h1>
+        <p>Decide if each response helps or hurts the situation, then back up your thinking.</p>
+      </div>
+      <button class="btn btn-outline" id="resetBtn">Reset All</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2><span class="step-badge">1</span> Choose a hypothetical conflict</h2>
+      <p style="margin:0;color:var(--muted);font-size:14px;">Pick a scenario. Each one has a few possible responses to evaluate.</p>
+      <div class="scenario-grid" id="scenarioGrid"></div>
+    </section>
+
+    <section id="evaluationSection" style="display:none;">
+      <h2><span class="step-badge">2</span> Evaluate the responses</h2>
+      <div class="conflict-card">
+        <div class="conflict-header">
+          <div class="scenario-tag" id="scenarioTag"></div>
+          <div class="conflict-heading" id="scenarioTitle"></div>
+        </div>
+        <div class="conflict-text" id="conflictText"></div>
+      </div>
+      <p class="responses-note">Review each response below. Choose Helpful or Not Helpful, explain why, and revise any that need work.</p>
+      <div class="responses-list" id="responsesList"></div>
+    </section>
+
+    <section>
+      <h2><span class="step-badge">3</span> Reflection log</h2>
+      <div class="summary-log" id="logList">
+        <div class="log-entry" style="color:var(--muted);">Evaluate a response and press “Save to reflection log” to document your thinking.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const ratingOptions = {
+      helpful: {
+        label: 'Helpful Response',
+        helper: 'Shows respect, keeps the conversation calm, and moves toward a solution.'
+      },
+      hurtful: {
+        label: 'Not Helpful',
+        helper: 'Escalates the conflict, hurts trust, or ignores other people’s feelings.'
+      }
+    };
+
+    const scenarios = [
+      {
+        id: 1,
+        title: 'Group Project Credit',
+        tag: 'Academics',
+        conflict: `Your classmate Liam helped for the first five minutes of a group project, then scrolled on his phone. On presentation day he loudly tells the class he deserves extra credit because he “planned everything.”`,
+        responses: [
+          { text: `You roll your eyes, say “whatever,” and mutter loudly that Liam is useless so everyone can hear.` },
+          { text: `You take a breath and say, “I’m glad you brought ideas, Liam. Could we talk after class about how we each helped?”` },
+          { text: `You email the teacher later that day with a list of who completed which tasks and ask for guidance on grading.` }
+        ]
+      },
+      {
+        id: 2,
+        title: 'Lunch Table Rumor',
+        tag: 'Friends',
+        conflict: `During lunch two friends laugh about a rumor involving you. You ask if it’s true. They shrug and keep whispering.`,
+        responses: [
+          { text: `You slam your tray on the table and shout that they are fake friends and you’re done with them.` },
+          { text: `You take your tray to another table for the day and text one friend later asking if you can talk about what happened.` },
+          { text: `You joke loudly about them being terrible secret keepers so other people laugh at them.` }
+        ]
+      },
+      {
+        id: 3,
+        title: 'Text Reply Delay',
+        tag: 'Communication',
+        conflict: `Your friend sent you a long text asking for help, but you were busy and forgot to answer for six hours. They follow up with “???”`,
+        responses: [
+          { text: `You reply, “Calm down. I’m not your personal assistant.”` },
+          { text: `You send: “Hey, sorry for the delay. I was offline. Do you still need help?”` },
+          { text: `You ignore the follow-up and hope they figure it out themselves.` }
+        ]
+      },
+      {
+        id: 4,
+        title: 'Game Strategy Disagreement',
+        tag: 'Teamwork',
+        conflict: `You’re the captain for an esports match. Teammate Avery suggests a strategy you think will fail.`,
+        responses: [
+          { text: `You say, “No, that’s dumb. We’re doing it my way.”` },
+          { text: `You ask Avery to explain their idea, share your concerns, and suggest combining parts of both strategies.` },
+          { text: `You privately message another teammate to complain about Avery and plan to ignore their idea.` }
+        ]
+      },
+      {
+        id: 5,
+        title: 'Shared Locker Mix-Up',
+        tag: 'School Life',
+        conflict: `You and your friend share a locker. They borrowed your calculator and forgot to put it back before math class.`,
+        responses: [
+          { text: `You text them, “Whatever. Maybe I’ll forget your stuff on purpose next time.”` },
+          { text: `You grab a spare calculator from the teacher and ask your friend later to set a reminder so it doesn’t happen again.` },
+          { text: `You refuse to let them use your locker anymore and stop talking to them.` }
+        ]
+      },
+      {
+        id: 6,
+        title: 'Teacher Feedback',
+        tag: 'Authority',
+        conflict: `Your teacher privately mentions that you’ve been interrupting others in class discussions.`,
+        responses: [
+          { text: `You say, “Other people interrupt me all the time. Maybe you should watch them instead.”` },
+          { text: `You thank the teacher for the reminder and ask for a signal if you start interrupting so you can notice it sooner.` },
+          { text: `You nod silently but roll your eyes when the teacher looks away.` }
+        ]
+      },
+      {
+        id: 7,
+        title: 'Sibling Borrowing Clothes',
+        tag: 'Home',
+        conflict: `Your sibling borrowed your favorite hoodie without asking and spilled food on it.`,
+        responses: [
+          { text: `You post a picture of the stain on social media and write, “My sibling is the worst.”` },
+          { text: `You tell your sibling you’re upset, show them the stain, and ask them to help wash or replace it.` },
+          { text: `You hide their favorite jacket to “teach them a lesson.”` }
+        ]
+      },
+      {
+        id: 8,
+        title: 'Study Group Leader',
+        tag: 'Collaboration',
+        conflict: `You organized a study group, but one member arrives late and hasn’t read the material.`,
+        responses: [
+          { text: `You say loudly, “Why even bother showing up? Clearly you don’t care about your grade.”` },
+          { text: `You offer a quick summary and pair them with someone who can help them catch up before the next meeting.` },
+          { text: `You ignore them for the rest of the session to show how disappointed you are.` }
+        ]
+      },
+      {
+        id: 9,
+        title: 'New Student Partner',
+        tag: 'School Life',
+        conflict: `A new student joins your art class and seems nervous about an upcoming partner project. The teacher assigns you together.`,
+        responses: [
+          { text: `You smile and say, “Welcome! I’m excited to work with you. Want to look at the project checklist together?”` },
+          { text: `You shrug and say, “Just don’t mess it up,” then go back to your sketchbook.` },
+          { text: `You switch seats with a friend and ask the teacher for a different partner.` }
+        ]
+      },
+      {
+        id: 10,
+        title: 'Canceled Plans',
+        tag: 'Friends',
+        conflict: `You and your friend planned to hang out after school, but they text an hour before saying they’re exhausted and want to reschedule.`,
+        responses: [
+          { text: `You reply, “Whatever. Don’t ask me again.”` },
+          { text: `You respond, “Totally get it. Hope you can rest! Want me to drop off the notes from today’s class?”` },
+          { text: `You post a story about flaky friends so everyone knows you were canceled on.` }
+        ]
+      },
+      {
+        id: 11,
+        title: 'Teacher Email',
+        tag: 'Communication',
+        conflict: `You need extra time on a history assignment because your laptop crashed, and you have to email your teacher about it.`,
+        responses: [
+          { text: `You write: “I need more time. My laptop died. Please extend it.”` },
+          { text: `You send a polite email explaining what happened, attach a screenshot of the error, and propose a new due date.` },
+          { text: `You decide not to email because you’re embarrassed and hope the teacher forgets about the assignment.` }
+        ]
+      },
+      {
+        id: 12,
+        title: 'Group Chat Overload',
+        tag: 'Digital Life',
+        conflict: `Your group chat blew up with 200 messages while you were studying. Friends seem annoyed you didn’t respond.`,
+        responses: [
+          { text: `You send: “Can everyone chill? I have a life.”` },
+          { text: `You send a quick note explaining you were studying, thank them for updates, and ask if there’s anything you need to do now.` },
+          { text: `You mute the chat forever and make a new one without the friends who were annoyed.` }
+        ]
+      }
+    ];
+
+    const state = {
+      selectedScenarioId: null,
+      responseState: {},
+      log: []
+    };
+
+    const scenarioGrid = document.getElementById('scenarioGrid');
+    const evaluationSection = document.getElementById('evaluationSection');
+    const conflictText = document.getElementById('conflictText');
+    const scenarioTag = document.getElementById('scenarioTag');
+    const scenarioTitle = document.getElementById('scenarioTitle');
+    const responsesList = document.getElementById('responsesList');
+    const resetBtn = document.getElementById('resetBtn');
+    const logList = document.getElementById('logList');
+
+    function renderScenarios() {
+      scenarioGrid.innerHTML = scenarios.map(s => `
+        <div class="scenario-card" data-id="${s.id}">
+          <span class="scenario-tag">${s.tag}</span>
+          <div class="scenario-title">${s.title}</div>
+          <div class="scenario-detail">${s.conflict.slice(0, 110)}...</div>
+        </div>
+      `).join('');
+
+      scenarioGrid.querySelectorAll('.scenario-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = parseInt(card.dataset.id, 10);
+          selectScenario(id);
+        });
+      });
+    }
+
+    function selectScenario(id) {
+      const scenario = scenarios.find(s => s.id === id);
+      if (!scenario) return;
+
+      state.selectedScenarioId = id;
+      state.responseState = {};
+
+      scenarioGrid.querySelectorAll('.scenario-card').forEach(card => {
+        card.classList.toggle('active', parseInt(card.dataset.id, 10) === id);
+      });
+
+      scenarioTag.textContent = scenario.tag;
+      scenarioTitle.textContent = scenario.title;
+      conflictText.textContent = scenario.conflict;
+
+      scenario.responses.forEach((_, index) => {
+        state.responseState[index] = {
+          rating: null,
+          why: '',
+          revision: '',
+          logged: false
+        };
+      });
+
+      renderResponses();
+      evaluationSection.style.display = 'grid';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderResponses() {
+      const scenario = scenarios.find(s => s.id === state.selectedScenarioId);
+      if (!scenario) {
+        responsesList.innerHTML = '';
+        return;
+      }
+
+      responsesList.innerHTML = scenario.responses.map((response, index) => `
+        <div class="response-card" data-index="${index}">
+          <div class="response-header">
+            <div class="response-number">${index + 1}</div>
+            <p class="response-text">${response.text}</p>
+          </div>
+          <div class="response-ratings">
+            ${Object.entries(ratingOptions).map(([key, info]) => `
+              <div class="response-rating" data-rating="${key}">
+                <span class="response-rating-label">${info.label}</span>
+                <span class="response-rating-helper">${info.helper}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div class="response-field">
+            <label>Why is this response helpful or not helpful?</label>
+            <textarea class="response-input" data-role="why" placeholder="Explain your thinking..."></textarea>
+          </div>
+          <div class="response-field response-revision" data-role="revision-wrapper">
+            <label>Revise the response so it helps more.</label>
+            <textarea class="response-input" data-role="revision" placeholder="Write your improved response..."></textarea>
+          </div>
+          <div class="response-actions">
+            <button class="btn btn-primary" data-role="save" disabled>Save to reflection log</button>
+            <span class="save-status" data-role="status"></span>
+          </div>
+        </div>
+      `).join('');
+
+      responsesList.querySelectorAll('.response-card').forEach(card => {
+        const index = parseInt(card.dataset.index, 10);
+        const ratingButtons = card.querySelectorAll('.response-rating');
+        const whyInput = card.querySelector('[data-role="why"]');
+        const revisionWrapper = card.querySelector('[data-role="revision-wrapper"]');
+        const revisionInput = card.querySelector('[data-role="revision"]');
+        const saveButton = card.querySelector('[data-role="save"]');
+
+        ratingButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            state.responseState[index].rating = btn.dataset.rating;
+            state.responseState[index].logged = false;
+            updateCard(index);
+          });
+        });
+
+        whyInput.addEventListener('input', () => {
+          state.responseState[index].why = whyInput.value.trim();
+          state.responseState[index].logged = false;
+          updateCard(index);
+        });
+
+        revisionInput.addEventListener('input', () => {
+          state.responseState[index].revision = revisionInput.value.trim();
+          state.responseState[index].logged = false;
+          updateCard(index);
+        });
+
+        saveButton.addEventListener('click', () => saveResponse(index));
+
+        // initial state
+        revisionWrapper.classList.remove('active');
+      });
+    }
+
+    function updateCard(index) {
+      const scenario = scenarios.find(s => s.id === state.selectedScenarioId);
+      if (!scenario) return;
+      const card = responsesList.querySelector(`.response-card[data-index="${index}"]`);
+      if (!card) return;
+
+      const data = state.responseState[index];
+      const ratingButtons = card.querySelectorAll('.response-rating');
+      const revisionWrapper = card.querySelector('[data-role="revision-wrapper"]');
+      const revisionInput = card.querySelector('[data-role="revision"]');
+      const saveButton = card.querySelector('[data-role="save"]');
+      const status = card.querySelector('[data-role="status"]');
+
+      ratingButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.rating === data.rating);
+      });
+
+      if (data.rating === 'hurtful') {
+        revisionWrapper.classList.add('active');
+      } else {
+        revisionWrapper.classList.remove('active');
+        if (data.rating === 'helpful') {
+          data.revision = '';
+          revisionInput.value = '';
+        }
+      }
+
+      const whyReady = data.why.length >= 10;
+      const revisionReady = data.rating !== 'hurtful' || data.revision.length >= 10;
+      const ready = Boolean(data.rating) && whyReady && revisionReady && !data.logged;
+
+      saveButton.disabled = !ready;
+
+      if (data.logged) {
+        saveButton.disabled = true;
+        status.textContent = 'Saved to log';
+      } else {
+        status.textContent = '';
+      }
+    }
+
+    function saveResponse(index) {
+      const scenario = scenarios.find(s => s.id === state.selectedScenarioId);
+      if (!scenario) return;
+      const data = state.responseState[index];
+      if (!data) return;
+
+      const whyReady = data.why.length >= 10;
+      const revisionReady = data.rating !== 'hurtful' || data.revision.length >= 10;
+      if (!data.rating || !whyReady || !revisionReady) return;
+
+      const ratingInfo = ratingOptions[data.rating];
+      const entry = {
+        scenario: scenario.title,
+        tag: scenario.tag,
+        responseText: scenario.responses[index].text,
+        rating: ratingInfo.label,
+        why: data.why,
+        revision: data.rating === 'hurtful' ? data.revision : '',
+        timestamp: new Date()
+      };
+
+      state.log.unshift(entry);
+      data.logged = true;
+      renderLog();
+      updateCard(index);
+    }
+
+    function renderLog() {
+      if (state.log.length === 0) {
+        logList.innerHTML = '<div class="log-entry" style="color:var(--muted);">Evaluate a response and press “Save to reflection log” to document your thinking.</div>';
+        return;
+      }
+
+      logList.innerHTML = state.log.map(entry => `
+        <div class="log-entry">
+          <strong>${entry.scenario}</strong>
+          <span><strong>Rating:</strong> ${entry.rating}</span>
+          <span><strong>Original response:</strong> ${entry.responseText}</span>
+          <span><strong>Why:</strong> ${entry.why}</span>
+          ${entry.revision ? `<span><strong>Revised idea:</strong> ${entry.revision}</span>` : ''}
+          <span class="log-time">Saved ${entry.timestamp.toLocaleString()}</span>
+        </div>
+      `).join('');
+    }
+
+    resetBtn.addEventListener('click', () => {
+      if (!confirm('Reset everything? This clears your selections and reflection log.')) return;
+      state.selectedScenarioId = null;
+      state.responseState = {};
+      state.log = [];
+      evaluationSection.style.display = 'none';
+      scenarioGrid.querySelectorAll('.scenario-card').forEach(card => card.classList.remove('active'));
+      renderLog();
+    });
+
+    renderScenarios();
+    renderLog();
+  </script>
+</body>
+</html>

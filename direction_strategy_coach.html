@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Direction Strategy Coach</title>
+  <style>
+    :root {
+      --accent: #7c3aed;
+      --accent-dark: #5b21b6;
+      --muted: #6b7280;
+      --ink: #111827;
+      --surface: #ffffff;
+      --bg: #f5f3ff;
+      --blue: #0ea5e9;
+      --green: #10b981;
+      --shadow: 0 16px 32px rgba(124, 58, 237, 0.15);
+      --radius: 16px;
+      --max: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top, #ede9fe 0%, #f8fafc 60%, #eef2ff 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 4px solid rgba(124, 58, 237, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 16px 24px rgba(79, 70, 229, 0.18);
+    }
+
+    .bar {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bar h1 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--accent-dark);
+    }
+
+    .bar p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 32px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      gap: 24px;
+    }
+
+    section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    section h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.15);
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .scenario-card {
+      border: 2px solid rgba(148, 163, 184, 0.3);
+      border-radius: 14px;
+      padding: 18px;
+      background: rgba(248, 250, 252, 0.9);
+      display: grid;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .scenario-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(233, 213, 255, 0.4);
+    }
+
+    .scenario-card.active {
+      border-color: var(--accent);
+      background: rgba(233, 213, 255, 0.55);
+      box-shadow: 0 12px 20px rgba(124, 58, 237, 0.25);
+    }
+
+    .scenario-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .scenario-tag {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .direction-card {
+      border-radius: 16px;
+      border: 2px solid rgba(148, 163, 184, 0.3);
+      background: rgba(248, 250, 252, 0.9);
+      padding: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .direction-text {
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .prompt-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .prompt-card {
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(248, 250, 252, 0.9);
+      display: grid;
+      gap: 8px;
+    }
+
+    .prompt-card label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    .info-input {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      padding: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 60px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .info-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .strategy-card {
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(248, 250, 252, 0.9);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .strategy-card input {
+      margin-top: 4px;
+      accent-color: var(--accent);
+    }
+
+    .strategy-card label {
+      font-size: 14px;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .progress-track {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .progress-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(148, 163, 184, 0.22);
+      color: var(--muted);
+    }
+
+    .progress-pill.done {
+      background: rgba(16, 185, 129, 0.2);
+      color: #047857;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 14px 22px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 28px rgba(124, 58, 237, 0.35);
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(124, 58, 237, 0.3);
+      background: white;
+      color: var(--accent-dark);
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    .log-area {
+      background: rgba(248, 250, 252, 0.95);
+      border: 2px dashed rgba(148, 163, 184, 0.35);
+      border-radius: 16px;
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .log-entry {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 14px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .log-entry strong {
+      color: var(--accent-dark);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+      .bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      section {
+        padding: 20px;
+      }
+      .strategy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div>
+        <h1>Direction Strategy Coach</h1>
+        <p>Pull out the important parts of a direction and decide how you’ll follow it accurately.</p>
+      </div>
+      <button class="btn btn-outline" id="resetBtn">Reset All</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2><span class="step-badge">1</span> Pick a direction to practice</h2>
+      <p style="margin:0;color:var(--muted);font-size:14px;">Choose one of the high-school scenarios below. Each comes with a written direction to analyze.</p>
+      <div class="scenario-grid" id="scenarioGrid"></div>
+    </section>
+
+    <section id="workSection" style="display:none;">
+      <h2><span class="step-badge">2</span> Break it down and plan your strategies</h2>
+      <div class="direction-card">
+        <div class="scenario-tag" id="scenarioTag"></div>
+        <div class="direction-text" id="directionText"></div>
+      </div>
+
+      <div class="prompt-grid">
+        <div class="prompt-card">
+          <label for="mainAction">1. What is the main action you must take?</label>
+          <textarea class="info-input" id="mainAction" placeholder="Example: finish the lab report and email it to the science teacher."></textarea>
+        </div>
+        <div class="prompt-card">
+          <label for="keyDetails">2. List any details that matter (time, place, materials, people).</label>
+          <textarea class="info-input" id="keyDetails" placeholder="Example: include the data table, share it by 8 PM, copy our partners on the email."></textarea>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-weight:600;color:var(--accent-dark);margin-bottom:8px;">3. Choose strategies that would help you follow this direction.</div>
+        <div class="strategy-grid" id="strategyGrid"></div>
+      </div>
+
+      <div class="progress-track">
+        <span class="progress-pill" id="pillAction">Main action captured</span>
+        <span class="progress-pill" id="pillDetails">Important details listed</span>
+        <span class="progress-pill" id="pillStrategies">Strategy picked</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="logBtn" disabled>Add to plan log</button>
+        <button class="btn btn-outline" id="clearBtn">Clear this plan</button>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="step-badge">3</span> Plan log</h2>
+      <div class="log-area" id="logArea">
+        <div style="color:var(--muted);">Build a plan in step 2 and press “Add to plan log” to see it here.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const scenarios = [
+      {
+        id: 1,
+        title: "Chemistry Lab Submission",
+        tag: "Science",
+        direction: "Upload the full lab report to Google Classroom by 8 PM tonight. Make sure your data table and conclusion are attached, and share the file with your lab partners.",
+        strategyHints: ["Set a reminder on your phone", "Highlight or underline due time", "Check attachments before submitting", "Share the document with partners"]
+      },
+      {
+        id: 2,
+        title: "Counselor Appointment",
+        tag: "School Planning",
+        direction: "Meet with the school counselor tomorrow during lunch to finalize your class schedule. Bring the signed parent form and your list of preferred electives.",
+        strategyHints: ["Place the parent form in your backpack tonight", "Create a calendar reminder for lunch", "Write electives list before bed", "Set an alert 5 minutes before lunch"]
+      },
+      {
+        id: 3,
+        title: "Group Presentation",
+        tag: "Collaboration",
+        direction: "By Thursday, email the group slides to Ms. Chen and copy your team. Include your speaking notes in the last slide and rename the file with your period number.",
+        strategyHints: ["Check the file name before sending", "Draft the email the night before", "Paste notes into the final slide", "Use the CC line to copy the team"]
+      },
+      {
+        id: 4,
+        title: "Volunteer Shift",
+        tag: "Community",
+        direction: "Arrive at the library volunteer desk at 3:45 PM on Saturday. Wear your name badge, sign in with the supervisor, and shelve carts A and C before you leave.",
+        strategyHints: ["Lay out your badge the night before", "Set a travel-time alarm", "Check in at the front desk first", "Cross off carts after shelving"]
+      },
+      {
+        id: 5,
+        title: "SAT Practice Plan",
+        tag: "Study Skills",
+        direction: "Complete page 46 of the SAT practice book tonight. Circle any questions you skip, and text your tutor your score before 9 PM.",
+        strategyHints: ["Schedule a quiet study block", "Use sticky notes to mark skipped items", "Keep your tutor’s number ready", "Set a 9 PM reminder to text"]
+      },
+      {
+        id: 6,
+        title: "Drama Club Rehearsal",
+        tag: "Extracurricular",
+        direction: "Memorize scene three for rehearsal on Monday. Practice the lines with tone changes, record yourself once, and bring the script to check tricky sections.",
+        strategyHints: ["Break the scene into smaller chunks", "Record yourself on your phone", "Highlight tough lines in the script", "Schedule time to rehearse out loud"]
+      }
+    ];
+
+    const defaultStrategies = [
+      "Reread the direction slowly",
+      "Underline or highlight key words",
+      "Repeat the direction out loud",
+      "Write the steps in order",
+      "Set a phone reminder or alarm",
+      "Ask for clarification if needed",
+      "Check off steps as you complete them"
+    ];
+
+    const state = {
+      selectedScenario: null,
+      action: '',
+      details: '',
+      strategies: new Set(),
+      log: []
+    };
+
+    const scenarioGrid = document.getElementById('scenarioGrid');
+    const workSection = document.getElementById('workSection');
+    const scenarioTag = document.getElementById('scenarioTag');
+    const directionText = document.getElementById('directionText');
+    const strategyGrid = document.getElementById('strategyGrid');
+    const mainAction = document.getElementById('mainAction');
+    const keyDetails = document.getElementById('keyDetails');
+    const pillAction = document.getElementById('pillAction');
+    const pillDetails = document.getElementById('pillDetails');
+    const pillStrategies = document.getElementById('pillStrategies');
+    const logBtn = document.getElementById('logBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const logArea = document.getElementById('logArea');
+
+    function renderScenarios() {
+      scenarioGrid.innerHTML = scenarios.map(s => `
+        <div class="scenario-card${state.selectedScenario && state.selectedScenario.id === s.id ? ' active' : ''}" data-id="${s.id}">
+          <span class="scenario-tag">${s.tag}</span>
+          <div class="scenario-title">${s.title}</div>
+          <div style="font-size:13px;color:var(--muted);">${s.direction.slice(0, 90)}...</div>
+        </div>
+      `).join('');
+
+      scenarioGrid.querySelectorAll('.scenario-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = parseInt(card.dataset.id, 10);
+          selectScenario(id);
+        });
+      });
+    }
+
+    function selectScenario(id) {
+      const scenario = scenarios.find(item => item.id === id);
+      if (!scenario) return;
+
+      state.selectedScenario = scenario;
+      state.action = '';
+      state.details = '';
+      state.strategies = new Set();
+
+      scenarioGrid.querySelectorAll('.scenario-card').forEach(card => {
+        card.classList.toggle('active', parseInt(card.dataset.id, 10) === id);
+      });
+
+      scenarioTag.textContent = scenario.tag;
+      directionText.textContent = scenario.direction;
+
+      renderStrategies();
+
+      mainAction.value = '';
+      keyDetails.value = '';
+      updateProgress();
+      updateLogButton();
+
+      workSection.style.display = 'grid';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderStrategies() {
+      if (!state.selectedScenario) return;
+      const combined = Array.from(new Set([...state.selectedScenario.strategyHints, ...defaultStrategies]));
+
+      strategyGrid.innerHTML = combined.map((label, index) => `
+        <div class="strategy-card">
+          <input type="checkbox" id="strategy-${index}" data-value="${label}">
+          <label for="strategy-${index}">${label}</label>
+        </div>
+      `).join('');
+
+      strategyGrid.querySelectorAll('input[type="checkbox"]').forEach(box => {
+        box.checked = false;
+        box.addEventListener('change', () => {
+          if (box.checked) {
+            state.strategies.add(box.dataset.value);
+          } else {
+            state.strategies.delete(box.dataset.value);
+          }
+          updateProgress();
+          updateLogButton();
+        });
+      });
+    }
+
+    mainAction.addEventListener('input', () => {
+      state.action = mainAction.value.trim();
+      updateProgress();
+      updateLogButton();
+    });
+
+    keyDetails.addEventListener('input', () => {
+      state.details = keyDetails.value.trim();
+      updateProgress();
+      updateLogButton();
+    });
+
+    function updateProgress() {
+      pillAction.classList.toggle('done', state.action.length > 5);
+      pillDetails.classList.toggle('done', state.details.length > 5);
+      pillStrategies.classList.toggle('done', state.strategies.size > 0);
+    }
+
+    function updateLogButton() {
+      const ready = state.action.length > 5 && state.details.length > 5 && state.strategies.size > 0;
+      logBtn.disabled = !ready;
+    }
+
+    logBtn.addEventListener('click', () => {
+      if (!state.selectedScenario) return;
+      const entry = {
+        scenario: state.selectedScenario.title,
+        action: state.action,
+        details: state.details,
+        strategies: Array.from(state.strategies),
+        timestamp: new Date()
+      };
+      state.log.unshift(entry);
+      renderLog();
+      clearCurrent();
+    });
+
+    function clearCurrent() {
+      state.action = '';
+      state.details = '';
+      state.strategies = new Set();
+      mainAction.value = '';
+      keyDetails.value = '';
+
+      strategyGrid.querySelectorAll('input[type="checkbox"]').forEach(box => box.checked = false);
+      updateProgress();
+      updateLogButton();
+    }
+
+    clearBtn.addEventListener('click', clearCurrent);
+
+    resetBtn.addEventListener('click', () => {
+      if (!confirm('Reset everything? This clears the current plan and the log.')) return;
+      state.selectedScenario = null;
+      state.log = [];
+      clearCurrent();
+      renderScenarios();
+      workSection.style.display = 'none';
+      renderLog();
+    });
+
+    function renderLog() {
+      if (state.log.length === 0) {
+        logArea.innerHTML = '<div style="color:var(--muted);">Build a plan in step 2 and press “Add to plan log” to see it here.</div>';
+        return;
+      }
+
+      logArea.innerHTML = state.log.map(entry => `
+        <div class="log-entry">
+          <strong>${entry.scenario}</strong>
+          <span><strong>Main action:</strong> ${entry.action}</span>
+          <span><strong>Important details:</strong> ${entry.details}</span>
+          <span><strong>Strategies:</strong> ${entry.strategies.join(' · ')}</span>
+        </div>
+      `).join('');
+    }
+
+    renderScenarios();
+    renderLog();
+  </script>
+</body>
+</html>

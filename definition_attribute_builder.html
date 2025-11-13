@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Definition Attribute Builder</title>
+  <style>
+    :root {
+      --accent: #0ea5e9;
+      --accent-dark: #0369a1;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --surface: #ffffff;
+      --bg: #f1f5f9;
+      --radius: 16px;
+      --shadow: 0 16px 30px rgba(14, 165, 233, 0.18);
+      --max: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(160deg, #e0f2fe 0%, #f8fafc 65%, #f1f5f9 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 4px solid rgba(14, 165, 233, 0.25);
+      box-shadow: 0 16px 24px rgba(15, 23, 42, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .bar {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bar h1 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--accent-dark);
+    }
+
+    .bar p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 32px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      gap: 24px;
+    }
+
+    section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid rgba(14, 165, 233, 0.18);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    section h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background: rgba(14, 165, 233, 0.15);
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .word-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .word-card {
+      border: 2px solid rgba(148, 163, 184, 0.3);
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(248, 250, 252, 0.9);
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+      display: grid;
+      gap: 6px;
+    }
+
+    .word-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(191, 219, 254, 0.45);
+    }
+
+    .word-card.active {
+      border-color: var(--accent);
+      background: rgba(191, 219, 254, 0.65);
+      box-shadow: 0 12px 20px rgba(14, 165, 233, 0.25);
+    }
+
+    .word-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .word-tag {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .definition-card {
+      border-radius: 16px;
+      background: rgba(248, 250, 252, 0.96);
+      border: 2px solid rgba(14, 165, 233, 0.2);
+      padding: 22px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .input-card {
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      border-radius: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 8px;
+      background: rgba(248, 250, 252, 0.9);
+    }
+
+    .input-card label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    .text-input {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      padding: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .text-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.18);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(14, 165, 233, 0.12);
+      border: 1px solid rgba(14, 165, 233, 0.35);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      background: rgba(14, 165, 233, 0.22);
+    }
+
+    .preview-card {
+      border-radius: 14px;
+      border: 2px solid rgba(14, 165, 233, 0.25);
+      background: rgba(191, 219, 254, 0.2);
+      padding: 16px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .preview-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    .preview-text {
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .progress-track {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .progress-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(148, 163, 184, 0.22);
+      color: var(--muted);
+    }
+
+    .progress-pill.done {
+      background: rgba(16, 185, 129, 0.2);
+      color: #047857;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 14px 22px rgba(14, 165, 233, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 26px rgba(14, 165, 233, 0.3);
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(14, 165, 233, 0.35);
+      background: white;
+      color: var(--accent-dark);
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    .log-area {
+      background: rgba(248, 250, 252, 0.95);
+      border: 2px dashed rgba(148, 163, 184, 0.35);
+      border-radius: 16px;
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .log-entry {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 14px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .log-entry strong {
+      color: var(--accent-dark);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+      .bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div>
+        <h1>Definition Attribute Builder</h1>
+        <p>Say what the word is, the group it belongs to, and the key attributes that make it unique.</p>
+      </div>
+      <button class="btn btn-outline" id="resetBtn">Reset All</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2><span class="step-badge">1</span> Choose a word</h2>
+      <p style="margin:0;color:var(--muted);font-size:14px;">Select a vocabulary word. Each word includes optional category and attribute hints.</p>
+      <div class="word-grid" id="wordGrid"></div>
+    </section>
+
+    <section id="builderSection" style="display:none;">
+      <h2><span class="step-badge">2</span> Build the definition</h2>
+      <div class="definition-card">
+        <div class="word-tag" id="wordTag"></div>
+        <div style="font-size:20px;font-weight:700;color:var(--accent-dark);" id="wordHeading"></div>
+        <div style="font-size:13px;color:var(--muted);" id="hintText"></div>
+      </div>
+
+      <div class="input-card">
+        <label for="categoryInput">1. What category does this word belong to?</label>
+        <input class="text-input" id="categoryInput" placeholder="Example: a type of renewable energy source">
+        <div class="chip-row" id="categoryChips"></div>
+      </div>
+
+      <div class="input-card">
+        <label>2. Add two key attributes (what makes it stand out?).</label>
+        <input class="text-input" id="attributeOne" placeholder="Attribute #1 (Example: powered by wind)">
+        <input class="text-input" id="attributeTwo" placeholder="Attribute #2 (Example: uses massive turbines)">
+        <div class="chip-row" id="attributeChips"></div>
+      </div>
+
+      <div class="preview-card">
+        <div class="preview-label">Definition preview</div>
+        <div class="preview-text" id="previewText">Fill in the blanks above to generate your definition sentence.</div>
+      </div>
+
+      <div class="progress-track">
+        <span class="progress-pill" id="pillCategory">Category named</span>
+        <span class="progress-pill" id="pillAttribute1">Attribute #1 added</span>
+        <span class="progress-pill" id="pillAttribute2">Attribute #2 added</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="logBtn" disabled>Add to definition log</button>
+        <button class="btn btn-outline" id="clearBtn">Clear this definition</button>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="step-badge">3</span> Definition log</h2>
+      <div class="log-area" id="logArea">
+        <div style="color:var(--muted);">Build a definition in step 2 and press “Add to definition log” to record it here.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const words = [
+      {
+        id: 1,
+        word: "Photosynthesis",
+        tag: "Science",
+        hints: "Think about how plants create their own food.",
+        categorySuggestions: ["a biological process", "a plant survival system"],
+        attributeSuggestions: ["uses sunlight to make sugar", "requires carbon dioxide and water", "happens in the chloroplasts"]
+      },
+      {
+        id: 2,
+        word: "Hypothesis",
+        tag: "Academics",
+        hints: "Used in experiments before testing.",
+        categorySuggestions: ["a scientific prediction", "an educated guess"],
+        attributeSuggestions: ["can be tested", "links cause and effect", "often written as an if/then statement"]
+      },
+      {
+        id: 3,
+        word: "Democracy",
+        tag: "Civics",
+        hints: "Relates to government and voting.",
+        categorySuggestions: ["a form of government", "a political system"],
+        attributeSuggestions: ["power comes from the people", "citizens vote on leaders or laws", "protects individual rights"]
+      },
+      {
+        id: 4,
+        word: "Alliteration",
+        tag: "ELA",
+        hints: "Often found in poetry or speeches.",
+        categorySuggestions: ["a literary device", "a writing technique"],
+        attributeSuggestions: ["repeats beginning consonant sounds", "creates rhythm or emphasis", "fits well in tongue twisters"]
+      },
+      {
+        id: 5,
+        word: "Algorithm",
+        tag: "Technology",
+        hints: "Useful for coding or math problem solving.",
+        categorySuggestions: ["a step-by-step procedure", "a problem-solving method"],
+        attributeSuggestions: ["lists actions in a precise order", "can be followed by a computer or person", "solves a specific task"]
+      },
+      {
+        id: 6,
+        word: "Metabolism",
+        tag: "Biology",
+        hints: "Connected to energy use in the body.",
+        categorySuggestions: ["a body process", "a chemical reaction system"],
+        attributeSuggestions: ["breaks down food for energy", "includes building and breaking reactions", "keeps cells functioning"]
+      }
+    ];
+
+    const state = {
+      selectedWord: null,
+      category: '',
+      attributeOne: '',
+      attributeTwo: '',
+      log: []
+    };
+
+    const wordGrid = document.getElementById('wordGrid');
+    const builderSection = document.getElementById('builderSection');
+    const wordTag = document.getElementById('wordTag');
+    const wordHeading = document.getElementById('wordHeading');
+    const hintText = document.getElementById('hintText');
+    const categoryInput = document.getElementById('categoryInput');
+    const attributeOne = document.getElementById('attributeOne');
+    const attributeTwo = document.getElementById('attributeTwo');
+    const categoryChips = document.getElementById('categoryChips');
+    const attributeChips = document.getElementById('attributeChips');
+    const previewText = document.getElementById('previewText');
+    const pillCategory = document.getElementById('pillCategory');
+    const pillAttribute1 = document.getElementById('pillAttribute1');
+    const pillAttribute2 = document.getElementById('pillAttribute2');
+    const logBtn = document.getElementById('logBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const logArea = document.getElementById('logArea');
+
+    function renderWords() {
+      wordGrid.innerHTML = words.map(item => `
+        <div class="word-card${state.selectedWord && state.selectedWord.id === item.id ? ' active' : ''}" data-id="${item.id}">
+          <span class="word-tag">${item.tag}</span>
+          <div class="word-title">${item.word}</div>
+          <div style="font-size:13px;color:var(--muted);">${item.hints}</div>
+        </div>
+      `).join('');
+
+      wordGrid.querySelectorAll('.word-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = parseInt(card.dataset.id, 10);
+          selectWord(id);
+        });
+      });
+    }
+
+    function selectWord(id) {
+      const chosen = words.find(item => item.id === id);
+      if (!chosen) return;
+
+      state.selectedWord = chosen;
+      state.category = '';
+      state.attributeOne = '';
+      state.attributeTwo = '';
+
+      wordGrid.querySelectorAll('.word-card').forEach(card => {
+        card.classList.toggle('active', parseInt(card.dataset.id, 10) === id);
+      });
+
+      wordTag.textContent = chosen.tag;
+      wordHeading.textContent = chosen.word;
+      hintText.textContent = `Hint: ${chosen.hints}`;
+
+      categoryInput.value = '';
+      attributeOne.value = '';
+      attributeTwo.value = '';
+
+      renderChips();
+      updatePreview();
+      updateProgress();
+      updateLogButton();
+
+      builderSection.style.display = 'grid';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderChips() {
+      if (!state.selectedWord) return;
+      categoryChips.innerHTML = state.selectedWord.categorySuggestions.map((text, index) => `
+        <span class="chip" data-type="category" data-value="${text}" id="cat-chip-${index}">${text}</span>
+      `).join('');
+
+      attributeChips.innerHTML = state.selectedWord.attributeSuggestions.map((text, index) => `
+        <span class="chip" data-type="attribute" data-value="${text}" id="att-chip-${index}">${text}</span>
+      `).join('');
+
+      document.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const type = chip.dataset.type;
+          const value = chip.dataset.value;
+          if (type === 'category') {
+            categoryInput.value = value;
+            state.category = value;
+          } else if (type === 'attribute') {
+            if (!attributeOne.value) {
+              attributeOne.value = value;
+              state.attributeOne = value;
+            } else {
+              attributeTwo.value = value;
+              state.attributeTwo = value;
+            }
+          }
+          updatePreview();
+          updateProgress();
+          updateLogButton();
+        });
+      });
+    }
+
+    categoryInput.addEventListener('input', () => {
+      state.category = categoryInput.value.trim();
+      updatePreview();
+      updateProgress();
+      updateLogButton();
+    });
+
+    attributeOne.addEventListener('input', () => {
+      state.attributeOne = attributeOne.value.trim();
+      updatePreview();
+      updateProgress();
+      updateLogButton();
+    });
+
+    attributeTwo.addEventListener('input', () => {
+      state.attributeTwo = attributeTwo.value.trim();
+      updatePreview();
+      updateProgress();
+      updateLogButton();
+    });
+
+    function updatePreview() {
+      if (!state.selectedWord) {
+        previewText.textContent = 'Select a word to start building a definition.';
+        return;
+      }
+      if (!state.category || !state.attributeOne || !state.attributeTwo) {
+        previewText.textContent = 'Keep filling in the category and both attributes to see the final sentence.';
+        return;
+      }
+
+      const article = /^[aeiou]/i.test(state.category.trim()) ? 'an' : 'a';
+      previewText.textContent = `${state.selectedWord.word} is ${article} ${state.category.trim()} that ${state.attributeOne.trim()} and ${state.attributeTwo.trim()}.`;
+    }
+
+    function updateProgress() {
+      pillCategory.classList.toggle('done', state.category.trim().length > 2);
+      pillAttribute1.classList.toggle('done', state.attributeOne.trim().length > 2);
+      pillAttribute2.classList.toggle('done', state.attributeTwo.trim().length > 2);
+    }
+
+    function updateLogButton() {
+      const ready = state.category.trim().length > 2 &&
+        state.attributeOne.trim().length > 2 &&
+        state.attributeTwo.trim().length > 2;
+      logBtn.disabled = !ready;
+    }
+
+    logBtn.addEventListener('click', () => {
+      if (!state.selectedWord) return;
+
+      const entry = {
+        word: state.selectedWord.word,
+        category: state.category.trim(),
+        attributeOne: state.attributeOne.trim(),
+        attributeTwo: state.attributeTwo.trim(),
+        timestamp: new Date()
+      };
+
+      state.log.unshift(entry);
+      renderLog();
+      clearCurrent();
+    });
+
+    function clearCurrent() {
+      state.category = '';
+      state.attributeOne = '';
+      state.attributeTwo = '';
+      categoryInput.value = '';
+      attributeOne.value = '';
+      attributeTwo.value = '';
+      updatePreview();
+      updateProgress();
+      updateLogButton();
+    }
+
+    clearBtn.addEventListener('click', clearCurrent);
+
+    resetBtn.addEventListener('click', () => {
+      if (!confirm('Reset everything? This clears the current work and the log.')) return;
+      state.selectedWord = null;
+      state.log = [];
+      clearCurrent();
+      renderWords();
+      builderSection.style.display = 'none';
+      renderLog();
+    });
+
+    function renderLog() {
+      if (state.log.length === 0) {
+        logArea.innerHTML = '<div style="color:var(--muted);">Build a definition in step 2 and press “Add to definition log” to record it here.</div>';
+        return;
+      }
+
+      logArea.innerHTML = state.log.map(entry => `
+        <div class="log-entry">
+          <strong>${entry.word}</strong>
+          <span><strong>Category:</strong> ${entry.category}</span>
+          <span><strong>Attributes:</strong> ${entry.attributeOne}; ${entry.attributeTwo}</span>
+          <span>${entry.word} is ${/^[aeiou]/i.test(entry.category) ? 'an' : 'a'} ${entry.category} that ${entry.attributeOne} and ${entry.attributeTwo}.</span>
+        </div>
+      `).join('');
+    }
+
+    renderWords();
+    renderLog();
+  </script>
+</body>
+</html>

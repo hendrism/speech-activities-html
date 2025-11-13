@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context Clues Detective - Word Meaning Discovery</title>
+<style>
+  :root {
+    --w: 1000px;
+    --accent: #1e40af;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #f59e0b;
+    --purple: #7c3aed;
+    --orange: #ea580c;
+    --gray: #64748b;
+    --level1: #10b981;
+    --level2: #8b5cf6;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .level-info {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+
+  .setup-panel {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+
+  .level-selector {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+  }
+
+  .level-btn {
+    padding: 20px 30px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: 3px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    min-width: 200px;
+  }
+
+  .level-btn.level1 {
+    border-color: var(--level1);
+  }
+
+  .level-btn.level1.active {
+    background: var(--level1);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+  }
+
+  .level-btn.level2 {
+    border-color: var(--level2);
+  }
+
+  .level-btn.level2.active {
+    background: var(--level2);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+  }
+
+  .level-desc {
+    font-size: 14px;
+    margin-top: 8px;
+    opacity: 0.8;
+    font-weight: 500;
+  }
+
+  .passage-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 8px;
+    margin-bottom: 30px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  .passage-btn {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    text-align: center;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .passage-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+  }
+  
+  .passage-btn.completed {
+    background: var(--ok);
+    border-color: var(--ok);
+    color: white;
+  }
+  
+  .passage-btn.completed::after {
+    content: "✓";
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: white;
+    color: var(--ok);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    border: 2px solid var(--ok);
+  }
+  
+  .detective-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .detective-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .detective-badge {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    padding: 15px 30px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.3);
+  }
+
+  .mystery-word {
+    background: linear-gradient(135deg, var(--warning), var(--orange));
+    color: white;
+    font-size: 36px;
+    font-weight: 900;
+    padding: 20px 40px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 15px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.3);
+  }
+  
+  .passage-text {
+    background: #f8fafc;
+    border: 3px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 25px;
+    margin: 25px 0;
+    font-size: 20px;
+    line-height: 1.8;
+    text-align: center;
+  }
+  
+  .target-word {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #92400e;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 900;
+    border: 2px solid var(--warning);
+    text-decoration: underline;
+    text-decoration-color: var(--warning);
+    text-decoration-thickness: 3px;
+  }
+  
+  .detective-question {
+    background: #eff6ff;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 25px 0;
+    text-align: center;
+  }
+  
+  .question-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 15px;
+  }
+  
+  .answer-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px 20px;
+    border: 3px solid #cbd5e1;
+    border-radius: 12px;
+    font-size: 18px;
+    margin: 15px auto;
+    font-family: inherit;
+    text-align: center;
+    display: block;
+  }
+  
+  .answer-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+  }
+  
+  .detective-tools {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  
+  .clue-box {
+    background: #fef3c7;
+    border: 3px solid var(--warning);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    display: none;
+  }
+  
+  .clue-box.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .clue-box h4 {
+    color: #92400e;
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .clue-box .clue-highlight {
+    background: #fde68a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  
+  .multiple-choice {
+    background: #f0f9ff;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    display: none;
+  }
+  
+  .multiple-choice.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .choice-option {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .choice-option:hover {
+    border-color: var(--accent);
+    background: #f8fafc;
+    transform: translateY(-1px);
+  }
+  
+  .choice-option.selected {
+    border-color: var(--accent);
+    background: #eff6ff;
+  }
+  
+  .choice-option.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .choice-option.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #1d4ed8;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .feedback {
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    display: none;
+  }
+  
+  .feedback.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .feedback.success {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border: 3px solid var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border: 3px solid var(--err);
+    color: #991b1b;
+  }
+
+  .progress-summary {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 16px;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .celebration-content {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 450px;
+    animation: celebrationBounce 0.6s ease-out;
+  }
+  
+  .celebration-content h3 {
+    color: var(--ok);
+    font-size: 32px;
+    margin: 0 0 20px;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes celebrationBounce {
+    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+    50% { transform: scale(1.05) rotate(-5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .level-selector {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .passage-selector {
+      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    }
+    
+    .mystery-word {
+      font-size: 28px;
+      padding: 15px 30px;
+    }
+    
+    .detective-tools {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>🔍 Context Clues Detective</h1>
+      <div class="level-info" id="levelInfo" style="display: none;">Level 1</div>
+      <div class="controls">
+        <button id="backToSetup" class="warning" style="display: none;">← Choose Level</button>
+        <button id="resetPassage" class="warning" style="display: none;">🔄 Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Setup Panel -->
+    <div class="setup-panel" id="setupPanel">
+      <h2 style="color: var(--accent); font-size: 28px; margin-bottom: 20px;">🕵️ Welcome, Word Detective!</h2>
+      <p style="font-size: 18px; margin-bottom: 30px;">
+        Your mission: Use context clues to figure out what mystery words mean!<br>
+        Choose your difficulty level to begin your investigation.
+      </p>
+      
+      <div class="level-selector">
+        <button class="level-btn level1" data-level="1">
+          <div style="font-size: 20px; margin-bottom: 8px;">🟢 Level 1</div>
+          <div class="level-desc">Perfect for developing detectives</div>
+        </button>
+        <button class="level-btn level2" data-level="2">
+          <div style="font-size: 20px; margin-bottom: 8px;">🟣 Level 2</div>
+          <div class="level-desc">For expert word investigators</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Activity Area (Initially Hidden) -->
+    <div id="mainActivity" style="display: none;">
+      <div class="progress-summary" id="progressSummary">
+        Select a passage to start your detective work!
+      </div>
+
+      <div class="passage-selector" id="passageSelector">
+        <!-- Passage buttons will be generated -->
+      </div>
+
+      <div class="detective-container">
+        <div class="detective-header">
+          <div class="detective-badge">🔍 WORD DETECTIVE</div>
+          <div class="mystery-word" id="mysteryWord">MYSTERY</div>
+          <div style="font-size: 16px; color: var(--gray); font-weight: 500;">
+            Use the clues in the passage to solve this word mystery!
+          </div>
+        </div>
+
+        <div class="passage-text" id="passageText">
+          <!-- Passage content will be populated here -->
+        </div>
+
+        <div class="detective-question">
+          <div class="question-text">What does this word mean?</div>
+          <input type="text" class="answer-input" id="answerInput" 
+                 placeholder="Type what you think this word means...">
+        </div>
+
+        <div class="detective-tools">
+          <button class="warning" id="clue1Btn">🕵️ Need a Clue</button>
+          <button class="warning" id="clue2Btn" style="display: none;">🔍 More Help</button>
+          <button class="primary" id="checkBtn">✅ Check Answer</button>
+        </div>
+
+        <div class="clue-box" id="clue1">
+          <h4>🕵️ Detective Clue #1:</h4>
+          <p id="clue1Text"></p>
+        </div>
+
+        <div class="clue-box" id="clue2">
+          <h4>🔍 Detective Clue #2:</h4>
+          <p id="clue2Text"></p>
+        </div>
+
+        <div class="multiple-choice" id="multipleChoice">
+          <h4 style="color: var(--accent); margin-bottom: 15px;">🎯 Choose the best meaning:</h4>
+          <div id="choicesContainer">
+            <!-- Choices will be populated here -->
+          </div>
+          <button class="primary" id="checkChoiceBtn" style="margin-top: 15px;">Check My Choice</button>
+        </div>
+
+        <div class="feedback" id="feedback">
+          <p id="feedbackText"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="celebration" id="celebration">
+    <div class="celebration-content">
+      <h3>🎉 Mystery Solved!</h3>
+      <p id="celebrationText">Excellent detective work!</p>
+      <button class="primary" onclick="closeCelebration()">Next Mystery</button>
+    </div>
+  </div>
+
+<script>
+const passageData = {
+  level1: [
+    {
+      word: "gigantic",
+      passage: "The gigantic elephant was so huge that it could barely fit through the zoo gate.",
+      clue1: "Look for words that tell you about size. What other word in the sentence means the same thing?",
+      clue2: "The sentence says the elephant was 'so huge' and 'could barely fit through the gate' - this tells you it was very big!",
+      choices: [
+        "very big or huge",
+        "very small",
+        "very loud"
+      ],
+      correct: 0,
+      answer: "very big or huge"
+    },
+    {
+      word: "peculiar",
+      passage: "The cat had a peculiar habit of sleeping upside down, which was very strange and unusual.",
+      clue1: "What words in the sentence describe the cat's habit? They give you a clue about what 'peculiar' means.",
+      clue2: "The sentence says the habit was 'very strange and unusual' - these words tell you what peculiar means!",
+      choices: [
+        "normal and ordinary",
+        "strange and unusual",
+        "funny and silly"
+      ],
+      correct: 1,
+      answer: "strange and unusual"
+    },
+    {
+      word: "tremendous",
+      passage: "The thunder made a tremendous noise that shook the whole house.",
+      clue1: "Think about what kind of noise would shake a whole house. What does that tell you?",
+      clue2: "If the noise 'shook the whole house,' it must have been a very big, loud sound!",
+      choices: [
+        "very quiet and soft",
+        "very big and powerful",
+        "very musical"
+      ],
+      correct: 1,
+      answer: "very big and powerful"
+    },
+    {
+      word: "frigid",
+      passage: "The water in the lake was frigid, so cold that ice formed on the surface.",
+      clue1: "The sentence gives you a big clue right after the word. What happened because the water was frigid?",
+      clue2: "The water was 'so cold that ice formed' - ice only forms when water is very, very cold!",
+      choices: [
+        "very hot and warm",
+        "very cold and icy",
+        "very deep"
+      ],
+      correct: 1,
+      answer: "very cold and icy"
+    },
+    {
+      word: "famished",
+      passage: "After not eating all day, Jake was famished and his stomach was growling loudly.",
+      clue1: "Jake hadn't eaten all day. What would that make him feel? His stomach was doing something too.",
+      clue2: "Not eating all day would make you hungry, and a growling stomach is a sign of being very hungry!",
+      choices: [
+        "very full",
+        "very hungry",
+        "very tired"
+      ],
+      correct: 1,
+      answer: "very hungry"
+    },
+    {
+      word: "scurried",
+      passage: "The mouse scurried across the floor, moving quickly to hide under the couch.",
+      clue1: "The sentence tells you exactly how the mouse moved. What words describe its movement?",
+      clue2: "The mouse was 'moving quickly' - this tells you what scurried means!",
+      choices: [
+        "moved very slowly",
+        "moved very quickly",
+        "moved very loudly"
+      ],
+      correct: 1,
+      answer: "moved very quickly"
+    },
+    {
+      word: "drowsy",
+      passage: "After staying up late, Sarah felt drowsy and kept yawning in class.",
+      clue1: "Sarah stayed up late and was yawning. What does yawning usually mean you feel like?",
+      clue2: "Staying up late makes you tired, and yawning is what you do when you're sleepy!",
+      choices: [
+        "very excited and happy",
+        "very sleepy and tired",
+        "very hungry"
+      ],
+      correct: 1,
+      answer: "very sleepy and tired"
+    },
+    {
+      word: "brilliant",
+      passage: "The brilliant student always got perfect scores and answered every question correctly.",
+      clue1: "Look at what the student could do. Getting perfect scores and answering everything correctly shows what?",
+      clue2: "Someone who gets perfect scores and answers every question correctly must be very smart!",
+      choices: [
+        "very smart and clever",
+        "very tall",
+        "very quiet"
+      ],
+      correct: 0,
+      answer: "very smart and clever"
+    },
+    {
+      word: "ancient",
+      passage: "The ancient tree had been growing for over 500 years and was older than the town itself.",
+      clue1: "The sentence tells you how long the tree had been growing. What does 500 years tell you?",
+      clue2: "500 years is a very long time ago - that makes something very old!",
+      choices: [
+        "very young and new",
+        "very old",
+        "very tall"
+      ],
+      correct: 1,
+      answer: "very old"
+    },
+    {
+      word: "furious",
+      passage: "Mom was furious when she saw the mess, and her face turned red with anger.",
+      clue1: "Mom's face turned red with something. What emotion makes people's faces turn red?",
+      clue2: "The sentence says her face turned red 'with anger' - this tells you what furious means!",
+      choices: [
+        "very happy and excited",
+        "very angry and mad",
+        "very sad"
+      ],
+      correct: 1,
+      answer: "very angry and mad"
+    },
+    {
+      word: "timid",
+      passage: "The timid rabbit hid behind the bush, too shy and scared to come out.",
+      clue1: "The rabbit hid and was described as having two feelings. What were they?",
+      clue2: "The sentence says the rabbit was 'too shy and scared' - these words tell you what timid means!",
+      choices: [
+        "brave and bold",
+        "shy and scared",
+        "big and strong"
+      ],
+      correct: 1,
+      answer: "shy and scared"
+    },
+    {
+      word: "gleaming",
+      passage: "The newly washed car was gleaming, shining brightly in the sunlight.",
+      clue1: "The sentence tells you exactly what the car was doing. What word describes what it was doing?",
+      clue2: "The car was 'shining brightly' - this tells you what gleaming means!",
+      choices: [
+        "very dirty",
+        "shining brightly",
+        "very old"
+      ],
+      correct: 1,
+      answer: "shining brightly"
+    },
+    {
+      word: "exhausted",
+      passage: "After running five miles, Tom was exhausted and could barely walk.",
+      clue1: "Tom ran five miles and then could barely walk. What would running that far do to you?",
+      clue2: "Running five miles would make you very tired, so tired you could barely walk!",
+      choices: [
+        "very energetic",
+        "very tired",
+        "very happy"
+      ],
+      correct: 1,
+      answer: "very tired"
+    },
+    {
+      word: "delighted",
+      passage: "Emma was delighted with her birthday present and couldn't stop smiling.",
+      clue1: "Emma couldn't stop smiling about her present. What does smiling show you're feeling?",
+      clue2: "When you can't stop smiling, it means you're very happy!",
+      choices: [
+        "very happy and pleased",
+        "very sad and upset",
+        "very tired"
+      ],
+      correct: 0,
+      answer: "very happy and pleased"
+    },
+    {
+      word: "vast",
+      passage: "The vast ocean stretched as far as the eye could see, with no land in sight.",
+      clue1: "The ocean stretched 'as far as the eye could see' with no land anywhere. What does this tell you about its size?",
+      clue2: "If you can't see the end of something and there's no land anywhere, it must be huge!",
+      choices: [
+        "very small",
+        "very huge and endless",
+        "very shallow"
+      ],
+      correct: 1,
+      answer: "very huge and endless"
+    }
+  ],
+  
+  level2: [
+    {
+      word: "bewildered",
+      passage: "The tourist was bewildered by the confusing street signs and didn't know which way to go.",
+      clue1: "The street signs were confusing and the tourist didn't know which way to go. How would that make you feel?",
+      clue2: "When things are confusing and you don't know what to do, you feel mixed up and puzzled!",
+      choices: [
+        "very excited and happy",
+        "confused and puzzled",
+        "very confident"
+      ],
+      correct: 1,
+      answer: "confused and puzzled"
+    },
+    {
+      word: "meticulous",
+      passage: "The artist was meticulous in her work, carefully painting every tiny detail with precision.",
+      clue1: "Look at how the artist worked. She did something to every tiny detail and used precision.",
+      clue2: "Painting 'every tiny detail with precision' means being very careful and exact!",
+      choices: [
+        "very careless and sloppy",
+        "very careful and precise",
+        "very fast and quick"
+      ],
+      correct: 1,
+      answer: "very careful and precise"
+    },
+    {
+      word: "reluctant",
+      passage: "Jake was reluctant to jump off the diving board because he was nervous and didn't want to do it.",
+      clue1: "Jake was nervous and didn't want to jump. How does that make him feel about jumping?",
+      clue2: "When you're nervous about something and don't want to do it, you're unwilling to do it!",
+      choices: [
+        "eager and excited",
+        "unwilling and hesitant",
+        "very confident"
+      ],
+      correct: 1,
+      answer: "unwilling and hesitant"
+    },
+    {
+      word: "tranquil",
+      passage: "The tranquil lake was perfectly still and peaceful, with not even a ripple on the surface.",
+      clue1: "The lake was 'perfectly still and peaceful' with no ripples. What kind of feeling does this describe?",
+      clue2: "Still, peaceful, and no ripples means very calm and quiet!",
+      choices: [
+        "very stormy and rough",
+        "very calm and peaceful",
+        "very deep and dark"
+      ],
+      correct: 1,
+      answer: "very calm and peaceful"
+    },
+    {
+      word: "demolished",
+      passage: "The old building was demolished by the wrecking crew, completely torn down to make room for a park.",
+      clue1: "The wrecking crew did something to make room for a park. What did they do to the building?",
+      clue2: "The building was 'completely torn down' - this tells you what demolished means!",
+      choices: [
+        "repaired and fixed",
+        "destroyed and torn down",
+        "painted and cleaned"
+      ],
+      correct: 1,
+      answer: "destroyed and torn down"
+    },
+    {
+      word: "persevered",
+      passage: "Despite failing the test twice, Maria persevered and kept studying until she finally passed.",
+      clue1: "Maria failed twice but kept doing something until she passed. What did she do?",
+      clue2: "Even after failing, she 'kept studying' and didn't give up - that's persevering!",
+      choices: [
+        "gave up and quit",
+        "kept trying and didn't give up",
+        "got very angry"
+      ],
+      correct: 1,
+      answer: "kept trying and didn't give up"
+    },
+    {
+      word: "magnified",
+      passage: "The microscope magnified the tiny bacteria, making them appear much larger than they actually were.",
+      clue1: "The microscope did something to make tiny bacteria 'appear much larger.' What did it do?",
+      clue2: "Making something 'appear much larger than it actually is' means making it look bigger!",
+      choices: [
+        "made them smaller",
+        "made them look bigger",
+        "made them disappear"
+      ],
+      correct: 1,
+      answer: "made them look bigger"
+    },
+    {
+      word: "accumulated",
+      passage: "Over the years, dust had accumulated in the attic, piling up in thick layers.",
+      clue1: "Over many years, dust was 'piling up in thick layers.' What was happening to it?",
+      clue2: "Piling up in thick layers over years means gradually collecting or gathering!",
+      choices: [
+        "disappeared completely",
+        "gathered and built up",
+        "stayed exactly the same"
+      ],
+      correct: 1,
+      answer: "gathered and built up"
+    },
+    {
+      word: "concealed",
+      passage: "The treasure was concealed behind a false wall where no one would think to look.",
+      clue1: "The treasure was behind a false wall where no one would think to look. Why would you put it there?",
+      clue2: "Putting something where 'no one would think to look' means you're hiding it!",
+      choices: [
+        "displayed for everyone to see",
+        "hidden from view",
+        "thrown away"
+      ],
+      correct: 1,
+      answer: "hidden from view"
+    },
+    {
+      word: "flourished",
+      passage: "The garden flourished in the rich soil, with plants growing tall and healthy.",
+      clue1: "In rich soil, the plants were 'growing tall and healthy.' How were they doing?",
+      clue2: "Growing tall and healthy means the plants were doing very well and thriving!",
+      choices: [
+        "died and withered",
+        "grew well and thrived",
+        "stayed the same size"
+      ],
+      correct: 1,
+      answer: "grew well and thrived"
+    },
+    {
+      word: "tedious",
+      passage: "The tedious job of sorting thousands of papers took hours and was very boring.",
+      clue1: "The job took hours and was described as 'very boring.' What kind of job would that be?",
+      clue2: "A job that takes hours and is 'very boring' would be dull and tiresome!",
+      choices: [
+        "exciting and fun",
+        "boring and tiresome",
+        "quick and easy"
+      ],
+      correct: 1,
+      answer: "boring and tiresome"
+    },
+    {
+      word: "abundant",
+      passage: "The apple tree produced abundant fruit, with so many apples that branches bent from the weight.",
+      clue1: "There were 'so many apples that branches bent from the weight.' What does this tell you?",
+      clue2: "If there are so many apples that branches bend from the weight, there must be a very large amount!",
+      choices: [
+        "very few and scarce",
+        "a large amount, plenty",
+        "exactly the right amount"
+      ],
+      correct: 1,
+      answer: "a large amount, plenty"
+    },
+    {
+      word: "ambitious",
+      passage: "The ambitious student set a goal to read 100 books and worked hard to achieve it.",
+      clue1: "The student set a big goal (100 books) and worked hard to achieve it. What kind of person does this?",
+      clue2: "Someone who sets big goals and works hard to achieve them has strong determination and drive!",
+      choices: [
+        "lazy and unmotivated",
+        "driven and goal-oriented",
+        "very forgetful"
+      ],
+      correct: 1,
+      answer: "driven and goal-oriented"
+    },
+    {
+      word: "perilous",
+      passage: "The mountain climb was perilous, with dangerous cliffs and loose rocks everywhere.",
+      clue1: "The climb had 'dangerous cliffs and loose rocks everywhere.' What would this make the climb?",
+      clue2: "Dangerous cliffs and loose rocks would make something unsafe and risky!",
+      choices: [
+        "very safe and secure",
+        "dangerous and risky",
+        "easy and simple"
+      ],
+      correct: 1,
+      answer: "dangerous and risky"
+    },
+    {
+      word: "remedy",
+      passage: "The doctor prescribed a remedy for the patient's headache that would make the pain go away.",
+      clue1: "The doctor gave something for the headache that would 'make the pain go away.' What would that be?",
+      clue2: "Something that makes pain go away is a treatment or cure!",
+      choices: [
+        "something that causes more pain",
+        "a treatment or cure",
+        "a type of exercise"
+      ],
+      correct: 1,
+      answer: "a treatment or cure"
+    }
+  ]
+};
+
+let currentLevel = 1;
+let currentPassage = 0;
+let completedPassages = new Set();
+
+function initializeActivity() {
+  setupEventListeners();
+}
+
+function setupEventListeners() {
+  // Level selector
+  document.querySelectorAll('.level-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const level = parseInt(btn.dataset.level);
+      startLevel(level);
+    });
+  });
+
+  // Control buttons
+  document.getElementById('backToSetup').addEventListener('click', backToSetup);
+  document.getElementById('resetPassage').addEventListener('click', resetCurrentPassage);
+  
+  // Detective tools
+  document.getElementById('clue1Btn').addEventListener('click', () => showClue(1));
+  document.getElementById('clue2Btn').addEventListener('click', () => showClue(2));
+  document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+  document.getElementById('checkChoiceBtn').addEventListener('click', checkMultipleChoice);
+  
+  // Answer input
+  document.getElementById('answerInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      checkAnswer();
+    }
+  });
+}
+
+function startLevel(level) {
+  currentLevel = level;
+  completedPassages.clear();
+  
+  document.getElementById('setupPanel').style.display = 'none';
+  document.getElementById('mainActivity').style.display = 'block';
+  document.getElementById('levelInfo').style.display = 'block';
+  document.getElementById('backToSetup').style.display = 'inline-block';
+  document.getElementById('resetPassage').style.display = 'inline-block';
+  
+  document.getElementById('levelInfo').textContent = `Level ${level}`;
+  
+  createPassageSelector();
+  loadPassage(0);
+  updateProgress();
+}
+
+function backToSetup() {
+  document.getElementById('setupPanel').style.display = 'block';
+  document.getElementById('mainActivity').style.display = 'none';
+  document.getElementById('levelInfo').style.display = 'none';
+  document.getElementById('backToSetup').style.display = 'none';
+  document.getElementById('resetPassage').style.display = 'none';
+}
+
+function createPassageSelector() {
+  const selector = document.getElementById('passageSelector');
+  const passages = passageData[`level${currentLevel}`];
+  selector.innerHTML = '';
+  
+  passages.forEach((_, index) => {
+    const btn = document.createElement('button');
+    btn.className = `passage-btn ${index === 0 ? 'active' : ''}`;
+    btn.dataset.passage = index;
+    btn.textContent = index + 1;
+    selector.appendChild(btn);
+  });
+  
+  // Add event listeners
+  selector.addEventListener('click', (e) => {
+    if (e.target.classList.contains('passage-btn')) {
+      const passageIndex = parseInt(e.target.dataset.passage);
+      loadPassage(passageIndex);
+    }
+  });
+}
+
+function loadPassage(index) {
+  currentPassage = index;
+  const passage = passageData[`level${currentLevel}`][index];
+  
+  // Update passage selector
+  document.querySelectorAll('.passage-btn').forEach((btn, idx) => {
+    btn.classList.toggle('active', idx === index);
+    if (completedPassages.has(idx)) {
+      btn.classList.add('completed');
+    }
+  });
+  
+  // Update mystery word and passage
+  document.getElementById('mysteryWord').textContent = passage.word.toUpperCase();
+  document.getElementById('passageText').innerHTML = passage.passage.replace(
+    new RegExp(`\\b${passage.word}\\b`, 'gi'), 
+    `<span class="target-word">${passage.word}</span>`
+  );
+  
+  // Set up clues
+  document.getElementById('clue1Text').textContent = passage.clue1;
+  document.getElementById('clue2Text').textContent = passage.clue2;
+  
+  // Set up multiple choice
+  const choicesContainer = document.getElementById('choicesContainer');
+  choicesContainer.innerHTML = '';
+  passage.choices.forEach((choice, idx) => {
+    const choiceDiv = document.createElement('div');
+    choiceDiv.className = 'choice-option';
+    choiceDiv.dataset.choice = idx;
+    choiceDiv.textContent = choice;
+    choiceDiv.addEventListener('click', () => selectChoice(idx));
+    choicesContainer.appendChild(choiceDiv);
+  });
+  
+  // Reset form
+  resetForm();
+}
+
+function selectChoice(choiceIndex) {
+  document.querySelectorAll('.choice-option').forEach((choice, idx) => {
+    choice.classList.toggle('selected', idx === choiceIndex);
+  });
+}
+
+function showClue(clueNumber) {
+  document.getElementById(`clue${clueNumber}`).classList.add('show');
+  
+  if (clueNumber === 1) {
+    document.getElementById('clue2Btn').style.display = 'inline-block';
+  } else if (clueNumber === 2) {
+    document.getElementById('multipleChoice').classList.add('show');
+  }
+}
+
+function checkAnswer() {
+  const input = document.getElementById('answerInput');
+  const passage = passageData[`level${currentLevel}`][currentPassage];
+  const feedback = document.getElementById('feedback');
+  const feedbackText = document.getElementById('feedbackText');
+  
+  if (input.value.trim() === '') {
+    feedback.className = 'feedback error show';
+    feedbackText.innerHTML = '<strong>🕵️ Hold on, detective!</strong><br>Please write your answer first, then I can help you check it!';
+    return;
+  }
+  
+  feedback.className = 'feedback success show';
+  feedbackText.innerHTML = `
+    <strong>🎯 Your detective work:</strong> "${input.value}"<br><br>
+    <strong>📝 A good answer would be:</strong> "${passage.answer}"<br><br>
+    <em>🌟 Great thinking! You used the context clues to figure out the meaning. Discuss your answer with your teacher!</em>
+  `;
+  
+  completedPassages.add(currentPassage);
+  updatePassageSelector();
+  updateProgress();
+  
+  if (completedPassages.size === passageData[`level${currentLevel}`].length) {
+    setTimeout(() => showFinalCelebration(), 1500);
+  } else {
+    setTimeout(() => showCelebration(), 1000);
+  }
+}
+
+function checkMultipleChoice() {
+  const selected = document.querySelector('.choice-option.selected');
+  const passage = passageData[`level${currentLevel}`][currentPassage];
+  const feedback = document.getElementById('feedback');
+  const feedbackText = document.getElementById('feedbackText');
+  
+  if (!selected) {
+    feedback.className = 'feedback error show';
+    feedbackText.innerHTML = '<strong>🔍 Detective!</strong><br>Please select one of the answer choices first!';
+    return;
+  }
+  
+  const choiceIndex = parseInt(selected.dataset.choice);
+  const isCorrect = choiceIndex === passage.correct;
+  
+  // Mark all choices
+  document.querySelectorAll('.choice-option').forEach((choice, idx) => {
+    choice.classList.remove('correct', 'incorrect');
+    if (idx === passage.correct) {
+      choice.classList.add('correct');
+    } else if (choice.classList.contains('selected') && !isCorrect) {
+      choice.classList.add('incorrect');
+    }
+  });
+  
+  if (isCorrect) {
+    feedback.className = 'feedback success show';
+    feedbackText.innerHTML = '<strong>🎉 Excellent detective work!</strong><br>You cracked the case and found the correct meaning!';
+    document.getElementById('answerInput').value = passage.answer;
+  } else {
+    feedback.className = 'feedback error show';
+    feedbackText.innerHTML = '<strong>🔍 Close, detective!</strong><br>The correct answer is highlighted in green. Look at the context clues again!';
+    return;
+  }
+  
+  completedPassages.add(currentPassage);
+  updatePassageSelector();
+  updateProgress();
+  
+  if (completedPassages.size === passageData[`level${currentLevel}`].length) {
+    setTimeout(() => showFinalCelebration(), 1500);
+  } else {
+    setTimeout(() => showCelebration(), 1000);
+  }
+}
+
+function updatePassageSelector() {
+  document.querySelectorAll('.passage-btn').forEach((btn, idx) => {
+    if (completedPassages.has(idx)) {
+      btn.classList.add('completed');
+    }
+  });
+}
+
+function updateProgress() {
+  const progressSummary = document.getElementById('progressSummary');
+  const totalPassages = passageData[`level${currentLevel}`].length;
+  const completed = completedPassages.size;
+  
+  progressSummary.textContent = `🕵️ Detective Progress: ${completed}/${totalPassages} mysteries solved • Level ${currentLevel}`;
+}
+
+function showCelebration() {
+  const celebration = document.getElementById('celebration');
+  const celebrationText = document.getElementById('celebrationText');
+  
+  celebrationText.textContent = 'You used context clues like a true detective! Ready for the next mystery?';
+  celebration.style.display = 'flex';
+}
+
+function showFinalCelebration() {
+  const celebration = document.getElementById('celebration');
+  const celebrationContent = document.querySelector('.celebration-content');
+  
+  celebrationContent.innerHTML = `
+    <h3>🏆 Master Detective!</h3>
+    <p>Congratulations! You've solved all 15 word mysteries using context clues!</p>
+    <p>🎯 You're now a certified Context Clues Detective!</p>
+    <button class="primary" onclick="closeCelebration()">🌟 Awesome!</button>
+  `;
+  
+  celebration.style.display = 'flex';
+}
+
+function closeCelebration() {
+  document.getElementById('celebration').style.display = 'none';
+}
+
+function resetForm() {
+  document.getElementById('answerInput').value = '';
+  document.getElementById('clue1').classList.remove('show');
+  document.getElementById('clue2').classList.remove('show');
+  document.getElementById('multipleChoice').classList.remove('show');
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('clue2Btn').style.display = 'none';
+  
+  document.querySelectorAll('.choice-option').forEach(choice => {
+    choice.classList.remove('selected', 'correct', 'incorrect');
+  });
+}
+
+function resetCurrentPassage() {
+  resetForm();
+  completedPassages.delete(currentPassage);
+  updatePassageSelector();
+  updateProgress();
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initializeActivity);
+</script>
+</body>
+</html>

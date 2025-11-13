@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compare & Contrast Builder</title>
+  <style>
+    :root {
+      --accent: #7c3aed;
+      --accent-dark: #5b21b6;
+      --blue: #0ea5e9;
+      --green: #10b981;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --surface: #ffffff;
+      --muted: #64748b;
+      --ink: #0f172a;
+      --bg: #f8fafc;
+      --radius: 16px;
+      --shadow: 0 18px 36px rgba(124, 58, 237, 0.15);
+      --max: 1000px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #ede9fe 0%, #f8fafc 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 4px solid rgba(124, 58, 237, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    .bar {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .bar h1 {
+      margin: 0;
+      font-size: 26px;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .bar p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 32px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      gap: 28px;
+    }
+
+    section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    section h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(124, 58, 237, 0.12);
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .step-body {
+      display: grid;
+      gap: 20px;
+    }
+
+    .difficulty-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .diff-btn {
+      border: 2px solid rgba(124, 58, 237, 0.18);
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--accent-dark);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .diff-btn:hover,
+    .diff-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 10px 18px rgba(124, 58, 237, 0.35);
+    }
+
+    .pair-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .pair-card {
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      border-radius: 14px;
+      padding: 18px;
+      background: rgba(248, 250, 252, 0.9);
+      display: grid;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .pair-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(233, 213, 255, 0.3);
+    }
+
+    .pair-card.active {
+      border-color: var(--accent);
+      background: rgba(233, 213, 255, 0.55);
+      box-shadow: 0 10px 20px rgba(124, 58, 237, 0.25);
+    }
+
+    .pair-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .pair-tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .organizer-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+    }
+
+    .organizer-table th,
+    .organizer-table td {
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 14px;
+      vertical-align: top;
+      background: #ffffff;
+    }
+
+    .organizer-table th {
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--accent-dark);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .organizer-input {
+      width: 100%;
+      min-height: 80px;
+      border: 2px solid rgba(148, 163, 184, 0.35);
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+  .organizer-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+  }
+
+  .organizer-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .organizer-controls span {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .frame-stage {
+    background: rgba(248, 250, 252, 0.92);
+    border: 2px solid rgba(148, 163, 184, 0.25);
+    border-radius: 16px;
+    padding: 22px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .frame-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .frame-progress {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent-dark);
+  }
+
+  .frame-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .frame-card {
+    border: 2px solid rgba(148, 163, 184, 0.3);
+    border-radius: 14px;
+    padding: 16px;
+    background: rgba(248, 250, 252, 0.9);
+    display: grid;
+    gap: 10px;
+  }
+
+  .frame-card h3 {
+    margin: 0;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .frame-details {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .frame-fields {
+    display: grid;
+    gap: 8px;
+  }
+
+  .frame-fields label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .frame-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .input-prefix {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .frame-input {
+    width: 100%;
+    border: 2px solid rgba(148, 163, 184, 0.35);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-family: inherit;
+    font-size: 14px;
+    flex: 1;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .frame-input:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.18);
+  }
+
+  .frame-input.missing {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  }
+
+  .input-helper {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .preview-card {
+    border-radius: 14px;
+    border: 2px solid rgba(14, 165, 233, 0.25);
+    background: rgba(14, 165, 233, 0.1);
+    padding: 16px;
+    display: grid;
+    gap: 6px;
+  }
+
+  .preview-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f4c81;
+  }
+
+  .preview-text {
+    font-size: 15px;
+    color: #0f172a;
+  }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 12px 18px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 22px rgba(124, 58, 237, 0.35);
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(124, 58, 237, 0.35);
+      background: #ffffff;
+      color: var(--accent-dark);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .sentence-log {
+      background: rgba(248, 250, 252, 0.9);
+      border: 2px dashed rgba(124, 58, 237, 0.25);
+      border-radius: 16px;
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .sentence-log h3 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--accent-dark);
+    }
+
+    .sentence-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .sentence-item {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .sentence-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .clinician-box {
+      background: rgba(15, 23, 42, 0.9);
+      color: #e0e7ff;
+      border-radius: var(--radius);
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 24px 40px rgba(15, 23, 42, 0.35);
+    }
+
+    .clinician-box h3 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #c7d2fe;
+    }
+
+    .clinician-box ul {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.25);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(135deg, #0ea5e9 0%, #7c3aed 100%);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .empty-state {
+      border: 2px dashed rgba(148, 163, 184, 0.35);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      section {
+        padding: 22px;
+      }
+      .pair-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div>
+        <h1>Compare & Contrast Builder</h1>
+        <p>Guide your student from brainstorming details to producing strong comparative sentences.</p>
+      </div>
+      <button class="btn btn-outline" id="resetBtn">Reset Activity</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="step1">
+      <h2><span class="step-badge">1</span> Select a noun pair</h2>
+      <div class="step-body">
+        <p style="margin:0;color:var(--muted);font-size:14px;">Choose a pair sorted by difficulty. Each card represents a comparison prompt.</p>
+        <div class="difficulty-tabs">
+          <button class="diff-btn active" data-filter="all">All</button>
+          <button class="diff-btn" data-filter="easy">Easy</button>
+          <button class="diff-btn" data-filter="medium">Medium</button>
+          <button class="diff-btn" data-filter="hard">Hard</button>
+        </div>
+        <div class="pair-grid" id="pairGrid"></div>
+      </div>
+    </section>
+
+    <section id="step2">
+      <h2><span class="step-badge">2</span> Complete the graphic organizer</h2>
+      <div class="step-body">
+        <p style="margin:0;color:var(--muted);font-size:14px;">Capture key information for each item. Use the Notes column to store emerging comparisons or details to re-use later.</p>
+        <div class="empty-state" id="organizerEmpty">Select a noun pair above to unlock the organizer.</div>
+        <div id="organizerWrapper" style="display:none;">
+          <div class="organizer-controls">
+            <div style="font-size:15px;font-weight:600;color:var(--accent-dark);" id="organizerHeading"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn btn-outline" id="toggleRowsBtn">Show more categories</button>
+              <button class="btn btn-outline" id="clearOrganizerBtn">Clear organizer</button>
+            </div>
+          </div>
+          <table class="organizer-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th id="colItem1">Item 1</th>
+                <th id="colItem2">Item 2</th>
+                <th>Notes / Comparison Ideas</th>
+              </tr>
+            </thead>
+            <tbody id="organizerBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="step3">
+      <h2><span class="step-badge">3</span> Build and record sentences</h2>
+      <div class="step-body">
+        <p style="margin:0;color:var(--muted);font-size:14px;">Use sentence frames to create at least four unique sentences. Fill in the prompts and tap “Add sentence” to log it.</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="sentenceProgress"></div>
+        </div>
+        <div class="frame-stage" id="frameStage">
+          <div class="frame-header">
+            <div class="frame-progress" id="frameProgressText">Select a pair to start building sentences.</div>
+            <div class="frame-nav">
+              <button class="btn btn-outline" id="prevFrameBtn" disabled>← Previous frame</button>
+              <button class="btn btn-outline" id="nextFrameBtn" disabled>Next frame →</button>
+            </div>
+          </div>
+          <div id="frameWorkspace"></div>
+          <div class="preview-card">
+            <div class="preview-label">Live sentence preview</div>
+            <div class="preview-text" id="previewText">Fill in the blanks above to see the full sentence.</div>
+          </div>
+        </div>
+        <div class="sentence-log">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div>
+              <h3>Sentence collection</h3>
+              <span class="sentence-meta"><span id="sentenceCount">0</span> / 4 complete sentences logged</span>
+            </div>
+            <button class="btn btn-outline" id="copySentencesBtn" disabled>Copy all sentences</button>
+          </div>
+          <div class="sentence-list" id="sentenceList">
+            <div class="empty-state">Add sentences using the frames above. Aim for at least four complete ideas.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#0f172a;color:#e0e7ff;box-shadow:0 24px 40px rgba(15,23,42,0.28);">
+      <div class="clinician-box">
+        <h3>Clinician guidance</h3>
+        <ul>
+          <li>Listen for at least four concrete details across the collected sentences.</li>
+          <li>Monitor grammar: comparative / superlative forms, adjective choice, subject-verb agreement.</li>
+          <li>Highlight sentence variety (similarities, differences, evaluations) and prompt expansions.</li>
+          <li>Decide on immediate vs delayed feedback based on scaffolding level and student regulation.</li>
+          <li>Fade supports gradually by hiding notes, reducing prompts, or switching to spontaneous speech.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const pairData = [
+      { id: 'cat-dog', items: ['Cat', 'Dog'], difficulty: 'easy', hints: 'Think about pets, habits, and care.' },
+      { id: 'pizza-burger', items: ['Pizza', 'Burger'], difficulty: 'easy', hints: 'Focus on ingredients and occasions.' },
+      { id: 'summer-winter', items: ['Summer', 'Winter'], difficulty: 'easy', hints: 'Weather, activities, feelings.' },
+      { id: 'highschool-college', items: ['High School', 'College'], difficulty: 'medium', hints: 'Schedules, independence, expectations.' },
+      { id: 'texting-calling', items: ['Texting', 'Calling'], difficulty: 'medium', hints: 'Communication style, tone, convenience.' },
+      { id: 'book-movie', items: ['Book', 'Movie'], difficulty: 'medium', hints: 'Storytelling, detail, time investment.' },
+      { id: 'city-suburbs', items: ['City', 'Suburbs'], difficulty: 'medium', hints: 'Pace, amenities, lifestyle.' },
+      { id: 'success-happiness', items: ['Success', 'Happiness'], difficulty: 'hard', hints: 'Definitions, how they intersect.' },
+      { id: 'freedom-responsibility', items: ['Freedom', 'Responsibility'], difficulty: 'hard', hints: 'Balance, consequences.' },
+      { id: 'anxiety-stress', items: ['Anxiety', 'Stress'], difficulty: 'hard', hints: 'Feelings, triggers, coping.' },
+      { id: 'online-traditional', items: ['Online Learning', 'Traditional School'], difficulty: 'hard', hints: 'Setting, interaction, flexibility.' }
+    ];
+
+    const organizerRows = [
+      { key: 'definition', label: 'Definition / What it is', optional: false },
+      { key: 'positives', label: 'Benefits / Positives', optional: false },
+      { key: 'negatives', label: 'Drawbacks / Negatives', optional: false },
+      { key: 'qualities', label: 'Characteristics / Qualities', optional: true },
+      { key: 'context', label: 'Who / When / Where', optional: true }
+    ];
+
+    function applyFieldPrefix(field, value) {
+      let trimmed = value.trim();
+      if (!trimmed) return '';
+      if (field.prefix) {
+        const prefixCore = field.prefix.trim().toLowerCase();
+        if (trimmed.toLowerCase().startsWith(prefixCore)) {
+          trimmed = trimmed.slice(prefixCore.length).trimStart();
+        }
+        return `${field.prefix}${trimmed}`;
+      }
+      return trimmed;
+    }
+
+    const frameConfig = [
+      {
+        id: 'similar-both',
+        category: 'Similarity Frames',
+        title: 'Both ... are similar because ...',
+        description: 'Use when highlighting shared traits that matter.',
+        type: 'similarity',
+        fields: [
+          {
+            key: 'shared1',
+            label: 'Finish the phrase: they both ___',
+            placeholder: 'are places where you learn',
+            prefix: 'they both ',
+            helper: 'Use a verb phrase (no need to type "they both").'
+          },
+          {
+            key: 'shared2',
+            label: 'Finish the phrase: they both ___',
+            placeholder: 'have students and teachers',
+            prefix: 'they both ',
+            helper: 'Use a second verb phrase or detail.'
+          }
+        ],
+        compose: (pair, values, frame) => {
+          const first = applyFieldPrefix(frame.fields[0], values.shared1);
+          const second = applyFieldPrefix(frame.fields[1], values.shared2);
+          return `Both ${pair.items[0]} and ${pair.items[1]} are similar because ${first} and ${second}.`;
+        }
+      },
+      {
+        id: 'similar-alike',
+        category: 'Similarity Frames',
+        title: '... and ... are alike in that ...',
+        description: 'Quick sentence for one strong similarity.',
+        type: 'similarity',
+        fields: [
+          {
+            key: 'alike',
+            label: 'Finish the phrase: they ...',
+            placeholder: 'bring people together',
+            helper: 'Start with a verb phrase (examples: bring people together, give students choices).'
+          }
+        ],
+        compose: (pair, values) =>
+          `${pair.items[0]} and ${pair.items[1]} are alike in that they ${values.alike}.`
+      },
+      {
+        id: 'diff-more',
+        category: 'Difference Frames',
+        title: '... is more ... than ... because ...',
+        description: 'Compare using a comparative adjective.',
+        type: 'difference',
+        fields: [
+          {
+            key: 'adjective',
+            label: 'Adjective only (completes "more ___")',
+            placeholder: 'flexible',
+            helper: 'Write just the describing word (examples: flexible, structured, engaging).'
+          },
+          {
+            key: 'reason',
+            label: 'Complete the phrase: because ...',
+            placeholder: 'it can happen on any schedule',
+            helper: 'Start with a subject (examples: it..., they..., students...).'
+          }
+        ],
+        compose: (pair, values) =>
+          `${pair.items[0]} is more ${values.adjective} than ${pair.items[1]} because ${values.reason}.`
+      },
+      {
+        id: 'diff-while',
+        category: 'Difference Frames',
+        title: 'While ... is ..., ... is ...',
+        description: 'Contrast two attributes directly.',
+        type: 'difference',
+        fields: [
+          {
+            key: 'trait1',
+            labelFn: (pair) => `${pair.items[0]} detail`,
+            placeholder: 'more structured with set bells',
+            helper: 'Use an adjective or noun phrase (no need to add "is").'
+          },
+          {
+            key: 'trait2',
+            labelFn: (pair) => `${pair.items[1]} detail`,
+            placeholder: 'more flexible with open schedules',
+            helper: 'Use an adjective or noun phrase (no need to add "is").'
+          }
+        ],
+        compose: (pair, values) =>
+          `While ${pair.items[0]} is ${values.trait1}, ${pair.items[1]} is ${values.trait2}.`
+      },
+      {
+        id: 'diff-biggest',
+        category: 'Difference Frames',
+        title: 'The biggest difference between ... and ...',
+        description: 'Ideal for summarizing your contrast.',
+        type: 'difference',
+        fields: [
+          {
+            key: 'difference',
+            label: 'Explain the key difference',
+            placeholder: 'one follows a daily bell schedule while the other lets you set your timetable',
+            helper: 'Use one full idea (examples: one ___ while the other ___, or one ___ whereas the other ___).'
+          }
+        ],
+        compose: (pair, values) =>
+          `The biggest difference between ${pair.items[0]} and ${pair.items[1]} is that ${values.difference}.`
+      },
+      {
+        id: 'superlative-most',
+        category: 'Superlative Frames',
+        title: '... is the most ... option when ...',
+        description: 'Use when naming the best choice under a condition.',
+        type: 'superlative',
+        fields: [
+          {
+            key: 'quality',
+            label: 'Adjective only (completes "most ___")',
+            placeholder: 'efficient',
+            helper: 'Write the describing word only.'
+          },
+          {
+            key: 'context',
+            label: 'Finish the phrase: when ...',
+            placeholder: 'someone needs quick answers',
+            helper: 'Explain the situation or condition.'
+          }
+        ],
+        compose: (pair, values) =>
+          `${pair.items[0]} is the most ${values.quality} option when ${values.context}.`
+      },
+      {
+        id: 'superlative-better',
+        category: 'Superlative Frames',
+        title: '... is better than ... for ... because ...',
+        description: 'Evaluate which option wins for a specific goal.',
+        type: 'superlative',
+        fields: [
+          {
+            key: 'goal',
+            label: 'Finish the phrase: for ...',
+            placeholder: 'practicing independence',
+            helper: 'Name the situation or goal.'
+          },
+          {
+            key: 'reason',
+            label: 'Complete the phrase: because ...',
+            placeholder: 'it lets you manage your own time',
+            helper: 'Start with a subject (examples: it..., students..., people...).'
+          }
+        ],
+        compose: (pair, values) =>
+          `${pair.items[0]} is better than ${pair.items[1]} for ${values.goal} because ${values.reason}.`
+      }
+    ];
+
+    let selectedPair = null;
+    let currentFilter = 'all';
+    let showAdvancedRows = false;
+    let currentFrameIndex = 0;
+    const organizerState = {};
+    const frameDrafts = {};
+    const sentences = [];
+
+    const pairGrid = document.getElementById('pairGrid');
+    const organizerEmpty = document.getElementById('organizerEmpty');
+    const organizerWrapper = document.getElementById('organizerWrapper');
+    const organizerHeading = document.getElementById('organizerHeading');
+    const organizerBody = document.getElementById('organizerBody');
+    const colItem1 = document.getElementById('colItem1');
+    const colItem2 = document.getElementById('colItem2');
+    const toggleRowsBtn = document.getElementById('toggleRowsBtn');
+    const sentenceList = document.getElementById('sentenceList');
+    const sentenceCount = document.getElementById('sentenceCount');
+    const sentenceProgress = document.getElementById('sentenceProgress');
+    const copySentencesBtn = document.getElementById('copySentencesBtn');
+    const frameProgressText = document.getElementById('frameProgressText');
+    const frameWorkspace = document.getElementById('frameWorkspace');
+    const previewText = document.getElementById('previewText');
+    const prevFrameBtn = document.getElementById('prevFrameBtn');
+    const nextFrameBtn = document.getElementById('nextFrameBtn');
+
+    function renderPairs() {
+      const filtered = pairData.filter(pair =>
+        currentFilter === 'all' ? true : pair.difficulty === currentFilter
+      );
+
+      pairGrid.innerHTML = filtered.map(pair => `
+        <div class="pair-card ${selectedPair && selectedPair.id === pair.id ? 'active' : ''}" data-pair="${pair.id}">
+          <span class="pair-tag">${pair.difficulty.toUpperCase()}</span>
+          <div class="pair-title">${pair.items[0]} vs ${pair.items[1]}</div>
+          <div style="font-size:13px;color:var(--muted);">${pair.hints}</div>
+        </div>
+      `).join('');
+    }
+
+    function initializeOrganizerState(pairId) {
+      organizerState[pairId] = organizerState[pairId] || {};
+      organizerRows.forEach(row => {
+        organizerState[pairId][row.key] = organizerState[pairId][row.key] || {
+          item1: '',
+          item2: '',
+          notes: ''
+        };
+      });
+    }
+
+    function renderOrganizer() {
+      if (!selectedPair) return;
+      const state = organizerState[selectedPair.id];
+      organizerHeading.textContent = `${selectedPair.items[0]} vs ${selectedPair.items[1]} Organizer`;
+      colItem1.textContent = selectedPair.items[0];
+      colItem2.textContent = selectedPair.items[1];
+
+      if (toggleRowsBtn) {
+        toggleRowsBtn.textContent = showAdvancedRows ? 'Hide extra categories' : 'Show more categories';
+      }
+
+      const rowsToShow = organizerRows.filter(row => !row.optional || showAdvancedRows);
+
+      organizerBody.innerHTML = rowsToShow.map(row => {
+        const rowState = state[row.key];
+        return `
+          <tr>
+            <th>${row.label}</th>
+            <td>
+              <textarea
+                class="organizer-input"
+                data-row="${row.key}"
+                data-column="item1"
+                placeholder="Details about ${selectedPair.items[0]}..."
+              >${rowState.item1}</textarea>
+            </td>
+            <td>
+              <textarea
+                class="organizer-input"
+                data-row="${row.key}"
+                data-column="item2"
+                placeholder="Details about ${selectedPair.items[1]}..."
+              >${rowState.item2}</textarea>
+            </td>
+            <td>
+              <textarea
+                class="organizer-input"
+                data-row="${row.key}"
+                data-column="notes"
+                placeholder="Ideas that connect ${selectedPair.items[0]} and ${selectedPair.items[1]}..."
+              >${rowState.notes}</textarea>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      organizerBody.querySelectorAll('textarea').forEach(textarea => {
+        textarea.addEventListener('input', (event) => {
+          const rowKey = event.target.dataset.row;
+          const columnKey = event.target.dataset.column;
+          organizerState[selectedPair.id][rowKey][columnKey] = event.target.value;
+        });
+      });
+    }
+
+    function renderFrameStage() {
+      if (!selectedPair) {
+        frameProgressText.textContent = 'Select a noun pair to start building sentences.';
+        prevFrameBtn.disabled = true;
+        nextFrameBtn.disabled = true;
+        frameWorkspace.innerHTML = '<div class="empty-state">Select a noun pair to unlock the sentence frames.</div>';
+        previewText.textContent = 'Fill in the blanks above to see the full sentence.';
+        return;
+      }
+
+      const total = frameConfig.length;
+      const frame = frameConfig[currentFrameIndex];
+      frameProgressText.textContent = `Frame ${currentFrameIndex + 1} of ${total}: ${frame.title}`;
+      prevFrameBtn.disabled = currentFrameIndex === 0;
+      nextFrameBtn.disabled = currentFrameIndex === total - 1;
+
+      frameWorkspace.innerHTML = buildFrameMarkup(frame);
+
+      const stored = frameDrafts[frame.id] || {};
+      frame.fields.forEach(field => {
+        const input = document.getElementById(`${frame.id}-${field.key}`);
+        if (stored[field.key]) {
+          input.value = stored[field.key];
+        }
+        input.addEventListener('input', (event) => {
+          const value = event.target.value;
+          if (!frameDrafts[frame.id]) frameDrafts[frame.id] = {};
+          frameDrafts[frame.id][field.key] = value;
+          updatePreview(frame);
+        });
+      });
+
+      const addBtn = document.getElementById(`add-${frame.id}`);
+      if (addBtn) {
+        addBtn.addEventListener('click', () => handleGenerateSentence(frame.id));
+      }
+
+      updatePreview(frame);
+    }
+
+    function buildFrameMarkup(frame) {
+      const fieldsMarkup = frame.fields.map(field => {
+        const labelText = field.labelFn ? field.labelFn(selectedPair) : field.label;
+        const prefix = field.prefix ? `<span class="input-prefix">${field.prefix}</span>` : '';
+        const helper = field.helper ? `<div class="input-helper">${field.helper}</div>` : '';
+        return `
+          <div>
+            <label for="${frame.id}-${field.key}">${labelText}</label>
+            <div class="frame-input-wrap">
+              ${prefix}
+              <input
+                type="text"
+                class="frame-input"
+                id="${frame.id}-${field.key}"
+                data-frame="${frame.id}"
+                data-field="${field.key}"
+                placeholder="${field.placeholder}"
+              >
+            </div>
+            ${helper}
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <div class="frame-card" data-frame="${frame.id}">
+          <h3>${frame.title}</h3>
+          <div class="frame-details">${frame.description}</div>
+          <div class="frame-fields">${fieldsMarkup}</div>
+          <button class="btn btn-primary" type="button" id="add-${frame.id}">Add sentence</button>
+        </div>
+      `;
+    }
+
+    function updatePreview(frame) {
+      if (!selectedPair) {
+        previewText.textContent = 'Select a noun pair to start building sentences.';
+        return;
+      }
+
+      const values = frameDrafts[frame.id] || {};
+      const missing = frame.fields.some(field => !values[field.key] || !values[field.key].trim());
+
+      if (missing) {
+        previewText.textContent = 'Complete every blank above to see the full sentence.';
+        return;
+      }
+
+      try {
+        previewText.textContent = frame.compose(selectedPair, values, frame);
+      } catch (error) {
+        previewText.textContent = 'Keep refining your sentence until it sounds right.';
+      }
+    }
+
+    function handleGenerateSentence(frameId) {
+      if (!selectedPair) {
+        alert('Choose a noun pair first.');
+        return;
+      }
+
+      const frame = frameConfig.find(f => f.id === frameId);
+      const values = {};
+      let missing = false;
+
+      frame.fields.forEach(field => {
+        const input = document.getElementById(`${frameId}-${field.key}`);
+        const value = input.value.trim();
+        input.classList.remove('missing');
+        if (!value) {
+          missing = true;
+          input.classList.add('missing');
+          setTimeout(() => input.classList.remove('missing'), 1200);
+        }
+        values[field.key] = value;
+      });
+
+      if (missing) {
+        alert('Please complete all blanks for this frame before adding the sentence.');
+        return;
+      }
+
+      frameDrafts[frame.id] = { ...values };
+      const sentence = frame.compose(selectedPair, values, frame);
+      sentences.push({
+        text: sentence,
+        frame: frame.title,
+        timestamp: new Date()
+      });
+
+      updateSentenceList();
+      updateProgressUI();
+      previewText.textContent = 'Sentence saved! Move to the next frame or refine the response.';
+
+      if (currentFrameIndex < frameConfig.length - 1) {
+        currentFrameIndex++;
+        renderFrameStage();
+      }
+    }
+
+function updateSentenceList() {
+      if (sentences.length === 0) {
+        sentenceList.innerHTML = '<div class="empty-state">Add sentences using the frames above. Aim for at least four complete ideas.</div>';
+        sentenceCount.textContent = '0';
+        copySentencesBtn.disabled = true;
+        copySentencesBtn.textContent = 'Copy all sentences';
+        return;
+      }
+
+      sentenceList.innerHTML = sentences.map((entry, index) => `
+        <div class="sentence-item">
+          <span>${entry.text}</span>
+          <span class="sentence-meta">
+            <span>#${index + 1}</span>
+            <span>${entry.frame}</span>
+          </span>
+        </div>
+      `).join('');
+
+      sentenceCount.textContent = sentences.length;
+      copySentencesBtn.disabled = false;
+      copySentencesBtn.textContent = 'Copy all sentences';
+    }
+
+    function updateProgressUI() {
+      const progress = Math.min(sentences.length / 4, 1);
+      sentenceProgress.style.width = `${progress * 100}%`;
+    }
+
+    document.querySelectorAll('.diff-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.diff-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentFilter = button.dataset.filter;
+        renderPairs();
+      });
+    });
+
+    pairGrid.addEventListener('click', (event) => {
+      const card = event.target.closest('.pair-card');
+      if (!card) return;
+
+      const pairId = card.dataset.pair;
+      const pair = pairData.find(p => p.id === pairId);
+      if (!pair) return;
+
+      selectedPair = pair;
+      initializeOrganizerState(pair.id);
+      showAdvancedRows = false;
+      currentFrameIndex = 0;
+      Object.keys(frameDrafts).forEach(key => delete frameDrafts[key]);
+      sentences.length = 0;
+
+      renderPairs();
+      organizerEmpty.style.display = 'none';
+      organizerWrapper.style.display = 'block';
+      renderOrganizer();
+      updateSentenceList();
+      updateProgressUI();
+      renderFrameStage();
+    });
+
+    if (toggleRowsBtn) {
+      toggleRowsBtn.addEventListener('click', () => {
+        if (!selectedPair) return;
+        showAdvancedRows = !showAdvancedRows;
+        renderOrganizer();
+      });
+    }
+
+    prevFrameBtn.addEventListener('click', () => {
+      if (currentFrameIndex > 0) {
+        currentFrameIndex--;
+        renderFrameStage();
+      }
+    });
+
+    nextFrameBtn.addEventListener('click', () => {
+      if (currentFrameIndex < frameConfig.length - 1) {
+        currentFrameIndex++;
+        renderFrameStage();
+      }
+    });
+
+    document.getElementById('clearOrganizerBtn').addEventListener('click', () => {
+      if (!selectedPair) return;
+      if (!confirm('Clear all notes for this organizer?')) return;
+      organizerRows.forEach(row => {
+        organizerState[selectedPair.id][row.key] = { item1: '', item2: '', notes: '' };
+      });
+      renderOrganizer();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (!confirm('Reset everything? You will lose organizer notes and collected sentences.')) return;
+      selectedPair = null;
+      showAdvancedRows = false;
+      currentFrameIndex = 0;
+      sentences.length = 0;
+      Object.keys(frameDrafts).forEach(key => delete frameDrafts[key]);
+      renderPairs();
+      organizerEmpty.style.display = 'block';
+      organizerWrapper.style.display = 'none';
+      renderFrameStage();
+      sentenceList.innerHTML = '<div class="empty-state">Add sentences using the frames above. Aim for at least four complete ideas.</div>';
+      sentenceCount.textContent = '0';
+      sentenceProgress.style.width = '0%';
+      copySentencesBtn.disabled = true;
+      copySentencesBtn.textContent = 'Copy all sentences';
+    });
+
+    copySentencesBtn.addEventListener('click', () => {
+      if (sentences.length === 0) return;
+      const text = sentences.map((entry, index) => `${index + 1}. ${entry.text}`).join('\n');
+      navigator.clipboard.writeText(text).then(() => {
+        copySentencesBtn.textContent = 'Copied!';
+        setTimeout(() => {
+          copySentencesBtn.textContent = 'Copy all sentences';
+        }, 1500);
+      }).catch(() => {
+        alert('Unable to copy. Try manually selecting the text instead.');
+      });
+    });
+
+    renderPairs();
+    renderFrameStage();
+  </script>
+</body>
+</html>

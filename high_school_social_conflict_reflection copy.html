@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>High School Social Conflict Reflection</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1d4ed8 0%, #9333ea 100%);
+      min-height: 100vh;
+      padding: 24px;
+      color: #0f172a;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.28);
+      overflow: hidden;
+      display: grid;
+      gap: 0;
+    }
+
+    .hero {
+      padding: 36px;
+      background: linear-gradient(135deg, rgba(29, 78, 216, 0.95), rgba(147, 51, 234, 0.9));
+      color: #f8fafc;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    .nav-bar {
+      background: #0f172a;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .nav-buttons {
+      display: inline-flex;
+      gap: 10px;
+      min-width: 100%;
+    }
+
+    .nav-btn {
+      border: none;
+      background: rgba(148, 163, 184, 0.18);
+      color: #e2e8f0;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background: rgba(248, 250, 252, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    .scenario {
+      padding: 40px;
+      display: grid;
+      gap: 26px;
+    }
+
+    .scenario-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .scenario-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+
+    .context-tag {
+      background: rgba(239, 246, 255, 0.9);
+      color: #1d4ed8;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 2px solid rgba(159, 197, 248, 0.8);
+    }
+
+    .scenario-description {
+      background: #f8fafc;
+      border-left: 5px solid #3b82f6;
+      padding: 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #0f172a;
+    }
+
+    .reflection-card {
+      display: grid;
+      gap: 24px;
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .prompt-block {
+      display: grid;
+      gap: 12px;
+    }
+
+    .prompt-block h3 {
+      font-size: 18px;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    .prompt-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.12);
+      color: #0369a1;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      width: fit-content;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      border: 2px solid #cbd5f5;
+      border-radius: 12px;
+      font-size: 16px;
+      padding: 14px;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      background: #f8fafc;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+      background: #ffffff;
+    }
+
+    textarea.highlight {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+      background: #fff7ed;
+    }
+
+    .help-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .help-btn {
+      border: none;
+      background: rgba(14, 165, 233, 0.12);
+      color: #0369a1;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .help-btn:hover {
+      background: rgba(14, 165, 233, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .help-hint,
+    .help-choices {
+      display: none;
+      margin-top: 10px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #ecfeff;
+      border-left: 4px solid #0ea5e9;
+      color: #0c4a6e;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .help-hint.visible,
+    .help-choices.visible {
+      display: block;
+    }
+
+    .help-choices ul {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .help-choices li::marker {
+      color: #0284c7;
+    }
+
+    .footer-note {
+      padding: 28px;
+      background: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #475569;
+    }
+
+    @media (max-width: 768px) {
+      .scenario {
+        padding: 28px 22px 32px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .prompt-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>High School Social Conflict Reflection</h1>
+      <p>Explore real-world challenges with friends, teachers, and activities. Use each scenario to notice your thoughts, feelings, and next steps before you respond.</p>
+    </header>
+
+    <nav class="nav-bar">
+      <div class="nav-buttons" id="scenarioNav"></div>
+    </nav>
+
+    <section class="scenario" id="scenarioContainer"></section>
+
+    <footer class="footer-note">
+      Tip: After writing your thoughts and feelings, practice saying them out loud. Focus on “I” statements, listening for the other person’s perspective, and choosing a next step that keeps you safe and respectful.
+    </footer>
+  </div>
+
+  <script>
+    const scenarioData = [
+      {
+        navLabel: 'Group Project',
+        title: 'Poster Project Partners',
+        context: 'Science • Grade 9 • Due Tomorrow',
+        description: `Your science partner said they would finish the final poster slide last night. This morning they admit they forgot and ask you to put it together during lunch.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'List the facts about the project.',
+            clue: 'Notice what was promised, what still needs to be done, and what time you have left.',
+            choices: [
+              `The poster is still missing the final slide.`,
+              `My partner said they would finish it last night.`,
+              `Lunch is the only time left before class.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Name the emotion you notice.',
+            clue: 'Choose feeling words like frustrated, stressed, or worried.',
+            choices: [
+              `I feel frustrated that I might end up doing it alone.`,
+              `I’m worried the project will look rushed.`,
+              `I feel pressured to fix it fast.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Plan what you want to say to your partner.',
+            clue: 'Think about a calm message that explains what you need today.',
+            choices: [
+              `I can ask them to work with me during lunch instead of leaving it all to me.`,
+              `I might split the last slide so we each do part.`,
+              `I could remind them that next time we both need to stick to the plan.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Lunch Seat',
+        title: 'Saved Seats at Lunch',
+        context: 'Cafeteria • Grade 9 • Friend Group',
+        description: `You arrive at lunch and see your friends already seated. There is one seat left, but backpacks are covering it. When you ask if you can join, one friend says they promised the spot to someone else.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Notice the facts you see and hear.',
+            clue: 'Describe what happened without guessing the reasons yet.',
+            choices: [
+              `My seat was covered with backpacks.`,
+              `My friend said they saved it for someone else.`,
+              `I need to decide where to sit today.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Pick a word for your emotion.',
+            clue: 'Use feeling words like left out, confused, or embarrassed.',
+            choices: [
+              `I feel left out watching them sit together.`,
+              `I’m confused about why they didn’t tell me earlier.`,
+              `I feel embarrassed standing there with my tray.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Choose how you want to respond.',
+            clue: 'Plan a short message that keeps things calm and honest.',
+            choices: [
+              `I can ask if we can plan ahead so there is space tomorrow.`,
+              `I might invite one friend to eat with me somewhere else today.`,
+              `I could tell them the situation hurt my feelings.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Homework Buddy',
+        title: 'Homework Partner Needs Help',
+        context: 'Math • Grade 9 • Before Class',
+        description: `You and Jordan agreed to check each other’s math worksheets. Jordan forgot to do theirs and asks to copy yours right before class.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Write the facts you notice.',
+            clue: 'Think about what you planned, what actually happened, and the deadline.',
+            choices: [
+              `We planned to compare our work before class.`,
+              `Jordan didn’t finish their worksheet.`,
+              `Class starts in a few minutes.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Identify your emotion.',
+            clue: 'Use words like annoyed, rushed, or unsure.',
+            choices: [
+              `I feel annoyed because we made a plan together.`,
+              `I’m rushed because class is starting soon.`,
+              `I feel unsure about letting them copy.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Decide how to answer Jordan.',
+            clue: 'Choose words that are clear and respectful.',
+            choices: [
+              `I can offer to explain a problem after class instead of letting them copy.`,
+              `I might say I want to keep my work my own but we can study together later.`,
+              `I could suggest asking the teacher for extra help.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Text Mix-Up',
+        title: 'Text Message Confusion',
+        context: 'After School • Grade 9 • Messaging',
+        description: `You saw a text from your friend last night but forgot to reply. This morning they text “Guess you don’t care.”`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Describe what happened with the text.',
+            clue: 'Stick to the timeline and what was said.',
+            choices: [
+              `I read their text and didn’t answer.`,
+              `They followed up with a message that sounded upset.`,
+              `I have a chance to explain what happened.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Choose the emotion that fits.',
+            clue: 'Use feeling words like guilty, worried, or sad.',
+            choices: [
+              `I feel guilty for forgetting to respond.`,
+              `I’m worried my friend thinks I ignored them.`,
+              `I feel sad that they sounded hurt.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Plan your reply.',
+            clue: 'Think about an honest message that repairs the mix-up.',
+            choices: [
+              `I can apologize and explain I saw it right before bed.`,
+              `I might ask if they still need help with what they texted about.`,
+              `I could suggest calling later to catch up.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Missing Work',
+        title: 'Teacher Check-In About Missing Work',
+        context: 'History • Grade 9 • After Class',
+        description: `Your history teacher stops you after class and says they did not receive your homework packet. You know you turned it in last week.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Notice the facts you know.',
+            clue: 'Think about when you turned it in and what the teacher said.',
+            choices: [
+              `The teacher can’t find my packet.`,
+              `I remember placing it in the turn-in tray.`,
+              `If it’s missing, my grade could drop.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Name your emotion.',
+            clue: 'Use words like nervous, confused, or worried.',
+            choices: [
+              `I feel nervous about my grade.`,
+              `I’m confused because I turned it in.`,
+              `I feel worried the teacher thinks I forgot.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Plan how to talk with the teacher.',
+            clue: 'Choose a calm way to explain what you know.',
+            choices: [
+              `I can explain when and where I turned it in.`,
+              `I might ask if we can re-check the tray or my binder.`,
+              `I could offer to redo the packet if it can’t be found.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Locker Mess',
+        title: 'Shared Locker Mess-Up',
+        context: 'Hallway • Grade 9 • Between Classes',
+        description: `You share a locker with Sam. Today you opened it and everything fell out because Sam stuffed their gym clothes on top of your books.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Write down the details you notice.',
+            clue: 'Stick to what you saw and what the problem is.',
+            choices: [
+              `The locker is too full to close.`,
+              `Sam left gym clothes on top of my stuff.`,
+              `I almost dropped my homework in the hallway.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Choose a feeling word.',
+            clue: 'Use words like annoyed, embarrassed, or stressed.',
+            choices: [
+              `I feel annoyed that my things got buried.`,
+              `I’m embarrassed people saw the mess fall out.`,
+              `I feel stressed about being late to class.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Plan how to talk to Sam.',
+            clue: 'Pick words that set a simple plan for the locker.',
+            choices: [
+              `I can ask Sam to fold their clothes and put them on the shelf.`,
+              `I might suggest we organize the locker after school.`,
+              `I could tell Sam I need space for my books on the bottom.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Club Conflict',
+        title: 'Club Schedule Clash',
+        context: 'After School • Grade 9 • Clubs Overlap',
+        description: `You signed up for art club and robotics. They both meet this Thursday, and the art club leader is counting on you to bring supplies.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'List what you promised each club.',
+            clue: 'Focus on the times, supplies, and people counting on you.',
+            choices: [
+              `Art club needs me to bring the paint set.`,
+              `Robotics meets at the same time this week.`,
+              `I can’t be in two rooms at once.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Pick the emotion that fits.',
+            clue: 'Use words like torn, guilty, or stressed.',
+            choices: [
+              `I feel torn between both clubs.`,
+              `I’m stressed about letting someone down.`,
+              `I feel guilty for double-booking myself.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Decide who you need to talk to first.',
+            clue: 'Plan a short message that explains your conflict.',
+            choices: [
+              `I can let art club know as soon as possible.`,
+              `I might ask robotics if I can arrive late after dropping off supplies.`,
+              `I could see if another art member can bring the paints.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Ride Home',
+        title: 'Ride Home Expectations',
+        context: 'After School • Grade 9 • Parent Pick-Up',
+        description: `Your friend usually rides home with you. Today your parent is waiting in the car to drive straight to an appointment, but your friend wants to stop by the snack bar first.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Write the facts about your ride.',
+            clue: 'Think about who is waiting and where you need to be.',
+            choices: [
+              `My parent is already waiting outside.`,
+              `We have an appointment right after school.`,
+              `My friend wants to make an extra stop.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Choose the feeling word.',
+            clue: 'Use words like rushed, nervous, or annoyed.',
+            choices: [
+              `I feel rushed because we’re on a schedule.`,
+              `I’m nervous about keeping my parent waiting.`,
+              `I feel a little annoyed that my friend isn’t ready.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Plan what to tell your friend.',
+            clue: 'Pick words that explain your time limit kindly.',
+            choices: [
+              `I can explain we have to leave right away.`,
+              `I might offer to grab snacks tomorrow when we have time.`,
+              `I could suggest they meet me at the car now and we go straight home.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Sibling Story',
+        title: 'Sibling Shared Stories',
+        context: 'Home • Grade 9 • Shared Friends',
+        description: `Your younger sibling told your friends a silly story about you from elementary school. Everyone laughed, and you felt embarrassed.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Notice the facts and your reaction.',
+            clue: 'Focus on what was shared and who heard it.',
+            choices: [
+              `My sibling told a story I wanted to keep private.`,
+              `My friends now know that story.`,
+              `I didn’t get a chance to stop it.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Pick a feeling word.',
+            clue: 'Use words like embarrassed, annoyed, or exposed.',
+            choices: [
+              `I feel embarrassed that they laughed.`,
+              `I’m annoyed my sibling didn’t ask first.`,
+              `I feel exposed when private stories are shared.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Plan what you want to say to your sibling.',
+            clue: 'Choose words that explain your boundary calmly.',
+            choices: [
+              `I can tell them that story felt private to me.`,
+              `I might ask them to check with me before sharing next time.`,
+              `I could plan a way to move the conversation with my friends.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Hallway Rumor',
+        title: 'Hallway Rumor',
+        context: 'Hallway • Grade 9 • Between Classes',
+        description: `You overhear classmates whisper that you cheated on the last quiz. You know you studied hard, but the whispering keeps happening between classes.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Write what you know for sure.',
+            clue: 'Notice what was said, what is true, and what you want to check.',
+            choices: [
+              `People are saying I cheated on the quiz.`,
+              `I studied and took the quiz honestly.`,
+              `I want to stop the rumor before it spreads.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Choose the feeling word.',
+            clue: 'Use words like upset, worried, or angry.',
+            choices: [
+              `I feel upset that people think I lied.`,
+              `I’m worried the teacher might hear about it.`,
+              `I feel angry that someone started the rumor.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Plan your next step.',
+            clue: 'Decide who you will talk to and how you will share the truth.',
+            choices: [
+              `I can calmly clear things up with the classmates I heard.`,
+              `I might tell the teacher so they know I didn’t cheat.`,
+              `I could ask a close friend to back me up with the facts.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Parent Reminder',
+        title: 'Parent Homework Reminder',
+        context: 'Evening • Grade 9 • Home',
+        description: `You want to go to open gym after dinner, but your parent says you must finish tonight’s homework first. You already did most of it, but you still have a short reading to complete.`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Notice the homework facts.',
+            clue: 'Think about what is left to do and the time you have.',
+            choices: [
+              `I still have a short reading to finish.`,
+              `Open gym starts in thirty minutes.`,
+              `My parent wants proof that my homework is done.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Pick the emotion that fits.',
+            clue: 'Use words like impatient, motivated, or frustrated.',
+            choices: [
+              `I feel impatient because I want to leave now.`,
+              `I’m motivated to finish quickly.`,
+              `I feel frustrated that homework is stopping my plans.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Decide what to say to your parent.',
+            clue: 'Plan a respectful response that shows responsibility.',
+            choices: [
+              `I can show them what’s left and finish it right away.`,
+              `I might set a quick timer to prove I can finish before I go.`,
+              `I could ask if I can leave once the reading is complete.`
+            ]
+          }
+        ]
+      },
+      {
+        navLabel: 'Group Chat Tone',
+        title: 'Group Chat Tone Check',
+        context: 'Evening • Grade 9 • Messaging',
+        description: `In the group chat you sent “Sure, whatever” as a quick reply. A friend responds, “Wow, thanks for the attitude.”`,
+        prompts: [
+          {
+            heading: 'What are you thinking right now?',
+            chip: 'Describe what was said.',
+            clue: 'Stick to the exact messages and the order they happened.',
+            choices: [
+              `I replied with the words “Sure, whatever.”`,
+              `My friend thought it sounded like attitude.`,
+              `They might be upset with me now.`
+            ]
+          },
+          {
+            heading: 'What are you feeling?',
+            chip: 'Pick a feeling word.',
+            clue: 'Use words like surprised, worried, or embarrassed.',
+            choices: [
+              `I feel surprised they read it that way.`,
+              `I’m worried I hurt their feelings.`,
+              `I feel embarrassed about how the message sounded.`
+            ]
+          },
+          {
+            heading: 'How will you communicate?',
+            chip: 'Plan your follow-up message.',
+            clue: 'Think about a quick clarification that sounds friendly.',
+            choices: [
+              `I can explain I meant it as a casual yes.`,
+              `I might add a short apology and a smiley face.`,
+              `I could suggest talking in person tomorrow to clear it up.`
+            ]
+          }
+        ]
+      }
+    ];
+
+    let currentIndex = 0;
+
+    const scenarioNav = document.getElementById('scenarioNav');
+    const scenarioContainer = document.getElementById('scenarioContainer');
+
+    function shuffle(array) {
+      const arr = array.slice();
+      for (let i = arr.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function renderNav() {
+      scenarioNav.innerHTML = scenarioData.map((scene, index) => `
+        <button class="nav-btn${index === currentIndex ? ' active' : ''}" data-index="${index}">${scene.navLabel}</button>
+      `).join('');
+
+      scenarioNav.querySelectorAll('.nav-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentIndex = parseInt(btn.dataset.index, 10);
+          renderNav();
+          renderScenario();
+          window.scrollTo({ top: scenarioContainer.offsetTop - 80, behavior: 'smooth' });
+        });
+      });
+    }
+
+    function renderScenario() {
+      const scene = scenarioData[currentIndex];
+
+      const promptsHtml = scene.prompts.map((prompt, promptIndex) => `
+        <div class="prompt-block" data-prompt-index="${promptIndex}">
+          <h3>${prompt.heading}</h3>
+          ${prompt.chip ? `<span class="prompt-chip">${prompt.chip}</span>` : ''}
+          <textarea aria-label="${prompt.heading}"></textarea>
+          <div class="help-buttons">
+            <button type="button" class="help-btn" data-action="clue">I need help</button>
+            <button type="button" class="help-btn" data-action="choices">I need more help</button>
+          </div>
+          <div class="help-hint" data-role="clue"></div>
+          <div class="help-choices" data-role="choices"></div>
+        </div>
+      `).join('');
+
+      scenarioContainer.innerHTML = `
+        <div class="scenario-header">
+          <h2 class="scenario-title">${scene.title}</h2>
+          <span class="context-tag">${scene.context}</span>
+        </div>
+        <div class="scenario-description">${scene.description}</div>
+        <div class="reflection-card">${promptsHtml}</div>
+      `;
+
+      attachPromptHandlers(scene);
+    }
+
+    function attachPromptHandlers(scene) {
+      scenarioContainer.querySelectorAll('.prompt-block').forEach((block) => {
+        const promptIndex = parseInt(block.dataset.promptIndex, 10);
+        const prompt = scene.prompts[promptIndex];
+        const clueBox = block.querySelector('[data-role="clue"]');
+        const choicesBox = block.querySelector('[data-role="choices"]');
+        const textarea = block.querySelector('textarea');
+
+        block.querySelectorAll('.help-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            if (btn.dataset.action === 'clue') {
+              clueBox.textContent = prompt.clue;
+              clueBox.classList.add('visible');
+              textarea.classList.add('highlight');
+            } else {
+              const shuffled = shuffle(prompt.choices);
+              choicesBox.innerHTML = `<ul>${shuffled.map((choice) => `<li>${choice}</li>`).join('')}</ul>`;
+              choicesBox.classList.add('visible');
+              textarea.classList.add('highlight');
+            }
+          });
+        });
+      });
+    }
+
+    renderNav();
+    renderScenario();
+  </script>
+</body>
+</html>

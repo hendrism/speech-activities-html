@@ -1,0 +1,142 @@
+.workbench {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.workbench__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.workbench__header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+}
+
+.workbench__header p {
+  margin: 0.5rem 0 0;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.workbench__mode-toggle {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.mode-button {
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  border-radius: 12px;
+  padding: 0.5rem 1.1rem;
+  background: #f1f5f9;
+  color: #1f2937;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mode-button.active {
+  background: #312e81;
+  color: #f8fafc;
+  border-color: transparent;
+}
+
+.workbench__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.workbench__editor textarea {
+  width: 100%;
+  min-height: 420px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  padding: 1.25rem;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.workbench__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.workbench__actions button {
+  padding: 0.6rem 1.25rem;
+  border-radius: 12px;
+  border: none;
+  background: #4338ca;
+  color: #f8fafc;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.workbench__actions button.secondary {
+  background: #e2e8f0;
+  color: #1f2937;
+}
+
+.workbench__actions button:hover {
+  background: #312e81;
+}
+
+.workbench__status {
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.workbench__status h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.workbench__status ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.workbench__status--invalid {
+  border: 1px solid #f97316;
+}
+
+.workbench__status--valid {
+  border: 1px solid #10b981;
+}
+
+.workbench__status--registered {
+  border: 1px solid #2563eb;
+}
+
+@media (max-width: 640px) {
+  .workbench__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .workbench__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .workbench__actions button {
+    width: 100%;
+  }
+
+  .workbench__mode-toggle {
+    flex-direction: column;
+  }
+}

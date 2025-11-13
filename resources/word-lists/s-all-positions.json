@@ -1,0 +1,51 @@
+{
+  "id": "sSound",
+  "sound": "/s/",
+  "name": "/s/ Sound (All Positions)",
+  "description": "Words featuring the /s/ sound in initial, medial, and final word positions.",
+  "positions": {
+    "initial": [
+      { "text": "sun", "pos": "noun" },
+      { "text": "sand", "pos": "noun" },
+      { "text": "soup", "pos": "noun" },
+      { "text": "soccer", "pos": "noun" },
+      { "text": "seat", "pos": "noun" },
+      { "text": "sing", "pos": "verb" },
+      { "text": "sail", "pos": "verb" },
+      { "text": "sip", "pos": "verb" },
+      { "text": "silly", "pos": "adjective" },
+      { "text": "sunny", "pos": "adjective" }
+    ],
+    "medial": [
+      { "text": "pencil", "pos": "noun" },
+      { "text": "whistle", "pos": "noun" },
+      { "text": "basket", "pos": "noun" },
+      { "text": "lesson", "pos": "noun" },
+      { "text": "baseball", "pos": "noun" },
+      { "text": "desert", "pos": "noun" },
+      { "text": "listen", "pos": "verb" },
+      { "text": "whisper", "pos": "verb" },
+      { "text": "passage", "pos": "noun" },
+      { "text": "messy", "pos": "adjective" },
+      { "text": "excited", "pos": "adjective" },
+      { "text": "basic", "pos": "adjective" },
+      { "text": "classic", "pos": "adjective" }
+    ],
+    "final": [
+      { "text": "bus", "pos": "noun" },
+      { "text": "class", "pos": "noun" },
+      { "text": "grass", "pos": "noun" },
+      { "text": "house", "pos": "noun" },
+      { "text": "mouse", "pos": "noun" },
+      { "text": "juice", "pos": "noun" },
+      { "text": "toss", "pos": "verb" },
+      { "text": "race", "pos": "verb" },
+      { "text": "pass", "pos": "verb" },
+      { "text": "notice", "pos": "verb" },
+      { "text": "erase", "pos": "verb" },
+      { "text": "nice", "pos": "adjective" },
+      { "text": "loose", "pos": "adjective" },
+      { "text": "fierce", "pos": "adjective" }
+    ]
+  }
+}

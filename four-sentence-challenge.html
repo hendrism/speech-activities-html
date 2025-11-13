@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Four-Sentence Challenge</title>
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --purple-dark: #5b21b6;
+      --blue: #0ea5e9;
+      --green: #10b981;
+      --orange: #f97316;
+      --muted: #64748b;
+      --ink: #0f172a;
+      --surface: #ffffff;
+      --bg: radial-gradient(circle at top, #ede9fe 0%, #f1f5f9 55%, #eef2ff 100%);
+      --shadow: 0 16px 32px rgba(124, 58, 237, 0.16);
+      --border: 1px solid rgba(124, 58, 237, 0.18);
+      --radius: 20px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      width: min(95%, var(--max));
+      display: grid;
+      gap: 28px;
+      padding: 48px 0 80px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: grid;
+      gap: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 34px);
+      color: var(--purple-dark);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .nav-panel {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .nav-panel h2 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--purple-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .pair-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .pair-btn {
+      border: 2px dashed rgba(124, 58, 237, 0.3);
+      border-radius: 14px;
+      background: rgba(248, 250, 252, 0.96);
+      padding: 12px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--purple-dark);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .pair-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--purple);
+      box-shadow: 0 12px 22px rgba(124, 58, 237, 0.18);
+    }
+
+    .pair-btn.active {
+      background: rgba(233, 213, 255, 0.55);
+      border-style: solid;
+      box-shadow: 0 14px 26px rgba(124, 58, 237, 0.25);
+    }
+
+    .pair-display {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .pair-display h2 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 30px);
+      color: var(--purple-dark);
+    }
+
+    .pair-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .sentence-board {
+      display: grid;
+      gap: 14px;
+    }
+
+    .sentence-card {
+      border-radius: 16px;
+      border: 2px solid rgba(148, 163, 184, 0.3);
+      background: rgba(248, 250, 252, 0.96);
+      padding: 16px 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .sentence-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--purple-dark);
+    }
+
+    .sentence-header span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(124, 58, 237, 0.16);
+      color: var(--purple-dark);
+    }
+
+    .detail-tip {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .frame {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .frame .icon {
+      font-size: 18px;
+    }
+
+    .sentence-example {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .toggle-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .toggle-label {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .toggle-btn {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(124, 58, 237, 0.3);
+      background: white;
+      color: var(--purple-dark);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .toggle-btn.active {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: white;
+    }
+
+    .sentence-content {
+      display: grid;
+      gap: 6px;
+      margin-top: 6px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+    }
+
+    .sentence-content strong {
+      color: var(--purple-dark);
+    }
+
+    @media (max-width: 720px) {
+      header, .nav-panel, .pair-display {
+        padding: 22px;
+      }
+      .pair-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Four-Sentence Challenge</h1>
+      <p>Build four complete sentences to describe how two words are alike or different. Use each detail type once: category, description, function, and opinion.</p>
+    </header>
+
+    <section class="nav-panel">
+      <h2>Choose a Word Pair</h2>
+      <div class="pair-grid" id="pairGrid"></div>
+    </section>
+
+    <section class="pair-display">
+      <div>
+        <h2 id="pairTitle"></h2>
+        <p class="pair-subtitle" id="pairSubtitle"></p>
+      </div>
+
+      <div class="toggle-row">
+        <span class="toggle-label">Mode:</span>
+        <button class="toggle-btn active" data-mode="model">Model sentence</button>
+        <button class="toggle-btn" data-mode="guided">Guided frame</button>
+      </div>
+
+      <div class="sentence-board" id="sentenceBoard"></div>
+    </section>
+  </main>
+
+  <script>
+    const pairs = [
+  {
+    "id": "summer-winter",
+    "a": "Summer",
+    "b": "Winter",
+    "iconA": "☀️",
+    "iconB": "❄️",
+    "sentences": {
+      "category": {
+        "model": "Both summer and winter are seasons.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "Summer is hotter than winter.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "People go swimming in summer, but they bundle up more in winter.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think summer is the most exciting because it stays sunny late.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "book-movie",
+    "a": "Book",
+    "b": "Movie",
+    "iconA": "📚",
+    "iconB": "🎬",
+    "sentences": {
+      "category": {
+        "model": "Both books and movies are ways to tell stories.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A movie is shorter than a book.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You use a book to read quietly, but you use a movie to watch on a screen.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think books are the most detailed because they share many thoughts.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "cat-dog",
+    "a": "Cat",
+    "b": "Dog",
+    "iconA": "🐱",
+    "iconB": "🐶",
+    "sentences": {
+      "category": {
+        "model": "Both cats and dogs are animals people keep as pets.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "Dogs are louder than cats.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You feed a cat at its bowl, but you walk a dog around the block.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think cats are the most independent because they take care of themselves.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "rain-snow",
+    "a": "Rain",
+    "b": "Snow",
+    "iconA": "🌧️",
+    "iconB": "🌨️",
+    "sentences": {
+      "category": {
+        "model": "Both rain and snow are kinds of weather.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "Snow is fluffier than rain.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "Rain waters the ground, but snow covers it in a white layer.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think rain is the most refreshing because it smells clean.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "mountain-beach",
+    "a": "Mountain",
+    "b": "Beach",
+    "iconA": "🏔️",
+    "iconB": "🏖️",
+    "sentences": {
+      "category": {
+        "model": "Both mountains and beaches are natural places to visit.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A mountain is taller than a beach.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You visit a mountain to hike up trails, but you visit a beach to swim and build sandcastles.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think beaches are the most relaxing because you can hear waves.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "pencil-marker",
+    "a": "Pencil",
+    "b": "Marker",
+    "iconA": "✏️",
+    "iconB": "🖍️",
+    "sentences": {
+      "category": {
+        "model": "Both pencils and markers are writing tools.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A marker is bolder than a pencil.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You use a pencil to erase mistakes, but you use a marker to make bright lines.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think markers are the most colorful because they come in bright shades.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "city-country",
+    "a": "City",
+    "b": "Countryside",
+    "iconA": "🌆",
+    "iconB": "🌾",
+    "sentences": {
+      "category": {
+        "model": "Both the city and the countryside are places where people live.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A city is busier than the countryside.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "People go to the city to work and shop, but they go to the countryside to relax.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think the countryside is the most peaceful because it is quiet.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "breakfast-dinner",
+    "a": "Breakfast",
+    "b": "Dinner",
+    "iconA": "🍳",
+    "iconB": "🍽️",
+    "sentences": {
+      "category": {
+        "model": "Both breakfast and dinner are meals.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "Dinner is later than breakfast.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You eat breakfast to start the day, but you eat dinner to finish the day.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think dinner is the most social because everyone eats together.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "laptop-tablet",
+    "a": "Laptop",
+    "b": "Tablet",
+    "iconA": "💻",
+    "iconB": "📱",
+    "sentences": {
+      "category": {
+        "model": "Both laptops and tablets are electronic devices.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A laptop is heavier than a tablet.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You use a laptop to type long papers, but you use a tablet to read or draw on the go.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think tablets are the most portable because they fit in backpacks easily.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "train-plane",
+    "a": "Train",
+    "b": "Plane",
+    "iconA": "🚆",
+    "iconB": "✈️",
+    "sentences": {
+      "category": {
+        "model": "Both trains and planes are vehicles.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A plane is faster than a train.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You take a train to travel along tracks, but you take a plane to fly through the sky.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think planes are the most thrilling because they fly high above the clouds.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "soccer-basketball",
+    "a": "Soccer",
+    "b": "Basketball",
+    "iconA": "⚽",
+    "iconB": "🏀",
+    "sentences": {
+      "category": {
+        "model": "Both soccer and basketball are team sports.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A soccer field is larger than a basketball court.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You use a soccer ball to kick goals, but you use a basketball to shoot hoops.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think soccer is the most energetic because you keep running.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "coffee-tea",
+    "a": "Coffee",
+    "b": "Tea",
+    "iconA": "☕",
+    "iconB": "🍵",
+    "sentences": {
+      "category": {
+        "model": "Both coffee and tea are drinks.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "Coffee is stronger than tea.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You drink coffee to wake up quickly, but you drink tea to calm your body.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think tea is the most calming because it helps me slow down.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "day-night",
+    "a": "Day",
+    "b": "Night",
+    "iconA": "🌅",
+    "iconB": "🌃",
+    "sentences": {
+      "category": {
+        "model": "Both day and night are parts of the daily cycle.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "Daytime is brighter than nighttime.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "People use the day to go to school, but they use the night to rest.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think night is the most peaceful because it feels quiet.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "school-home",
+    "a": "School",
+    "b": "Home",
+    "iconA": "🏫",
+    "iconB": "🏠",
+    "sentences": {
+      "category": {
+        "model": "Both school and home are places where you learn.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "School is busier than home.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You go to school to learn with teachers, but you stay home to practice and relax.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think home is the most comfortable because it feels safe.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "desert-forest",
+    "a": "Desert",
+    "b": "Forest",
+    "iconA": "🏜️",
+    "iconB": "🌳",
+    "sentences": {
+      "category": {
+        "model": "Both deserts and forests are habitats.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A desert is drier than a forest.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "A desert supports animals that like heat, but a forest shelters animals that need shade.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think forests are the most interesting because they are full of life.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "bicycle-scooter",
+    "a": "Bicycle",
+    "b": "Scooter",
+    "iconA": "🚲",
+    "iconB": "🛴",
+    "sentences": {
+      "category": {
+        "model": "Both bicycles and scooters are personal vehicles.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A bicycle is faster than a scooter.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You ride a bicycle to travel longer distances, but you ride a scooter to zip short blocks.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think scooters are the most playful because you can glide quickly.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "ice-cream-cake",
+    "a": "Ice Cream",
+    "b": "Cake",
+    "iconA": "🍨",
+    "iconB": "🍰",
+    "sentences": {
+      "category": {
+        "model": "Both ice cream and cake are desserts.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "Ice cream is colder than cake.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You eat ice cream to cool down, but you eat cake to celebrate with slices.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think ice cream is the most fun because it melts on your tongue.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "river-lake",
+    "a": "River",
+    "b": "Lake",
+    "iconA": "🏞️",
+    "iconB": "🚣",
+    "sentences": {
+      "category": {
+        "model": "Both rivers and lakes are bodies of water.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A river is longer than a lake.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You visit a river to watch water flow, but you visit a lake to see calm water stay still.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think lakes are the most peaceful because the water stays still.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "teacher-coach",
+    "a": "Teacher",
+    "b": "Coach",
+    "iconA": "👩‍🏫",
+    "iconB": "🏈",
+    "sentences": {
+      "category": {
+        "model": "Both teachers and coaches are helpers.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "A coach is louder than a teacher.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You work with a teacher to learn academics, but you work with a coach to practice skills.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think coaches are the most motivating because they cheer loudly.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  },
+  {
+    "id": "email-text",
+    "a": "Email",
+    "b": "Text",
+    "iconA": "📧",
+    "iconB": "💬",
+    "sentences": {
+      "category": {
+        "model": "Both emails and texts are messages.",
+        "frame": "Both ___ and ___ are ___"
+      },
+      "description": {
+        "model": "An email is longer than a text.",
+        "frame": "___ is ___er than ___"
+      },
+      "function": {
+        "model": "You send an email to write longer messages, but you send a text to share quick updates.",
+        "frame": "You use ___ to ___, but you use ___ to ___"
+      },
+      "opinion": {
+        "model": "I think texts are the most convenient because they send quickly.",
+        "frame": "I think ___ is the most ___ because ___"
+      }
+    }
+  }
+];
+    let currentPair = pairs[0];
+    let mode = 'model';
+
+    const detailMeta = [
+      { key: 'category', title: 'Category', icon: '🗂️', tip: 'Name the group both words belong to.' },
+      { key: 'description', title: 'Description', icon: '🎨', tip: 'Compare the words with adjectives or comparisons.' },
+      { key: 'function', title: 'Function', icon: '🛠️', tip: 'Explain what each word is used for or how people use it.' },
+      { key: 'opinion', title: 'Opinion', icon: '💭', tip: 'Share which one you prefer and why.' }
+    ];
+
+    const pairGrid = document.getElementById('pairGrid');
+    const pairTitle = document.getElementById('pairTitle');
+    const pairSubtitle = document.getElementById('pairSubtitle');
+    const sentenceBoard = document.getElementById('sentenceBoard');
+    const toggleButtons = document.querySelectorAll('.toggle-btn');
+
+    function renderPairButtons() {
+      pairGrid.innerHTML = '';
+      pairs.forEach((pair, index) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'pair-btn';
+        if (pair.id === currentPair.id) {
+          btn.classList.add('active');
+        }
+        btn.textContent = `${pair.iconA} ${pair.a} vs ${pair.b} ${pair.iconB}`;
+        btn.addEventListener('click', () => setPair(pairs[index]));
+        pairGrid.appendChild(btn);
+      });
+    }
+
+    function renderSentences() {
+      sentenceBoard.innerHTML = '';
+      detailMeta.forEach((meta, index) => {
+        const card = document.createElement('div');
+        card.className = 'sentence-card';
+
+        const header = document.createElement('div');
+        header.className = 'sentence-header';
+        header.innerHTML = `<span>${index + 1}</span>${meta.icon} ${meta.title}`;
+        card.appendChild(header);
+
+        const tip = document.createElement('p');
+        tip.className = 'detail-tip';
+        tip.textContent = meta.tip;
+        card.appendChild(tip);
+
+        const sentence = currentPair.sentences[meta.key];
+        const content = document.createElement('div');
+        content.className = 'sentence-content';
+
+        const label = document.createElement('strong');
+        label.textContent = mode === 'model' ? 'Model sentence:' : 'Sentence frame:';
+        content.appendChild(label);
+
+        const frameLine = document.createElement('div');
+        frameLine.className = 'frame';
+        frameLine.innerHTML = `<span class="icon">${currentPair.iconA}</span><span class="icon">${currentPair.iconB}</span>${mode === 'model' ? sentence.model : sentence.frame}`;
+        content.appendChild(frameLine);
+
+        if (mode === 'guided') {
+          const example = document.createElement('p');
+          example.className = 'sentence-example';
+          example.innerHTML = `<em>Example: ${sentence.model}</em>`;
+          content.appendChild(example);
+        }
+
+        card.appendChild(content);
+        sentenceBoard.appendChild(card);
+      });
+    }
+
+    function setPair(pair) {
+      currentPair = pair;
+      pairTitle.textContent = `${pair.a} & ${pair.b}`;
+      pairSubtitle.textContent = `${pair.iconA} ${pair.a} • ${pair.iconB} ${pair.b}`;
+      renderPairButtons();
+      renderSentences();
+    }
+
+    function setMode(newMode) {
+      mode = newMode;
+      toggleButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === mode);
+      });
+      renderSentences();
+    }
+
+    toggleButtons.forEach(btn => {
+      btn.addEventListener('click', () => setMode(btn.dataset.mode));
+    });
+
+    setPair(currentPair);
+    setMode(mode);
+  </script>
+</body>
+</html>

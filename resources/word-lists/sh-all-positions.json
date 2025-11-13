@@ -1,0 +1,56 @@
+{
+  "id": "shSound",
+  "sound": "/ʃ/",
+  "name": "\"Sh\" Sound (All Positions)",
+  "description": "Words featuring the \"sh\" sound in initial, medial, and final word positions.",
+  "positions": {
+    "initial": [
+      { "text": "ship", "pos": "noun" },
+      { "text": "shell", "pos": "noun" },
+      { "text": "shark", "pos": "noun" },
+      { "text": "shovel", "pos": "noun" },
+      { "text": "shopping", "pos": "noun" },
+      { "text": "shadow", "pos": "noun" },
+      { "text": "shake", "pos": "verb" },
+      { "text": "share", "pos": "verb" },
+      { "text": "shout", "pos": "verb" },
+      { "text": "shine", "pos": "verb" },
+      { "text": "shiny", "pos": "adjective" },
+      { "text": "short", "pos": "adjective" },
+      { "text": "shaggy", "pos": "adjective" },
+      { "text": "shy", "pos": "adjective" }
+    ],
+    "medial": [
+      { "text": "ocean", "pos": "noun" },
+      { "text": "tissue", "pos": "noun" },
+      { "text": "flashlight", "pos": "noun" },
+      { "text": "marshmallow", "pos": "noun" },
+      { "text": "sunshine", "pos": "noun" },
+      { "text": "fishing", "pos": "noun" },
+      { "text": "washing", "pos": "verb" },
+      { "text": "pushing", "pos": "verb" },
+      { "text": "notion", "pos": "noun" },
+      { "text": "cushion", "pos": "noun" },
+      { "text": "ashamed", "pos": "adjective" },
+      { "text": "patient", "pos": "adjective" },
+      { "text": "fashionable", "pos": "adjective" }
+    ],
+    "final": [
+      { "text": "dish", "pos": "noun" },
+      { "text": "brush", "pos": "noun" },
+      { "text": "fish", "pos": "noun" },
+      { "text": "flash", "pos": "noun" },
+      { "text": "splash", "pos": "noun" },
+      { "text": "finish", "pos": "verb" },
+      { "text": "wash", "pos": "verb" },
+      { "text": "push", "pos": "verb" },
+      { "text": "wish", "pos": "verb" },
+      { "text": "polish", "pos": "verb" },
+      { "text": "fresh", "pos": "adjective" },
+      { "text": "plush", "pos": "adjective" },
+      { "text": "stylish", "pos": "adjective" },
+      { "text": "childish", "pos": "adjective" },
+      { "text": "lavish", "pos": "adjective" }
+    ]
+  }
+}

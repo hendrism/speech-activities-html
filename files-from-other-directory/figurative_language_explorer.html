@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figurative Language Explorer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff;
+            margin: 0;
+            padding: 0;
+            color: #1e2a3a;
+        }
+
+        header {
+            background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+            padding: 24px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 8px 0 0 0;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 24px auto 48px auto;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 20px 40px rgba(42, 59, 80, 0.12);
+            overflow: hidden;
+        }
+
+        .card {
+            display: none;
+            padding: 32px 28px 40px 28px;
+        }
+
+        .card.active {
+            display: block;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .progress span {
+            font-size: 15px;
+            font-weight: 600;
+            color: #4f5d75;
+        }
+
+        .progress-bar {
+            height: 6px;
+            width: 100%;
+            background: #e0e7ff;
+            border-radius: 999px;
+            margin-left: 16px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        .sentence {
+            background: #f5f7ff;
+            border-left: 5px solid #5b86e5;
+            padding: 22px;
+            border-radius: 14px;
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            font-weight: 600;
+            color: #24324a;
+        }
+
+        .image-upload {
+            background: #f9fbff;
+            border: 2px dashed #b3c7f6;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .image-upload label {
+            display: block;
+            font-weight: 600;
+            color: #3c4d6b;
+            margin-bottom: 10px;
+        }
+
+        .image-upload input[type="file"] {
+            margin-bottom: 18px;
+        }
+
+        .image-preview {
+            max-height: 300px;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+            display: none;
+            margin: 0 auto;
+        }
+
+        .questions {
+            display: grid;
+            gap: 22px;
+        }
+
+        .image-resizer {
+            display: none;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .image-resizer label {
+            font-weight: 600;
+            color: #3c4d6b;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .image-resizer input[type="range"] {
+            width: 100%;
+            accent-color: #5b86e5;
+        }
+
+        .image-resizer .size-value {
+            font-weight: 700;
+            color: #2d3f5a;
+        }
+
+        .remove-btn {
+            display: none;
+            margin-top: 12px;
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: 1px solid #f3c1c1;
+            background: #ffecec;
+            color: #943636;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .remove-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(148, 54, 54, 0.18);
+        }
+
+        .sentence-nav {
+            max-width: 850px;
+            margin: 24px auto 0 auto;
+            padding: 16px 18px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 14px 30px rgba(42, 59, 80, 0.12);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sentence-nav button {
+            border: 1px solid #d4defa;
+            border-radius: 999px;
+            padding: 8px 16px;
+            font-size: 14px;
+            background: #f1f5ff;
+            color: #314160;
+            cursor: pointer;
+            transition: background 0.2s ease, border 0.2s ease, transform 0.2s ease;
+        }
+
+        .sentence-nav button:hover {
+            background: #e2ecff;
+            border-color: #5b86e5;
+            transform: translateY(-1px);
+        }
+
+        .sentence-nav button.active {
+            background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 24px rgba(91, 134, 229, 0.25);
+        }
+
+        .level-switch {
+            max-width: 850px;
+            margin: 18px auto 0 auto;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .level-switch button {
+            border: 1px solid #cfd7f9;
+            border-radius: 999px;
+            padding: 9px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #314160;
+            background: #f3f6ff;
+            cursor: pointer;
+            transition: background 0.2s ease, border 0.2s ease, transform 0.2s ease;
+        }
+
+        .level-switch button:hover {
+            background: #e4ecff;
+            border-color: #5b86e5;
+            transform: translateY(-1px);
+        }
+
+        .level-switch button.active {
+            background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 22px rgba(91, 134, 229, 0.22);
+        }
+
+        .question-block {
+            background: #f7f9ff;
+            border-radius: 14px;
+            padding: 18px 20px;
+            border: 1px solid #e0e7ff;
+        }
+
+        .question-block h3 {
+            margin: 0 0 12px 0;
+            font-size: 17px;
+            color: #2d3f5a;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 70px;
+            border: 1px solid #ccd6f6;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 15px;
+            resize: vertical;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #5b86e5;
+            box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.2);
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .help-btn, .clear-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .help-btn {
+            background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+            color: white;
+        }
+
+        .clear-btn {
+            background: #e9efff;
+            color: #32466d;
+        }
+
+        .help-btn:hover, .clear-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(91, 134, 229, 0.18);
+        }
+
+        .choices {
+            margin-top: 14px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            text-align: left;
+            border: 1px solid #ccd6f6;
+            background: white;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s ease, border 0.2s ease;
+        }
+
+        .choice-btn:hover {
+            background: #eef3ff;
+            border-color: #5b86e5;
+        }
+
+        .choice-btn.correct {
+            border-color: #2ecc71;
+            background: #e9f9ef;
+            color: #1d7a45;
+        }
+
+        .choice-btn.incorrect {
+            border-color: #e74c3c;
+            background: #fdecea;
+            color: #8e2b25;
+        }
+
+        .sentence-nav {
+            max-width: 850px;
+            margin: 24px auto 0 auto;
+            padding: 16px 18px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 14px 30px rgba(42, 59, 80, 0.12);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sentence-nav button {
+            border: 1px solid #d4defa;
+            border-radius: 999px;
+            padding: 8px 16px;
+            font-size: 14px;
+            background: #f1f5ff;
+            color: #314160;
+            cursor: pointer;
+            transition: background 0.2s ease, border 0.2s ease, transform 0.2s ease;
+        }
+
+        .sentence-nav button:hover {
+            background: #e2ecff;
+            border-color: #5b86e5;
+            transform: translateY(-1px);
+        }
+
+        .sentence-nav button.active {
+            background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 24px rgba(91, 134, 229, 0.25);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px;
+            border-top: 1px solid #e3e9ff;
+            background: #f7f9ff;
+        }
+
+        .nav-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 22px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            background: white;
+            color: #42536d;
+            border: 1px solid #d4defa;
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+            color: white;
+            border: none;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(67, 93, 181, 0.18);
+        }
+
+        @media (max-width: 680px) {
+            .card {
+                padding: 24px 18px 32px 18px;
+            }
+
+            .level-switch {
+                gap: 8px;
+            }
+
+            .level-switch button {
+                font-size: 13px;
+                padding: 7px 14px;
+            }
+
+            .sentence-nav {
+                gap: 8px;
+            }
+
+            .sentence-nav button {
+                font-size: 13px;
+                padding: 7px 12px;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .progress {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .progress-bar {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Figurative Language Explorer</h1>
+        <p>Read each sentence, think about the literal meaning, and use the scaffolded questions to uncover the figurative message.</p>
+    </header>
+
+    <div id="levelSwitch"></div>
+    <div id="navPlaceholder"></div>
+    <div class="container" id="cardContainer"></div>
+
+    <script>
+        const figurativeLevels = {
+            simple: [
+                {
+                    title: "Sunshine Smile",
+                    sentence: "Her smile was as bright as the sun.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "Who is smiling?",
+                            placeholder: "It is talking about...",
+                            choices: [
+                                { text: "Her", isCorrect: true },
+                                { text: "The sun itself", isCorrect: false },
+                                { text: "A teacher", isCorrect: false },
+                                { text: "A flower", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is the smile being compared to?",
+                            placeholder: "It is compared to...",
+                            choices: [
+                                { text: "The sun", isCorrect: true },
+                                { text: "The moon", isCorrect: false },
+                                { text: "A snowball", isCorrect: false },
+                                { text: "A dark cloud", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "How do you know this sentence is figurative?",
+                            placeholder: "A clue is...",
+                            choices: [
+                                { text: "Smiles cannot literally turn into the sun; it shows the smile was very bright", isCorrect: true },
+                                { text: "She was standing on the sun", isCorrect: false },
+                                { text: "The sun smiled at her", isCorrect: false },
+                                { text: "She swallowed the sun", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence really mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "She had a big, cheerful smile", isCorrect: true },
+                                { text: "She was hot like the sun", isCorrect: false },
+                                { text: "She became the sun", isCorrect: false },
+                                { text: "She fell asleep", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Cheetah Runner",
+                    sentence: "He ran as fast as a cheetah across the field.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "Who is running?",
+                            placeholder: "It is talking about...",
+                            choices: [
+                                { text: "He", isCorrect: true },
+                                { text: "A cheetah", isCorrect: false },
+                                { text: "A turtle", isCorrect: false },
+                                { text: "A coach", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is he compared to?",
+                            placeholder: "He is compared to...",
+                            choices: [
+                                { text: "A cheetah", isCorrect: true },
+                                { text: "A snail", isCorrect: false },
+                                { text: "A tree", isCorrect: false },
+                                { text: "A rocket ship", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "What clue shows this sentence is figurative?",
+                            placeholder: "A clue is...",
+                            choices: [
+                                { text: "People cannot truly become cheetahs; it means he ran very fast", isCorrect: true },
+                                { text: "He was wearing cheetah clothes", isCorrect: false },
+                                { text: "A cheetah chased him", isCorrect: false },
+                                { text: "The field was a zoo", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "He ran very quickly", isCorrect: true },
+                                { text: "He fell down", isCorrect: false },
+                                { text: "He walked slowly", isCorrect: false },
+                                { text: "He slept on the field", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Stone Face",
+                    sentence: "His face was as still as a stone during the surprise.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "Whose face is being described?",
+                            placeholder: "It is describing...",
+                            choices: [
+                                { text: "His face", isCorrect: true },
+                                { text: "The stone's face", isCorrect: false },
+                                { text: "The teacher's face", isCorrect: false },
+                                { text: "A statue", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is his face compared to?",
+                            placeholder: "It is compared to...",
+                            choices: [
+                                { text: "A stone that does not move", isCorrect: true },
+                                { text: "A bouncing ball", isCorrect: false },
+                                { text: "A smiling clown", isCorrect: false },
+                                { text: "A leaf blowing in the wind", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "Why is this figurative language?",
+                            placeholder: "It is figurative because...",
+                            choices: [
+                                { text: "Faces cannot truly become stones; it shows he made no expression", isCorrect: true },
+                                { text: "He turned into a statue", isCorrect: false },
+                                { text: "He picked up a rock", isCorrect: false },
+                                { text: "He painted his face gray", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "He did not show any reaction", isCorrect: true },
+                                { text: "He laughed loudly", isCorrect: false },
+                                { text: "He cried during the surprise", isCorrect: false },
+                                { text: "He left the room", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Lion Voice",
+                    sentence: "Her voice was as loud as a lion's roar.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "What is being described?",
+                            placeholder: "It describes...",
+                            choices: [
+                                { text: "Her voice", isCorrect: true },
+                                { text: "A real lion roaring", isCorrect: false },
+                                { text: "The teacher's voice", isCorrect: false },
+                                { text: "A whisper", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is her voice compared to?",
+                            placeholder: "It is compared to...",
+                            choices: [
+                                { text: "A lion's roar", isCorrect: true },
+                                { text: "A cricket chirp", isCorrect: false },
+                                { text: "A waterfall", isCorrect: false },
+                                { text: "A song", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "How do you know this is figurative language?",
+                            placeholder: "A clue is...",
+                            choices: [
+                                { text: "People do not roar like lions; it shows her voice was very loud", isCorrect: true },
+                                { text: "She was inside the zoo", isCorrect: false },
+                                { text: "She was practicing for a play", isCorrect: false },
+                                { text: "She painted her face", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "She spoke very loudly", isCorrect: true },
+                                { text: "She did not speak at all", isCorrect: false },
+                                { text: "She sang softly", isCorrect: false },
+                                { text: "She roared like an animal", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Ocean Eyes",
+                    sentence: "His eyes were as blue as the ocean.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "What color eyes does he have?",
+                            placeholder: "He has eyes that are...",
+                            choices: [
+                                { text: "Blue", isCorrect: true },
+                                { text: "Green", isCorrect: false },
+                                { text: "Brown", isCorrect: false },
+                                { text: "Gray", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What are his eyes compared to?",
+                            placeholder: "They are compared to...",
+                            choices: [
+                                { text: "The blue ocean", isCorrect: true },
+                                { text: "A cloudy sky", isCorrect: false },
+                                { text: "A forest", isCorrect: false },
+                                { text: "A desert", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "Why is this figurative language?",
+                            placeholder: "It is figurative because...",
+                            choices: [
+                                { text: "Eyes cannot literally be the ocean; it shows their color is like ocean blue", isCorrect: true },
+                                { text: "His eyes were full of water", isCorrect: false },
+                                { text: "He swam in the ocean", isCorrect: false },
+                                { text: "He lived on a boat", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "His eyes were very blue", isCorrect: true },
+                                { text: "His eyes were brown", isCorrect: false },
+                                { text: "He had ocean water in his eyes", isCorrect: false },
+                                { text: "He cried a lot", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Sponge Brain",
+                    sentence: "My brain was a sponge soaking up every word the teacher said.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "What part of the body is mentioned?",
+                            placeholder: "It is talking about...",
+                            choices: [
+                                { text: "My brain", isCorrect: true },
+                                { text: "My hands", isCorrect: false },
+                                { text: "My feet", isCorrect: false },
+                                { text: "My backpack", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is the brain being compared to?",
+                            placeholder: "It is compared to...",
+                            choices: [
+                                { text: "A sponge", isCorrect: true },
+                                { text: "A rock", isCorrect: false },
+                                { text: "A pencil", isCorrect: false },
+                                { text: "A cup", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "Why is this figurative language?",
+                            placeholder: "It is figurative because...",
+                            choices: [
+                                { text: "Brains cannot soak up water like sponges; it shows learning quickly", isCorrect: true },
+                                { text: "The brain got wet", isCorrect: false },
+                                { text: "Sponges are teachers", isCorrect: false },
+                                { text: "He forgot the lesson", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "He understood everything the teacher said", isCorrect: true },
+                                { text: "He ignored the teacher", isCorrect: false },
+                                { text: "He was wiping the desks", isCorrect: false },
+                                { text: "He skipped class", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Feather Steps",
+                    sentence: "He walked as softly as a feather landing on a pillow.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "Who is walking softly?",
+                            placeholder: "It is talking about...",
+                            choices: [
+                                { text: "He", isCorrect: true },
+                                { text: "A feather", isCorrect: false },
+                                { text: "A pillow", isCorrect: false },
+                                { text: "A teacher", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is his walking compared to?",
+                            placeholder: "It is compared to...",
+                            choices: [
+                                { text: "A feather landing on a pillow", isCorrect: true },
+                                { text: "Thunder", isCorrect: false },
+                                { text: "A marching band", isCorrect: false },
+                                { text: "A barking dog", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "Why is this figurative language?",
+                            placeholder: "It is figurative because...",
+                            choices: [
+                                { text: "People cannot turn into feathers; it means he walked very quietly", isCorrect: true },
+                                { text: "He was made of feathers", isCorrect: false },
+                                { text: "He fell onto a pillow", isCorrect: false },
+                                { text: "He was flying", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "He walked very quietly", isCorrect: true },
+                                { text: "He stomped loudly", isCorrect: false },
+                                { text: "He ran quickly", isCorrect: false },
+                                { text: "He jumped on pillows", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Boiling Anger",
+                    sentence: "Her anger bubbled like water in a boiling pot.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "What emotion is being described?",
+                            placeholder: "It describes...",
+                            choices: [
+                                { text: "Her anger", isCorrect: true },
+                                { text: "Her happiness", isCorrect: false },
+                                { text: "Her sadness", isCorrect: false },
+                                { text: "Her surprise", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is her anger compared to?",
+                            placeholder: "It is compared to...",
+                            choices: [
+                                { text: "Water bubbling in a pot", isCorrect: true },
+                                { text: "Ice cubes", isCorrect: false },
+                                { text: "A frozen lake", isCorrect: false },
+                                { text: "A snowstorm", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "Why is this figurative language?",
+                            placeholder: "It is figurative because...",
+                            choices: [
+                                { text: "Feelings cannot literally bubble; it shows her anger was growing", isCorrect: true },
+                                { text: "She was cooking soup", isCorrect: false },
+                                { text: "She splashed water", isCorrect: false },
+                                { text: "She turned into water", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "She was getting very upset", isCorrect: true },
+                                { text: "She felt calm", isCorrect: false },
+                                { text: "She laughed", isCorrect: false },
+                                { text: "She forgot the problem", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Whispering Breeze",
+                    sentence: "His voice was as soft as a whispering breeze.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "What is being described?",
+                            placeholder: "It describes...",
+                            choices: [
+                                { text: "His voice", isCorrect: true },
+                                { text: "An actual breeze", isCorrect: false },
+                                { text: "His shoes", isCorrect: false },
+                                { text: "His backpack", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is the voice compared to?",
+                            placeholder: "It is compared to...",
+                            choices: [
+                                { text: "A whispering breeze", isCorrect: true },
+                                { text: "A thunderstorm", isCorrect: false },
+                                { text: "A drum", isCorrect: false },
+                                { text: "A siren", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "Why is this figurative language?",
+                            placeholder: "It is figurative because...",
+                            choices: [
+                                { text: "Voices are not breezes; it shows his voice was very soft", isCorrect: true },
+                                { text: "He turned into wind", isCorrect: false },
+                                { text: "He used a fan", isCorrect: false },
+                                { text: "He shouted", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "He spoke very softly", isCorrect: true },
+                                { text: "He yelled loudly", isCorrect: false },
+                                { text: "He sang loudly", isCorrect: false },
+                                { text: "He stayed silent", isCorrect: false }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "Cloud Blanket",
+                    sentence: "The fog covered the town like a blanket.",
+                    questions: [
+                        {
+                            id: "subject",
+                            prompt: "What is covering the town?",
+                            placeholder: "It is talking about...",
+                            choices: [
+                                { text: "The fog", isCorrect: true },
+                                { text: "A real blanket", isCorrect: false },
+                                { text: "Snow", isCorrect: false },
+                                { text: "Rain", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "comparison",
+                            prompt: "What is the fog compared to?",
+                            placeholder: "It is compared to...",
+                            choices: [
+                                { text: "A blanket", isCorrect: true },
+                                { text: "A rocket", isCorrect: false },
+                                { text: "A pencil", isCorrect: false },
+                                { text: "A backpack", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "clue",
+                            prompt: "Why is this figurative language?",
+                            placeholder: "It is figurative because...",
+                            choices: [
+                                { text: "Fog is not cloth; it means the fog covered everything", isCorrect: true },
+                                { text: "Someone dropped a blanket", isCorrect: false },
+                                { text: "The fog turned into fabric", isCorrect: false },
+                                { text: "The town was inside a house", isCorrect: false }
+                            ]
+                        },
+                        {
+                            id: "meaning",
+                            prompt: "What does the sentence mean?",
+                            placeholder: "It means...",
+                            choices: [
+                                { text: "The fog surrounded the town", isCorrect: true },
+                                { text: "It was raining hard", isCorrect: false },
+                                { text: "The fog was noisy", isCorrect: false },
+                                { text: "The town disappeared forever", isCorrect: false }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            advanced: [
+            {
+                title: "Buzzing Hive",
+                sentence: "The classroom was a buzzing hive by the time the bell rang.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is this sentence really describing?",
+                        placeholder: "It's describing...",
+                        choices: [
+                            { text: "The classroom full of students", isCorrect: true },
+                            { text: "A real beehive in a tree", isCorrect: false },
+                            { text: "The hallway lockers", isCorrect: false },
+                            { text: "A science experiment", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What is the classroom being compared to?",
+                        placeholder: "It is being compared to...",
+                        choices: [
+                            { text: "A buzzing hive", isCorrect: true },
+                            { text: "A silent library", isCorrect: false },
+                            { text: "A soccer field", isCorrect: false },
+                            { text: "An empty cave", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "What clues show this sentence is not literal?",
+                        placeholder: "Words that show it is figurative are...",
+                        choices: [
+                            { text: "Classrooms do not actually house bees; it describes the noisy students", isCorrect: true },
+                            { text: "Because the classroom smells like honey", isCorrect: false },
+                            { text: "Because there were insects buzzing around", isCorrect: false },
+                            { text: "Because the teacher likes nature", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "So what does this sentence really mean?",
+                        placeholder: "This sentence truly means...",
+                        choices: [
+                            { text: "The room was busy and loud with students talking", isCorrect: true },
+                            { text: "The students raised bees for a project", isCorrect: false },
+                            { text: "The classroom was empty and quiet", isCorrect: false },
+                            { text: "The bell scared bees into the classroom", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Trapped Butterflies",
+                sentence: "Anxiety fluttered in my stomach like trapped butterflies before the speech.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What feeling is this sentence describing?",
+                        placeholder: "It is describing...",
+                        choices: [
+                            { text: "Feeling nervous or anxious", isCorrect: true },
+                            { text: "Literal butterflies in a jar", isCorrect: false },
+                            { text: "A stomachache from lunch", isCorrect: false },
+                            { text: "Excitement to play outside", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What is the nervous feeling being compared to?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "Butterflies fluttering", isCorrect: true },
+                            { text: "A calm ocean wave", isCorrect: false },
+                            { text: "A loud thunderstorm", isCorrect: false },
+                            { text: "A sleepy kitten", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "What shows this is figurative?",
+                        placeholder: "Clues that show it is figurative include...",
+                        choices: [
+                            { text: "People do not truly hold butterflies in their stomachs; it describes nervous motion", isCorrect: true },
+                            { text: "Because there were butterflies flying in the room", isCorrect: false },
+                            { text: "Because the person ate insects", isCorrect: false },
+                            { text: "Because butterflies are always near speeches", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does the sentence mean?",
+                        placeholder: "This sentence means...",
+                        choices: [
+                            { text: "The speaker felt nervous and shaky before talking", isCorrect: true },
+                            { text: "Butterflies attacked the audience", isCorrect: false },
+                            { text: "The speech was cancelled", isCorrect: false },
+                            { text: "Someone released insects on purpose", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Crescent Moon Smile",
+                sentence: "Her grin stretched across her face like a crescent moon at dusk.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is being described here?",
+                        placeholder: "The sentence is about...",
+                        choices: [
+                            { text: "Her wide smile", isCorrect: true },
+                            { text: "The actual night sky", isCorrect: false },
+                            { text: "A moon made of cheese", isCorrect: false },
+                            { text: "A flashlight beam", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What is her smile compared to?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A crescent moon", isCorrect: true },
+                            { text: "A lightning bolt", isCorrect: false },
+                            { text: "A raindrop", isCorrect: false },
+                            { text: "A closed umbrella", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "What clue tells you this is figurative language?",
+                        placeholder: "A helpful clue is...",
+                        choices: [
+                            { text: "Smiles cannot actually turn into moons; it describes the curved shape", isCorrect: true },
+                            { text: "The moon was hanging in the classroom", isCorrect: false },
+                            { text: "Everyone saw the moon on her face", isCorrect: false },
+                            { text: "She was wearing moon makeup", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What is the real meaning?",
+                        placeholder: "The sentence really means...",
+                        choices: [
+                            { text: "She had a big curved smile that lit up her face", isCorrect: true },
+                            { text: "She turned into an astronaut", isCorrect: false },
+                            { text: "She was frowning in the dark", isCorrect: false },
+                            { text: "She drew a moon on paper", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Looming Deadline",
+                sentence: "The deadline stormed toward us.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is approaching in the sentence?",
+                        placeholder: "The sentence is talking about...",
+                        choices: [
+                            { text: "An upcoming deadline", isCorrect: true },
+                            { text: "An actual monster", isCorrect: false },
+                            { text: "A parade marching band", isCorrect: false },
+                            { text: "A rainstorm", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What is the deadline compared to?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A storm racing closer", isCorrect: true },
+                            { text: "A quiet sunset", isCorrect: false },
+                            { text: "A slow turtle", isCorrect: false },
+                            { text: "A gentle breeze", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "What tells you this is figurative?",
+                        placeholder: "This is figurative because...",
+                        choices: [
+                            { text: "Deadlines cannot literally storm toward people; it shows urgency", isCorrect: true },
+                            { text: "The calendar was raining on them", isCorrect: false },
+                            { text: "They were outside during lightning", isCorrect: false },
+                            { text: "Deadlines are weather forecasts", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What is the meaning of the sentence?",
+                        placeholder: "It really means...",
+                        choices: [
+                            { text: "The deadline was coming quickly and felt intense", isCorrect: true },
+                            { text: "A giant storm destroyed the homework", isCorrect: false },
+                            { text: "They decided not to finish anything", isCorrect: false },
+                            { text: "Tomorrow was cancelled", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Overflowing Drawer",
+                sentence: "Ideas tumbled out of his brain like clothes spilling from an overstuffed drawer.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is being described?",
+                        placeholder: "It describes...",
+                        choices: [
+                            { text: "His many ideas", isCorrect: true },
+                            { text: "Actual clothes falling on the floor", isCorrect: false },
+                            { text: "A dresser drawer breaking", isCorrect: false },
+                            { text: "Someone packing for vacation", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What are the ideas compared to?",
+                        placeholder: "They are compared to...",
+                        choices: [
+                            { text: "Clothes spilling from an overstuffed drawer", isCorrect: true },
+                            { text: "Water dripping slowly", isCorrect: false },
+                            { text: "Books on a shelf", isCorrect: false },
+                            { text: "A single coin", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "What clue shows this is not literal?",
+                        placeholder: "A clue is...",
+                        choices: [
+                            { text: "Brains cannot literally spill clothes; it shows many ideas coming quickly", isCorrect: true },
+                            { text: "He was standing in a closet", isCorrect: false },
+                            { text: "He only owned one drawer", isCorrect: false },
+                            { text: "The drawer was in the classroom", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does the sentence mean?",
+                        placeholder: "It means...",
+                        choices: [
+                            { text: "He had lots of ideas rushing out all at once", isCorrect: true },
+                            { text: "He forgot his homework", isCorrect: false },
+                            { text: "He was messy and never cleaned", isCorrect: false },
+                            { text: "His brain turned into a dresser", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Hallway Snake",
+                sentence: "The rumor slithered through the hallway before anyone could stop it.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What moved through the hallway?",
+                        placeholder: "It was...",
+                        choices: [
+                            { text: "A rumor", isCorrect: true },
+                            { text: "An actual snake", isCorrect: false },
+                            { text: "A crowd of teachers", isCorrect: false },
+                            { text: "The janitor's cart", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What is the rumor compared to?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A slithering snake", isCorrect: true },
+                            { text: "A racing cheetah", isCorrect: false },
+                            { text: "A flying bird", isCorrect: false },
+                            { text: "A quiet whisper", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "How do you know this is figurative?",
+                        placeholder: "I know because...",
+                        choices: [
+                            { text: "Rumors cannot literally slither; it describes moving quietly and quickly", isCorrect: true },
+                            { text: "Someone brought a snake to school", isCorrect: false },
+                            { text: "The hallway turned into a forest", isCorrect: false },
+                            { text: "Everyone was wearing snake costumes", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does the sentence mean for the people at school?",
+                        placeholder: "It means...",
+                        choices: [
+                            { text: "The rumor spread fast and quietly before anyone could correct it", isCorrect: true },
+                            { text: "Someone released a pet snake", isCorrect: false },
+                            { text: "No one heard the rumor", isCorrect: false },
+                            { text: "The hallway was empty", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Walking Encyclopedia",
+                sentence: "My little brother is a walking encyclopedia when it comes to dinosaurs.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "Who is being described?",
+                        placeholder: "The sentence describes...",
+                        choices: [
+                            { text: "My little brother", isCorrect: true },
+                            { text: "A fossil in a museum", isCorrect: false },
+                            { text: "My science teacher", isCorrect: false },
+                            { text: "An actual book", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What is he being compared to?",
+                        placeholder: "He is compared to...",
+                        choices: [
+                            { text: "An encyclopedia", isCorrect: true },
+                            { text: "A toy car", isCorrect: false },
+                            { text: "A roaring volcano", isCorrect: false },
+                            { text: "A clever detective", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "Why is this figurative language?",
+                        placeholder: "It is figurative because...",
+                        choices: [
+                            { text: "People are not books; it shows he knows lots of facts", isCorrect: true },
+                            { text: "He sleeps in a library", isCorrect: false },
+                            { text: "He has pages instead of arms", isCorrect: false },
+                            { text: "He always carries an encyclopedia", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "So what does the sentence mean?",
+                        placeholder: "It means...",
+                        choices: [
+                            { text: "He knows many dinosaur facts and can share them easily", isCorrect: true },
+                            { text: "He forgets everything about dinosaurs", isCorrect: false },
+                            { text: "He collects old encyclopedias", isCorrect: false },
+                            { text: "He is writing a book", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Jewel Skyline",
+                sentence: "The city skyline glittered like a box of spilled jewels after the rain.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is glittering?",
+                        placeholder: "The sentence describes...",
+                        choices: [
+                            { text: "The city skyline", isCorrect: true },
+                            { text: "Actual jewelry in the street", isCorrect: false },
+                            { text: "A treasure chest", isCorrect: false },
+                            { text: "A jewelry store window", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What is the skyline compared to?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A box of spilled jewels", isCorrect: true },
+                            { text: "A dirty puddle", isCorrect: false },
+                            { text: "A pile of leaves", isCorrect: false },
+                            { text: "A chalkboard", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "What shows this is figurative language?",
+                        placeholder: "This is figurative because...",
+                        choices: [
+                            { text: "Buildings are not jewels; the lights sparkle like gems", isCorrect: true },
+                            { text: "The rain turned into diamonds", isCorrect: false },
+                            { text: "People were selling jewelry on rooftops", isCorrect: false },
+                            { text: "The skyline fell over", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does the sentence mean?",
+                        placeholder: "It means...",
+                        choices: [
+                            { text: "The wet skyline lights shone brightly like shiny jewels", isCorrect: true },
+                            { text: "Jewels were hidden in the city", isCorrect: false },
+                            { text: "The rainstorm broke all the lights", isCorrect: false },
+                            { text: "There was a jewelry store on each roof", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Bouncing Compliments",
+                sentence: "Compliments bounced off her like rubber balls, never sticking for long.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "Who is the sentence about?",
+                        placeholder: "It is about...",
+                        choices: [
+                            { text: "Her reaction to compliments", isCorrect: true },
+                            { text: "Actual rubber balls", isCorrect: false },
+                            { text: "A dodgeball game", isCorrect: false },
+                            { text: "People playing catch", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "Compliments are compared to what?",
+                        placeholder: "They are compared to...",
+                        choices: [
+                            { text: "Rubber balls bouncing away", isCorrect: true },
+                            { text: "Sticky glue", isCorrect: false },
+                            { text: "Feathers in the wind", isCorrect: false },
+                            { text: "A quiet whisper", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "How do you know this is figurative?",
+                        placeholder: "I know because...",
+                        choices: [
+                            { text: "Compliments cannot literally bounce; it shows she does not believe them", isCorrect: true },
+                            { text: "People threw balls at her", isCorrect: false },
+                            { text: "She was playing sports", isCorrect: false },
+                            { text: "She used rubber glue", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does the sentence tell us?",
+                        placeholder: "It tells us that...",
+                        choices: [
+                            { text: "She had trouble accepting compliments", isCorrect: true },
+                            { text: "She loved compliments and kept them", isCorrect: false },
+                            { text: "She ran away from compliments", isCorrect: false },
+                            { text: "She refused to listen to anyone", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Lantern Eyes",
+                sentence: "Her eyes shone like lanterns in a storm.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is glowing in this sentence?",
+                        placeholder: "It describes...",
+                        choices: [
+                            { text: "Her eyes", isCorrect: true },
+                            { text: "Actual lanterns", isCorrect: false },
+                            { text: "A stormy night sky", isCorrect: false },
+                            { text: "A flashlight", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "Her eyes are compared to what?",
+                        placeholder: "They are compared to...",
+                        choices: [
+                            { text: "Lanterns in a storm", isCorrect: true },
+                            { text: "Burning candles", isCorrect: false },
+                            { text: "Fire trucks", isCorrect: false },
+                            { text: "Snowflakes", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "What clue shows this is figurative language?",
+                        placeholder: "A clue is...",
+                        choices: [
+                            { text: "Eyes cannot literally shine like lanterns; it describes their brightness", isCorrect: true },
+                            { text: "She had lanterns for eyes", isCorrect: false },
+                            { text: "She was actually in a storm", isCorrect: false },
+                            { text: "She carried a lantern", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What is the sentence saying about her?",
+                        placeholder: "It says that...",
+                        choices: [
+                            { text: "She was focused and determined even when things were challenging", isCorrect: true },
+                            { text: "She got lost in a storm", isCorrect: false },
+                            { text: "She gave up quickly", isCorrect: false },
+                            { text: "She was scared of the dark", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Homework Mountain",
+                sentence: "Homework piled up on my desk like a mountain waiting to be climbed.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is piling up?",
+                        placeholder: "The sentence talks about...",
+                        choices: [
+                            { text: "Homework assignments", isCorrect: true },
+                            { text: "Actual rocks and dirt", isCorrect: false },
+                            { text: "A stack of board games", isCorrect: false },
+                            { text: "Laundry", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "Homework is compared to what?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A mountain waiting to be climbed", isCorrect: true },
+                            { text: "A puddle after rain", isCorrect: false },
+                            { text: "A small pebble", isCorrect: false },
+                            { text: "A flat road", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "Why is this figurative language?",
+                        placeholder: "It is figurative because...",
+                        choices: [
+                            { text: "Homework cannot literally turn into a mountain; it shows a big challenge", isCorrect: true },
+                            { text: "Mountains were inside the classroom", isCorrect: false },
+                            { text: "There were hikers on the desk", isCorrect: false },
+                            { text: "Someone dumped dirt on the desk", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "So what does this sentence mean?",
+                        placeholder: "It means...",
+                        choices: [
+                            { text: "There was a lot of homework to finish", isCorrect: true },
+                            { text: "The desk was empty", isCorrect: false },
+                            { text: "The homework was quick and easy", isCorrect: false },
+                            { text: "The teacher cancelled homework", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Whispering Breeze",
+                sentence: "The apology slipped out of his mouth like a whispering breeze.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What came out of his mouth?",
+                        placeholder: "The sentence mentions...",
+                        choices: [
+                            { text: "An apology", isCorrect: true },
+                            { text: "A loud shout", isCorrect: false },
+                            { text: "Song lyrics", isCorrect: false },
+                            { text: "A poem", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What is the apology compared to?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A whispering breeze", isCorrect: true },
+                            { text: "A roaring train", isCorrect: false },
+                            { text: "A ringing alarm", isCorrect: false },
+                            { text: "A noisy crowd", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "What clue shows this sentence is figurative?",
+                        placeholder: "A clue is...",
+                        choices: [
+                            { text: "Apologies don't literally become breezes; it shows it was soft and quiet", isCorrect: true },
+                            { text: "He talked to the wind", isCorrect: false },
+                            { text: "There was no air in the room", isCorrect: false },
+                            { text: "He used a fan to speak", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does this tell us about the apology?",
+                        placeholder: "It tells us...",
+                        choices: [
+                            { text: "He spoke the apology softly and gently", isCorrect: true },
+                            { text: "He yelled the apology across the room", isCorrect: false },
+                            { text: "He refused to apologize", isCorrect: false },
+                            { text: "He apologized in writing", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Spark to Fire",
+                sentence: "The coach's pep talk was a spark for our team's confidence.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is the pep talk being compared to?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A spark", isCorrect: true },
+                            { text: "A bucket of water", isCorrect: false },
+                            { text: "A cold breeze", isCorrect: false },
+                            { text: "A quiet whisper", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "What did the spark affect?",
+                        placeholder: "It boosted...",
+                        choices: [
+                            { text: "The team's confidence", isCorrect: true },
+                            { text: "The scoreboard", isCorrect: false },
+                            { text: "The gym floor", isCorrect: false },
+                            { text: "The uniforms", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "Why is this figurative language?",
+                        placeholder: "This is figurative because...",
+                        choices: [
+                            { text: "Pep talks are not actual sparks; it shows the speech energized them", isCorrect: true },
+                            { text: "The coach had matches", isCorrect: false },
+                            { text: "The gym caught fire", isCorrect: false },
+                            { text: "They were cold", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does the sentence mean?",
+                        placeholder: "It means...",
+                        choices: [
+                            { text: "The pep talk made the team feel excited and confident", isCorrect: true },
+                            { text: "The pep talk was boring", isCorrect: false },
+                            { text: "The team refused to listen", isCorrect: false },
+                            { text: "The coach yelled at the team", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Fragile Patience",
+                sentence: "Her patience was a thin thread ready to snap.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is being described as a thin thread?",
+                        placeholder: "It describes...",
+                        choices: [
+                            { text: "Her patience", isCorrect: true },
+                            { text: "Actual sewing thread", isCorrect: false },
+                            { text: "A spider web", isCorrect: false },
+                            { text: "A piece of string", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "Her patience is compared to what?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A thin thread", isCorrect: true },
+                            { text: "A strong rope", isCorrect: false },
+                            { text: "A metal chain", isCorrect: false },
+                            { text: "A rubber band", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "Why is this figurative language?",
+                        placeholder: "It is figurative because...",
+                        choices: [
+                            { text: "Patience cannot literally snap; it shows she was about to lose control", isCorrect: true },
+                            { text: "She was using scissors", isCorrect: false },
+                            { text: "She ran out of thread", isCorrect: false },
+                            { text: "The thread was invisible", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does the sentence really mean?",
+                        placeholder: "It means...",
+                        choices: [
+                            { text: "She was almost out of patience", isCorrect: true },
+                            { text: "She was happy and relaxed", isCorrect: false },
+                            { text: "She loved sewing", isCorrect: false },
+                            { text: "She had endless patience", isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Crumbling Excuse",
+                sentence: "His excuse crumbled like a stale cookie when the teacher asked follow-up questions.",
+                questions: [
+                    {
+                        id: "subject",
+                        prompt: "What is crumbling in this sentence?",
+                        placeholder: "It describes...",
+                        choices: [
+                            { text: "His excuse", isCorrect: true },
+                            { text: "An actual cookie", isCorrect: false },
+                            { text: "His homework paper", isCorrect: false },
+                            { text: "A chalkboard", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "comparison",
+                        prompt: "His excuse is compared to what?",
+                        placeholder: "It is compared to...",
+                        choices: [
+                            { text: "A stale cookie", isCorrect: true },
+                            { text: "Fresh bread", isCorrect: false },
+                            { text: "A shiny apple", isCorrect: false },
+                            { text: "A balloon", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "clue",
+                        prompt: "How do you know this is figurative?",
+                        placeholder: "I know because...",
+                        choices: [
+                            { text: "Excuses are not food; it shows the excuse fell apart easily", isCorrect: true },
+                            { text: "He literally ate a cookie", isCorrect: false },
+                            { text: "The teacher was baking", isCorrect: false },
+                            { text: "Cookies were part of class", isCorrect: false }
+                        ]
+                    },
+                    {
+                        id: "meaning",
+                        prompt: "What does this sentence tell us?",
+                        placeholder: "It tells us...",
+                        choices: [
+                            { text: "His excuse did not hold up under questions", isCorrect: true },
+                            { text: "He had the best excuse", isCorrect: false },
+                            { text: "He refused to answer the teacher", isCorrect: false },
+                            { text: "He was baking cookies", isCorrect: false }
+                        ]
+                    }
+                ]
+            }
+
+            ]
+        };
+
+        const LEVEL_OPTIONS = [
+            { id: 'simple', label: 'Level 1: Simple' },
+            { id: 'advanced', label: 'Level 2: Advanced' }
+        ];
+        const LEVEL_STORAGE_KEY = 'figurative-level';
+        let currentLevel = localStorage.getItem(LEVEL_STORAGE_KEY) || 'advanced';
+        if (!Object.prototype.hasOwnProperty.call(figurativeLevels, currentLevel)) {
+            currentLevel = 'advanced';
+        }
+
+        const IMAGE_KEY_PREFIX = 'figurativeImage-';
+        const IMAGE_SIZE_KEY_PREFIX = 'figurativeImageSize-';
+        const DEFAULT_IMAGE_SIZE = 300;
+
+        let navButtons = [];
+
+        function getCurrentSentences() {
+            return figurativeLevels[currentLevel] || [];
+        }
+
+        function getImageKey(index) {
+            return `${IMAGE_KEY_PREFIX}${currentLevel}-${index}`;
+        }
+
+        function getImageSizeKey(index) {
+            return `${IMAGE_SIZE_KEY_PREFIX}${currentLevel}-${index}`;
+        }
+
+        function renderLevelSwitch() {
+            const switchContainer = document.getElementById('levelSwitch');
+            if (!switchContainer) {
+                return;
+            }
+
+            switchContainer.innerHTML = '';
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'level-switch';
+
+            LEVEL_OPTIONS.forEach(option => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = option.label;
+                if (option.id === currentLevel) {
+                    btn.classList.add('active');
+                }
+                btn.addEventListener('click', () => {
+                    if (currentLevel === option.id) {
+                        return;
+                    }
+                    currentLevel = option.id;
+                    try {
+                        localStorage.setItem(LEVEL_STORAGE_KEY, currentLevel);
+                    } catch (error) {
+                        console.warn('Unable to store level selection', error);
+                    }
+                    renderCards();
+                });
+                wrapper.appendChild(btn);
+            });
+
+            switchContainer.appendChild(wrapper);
+        }
+
+        function setImageControlsVisibility(index, visible) {
+            const resizer = document.getElementById(`image-resizer-${index}`);
+            const removeBtn = document.getElementById(`remove-image-${index}`);
+            if (resizer) {
+                resizer.style.display = visible ? 'block' : 'none';
+            }
+            if (removeBtn) {
+                removeBtn.style.display = visible ? 'inline-block' : 'none';
+            }
+        }
+
+        function updateImageSize(index, value, shouldStore = true) {
+            const preview = document.getElementById(`preview-${index}`);
+            const sizeLabel = document.getElementById(`image-size-label-${index}`);
+            const slider = document.getElementById(`image-size-${index}`);
+
+            if (preview) {
+                preview.style.maxHeight = `${value}px`;
+            }
+            if (sizeLabel) {
+                sizeLabel.textContent = `${value}px`;
+            }
+            if (slider && Number(slider.value) !== Number(value)) {
+                slider.value = value;
+            }
+            if (shouldStore) {
+                try {
+                    localStorage.setItem(getImageSizeKey(index), String(value));
+                } catch (error) {
+                    console.warn('Unable to store image size', error);
+                }
+            }
+        }
+
+        function storeImage(index, dataUrl) {
+            try {
+                localStorage.setItem(getImageKey(index), dataUrl);
+            } catch (error) {
+                console.warn('Unable to store image data', error);
+            }
+        }
+
+        function loadImageState(index) {
+            const preview = document.getElementById(`preview-${index}`);
+            const slider = document.getElementById(`image-size-${index}`);
+            const removeBtn = document.getElementById(`remove-image-${index}`);
+            const storedImage = localStorage.getItem(getImageKey(index));
+            const storedSize = Number(localStorage.getItem(getImageSizeKey(index))) || DEFAULT_IMAGE_SIZE;
+
+            if (!preview) {
+                return;
+            }
+
+            if (storedImage) {
+                preview.src = storedImage;
+                preview.style.display = 'block';
+                setImageControlsVisibility(index, true);
+                updateImageSize(index, storedSize, false);
+                if (slider) {
+                    slider.value = storedSize;
+                }
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+                setImageControlsVisibility(index, false);
+                updateImageSize(index, DEFAULT_IMAGE_SIZE, false);
+                if (slider) {
+                    slider.value = DEFAULT_IMAGE_SIZE;
+                }
+                if (removeBtn) {
+                    removeBtn.style.display = 'none';
+                }
+            }
+        }
+
+        function removeImage(index) {
+            const preview = document.getElementById(`preview-${index}`);
+            const fileInput = document.getElementById(`image-${index}`);
+
+            if (preview) {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+            if (fileInput) {
+                fileInput.value = '';
+            }
+
+            setImageControlsVisibility(index, false);
+            updateImageSize(index, DEFAULT_IMAGE_SIZE, false);
+
+            try {
+                localStorage.removeItem(getImageKey(index));
+                localStorage.removeItem(getImageSizeKey(index));
+            } catch (error) {
+                console.warn('Unable to clear stored image data', error);
+            }
+        }
+
+        function createQuestionBlock(question, sentenceIndex) {
+            const block = document.createElement('div');
+            block.className = 'question-block';
+            block.dataset.questionId = question.id;
+
+            const heading = document.createElement('h3');
+            heading.textContent = question.prompt;
+            block.appendChild(heading);
+
+            const textarea = document.createElement('textarea');
+            textarea.placeholder = question.placeholder;
+            textarea.id = `sentence-${sentenceIndex}-${question.id}`;
+            block.appendChild(textarea);
+
+            const actions = document.createElement('div');
+            actions.className = 'actions';
+
+            const helpBtn = document.createElement('button');
+            helpBtn.className = 'help-btn';
+            helpBtn.type = 'button';
+            helpBtn.textContent = 'I need help';
+            helpBtn.addEventListener('click', () => toggleChoices(block, question.choices));
+            actions.appendChild(helpBtn);
+
+            const clearBtn = document.createElement('button');
+            clearBtn.className = 'clear-btn';
+            clearBtn.type = 'button';
+            clearBtn.textContent = 'Clear answer';
+            clearBtn.addEventListener('click', () => {
+                textarea.value = '';
+                const choiceButtons = block.querySelectorAll('.choice-btn');
+                choiceButtons.forEach(btn => {
+                    btn.classList.remove('correct', 'incorrect');
+                });
+            });
+            actions.appendChild(clearBtn);
+
+            block.appendChild(actions);
+
+            const choicesContainer = document.createElement('div');
+            choicesContainer.className = 'choices';
+            block.appendChild(choicesContainer);
+
+            return block;
+        }
+
+        function shuffleChoices(choices) {
+            const copy = [...choices];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function toggleChoices(block, choices) {
+            const choicesContainer = block.querySelector('.choices');
+            if (choicesContainer.dataset.loaded === 'true') {
+                choicesContainer.style.display = choicesContainer.style.display === 'flex' ? 'none' : 'flex';
+                return;
+            }
+
+            choicesContainer.innerHTML = '';
+            const randomized = shuffleChoices(choices);
+            randomized.forEach(choice => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'choice-btn';
+                btn.textContent = choice.text;
+                btn.addEventListener('click', () => handleChoiceSelection(block, btn, choice));
+                choicesContainer.appendChild(btn);
+            });
+
+            choicesContainer.style.display = 'flex';
+            choicesContainer.dataset.loaded = 'true';
+        }
+
+        function handleChoiceSelection(block, button, choice) {
+            const textarea = block.querySelector('textarea');
+            textarea.value = choice.text;
+
+            const siblings = block.querySelectorAll('.choice-btn');
+            siblings.forEach(btn => {
+                btn.classList.remove('correct', 'incorrect');
+            });
+
+            if (choice.isCorrect) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('incorrect');
+            }
+        }
+
+        function createCard(data, index, total) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.index = index;
+
+            const progress = document.createElement('div');
+            progress.className = 'progress';
+
+            const progressText = document.createElement('span');
+            progressText.textContent = `Sentence ${index + 1} of ${total}`;
+            progress.appendChild(progressText);
+
+            const progressBar = document.createElement('div');
+            progressBar.className = 'progress-bar';
+
+            const progressFill = document.createElement('div');
+            progressFill.className = 'progress-fill';
+            progressFill.style.width = `${((index + 1) / total) * 100}%`;
+            progressBar.appendChild(progressFill);
+
+            progress.appendChild(progressBar);
+            card.appendChild(progress);
+
+            const sentenceBox = document.createElement('div');
+            sentenceBox.className = 'sentence';
+            sentenceBox.textContent = data.sentence;
+            card.appendChild(sentenceBox);
+
+            const imageUpload = document.createElement('div');
+            imageUpload.className = 'image-upload';
+
+            const imageLabel = document.createElement('label');
+            imageLabel.htmlFor = `image-${index}`;
+            imageLabel.textContent = 'Add a picture that shows the literal meaning of this sentence:';
+            imageUpload.appendChild(imageLabel);
+
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            fileInput.id = `image-${index}`;
+            fileInput.addEventListener('change', (event) => handleImageUpload(event, index));
+            imageUpload.appendChild(fileInput);
+
+            const preview = document.createElement('img');
+            preview.className = 'image-preview';
+            preview.alt = 'Preview of literal meaning';
+            preview.id = `preview-${index}`;
+            imageUpload.appendChild(preview);
+
+            const resizer = document.createElement('div');
+            resizer.className = 'image-resizer';
+            resizer.id = `image-resizer-${index}`;
+
+            const sizeLabel = document.createElement('label');
+            sizeLabel.htmlFor = `image-size-${index}`;
+            sizeLabel.innerHTML = `Image size: <span class="size-value" id="image-size-label-${index}">${DEFAULT_IMAGE_SIZE}px</span>`;
+            resizer.appendChild(sizeLabel);
+
+            const sizeSlider = document.createElement('input');
+            sizeSlider.type = 'range';
+            sizeSlider.min = '200';
+            sizeSlider.max = '480';
+            sizeSlider.step = '10';
+            sizeSlider.value = DEFAULT_IMAGE_SIZE;
+            sizeSlider.id = `image-size-${index}`;
+            sizeSlider.addEventListener('input', (event) => {
+                updateImageSize(index, Number(event.target.value));
+            });
+            resizer.appendChild(sizeSlider);
+
+            imageUpload.appendChild(resizer);
+
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'remove-btn';
+            removeBtn.id = `remove-image-${index}`;
+            removeBtn.textContent = 'Remove image';
+            removeBtn.addEventListener('click', () => removeImage(index));
+            imageUpload.appendChild(removeBtn);
+
+            card.appendChild(imageUpload);
+
+            const questionsWrapper = document.createElement('div');
+            questionsWrapper.className = 'questions';
+
+            data.questions.forEach(question => {
+                const block = createQuestionBlock(question, index);
+                questionsWrapper.appendChild(block);
+            });
+
+            card.appendChild(questionsWrapper);
+
+            return card;
+        }
+
+        function handleImageUpload(event, index) {
+            const file = event.target.files[0];
+            const preview = document.getElementById(`preview-${index}`);
+
+            if (!file) {
+                removeImage(index);
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (!preview) {
+                    return;
+                }
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                setImageControlsVisibility(index, true);
+
+                const slider = document.getElementById(`image-size-${index}`);
+                const sizeValue = slider ? Number(slider.value) || DEFAULT_IMAGE_SIZE : DEFAULT_IMAGE_SIZE;
+                updateImageSize(index, sizeValue);
+                storeImage(index, e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function renderCards() {
+            const container = document.getElementById('cardContainer');
+            container.innerHTML = '';
+
+            renderLevelSwitch();
+
+            const navPlaceholder = document.getElementById('navPlaceholder');
+            navPlaceholder.innerHTML = '';
+
+            const navWrapper = document.createElement('div');
+            navWrapper.className = 'sentence-nav';
+
+            const sentences = getCurrentSentences();
+
+            sentences.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = `${index + 1}. ${item.title}`;
+                btn.addEventListener('click', () => setActiveCard(index));
+                navWrapper.appendChild(btn);
+            });
+
+            navButtons = Array.from(navWrapper.querySelectorAll('button'));
+            navPlaceholder.appendChild(navWrapper);
+
+            sentences.forEach((item, index) => {
+                const card = createCard(item, index, sentences.length);
+                container.appendChild(card);
+                loadImageState(index);
+            });
+
+            const nav = document.createElement('div');
+            nav.className = 'navigation';
+
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'nav-btn';
+            prevBtn.id = 'prevBtn';
+            prevBtn.textContent = '← Previous';
+            prevBtn.disabled = true;
+            prevBtn.addEventListener('click', () => moveCard(-1));
+            nav.appendChild(prevBtn);
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'nav-btn primary';
+            nextBtn.id = 'nextBtn';
+            nextBtn.textContent = 'Next →';
+            nextBtn.addEventListener('click', () => moveCard(1));
+            nav.appendChild(nextBtn);
+
+            container.appendChild(nav);
+
+            setActiveCard(0);
+
+            if (!sentences.length) {
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+                nextBtn.textContent = 'All Done! 🎉';
+            }
+        }
+
+        function setActiveCard(index) {
+            const sentences = getCurrentSentences();
+            if (!sentences.length) {
+                return;
+            }
+
+            const clampedIndex = Math.max(0, Math.min(index, sentences.length - 1));
+
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => card.classList.remove('active'));
+
+            const target = document.querySelector(`.card[data-index="${clampedIndex}"]`);
+            if (target) {
+                target.classList.add('active');
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = clampedIndex === 0;
+            nextBtn.textContent = clampedIndex === sentences.length - 1 ? 'All Done! 🎉' : 'Next →';
+            nextBtn.disabled = clampedIndex === sentences.length - 1;
+            nextBtn.dataset.index = clampedIndex;
+            prevBtn.dataset.index = clampedIndex;
+
+            if (navButtons.length) {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                if (navButtons[clampedIndex]) {
+                    navButtons[clampedIndex].classList.add('active');
+                }
+            }
+        }
+
+        function moveCard(direction) {
+            const sentences = getCurrentSentences();
+            if (!sentences.length) {
+                return;
+            }
+
+            const currentIndex = Number(document.querySelector('.card.active')?.dataset.index || 0);
+            const newIndex = currentIndex + direction;
+            if (newIndex < 0 || newIndex >= sentences.length) {
+                return;
+            }
+            setActiveCard(newIndex);
+        }
+
+        renderCards();
+    </script>
+</body>
+</html>

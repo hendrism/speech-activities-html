@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relevant Social Q&amp;A</title>
+<style>
+  :root {
+    --accent: #f59e0b;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 18px;
+    background: linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
+    color: #0f172a;
+  }
+
+  header {
+    background: white;
+    border-bottom: 3px solid #bae6fd;
+    padding: 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 28px;
+    color: #1d4ed8;
+  }
+
+  header span {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    color: #475569;
+    margin-top: 6px;
+  }
+
+  nav.topic-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 20px 16px;
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+  }
+
+  nav.topic-nav button {
+    border: 2px solid transparent;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    background: white;
+    color: #0f172a;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  nav.topic-nav button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(37, 99, 235, 0.35);
+    box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
+  }
+
+  nav.topic-nav button.active {
+    background: var(--accent);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.15);
+  }
+
+  main {
+    max-width: 960px;
+    margin: 30px auto 60px;
+    padding: 0 18px 40px;
+  }
+
+  .control-panel {
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid #bfdbfe;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+  }
+
+  .control-panel h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    color: #1e40af;
+  }
+
+  .control-panel p {
+    margin: 0 0 18px;
+    color: #475569;
+  }
+
+  .selector-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+
+  label {
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  select {
+    min-width: 240px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 2px solid #cbd5f5;
+    font-size: 16px;
+    font-family: inherit;
+    background: white;
+    color: #0f172a;
+  }
+
+  select:focus {
+    outline: 3px solid rgba(37, 99, 235, 0.25);
+  }
+
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  button.secondary {
+    background: #1d4ed8;
+    color: white;
+    border-radius: 999px;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  button.secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 14px rgba(29, 78, 216, 0.25);
+  }
+
+  .question-card {
+    background: white;
+    border-radius: 22px;
+    padding: 32px;
+    border: 3px solid #bfdbfe;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.08);
+  }
+
+  .question-meta {
+    font-size: 16px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 12px;
+  }
+
+  .question-display {
+    background: rgba(37, 99, 235, 0.08);
+    border: 2px solid rgba(37, 99, 235, 0.25);
+    border-radius: 18px;
+    padding: 24px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 20px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 18px;
+    border-radius: 16px;
+    border: 2px solid #cbd5f5;
+    font-family: inherit;
+    font-size: 18px;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.25);
+  }
+
+  .response-tools {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  button.helper {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 2px solid #cbd5f5;
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  button.helper:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+
+  .examples {
+    margin-top: 24px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 2px dashed rgba(37, 99, 235, 0.3);
+    padding: 20px;
+  }
+
+  .examples h3 {
+    margin-top: 0;
+    color: #1d4ed8;
+    font-size: 20px;
+  }
+
+  .examples ul {
+    margin: 8px 0 0;
+    padding-left: 20px;
+    color: #334155;
+  }
+
+  .examples li {
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .examples.hidden {
+    display: none;
+  }
+
+  .tip-box {
+    margin-top: 28px;
+    background: rgba(45, 212, 191, 0.12);
+    border-radius: 16px;
+    border-left: 6px solid #0d9488;
+    padding: 18px 22px;
+    color: #0f172a;
+  }
+
+  .tip-box strong {
+    color: #0d9488;
+  }
+
+  @media (max-width: 720px) {
+    header {
+      font-size: 24px;
+    }
+    .question-display {
+      font-size: 22px;
+    }
+    .selector-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .button-group,
+    .response-tools {
+      width: 100%;
+    }
+    nav.topic-nav {
+      justify-content: flex-start;
+    }
+    nav.topic-nav button {
+      flex: 1 1 auto;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    💬 Relevant Social Question Practice
+    <span>Select a topic, explore the prompts, and practice meaningful responses.</span>
+  </header>
+
+  <nav class="topic-nav" id="topicNav" aria-label="Question Topics"></nav>
+
+  <main>
+    <section class="control-panel" aria-labelledby="questionSelectorHeading">
+      <h2 id="questionSelectorHeading">Choose a Question</h2>
+      <p>Select a prompt from the dropdown or jump to a random one to keep the conversation going.</p>
+      <div class="selector-group">
+        <label for="questionSelect">Question list</label>
+        <select id="questionSelect" aria-describedby="questionSelectorHeading"></select>
+        <div class="button-group">
+          <button class="secondary" id="randomBtn" type="button">🎲 Random Question</button>
+          <button class="secondary" id="nextBtn" type="button">➡️ Next Question</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="question-card" aria-live="polite">
+      <div class="question-meta" id="questionMeta"></div>
+      <div class="question-display" id="questionText">Loading question...</div>
+      <textarea id="responseInput" placeholder="Type your response here..."></textarea>
+      <div class="response-tools">
+        <button class="helper" id="helpBtn" type="button">I Need Help</button>
+        <button class="helper" id="moreHelpBtn" type="button">I Need More Help</button>
+        <button class="helper" id="clearBtn" type="button">Clear Response</button>
+      </div>
+      <div class="examples hidden" id="examplesBox" aria-live="polite">
+        <h3>Example Responses</h3>
+        <ul id="examplesList"></ul>
+      </div>
+      <div class="tip-box">
+        <strong>Conversation Tip:</strong> After you answer, try asking a follow-up question like
+        <em>"What about you?"</em> to keep the discussion going.
+      </div>
+    </section>
+  </main>
+
+<script>
+const categories = [
+  {
+    id: 'favorites',
+    label: '💛 Favorites',
+    accent: '#fbbf24',
+    questions: [
+      {
+        question: 'What is your favorite color?',
+        starter: 'My favorite color is ',
+        examples: [
+          'My favorite color is blue.',
+          'My favorite color is red.'
+        ]
+      },
+      {
+        question: 'What is your favorite food?',
+        starter: 'My favorite food is ',
+        examples: [
+          'My favorite food is pizza.',
+          'My favorite food is noodles.'
+        ]
+      },
+      {
+        question: 'What is your favorite animal?',
+        starter: 'My favorite animal is ',
+        examples: [
+          'My favorite animal is a dog.',
+          'My favorite animal is a cat.'
+        ]
+      },
+      {
+        question: 'What is your favorite game?',
+        starter: 'My favorite game is ',
+        examples: [
+          'My favorite game is tag.',
+          'My favorite game is chess.'
+        ]
+      },
+      {
+        question: 'What is your favorite show or movie?',
+        starter: 'My favorite show or movie is ',
+        examples: [
+          'My favorite movie is Frozen.',
+          'My favorite show is Bluey.'
+        ]
+      },
+      {
+        question: 'What is your favorite toy?',
+        starter: 'My favorite toy is ',
+        examples: [
+          'My favorite toy is my stuffed bear.',
+          'My favorite toy is my LEGO set.'
+        ]
+      },
+      {
+        question: 'What is your favorite song?',
+        starter: 'My favorite song is ',
+        examples: [
+          'My favorite song is Happy.',
+          'My favorite song is Roar.'
+        ]
+      },
+      {
+        question: 'What is your favorite drink?',
+        starter: 'My favorite drink is ',
+        examples: [
+          'My favorite drink is lemonade.',
+          'My favorite drink is chocolate milk.'
+        ]
+      },
+      {
+        question: 'What is your favorite holiday?',
+        starter: 'My favorite holiday is ',
+        examples: [
+          'My favorite holiday is Halloween.',
+          'My favorite holiday is Christmas.'
+        ]
+      },
+      {
+        question: 'What is your favorite thing to do after school?',
+        starter: 'After school, my favorite thing to do is ',
+        examples: [
+          'After school, I like to play outside.',
+          'After school, I like to read.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'daily-life',
+    label: '🌦️ Daily Life',
+    accent: '#38bdf8',
+    questions: [
+      {
+        question: 'What did you eat for breakfast?',
+        starter: 'For breakfast, I ate ',
+        examples: [
+          'For breakfast, I ate cereal.',
+          'For breakfast, I ate eggs.'
+        ]
+      },
+      {
+        question: 'What do you like to do at recess?',
+        starter: 'At recess, I like to ',
+        examples: [
+          'At recess, I like to swing.',
+          'At recess, I like to play soccer.'
+        ]
+      },
+      {
+        question: 'What do you do after school?',
+        starter: 'After school, I usually ',
+        examples: [
+          'After school, I do my homework.',
+          'After school, I play with my dog.'
+        ]
+      },
+      {
+        question: 'How do you get to school?',
+        starter: 'I get to school by ',
+        examples: [
+          'I get to school by bus.',
+          'I get to school by car.'
+        ]
+      },
+      {
+        question: 'What do you like to play inside?',
+        starter: 'Inside, I like to play ',
+        examples: [
+          'Inside, I like to play board games.',
+          'Inside, I like to draw.'
+        ]
+      },
+      {
+        question: 'What do you like to play outside?',
+        starter: 'Outside, I like to play ',
+        examples: [
+          'Outside, I like to ride my bike.',
+          'Outside, I like to play basketball.'
+        ]
+      },
+      {
+        question: 'What time do you go to bed?',
+        starter: 'I usually go to bed at ',
+        examples: [
+          'I go to bed at eight o\'clock.',
+          'I go to bed at nine.'
+        ]
+      },
+      {
+        question: 'What do you like to do on weekends?',
+        starter: 'On weekends, I like to ',
+        examples: [
+          'On weekends, I like to visit my grandma.',
+          'On weekends, I like to watch movies.'
+        ]
+      },
+      {
+        question: 'Who helps you with homework?',
+        starter: 'When I need help with homework, I ask ',
+        examples: [
+          'My mom helps me with homework.',
+          'My teacher helps me with homework.'
+        ]
+      },
+      {
+        question: 'What is something you do every morning?',
+        starter: 'Every morning, I ',
+        examples: [
+          'Every morning, I brush my teeth.',
+          'Every morning, I eat breakfast.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'school',
+    label: '🎒 School Topics',
+    accent: '#60a5fa',
+    questions: [
+      {
+        question: 'What is your favorite subject?',
+        starter: 'My favorite subject is ',
+        examples: [
+          'My favorite subject is math.',
+          'My favorite subject is art.'
+        ]
+      },
+      {
+        question: 'What do you like about school?',
+        starter: 'At school, I like ',
+        examples: [
+          'At school, I like seeing my friends.',
+          'At school, I like recess.'
+        ]
+      },
+      {
+        question: 'What is something fun you did in class?',
+        starter: 'Something fun I did in class was ',
+        examples: [
+          'I built a volcano in class.',
+          'I painted in class.'
+        ]
+      },
+      {
+        question: 'Who do you sit with at lunch?',
+        starter: 'At lunch, I sit with ',
+        examples: [
+          'I sit with my best friend at lunch.',
+          'I sit with my brother at lunch.'
+        ]
+      },
+      {
+        question: 'What do you like to do in PE?',
+        starter: 'In PE, I like to ',
+        examples: [
+          'In PE, I like to run.',
+          'In PE, I like to play dodgeball.'
+        ]
+      },
+      {
+        question: 'What do you like to read about?',
+        starter: 'I like to read about ',
+        examples: [
+          'I like to read about animals.',
+          'I like to read about space.'
+        ]
+      },
+      {
+        question: 'What is your favorite school lunch?',
+        starter: 'My favorite school lunch is ',
+        examples: [
+          'My favorite school lunch is pizza.',
+          'My favorite school lunch is tacos.'
+        ]
+      },
+      {
+        question: 'Who helps you in class?',
+        starter: 'In class, I get help from ',
+        examples: [
+          'My teacher helps me in class.',
+          'My friend helps me in class.'
+        ]
+      },
+      {
+        question: 'What is your favorite thing to do at school?',
+        starter: 'At school, my favorite thing to do is ',
+        examples: [
+          'At school, I like to draw.',
+          'At school, I like science.'
+        ]
+      },
+      {
+        question: 'What do you like about your teacher?',
+        starter: 'I like that my teacher ',
+        examples: [
+          'I like that my teacher is kind.',
+          'I like that my teacher reads stories.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'fun',
+    label: '🎉 Fun & Free Time',
+    accent: '#f472b6',
+    questions: [
+      {
+        question: 'What do you like to do for fun?',
+        starter: 'For fun, I like to ',
+        examples: [
+          'For fun, I like to draw.',
+          'For fun, I like to ride my bike.'
+        ]
+      },
+      {
+        question: 'What games do you play with friends?',
+        starter: 'With my friends, I play ',
+        examples: [
+          'I play tag with my friends.',
+          'I play hide and seek with my friends.'
+        ]
+      },
+      {
+        question: 'What do you like to do on a rainy day?',
+        starter: 'On a rainy day, I like to ',
+        examples: [
+          'On a rainy day, I like to read.',
+          'On a rainy day, I like to build a fort.'
+        ]
+      },
+      {
+        question: 'What is something fun you did recently?',
+        starter: 'Something fun I did recently was ',
+        examples: [
+          'I went to the park.',
+          'I went to a birthday party.'
+        ]
+      },
+      {
+        question: 'What do you like to draw or make?',
+        starter: 'I like to draw or make ',
+        examples: [
+          'I like to draw animals.',
+          'I like to make bracelets.'
+        ]
+      },
+      {
+        question: 'What is your favorite video game?',
+        starter: 'My favorite video game is ',
+        examples: [
+          'My favorite video game is Mario Kart.',
+          'My favorite video game is Roblox.'
+        ]
+      },
+      {
+        question: 'Who do you like to play with?',
+        starter: 'I like to play with ',
+        examples: [
+          'I like to play with my sister.',
+          'I like to play with my neighbor.'
+        ]
+      },
+      {
+        question: 'What do you like to do outside?',
+        starter: 'Outside, I like to ',
+        examples: [
+          'Outside, I like to play soccer.',
+          'Outside, I like to jump rope.'
+        ]
+      },
+      {
+        question: 'What is something that makes you laugh?',
+        starter: 'Something that makes me laugh is ',
+        examples: [
+          'Silly jokes make me laugh.',
+          'My dog makes me laugh.'
+        ]
+      },
+      {
+        question: 'What makes you feel happy?',
+        starter: 'I feel happy when ',
+        examples: [
+          'I feel happy when I play with friends.',
+          'I feel happy when I read.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'feelings',
+    label: '🧠 Feelings & Social',
+    accent: '#34d399',
+    questions: [
+      {
+        question: 'What makes you feel happy?',
+        starter: 'I feel happy when ',
+        examples: [
+          'I feel happy when I help others.',
+          'I feel happy when I play games.'
+        ]
+      },
+      {
+        question: 'What makes you feel sad?',
+        starter: 'I feel sad when ',
+        examples: [
+          'I feel sad when I lose a toy.',
+          'I feel sad when a friend is sick.'
+        ]
+      },
+      {
+        question: 'What do you do when you feel mad?',
+        starter: 'When I feel mad, I ',
+        examples: [
+          'When I feel mad, I take deep breaths.',
+          'When I feel mad, I count to ten.'
+        ]
+      },
+      {
+        question: 'What makes you feel proud?',
+        starter: 'I feel proud when ',
+        examples: [
+          'I feel proud when I finish my homework.',
+          'I feel proud when I help someone.'
+        ]
+      },
+      {
+        question: 'What helps you calm down?',
+        starter: 'I calm down by ',
+        examples: [
+          'I calm down by breathing slowly.',
+          'I calm down by squeezing a stress ball.'
+        ]
+      },
+      {
+        question: 'What do you do when a friend is sad?',
+        starter: 'When a friend is sad, I ',
+        examples: [
+          'When a friend is sad, I sit with them.',
+          'When a friend is sad, I give them a hug.'
+        ]
+      },
+      {
+        question: 'What makes you feel excited?',
+        starter: 'I feel excited when ',
+        examples: [
+          'I feel excited when we have a field trip.',
+          'I feel excited when my friends visit.'
+        ]
+      },
+      {
+        question: 'How do you feel when someone shares with you?',
+        starter: 'When someone shares with me, I feel ',
+        examples: [
+          'I feel thankful when someone shares with me.',
+          'I feel happy when someone shares with me.'
+        ]
+      },
+      {
+        question: 'What do you do when someone is mean?',
+        starter: 'When someone is mean, I ',
+        examples: [
+          'When someone is mean, I tell an adult.',
+          'When someone is mean, I walk away.'
+        ]
+      },
+      {
+        question: 'How can you help a friend?',
+        starter: 'I can help a friend by ',
+        examples: [
+          'I help a friend by sharing my toys.',
+          'I help a friend by listening.'
+        ]
+      }
+    ]
+  }
+];
+
+const topicNav = document.getElementById('topicNav');
+const questionSelect = document.getElementById('questionSelect');
+const questionMeta = document.getElementById('questionMeta');
+const questionText = document.getElementById('questionText');
+const responseInput = document.getElementById('responseInput');
+const examplesBox = document.getElementById('examplesBox');
+const examplesList = document.getElementById('examplesList');
+const helpBtn = document.getElementById('helpBtn');
+const moreHelpBtn = document.getElementById('moreHelpBtn');
+const randomBtn = document.getElementById('randomBtn');
+const nextBtn = document.getElementById('nextBtn');
+const clearBtn = document.getElementById('clearBtn');
+
+let currentCategory = categories[0];
+let currentQuestionIndex = 0;
+let helpVisible = false;
+
+function renderNav() {
+  topicNav.innerHTML = '';
+  categories.forEach((category, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = category.label;
+    button.dataset.categoryId = category.id;
+    if (index === 0) {
+      button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
+    } else {
+      button.setAttribute('aria-pressed', 'false');
+    }
+    button.addEventListener('click', () => switchCategory(category.id));
+    topicNav.appendChild(button);
+  });
+}
+
+function populateQuestionSelect() {
+  questionSelect.innerHTML = '';
+  currentCategory.questions.forEach((item, idx) => {
+    const option = document.createElement('option');
+    option.value = idx;
+    option.textContent = item.question;
+    if (idx === currentQuestionIndex) {
+      option.selected = true;
+    }
+    questionSelect.appendChild(option);
+  });
+}
+
+function switchCategory(categoryId) {
+  const newCategory = categories.find(cat => cat.id === categoryId);
+  if (!newCategory || newCategory.id === currentCategory.id) {
+    return;
+  }
+  currentCategory = newCategory;
+  currentQuestionIndex = 0;
+  document.documentElement.style.setProperty('--accent', currentCategory.accent);
+  Array.from(topicNav.children).forEach(btn => {
+    const isActive = btn.dataset.categoryId === currentCategory.id;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+  populateQuestionSelect();
+  loadQuestion(currentQuestionIndex);
+}
+
+function loadQuestion(index) {
+  if (index < 0 || index >= currentCategory.questions.length) {
+    index = 0;
+  }
+  currentQuestionIndex = index;
+  const item = currentCategory.questions[currentQuestionIndex];
+  questionSelect.value = currentQuestionIndex.toString();
+  questionMeta.textContent = `${currentCategory.label.replace(/^[^A-Za-z]*\s*/, '')} · Question ${currentQuestionIndex + 1} of ${currentCategory.questions.length}`;
+  questionText.textContent = item.question;
+  responseInput.value = '';
+  responseInput.focus();
+  responseInput.setSelectionRange(responseInput.value.length, responseInput.value.length);
+  updateExamples(item.examples);
+  setHelpVisibility(false);
+}
+
+function updateExamples(examples) {
+  examplesList.innerHTML = '';
+  examples.forEach(example => {
+    const li = document.createElement('li');
+    li.textContent = example;
+    examplesList.appendChild(li);
+  });
+}
+
+function setHelpVisibility(show) {
+  helpVisible = show;
+  moreHelpBtn.textContent = show ? 'Hide Examples' : 'I Need More Help';
+  examplesBox.classList.toggle('hidden', !show);
+}
+
+questionSelect.addEventListener('change', (event) => {
+  const selectedIndex = Number.parseInt(event.target.value, 10);
+  loadQuestion(selectedIndex);
+});
+
+helpBtn.addEventListener('click', () => {
+  const item = currentCategory.questions[currentQuestionIndex];
+  if (!responseInput.value.trim()) {
+    responseInput.value = item.starter;
+  } else if (!responseInput.value.startsWith(item.starter)) {
+    responseInput.value = item.starter + responseInput.value.trimStart();
+  }
+  responseInput.focus();
+  responseInput.setSelectionRange(responseInput.value.length, responseInput.value.length);
+});
+
+moreHelpBtn.addEventListener('click', () => {
+  setHelpVisibility(!helpVisible);
+});
+
+randomBtn.addEventListener('click', () => {
+  const randomIndex = Math.floor(Math.random() * currentCategory.questions.length);
+  loadQuestion(randomIndex);
+});
+
+nextBtn.addEventListener('click', () => {
+  const nextIndex = (currentQuestionIndex + 1) % currentCategory.questions.length;
+  loadQuestion(nextIndex);
+});
+
+clearBtn.addEventListener('click', () => {
+  responseInput.value = '';
+  responseInput.focus();
+});
+
+renderNav();
+populateQuestionSelect();
+loadQuestion(currentQuestionIndex);
+</script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High School Social Conflict Reflection</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1d4ed8 0%, #9333ea 100%);
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.28);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 36px;
+      background: linear-gradient(135deg, rgba(29, 78, 216, 0.95), rgba(147, 51, 234, 0.9));
+      color: #f8fafc;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    .nav-bar {
+      background: #0f172a;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .nav-buttons {
+      display: inline-flex;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      border: none;
+      background: rgba(148, 163, 184, 0.18);
+      color: #e2e8f0;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: rgba(248, 250, 252, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    .scenario {
+      display: none;
+      padding: 40px;
+    }
+
+    .scenario.active {
+      display: block;
+    }
+
+    .scenario-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .scenario-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+
+    .context-tag {
+      background: rgba(239, 246, 255, 0.9);
+      color: #1d4ed8;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 2px solid rgba(159, 197, 248, 0.8);
+    }
+
+    .scenario-description {
+      background: #f8fafc;
+      border-left: 5px solid #3b82f6;
+      padding: 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #0f172a;
+      margin-bottom: 28px;
+    }
+
+    .reflection-card {
+      display: grid;
+      gap: 18px;
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .reflection-card h3 {
+      font-size: 18px;
+      color: #334155;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      border: 2px solid #cbd5f5;
+      border-radius: 12px;
+      font-size: 16px;
+      padding: 14px;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.2s ease;
+      background: #f8fafc;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+      background: #ffffff;
+    }
+
+    .prompt-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.12);
+      color: #0369a1;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+    }
+
+    .footer-note {
+      padding: 28px;
+      background: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #475569;
+    }
+
+    @media (max-width: 768px) {
+      .scenario {
+        padding: 28px 22px 32px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>High School Social Conflict Reflection</h1>
+      <p>
+        Explore real-world challenges high school students face with friends, teachers, and activities.
+        For each situation, communicate your thoughts and feelings, then decide how you want to respond.
+      </p>
+    </header>
+
+    <nav class="nav-bar">
+      <div class="nav-buttons">
+        <button class="nav-btn active" data-target="scenario-1">Group Project</button>
+        <button class="nav-btn" data-target="scenario-2">Team Captain</button>
+        <button class="nav-btn" data-target="scenario-3">Lunch Table</button>
+        <button class="nav-btn" data-target="scenario-4">Field Trip</button>
+        <button class="nav-btn" data-target="scenario-5">Group Chat Rumor</button>
+        <button class="nav-btn" data-target="scenario-6">Study Partner Pressure</button>
+        <button class="nav-btn" data-target="scenario-7">Prom Planning Clash</button>
+        <button class="nav-btn" data-target="scenario-8">Part-Time Job Conflict</button>
+        <button class="nav-btn" data-target="scenario-9">Sibling Overlap</button>
+      </div>
+    </nav>
+
+    <section id="scenario-1" class="scenario active">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Group Project, Uneven Effort</h2>
+        <span class="context-tag">English • Grade 10 • Deadline Tomorrow</span>
+      </div>
+      <div class="scenario-description">
+        Your English group project presentation is tomorrow. You spent two nights finishing the slides and script, but one teammate, Jayla, said she was “too busy” and hasn’t contributed anything. Now she texts that she expects you to “cover for her” during the presentation.
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <span class="prompt-chip">Name your thoughts about Jayla and the project.</span>
+          <textarea placeholder="Example: I'm frustrated that I did extra work and she still expects credit."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <span class="prompt-chip">Identify emotions (annoyed, stressed, nervous, etc.).</span>
+          <textarea placeholder="Example: I feel angry and anxious about presenting alone."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Plan what you want to say when you reply to Jayla.</span>
+          <textarea placeholder="Example: I statements, clear expectations, request for help, or boundaries."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario-2" class="scenario">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Team Captain’s Decision</h2>
+        <span class="context-tag">Varsity Soccer • Grade 11 • Championship Week</span>
+      </div>
+      <div class="scenario-description">
+        You’re co-captain of the soccer team. Coach just announced that your friend Raya will start the playoff game, even though you’ve been starting all season. Raya is thrilled and celebrates on social media. You find out that Coach made the change because Raya’s parent complained about playing time.
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <textarea placeholder="Example: I'm wondering if Coach still trusts me to lead."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <textarea placeholder="Example: I feel disappointed and maybe jealous of Raya getting the start."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Plan how you’ll speak to Coach or Raya.</span>
+          <textarea placeholder="Example: I want to tell Coach how I feel while still supporting the team."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario-3" class="scenario">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Lunch Table Exclusion</h2>
+        <span class="context-tag">Cafeteria • Grade 9 • Friend Group Dynamics</span>
+      </div>
+      <div class="scenario-description">
+        Your friend group usually sits together at lunch, but today Mia saved seats for the others and told you there “wasn’t space.” Later you see photos on Stories of everyone laughing together. Mia sends you a quick text: “Sorry, it just kind of happened.”
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <textarea placeholder="Example: I'm wondering if they don't want me around anymore."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <textarea placeholder="Example: I feel hurt and embarrassed."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Choose how you’ll respond to Mia or your group.</span>
+          <textarea placeholder="Example: I want to express how left out I felt and ask what changed."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario-4" class="scenario">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Field Trip Conflict</h2>
+        <span class="context-tag">Science Field Trip • Grade 12 • Overnight Event</span>
+      </div>
+      <div class="scenario-description">
+        You’re excited for the overnight science field trip. Your roommate assignment pairs you with Taylor, who used to be your close friend. You drifted apart after a rumor spread that you revealed Taylor’s secret to the group chat. Taylor hasn’t spoken to you since, but now you’ll share a room for two nights.
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <textarea placeholder="Example: I'm worried the whole trip will be tense and awkward."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <textarea placeholder="Example: I feel nervous and guilty, even though I didn't spread the rumor."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Plan what you want to say before or during the trip.</span>
+          <textarea placeholder="Example: I might start with an apology and share my side calmly."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario-5" class="scenario">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Group Chat Rumor Fallout</h2>
+        <span class="context-tag">Group Chat • Grade 11 • Late Night</span>
+      </div>
+      <div class="scenario-description">
+        Last night someone dropped a screenshot in your friend group chat accusing you of sharing Riya's private messages. You didn't, but the chat blew up while you were asleep. Now half the group has left you on read, and the rumor is spreading around school.
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <textarea placeholder="Example: I'm trying to piece together who started it and why no one asked me first."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <textarea placeholder="Example: I feel betrayed and anxious walking into school."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Plan your words before the conversation.</span>
+          <textarea placeholder="Example: I want to reach out calmly, share facts, and ask for a call to clear it up."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario-6" class="scenario">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Study Partner Pressure</h2>
+        <span class="context-tag">Chemistry • Grade 12 • AP Exam Week</span>
+      </div>
+      <div class="scenario-description">
+        You and your friend Devin always study together, but tonight Devin insists on staying out late even though you have the AP Chem exam at 8 A.M. The last time you over-studied together, you fell asleep during the test and bombed it. Devin says you are "being dramatic."
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <textarea placeholder="Example: I'm noticing we have different priorities for this exam."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <textarea placeholder="Example: I feel torn between wanting to help and needing to protect my own grade."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Plan your words before the conversation.</span>
+          <textarea placeholder="Example: I want to say no without wrecking our friendship."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario-7" class="scenario">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Prom Committee Clash</h2>
+        <span class="context-tag">Prom Committee • Grade 12 • Budget Meeting</span>
+      </div>
+      <div class="scenario-description">
+        You and your co-chair, Malik, disagree about prom decorations. You proposed a mid-price theme, but Malik signed a contract for an expensive vendor without consulting you. Now you have to present the budget to the principal tomorrow.
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <textarea placeholder="Example: I'm frustrated that he made a big decision without me."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <textarea placeholder="Example: I feel disrespected and worried we'll look unorganized."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Plan your words before the conversation.</span>
+          <textarea placeholder="Example: I want to set boundaries, still collaborate, and figure out a solution before tomorrow."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario-8" class="scenario">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Part-Time Job Conflict</h2>
+        <span class="context-tag">Coffee Shop • Grade 11 • Saturday Morning Shift</span>
+      </div>
+      <div class="scenario-description">
+        You have a weekend job at a coffee shop. Your shift lead, Alex, keeps changing the schedule last minute and adds hours during your marching band competitions. When you asked about it, Alex said, "You're replaceable if you can't be flexible."
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <textarea placeholder="Example: I'm weighing whether this job is worth the stress anymore."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <textarea placeholder="Example: I feel overwhelmed and a little scared of losing my paycheck."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Plan your words before the conversation.</span>
+          <textarea placeholder="Example: I want to set clear limits and ask for a fair schedule."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario-9" class="scenario">
+      <div class="scenario-header">
+        <h2 class="scenario-title">Sibling Rivalry & Reputation</h2>
+        <span class="context-tag">Home • Grade 10 • Shared Friend Group</span>
+      </div>
+      <div class="scenario-description">
+        Your younger sibling just started at your high school and is quickly becoming popular with your friends. They shared an embarrassing childhood story about you at lunch and everyone laughed. Now you feel like your space is being invaded.
+      </div>
+      <div class="reflection-card">
+        <div>
+          <h3>What are you thinking right now?</h3>
+          <textarea placeholder="Example: I'm wondering if my friends see me differently now."></textarea>
+        </div>
+        <div>
+          <h3>What are you feeling?</h3>
+          <textarea placeholder="Example: I feel embarrassed and pushed out of my own group."></textarea>
+        </div>
+        <div>
+          <h3>How will you communicate?</h3>
+          <span class="prompt-chip">Plan your words before the conversation.</span>
+          <textarea placeholder="Example: I want to talk to my sibling about boundaries without starting a fight."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      Tip: After writing your thoughts and feelings, practice saying them out loud.
+      Focus on “I” statements, listening for the other person’s perspective, and choosing a next step that keeps you safe and respectful.
+    </footer>
+  </div>
+
+  <script>
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const scenarios = document.querySelectorAll(".scenario");
+
+    navButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+
+        navButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        scenarios.forEach((scene) => {
+          scene.classList.toggle("active", scene.id === target);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Tense Practice - Interactive Worksheet</title>
+<style>
+  :root {
+    --w: 1200px;
+    --accent: #3b82f6;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #10b981;
+    --err: #ef4444;
+    --warning: #f59e0b;
+    --purple: #8b5cf6;
+    --gray: #64748b;
+    --regular: #059669;
+    --irregular: #8b5cf6;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .progress-info {
+    background: #f1f5f9;
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 14px;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+
+  .verb-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  .verb-btn {
+    padding: 12px 8px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .verb-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  }
+  
+  .verb-btn.completed {
+    background: var(--ok);
+    border-color: var(--ok);
+    color: white;
+  }
+  
+  .verb-btn.completed::after {
+    content: "✓";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: white;
+    color: var(--ok);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid var(--ok);
+  }
+
+  .verb-btn.regular {
+    border-left: 4px solid var(--regular);
+  }
+
+  .verb-btn.irregular {
+    border-left: 4px solid var(--irregular);
+  }
+
+  .random-selector {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  .random-btn {
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+
+  .random-btn.regular {
+    border-color: var(--regular);
+  }
+
+  .random-btn.regular.active {
+    background: var(--regular);
+    color: white;
+    border-color: var(--regular);
+  }
+
+  .random-btn.irregular {
+    border-color: var(--irregular);
+  }
+
+  .random-btn.irregular.active {
+    background: var(--irregular);
+    color: white;
+    border-color: var(--irregular);
+  }
+
+  .random-btn.mixed {
+    border-color: var(--accent);
+  }
+
+  .random-btn.mixed.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .verb-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .verb-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .current-verb {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: white;
+    font-size: 48px;
+    font-weight: 900;
+    padding: 20px 40px;
+    border-radius: 25px;
+    display: inline-block;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+  }
+  
+  .verb-type-badge {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 20px;
+    border-radius: 25px;
+    color: white;
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  .verb-type-badge.regular {
+    background: var(--regular);
+  }
+
+  .verb-type-badge.irregular {
+    background: var(--irregular);
+  }
+
+  .verb-explanation {
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 500;
+    max-width: 600px;
+    margin: 15px auto 0;
+  }
+
+  .sentences-practice {
+    margin: 30px 0;
+  }
+
+  .sentence-item {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+
+  .sentence-number {
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  .sentence-text {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .blank-space {
+    display: inline-block;
+    min-width: 120px;
+    padding: 8px 12px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    background: white;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 4px;
+  }
+
+  .answer-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 16px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 18px;
+    margin: 15px 0;
+    font-family: inherit;
+  }
+
+  .answer-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .help-section {
+    display: flex;
+    gap: 12px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .help-box {
+    background: #fef3c7;
+    border: 2px solid var(--warning);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    display: none;
+  }
+
+  .help-box.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+
+  .help-box h4 {
+    color: #92400e;
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .multiple-choice {
+    display: none;
+    margin: 15px 0;
+  }
+
+  .multiple-choice.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+
+  .choice-option {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+  }
+
+  .choice-option:hover {
+    border-color: var(--accent);
+    background: #f8fafc;
+  }
+
+  .choice-option.selected {
+    border-color: var(--accent);
+    background: #eff6ff;
+  }
+
+  .choice-option.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+
+  .choice-option.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #2563eb;
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+
+  button.small {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .feedback {
+    background: #f8fafc;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+  }
+  
+  .feedback.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .feedback.success {
+    background: #f0fdf4;
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: #fef2f2;
+    border-color: var(--err);
+    color: #991b1b;
+  }
+
+  .verb-progress {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: white;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .celebration-content {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 400px;
+    animation: celebrationBounce 0.6s ease-out;
+  }
+  
+  .celebration-content h3 {
+    color: var(--ok);
+    font-size: 32px;
+    margin: 0 0 20px;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes celebrationBounce {
+    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+    50% { transform: scale(1.05) rotate(-5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .verb-selector {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+    
+    .random-selector {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .current-verb {
+      font-size: 36px;
+      padding: 15px 30px;
+    }
+    
+    .help-section {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>📝 Past Tense Verb Practice</h1>
+      <div class="progress-info" id="progressInfo">Select a verb to practice</div>
+      <div class="controls">
+        <button id="resetVerb" class="warning">🔄 Reset This Verb</button>
+        <button id="showCompleted" class="success">📋 Show Progress</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="random-selector">
+      <button class="random-btn regular" data-random="regular">🎲 Random Regular Verb</button>
+      <button class="random-btn irregular" data-random="irregular">🎲 Random Irregular Verb</button>
+      <button class="random-btn mixed" data-random="mixed">🎲 Random Any Verb</button>
+    </div>
+
+    <div class="verb-selector" id="verbSelector">
+      <!-- Verb buttons will be generated -->
+    </div>
+
+    <div class="verb-container">
+      <div class="verb-header">
+        <div class="current-verb" id="currentVerb">SELECT A VERB</div>
+        <div class="verb-type-badge" id="verbTypeBadge" style="display: none;">REGULAR</div>
+        <div class="verb-explanation" id="verbExplanation">
+          Choose a verb above to practice, or use the random buttons for surprise practice!
+        </div>
+      </div>
+
+      <div class="sentences-practice" id="sentencesPractice" style="display: none;">
+        <!-- Sentence practice items will be populated here -->
+      </div>
+
+      <div class="verb-progress" id="verbProgress" style="display: none;">
+        <!-- Progress for current verb will be shown here -->
+      </div>
+    </div>
+  </main>
+
+  <div class="celebration" id="celebration">
+    <div class="celebration-content">
+      <h3>🎉 Excellent Work!</h3>
+      <p id="celebrationText">You've mastered this verb!</p>
+      <button class="primary" onclick="closeCelebration()">Continue Learning</button>
+    </div>
+  </div>
+
+<script>
+const verbsData = {
+  // Regular verbs
+  walk: {
+    type: 'regular',
+    answer: 'walked',
+    sentences: [
+      { text: "Yesterday, I _____ to school instead of taking the bus.", choices: ["walked", "walking", "will walk"] },
+      { text: "Last summer, we _____ along the beach every morning.", choices: ["walk", "walked", "walking"] },
+      { text: "The dog _____ beside me during our evening stroll.", choices: ["walking", "walked", "walks"] },
+      { text: "She _____ three miles every day last month.", choices: ["walked", "walk", "walking"] }
+    ]
+  },
+  play: {
+    type: 'regular',
+    answer: 'played',
+    sentences: [
+      { text: "Last weekend, we _____ soccer at the park.", choices: ["played", "playing", "plays"] },
+      { text: "The children _____ games outside until dinner time.", choices: ["play", "played", "playing"] },
+      { text: "Yesterday, I _____ the piano for two hours.", choices: ["playing", "played", "will play"] },
+      { text: "My sister _____ with her dolls all afternoon.", choices: ["played", "play", "playing"] }
+    ]
+  },
+  help: {
+    type: 'regular',
+    answer: 'helped',
+    sentences: [
+      { text: "I _____ my mom cook dinner last night.", choices: ["helped", "helping", "helps"] },
+      { text: "The teacher _____ me with my math homework.", choices: ["help", "helped", "helping"] },
+      { text: "We _____ our neighbors move their furniture.", choices: ["helping", "helped", "help"] },
+      { text: "She _____ her little brother tie his shoes.", choices: ["helped", "helps", "helping"] }
+    ]
+  },
+  watch: {
+    type: 'regular',
+    answer: 'watched',
+    sentences: [
+      { text: "Last night, we _____ a movie together.", choices: ["watched", "watching", "watch"] },
+      { text: "I _____ the birds building their nest.", choices: ["watch", "watched", "watching"] },
+      { text: "The security guard _____ the building all night.", choices: ["watching", "watched", "watches"] },
+      { text: "We _____ the parade from our front porch.", choices: ["watched", "watch", "watching"] }
+    ]
+  },
+  paint: {
+    type: 'regular',
+    answer: 'painted',
+    sentences: [
+      { text: "Last week, I _____ my bedroom walls blue.", choices: ["painted", "painting", "paints"] },
+      { text: "The artist _____ a beautiful landscape.", choices: ["paint", "painted", "painting"] },
+      { text: "We _____ the fence yesterday afternoon.", choices: ["painting", "painted", "paint"] },
+      { text: "She _____ her nails bright red for the party.", choices: ["painted", "paint", "painting"] }
+    ]
+  },
+  clean: {
+    type: 'regular',
+    answer: 'cleaned',
+    sentences: [
+      { text: "I _____ my room before going out.", choices: ["cleaned", "cleaning", "cleans"] },
+      { text: "Mom _____ the kitchen after breakfast.", choices: ["clean", "cleaned", "cleaning"] },
+      { text: "We _____ the car in the driveway.", choices: ["cleaning", "cleaned", "clean"] },
+      { text: "The janitor _____ all the classrooms yesterday.", choices: ["cleaned", "cleans", "cleaning"] }
+    ]
+  },
+
+  // Irregular verbs
+  eat: {
+    type: 'irregular',
+    answer: 'ate',
+    sentences: [
+      { text: "Yesterday, I _____ lunch at noon.", choices: ["ate", "eating", "eated"] },
+      { text: "We _____ pizza for dinner last night.", choices: ["eat", "ate", "eating"] },
+      { text: "The baby _____ all of her vegetables.", choices: ["eating", "ate", "eated"] },
+      { text: "He _____ three sandwiches at the picnic.", choices: ["ate", "eat", "eating"] }
+    ]
+  },
+  go: {
+    type: 'irregular',
+    answer: 'went',
+    sentences: [
+      { text: "Last summer, we _____ to the beach every day.", choices: ["went", "going", "goed"] },
+      { text: "I _____ to the store to buy milk.", choices: ["go", "went", "going"] },
+      { text: "She _____ home early because she felt sick.", choices: ["going", "went", "goed"] },
+      { text: "They _____ to the movies on Saturday.", choices: ["went", "go", "going"] }
+    ]
+  },
+  run: {
+    type: 'irregular',
+    answer: 'ran',
+    sentences: [
+      { text: "The athlete _____ five miles this morning.", choices: ["ran", "running", "runned"] },
+      { text: "I _____ to catch the school bus.", choices: ["run", "ran", "running"] },
+      { text: "The dog _____ around the yard happily.", choices: ["running", "ran", "runned"] },
+      { text: "We _____ in the marathon last weekend.", choices: ["ran", "run", "running"] }
+    ]
+  },
+  swim: {
+    type: 'irregular',
+    answer: 'swam',
+    sentences: [
+      { text: "Last summer, I _____ in the lake every day.", choices: ["swam", "swimming", "swimmed"] },
+      { text: "The fish _____ quickly away from us.", choices: ["swim", "swam", "swimming"] },
+      { text: "She _____ across the pool in record time.", choices: ["swimming", "swam", "swimmed"] },
+      { text: "We _____ with the dolphins in Hawaii.", choices: ["swam", "swim", "swimming"] }
+    ]
+  },
+  fly: {
+    type: 'irregular',
+    answer: 'flew',
+    sentences: [
+      { text: "The bird _____ south for the winter.", choices: ["flew", "flying", "flied"] },
+      { text: "We _____ to New York for vacation.", choices: ["fly", "flew", "flying"] },
+      { text: "The airplane _____ through the clouds.", choices: ["flying", "flew", "flied"] },
+      { text: "I _____ my kite at the park yesterday.", choices: ["flew", "fly", "flying"] }
+    ]
+  },
+  sing: {
+    type: 'irregular',
+    answer: 'sang',
+    sentences: [
+      { text: "The choir _____ beautifully at the concert.", choices: ["sang", "singing", "singed"] },
+      { text: "I _____ my favorite song in the shower.", choices: ["sing", "sang", "singing"] },
+      { text: "She _____ lullabies to help the baby sleep.", choices: ["singing", "sang", "singed"] },
+      { text: "We _____ happy birthday to my grandmother.", choices: ["sang", "sing", "singing"] }
+    ]
+  },
+  write: {
+    type: 'irregular',
+    answer: 'wrote',
+    sentences: [
+      { text: "I _____ a letter to my pen pal yesterday.", choices: ["wrote", "writing", "writed"] },
+      { text: "The author _____ three books last year.", choices: ["write", "wrote", "writing"] },
+      { text: "She _____ her name on the board.", choices: ["writing", "wrote", "writed"] },
+      { text: "We _____ thank you notes to our teachers.", choices: ["wrote", "write", "writing"] }
+    ]
+  },
+  draw: {
+    type: 'irregular',
+    answer: 'drew',
+    sentences: [
+      { text: "The artist _____ a portrait of the model.", choices: ["drew", "drawing", "drawed"] },
+      { text: "I _____ a picture of my family.", choices: ["draw", "drew", "drawing"] },
+      { text: "She _____ flowers in her notebook.", choices: ["drawing", "drew", "drawed"] },
+      { text: "We _____ maps of our neighborhood.", choices: ["drew", "draw", "drawing"] }
+    ]
+  },
+  know: {
+    type: 'irregular',
+    answer: 'knew',
+    sentences: [
+      { text: "I _____ the answer to that question.", choices: ["knew", "knowing", "knowed"] },
+      { text: "She _____ how to ride a bike when she was five.", choices: ["know", "knew", "knowing"] },
+      { text: "We _____ it would rain today.", choices: ["knowing", "knew", "knowed"] },
+      { text: "He _____ all the words to the song.", choices: ["knew", "know", "knowing"] }
+    ]
+  },
+  take: {
+    type: 'irregular',
+    answer: 'took',
+    sentences: [
+      { text: "I _____ the bus to school this morning.", choices: ["took", "taking", "taked"] },
+      { text: "She _____ her medicine before bed.", choices: ["take", "took", "taking"] },
+      { text: "We _____ photos at the wedding.", choices: ["taking", "took", "taked"] },
+      { text: "He _____ his dog for a walk.", choices: ["took", "take", "taking"] }
+    ]
+  }
+};
+
+let currentVerb = null;
+let completedVerbs = new Set();
+let currentAnswers = {};
+let randomMode = false;
+
+function initializeActivity() {
+  createVerbSelector();
+  setupEventListeners();
+  updateProgressInfo();
+}
+
+function createVerbSelector() {
+  const selector = document.getElementById('verbSelector');
+  const verbs = Object.keys(verbsData);
+  
+  // Separate regular and irregular verbs
+  const regularVerbs = verbs.filter(verb => verbsData[verb].type === 'regular');
+  const irregularVerbs = verbs.filter(verb => verbsData[verb].type === 'irregular');
+  
+  // Create buttons for regular verbs first, then irregular
+  [...regularVerbs, ...irregularVerbs].forEach(verb => {
+    const btn = document.createElement('button');
+    btn.className = `verb-btn ${verbsData[verb].type}`;
+    btn.dataset.verb = verb;
+    btn.textContent = verb.toUpperCase();
+    selector.appendChild(btn);
+  });
+}
+
+function loadVerb(verbName) {
+  currentVerb = verbName;
+  randomMode = false;
+  const verbData = verbsData[verbName];
+  currentAnswers = {};
+  
+  // Update header
+  document.getElementById('currentVerb').textContent = verbName.toUpperCase();
+  
+  const badge = document.getElementById('verbTypeBadge');
+  badge.style.display = 'none'; // Hide verb type initially
+  
+  const explanation = document.getElementById('verbExplanation');
+  explanation.textContent = 'Practice forming the past tense with these sentences! Use the help buttons if you need guidance.';
+  
+  // Update verb selector
+  document.querySelectorAll('.verb-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.verb === verbName) {
+      btn.classList.add('active');
+    }
+    if (completedVerbs.has(btn.dataset.verb)) {
+      btn.classList.add('completed');
+    }
+  });
+  
+  // Clear random button states
+  document.querySelectorAll('.random-btn').forEach(btn => btn.classList.remove('active'));
+  
+  // Load sentences
+  loadSentences(verbData.sentences);
+  
+  // Show practice section
+  document.getElementById('sentencesPractice').style.display = 'block';
+  document.getElementById('verbProgress').style.display = 'block';
+  
+  updateVerbProgress();
+  updateProgressInfo();
+}
+
+function loadSentences(sentences) {
+  const container = document.getElementById('sentencesPractice');
+  container.innerHTML = '';
+  
+  sentences.forEach((sentence, index) => {
+    const sentenceDiv = document.createElement('div');
+    sentenceDiv.className = 'sentence-item';
+    sentenceDiv.innerHTML = `
+      <div class="sentence-number">Sentence ${index + 1}</div>
+      <div class="sentence-text">${sentence.text.replace('_____', '<span class="blank-space" id="blank_${index}">_____</span>')}</div>
+      
+      <input type="text" class="answer-input" id="input_${index}" placeholder="Type the past tense here...">
+      
+      <div class="help-section">
+        <button class="warning small" onclick="showHelp(${index}, 1)">💡 I need help</button>
+        <button class="warning small" onclick="showHelp(${index}, 2)" style="display:none;" id="moreHelp_${index}">💡 I need more help</button>
+        <button class="primary small" onclick="checkAnswer(${index})">✓ Check Answer</button>
+      </div>
+      
+      <div class="help-box" id="help1_${index}">
+        <h4>💡 Help:</h4>
+        <div class="verb-type-badge ${verbsData[currentVerb].type}">${verbsData[currentVerb].type.toUpperCase()} VERB</div>
+        <p>${verbsData[currentVerb].type === 'regular' ? 
+          'This is a regular verb. Regular verbs add -ed to form the past tense.' : 
+          'This is an irregular verb. Irregular verbs change form completely and don\'t follow the -ed pattern.'
+        }</p>
+      </div>
+      
+      <div class="help-box" id="help2_${index}">
+        <h4>💡 More Help - Choose the correct answer:</h4>
+        <div class="multiple-choice" id="choices_${index}">
+          ${sentence.choices.map((choice, choiceIndex) => 
+            `<div class="choice-option" data-sentence="${index}" data-choice="${choiceIndex}">${choice}</div>`
+          ).join('')}
+          <button class="primary small" onclick="checkMultipleChoice(${index})" style="margin-top: 10px;">Check Selected Answer</button>
+        </div>
+      </div>
+      
+      <div class="feedback" id="feedback_${index}"></div>
+    `;
+    
+    container.appendChild(sentenceDiv);
+  });
+  
+  // Add event listeners for multiple choice
+  document.querySelectorAll('.choice-option').forEach(option => {
+    option.addEventListener('click', function() {
+      const sentenceIndex = this.dataset.sentence;
+      document.querySelectorAll(`[data-sentence="${sentenceIndex}"]`).forEach(opt => opt.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+
+function showHelp(sentenceIndex, helpLevel) {
+  const helpBox = document.getElementById(`help${helpLevel}_${sentenceIndex}`);
+  helpBox.classList.add('show');
+  
+  if (helpLevel === 1) {
+    document.getElementById(`moreHelp_${sentenceIndex}`).style.display = 'inline-block';
+  } else if (helpLevel === 2) {
+    const choicesDiv = document.getElementById(`choices_${sentenceIndex}`);
+    choicesDiv.classList.add('show');
+  }
+}
+
+function checkAnswer(sentenceIndex) {
+  const input = document.getElementById(`input_${sentenceIndex}`);
+  const feedback = document.getElementById(`feedback_${sentenceIndex}`);
+  const correctAnswer = verbsData[currentVerb].answer;
+  
+  if (input.value.trim() === '') {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please type your answer first!</strong>';
+    return;
+  }
+  
+  const userAnswer = input.value.trim().toLowerCase();
+  const isCorrect = userAnswer === correctAnswer.toLowerCase();
+  
+  currentAnswers[sentenceIndex] = {
+    userAnswer: input.value.trim(),
+    correct: isCorrect,
+    method: 'typed'
+  };
+  
+  if (isCorrect) {
+    feedback.className = 'feedback success show';
+    feedback.innerHTML = '<strong>🎉 Excellent!</strong> You got the past tense right!';
+    document.getElementById(`blank_${sentenceIndex}`).textContent = correctAnswer;
+  } else {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = `<strong>Not quite.</strong> The correct past tense is "${correctAnswer}". Try to remember this!`;
+  }
+  
+  updateVerbProgress();
+  checkVerbCompletion();
+}
+
+function checkMultipleChoice(sentenceIndex) {
+  const selected = document.querySelector(`[data-sentence="${sentenceIndex}"].selected`);
+  const feedback = document.getElementById(`feedback_${sentenceIndex}`);
+  const verbData = verbsData[currentVerb];
+  const sentence = verbData.sentences[sentenceIndex];
+  
+  if (!selected) {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please select an answer first!</strong>';
+    return;
+  }
+  
+  const choiceIndex = parseInt(selected.dataset.choice);
+  const selectedAnswer = sentence.choices[choiceIndex];
+  const isCorrect = selectedAnswer === verbData.answer;
+  
+  currentAnswers[sentenceIndex] = {
+    userAnswer: selectedAnswer,
+    correct: isCorrect,
+    method: 'multiple_choice'
+  };
+  
+  // Mark all choices
+  document.querySelectorAll(`[data-sentence="${sentenceIndex}"]`).forEach((option, index) => {
+    option.classList.remove('correct', 'incorrect');
+    if (sentence.choices[index] === verbData.answer) {
+      option.classList.add('correct');
+    } else if (option.classList.contains('selected') && !isCorrect) {
+      option.classList.add('incorrect');
+    }
+  });
+  
+  if (isCorrect) {
+    feedback.className = 'feedback success show';
+    feedback.innerHTML = '<strong>🎉 Perfect!</strong> You chose the correct past tense!';
+    document.getElementById(`blank_${sentenceIndex}`).textContent = verbData.answer;
+    document.getElementById(`input_${sentenceIndex}`).value = verbData.answer;
+  } else {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Not quite.</strong> The correct answer is highlighted in green.';
+  }
+  
+  updateVerbProgress();
+  checkVerbCompletion();
+}
+
+function updateVerbProgress() {
+  if (!currentVerb) return;
+  
+  const totalSentences = verbsData[currentVerb].sentences.length;
+  const answeredCount = Object.keys(currentAnswers).length;
+  const correctCount = Object.values(currentAnswers).filter(answer => answer.correct).length;
+  
+  const progressEl = document.getElementById('verbProgress');
+  progressEl.textContent = `Progress: ${correctCount}/${totalSentences} correct • ${answeredCount}/${totalSentences} answered`;
+}
+
+function checkVerbCompletion() {
+  if (!currentVerb) return;
+  
+  const totalSentences = verbsData[currentVerb].sentences.length;
+  const correctCount = Object.values(currentAnswers).filter(answer => answer.correct).length;
+  
+  if (correctCount === totalSentences) {
+    completedVerbs.add(currentVerb);
+    updateVerbSelector();
+    showCelebration();
+  }
+}
+
+function updateVerbSelector() {
+  document.querySelectorAll('.verb-btn').forEach(btn => {
+    if (completedVerbs.has(btn.dataset.verb)) {
+      btn.classList.add('completed');
+    }
+  });
+}
+
+function showCelebration() {
+  const celebration = document.getElementById('celebration');
+  const celebrationText = document.getElementById('celebrationText');
+  
+  celebrationText.textContent = `You've mastered the past tense of "${currentVerb}"! All sentences completed correctly!`;
+  celebration.style.display = 'flex';
+}
+
+function closeCelebration() {
+  document.getElementById('celebration').style.display = 'none';
+}
+
+function selectRandomVerb(type) {
+  const allVerbs = Object.keys(verbsData);
+  let verbOptions = [];
+  
+  if (type === 'regular') {
+    verbOptions = allVerbs.filter(verb => verbsData[verb].type === 'regular');
+  } else if (type === 'irregular') {
+    verbOptions = allVerbs.filter(verb => verbsData[verb].type === 'irregular');
+  } else {
+    verbOptions = allVerbs;
+  }
+  
+  const randomVerb = verbOptions[Math.floor(Math.random() * verbOptions.length)];
+  loadVerb(randomVerb);
+  
+  // Update random button states
+  document.querySelectorAll('.random-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`[data-random="${type}"]`).classList.add('active');
+  randomMode = true;
+}
+
+function resetCurrentVerb() {
+  if (!currentVerb) return;
+  
+  currentAnswers = {};
+  
+  // Clear all inputs
+  document.querySelectorAll('.answer-input').forEach(input => input.value = '');
+  
+  // Hide all feedback and help sections
+  document.querySelectorAll('.feedback').forEach(fb => fb.classList.remove('show'));
+  document.querySelectorAll('.help-box').forEach(help => help.classList.remove('show'));
+  document.querySelectorAll('[id^="moreHelp_"]').forEach(btn => btn.style.display = 'none');
+  document.querySelectorAll('.multiple-choice').forEach(mc => mc.classList.remove('show'));
+  document.querySelectorAll('.choice-option').forEach(choice => {
+    choice.classList.remove('selected', 'correct', 'incorrect');
+  });
+  
+  // Reset blanks
+  document.querySelectorAll('[id^="blank_"]').forEach(blank => blank.textContent = '_____');
+  
+  // Remove from completed set
+  completedVerbs.delete(currentVerb);
+  updateVerbSelector();
+  updateVerbProgress();
+}
+
+function updateProgressInfo() {
+  const progressInfo = document.getElementById('progressInfo');
+  const totalVerbs = Object.keys(verbsData).length;
+  const completedCount = completedVerbs.size;
+  
+  if (currentVerb) {
+    progressInfo.textContent = `${currentVerb.toUpperCase()} • Completed: ${completedCount}/${totalVerbs} verbs`;
+  } else {
+    progressInfo.textContent = `Completed: ${completedCount}/${totalVerbs} verbs`;
+  }
+}
+
+function setupEventListeners() {
+  // Verb selector
+  document.getElementById('verbSelector').addEventListener('click', (e) => {
+    if (e.target.classList.contains('verb-btn')) {
+      loadVerb(e.target.dataset.verb);
+    }
+  });
+  
+  // Random buttons
+  document.querySelectorAll('.random-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectRandomVerb(btn.dataset.random);
+    });
+  });
+  
+  // Control buttons
+  document.getElementById('resetVerb').addEventListener('click', resetCurrentVerb);
+  document.getElementById('showCompleted').addEventListener('click', () => {
+    if (completedVerbs.size === 0) {
+      alert('No verbs completed yet! Practice some verbs to see your progress.');
+    } else {
+      const completedList = Array.from(completedVerbs).map(verb => verb.toUpperCase()).join(', ');
+      alert(`Completed verbs (${completedVerbs.size}/${Object.keys(verbsData).length}):\n\n${completedList}`);
+    }
+  });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initializeActivity);
+</script>
+</body>
+</html>

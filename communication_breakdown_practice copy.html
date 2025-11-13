@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Communication Breakdown Practice Scenarios</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --primary: #0ea5e9;
+      --secondary: #6366f1;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent-bg: rgba(14, 165, 233, 0.12);
+      --accent-border: rgba(14, 165, 233, 0.3);
+      --radius: 18px;
+      --width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: white;
+      padding: 34px 20px;
+      text-align: center;
+      box-shadow: 0 18px 36px rgba(79, 70, 229, 0.35);
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      letter-spacing: 0.01em;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.92;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .nav-bar {
+      background: #0f172a;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.35);
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .nav-btn {
+      border: none;
+      background: rgba(148, 163, 184, 0.18);
+      color: #e2e8f0;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background: rgba(226, 232, 240, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    main {
+      max-width: var(--width);
+      margin: 28px auto 56px;
+      padding: 0 18px;
+    }
+
+    .scenario {
+      display: none;
+    }
+
+    .scenario.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scenario-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
+      border: 2px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .scenario-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .scenario-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .scenario-context {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.28);
+      color: #3730a3;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .scenario-text {
+      background: rgba(148, 163, 184, 0.12);
+      border-left: 5px solid var(--primary);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      font-size: 16px;
+    }
+
+    .analysis-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .analysis-card {
+      background: #ffffff;
+      border: 2px solid rgba(148, 163, 184, 0.24);
+      border-radius: 16px;
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .analysis-label {
+      font-weight: 700;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .prompt-hint {
+      font-size: 14px;
+      color: var(--muted);
+      background: rgba(148, 163, 184, 0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+
+    .breakdown-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: var(--accent-bg);
+      color: #0c4a6e;
+      border: 1px solid var(--accent-border);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    textarea {
+      width: 100%;
+      border: 2px solid rgba(148, 163, 184, 0.4);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 16px;
+      font-family: inherit;
+      min-height: 110px;
+      resize: vertical;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #f8fafc;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.18);
+      background: white;
+    }
+
+    .strategy-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .strategy-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .strategy-option input {
+      accent-color: var(--secondary);
+      width: 18px;
+      height: 18px;
+    }
+
+    .strategy-option label {
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .roleplay-ideas {
+      background: rgba(14, 165, 233, 0.1);
+      border: 2px dashed rgba(14, 165, 233, 0.3);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 720px) {
+      header h1 {
+        font-size: 26px;
+      }
+
+      .scenario-card {
+        padding: 20px;
+      }
+    }
+
+    @media print {
+      header, .nav-bar {
+        display: none;
+      }
+
+      main {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .scenario {
+        display: block !important;
+        page-break-before: always;
+      }
+
+      .scenario:first-of-type {
+        page-break-before: auto;
+      }
+
+      .scenario-card {
+        box-shadow: none;
+        border: none;
+        border-bottom: 3px solid rgba(148, 163, 184, 0.35);
+        border-radius: 0;
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Communication Breakdown Practice Scenarios</h1>
+    <p>
+      For each situation, figure out what caused the communication breakdown, pick strategies to fix it,
+      role-play the conversation, and reflect on what felt most effective.
+    </p>
+  </header>
+
+  <nav class="nav-bar">
+    <div class="nav-buttons">
+      <button class="nav-btn active" data-target="scenario-1">Group Project</button>
+      <button class="nav-btn" data-target="scenario-2">Coffee Order</button>
+      <button class="nav-btn" data-target="scenario-3">Substitute Teacher</button>
+      <button class="nav-btn" data-target="scenario-4">Weekend Plans</button>
+      <button class="nav-btn" data-target="scenario-5">Shoe Store</button>
+      <button class="nav-btn" data-target="scenario-6">Class Discussion</button>
+      <button class="nav-btn" data-target="scenario-7">Drive-Through</button>
+      <button class="nav-btn" data-target="scenario-8">New Friend</button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="scenario-1" class="scenario active">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 1: The Group Project</h2>
+          <span class="scenario-context">History Class • Small Group Presentation</span>
+        </div>
+        <div class="scenario-text">
+          You’re working with three classmates on a history presentation. You explain your research about “the trenches in France.”
+          One teammate looks puzzled and asks, “Wait, what did you say about friends?” The others look at you, waiting.
+        </div>
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <div class="analysis-label">Identify the Breakdown</div>
+            <div class="prompt-hint">What caused the misunderstanding? Check all that apply.</div>
+            <div class="breakdown-tags">
+              <span class="tag">Sounded like another word</span>
+              <span class="tag">Background noise</span>
+              <span class="tag">New vocabulary</span>
+              <span class="tag">Talking quickly</span>
+            </div>
+            <textarea placeholder="Describe the breakdown in your own words."></textarea>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Choose Strategies</div>
+            <div class="prompt-hint">Pick 2–3 strategies to try.</div>
+            <div class="strategy-list">
+              <div class="strategy-option">
+                <input type="checkbox" id="gp-rephrase" />
+                <label for="gp-rephrase">Rephrase using different words (e.g., “trenches — the dug-out tunnels soldiers lived in”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="gp-repeat" />
+                <label for="gp-repeat">Repeat the key word slowly (“trenches”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="gp-visual" />
+                <label for="gp-visual">Point at a picture or slide showing the trenches.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="gp-ask" />
+                <label for="gp-ask">Ask, “Did that make more sense?” to check for clarity.</label>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Role-Play Ideas</div>
+            <div class="roleplay-ideas">
+              Practice explaining “trenches” two different ways. One person plays you, another is the confused classmate.
+              Try saying it once while showing a slide, and once with a slower sentence.
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Reflection</div>
+            <textarea placeholder="Which strategy felt most comfortable? Which helped your group understand best?"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Additional scenarios follow same structure -->
+    <!-- Scenario 2 -->
+    <section id="scenario-2" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 2: Coffee Order</h2>
+          <span class="scenario-context">Busy Café • Noisy Line</span>
+        </div>
+        <div class="scenario-text">
+          It’s loud at Starbucks. You order, “Can I get a large caramel latte?” The barista says,
+          “A large… what? I didn’t catch that last part.” People are waiting behind you.
+        </div>
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <div class="analysis-label">Identify the Breakdown</div>
+            <div class="prompt-hint">What caused the misunderstanding?</div>
+            <div class="breakdown-tags">
+              <span class="tag">Background noise</span>
+              <span class="tag">Fast speech</span>
+              <span class="tag">Soft volume</span>
+              <span class="tag">Unfamiliar order</span>
+            </div>
+            <textarea placeholder="Explain the breakdown from the barista's point of view."></textarea>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Choose Strategies</div>
+            <div class="strategy-list">
+              <div class="strategy-option">
+                <input type="checkbox" id="coffee-slow" />
+                <label for="coffee-slow">Repeat the drink slowly (“A large caramel latte”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="coffee-volume" />
+                <label for="coffee-volume">Increase volume slightly without shouting.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="coffee-point" />
+                <label for="coffee-point">Point to the menu or show the order on your phone.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="coffee-check" />
+                <label for="coffee-check">Confirm (“Does that make sense?”).</label>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Role-Play Ideas</div>
+            <div class="roleplay-ideas">
+              One person plays the barista with background noise. Practice repeating the order with a confident voice,
+              or showing the order typed on your phone.
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Reflection</div>
+            <textarea placeholder="Which strategy felt easiest? Which would you use in a real coffee shop?"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Scenario 3 -->
+    <section id="scenario-3" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 3: The Substitute Teacher</h2>
+          <span class="scenario-context">Math Class • New Listener</span>
+        </div>
+        <div class="scenario-text">
+          There's a substitute teacher who doesn’t know you. You ask, “Can I go to my locker? I forgot my calculator.”
+          The teacher replies, “I’m sorry, I didn’t understand you. Can you say that again?” Some classmates look over.
+        </div>
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <div class="analysis-label">Identify the Breakdown</div>
+            <div class="breakdown-tags">
+              <span class="tag">Unfamiliar listener</span>
+              <span class="tag">Fast speech</span>
+              <span class="tag">Quiet voice</span>
+              <span class="tag">Different phrasing</span>
+            </div>
+            <textarea placeholder="Why might the substitute have trouble understanding?"></textarea>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Choose Strategies</div>
+            <div class="strategy-list">
+              <div class="strategy-option">
+                <input type="checkbox" id="sub-slow" />
+                <label for="sub-slow">Repeat slowly with a slight pause (“Can I please go to my locker? I forgot my calculator.”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="sub-clarify" />
+                <label for="sub-clarify">Add context (“It’s needed for today’s worksheet.”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="sub-eye" />
+                <label for="sub-eye">Make eye contact before speaking.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="sub-check" />
+                <label for="sub-check">Ask, “Should I write it down for you?” if needed.</label>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Role-Play Ideas</div>
+            <div class="roleplay-ideas">
+              Rehearse your request with different phrasing. One person plays the substitute and gives feedback on what was clear.
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Reflection</div>
+            <textarea placeholder="Which approach felt respectful and effective?"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Scenario 4 -->
+    <section id="scenario-4" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 4: Making Weekend Plans</h2>
+          <span class="scenario-context">Phone Call • Moving from Text to Talk</span>
+        </div>
+        <div class="scenario-text">
+          You’re on the phone with a friend about weekend plans. You suggest going to see a new movie.
+          Your friend responds, “Wait, you want to go WHERE? I couldn’t really hear you—it sounded like you said something about a movie?”
+        </div>
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <div class="analysis-label">Identify the Breakdown</div>
+            <div class="breakdown-tags">
+              <span class="tag">Phone connection</span>
+              <span class="tag">Talking quickly</span>
+              <span class="tag">Not enough context</span>
+              <span class="tag">Background noise</span>
+            </div>
+            <textarea placeholder="What made it hard for your friend to understand?"></textarea>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Choose Strategies</div>
+            <div class="strategy-list">
+              <div class="strategy-option">
+                <input type="checkbox" id="weekend-repeat" />
+                <label for="weekend-repeat">Repeat slowly (“I said the new movie at the mall theater”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="weekend-details" />
+                <label for="weekend-details">Add details (“The superhero movie that opened Friday”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="weekend-check" />
+                <label for="weekend-check">Ask if they want you to text the name too.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="weekend-noise" />
+                <label for="weekend-noise">Move to a quiet spot or use headphones.</label>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Role-Play Ideas</div>
+            <div class="roleplay-ideas">
+              Practice the conversation with one person covering their ears slightly to simulate a bad connection; try repeating with clearer words.
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Reflection</div>
+            <textarea placeholder="Which strategy would you use the next time a call gets fuzzy?"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Scenario 5 -->
+    <section id="scenario-5" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 5: The Unfamiliar Store</h2>
+          <span class="scenario-context">Sporting Goods • Unfamiliar Listener</span>
+        </div>
+        <div class="scenario-text">
+          You’re in a sporting goods store looking for a specific brand. You ask, “Do you have any Brooks running shoes?”
+          The employee tilts their head and says, “Do we have… I’m sorry, can you say that brand name again?”
+        </div>
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <div class="analysis-label">Identify the Breakdown</div>
+            <div class="breakdown-tags">
+              <span class="tag">Unfamiliar brand</span>
+              <span class="tag">Sounds like another word</span>
+              <span class="tag">Soft volume</span>
+            </div>
+            <textarea placeholder="Why might the employee need you to repeat the brand?"></textarea>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Choose Strategies</div>
+            <div class="strategy-list">
+              <div class="strategy-option">
+                <input type="checkbox" id="store-spell" />
+                <label for="store-spell">Spell the brand (“B-R-O-O-K-S”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="store-describe" />
+                <label for="store-describe">Describe the brand (“Brooks — the running shoe company”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="store-show" />
+                <label for="store-show">Show the brand name on your phone.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="store-check" />
+                <label for="store-check">Ask, “Should I write it down?”</label>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Role-Play Ideas</div>
+            <div class="roleplay-ideas">
+              Practice saying unfamiliar brand names. One person plays the employee and asks clarifying questions.
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Reflection</div>
+            <textarea placeholder="Which strategy helped the employee understand?"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Scenario 6 -->
+    <section id="scenario-6" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 6: Class Discussion</h2>
+          <span class="scenario-context">English Class • Whole Group Conversation</span>
+        </div>
+        <div class="scenario-text">
+          Your teacher asks a question about a novel. You explain a character’s motivation,
+          but the teacher says, “That’s interesting, but I’m not sure I caught which character you mean. Can you clarify?”
+        </div>
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <div class="analysis-label">Identify the Breakdown</div>
+            <div class="breakdown-tags">
+              <span class="tag">Missing names</span>
+              <span class="tag">Talking quickly</span>
+              <span class="tag">Soft voice</span>
+            </div>
+            <textarea placeholder="What part of your answer was unclear to your teacher?"></textarea>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Choose Strategies</div>
+            <div class="strategy-list">
+              <div class="strategy-option">
+                <input type="checkbox" id="class-name" />
+                <label for="class-name">Say the character’s name again at the start.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="class-summarize" />
+                <label for="class-summarize">Give a quick summary of the scene you’re referring to.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="class-volume" />
+                <label for="class-volume">Speak a little louder and slow down.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="class-check" />
+                <label for="class-check">Ask, “Does that answer your question?”</label>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Role-Play Ideas</div>
+            <div class="roleplay-ideas">
+              Practice explaining the same idea using a sentence frame: “I’m talking about [character], when they [action].”
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Reflection</div>
+            <textarea placeholder="Which addition made your answer clearer?"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Scenario 7 -->
+    <section id="scenario-7" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 7: Fast Food Drive-Through</h2>
+          <span class="scenario-context">Car Speaker • Noisy Environment</span>
+        </div>
+        <div class="scenario-text">
+          You’re ordering through a drive-through speaker. You ask for a chicken sandwich with fries.
+          The worker replies, “Sorry, did you say chicken or beef? And did you want fries or a drink?”
+        </div>
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <div class="analysis-label">Identify the Breakdown</div>
+            <div class="breakdown-tags">
+              <span class="tag">Speaker static</span>
+              <span class="tag">Multiple items</span>
+              <span class="tag">Background noise</span>
+            </div>
+            <textarea placeholder="What made the order hard to hear?"></textarea>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Choose Strategies</div>
+            <div class="strategy-list">
+              <div class="strategy-option">
+                <input type="checkbox" id="drive-repeat" />
+                <label for="drive-repeat">Repeat slowly, one item at a time.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="drive-confirm" />
+                <label for="drive-confirm">Confirm (“That’s a chicken sandwich and fries”).</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="drive-window" />
+                <label for="drive-window">Move closer to the speaker or roll down the back window too.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="drive-repeatworker" />
+                <label for="drive-repeatworker">Ask the worker to repeat the order back.</label>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Role-Play Ideas</div>
+            <div class="roleplay-ideas">
+              Use a prop (like a paper cup) as the speaker and practice ordering clearly while someone adds background noise.
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Reflection</div>
+            <textarea placeholder="What gave you the clearest order? How can you stay calm when repeating yourself?"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Scenario 8 -->
+    <section id="scenario-8" class="scenario">
+      <article class="scenario-card">
+        <div class="scenario-header">
+          <h2 class="scenario-title">Scenario 8: The New Friend</h2>
+          <span class="scenario-context">Lunch Table • Fast Conversation</span>
+        </div>
+        <div class="scenario-text">
+          You’re excitedly telling a new friend about your favorite TV show and talking quickly.
+          They smile but say, “Sorry, I’m having trouble following—can you slow down? I want to hear what you’re saying!”
+        </div>
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <div class="analysis-label">Identify the Breakdown</div>
+            <div class="breakdown-tags">
+              <span class="tag">Fast speech</span>
+              <span class="tag">Lots of details</span>
+              <span class="tag">New listener</span>
+            </div>
+            <textarea placeholder="Why is your friend struggling to follow?"></textarea>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Choose Strategies</div>
+            <div class="strategy-list">
+              <div class="strategy-option">
+                <input type="checkbox" id="friend-slow" />
+                <label for="friend-slow">Slow down and pause between main ideas.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="friend-main" />
+                <label for="friend-main">Highlight one main idea at a time.</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="friend-check" />
+                <label for="friend-check">Ask, “Should I back up a little?”</label>
+              </div>
+              <div class="strategy-option">
+                <input type="checkbox" id="friend-visual" />
+                <label for="friend-visual">Use a photo or clip on your phone to support the story.</label>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Role-Play Ideas</div>
+            <div class="roleplay-ideas">
+              Share a short story twice: once fast, once with pauses. Ask your partner which version was easier to follow.
+            </div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-label">Reflection</div>
+            <textarea placeholder="Which strategy helped your friend stay engaged?"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const scenarios = document.querySelectorAll(".scenario");
+
+    navButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+
+        navButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        scenarios.forEach((scene) => {
+          scene.classList.toggle("active", scene.id === target);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

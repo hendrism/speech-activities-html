@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversation Response Practice - Interactive Activity</title>
+<style>
+  :root {
+    --w: 900px;
+    --accent: #8b5cf6;
+    --blue: #0ea5e9;
+    --green: #10b981;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #d97706;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid var(--accent); 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 18px 24px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .bar h1 { 
+    font-size: 22px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 10px; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 24px auto; 
+    padding: 0 24px; 
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #7c3aed;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--ink);
+    border: 2px solid #e2e8f0;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .scenario-selector {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .scenario-selector h2 {
+    margin: 0 0 16px;
+    color: var(--accent);
+    font-size: 20px;
+  }
+
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+  }
+
+  .scenario-btn {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 15px;
+  }
+
+  .scenario-btn:hover {
+    border-color: var(--accent);
+    background: #faf5ff;
+  }
+
+  .scenario-btn.active {
+    border-color: var(--accent);
+    background: #faf5ff;
+    border-width: 3px;
+  }
+
+  .activity-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .scenario-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .scenario-display h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .scenario-text {
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .response-section {
+    margin-bottom: 32px;
+  }
+
+  .response-type-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 16px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .response-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .response-number {
+    background: var(--accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .response-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--ink);
+  }
+
+  .response-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 100px;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+
+  .response-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .hint-system {
+    margin-top: 16px;
+  }
+
+  .hint-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .hint-btn {
+    padding: 8px 16px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hint-btn:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .hint-btn.active {
+    background: #fff7ed;
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .hint-icon {
+    font-size: 16px;
+  }
+
+  .hint-content {
+    background: #fef3c7;
+    border: 2px solid var(--warning);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .hint-content.show {
+    display: block;
+  }
+
+  .hint-content h4 {
+    margin: 0 0 8px;
+    color: #92400e;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .hint-content p {
+    margin: 0;
+    color: #78350f;
+    line-height: 1.6;
+  }
+
+  .hint-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+  }
+
+  .hint-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    color: #78350f;
+  }
+
+  .hint-list li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: var(--warning);
+  }
+
+  .prediction-section {
+    background: #eff6ff;
+    border: 2px solid var(--blue);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 32px;
+  }
+
+  .prediction-section h3 {
+    margin: 0 0 16px;
+    color: #0c4a6e;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prediction-icon {
+    font-size: 24px;
+  }
+
+  .prediction-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #bae6fd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 80px;
+    resize: vertical;
+    background: white;
+  }
+
+  .prediction-input:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+
+  .response-differences {
+    background: #f0fdf4;
+    border: 2px solid var(--green);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+
+  .response-differences h3 {
+    margin: 0 0 16px;
+    color: #065f46;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .difference-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #86efac;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    min-height: 80px;
+    resize: vertical;
+    background: white;
+  }
+
+  .difference-input:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+
+  .example-section {
+    background: #fef3c7;
+    border: 2px dashed var(--warning);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 24px;
+  }
+
+  .example-section h4 {
+    margin: 0 0 12px;
+    color: #92400e;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .example-text {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    color: #78350f;
+    font-style: italic;
+  }
+
+  .example-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .progress-indicator {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .progress-text {
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  .checkmark {
+    color: var(--ok);
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .scenario-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+    }
+    
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <h1>💬 Conversation Response Practice</h1>
+    <div class="controls">
+      <button class="btn btn-secondary" id="resetBtn">Reset</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="scenario-selector">
+    <h2>Choose a Scenario</h2>
+    <div class="scenario-grid" id="scenarioGrid"></div>
+  </div>
+
+  <div class="activity-container" id="activityContainer" style="display: none;">
+    <div class="progress-indicator">
+      <span class="progress-text">Complete both responses to finish this scenario</span>
+      <span id="progressCheckmarks"></span>
+    </div>
+
+    <div class="scenario-display" id="scenarioDisplay"></div>
+
+    <!-- Response 1 -->
+    <div class="response-section">
+      <div class="response-header">
+        <div class="response-number">1</div>
+        <h3>First Way to Respond</h3>
+      </div>
+
+      <div class="response-type-badge" id="type-1"></div>
+      
+      <textarea 
+        class="response-input" 
+        id="response1" 
+        placeholder="Type your first response here..."
+      ></textarea>
+      
+      <div class="hint-system">
+        <div class="hint-buttons">
+          <button class="hint-btn" data-hint="1" data-response="1">
+            <span class="hint-icon">💡</span> Hint 1: More Details
+          </button>
+          <button class="hint-btn" data-hint="2" data-response="1">
+            <span class="hint-icon">💡</span> Hint 2: Sentence Starter
+          </button>
+          <button class="hint-btn" data-hint="3" data-response="1">
+            <span class="hint-icon">💡</span> Hint 3: Full Example
+          </button>
+        </div>
+        <div class="hint-content" id="hint1-1"></div>
+        <div class="hint-content" id="hint2-1"></div>
+        <div class="hint-content" id="hint3-1"></div>
+      </div>
+    </div>
+
+    <!-- Response 2 -->
+    <div class="response-section">
+      <div class="response-header">
+        <div class="response-number">2</div>
+        <h3>Second Way to Respond (Different from #1)</h3>
+      </div>
+
+      <div class="response-type-badge" id="type-2"></div>
+      
+      <textarea 
+        class="response-input" 
+        id="response2" 
+        placeholder="Type your second response here..."
+      ></textarea>
+      
+      <div class="hint-system">
+        <div class="hint-buttons">
+          <button class="hint-btn" data-hint="1" data-response="2">
+            <span class="hint-icon">💡</span> Hint 1: More Details
+          </button>
+          <button class="hint-btn" data-hint="2" data-response="2">
+            <span class="hint-icon">💡</span> Hint 2: Sentence Starter
+          </button>
+          <button class="hint-btn" data-hint="3" data-response="2">
+            <span class="hint-icon">💡</span> Hint 3: Full Example
+          </button>
+        </div>
+        <div class="hint-content" id="hint1-2"></div>
+        <div class="hint-content" id="hint2-2"></div>
+        <div class="hint-content" id="hint3-2"></div>
+      </div>
+    </div>
+
+    <!-- Response Differences -->
+    <div class="response-differences">
+      <h3>
+        <span>✨</span>
+        How are your two responses different?
+      </h3>
+      <textarea 
+        class="difference-input" 
+        id="differences" 
+        placeholder="Explain how Response #1 and Response #2 are different from each other..."
+      ></textarea>
+    </div>
+
+    <!-- Prediction Section -->
+    <div class="prediction-section">
+      <h3>
+        <span class="prediction-icon">🔮</span>
+        Predict: How might the other person respond?
+      </h3>
+      <p style="margin: 0 0 12px; color: #0c4a6e;">Think about Response #1. What might they say or do next?</p>
+      <textarea 
+        class="prediction-input" 
+        id="prediction1" 
+        placeholder="If I say Response #1, they might..."
+      ></textarea>
+      
+      <p style="margin: 16px 0 12px; color: #0c4a6e;">Now think about Response #2. What might they say or do next?</p>
+      <textarea 
+        class="prediction-input" 
+        id="prediction2" 
+        placeholder="If I say Response #2, they might..."
+      ></textarea>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn btn-primary" id="nextScenarioBtn">Next Scenario ➜</button>
+      <button class="btn btn-secondary" id="changeScenarioBtn">Choose Different Scenario</button>
+    </div>
+  </div>
+</main>
+
+<script>
+const scenarios = [
+  {
+    id: 1,
+    title: "Friend's Bad Day",
+    text: "Your friend says: 'I failed my math test. I studied so hard and I still failed. I'm never going to pass this class.'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Show Support",
+          content: "One way to respond is to show emotional support and understanding. This means acknowledging their feelings and letting them know you care."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"That really sucks, I'm sorry...\"",
+            "\"I can tell you're really upset...\"",
+            "\"That must be really frustrating after studying so hard...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"That really sucks, I'm sorry. I can see you put in a lot of effort studying. Do you want to talk about it or do something to take your mind off it?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Offer Help or Solutions",
+          content: "Another way to respond is to offer practical help or solutions. This focuses more on what they can DO next, rather than just their feelings."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Would it help if we...\"",
+            "\"Maybe you could talk to the teacher about...\"",
+            "\"What if we studied together next time...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"That's tough. Would it help if we studied together for the next test? Sometimes it helps to have someone quiz you and explain things differently.\""
+        }
+      }
+    }
+  },
+  {
+    id: 2,
+    title: "Group Project Concern",
+    text: "A classmate in your group project says: 'I don't think anyone is doing their part. I've done most of the work and the project is due next week.'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Acknowledge and Take Responsibility",
+          content: "One way to respond is to acknowledge their concern and take responsibility for your part. This shows you hear them and are willing to help fix the problem."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"You're right, I should have...\"",
+            "\"I can see why you're frustrated...\"",
+            "\"I apologize for not...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"You're right, I should have been more on top of my part. I can finish my section tonight and send it to you by tomorrow. What else do you need help with?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Ask Questions and Organize",
+          content: "Another way to respond is to ask questions to understand the situation better and suggest organizing the work. This shows you want to help coordinate the team."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"What parts still need to be done?\"",
+            "\"Should we divide up the remaining work?\"",
+            "\"Can we have a quick meeting to...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"What parts still need to be done? Maybe we should have a quick meeting where we divide everything up clearly so everyone knows exactly what they're responsible for.\""
+        }
+      }
+    }
+  },
+  {
+    id: 3,
+    title: "Weekend Plans",
+    text: "A friend texts you: 'Want to hang out this weekend? I was thinking we could go to the movies or something.'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Agree with Enthusiasm",
+          content: "One way to respond is to say yes with enthusiasm and engage with their suggestion. This shows you're interested and adds to their idea."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Yeah, that sounds fun!\"",
+            "\"I'm down! What movie...\"",
+            "\"Sure! I've been wanting to...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Yeah, that sounds fun! I've been wanting to see that new Marvel movie. What time works for you on Saturday?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Can't Make It or Alternative",
+          content: "Another way to respond is to decline politely or suggest a different activity or time. This shows you still value the friendship even if the specific plan doesn't work."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I can't this weekend, but what about...\"",
+            "\"Movies sound good, but I'm actually free Sunday if...\"",
+            "\"This weekend is tough for me. Could we...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I can't this weekend because I have a family thing, but what about next weekend? Or we could grab lunch one day after school this week if you're free.\""
+        }
+      }
+    }
+  },
+  {
+    id: 4,
+    title: "Lunch Invitation",
+    text: "Someone you don't know very well sits next to you at lunch and says: 'Hey, is it cool if I sit here? My usual table is full today.'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Welcome Them",
+          content: "One way to respond is to make them feel welcome and start a conversation. This is friendly and helps them feel comfortable."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Yeah, of course!\"",
+            "\"Sure, no problem. How's your day going?\"",
+            "\"Definitely! I'm [name], what's your name?\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Yeah, of course! Feel free to sit here anytime. I'm Alex, by the way. I think we have English together, right?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Simple Agreement",
+          content: "Another way to respond is to simply agree without adding much conversation. This is polite but keeps things more casual and low-key."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Yeah, go ahead.\"",
+            "\"Sure, no problem.\"",
+            "\"Yeah, that's fine.\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Yeah, go ahead. No worries.\" (Then you could continue eating or doing what you were doing, which is also okay!)"
+        }
+      }
+    }
+  },
+  {
+    id: 5,
+    title: "Borrowed Item",
+    text: "A classmate says: 'Hey, can I borrow your phone charger? My phone is at like 5% and I need it for after school.'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Agree to Help",
+          content: "One way to respond is to lend them what they need. This helps them out and is friendly."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Yeah, sure. Here you go.\"",
+            "\"Of course, no problem.\"",
+            "\"Yeah, I have mine right here.\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Yeah, sure. Here you go. Just make sure I get it back before class ends since I'll need it later too!\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Can't Help",
+          content: "Another way to respond is to say no, but politely explain why or offer an alternative. It's okay to say no as long as you're respectful."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Sorry, I actually need mine too because...\"",
+            "\"I would but I don't have it with me...\"",
+            "\"I can't today, but maybe try asking...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Sorry, I actually need mine too because my phone is low too. Maybe try asking the teacher if they have one you can use for a bit?\""
+        }
+      }
+    }
+  },
+  {
+    id: 6,
+    title: "Party Invitation",
+    text: "A classmate says: 'I'm having people over Friday night. You should come! It's going to be pretty chill, just hanging out.'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Accept the Invitation",
+          content: "One way to respond is to say yes and show interest. This means accepting their invite and maybe asking for more details."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"That sounds fun! What time?\"",
+            "\"Yeah, I'd like to come. What should I...\"",
+            "\"Cool, I'm interested. Who else is going?\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"That sounds fun! What time should I come, and should I bring anything? I'll check with my parents but I think Friday should work.\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Decline or Unsure",
+          content: "Another way to respond is to decline politely or say you're not sure yet. This is honest and respectful of both their invitation and your own situation."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Thanks for inviting me, but...\"",
+            "\"I'm not sure if I can...\"",
+            "\"I might have plans, but let me...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Thanks for inviting me! I'm not sure if I can make it because I might have family stuff, but let me check and I'll let you know tomorrow.\""
+        }
+      }
+    }
+  },
+  {
+    id: 7,
+    title: "Teammate's Mistake",
+    text: "During a game/practice, a teammate makes a mistake and says: 'Ugh, that was so stupid. I messed up again. Sorry guys.'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Encourage and Reassure",
+          content: "One way to respond is to encourage them and let them know it's okay. This helps build team morale and shows support."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"It's all good, don't worry about it.\"",
+            "\"You're fine, it happens to everyone.\"",
+            "\"No worries, we'll get the next one.\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"It's all good, don't worry about it. Everybody makes mistakes. Just shake it off and focus on the next play.\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Redirect Focus",
+          content: "Another way to respond is to quickly move on and refocus on the game/activity. This keeps the energy positive without dwelling on the mistake."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Let's focus on defense now.\"",
+            "\"We got this, just stay ready.\"",
+            "\"Forget about it, we're still in this.\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Forget about it, we're still in this. Let's focus on defense and get the ball back.\""
+        }
+      }
+    }
+  },
+  {
+    id: 8,
+    title: "Disagreement About Plans",
+    text: "You and your friends are trying to decide what to do, and someone says: 'I really don't want to do that. Can we do something else instead?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Be Flexible and Compromise",
+          content: "One way to respond is to show you're willing to compromise and hear their idea. This shows respect for their opinion."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"That's fair. What would you rather do?\"",
+            "\"Okay, what are you thinking instead?\"",
+            "\"I'm open to other ideas. What do you suggest?\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"That's fair. What would you rather do? I'm open to other ideas if everyone else is cool with changing plans.\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Explain and Discuss",
+          content: "Another way to respond is to explain why you think the original plan is good, but stay open to discussion. This balances standing up for your idea while being respectful."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I was kind of excited about this because...\"",
+            "\"I see what you're saying, but I think...\"",
+            "\"Can we talk about why? Maybe we could...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I was kind of excited about this because I've never done it before. But I get it if you're not into it. Maybe we could vote on it or do your thing this time and mine next time?\""
+        }
+      }
+    }
+  },
+  {
+    id: 9,
+    title: "Teacher - Missing Assignment",
+    text: "Your teacher stops you after class and says: 'I noticed you didn't turn in the homework that was due today. Is everything okay?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Be Honest and Take Responsibility",
+          content: "One way to respond is to be honest about what happened and take responsibility. Teachers appreciate honesty and it shows maturity."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I'm sorry, I forgot to...\"",
+            "\"You're right, I didn't finish it because...\"",
+            "\"I apologize. I had trouble with...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I'm sorry, I forgot to do it last night. I got distracted and it slipped my mind. Can I turn it in tomorrow for partial credit?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Explain and Ask for Help",
+          content: "Another way to respond is to explain what's going on and ask for help or guidance. This shows you care about the class and want to do better."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I've been struggling with...\"",
+            "\"I tried to do it but I got confused about...\"",
+            "\"I didn't understand the assignment. Could you...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I tried to do it but I got really confused about what we were supposed to do. Could you explain it again? I want to make sure I do it right.\""
+        }
+      }
+    }
+  },
+  {
+    id: 10,
+    title: "Parent - Screen Time",
+    text: "Your parent says: 'You've been on your phone a lot today. I think you need to take a break and do something else for a while.'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Agree Calmly",
+          content: "One way to respond is to agree without arguing. This keeps things calm and shows you understand their point."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Okay, that's fair.\"",
+            "\"You're probably right. I'll...\"",
+            "\"Alright, I can do that.\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Okay, that's fair. I'll put it away and go read for a bit. Can I have it back after dinner?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Explain and Negotiate",
+          content: "Another way to respond is to calmly explain what you were doing and try to negotiate. This shows respect while also standing up for yourself."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I was actually working on...\"",
+            "\"Can I just finish...\"",
+            "\"I understand, but I'm in the middle of...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I was actually working on homework with my study group through text. Can I have 15 more minutes to finish this, and then I'll put it away for the rest of the night?\""
+        }
+      }
+    }
+  },
+  {
+    id: 11,
+    title: "Store Employee",
+    text: "You're looking at items in a store and an employee approaches you and says: 'Hi there! Are you looking for anything specific today? Can I help you find something?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Politely Decline",
+          content: "One way to respond is to politely let them know you're just looking. This is friendly but lets them know you don't need help right now."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I'm just browsing, but thank you.\"",
+            "\"No thanks, I'm just looking around.\"",
+            "\"I'm good for now, but I'll let you know if I need help.\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I'm just browsing, but thank you! I'll let you know if I need any help finding something.\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Ask for Help",
+          content: "Another way to respond is to actually ask for help or information. This can save you time if you're looking for something specific."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Actually, yes. Do you have...\"",
+            "\"I'm looking for...\"",
+            "\"Yeah, I'm trying to find...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Actually, yes. I'm looking for headphones under $30. Do you have any recommendations?\""
+        }
+      }
+    }
+  },
+  {
+    id: 12,
+    title: "Teacher - Extra Credit",
+    text: "You approach your teacher and say you'd like to raise your grade. Your teacher responds: 'I appreciate you wanting to improve. What were you thinking?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Ask About Extra Credit",
+          content: "One way to respond is to directly ask if there are extra credit opportunities available. This is straightforward and shows initiative."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Are there any extra credit assignments I could do?\"",
+            "\"Is it possible to do extra credit work?\"",
+            "\"Could I do an extra assignment to help my grade?\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Are there any extra credit assignments I could do? I'm willing to put in extra work to bring my grade up.\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Ask About Redoing Work",
+          content: "Another way to respond is to ask about improving work you've already done. This shows you want to learn from your mistakes."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Could I redo any of the assignments I did poorly on?\"",
+            "\"Is there a way I could revise my...\"",
+            "\"Would it be possible to retake...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Could I redo the last essay I turned in? I think I understand the material better now and I'd like a chance to show that.\""
+        }
+      }
+    }
+  },
+  {
+    id: 13,
+    title: "Parent - Chores",
+    text: "Your parent says: 'I asked you to clean your room this morning and it's still not done. What's going on?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Apologize and Take Action",
+          content: "One way to respond is to apologize and commit to doing it right away. This shows you take responsibility."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"You're right, I'm sorry. I'll do it...\"",
+            "\"I know, I forgot. I'll go do it right now.\"",
+            "\"My bad. Give me 20 minutes and I'll have it done.\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"You're right, I'm sorry. I got distracted and forgot about it. I'll go do it right now and it'll be done before dinner.\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Explain and Problem-Solve",
+          content: "Another way to respond is to honestly explain what happened and work out a solution together. This is mature and collaborative."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I started it but I wasn't sure...\"",
+            "\"I've been overwhelmed with...\"",
+            "\"Can we talk about what needs to be done? I want to make sure...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I've been overwhelmed with homework and studying for my test. Could I do it tonight after dinner instead? I promise I'll get it done.\""
+        }
+      }
+    }
+  },
+  {
+    id: 14,
+    title: "Library Staff",
+    text: "A librarian approaches you while you're looking for a book and says: 'Hi! I see you're in the fiction section. Are you looking for a particular book or genre?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Accept Help with Details",
+          content: "One way to respond is to give them information about what you're looking for. This helps them help you find what you need."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Yeah, I'm looking for...\"",
+            "\"I need to find...\"",
+            "\"Actually, yes. Do you have anything...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Yeah, I'm looking for something like sci-fi or fantasy. I really liked The Hunger Games. Do you have anything similar?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Decline Politely",
+          content: "Another way to respond is to thank them but let them know you're okay on your own. This is polite and gives you independence."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I'm okay for now, thanks.\"",
+            "\"I'm just browsing, but thank you.\"",
+            "\"Thanks, but I think I'm good.\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I'm just browsing right now, but thank you! I'll come find you if I need help.\""
+        }
+      }
+    }
+  },
+  {
+    id: 15,
+    title: "Teacher - Struggling in Class",
+    text: "Your teacher pulls you aside and says: 'I've noticed you seem a bit lost in class lately. Would you like some extra help or tutoring?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Accept Help Gratefully",
+          content: "One way to respond is to accept the offer. This shows maturity and that you're willing to get help when you need it."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Yes, that would really help. When...\"",
+            "\"I would really appreciate that because...\"",
+            "\"Thank you, I think I could use some help with...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Yes, that would really help. I've been struggling with the last few topics. When would be a good time to meet?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Decline but Show Effort",
+          content: "Another way to respond is to decline the offer but explain how you're planning to improve. This shows you're taking initiative on your own."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I think I'm okay, but I'm going to...\"",
+            "\"Thanks for offering. I'm planning to...\"",
+            "\"I appreciate it, but I'm going to try...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Thanks for offering. I'm going to review my notes tonight and watch some tutorial videos. Can I let you know if I still need help after that?\""
+        }
+      }
+    }
+  },
+  {
+    id: 16,
+    title: "Parent - Going Out",
+    text: "You ask your parent if you can go to the mall, and they respond: 'Who are you going with? What time will you be home?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Give Details Directly",
+          content: "One way to respond is to directly answer their questions with clear information. This shows you're responsible and builds trust."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"I'm going with... and we'll be back by...\"",
+            "\"Just some people from school, and I can be home by...\"",
+            "\"I was planning to go alone/with... and be back around...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I'm going with a couple people from my English class. We were thinking about going around 2 and I can be home by 5. Is that okay?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Answer and Reassure",
+          content: "Another way to respond is to answer their questions and add reassuring details. This shows you understand their concern."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Just... from school. I'll keep my phone on and...\"",
+            "\"I'm meeting... there. I'll text you when...\"",
+            "\"Going with... We're just planning to... and I'll be home by...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"I'm going with some classmates. Just planning to walk around and maybe get food. I'll keep my phone on and text you when I get there and when I'm heading home. Does 5 PM work?\""
+        }
+      }
+    }
+  },
+  {
+    id: 17,
+    title: "Fast Food Worker",
+    text: "You're at the counter to order food and the worker says: 'Hi, welcome! What can I get for you today?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Order Confidently",
+          content: "One way to respond is to order clearly and directly. This keeps the interaction smooth and efficient."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Hi, can I get a...\"",
+            "\"I'll have the...\"",
+            "\"Could I get a...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Hi, can I get a number 2 with a Coke, please? And can I make that a large?\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Ask Questions First",
+          content: "Another way to respond is to ask questions about the menu before ordering. This helps when you're unsure what to get."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"What do you recommend?\"",
+            "\"Can you tell me what comes with...\"",
+            "\"Does the... have... in it?\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"What do you recommend? I've never been here before. What's popular?\""
+        }
+      }
+    }
+  },
+  {
+    id: 18,
+    title: "Counselor - Check In",
+    text: "Your school counselor calls you to their office and says: 'I just wanted to check in with you. How are things going with your classes and everything?'",
+    hints: {
+      response1: {
+        hint1: {
+          title: "Response Type: Be Honest About Challenges",
+          content: "One way to respond is to be honest if you're struggling with something. Counselors are there to help and it's okay to ask for support."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Actually, I've been having some trouble with...\"",
+            "\"Honestly, things have been kind of...\"",
+            "\"I'm glad you asked because...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Actually, I've been having some trouble keeping up in my math class. The pace is really fast and I'm getting stressed about it.\""
+        }
+      },
+      response2: {
+        hint1: {
+          title: "Different Approach: Report Things Are Okay",
+          content: "Another way to respond is to let them know things are going fine, especially if that's true. This keeps communication open."
+        },
+        hint2: {
+          title: "Try starting with:",
+          list: [
+            "\"Things are going pretty well...\"",
+            "\"I think I'm doing okay with...\"",
+            "\"Everything's fine, I'm managing...\""
+          ]
+        },
+        hint3: {
+          title: "Full Example:",
+          content: "\"Things are going pretty well. My grades are where I want them to be and I'm staying on top of my work. Thanks for checking in though.\""
+        }
+      }
+    }
+  }
+];
+
+let currentScenario = null;
+let activeHints = { 1: new Set(), 2: new Set() };
+
+// Initialize the app
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
+  renderScenarioButtons();
+  setupEventListeners();
+}
+
+function renderScenarioButtons() {
+  const grid = document.getElementById('scenarioGrid');
+  grid.innerHTML = scenarios.map(scenario => `
+    <button class="scenario-btn" data-id="${scenario.id}">
+      <strong>${scenario.title}</strong>
+    </button>
+  `).join('');
+}
+
+function setupEventListeners() {
+  // Scenario selection
+  document.getElementById('scenarioGrid').addEventListener('click', (e) => {
+    const btn = e.target.closest('.scenario-btn');
+    if (btn) {
+      const id = parseInt(btn.dataset.id);
+      loadScenario(id);
+    }
+  });
+
+  // Hint buttons
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.hint-btn');
+    if (btn) {
+      toggleHint(btn);
+    }
+  });
+
+  // Response inputs - track progress
+  document.getElementById('response1').addEventListener('input', updateProgress);
+  document.getElementById('response2').addEventListener('input', updateProgress);
+
+  // Action buttons
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  document.getElementById('nextScenarioBtn').addEventListener('click', loadNextScenario);
+  document.getElementById('changeScenarioBtn').addEventListener('click', () => {
+    document.querySelector('.scenario-selector').scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+function loadScenario(id) {
+  currentScenario = scenarios.find(s => s.id === id);
+  if (!currentScenario) return;
+
+  // Update active button
+  document.querySelectorAll('.scenario-btn').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.id) === id);
+  });
+
+  // Show activity container
+  document.getElementById('activityContainer').style.display = 'block';
+  
+  // Display scenario
+  document.getElementById('scenarioDisplay').innerHTML = `
+    <h3>Scenario ${currentScenario.id}</h3>
+    <p class="scenario-text">${currentScenario.text}</p>
+  `;
+
+  // Load hints
+  loadHintsForScenario();
+
+  // Clear all inputs and hints
+  document.getElementById('response1').value = '';
+  document.getElementById('response2').value = '';
+  document.getElementById('differences').value = '';
+  document.getElementById('prediction1').value = '';
+  document.getElementById('prediction2').value = '';
+  
+  activeHints = { 1: new Set(), 2: new Set() };
+  document.querySelectorAll('.hint-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.hint-content').forEach(content => content.classList.remove('show'));
+
+  updateProgress();
+
+  // Scroll to activity
+  document.getElementById('activityContainer').scrollIntoView({ behavior: 'smooth' });
+}
+
+function loadHintsForScenario() {
+  // Display response types as visible badges
+  const r1Type = currentScenario.hints.response1.hint1.title.replace('Response Type: ', '');
+  const r2Type = currentScenario.hints.response2.hint1.title.replace('Different Approach: ', '').replace('Response Type: ', '');
+  
+  document.getElementById('type-1').textContent = '💡 ' + r1Type;
+  document.getElementById('type-2').textContent = '💡 ' + r2Type;
+
+  // Load hints for Response 1 (now hint1 is the old hint2, etc.)
+  const r1Hints = currentScenario.hints.response1;
+  loadHint(1, 1, { title: 'More Details', content: r1Hints.hint1.content });
+  loadHint(1, 2, r1Hints.hint2);
+  loadHint(1, 3, r1Hints.hint3);
+
+  // Load hints for Response 2
+  const r2Hints = currentScenario.hints.response2;
+  loadHint(2, 1, { title: 'More Details', content: r2Hints.hint1.content });
+  loadHint(2, 2, r2Hints.hint2);
+  loadHint(2, 3, r2Hints.hint3);
+}
+
+function loadHint(responseNum, hintNum, hintData) {
+  const hintElement = document.getElementById(`hint${hintNum}-${responseNum}`);
+  
+  let content = `<h4>${hintData.title}</h4>`;
+  
+  if (hintData.content) {
+    content += `<p>${hintData.content}</p>`;
+  }
+  
+  if (hintData.list) {
+    content += '<ul class="hint-list">';
+    hintData.list.forEach(item => {
+      content += `<li>${item}</li>`;
+    });
+    content += '</ul>';
+  }
+  
+  hintElement.innerHTML = content;
+}
+
+function toggleHint(btn) {
+  const hintNum = btn.dataset.hint;
+  const responseNum = btn.dataset.response;
+  const hintContent = document.getElementById(`hint${hintNum}-${responseNum}`);
+  
+  const isActive = btn.classList.contains('active');
+  
+  if (isActive) {
+    btn.classList.remove('active');
+    hintContent.classList.remove('show');
+    activeHints[responseNum].delete(hintNum);
+  } else {
+    btn.classList.add('active');
+    hintContent.classList.add('show');
+    activeHints[responseNum].add(hintNum);
+  }
+}
+
+function updateProgress() {
+  const response1 = document.getElementById('response1').value.trim();
+  const response2 = document.getElementById('response2').value.trim();
+  
+  const checkmarks = [];
+  if (response1.length > 10) checkmarks.push('✓');
+  if (response2.length > 10) checkmarks.push('✓');
+  
+  document.getElementById('progressCheckmarks').innerHTML = 
+    checkmarks.map(c => `<span class="checkmark">${c}</span>`).join(' ');
+}
+
+function loadNextScenario() {
+  if (!currentScenario) return;
+  
+  const currentIndex = scenarios.findIndex(s => s.id === currentScenario.id);
+  const nextIndex = (currentIndex + 1) % scenarios.length;
+  loadScenario(scenarios[nextIndex].id);
+}
+
+function resetAll() {
+  if (confirm('Are you sure you want to reset? This will clear all your responses.')) {
+    currentScenario = null;
+    document.getElementById('activityContainer').style.display = 'none';
+    document.querySelectorAll('.scenario-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.scenario-selector').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+</script>
+
+</body>
+</html>

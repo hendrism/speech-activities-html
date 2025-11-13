@@ -1,0 +1,184 @@
+{
+  "id": "initialR",
+  "name": "Initial /r/",
+  "blends": {
+    "r": [
+      {
+        "text": "rabbit",
+        "pos": "noun"
+      },
+      {
+        "text": "radio",
+        "pos": "noun"
+      },
+      {
+        "text": "rain",
+        "pos": "noun"
+      },
+      {
+        "text": "rainbow",
+        "pos": "noun"
+      },
+      {
+        "text": "rake",
+        "pos": "noun"
+      },
+      {
+        "text": "ramp",
+        "pos": "noun"
+      },
+      {
+        "text": "ranch",
+        "pos": "noun"
+      },
+      {
+        "text": "raspberry",
+        "pos": "noun"
+      },
+      {
+        "text": "rat",
+        "pos": "noun"
+      },
+      {
+        "text": "rectangle",
+        "pos": "noun"
+      },
+      {
+        "text": "reindeer",
+        "pos": "noun"
+      },
+      {
+        "text": "restaurant",
+        "pos": "noun"
+      },
+      {
+        "text": "ribbon",
+        "pos": "noun"
+      },
+      {
+        "text": "rice",
+        "pos": "noun"
+      },
+      {
+        "text": "riddle",
+        "pos": "noun"
+      },
+      {
+        "text": "ring",
+        "pos": "noun"
+      },
+      {
+        "text": "river",
+        "pos": "noun"
+      },
+      {
+        "text": "road",
+        "pos": "noun"
+      },
+      {
+        "text": "robot",
+        "pos": "noun"
+      },
+      {
+        "text": "rock",
+        "pos": "noun"
+      },
+      {
+        "text": "rocket",
+        "pos": "noun"
+      },
+      {
+        "text": "roller",
+        "pos": "noun"
+      },
+      {
+        "text": "rooster",
+        "pos": "noun"
+      },
+      {
+        "text": "rope",
+        "pos": "noun"
+      },
+      {
+        "text": "rose",
+        "pos": "noun"
+      },
+      {
+        "text": "rug",
+        "pos": "noun"
+      },
+      {
+        "text": "ruler",
+        "pos": "noun"
+      },
+      {
+        "text": "run",
+        "pos": "verb"
+      },
+      {
+        "text": "race",
+        "pos": "verb"
+      },
+      {
+        "text": "rake",
+        "pos": "verb"
+      },
+      {
+        "text": "read",
+        "pos": "verb"
+      },
+      {
+        "text": "rest",
+        "pos": "verb"
+      },
+      {
+        "text": "ride",
+        "pos": "verb"
+      },
+      {
+        "text": "rise",
+        "pos": "verb"
+      },
+      {
+        "text": "row",
+        "pos": "verb"
+      },
+      {
+        "text": "rush",
+        "pos": "verb"
+      },
+      {
+        "text": "red",
+        "pos": "adjective"
+      },
+      {
+        "text": "ready",
+        "pos": "adjective"
+      },
+      {
+        "text": "real",
+        "pos": "adjective"
+      },
+      {
+        "text": "rich",
+        "pos": "adjective"
+      },
+      {
+        "text": "right",
+        "pos": "adjective"
+      },
+      {
+        "text": "round",
+        "pos": "adjective"
+      },
+      {
+        "text": "rowdy",
+        "pos": "adjective"
+      },
+      {
+        "text": "royal",
+        "pos": "adjective"
+      }
+    ]
+  }
+}

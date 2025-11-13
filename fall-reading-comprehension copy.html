@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fall Reading Stories</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #fef5e7, #fdebd0);
+            min-height: 100vh;
+        }
+        h1 {
+            color: #d35400;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .navigation {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            text-align: center;
+        }
+        .nav-btn {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover {
+            background: #e67e22;
+        }
+        .nav-btn.active {
+            background: #d35400;
+            transform: scale(1.1);
+        }
+        .story {
+            background: white;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            display: none;
+        }
+        .story.active {
+            display: block;
+        }
+        h2 {
+            color: #e67e22;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 10px;
+        }
+        .story-text {
+            line-height: 1.8;
+            font-size: 1.1em;
+            color: #2c3e50;
+            background: #fef9f3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+        }
+        .question-text {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+        .help-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .help-btn:hover {
+            background: #2980b9;
+        }
+        .help-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        .choices {
+            margin-top: 15px;
+            display: none;
+        }
+        .choice {
+            background: white;
+            border: 2px solid #3498db;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .choice:hover {
+            background: #ebf5fb;
+            transform: translateX(5px);
+        }
+        .choice.correct {
+            background: #d5f4e6;
+            border-color: #27ae60;
+            font-weight: bold;
+        }
+        .choice.incorrect {
+            background: #fadbd8;
+            border-color: #e74c3c;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.correct {
+            background: #d5f4e6;
+            color: #27ae60;
+            display: block;
+        }
+        .feedback.incorrect {
+            background: #fadbd8;
+            color: #e74c3c;
+            display: block;
+        }
+        .next-btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .next-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .next-btn:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        .next-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍂 Fall Reading Stories 🍁</h1>
+    
+    <div class="navigation" id="navigation"></div>
+    
+    <div id="stories-container"></div>
+    
+    <div class="next-btn-container">
+        <button class="next-btn" id="next-btn" onclick="nextStory()">Next Story →</button>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        
+        const stories = [
+            {
+                title: "Apple Picking Day",
+                text: [
+                    "Liam and his mom go to the apple farm.",
+                    "They see big red apples on the trees.",
+                    "Liam picks apples and puts them in a basket.",
+                    "The air feels cool and smells sweet.",
+                    "They eat warm apple pie when they get home."
+                ],
+                questions: [
+                    {
+                        q: "Who goes to the farm?",
+                        correct: "Liam and his mom",
+                        wrong: ["Liam and his dad", "Mia and her class", "Emma and her sister"]
+                    },
+                    {
+                        q: "What do they pick?",
+                        correct: "Apples",
+                        wrong: ["Pumpkins", "Leaves", "Corn"]
+                    },
+                    {
+                        q: "Where do they go?",
+                        correct: "The apple farm",
+                        wrong: ["The pumpkin patch", "The park", "The school"]
+                    },
+                    {
+                        q: "When do they go apple picking?",
+                        correct: "During the day",
+                        wrong: ["At night", "In the winter", "In the morning before sunrise"]
+                    }
+                ]
+            },
+            {
+                title: "The Pumpkin Patch",
+                text: [
+                    "Mia and her class visit the pumpkin patch.",
+                    "She looks for a small, round pumpkin.",
+                    "Her friend finds a big, lumpy one.",
+                    "They ride on a hay wagon together.",
+                    "Everyone laughs and waves to the farmer."
+                ],
+                questions: [
+                    {
+                        q: "Who goes to the pumpkin patch?",
+                        correct: "Mia and her class",
+                        wrong: ["Mia and her mom", "Caleb and his dad", "Carlos and his family"]
+                    },
+                    {
+                        q: "What does Mia look for?",
+                        correct: "A small, round pumpkin",
+                        wrong: ["A big, lumpy pumpkin", "Red apples", "Yellow leaves"]
+                    },
+                    {
+                        q: "Where do they ride?",
+                        correct: "On a hay wagon",
+                        wrong: ["On a bus", "On a big slide", "In a corn maze"]
+                    },
+                    {
+                        q: "When do they visit?",
+                        correct: "During a school day",
+                        wrong: ["After school", "At night", "In the summer"]
+                    }
+                ]
+            },
+            {
+                title: "Leaves Falling Down",
+                text: [
+                    "Caleb walks in the park with his dad.",
+                    "The trees have red, orange, and yellow leaves.",
+                    "He kicks the leaves and watches them fly.",
+                    "They take a picture by a tall tree.",
+                    "The wind makes the leaves dance."
+                ],
+                questions: [
+                    {
+                        q: "Who walks in the park?",
+                        correct: "Caleb and his dad",
+                        wrong: ["Caleb and his mom", "Liam and his mom", "Evan and his friends"]
+                    },
+                    {
+                        q: "What color are the leaves?",
+                        correct: "Red, orange, and yellow",
+                        wrong: ["Green and brown", "Purple and pink", "Only red"]
+                    },
+                    {
+                        q: "Where do they take a picture?",
+                        correct: "By a tall tree",
+                        wrong: ["At the apple farm", "On a hay wagon", "In the corn maze"]
+                    },
+                    {
+                        q: "When do the leaves fall?",
+                        correct: "In the fall",
+                        wrong: ["In the spring", "In the summer", "In the winter"]
+                    }
+                ]
+            },
+            {
+                title: "Hot Chocolate Time",
+                text: [
+                    "Emma feels cold after school.",
+                    "Her sister makes hot chocolate with marshmallows.",
+                    "They sit on the couch under a blanket.",
+                    "They watch the rain fall outside.",
+                    "The drink warms their hands and hearts."
+                ],
+                questions: [
+                    {
+                        q: "Who makes the hot chocolate?",
+                        correct: "Emma's sister",
+                        wrong: ["Emma's mom", "Emma's dad", "Emma's brother"]
+                    },
+                    {
+                        q: "What do they drink?",
+                        correct: "Hot chocolate with marshmallows",
+                        wrong: ["Warm apple cider", "Cold milk", "Orange juice"]
+                    },
+                    {
+                        q: "Where do they sit?",
+                        correct: "On the couch under a blanket",
+                        wrong: ["At the kitchen table", "In the park", "On a hay wagon"]
+                    },
+                    {
+                        q: "When do they drink hot chocolate?",
+                        correct: "After school",
+                        wrong: ["Before school", "During lunch", "At midnight"]
+                    }
+                ]
+            },
+            {
+                title: "Raking the Yard",
+                text: [
+                    "Mr. Lee and his students rake the school yard.",
+                    "The leaves make a giant pile.",
+                    "Everyone jumps into the pile and laughs.",
+                    "They take turns using the rake.",
+                    "The yard looks clean when they finish."
+                ],
+                questions: [
+                    {
+                        q: "Who rakes the yard?",
+                        correct: "Mr. Lee and his students",
+                        wrong: ["Mr. Lee and his family", "The farmer", "Carlos and his brother"]
+                    },
+                    {
+                        q: "What do they jump into?",
+                        correct: "A pile of leaves",
+                        wrong: ["A pile of pumpkins", "A pile of apples", "A pile of snow"]
+                    },
+                    {
+                        q: "Where do they rake?",
+                        correct: "The school yard",
+                        wrong: ["The apple farm", "The park", "The corn maze"]
+                    },
+                    {
+                        q: "When is the yard clean?",
+                        correct: "When they finish",
+                        wrong: ["Before they start", "In the morning", "Never"]
+                    }
+                ]
+            },
+            {
+                title: "Football Game Fun",
+                text: [
+                    "Carlos goes to a football game with his family.",
+                    "He cheers for the red team.",
+                    "They eat popcorn and drink warm cider.",
+                    "The players run fast across the field.",
+                    "It gets dark when the game ends."
+                ],
+                questions: [
+                    {
+                        q: "Who goes to the game?",
+                        correct: "Carlos and his family",
+                        wrong: ["Carlos and his class", "Carlos alone", "Mr. Lee and his students"]
+                    },
+                    {
+                        q: "What color is Carlos's team?",
+                        correct: "Red",
+                        wrong: ["Blue", "Green", "Yellow"]
+                    },
+                    {
+                        q: "Where do they watch the game?",
+                        correct: "At a football field",
+                        wrong: ["At home on TV", "At the school", "At the park"]
+                    },
+                    {
+                        q: "When does it get dark?",
+                        correct: "When the game ends",
+                        wrong: ["Before the game starts", "At halftime", "In the morning"]
+                    }
+                ]
+            },
+            {
+                title: "Scarecrow in the Garden",
+                text: [
+                    "A scarecrow stands tall in the garden.",
+                    "It wears a hat and an old plaid shirt.",
+                    "The wind moves its arms a little bit.",
+                    "Crows fly away when they see it.",
+                    "The farmer smiles at his good work."
+                ],
+                questions: [
+                    {
+                        q: "Who made the scarecrow?",
+                        correct: "The farmer",
+                        wrong: ["Mr. Lee", "Carlos", "Liam's mom"]
+                    },
+                    {
+                        q: "What does the scarecrow wear?",
+                        correct: "A hat and an old plaid shirt",
+                        wrong: ["A crown and a cape", "An orange sweater", "A football uniform"]
+                    },
+                    {
+                        q: "Where does it stand?",
+                        correct: "In the garden",
+                        wrong: ["In the corn maze", "At the pumpkin patch", "In the park"]
+                    },
+                    {
+                        q: "When do the crows fly away?",
+                        correct: "When they see the scarecrow",
+                        wrong: ["When it rains", "When it gets dark", "In the morning"]
+                    }
+                ]
+            },
+            {
+                title: "Fall Festival",
+                text: [
+                    "Nora's family goes to the fall festival downtown.",
+                    "She eats caramel apples and popcorn.",
+                    "Her brother rides the big slide.",
+                    "They dance to the music and play games.",
+                    "The lights shine when the sun goes down."
+                ],
+                questions: [
+                    {
+                        q: "Who goes to the festival?",
+                        correct: "Nora's family",
+                        wrong: ["Nora's class", "Nora and her friends", "Nora alone"]
+                    },
+                    {
+                        q: "What does Nora eat?",
+                        correct: "Caramel apples and popcorn",
+                        wrong: ["Hot chocolate and marshmallows", "Pumpkin pie", "Apple pie"]
+                    },
+                    {
+                        q: "Where is the festival?",
+                        correct: "Downtown",
+                        wrong: ["At the school", "At the apple farm", "In the park"]
+                    },
+                    {
+                        q: "When do the lights shine?",
+                        correct: "When the sun goes down",
+                        wrong: ["In the morning", "At noon", "Never"]
+                    }
+                ]
+            },
+            {
+                title: "The Corn Maze",
+                text: [
+                    "Evan and his friends go in the corn maze.",
+                    "The corn is taller than they are!",
+                    "They follow signs to find the way out.",
+                    "They laugh when they get lost.",
+                    "At the end, they eat pumpkin donuts."
+                ],
+                questions: [
+                    {
+                        q: "Who goes in the maze?",
+                        correct: "Evan and his friends",
+                        wrong: ["Evan and his family", "Evan and his class", "Evan and his sister"]
+                    },
+                    {
+                        q: "What do they eat?",
+                        correct: "Pumpkin donuts",
+                        wrong: ["Apple pie", "Caramel apples", "Hot chocolate"]
+                    },
+                    {
+                        q: "Where do they walk?",
+                        correct: "In a corn maze",
+                        wrong: ["In the park", "At the football field", "In the garden"]
+                    },
+                    {
+                        q: "When do they laugh?",
+                        correct: "When they get lost",
+                        wrong: ["When they find the exit", "Before they go in", "When they eat donuts"]
+                    }
+                ]
+            },
+            {
+                title: "Sweater Weather",
+                text: [
+                    "Lila puts on her favorite orange sweater.",
+                    "The morning air feels cool.",
+                    "She walks to the bus stop with her friends.",
+                    "They see fog on the grass.",
+                    "Soon, the sun shines through the clouds."
+                ],
+                questions: [
+                    {
+                        q: "Who wears a sweater?",
+                        correct: "Lila",
+                        wrong: ["Nora", "Emma", "Mia"]
+                    },
+                    {
+                        q: "What does the air feel like?",
+                        correct: "Cool",
+                        wrong: ["Hot", "Warm", "Freezing cold"]
+                    },
+                    {
+                        q: "Where is Lila going?",
+                        correct: "To the bus stop",
+                        wrong: ["To the apple farm", "To the football game", "To the festival"]
+                    },
+                    {
+                        q: "When does the sun shine?",
+                        correct: "Soon, through the clouds",
+                        wrong: ["Never", "At night", "Before the fog"]
+                    }
+                ]
+            }
+        ];
+
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function createStory(story, index) {
+            const storyDiv = document.createElement('div');
+            storyDiv.className = index === 0 ? 'story active' : 'story';
+            storyDiv.id = `story-${index}`;
+            
+            let html = `<h2>${story.title}</h2>`;
+            html += `<div class="story-text">`;
+            story.text.forEach(line => {
+                html += `${line}<br>`;
+            });
+            html += `</div>`;
+            
+            story.questions.forEach((question, qIndex) => {
+                const questionId = `q-${index}-${qIndex}`;
+                html += `
+                    <div class="question">
+                        <div class="question-text">${question.q}</div>
+                        <button class="help-btn" onclick="showHelp('${questionId}')">I need help</button>
+                        <div class="choices" id="${questionId}-choices"></div>
+                        <div class="feedback" id="${questionId}-feedback"></div>
+                    </div>
+                `;
+            });
+            
+            storyDiv.innerHTML = html;
+            return storyDiv;
+        }
+
+        function goToStory(index) {
+            currentStory = index;
+            
+            // Hide all stories
+            const allStories = document.querySelectorAll('.story');
+            allStories.forEach(story => story.classList.remove('active'));
+            
+            // Show selected story
+            document.getElementById(`story-${index}`).classList.add('active');
+            
+            // Update navigation buttons
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Update next button
+            const nextBtn = document.getElementById('next-btn');
+            if (index === stories.length - 1) {
+                nextBtn.textContent = 'All Done! 🎉';
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.textContent = 'Next Story →';
+                nextBtn.disabled = false;
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function nextStory() {
+            if (currentStory < stories.length - 1) {
+                goToStory(currentStory + 1);
+            }
+        }
+
+        function showHelp(questionId) {
+            const [_, storyIndex, qIndex] = questionId.split('-').map(Number);
+            const question = stories[storyIndex].questions[qIndex];
+            
+            const allChoices = [question.correct, ...question.wrong];
+            const shuffled = shuffle(allChoices);
+            
+            const choicesDiv = document.getElementById(`${questionId}-choices`);
+            choicesDiv.innerHTML = '';
+            choicesDiv.style.display = 'block';
+            
+            shuffled.forEach(choice => {
+                const choiceDiv = document.createElement('div');
+                choiceDiv.className = 'choice';
+                choiceDiv.textContent = choice;
+                choiceDiv.onclick = () => checkAnswer(questionId, choice, question.correct);
+                choicesDiv.appendChild(choiceDiv);
+            });
+            
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = 'Help shown';
+        }
+
+        function checkAnswer(questionId, selected, correct) {
+            const choicesDiv = document.getElementById(`${questionId}-choices`);
+            const choices = choicesDiv.getElementsByClassName('choice');
+            const feedbackDiv = document.getElementById(`${questionId}-feedback`);
+            
+            for (let choice of choices) {
+                choice.style.pointerEvents = 'none';
+                if (choice.textContent === correct) {
+                    choice.classList.add('correct');
+                } else if (choice.textContent === selected) {
+                    choice.classList.add('incorrect');
+                }
+            }
+            
+            if (selected === correct) {
+                feedbackDiv.textContent = '✓ Great job! That\'s correct!';
+                feedbackDiv.className = 'feedback correct';
+            } else {
+                feedbackDiv.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        // Initialize
+        const container = document.getElementById('stories-container');
+        const navigation = document.getElementById('navigation');
+        
+        // Create navigation buttons
+        stories.forEach((story, index) => {
+            const navBtn = document.createElement('button');
+            navBtn.className = index === 0 ? 'nav-btn active' : 'nav-btn';
+            navBtn.textContent = `${index + 1}`;
+            navBtn.onclick = () => goToStory(index);
+            navigation.appendChild(navBtn);
+        });
+        
+        // Create all stories
+        stories.forEach((story, index) => {
+            container.appendChild(createStory(story, index));
+        });
+    </script>
+</body>
+</html>

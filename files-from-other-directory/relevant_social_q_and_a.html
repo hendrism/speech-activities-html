@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relevant Response Practice</title>
+<style>
+  body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f0f9ff;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  header {
+    background: white;
+    border-bottom: 3px solid #bfdbfe;
+    padding: 15px 20px;
+    text-align: center;
+    color: #2563eb;
+    font-weight: 700;
+  }
+  main { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+  .practice-box {
+    background: white;
+    border: 3px solid #bfdbfe;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .question {
+    background: #eff6ff;
+    border: 3px solid #3b82f6;
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .response-input {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 18px;
+    min-height: 100px;
+    font-family: inherit;
+  }
+  .response-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  }
+  .examples {
+    margin-top: 20px;
+    text-align: left;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 15px;
+  }
+  .examples h4 { margin: 0 0 10px; color: #475569; }
+  .examples ul { margin: 0; padding-left: 20px; }
+  .examples li { margin-bottom: 6px; color: #334155; font-style: italic; }
+  .next-btn {
+    margin-top: 25px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .next-btn:hover { background: #1d4ed8; }
+</style>
+</head>
+<body>
+  <header>💬 Relevant Response Practice</header>
+  <main>
+    <div class="practice-box">
+      <div class="question" id="questionText">What did you eat for lunch today?</div>
+      <textarea class="response-input" id="responseInput" placeholder="Type a relevant response here..."></textarea>
+      <div class="examples" id="exampleBox">
+        <h4>Example Relevant Responses:</h4>
+        <ul>
+          <li>I ate a sandwich and an apple for lunch today.</li>
+          <li>For lunch, I had pizza with my friends in the cafeteria.</li>
+        </ul>
+      </div>
+      <button class="next-btn" id="nextQuestionBtn">Next Question →</button>
+    </div>
+  </main>
+
+<script>
+const questions = [
+  { q: "What did you eat for lunch today?", examples: ["I ate a sandwich and an apple.", "For lunch, I had pizza with my friends."] },
+  { q: "Who do you usually sit with at lunch?", examples: ["I usually sit with my best friend Sarah.", "I sit with a group of kids from my class."] },
+  { q: "What is something fun you did this weekend?", examples: ["I went to the park with my family.", "I played video games with my cousin."] },
+  { q: "Where do you like to go after school?", examples: ["I like to go home and play outside.", "Sometimes I go to the library with my mom."] },
+  { q: "How do you help at home?", examples: ["I help by washing dishes.", "I feed our dog every morning."] },
+  { q: "What do you like to do with friends?", examples: ["I like to ride bikes with my friends.", "We usually play soccer together."] },
+  { q: "What do you usually do at recess?", examples: ["I play tag with my friends.", "Sometimes I sit and read a book."] },
+  { q: "What is your favorite thing to do after school?", examples: ["I like to watch cartoons.", "I usually play outside with my neighbors."] },
+  { q: "What is your favorite subject in school?", examples: ["My favorite subject is art.", "I really like math because it’s challenging."] },
+  { q: "Who do you talk to when you need help?", examples: ["I talk to my mom.", "I usually ask my teacher for help."] },
+  { q: "What is your favorite game to play?", examples: ["My favorite game is basketball.", "I like to play Uno with my family."] },
+  { q: "What do you like to eat for breakfast?", examples: ["I like to eat cereal.", "I usually eat toast with peanut butter."] },
+  { q: "What is something you are really good at?", examples: ["I’m really good at drawing.", "I’m good at building with Legos."] },
+  { q: "Where do you go shopping with your family?", examples: ["We go shopping at Walmart.", "We usually go to the grocery store near our house."] },
+  { q: "What do you like to watch on TV?", examples: ["I like watching cartoons.", "My favorite show is about cooking competitions."] },
+  { q: "What is your favorite holiday?", examples: ["My favorite holiday is Halloween.", "I like Christmas because of the lights and music."] },
+  { q: "What do you like to do when it rains?", examples: ["I like to read books inside.", "Sometimes I play board games with my family."] },
+  { q: "What is your favorite thing to do outside?", examples: ["I like to ride my bike.", "My favorite thing is playing soccer at the park."] },
+  { q: "Who do you like to spend time with on weekends?", examples: ["I like to spend time with my cousins.", "On weekends, I hang out with my dad."] },
+  { q: "What is something you want to learn how to do?", examples: ["I want to learn how to swim.", "I would like to learn to play guitar."] },
+  { q: "What do you do when you feel bored?", examples: ["I draw pictures when I’m bored.", "I go outside and play with my brother."] },
+];
+
+let current = 0;
+
+function loadQuestion() {
+  document.getElementById("questionText").textContent = questions[current].q;
+  const exBox = document.getElementById("exampleBox").querySelector("ul");
+  exBox.innerHTML = "";
+  questions[current].examples.forEach(ex => {
+    const li = document.createElement("li");
+    li.textContent = ex;
+    exBox.appendChild(li);
+  });
+  document.getElementById("responseInput").value = "";
+}
+
+document.getElementById("nextQuestionBtn").addEventListener("click", () => {
+  current = (current + 1) % questions.length;
+  loadQuestion();
+});
+
+loadQuestion();
+</script>
+</body>
+</html>

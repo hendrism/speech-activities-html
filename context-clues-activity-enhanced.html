@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Clues Activity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            border-bottom: 3px solid #0ea5e9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .bar {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .bar h1 {
+            color: #0ea5e9;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .level-tabs {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .level-tab {
+            padding: 10px 20px;
+            background-color: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        
+        .level-tab:hover {
+            background-color: #f0f9ff;
+            border-color: #0ea5e9;
+            color: #0ea5e9;
+            transform: translateY(-1px);
+        }
+        
+        .level-tab.active {
+            background-color: #0ea5e9;
+            color: white;
+            border-color: #0ea5e9;
+        }
+        
+        .info-section {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .info-box {
+            background-color: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .info-box h3 {
+            color: #0ea5e9;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .info-box p {
+            line-height: 1.6;
+            color: #0f172a;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-section {
+            background-color: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .filter-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #0ea5e9;
+        }
+        
+        .checkbox-item label {
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            color: #0f172a;
+        }
+        
+        .apply-btn {
+            padding: 12px 24px;
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .apply-btn:hover {
+            background: #0284c7;
+            transform: translateY(-1px);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .sentence-card {
+            display: none;
+            background-color: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .sentence-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .example-card {
+            border: 3px solid #fbbf24;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+        
+        .example-badge {
+            display: inline-block;
+            background-color: #fbbf24;
+            color: #78350f;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .example-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border-left: 4px solid #fbbf24;
+        }
+        
+        .example-section:last-of-type {
+            margin-bottom: 24px;
+        }
+        
+        .example-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+        
+        .example-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+        
+        .example-explanation {
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #0ea5e9;
+            transition: width 0.3s ease;
+        }
+        
+        .sentence-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .sentence-number {
+            background-color: #0ea5e9;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .clue-type {
+            background-color: #f0f9ff;
+            color: #0284c7;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #0ea5e9;
+        }
+        
+        .sentence-display {
+            background-color: #f8fafc;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .sentence-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #0f172a;
+        }
+        
+        .target-word {
+            font-weight: 700;
+            color: #0ea5e9;
+            background-color: #f0f9ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .question-section {
+            margin-bottom: 24px;
+        }
+        
+        .question-text {
+            font-size: 17px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        
+        .hint-note {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+        
+        .answer-section {
+            margin-bottom: 24px;
+        }
+        
+        .answer-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        
+        .answer-input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+        }
+        
+        .hint-system {
+            margin-bottom: 24px;
+        }
+        
+        .hint-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        
+        .hint-btn {
+            background: white;
+            border: 2px solid #f59e0b;
+            color: #f59e0b;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .hint-btn:hover {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .hint-btn.revealed {
+            background: #fef3c7;
+            border-color: #d97706;
+            color: #92400e;
+        }
+        
+        .hint-content {
+            display: none;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 8px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .hint-content.show {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hint-content h4 {
+            font-size: 15px;
+            color: #92400e;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .hint-content p {
+            font-size: 15px;
+            color: #0f172a;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .hint-content ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+        
+        .hint-content li {
+            font-size: 15px;
+            color: #0f172a;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        
+        .feedback {
+            display: none;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 15px;
+            font-weight: 600;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .feedback.show {
+            display: block;
+        }
+        
+        .feedback.positive {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+        
+        .feedback.encouraging {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 2px solid #3b82f6;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1;
+        }
+        
+        .prev-btn {
+            background-color: white;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .prev-btn:hover:not(:disabled) {
+            border-color: #0ea5e9;
+            color: #0ea5e9;
+            transform: translateY(-1px);
+        }
+        
+        .prev-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .next-btn {
+            background: #0ea5e9;
+            color: white;
+        }
+        
+        .next-btn:hover:not(:disabled) {
+            background: #0284c7;
+            transform: translateY(-1px);
+        }
+        
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .level-tabs {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+            
+            .level-tab {
+                flex: 1;
+                text-align: center;
+            }
+            
+            .sentence-card {
+                padding: 24px;
+            }
+            
+            .sentence-text {
+                font-size: 16px;
+            }
+            
+            .hint-buttons {
+                flex-direction: column;
+            }
+            
+            .hint-btn {
+                width: 100%;
+            }
+            
+            .navigation {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <h1>🔍 Context Clues Activity</h1>
+            <div class="level-tabs">
+                <button class="level-tab active" onclick="changeLevel('easy')">Easy</button>
+                <button class="level-tab" onclick="changeLevel('medium')">Medium</button>
+                <button class="level-tab" onclick="changeLevel('hard')">Hard</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="info-section">
+        <div class="info-box">
+            <h3>About This Activity</h3>
+            <p>Context clues help you figure out the meaning of unfamiliar words by looking at the words and sentences around them. There are five main types of context clues:</p>
+            <p><strong>Definition:</strong> The meaning is stated directly in the sentence.<br>
+            <strong>Synonym:</strong> A similar word is used nearby.<br>
+            <strong>Antonym:</strong> An opposite word helps explain the meaning.<br>
+            <strong>Example:</strong> Examples of the word are given.<br>
+            <strong>Inference:</strong> You use clues from the whole sentence to figure out the meaning.</p>
+        </div>
+
+        <div class="filter-section">
+            <h3>Select Context Clue Types to Practice:</h3>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="def" value="Definition" checked>
+                    <label for="def">Definition</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="syn" value="Synonym" checked>
+                    <label for="syn">Synonym</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="ant" value="Antonym" checked>
+                    <label for="ant">Antonym</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="ex" value="Example" checked>
+                    <label for="ex">Example</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="inf" value="Inference" checked>
+                    <label for="inf">Inference</label>
+                </div>
+            </div>
+            <button class="apply-btn" onclick="applyFilters()">Apply Filters & Start</button>
+        </div>
+    </div>
+
+    <div class="container" id="sentenceContainer"></div>
+
+    <script>
+        const examples = {
+            easy: {
+                definition: {
+                    text: "A <span class='target-word'>bicycle</span> is a vehicle with two wheels that you ride by pedaling.",
+                    explanation: "The sentence tells us exactly what a bicycle is - 'a vehicle with two wheels that you ride by pedaling.' This is a definition clue."
+                },
+                synonym: {
+                    text: "The movie was <span class='target-word'>scary</span>; it was really frightening!",
+                    explanation: "The word 'frightening' means the same as scary, so it helps us understand what scary means. This is a synonym clue."
+                },
+                antonym: {
+                    text: "The water was <span class='target-word'>cold</span>, not hot.",
+                    explanation: "We know 'hot' is the opposite of cold, so the word 'not hot' helps us understand what cold means. This is an antonym clue."
+                },
+                example: {
+                    text: "We saw many <span class='target-word'>animals</span> at the zoo, like lions, elephants, and monkeys.",
+                    explanation: "The sentence gives examples of animals (lions, elephants, monkeys) to help us understand the word. This is an example clue."
+                },
+                inference: {
+                    text: "She was <span class='target-word'>exhausted</span> after running for an hour without stopping.",
+                    explanation: "We can figure out that 'exhausted' means very tired because running for an hour without stopping would make someone very tired. This is an inference clue."
+                }
+            },
+            medium: {
+                definition: {
+                    text: "The <span class='target-word'>assignment</span> was a task that the teacher gave us to complete at home.",
+                    explanation: "The sentence defines assignment as 'a task that the teacher gave us to complete at home.' This is a definition clue."
+                },
+                synonym: {
+                    text: "The instructions were <span class='target-word'>unclear</span>, making them confusing and hard to follow.",
+                    explanation: "'Confusing' is a synonym for unclear, helping us understand the meaning. This is a synonym clue."
+                },
+                antonym: {
+                    text: "Unlike her <span class='target-word'>timid</span> brother, she was brave and confident.",
+                    explanation: "'Brave and confident' are the opposite of timid, so we can understand that timid means shy or fearful. This is an antonym clue."
+                },
+                example: {
+                    text: "The store sold various <span class='target-word'>beverages</span>, such as juice, soda, and water.",
+                    explanation: "The examples (juice, soda, water) help us understand that beverages are drinks. This is an example clue."
+                },
+                inference: {
+                    text: "The student felt <span class='target-word'>anxious</span> as she waited to give her presentation in front of the class.",
+                    explanation: "We can infer that anxious means nervous or worried because waiting to present would cause those feelings. This is an inference clue."
+                }
+            },
+            hard: {
+                definition: {
+                    text: "The scientist made a <span class='target-word'>hypothesis</span>, which is an educated guess about what might happen in an experiment.",
+                    explanation: "The sentence defines hypothesis as 'an educated guess about what might happen in an experiment.' This is a definition clue."
+                },
+                synonym: {
+                    text: "The lawyer's argument was <span class='target-word'>compelling</span>, presenting such persuasive evidence that everyone was convinced.",
+                    explanation: "'Persuasive' is a synonym for compelling, helping us understand the meaning. This is a synonym clue."
+                },
+                antonym: {
+                    text: "The policy was <span class='target-word'>mandatory</span>, not optional, for all employees.",
+                    explanation: "'Optional' is the opposite of mandatory, so we understand that mandatory means required. This is an antonym clue."
+                },
+                example: {
+                    text: "The museum displayed many <span class='target-word'>artifacts</span>, including ancient pottery, tools, and jewelry.",
+                    explanation: "The examples (pottery, tools, jewelry) help us understand that artifacts are historical objects. This is an example clue."
+                },
+                inference: {
+                    text: "The team worked to <span class='target-word'>collaborate</span> on the project, meeting regularly to share ideas and divide the work.",
+                    explanation: "We can infer that collaborate means to work together because the sentence describes meeting, sharing ideas, and dividing work. This is an inference clue."
+                }
+            }
+        };
+
+        const allSentences = {
+            easy: [
+                // Definition clues
+                { text: "A <span class='target-word'>friend</span> is someone who likes you and you like them back.", type: "Definition", word: "friend" },
+                { text: "When you <span class='target-word'>whisper</span>, you talk very quietly so others can't hear you.", type: "Definition", word: "whisper" },
+                { text: "A <span class='target-word'>puddle</span> is a small pool of water on the ground.", type: "Definition", word: "puddle" },
+                { text: "To <span class='target-word'>giggle</span> means to laugh in a silly, quiet way.", type: "Definition", word: "giggle" },
+                { text: "A <span class='target-word'>snack</span> is a small amount of food you eat between meals.", type: "Definition", word: "snack" },
+                { text: "When you are <span class='target-word'>curious</span>, you want to know more about something.", type: "Definition", word: "curious" },
+                { text: "A <span class='target-word'>shadow</span> is the dark shape made when something blocks light.", type: "Definition", word: "shadow" },
+                { text: "To <span class='target-word'>yawn</span> means to open your mouth wide when you're tired.", type: "Definition", word: "yawn" },
+                { text: "A <span class='target-word'>festival</span> is a special celebration with activities and fun.", type: "Definition", word: "festival" },
+                { text: "When you <span class='target-word'>stretch</span>, you make your body or arms longer.", type: "Definition", word: "stretch" },
+                // Synonym clues
+                { text: "The puppy was <span class='target-word'>tiny</span>; it was so small!", type: "Synonym", word: "tiny" },
+                { text: "I was <span class='target-word'>glad</span> to see my friend; I felt happy.", type: "Synonym", word: "glad" },
+                { text: "The baby was <span class='target-word'>sleepy</span> and tired.", type: "Synonym", word: "sleepy" },
+                { text: "The ice cream was <span class='target-word'>delicious</span>; it tasted really good.", type: "Synonym", word: "delicious" },
+                { text: "The test was <span class='target-word'>easy</span>; it was simple to do.", type: "Synonym", word: "easy" },
+                { text: "The rabbit was <span class='target-word'>quick</span> and fast.", type: "Synonym", word: "quick" },
+                { text: "My room is <span class='target-word'>messy</span> and not neat.", type: "Synonym", word: "messy" },
+                { text: "The story was <span class='target-word'>sad</span>; it made me feel unhappy.", type: "Synonym", word: "sad" },
+                { text: "The ball was <span class='target-word'>round</span> like a circle.", type: "Synonym", word: "round" },
+                { text: "She was <span class='target-word'>brave</span> and not afraid.", type: "Synonym", word: "brave" },
+                // Antonym clues
+                { text: "The pillow was <span class='target-word'>soft</span>, not hard.", type: "Antonym", word: "soft" },
+                { text: "My backpack was <span class='target-word'>heavy</span>, not light.", type: "Antonym", word: "heavy" },
+                { text: "The turtle was <span class='target-word'>slow</span>, not fast.", type: "Antonym", word: "slow" },
+                { text: "The room was <span class='target-word'>dark</span>, not bright.", type: "Antonym", word: "dark" },
+                { text: "My hands were <span class='target-word'>dirty</span>, not clean.", type: "Antonym", word: "dirty" },
+                { text: "The movie was <span class='target-word'>boring</span>, not exciting.", type: "Antonym", word: "boring" },
+                { text: "The knife was <span class='target-word'>sharp</span>, not dull.", type: "Antonym", word: "sharp" },
+                { text: "The answer was <span class='target-word'>wrong</span>, not right.", type: "Antonym", word: "wrong" },
+                { text: "The box was <span class='target-word'>empty</span>, not full.", type: "Antonym", word: "empty" },
+                { text: "The path was <span class='target-word'>straight</span>, not crooked.", type: "Antonym", word: "straight" },
+                // Example clues
+                { text: "We saw many <span class='target-word'>insects</span>, like bees, ants, and butterflies.", type: "Example", word: "insects" },
+                { text: "I like to eat <span class='target-word'>fruit</span>, such as apples, bananas, and grapes.", type: "Example", word: "fruit" },
+                { text: "The farm had many <span class='target-word'>animals</span>, including cows, pigs, and chickens.", type: "Example", word: "animals" },
+                { text: "We played different <span class='target-word'>games</span>, like tag, hide and seek, and hopscotch.", type: "Example", word: "games" },
+                { text: "Mom bought <span class='target-word'>vegetables</span>, such as carrots, broccoli, and tomatoes.", type: "Example", word: "vegetables" },
+                { text: "I have many <span class='target-word'>toys</span>, like dolls, blocks, and puzzles.", type: "Example", word: "toys" },
+                { text: "We use different <span class='target-word'>colors</span>, such as red, blue, and yellow.", type: "Example", word: "colors" },
+                { text: "The store sells <span class='target-word'>drinks</span>, like milk, juice, and water.", type: "Example", word: "drinks" },
+                { text: "I saw many <span class='target-word'>birds</span>, including robins, blue jays, and sparrows.", type: "Example", word: "birds" },
+                { text: "We learned about <span class='target-word'>shapes</span>, such as circles, squares, and triangles.", type: "Example", word: "shapes" },
+                // Inference clues
+                { text: "She was <span class='target-word'>hungry</span> because she hadn't eaten all day and her stomach was growling.", type: "Inference", word: "hungry" },
+                { text: "The boy was <span class='target-word'>excited</span> about his birthday party and couldn't stop smiling.", type: "Inference", word: "excited" },
+                { text: "After playing outside in the sun all day, I was <span class='target-word'>thirsty</span>.", type: "Inference", word: "thirsty" },
+                { text: "The kitten was <span class='target-word'>afraid</span> of the loud thunder and hid under the bed.", type: "Inference", word: "afraid" },
+                { text: "She felt <span class='target-word'>proud</span> when she won first place in the race.", type: "Inference", word: "proud" },
+                { text: "He was <span class='target-word'>surprised</span> when everyone jumped out and yelled 'Happy Birthday!'", type: "Inference", word: "surprised" },
+                { text: "The dog was <span class='target-word'>lonely</span> when his family left and he was all by himself.", type: "Inference", word: "lonely" },
+                { text: "She felt <span class='target-word'>dizzy</span> after spinning around in circles many times.", type: "Inference", word: "dizzy" },
+                { text: "The children were <span class='target-word'>noisy</span> during recess, laughing and shouting while they played.", type: "Inference", word: "noisy" },
+                { text: "He was <span class='target-word'>gentle</span> with the baby bird, carefully holding it in his hands.", type: "Inference", word: "gentle" }
+            ],
+            medium: [
+                // Definition clues
+                { text: "The <span class='target-word'>principal</span> is the person who is in charge of the school.", type: "Definition", word: "principal" },
+                { text: "A <span class='target-word'>microscope</span> is a tool that makes tiny things look much bigger.", type: "Definition", word: "microscope" },
+                { text: "When you <span class='target-word'>observe</span>, you watch something carefully to learn about it.", type: "Definition", word: "observe" },
+                { text: "A <span class='target-word'>biography</span> is a book that tells the story of someone's life.", type: "Definition", word: "biography" },
+                { text: "To <span class='target-word'>estimate</span> means to make a good guess about how much or how many.", type: "Definition", word: "estimate" },
+                { text: "A <span class='target-word'>habitat</span> is the natural home where an animal or plant lives.", type: "Definition", word: "habitat" },
+                { text: "When you <span class='target-word'>predict</span>, you say what you think will happen in the future.", type: "Definition", word: "predict" },
+                { text: "An <span class='target-word'>opinion</span> is what someone thinks or feels about something.", type: "Definition", word: "opinion" },
+                { text: "A <span class='target-word'>decade</span> is a period of ten years.", type: "Definition", word: "decade" },
+                { text: "To <span class='target-word'>conserve</span> means to save something and not waste it.", type: "Definition", word: "conserve" },
+                // Synonym clues
+                { text: "The hiker was <span class='target-word'>weary</span> after climbing the mountain; she felt tired and needed rest.", type: "Synonym", word: "weary" },
+                { text: "The instructions were <span class='target-word'>complex</span> and difficult to understand.", type: "Synonym", word: "complex" },
+                { text: "The store had a <span class='target-word'>variety</span> of items, with many different choices.", type: "Synonym", word: "variety" },
+                { text: "She was <span class='target-word'>determined</span> to finish the project; nothing would stop her commitment.", type: "Synonym", word: "determined" },
+                { text: "The puppy was <span class='target-word'>adorable</span> and really cute.", type: "Synonym", word: "adorable" },
+                { text: "The book was <span class='target-word'>fascinating</span>; it was very interesting.", type: "Synonym", word: "fascinating" },
+                { text: "His behavior was <span class='target-word'>peculiar</span>, odd, and unusual.", type: "Synonym", word: "peculiar" },
+                { text: "The meal was <span class='target-word'>abundant</span>, with plenty of food for everyone.", type: "Synonym", word: "abundant" },
+                { text: "The painting was <span class='target-word'>vivid</span>, with bright and colorful details.", type: "Synonym", word: "vivid" },
+                { text: "She gave a <span class='target-word'>brief</span> answer; it was short and quick.", type: "Synonym", word: "brief" },
+                // Antonym clues
+                { text: "The water was <span class='target-word'>shallow</span>, not deep, only coming up to my ankles.", type: "Antonym", word: "shallow" },
+                { text: "Her handwriting was <span class='target-word'>neat</span>, not messy or hard to read.", type: "Antonym", word: "neat" },
+                { text: "The path was <span class='target-word'>rough</span>, not smooth, with lots of rocks and bumps.", type: "Antonym", word: "rough" },
+                { text: "He was <span class='target-word'>confident</span> about the test, not worried or unsure.", type: "Antonym", word: "confident" },
+                { text: "The instructions were <span class='target-word'>simple</span>, not complicated or confusing.", type: "Antonym", word: "simple" },
+                { text: "The fabric was <span class='target-word'>coarse</span>, not soft or silky.", type: "Antonym", word: "coarse" },
+                { text: "The room was <span class='target-word'>spacious</span>, not cramped or crowded.", type: "Antonym", word: "spacious" },
+                { text: "His response was <span class='target-word'>positive</span>, not negative or critical.", type: "Antonym", word: "positive" },
+                { text: "The weather was <span class='target-word'>mild</span>, not extreme or harsh.", type: "Antonym", word: "mild" },
+                { text: "The situation seemed <span class='target-word'>hopeful</span>, not gloomy or discouraging.", type: "Antonym", word: "hopeful" },
+                // Example clues
+                { text: "The library has many <span class='target-word'>resources</span>, such as books, computers, and magazines.", type: "Example", word: "resources" },
+                { text: "We studied different <span class='target-word'>landforms</span>, including mountains, valleys, and plateaus.", type: "Example", word: "landforms" },
+                { text: "The restaurant served various <span class='target-word'>cuisines</span>, like Italian, Mexican, and Chinese food.", type: "Example", word: "cuisines" },
+                { text: "Athletes participate in many <span class='target-word'>sports</span>, such as basketball, soccer, and swimming.", type: "Example", word: "sports" },
+                { text: "The science class learned about <span class='target-word'>elements</span>, including oxygen, hydrogen, and carbon.", type: "Example", word: "elements" },
+                { text: "The orchestra had many <span class='target-word'>instruments</span>, like violins, trumpets, and drums.", type: "Example", word: "instruments" },
+                { text: "The garden grew various <span class='target-word'>herbs</span>, such as basil, mint, and parsley.", type: "Example", word: "herbs" },
+                { text: "We learned about different <span class='target-word'>cultures</span>, including Japanese, Indian, and Egyptian traditions.", type: "Example", word: "cultures" },
+                { text: "The museum displayed many <span class='target-word'>fossils</span>, like dinosaur bones, ancient shells, and plant imprints.", type: "Example", word: "fossils" },
+                { text: "The teacher assigned several <span class='target-word'>tasks</span>, such as reading a chapter, answering questions, and writing an essay.", type: "Example", word: "tasks" },
+                // Inference clues
+                { text: "The detective had to <span class='target-word'>investigate</span> the mystery by gathering clues and interviewing witnesses.", type: "Inference", word: "investigate" },
+                { text: "She tried to <span class='target-word'>persuade</span> her parents by giving them good reasons why she should go to the party.", type: "Inference", word: "persuade" },
+                { text: "The medicine helped <span class='target-word'>relieve</span> his headache, making the pain go away.", type: "Inference", word: "relieve" },
+                { text: "The hiker felt <span class='target-word'>relieved</span> when she finally found the trail after being lost for hours.", type: "Inference", word: "relieved" },
+                { text: "The cat tried to <span class='target-word'>conceal</span> itself by hiding behind the bushes so the dog couldn't find it.", type: "Inference", word: "conceal" },
+                { text: "The gymnast had to <span class='target-word'>balance</span> carefully on the beam to keep from falling off.", type: "Inference", word: "balance" },
+                { text: "The weather conditions were <span class='target-word'>hazardous</span>, with ice on the roads making it dangerous to drive.", type: "Inference", word: "hazardous" },
+                { text: "The team needed to <span class='target-word'>cooperate</span> by working together and helping each other to win the game.", type: "Inference", word: "cooperate" },
+                { text: "She had to <span class='target-word'>revise</span> her essay by reading it again and fixing the mistakes.", type: "Inference", word: "revise" },
+                { text: "The plant began to <span class='target-word'>wither</span> without water, its leaves turning brown and drooping.", type: "Inference", word: "wither" }
+            ],
+            hard: [
+                // Definition clues
+                { text: "The <span class='target-word'>architect</span> is a professional who designs buildings and oversees their construction.", type: "Definition", word: "architect" },
+                { text: "A <span class='target-word'>metaphor</span> is a figure of speech that compares two things without using 'like' or 'as'.", type: "Definition", word: "metaphor" },
+                { text: "To <span class='target-word'>synthesize</span> means to combine different ideas or information to create something new.", type: "Definition", word: "synthesize" },
+                { text: "An <span class='target-word'>amendment</span> is a formal change or addition to a law or document.", type: "Definition", word: "amendment" },
+                { text: "The <span class='target-word'>protagonist</span> is the main character in a story who drives the plot forward.", type: "Definition", word: "protagonist" },
+                { text: "A <span class='target-word'>fossil</span> is the preserved remains or traces of ancient organisms found in rock.", type: "Definition", word: "fossil" },
+                { text: "To <span class='target-word'>analyze</span> means to examine something carefully and in detail to understand it better.", type: "Definition", word: "analyze" },
+                { text: "A <span class='target-word'>democracy</span> is a form of government where citizens have the power to elect their leaders.", type: "Definition", word: "democracy" },
+                { text: "The term <span class='target-word'>photosynthesis</span> refers to the process plants use to convert sunlight into energy.", type: "Definition", word: "photosynthesis" },
+                { text: "An <span class='target-word'>autobiography</span> is a book in which the author writes about their own life.", type: "Definition", word: "autobiography" },
+                // Synonym clues
+                { text: "The evidence was <span class='target-word'>substantial</span>, providing significant proof to support the claim.", type: "Synonym", word: "substantial" },
+                { text: "Her achievement was <span class='target-word'>remarkable</span>, truly extraordinary and worthy of attention.", type: "Synonym", word: "remarkable" },
+                { text: "The scientist's discovery was <span class='target-word'>groundbreaking</span>, revolutionary in its impact on the field.", type: "Synonym", word: "groundbreaking" },
+                { text: "The debate was <span class='target-word'>contentious</span>, with controversial arguments causing much disagreement.", type: "Synonym", word: "contentious" },
+                { text: "The situation was <span class='target-word'>precarious</span>, dangerously unstable and uncertain.", type: "Synonym", word: "precarious" },
+                { text: "The author's writing style was <span class='target-word'>eloquent</span>, fluent and persuasive in expression.", type: "Synonym", word: "eloquent" },
+                { text: "The professor's explanation was <span class='target-word'>lucid</span>, clear and easy to understand.", type: "Synonym", word: "lucid" },
+                { text: "The company's growth was <span class='target-word'>exponential</span>, increasing rapidly and dramatically.", type: "Synonym", word: "exponential" },
+                { text: "The treaty was <span class='target-word'>bilateral</span>, involving two parties working together.", type: "Synonym", word: "bilateral" },
+                { text: "The evidence was <span class='target-word'>irrefutable</span>, impossible to deny or disprove.", type: "Synonym", word: "irrefutable" },
+                // Antonym clues
+                { text: "The speech was <span class='target-word'>concise</span>, not lengthy or wordy, getting straight to the point.", type: "Antonym", word: "concise" },
+                { text: "Her opinion was <span class='target-word'>objective</span>, not biased, based on facts rather than feelings.", type: "Antonym", word: "objective" },
+                { text: "The atmosphere at the party was <span class='target-word'>lively</span>, not dull, with music and laughter everywhere.", type: "Antonym", word: "lively" },
+                { text: "The research findings were <span class='target-word'>significant</span>, not trivial, changing how scientists understood the disease.", type: "Antonym", word: "significant" },
+                { text: "The witness provided <span class='target-word'>accurate</span> details, not false information, about what she had seen.", type: "Antonym", word: "accurate" },
+                { text: "The student's argument was <span class='target-word'>logical</span>, not irrational, with each point building on the previous one.", type: "Antonym", word: "logical" },
+                { text: "The material was <span class='target-word'>transparent</span>, not opaque, allowing light to pass through clearly.", type: "Antonym", word: "transparent" },
+                { text: "The procedure was <span class='target-word'>systematic</span>, not random, following a clear organized method.", type: "Antonym", word: "systematic" },
+                { text: "The sculpture was <span class='target-word'>abstract</span>, not realistic, using shapes and forms rather than exact representation.", type: "Antonym", word: "abstract" },
+                { text: "The climate in that region is <span class='target-word'>arid</span>, not humid, with very little rainfall.", type: "Antonym", word: "arid" },
+                // Example clues
+                { text: "The conference included <span class='target-word'>delegates</span> from various countries, such as representatives from Japan, Brazil, and South Africa.", type: "Example", word: "delegates" },
+                { text: "The museum displayed many <span class='target-word'>manuscripts</span>, including handwritten letters, ancient scrolls, and original documents.", type: "Example", word: "manuscripts" },
+                { text: "We studied various <span class='target-word'>phenomena</span> in science class, such as gravity, magnetism, and photosynthesis.", type: "Example", word: "phenomena" },
+                { text: "The author uses several <span class='target-word'>metaphors</span> in the poem, like comparing time to a river and life to a journey.", type: "Example", word: "metaphors" },
+                { text: "The patient experienced multiple <span class='target-word'>symptoms</span>, including fever, headache, and fatigue.", type: "Example", word: "symptoms" },
+                { text: "The architect designed several <span class='target-word'>structures</span> for the city, such as bridges, office buildings, and monuments.", type: "Example", word: "structures" },
+                { text: "The lawyer presented compelling <span class='target-word'>evidence</span>, including photographs, witness testimonies, and financial records.", type: "Example", word: "evidence" },
+                { text: "The company implemented new <span class='target-word'>protocols</span>, such as safety procedures, quality checks, and communication guidelines.", type: "Example", word: "protocols" },
+                { text: "The scientist analyzed various <span class='target-word'>specimens</span>, including blood samples, tissue cultures, and bacterial colonies.", type: "Example", word: "specimens" },
+                { text: "The teacher discussed different <span class='target-word'>perspectives</span> on the issue, such as economic, social, and environmental viewpoints.", type: "Example", word: "perspectives" },
+                // Inference clues
+                { text: "The <span class='target-word'>plaintiff</span> brought the case to court, claiming that the company had wronged them and seeking compensation.", type: "Inference", word: "plaintiff" },
+                { text: "Due to the <span class='target-word'>drought</span>, the farmers watched their crops wither and die without any rain for months.", type: "Inference", word: "drought" },
+                { text: "The team worked to <span class='target-word'>decipher</span> the coded message, trying various methods to figure out its hidden meaning.", type: "Inference", word: "decipher" },
+                { text: "The government issued a <span class='target-word'>mandate</span> requiring all citizens to follow the new safety regulations or face penalties.", type: "Inference", word: "mandate" },
+                { text: "The scientist's theory remained a <span class='target-word'>hypothesis</span> until she could conduct experiments to prove it was true.", type: "Inference", word: "hypothesis" },
+                { text: "The company faced <span class='target-word'>bankruptcy</span> after years of losses, unable to pay its debts and forced to close down.", type: "Inference", word: "bankruptcy" },
+                { text: "The candidate's speech was full of <span class='target-word'>rhetoric</span>, using powerful language and emotional appeals to convince voters.", type: "Inference", word: "rhetoric" },
+                { text: "The medicine helped <span class='target-word'>alleviate</span> her pain, making her feel much more comfortable within an hour.", type: "Inference", word: "alleviate" },
+                { text: "The scientist studied the <span class='target-word'>ecosystem</span>, examining how plants, animals, and the environment all worked together.", type: "Inference", word: "ecosystem" },
+                { text: "The leaders tried to <span class='target-word'>negotiate</span> a peace agreement, meeting for hours to find terms both sides could accept.", type: "Inference", word: "negotiate" }
+            ]
+        };
+
+        let currentLevel = 'easy';
+        let currentIndex = 0;
+        let filteredSentences = [];
+        let selectedTypes = ['Definition', 'Synonym', 'Antonym', 'Example', 'Inference'];
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function getHints(sentence) {
+            const clueType = sentence.type.toLowerCase();
+            const word = sentence.word;
+            
+            const hintTemplates = {
+                definition: {
+                    hint1: {
+                        title: "Look for the definition",
+                        content: "The sentence tells you exactly what the word means. Look for phrases like 'is', 'means', 'refers to', or 'is a'."
+                    },
+                    hint2: {
+                        title: "Find the key phrase",
+                        content: "The definition usually comes right after the word. Read the part of the sentence that explains what the word is or does."
+                    },
+                    hint3: {
+                        title: "Put it in your own words",
+                        content: "Now write what you think the word means based on the definition you found in the sentence."
+                    }
+                },
+                synonym: {
+                    hint1: {
+                        title: "Look for a similar word",
+                        content: "Find a word in the sentence that means almost the same thing as the highlighted word. Synonyms help explain meaning."
+                    },
+                    hint2: {
+                        title: "Check nearby words",
+                        content: "The synonym is usually right before or after the highlighted word, often connected by words like 'and', 'or', or separated by a comma."
+                    },
+                    hint3: {
+                        title: "Use the synonym to define it",
+                        content: "The synonym gives you the meaning. Write a definition using the similar word you found."
+                    }
+                },
+                antonym: {
+                    hint1: {
+                        title: "Look for the opposite",
+                        content: "Find a word or phrase that means the opposite of the highlighted word. Look for clue words like 'not', 'unlike', 'rather than', or 'instead of'."
+                    },
+                    hint2: {
+                        title: "Find the contrast",
+                        content: "The sentence is showing a contrast. If you know what the word is NOT, you can figure out what it IS."
+                    },
+                    hint3: {
+                        title: "Think of the opposite meaning",
+                        content: "Write what the word means by thinking about the opposite of the word you found in the sentence."
+                    }
+                },
+                example: {
+                    hint1: {
+                        title: "Look for examples",
+                        content: "Find the examples in the sentence. Look for words like 'such as', 'like', 'including', or 'for example' that introduce the examples."
+                    },
+                    hint2: {
+                        title: "What do the examples have in common?",
+                        content: "Think about what all the examples are. What category or group do they belong to? This will help you understand the meaning."
+                    },
+                    hint3: {
+                        title: "Define it using the examples",
+                        content: "Write a definition that describes what the examples are. Your definition should be general enough to include all the examples given."
+                    }
+                },
+                inference: {
+                    hint1: {
+                        title: "Use all the clues",
+                        content: "Read the whole sentence carefully. Think about what's happening and why. The meaning comes from understanding the situation."
+                    },
+                    hint2: {
+                        title: "Think about cause and effect",
+                        content: "Ask yourself: What's happening? Why is it happening? What would make sense in this situation? Use logic to figure out the meaning."
+                    },
+                    hint3: {
+                        title: "Make your best guess",
+                        content: "Based on everything in the sentence, what do you think the word means? Write your definition using what makes the most sense."
+                    }
+                }
+            };
+            
+            return hintTemplates[clueType] || hintTemplates.inference;
+        }
+
+        function applyFilters() {
+            selectedTypes = [];
+            const checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedTypes.push(checkbox.value);
+                }
+            });
+
+            if (selectedTypes.length === 0) {
+                alert('Please select at least one context clue type!');
+                return;
+            }
+
+            const levelSentences = allSentences[currentLevel];
+            filteredSentences = levelSentences.filter(sentence => 
+                selectedTypes.includes(sentence.type)
+            );
+            filteredSentences = shuffleArray(filteredSentences);
+
+            currentIndex = 0;
+            loadSentences();
+        }
+
+        function createExampleCard() {
+            const exampleTypes = examples[currentLevel];
+            let examplesHTML = '';
+            
+            selectedTypes.forEach(type => {
+                const typeKey = type.toLowerCase();
+                if (exampleTypes[typeKey]) {
+                    const example = exampleTypes[typeKey];
+                    examplesHTML += `
+                        <div class="example-section">
+                            <div class="example-title">${type} Clue Example:</div>
+                            <div class="example-text">${example.text}</div>
+                            <div class="example-explanation">${example.explanation}</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            return `
+                <div class="sentence-card example-card active" data-index="0">
+                    <span class="example-badge">✨ EXAMPLES - Look at these first!</span>
+                    ${examplesHTML}
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" disabled>← Previous</button>
+                        <button class="nav-btn next-btn" onclick="nextSentence()">Start Activity →</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadSentences() {
+            const container = document.getElementById('sentenceContainer');
+            container.innerHTML = '';
+            
+            container.innerHTML = createExampleCard();
+            
+            filteredSentences.forEach((sentence, index) => {
+                const hints = getHints(sentence);
+                const card = document.createElement('div');
+                card.className = 'sentence-card';
+                card.dataset.index = index + 1;
+                
+                const progress = ((index + 1) / filteredSentences.length) * 100;
+                
+                card.innerHTML = `
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
+                    </div>
+                    
+                    <div class="sentence-info">
+                        <span class="sentence-number">Sentence ${index + 1} of ${filteredSentences.length}</span>
+                        <span class="clue-type">${sentence.type} Clue</span>
+                    </div>
+                    
+                    <div class="sentence-display">
+                        <div class="sentence-text">${sentence.text}</div>
+                    </div>
+                    
+                    <div class="question-section">
+                        <div class="question-text">What does "<strong>${sentence.word}</strong>" mean?</div>
+                        <div class="hint-note">Use the ${sentence.type.toLowerCase()} clue in the sentence to help you!</div>
+                    </div>
+                    
+                    <div class="answer-section">
+                        <label class="answer-label">Write your definition:</label>
+                        <textarea class="answer-input" id="answer-${index}" rows="3" placeholder="Type your answer here..."></textarea>
+                    </div>
+                    
+                    <div class="feedback" id="feedback-${index}">
+                        Great thinking! Remember, there's no one "right" answer. The important thing is using the context clues to make your best guess!
+                    </div>
+                    
+                    <div class="hint-system">
+                        <div class="hint-buttons">
+                            <button class="hint-btn" onclick="showHint(${index}, 1)">💡 Hint 1: ${hints.hint1.title}</button>
+                            <button class="hint-btn" onclick="showHint(${index}, 2)">💡 Hint 2: ${hints.hint2.title}</button>
+                            <button class="hint-btn" onclick="showHint(${index}, 3)">💡 Hint 3: ${hints.hint3.title}</button>
+                        </div>
+                        <div class="hint-content" id="hint1-${index}">
+                            <h4>${hints.hint1.title}</h4>
+                            <p>${hints.hint1.content}</p>
+                        </div>
+                        <div class="hint-content" id="hint2-${index}">
+                            <h4>${hints.hint2.title}</h4>
+                            <p>${hints.hint2.content}</p>
+                        </div>
+                        <div class="hint-content" id="hint3-${index}">
+                            <h4>${hints.hint3.title}</h4>
+                            <p>${hints.hint3.content}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" onclick="previousSentence()">← Previous</button>
+                        <button class="nav-btn next-btn" onclick="nextSentence()" ${index === filteredSentences.length - 1 ? 'disabled' : ''}>Next →</button>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function showHint(sentenceIndex, hintNumber) {
+            const hintElement = document.getElementById(`hint${hintNumber}-${sentenceIndex}`);
+            const feedbackElement = document.getElementById(`feedback-${sentenceIndex}`);
+            const buttons = document.querySelectorAll(`[data-index="${sentenceIndex + 1}"] .hint-btn`);
+            
+            if (hintElement.classList.contains('show')) {
+                hintElement.classList.remove('show');
+                buttons[hintNumber - 1].classList.remove('revealed');
+            } else {
+                hintElement.classList.add('show');
+                buttons[hintNumber - 1].classList.add('revealed');
+                
+                if (!feedbackElement.classList.contains('show')) {
+                    feedbackElement.classList.add('show');
+                    feedbackElement.classList.add('positive');
+                }
+            }
+        }
+
+        function updateDisplay() {
+            document.querySelectorAll('.sentence-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            const activeCard = document.querySelector(`[data-index="${currentIndex}"]`);
+            if (activeCard) {
+                activeCard.classList.add('active');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextSentence() {
+            const totalCards = filteredSentences.length + 1;
+            if (currentIndex < totalCards - 1) {
+                currentIndex++;
+                updateDisplay();
+            }
+        }
+
+        function previousSentence() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateDisplay();
+            }
+        }
+
+        function changeLevel(level) {
+            currentLevel = level;
+            currentIndex = 0;
+            
+            document.querySelectorAll('.level-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            applyFilters();
+        }
+
+        // Initialize
+        applyFilters();
+    </script>
+</body>
+</html>

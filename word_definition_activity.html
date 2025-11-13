@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Definition Activity - Category and Attributes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .instructions {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .word-selector {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .word-selector label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #333;
+        }
+        
+        .word-selector select {
+            font-size: 16px;
+            padding: 8px 15px;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .word-display {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .word-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #764ba2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .definition-section {
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .sentence-builder {
+            font-size: 20px;
+            line-height: 2.5;
+            color: #333;
+        }
+        
+        .blank-space {
+            display: inline-block;
+            min-width: 200px;
+            padding: 5px 15px;
+            border-bottom: 3px solid #667eea;
+            margin: 0 5px;
+            font-weight: bold;
+            color: #764ba2;
+            text-align: center;
+        }
+        
+        .blank-space.empty {
+            color: transparent;
+        }
+        
+        .input-section {
+            margin: 30px 0;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 16px;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .help-buttons {
+            margin-top: 10px;
+        }
+        
+        .help-btn {
+            padding: 8px 16px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .hint-btn {
+            background: #ffd93d;
+            color: #333;
+        }
+        
+        .hint-btn:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+        }
+        
+        .choices-btn {
+            background: #6bcf7f;
+            color: white;
+        }
+        
+        .choices-btn:hover {
+            background: #7de68f;
+            transform: translateY(-2px);
+        }
+        
+        .help-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .help-content {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .hint-content {
+            background: #fff9e6;
+            border-left: 4px solid #ffd93d;
+        }
+        
+        .choices-content {
+            background: #e8f8ec;
+            border-left: 4px solid #6bcf7f;
+        }
+        
+        .choices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .choice-btn {
+            padding: 12px;
+            background: white;
+            border: 2px solid #6bcf7f;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        
+        .choice-btn:hover {
+            background: #6bcf7f;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .final-sentence {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+            line-height: 1.8;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .final-sentence.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .check-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 40px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .check-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .feedback {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+        
+        .reset-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 30px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .reset-btn:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Word Definition Activity</h1>
+        
+        <div class="instructions">
+            <strong>Instructions:</strong> Define each word by filling in the blanks for category and two key attributes. 
+            Need help? Use the hint buttons to get clues or see answer choices!
+        </div>
+        
+        <div class="word-selector">
+            <label for="wordSelect">Choose a word:</label>
+            <select id="wordSelect">
+                <option value="0">1. Bicycle</option>
+                <option value="1">2. Dictionary</option>
+                <option value="2">3. Microscope</option>
+                <option value="3">4. Backpack</option>
+                <option value="4">5. Calculator</option>
+                <option value="5">6. Library</option>
+                <option value="6">7. Thermometer</option>
+                <option value="7">8. Scissors</option>
+                <option value="8">9. Telescope</option>
+                <option value="9">10. Compass</option>
+                <option value="10">11. Hospital</option>
+                <option value="11">12. Elevator</option>
+                <option value="12">13. Refrigerator</option>
+                <option value="13">14. Parachute</option>
+                <option value="14">15. Stethoscope</option>
+                <option value="15">16. Aquarium</option>
+                <option value="16">17. Escalator</option>
+                <option value="17">18. Microscope</option>
+                <option value="18">19. Orchestra</option>
+                <option value="19">20. Wheelchair</option>
+            </select>
+        </div>
+        
+        <div class="word-display">
+            <div class="word-title" id="currentWord">BICYCLE</div>
+        </div>
+        
+        <div class="definition-section">
+            <div class="sentence-builder">
+                A <span class="blank-space empty" id="itemDisplay">_______</span> is a/an 
+                <span class="blank-space empty" id="categoryDisplay">_______</span>. 
+                It <span class="blank-space empty" id="attr1Display">_______</span>. 
+                It <span class="blank-space empty" id="attr2Display">_______</span>.
+            </div>
+        </div>
+        
+        <div class="input-section">
+            <div class="input-group">
+                <label>📁 Category (What type of thing is it?):</label>
+                <input type="text" id="categoryInput" placeholder="Type your answer here...">
+                <div class="help-buttons">
+                    <button class="help-btn hint-btn" onclick="showHint('category')">💡 I need a hint</button>
+                    <button class="help-btn choices-btn" onclick="showChoices('category')">🎲 Show me choices</button>
+                </div>
+                <div class="help-content hint-content" id="categoryHint"></div>
+                <div class="help-content choices-content" id="categoryChoices"></div>
+                <div class="feedback" id="categoryFeedback"></div>
+            </div>
+            
+            <div class="input-group">
+                <label>⭐ Attribute 1 (What is one important feature?):</label>
+                <input type="text" id="attr1Input" placeholder="Type your answer here...">
+                <div class="help-buttons">
+                    <button class="help-btn hint-btn" onclick="showHint('attr1')">💡 I need a hint</button>
+                    <button class="help-btn choices-btn" onclick="showChoices('attr1')">🎲 Show me choices</button>
+                </div>
+                <div class="help-content hint-content" id="attr1Hint"></div>
+                <div class="help-content choices-content" id="attr1Choices"></div>
+                <div class="feedback" id="attr1Feedback"></div>
+            </div>
+            
+            <div class="input-group">
+                <label>⭐ Attribute 2 (What is another important feature?):</label>
+                <input type="text" id="attr2Input" placeholder="Type your answer here...">
+                <div class="help-buttons">
+                    <button class="help-btn hint-btn" onclick="showHint('attr2')">💡 I need a hint</button>
+                    <button class="help-btn choices-btn" onclick="showChoices('attr2')">🎲 Show me choices</button>
+                </div>
+                <div class="help-content hint-content" id="attr2Hint"></div>
+                <div class="help-content choices-content" id="attr2Choices"></div>
+                <div class="feedback" id="attr2Feedback"></div>
+            </div>
+        </div>
+        
+        <button class="check-btn" onclick="checkAnswers()">✓ Check My Answers</button>
+        <button class="reset-btn" onclick="resetWord()">↻ Try Another Word</button>
+        
+        <div class="final-sentence" id="finalSentence"></div>
+    </div>
+    
+    <script>
+        const words = [
+            {
+                word: "BICYCLE",
+                item: "bicycle",
+                category: "vehicle",
+                categoryHint: "It's something people use for transportation",
+                categoryChoices: ["vehicle", "toy", "machine", "furniture"],
+                attr1: "has two wheels",
+                attr1Hint: "Think about how many wheels it has",
+                attr1Choices: ["has two wheels", "runs on electricity", "has four doors", "is made of wood"],
+                attr2: "is powered by pedaling",
+                attr2Hint: "Think about how you make it move",
+                attr2Choices: ["is powered by pedaling", "floats on water", "has a motor", "needs batteries"]
+            },
+            {
+                word: "DICTIONARY",
+                item: "dictionary",
+                category: "book",
+                categoryHint: "It's something you can read that has many pages",
+                categoryChoices: ["book", "tool", "game", "furniture"],
+                attr1: "contains word definitions",
+                attr1Hint: "Think about what information is inside it",
+                attr1Choices: ["contains word definitions", "tells fictional stories", "has colorful pictures only", "lists phone numbers"],
+                attr2: "is organized alphabetically",
+                attr2Hint: "Think about how the words are arranged",
+                attr2Choices: ["is organized alphabetically", "has numbered chapters", "is sorted by color", "lists items by size"]
+            },
+            {
+                word: "MICROSCOPE",
+                item: "microscope",
+                category: "scientific instrument",
+                categoryHint: "It's equipment used by scientists in labs",
+                categoryChoices: ["scientific instrument", "toy", "book", "furniture"],
+                attr1: "magnifies tiny objects",
+                attr1Hint: "Think about what it does to things you can barely see",
+                attr1Choices: ["magnifies tiny objects", "measures temperature", "tells time", "plays music"],
+                attr2: "is used to study cells and bacteria",
+                attr2Hint: "Think about what scientists look at with it",
+                attr2Choices: ["is used to study cells and bacteria", "measures distances", "weighs objects", "mixes chemicals"]
+            },
+            {
+                word: "BACKPACK",
+                item: "backpack",
+                category: "bag",
+                categoryHint: "It's something used to carry things",
+                categoryChoices: ["bag", "furniture", "clothing", "vehicle"],
+                attr1: "is worn on the shoulders",
+                attr1Hint: "Think about what part of your body it goes on",
+                attr1Choices: ["is worn on the shoulders", "is worn on the feet", "is held in one hand", "wraps around the waist"],
+                attr2: "is used to carry books and supplies",
+                attr2Hint: "Think about what students put inside it",
+                attr2Choices: ["is used to carry books and supplies", "holds hot food", "stores frozen items", "contains liquids only"]
+            },
+            {
+                word: "CALCULATOR",
+                item: "calculator",
+                category: "electronic device",
+                categoryHint: "It's a tool that uses electricity or batteries",
+                categoryChoices: ["electronic device", "book", "furniture", "clothing"],
+                attr1: "performs mathematical calculations",
+                attr1Hint: "Think about what subject in school it helps with",
+                attr1Choices: ["performs mathematical calculations", "takes photographs", "plays video games", "makes phone calls"],
+                attr2: "has number buttons and a display screen",
+                attr2Hint: "Think about what you see when you look at it",
+                attr2Choices: ["has number buttons and a display screen", "has a keyboard and mouse", "has strings and frets", "has pages and a spine"]
+            },
+            {
+                word: "LIBRARY",
+                item: "library",
+                category: "building",
+                categoryHint: "It's a type of place or structure people visit",
+                categoryChoices: ["building", "vehicle", "book", "tool"],
+                attr1: "contains collections of books",
+                attr1Hint: "Think about what you find inside it",
+                attr1Choices: ["contains collections of books", "serves food to customers", "has hospital beds", "has movie screens"],
+                attr2: "allows people to borrow materials",
+                attr2Hint: "Think about what people do when they visit",
+                attr2Choices: ["allows people to borrow materials", "sells groceries", "offers haircuts", "repairs cars"]
+            },
+            {
+                word: "THERMOMETER",
+                item: "thermometer",
+                category: "measuring instrument",
+                categoryHint: "It's a tool used to measure something",
+                categoryChoices: ["measuring instrument", "toy", "furniture", "clothing"],
+                attr1: "measures temperature",
+                attr1Hint: "Think about what it tells you about the weather or your body",
+                attr1Choices: ["measures temperature", "measures distance", "tells time", "weighs objects"],
+                attr2: "contains liquid or uses electronic sensors",
+                attr2Hint: "Think about how it works inside",
+                attr2Choices: ["contains liquid or uses electronic sensors", "has strings that vibrate", "uses wind power", "has gears and springs"]
+            },
+            {
+                word: "SCISSORS",
+                item: "scissors",
+                category: "cutting tool",
+                categoryHint: "It's something used to do a specific task with materials",
+                categoryChoices: ["cutting tool", "toy", "measuring device", "furniture"],
+                attr1: "has two sharp blades",
+                attr1Hint: "Think about the parts that do the cutting",
+                attr1Choices: ["has two sharp blades", "has a pointed tip only", "has a flat surface", "has wheels"],
+                attr2: "is used to cut paper and fabric",
+                attr2Hint: "Think about what materials it can cut",
+                attr2Choices: ["is used to cut paper and fabric", "is used to measure length", "is used to hammer nails", "is used to paint pictures"]
+            },
+            {
+                word: "TELESCOPE",
+                item: "telescope",
+                category: "optical instrument",
+                categoryHint: "It's a device that helps you see things",
+                categoryChoices: ["optical instrument", "furniture", "toy", "book"],
+                attr1: "magnifies distant objects",
+                attr1Hint: "Think about what it does to things that are far away",
+                attr1Choices: ["magnifies distant objects", "makes things smaller", "changes colors", "plays sounds"],
+                attr2: "is used to observe stars and planets",
+                attr2Hint: "Think about what people look at in the night sky",
+                attr2Choices: ["is used to observe stars and planets", "is used to watch television", "is used to read books", "is used to listen to music"]
+            },
+            {
+                word: "COMPASS",
+                item: "compass",
+                category: "navigation tool",
+                categoryHint: "It's something that helps you find your way",
+                categoryChoices: ["navigation tool", "toy", "book", "clothing"],
+                attr1: "shows cardinal directions",
+                attr1Hint: "Think about what it tells you (north, south, etc.)",
+                attr1Choices: ["shows cardinal directions", "tells the time", "measures temperature", "counts steps"],
+                attr2: "uses a magnetic needle",
+                attr2Hint: "Think about the part that moves and points",
+                attr2Choices: ["uses a magnetic needle", "has digital numbers", "uses solar power", "has a liquid crystal display"]
+            },
+            {
+                word: "HOSPITAL",
+                item: "hospital",
+                category: "medical facility",
+                categoryHint: "It's a place where people receive healthcare",
+                categoryChoices: ["medical facility", "school", "store", "park"],
+                attr1: "treats sick and injured people",
+                attr1Hint: "Think about who goes there and why",
+                attr1Choices: ["treats sick and injured people", "sells clothing", "teaches students", "shows movies"],
+                attr2: "has doctors and nurses",
+                attr2Hint: "Think about the professionals who work there",
+                attr2Choices: ["has doctors and nurses", "has cashiers and stockers", "has actors and directors", "has mechanics and engineers"]
+            },
+            {
+                word: "ELEVATOR",
+                item: "elevator",
+                category: "transportation device",
+                categoryHint: "It's something that moves people from place to place",
+                categoryChoices: ["transportation device", "furniture", "appliance", "toy"],
+                attr1: "moves vertically between floors",
+                attr1Hint: "Think about the direction it travels",
+                attr1Choices: ["moves vertically between floors", "travels on roads", "floats on water", "flies through air"],
+                attr2: "is enclosed in a shaft",
+                attr2Hint: "Think about where it operates inside a building",
+                attr2Choices: ["is enclosed in a shaft", "is open to the outdoors", "sits on the ground", "hangs from cables outside"]
+            },
+            {
+                word: "REFRIGERATOR",
+                item: "refrigerator",
+                category: "appliance",
+                categoryHint: "It's a machine used in homes for a specific purpose",
+                categoryChoices: ["appliance", "furniture", "tool", "vehicle"],
+                attr1: "keeps food cold",
+                attr1Hint: "Think about what it does to food",
+                attr1Choices: ["keeps food cold", "cooks food", "cleans dishes", "dries clothes"],
+                attr2: "uses electricity to maintain low temperature",
+                attr2Hint: "Think about its power source and what temperature it maintains",
+                attr2Choices: ["uses electricity to maintain low temperature", "burns wood for heat", "uses solar panels", "runs on gasoline"]
+            },
+            {
+                word: "PARACHUTE",
+                item: "parachute",
+                category: "safety device",
+                categoryHint: "It's equipment designed to protect people",
+                categoryChoices: ["safety device", "toy", "clothing", "furniture"],
+                attr1: "slows down a fall from high altitude",
+                attr1Hint: "Think about what happens when someone jumps from a plane",
+                attr1Choices: ["slows down a fall from high altitude", "speeds up movement", "measures distance", "provides warmth"],
+                attr2: "is made of fabric that opens like an umbrella",
+                attr2Hint: "Think about what it's made of and its shape when deployed",
+                attr2Choices: ["is made of fabric that opens like an umbrella", "is made of metal and rigid", "is inflatable rubber", "is woven rope"]
+            },
+            {
+                word: "STETHOSCOPE",
+                item: "stethoscope",
+                category: "medical instrument",
+                categoryHint: "It's a tool used by healthcare professionals",
+                categoryChoices: ["medical instrument", "toy", "appliance", "furniture"],
+                attr1: "listens to internal body sounds",
+                attr1Hint: "Think about what doctors use it to hear",
+                attr1Choices: ["listens to internal body sounds", "measures blood pressure", "takes temperature", "examines eyes"],
+                attr2: "is worn around the neck",
+                attr2Hint: "Think about how doctors carry it",
+                attr2Choices: ["is worn around the neck", "is carried in a pocket", "is attached to the wall", "is held in both hands"]
+            },
+            {
+                word: "AQUARIUM",
+                item: "aquarium",
+                category: "container",
+                categoryHint: "It's something that holds or stores things",
+                categoryChoices: ["container", "vehicle", "tool", "appliance"],
+                attr1: "holds water and aquatic animals",
+                attr1Hint: "Think about what lives inside it",
+                attr1Choices: ["holds water and aquatic animals", "stores dry food", "contains plants only", "holds hot liquids"],
+                attr2: "is made of transparent material like glass",
+                attr2Hint: "Think about what it's made of so you can see inside",
+                attr2Choices: ["is made of transparent material like glass", "is made of solid wood", "is made of fabric", "is made of metal"]
+            },
+            {
+                word: "ESCALATOR",
+                item: "escalator",
+                category: "moving staircase",
+                categoryHint: "It's a type of stairs with a special feature",
+                categoryChoices: ["moving staircase", "furniture", "vehicle", "appliance"],
+                attr1: "transports people between levels",
+                attr1Hint: "Think about what it does for people in a mall or airport",
+                attr1Choices: ["transports people between levels", "stores clothing", "cooks food", "cleans floors"],
+                attr2: "has motorized steps that continuously circulate",
+                attr2Hint: "Think about how the steps move in a loop",
+                attr2Choices: ["has motorized steps that continuously circulate", "has stationary steps", "has wooden planks", "has rope handles only"]
+            },
+            {
+                word: "VOLCANO",
+                item: "volcano",
+                category: "geological formation",
+                categoryHint: "It's a natural feature of the Earth's surface",
+                categoryChoices: ["geological formation", "building", "tool", "vehicle"],
+                attr1: "erupts with lava and ash",
+                attr1Hint: "Think about what comes out of it when it's active",
+                attr1Choices: ["erupts with lava and ash", "produces rain", "grows flowers", "releases oxygen"],
+                attr2: "is formed by tectonic activity",
+                attr2Hint: "Think about what forces under the Earth create it",
+                attr2Choices: ["is formed by tectonic activity", "is built by humans", "is created by wind", "is made by animals"]
+            },
+            {
+                word: "ORCHESTRA",
+                item: "orchestra",
+                category: "musical ensemble",
+                categoryHint: "It's a group of people who perform together",
+                categoryChoices: ["musical ensemble", "building", "instrument", "vehicle"],
+                attr1: "consists of many musicians playing instruments",
+                attr1Hint: "Think about the people and what they're doing",
+                attr1Choices: ["consists of many musicians playing instruments", "has one singer only", "includes dancers only", "contains actors performing plays"],
+                attr2: "is led by a conductor",
+                attr2Hint: "Think about the person who directs the group",
+                attr2Choices: ["is led by a conductor", "is managed by a coach", "is guided by a pilot", "is controlled by a captain"]
+            },
+            {
+                word: "WHEELCHAIR",
+                item: "wheelchair",
+                category: "mobility device",
+                categoryHint: "It's equipment that helps people move around",
+                categoryChoices: ["mobility device", "furniture", "toy", "appliance"],
+                attr1: "has wheels for movement",
+                attr1Hint: "Think about how it moves from place to place",
+                attr1Choices: ["has wheels for movement", "has wings for flying", "has propellers", "has tracks like a tank"],
+                attr2: "assists people who cannot walk",
+                attr2Hint: "Think about who uses it and why",
+                attr2Choices: ["assists people who cannot walk", "helps people swim", "allows people to fly", "enables people to lift heavy objects"]
+            }
+        ];
+        
+        let currentWordIndex = 0;
+        
+        function shuffle(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+        
+        function loadWord(index) {
+            currentWordIndex = index;
+            const word = words[index];
+            
+            document.getElementById('currentWord').textContent = word.word;
+            document.getElementById('itemDisplay').textContent = word.item;
+            document.getElementById('itemDisplay').classList.remove('empty');
+            
+            resetInputs();
+            hideAllHelp();
+            document.getElementById('finalSentence').classList.remove('show');
+        }
+        
+        function resetInputs() {
+            document.getElementById('categoryInput').value = '';
+            document.getElementById('attr1Input').value = '';
+            document.getElementById('attr2Input').value = '';
+            
+            document.getElementById('categoryDisplay').textContent = '_______';
+            document.getElementById('categoryDisplay').classList.add('empty');
+            document.getElementById('attr1Display').textContent = '_______';
+            document.getElementById('attr1Display').classList.add('empty');
+            document.getElementById('attr2Display').textContent = '_______';
+            document.getElementById('attr2Display').classList.add('empty');
+            
+            const feedbacks = document.querySelectorAll('.feedback');
+            feedbacks.forEach(f => {
+                f.style.display = 'none';
+                f.classList.remove('correct', 'incorrect');
+            });
+        }
+        
+        function hideAllHelp() {
+            const helpContents = document.querySelectorAll('.help-content');
+            helpContents.forEach(h => h.style.display = 'none');
+        }
+        
+        function showHint(type) {
+            const word = words[currentWordIndex];
+            const hintDiv = document.getElementById(type + 'Hint');
+            
+            if (hintDiv.style.display === 'block') {
+                hintDiv.style.display = 'none';
+            } else {
+                let hintText = '';
+                if (type === 'category') hintText = word.categoryHint;
+                else if (type === 'attr1') hintText = word.attr1Hint;
+                else if (type === 'attr2') hintText = word.attr2Hint;
+                
+                hintDiv.innerHTML = '<strong>💡 Hint:</strong> ' + hintText;
+                hintDiv.style.display = 'block';
+            }
+        }
+        
+        function showChoices(type) {
+            const word = words[currentWordIndex];
+            const choicesDiv = document.getElementById(type + 'Choices');
+            
+            if (choicesDiv.style.display === 'block') {
+                choicesDiv.style.display = 'none';
+            } else {
+                let choices = [];
+                if (type === 'category') choices = word.categoryChoices;
+                else if (type === 'attr1') choices = word.attr1Choices;
+                else if (type === 'attr2') choices = word.attr2Choices;
+                
+                const shuffledChoices = shuffle(choices);
+                
+                let html = '<strong>🎲 Choose one:</strong><div class="choices-grid">';
+                shuffledChoices.forEach(choice => {
+                    html += `<button class="choice-btn" onclick="selectChoice('${type}', '${choice}')">${choice}</button>`;
+                });
+                html += '</div>';
+                
+                choicesDiv.innerHTML = html;
+                choicesDiv.style.display = 'block';
+            }
+        }
+        
+        function selectChoice(type, choice) {
+            document.getElementById(type + 'Input').value = choice;
+            document.getElementById(type + 'Choices').style.display = 'none';
+        }
+        
+        function checkAnswers() {
+            const word = words[currentWordIndex];
+            
+            const categoryInput = document.getElementById('categoryInput').value.trim().toLowerCase();
+            const attr1Input = document.getElementById('attr1Input').value.trim().toLowerCase();
+            const attr2Input = document.getElementById('attr2Input').value.trim().toLowerCase();
+            
+            let allCorrect = true;
+            
+            // Check category
+            const categoryFeedback = document.getElementById('categoryFeedback');
+            if (categoryInput === word.category.toLowerCase()) {
+                categoryFeedback.textContent = '✓ Correct!';
+                categoryFeedback.className = 'feedback correct';
+                categoryFeedback.style.display = 'block';
+                document.getElementById('categoryDisplay').textContent = word.category;
+                document.getElementById('categoryDisplay').classList.remove('empty');
+            } else if (categoryInput === '') {
+                categoryFeedback.textContent = '⚠ Please enter an answer';
+                categoryFeedback.className = 'feedback incorrect';
+                categoryFeedback.style.display = 'block';
+                allCorrect = false;
+            } else {
+                categoryFeedback.textContent = `✗ Not quite. The correct answer is: ${word.category}`;
+                categoryFeedback.className = 'feedback incorrect';
+                categoryFeedback.style.display = 'block';
+                allCorrect = false;
+            }
+            
+            // Check attribute 1
+            const attr1Feedback = document.getElementById('attr1Feedback');
+            if (attr1Input === word.attr1.toLowerCase()) {
+                attr1Feedback.textContent = '✓ Correct!';
+                attr1Feedback.className = 'feedback correct';
+                attr1Feedback.style.display = 'block';
+                document.getElementById('attr1Display').textContent = word.attr1;
+                document.getElementById('attr1Display').classList.remove('empty');
+            } else if (attr1Input === '') {
+                attr1Feedback.textContent = '⚠ Please enter an answer';
+                attr1Feedback.className = 'feedback incorrect';
+                attr1Feedback.style.display = 'block';
+                allCorrect = false;
+            } else {
+                attr1Feedback.textContent = `✗ Not quite. The correct answer is: ${word.attr1}`;
+                attr1Feedback.className = 'feedback incorrect';
+                attr1Feedback.style.display = 'block';
+                allCorrect = false;
+            }
+            
+            // Check attribute 2
+            const attr2Feedback = document.getElementById('attr2Feedback');
+            if (attr2Input === word.attr2.toLowerCase()) {
+                attr2Feedback.textContent = '✓ Correct!';
+                attr2Feedback.className = 'feedback correct';
+                attr2Feedback.style.display = 'block';
+                document.getElementById('attr2Display').textContent = word.attr2;
+                document.getElementById('attr2Display').classList.remove('empty');
+            } else if (attr2Input === '') {
+                attr2Feedback.textContent = '⚠ Please enter an answer';
+                attr2Feedback.className = 'feedback incorrect';
+                attr2Feedback.style.display = 'block';
+                allCorrect = false;
+            } else {
+                attr2Feedback.textContent = `✗ Not quite. The correct answer is: ${word.attr2}`;
+                attr2Feedback.className = 'feedback incorrect';
+                attr2Feedback.style.display = 'block';
+                allCorrect = false;
+            }
+            
+            // Show final sentence if all correct
+            if (allCorrect) {
+                const finalSentence = document.getElementById('finalSentence');
+                finalSentence.innerHTML = `
+                    <strong>🎉 Excellent work!</strong><br><br>
+                    A <strong>${word.item}</strong> is a/an <strong>${word.category}</strong>. 
+                    It <strong>${word.attr1}</strong>. 
+                    It <strong>${word.attr2}</strong>.
+                `;
+                finalSentence.classList.add('show');
+            }
+        }
+        
+        function resetWord() {
+            loadWord(currentWordIndex);
+        }
+        
+        // Event listener for word selection
+        document.getElementById('wordSelect').addEventListener('change', function() {
+            loadWord(parseInt(this.value));
+        });
+        
+        // Event listeners for input fields to update display in real-time
+        document.getElementById('categoryInput').addEventListener('input', function() {
+            const display = document.getElementById('categoryDisplay');
+            if (this.value.trim()) {
+                display.textContent = this.value;
+                display.classList.remove('empty');
+            } else {
+                display.textContent = '_______';
+                display.classList.add('empty');
+            }
+        });
+        
+        document.getElementById('attr1Input').addEventListener('input', function() {
+            const display = document.getElementById('attr1Display');
+            if (this.value.trim()) {
+                display.textContent = this.value;
+                display.classList.remove('empty');
+            } else {
+                display.textContent = '_______';
+                display.classList.add('empty');
+            }
+        });
+        
+        document.getElementById('attr2Input').addEventListener('input', function() {
+            const display = document.getElementById('attr2Display');
+            if (this.value.trim()) {
+                display.textContent = this.value;
+                display.classList.remove('empty');
+            } else {
+                display.textContent = '_______';
+                display.classList.add('empty');
+            }
+        });
+        
+        // Load first word on page load
+        loadWord(0);
+    </script>
+</body>
+</html>

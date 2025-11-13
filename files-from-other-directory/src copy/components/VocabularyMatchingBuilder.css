@@ -1,0 +1,167 @@
+.vocabulary-matching-builder {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.vocabulary-matching-builder .main-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem 3rem;
+}
+
+@media (min-width: 1200px) {
+  .vocabulary-matching-builder .main-content {
+    grid-template-columns: minmax(340px, 380px) 1fr;
+  }
+}
+
+.vocabulary-matching-builder .activity-info,
+.vocabulary-matching-builder .pairs-section,
+.vocabulary-matching-builder .activity-summary {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  padding: 1.75rem;
+}
+
+.vocabulary-matching-builder .activity-info h2,
+.vocabulary-matching-builder .pairs-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #1f2937;
+}
+
+.vocabulary-matching-builder .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.vocabulary-matching-builder label {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.vocabulary-matching-builder input,
+.vocabulary-matching-builder textarea {
+  border: 1px solid #cbd5f5;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vocabulary-matching-builder input:focus,
+.vocabulary-matching-builder textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.vocabulary-matching-builder .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.vocabulary-matching-builder .add-pair-btn {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border: none;
+  color: #fff;
+  padding: 0.65rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vocabulary-matching-builder .add-pair-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.25);
+}
+
+.vocabulary-matching-builder .pairs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.vocabulary-matching-builder .pair-card {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: #f8fafc;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vocabulary-matching-builder .pair-card.edit-mode {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.vocabulary-matching-builder .pair-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.vocabulary-matching-builder .pair-header h3 {
+  font-size: 1.1rem;
+  color: #1f2937;
+}
+
+.vocabulary-matching-builder .delete-pair-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vocabulary-matching-builder .empty-state {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: rgba(99, 102, 241, 0.08);
+  color: #4338ca;
+  text-align: center;
+}
+
+.vocabulary-matching-builder .activity-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vocabulary-matching-builder .summary-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.vocabulary-matching-builder .stat {
+  background: rgba(99, 102, 241, 0.08);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.vocabulary-matching-builder .stat-number {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #4338ca;
+}
+
+.vocabulary-matching-builder .stat-label {
+  font-size: 0.9rem;
+  color: #475569;
+}

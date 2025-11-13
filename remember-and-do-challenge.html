@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remember &amp; Do Challenge</title>
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --purple-dark: #5b21b6;
+      --blue: #0ea5e9;
+      --green: #10b981;
+      --muted: #64748b;
+      --ink: #0f172a;
+      --surface: #ffffff;
+      --bg: radial-gradient(circle at top, #ede9fe 0%, #f1f5f9 55%, #eef2ff 100%);
+      --shadow: 0 16px 30px rgba(124, 58, 237, 0.15);
+      --border: 1px solid rgba(124, 58, 237, 0.16);
+      --radius: 20px;
+      --max: 900px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      width: min(94%, var(--max));
+      padding: 40px 0 70px;
+      display: grid;
+      gap: 26px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      gap: 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 34px);
+      color: var(--purple-dark);
+    }
+
+    .head-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.14);
+      color: var(--purple-dark);
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      gap: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--purple-dark);
+    }
+
+    .direction-card {
+      background: rgba(248, 250, 252, 0.96);
+      border-radius: 18px;
+      border: 2px solid rgba(124, 58, 237, 0.2);
+      padding: 18px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.16);
+      color: var(--purple-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .direction-text {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .status-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(148, 163, 184, 0.25);
+      color: var(--muted);
+    }
+
+    .status-pill.active {
+      background: rgba(14, 165, 233, 0.2);
+      color: #075985;
+    }
+
+    .status-pill.done {
+      background: rgba(16, 185, 129, 0.22);
+      color: #065f46;
+    }
+
+    .preview-board {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 14px;
+      border: 2px dashed rgba(148, 163, 184, 0.45);
+      padding: 12px 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .step-card strong {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(124, 58, 237, 0.18);
+      color: var(--purple-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .strategy-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .strategy-btn {
+      border: 2px dashed rgba(124, 58, 237, 0.28);
+      background: #fff;
+      color: var(--purple-dark);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .strategy-btn.selected {
+      border-style: solid;
+      background: rgba(233, 213, 255, 0.55);
+      box-shadow: 0 10px 20px rgba(124, 58, 237, 0.18);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: #fff;
+      box-shadow: 0 14px 24px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-outline {
+      background: #fff;
+      border: 2px solid rgba(124, 58, 237, 0.3);
+      color: var(--purple-dark);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .mini-title {
+      margin: 10px 0 2px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scenario-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .scenario-btn {
+      border: 2px dashed rgba(124, 58, 237, 0.28);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--purple-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 12px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .scenario-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--purple);
+    }
+
+    .scenario-btn.active {
+      border-style: solid;
+      background: rgba(233, 213, 255, 0.55);
+      box-shadow: 0 8px 18px rgba(124, 58, 237, 0.18);
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .choice-card {
+      background: rgba(248, 250, 252, 0.95);
+      border: 2px dashed rgba(148, 163, 184, 0.4);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: grid;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .choice-card:hover {
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .choice-card.selected {
+      border-style: solid;
+      border-color: var(--purple);
+      background: rgba(233, 213, 255, 0.45);
+      box-shadow: 0 12px 22px rgba(124, 58, 237, 0.2);
+    }
+
+    .order-chip {
+      justify-self: start;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.18);
+      color: var(--purple-dark);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .feedback {
+      display: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .feedback.good {
+      background: rgba(16, 185, 129, 0.18);
+      color: #047857;
+      border: 2px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .feedback.try {
+      background: rgba(248, 113, 113, 0.18);
+      color: #7f1d1d;
+      border: 2px solid rgba(248, 113, 113, 0.35);
+    }
+
+    @media (max-width: 640px) {
+      header, section {
+        padding: 22px;
+      }
+      .tag {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Remember &amp; Do</h1>
+      <div class="head-tags">
+        <span class="tag">👂 Preview</span>
+        <span class="tag">🎯 Pick a memory helper</span>
+        <span class="tag">🚀 Rebuild the steps</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Use a strategy, then act</h2>
+      <div class="direction-card">
+        <span class="badge" id="scenarioTag"></span>
+        <div class="direction-text" id="scenarioText"></div>
+      </div>
+
+      <div class="status-bar">
+        <span class="status-pill active" id="statusPreview">Preview</span>
+        <span class="status-pill" id="statusMemory">Memory</span>
+        <span class="status-pill" id="statusCheck">Check</span>
+      </div>
+
+      <div class="preview-board" id="previewBoard"></div>
+
+      <div>
+        <h3 style="margin:0 0 6px;font-size:17px;">Pick a helper</h3>
+        <div class="strategy-row" id="strategyRow"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-primary" id="startBtn" disabled>Hide &amp; remember</button>
+        <button class="btn-outline" id="showBtn">Show steps</button>
+        <button class="btn-outline" id="nextBtn">New scenario</button>
+      </div>
+
+      <div>
+        <h3 style="margin:0 0 6px;font-size:17px;">Tap steps in order</h3>
+        <div class="choice-grid" id="choiceGrid"></div>
+      </div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <div>
+        <div class="mini-title">Pick a scenario</div>
+        <div class="scenario-list" id="scenarioList"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const scenarios = [
+      {
+        name: "Desk Setup",
+        tag: "Desk Setup",
+        summary: "Sit down, take out your pencil, and open your notebook to the first page.",
+        steps: [
+          "Sit in your chair.",
+          "Take out your pencil.",
+          "Open your notebook to the first page."
+        ],
+        hints: [
+          "Say: sit, pencil, notebook.",
+          "Tap three fingers as you plan.",
+          "Picture the notebook open on the desk."
+        ]
+      },
+      {
+        name: "Pack-Up Routine",
+        tag: "Pack-Up",
+        summary: "Put your reading book in your backpack, zip it, and place the backpack on the hook.",
+        steps: [
+          "Put your reading book in your backpack.",
+          "Zip your backpack.",
+          "Place the backpack on the hook."
+        ],
+        hints: [
+          "Repeat the steps softly twice.",
+          "Visualize the hook on the wall.",
+          "Check off each move in your head."
+        ]
+      },
+      {
+        name: "Snack Break",
+        tag: "Snack Break",
+        summary: "Wash your hands, take an apple from the bowl, and sit at the small table.",
+        steps: [
+          "Wash your hands.",
+          "Take an apple from the bowl.",
+          "Sit at the small table."
+        ],
+        hints: [
+          "Say: wash, grab, sit.",
+          "Use finger counting for the three moves.",
+          "Picture the table waiting for you."
+        ]
+      },
+      {
+        name: "Study Hall Plan",
+        tag: "Classroom",
+        summary: "During study hall, organize your science binder, highlight lab steps, and submit the make-up assignment.",
+        steps: [
+          "Organize the science binder.",
+          "Highlight lab steps that still need work.",
+          "Submit the make-up assignment in Classroom."
+        ],
+        hints: [
+          "Whisper the order twice.",
+          "Sketch three boxes in the notes app.",
+          "Picture yourself at the study hall table."
+        ]
+      },
+      {
+        name: "Library Print Job",
+        tag: "Tech Routine",
+        summary: "Log into the library computer, open email, download the form, print it, and drop it in the counselor inbox before you leave.",
+        steps: [
+          "Log into the library computer.",
+          "Open your email inbox.",
+          "Download the attached form.",
+          "Print the form double-sided.",
+          "Drop it in the counselor inbox on your way out."
+        ],
+        hints: [
+          "Write the verbs: log, open, download, print, drop.",
+          "Finger count each move.",
+          "Imagine the walk to the inbox."
+        ]
+      },
+      {
+        name: "Morning Start",
+        tag: "Morning Start",
+        summary: "Hang up your backpack, turn in homework, sharpen two pencils, and begin the warm-up on your Chromebook.",
+        steps: [
+          "Hang up your backpack.",
+          "Turn in your homework.",
+          "Sharpen two pencils.",
+          "Start the warm-up on your Chromebook."
+        ],
+        hints: [
+          "Say the list quietly before you move.",
+          "See the route from door to desk.",
+          "Check off on a sticky note."
+        ]
+      },
+      {
+        name: "Work Shift Tasks",
+        tag: "Work Shift",
+        summary: "Clock in, wipe the counter, restock the three snack bins, and record what you finished.",
+        steps: [
+          "Clock in.",
+          "Wipe the counter.",
+          "Restock the three snack bins.",
+          "Record the finished tasks."
+        ],
+        hints: [
+          "Break it into pairs.",
+          "Make tally marks as you go.",
+          "Picture the counter getting cleaner."
+        ]
+      },
+      {
+        name: "Virtual Meeting",
+        tag: "Virtual",
+        summary: "Join the Zoom early, rename yourself with your group letter, open the shared doc, and add your reflection in the Student 2 box.",
+        steps: [
+          "Join the Zoom five minutes early.",
+          "Rename yourself with your group letter.",
+          "Open the shared document.",
+          "Add your reflection in the Student 2 box."
+        ],
+        hints: [
+          "Write the four steps on a sticky note.",
+          "Say each step out loud once.",
+          "Visualize the Zoom screen layout."
+        ]
+      }
+    ];
+
+    const helperOptions = [
+      "Repeat it softly",
+      "Visualize it",
+      "Write quick notes",
+      "Use finger counting",
+      "Set a reminder"
+    ];
+
+    const scenarioTag = document.getElementById('scenarioTag');
+    const scenarioText = document.getElementById('scenarioText');
+    const previewBoard = document.getElementById('previewBoard');
+    const strategyRow = document.getElementById('strategyRow');
+    const startBtn = document.getElementById('startBtn');
+    const showBtn = document.getElementById('showBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const choiceGrid = document.getElementById('choiceGrid');
+    const feedback = document.getElementById('feedback');
+    const statusPreview = document.getElementById('statusPreview');
+    const statusMemory = document.getElementById('statusMemory');
+    const statusCheck = document.getElementById('statusCheck');
+    const scenarioList = document.getElementById('scenarioList');
+
+    let currentIndex = 0;
+    let current = scenarios[currentIndex];
+    let selectedStrategy = null;
+    let revealTimeout = null;
+    let active = false;
+    let picks = [];
+
+    function updateStatus(stage) {
+      statusPreview.classList.toggle('active', stage === 'preview');
+      statusPreview.classList.toggle('done', stage !== 'preview');
+      statusMemory.classList.toggle('active', stage === 'memory');
+      statusMemory.classList.toggle('done', stage === 'check');
+      statusCheck.classList.toggle('active', stage === 'check');
+      statusCheck.classList.toggle('done', stage === 'check');
+    }
+
+    function renderScenario() {
+      clearTimeout(revealTimeout);
+      active = false;
+      picks = [];
+      selectedStrategy = null;
+      current = scenarios[currentIndex];
+      updateStatus('preview');
+      startBtn.disabled = true;
+      feedback.style.display = 'none';
+      feedback.className = 'feedback';
+
+      scenarioTag.textContent = current.tag;
+      scenarioText.textContent = current.summary;
+
+      previewBoard.innerHTML = current.steps.map((step, i) => `
+        <div class="step-card">
+          <strong>${i + 1}</strong>
+          <span>${step}</span>
+        </div>
+      `).join('');
+
+      strategyRow.innerHTML = helperOptions.map(option => `
+        <button class="strategy-btn" type="button" data-value="${option}">${option}</button>
+      `).join('');
+
+      strategyRow.querySelectorAll('.strategy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          strategyRow.querySelectorAll('.strategy-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedStrategy = btn.dataset.value;
+          startBtn.disabled = false;
+        });
+      });
+
+      choiceGrid.innerHTML = '';
+      renderScenarioList();
+    }
+
+    function startMemory() {
+      if (!selectedStrategy) return;
+      active = true;
+      picks = [];
+      updateStatus('memory');
+      feedback.style.display = 'none';
+      startBtn.disabled = true;
+      showBtn.disabled = true;
+
+      const seconds = Math.min(8, Math.max(4, current.steps.length + 3));
+      const banner = document.createElement('div');
+      banner.className = 'feedback good';
+      banner.style.display = 'block';
+      banner.textContent = `Use ${selectedStrategy.toLowerCase()} now — hiding in ${seconds}s.`;
+      previewBoard.prepend(banner);
+
+      let timeLeft = seconds;
+      const timer = setInterval(() => {
+        timeLeft -= 1;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+        }
+        banner.textContent = `Use ${selectedStrategy.toLowerCase()} now — hiding in ${Math.max(0, timeLeft)}s.`;
+      }, 1000);
+
+      revealTimeout = setTimeout(() => {
+        banner.remove();
+        hidePreview();
+      }, seconds * 1000);
+    }
+
+    function hidePreview() {
+      previewBoard.innerHTML = `<div class="feedback try" style="display:block;">Preview hidden! Use your helper and tap steps in order below.</div>`;
+      buildChoices();
+    }
+
+    function buildChoices() {
+      const shuffled = current.steps
+        .map((step, idx) => ({ step, idx }))
+        .sort(() => Math.random() - 0.5);
+
+      choiceGrid.innerHTML = shuffled.map(item => `
+        <div class="choice-card" data-index="${item.idx}">
+          <span>${item.step}</span>
+        </div>
+      `).join('');
+
+      choiceGrid.querySelectorAll('.choice-card').forEach(card => {
+        card.addEventListener('click', () => {
+          if (!active) return;
+          const index = Number(card.dataset.index);
+          if (picks.includes(index)) {
+            picks = picks.filter(i => i !== index);
+            card.classList.remove('selected');
+            card.querySelector('.order-chip')?.remove();
+            return;
+          }
+
+          picks.push(index);
+          card.classList.add('selected');
+          const chip = document.createElement('span');
+          chip.className = 'order-chip';
+          chip.textContent = `Step ${picks.length}`;
+          card.appendChild(chip);
+
+          if (picks.length === current.steps.length) {
+            active = false;
+            showBtn.disabled = false;
+            checkSequence();
+          }
+        });
+      });
+    }
+
+    function checkSequence() {
+      updateStatus('check');
+      const success = picks.every((value, idx) => value === idx);
+      feedback.textContent = success
+        ? `All set! Say how ${selectedStrategy.toLowerCase()} helped.`
+        : "Close! Check the first step that feels out of place, then try again.";
+      feedback.classList.add(success ? 'good' : 'try');
+      feedback.style.display = 'block';
+      startBtn.disabled = false;
+    }
+
+    function showSteps() {
+      clearTimeout(revealTimeout);
+      active = false;
+      updateStatus('preview');
+      previewBoard.innerHTML = current.steps.map((step, i) => `
+        <div class="step-card">
+          <strong>${i + 1}</strong>
+          <span>${step}</span>
+        </div>
+      `).join('');
+      choiceGrid.innerHTML = '';
+      picks = [];
+      startBtn.disabled = !selectedStrategy;
+      showBtn.disabled = false;
+      feedback.style.display = 'none';
+    }
+
+    function renderScenarioList() {
+      scenarioList.innerHTML = scenarios.map((item, index) => `
+        <button type="button" class="scenario-btn${index === currentIndex ? ' active' : ''}" data-index="${index}">
+          ${item.name}
+        </button>
+      `).join('');
+
+      scenarioList.querySelectorAll('.scenario-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = Number(btn.dataset.index);
+          if (index === currentIndex) return;
+          currentIndex = index;
+          renderScenario();
+        });
+      });
+    }
+
+    startBtn.addEventListener('click', startMemory);
+    showBtn.addEventListener('click', showSteps);
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % scenarios.length;
+      renderScenario();
+    });
+
+    renderScenario();
+  </script>
+</body>
+</html>

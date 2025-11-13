@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Double Bubble Compare & Contrast – Fall Edition</title>
+  <style>
+    :root {
+      --bg: #f7f5f2;
+      --surface: #ffffff;
+      --primary: #d97706; /* amber-600 */
+      --secondary: #16a34a; /* green-600 */
+      --muted: #475569;
+      --success: #10b981;
+      --radius: 18px;
+      --max-width: 1100px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: #0f172a; line-height: 1.6; }
+    header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 28px 20px; text-align: center; box-shadow: 0 10px 24px rgba(217, 119, 6, 0.25); position: sticky; top: 0; z-index: 20; }
+    header h1 { margin: 0; font-size: 30px; }
+    header p { margin: 10px auto 0; max-width: 760px; font-size: 16px; opacity: .95; }
+    main { max-width: var(--max-width); margin: 30px auto 60px; padding: 0 18px; }
+    .topic-nav { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 22px; }
+    .topic-btn { border: 2px solid rgba(217,119,6,.25); background: white; color: var(--primary); padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all .2s ease; display: flex; align-items: center; gap: 6px; }
+    .topic-btn:hover { background: rgba(245,158,11,.12); border-color: rgba(217,119,6,.45); }
+    .topic-btn.active { background: var(--primary); color: white; border-color: transparent; box-shadow: 0 8px 18px rgba(217,119,6,.25); }
+    .activity-card { background: var(--surface); border-radius: var(--radius); padding: 26px; box-shadow: 0 16px 30px rgba(15,23,42,.12); border: 2px solid rgba(148,163,184,.15); }
+    .activity-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 18px; }
+    .activity-header h2 { margin: 0; font-size: 22px; color: var(--primary); }
+    .info-chip { background: rgba(22,163,74,.12); color: #166534; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+    .instructions { background: rgba(245,158,11,.12); border: 2px solid rgba(245,158,11,.28); border-radius: 14px; padding: 16px 18px; margin-bottom: 22px; color: #92400e; font-size: 15px; }
+    .word-bank { background: rgba(22,163,74,.08); border: 2px dashed rgba(22,163,74,.3); border-radius: 14px; padding: 14px 16px; margin-bottom: 22px; color: var(--muted); font-size: 14px; }
+    .word-bank strong { color: #166534; }
+    .activity-body { display: flex; gap: 20px; align-items: flex-start; flex-wrap: nowrap; }
+    .card-bank-panel { width: 260px; background: rgba(217,119,6,.08); border: 2px solid rgba(217,119,6,.25); border-radius: 18px; padding: 16px; position: sticky; top: 120px; box-shadow: 0 12px 24px rgba(217,119,6,.12); }
+    .card-bank-panel h3 { margin: 0 0 10px; font-size: 16px; color: var(--primary); text-align: center; }
+    .card-bank-panel p { font-size: 13px; color: var(--muted); text-align: center; margin: 0 0 12px; }
+    .double-bubble { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 24px; }
+    .bubble-column { background: rgba(148,163,184,.12); border-radius: 18px; border: 2px solid rgba(148,163,184,.3); padding: 16px; min-height: 200px; position: relative; }
+    .bubble-column.similar { background: rgba(16,185,129,.12); border-color: rgba(16,185,129,.3); }
+    .column-title { text-align: center; font-weight: 700; font-size: 16px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .column-title span { font-size: 13px; color: var(--muted); }
+    .drop-zone { background: rgba(255,255,255,.75); border-radius: 12px; border: 2px dashed rgba(148,163,184,.4); padding: 12px; min-height: 160px; transition: border-color .2s ease, background .2s ease; }
+    .drop-zone.drag-over { border-color: var(--primary); background: rgba(217,119,6,.08); }
+    .card-stack { display: grid; gap: 10px; }
+    .info-card { background: white; border-radius: 12px; border: 2px solid rgba(217,119,6,.22); padding: 10px 12px; font-size: 15px; cursor: grab; display: flex; gap: 10px; align-items: center; transition: all .2s ease; }
+    .info-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 8px 16px rgba(217,119,6,.18); }
+    .info-card.dragging { opacity: .5; transform: scale(1.03); }
+    .info-card.placed { border-color: var(--success); background: rgba(16,185,129,.1); }
+    .emoji-tag { font-size: 20px; width: 28px; text-align: center; }
+    .feedback { background: rgba(16,185,129,.12); border: 2px solid rgba(16,185,129,.3); border-radius: 14px; padding: 14px 16px; color: #065f46; margin-bottom: 24px; display: none; }
+    .feedback.error { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.35); color: #991b1b; }
+    .tools { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px; }
+    .tools button { border: 2px solid rgba(217,119,6,.25); background: white; color: var(--primary); padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all .2s ease; }
+    .tools button:hover { background: rgba(217,119,6,.1); border-color: rgba(217,119,6,.4); }
+    .tools button.primary { background: var(--primary); color: white; border-color: transparent; box-shadow: 0 6px 16px rgba(217,119,6,.25); }
+    .writing-frame { background: rgba(148,163,184,.12); border-radius: 14px; border: 2px solid rgba(148,163,184,.25); padding: 18px; }
+    .writing-frame h3 { margin: 0 0 12px; font-size: 16px; color: var(--primary); text-align: center; }
+    .sentence-frame { display: grid; gap: 12px; }
+    .sentence-frame textarea { min-height: 90px; font-size: 15px; }
+
+    @media (max-width: 900px) { .activity-body { flex-direction: column; } .card-bank-panel { position: static; width: 100%; } .double-bubble { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Double Bubble Compare & Contrast – Fall Edition</h1>
+    <p>Drag each idea into the correct bubble. Then use the sentence frames to explain how the two items are alike and different.</p>
+  </header>
+
+  <main>
+    <div class="topic-nav" id="topicNav"></div>
+
+    <section class="activity-card">
+      <div class="activity-header">
+        <h2 id="activityTitle">Apple Pie vs Pumpkin Pie</h2>
+        <span class="info-chip" id="contextTag">Fall Foods</span>
+      </div>
+
+      <div class="instructions">
+        ✦ Drag each card into the matching bubble.<br />
+        ✦ Similar ideas belong in the middle bubble. Unique ideas go to the left or right bubble.<br />
+        ✦ Double-click a card to send it back to the idea bank.
+      </div>
+
+      <div class="word-bank">
+        <strong>Helpful Words:</strong> both, also, alike, similar, however, but, unlike, different, while
+      </div>
+
+      <div class="activity-body">
+        <aside class="card-bank-panel">
+          <h3>Idea Cards</h3>
+          <p>Drag each card into a bubble. Double-click to send it back here.</p>
+          <div class="card-stack" id="cardBank"></div>
+        </aside>
+
+        <div class="bubble-wrapper">
+          <div class="double-bubble">
+            <div class="bubble-column">
+              <div class="column-title">
+                <span id="leftEmoji">🥧</span>
+                <strong id="leftTitle">Apple Pie</strong>
+                <span>Only for this side</span>
+              </div>
+              <div class="drop-zone" data-zone="left" id="leftZone"><div class="card-stack"></div></div>
+            </div>
+
+            <div class="bubble-column similar">
+              <div class="column-title">
+                <span>🤝</span>
+                <strong>Both</strong>
+                <span>Shared ideas</span>
+              </div>
+              <div class="drop-zone" data-zone="middle" id="middleZone"><div class="card-stack"></div></div>
+            </div>
+
+            <div class="bubble-column">
+              <div class="column-title">
+                <span id="rightEmoji">🎃</span>
+                <strong id="rightTitle">Pumpkin Pie</strong>
+                <span>Only for this side</span>
+              </div>
+              <div class="drop-zone" data-zone="right" id="rightZone"><div class="card-stack"></div></div>
+            </div>
+          </div>
+
+          <div class="feedback" id="feedbackBox">
+            <strong id="feedbackTitle">Great job!</strong>
+            <p id="feedbackText">All cards are in the right bubbles.</p>
+          </div>
+
+          <div class="tools">
+            <button class="primary" id="checkBtn">✓ Check My Bubbles</button>
+            <button id="showAnswersBtn">👀 Show One Hint</button>
+            <button id="resetBtn">🔄 Reset Cards</button>
+          </div>
+
+          <div class="writing-frame">
+            <h3>Compare & Contrast Sentence Frames</h3>
+            <div class="sentence-frame">
+              <textarea id="similarText" placeholder="Both ______ and ______ are alike because ..."></textarea>
+              <textarea id="differenceText" placeholder="They are different because ..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const activities = [
+      {
+        title: "Apple Pie vs Pumpkin Pie",
+        context: "Fall Foods",
+        left: { label: "Apple Pie", emoji: "🥧" },
+        right: { label: "Pumpkin Pie", emoji: "🎃" },
+        cards: [
+          { text: "Made with apples", zone: "left" },
+          { text: "Often has a top crust", zone: "left" },
+          { text: "Made with pumpkin puree", zone: "right" },
+          { text: "Spiced with nutmeg or cinnamon", zone: "right" },
+          { text: "Served as a fall dessert", zone: "middle" },
+          { text: "Baked in a pie pan", zone: "middle" }
+        ]
+      },
+      {
+        title: "Sweater vs Jacket",
+        context: "Fall Clothing",
+        left: { label: "Sweater", emoji: "🧶" },
+        right: { label: "Jacket", emoji: "🧥" },
+        cards: [
+          { text: "Usually knit from yarn", zone: "left" },
+          { text: "Pulls on over your head", zone: "left" },
+          { text: "Often zips or buttons", zone: "right" },
+          { text: "Blocks wind and light rain", zone: "right" },
+          { text: "Keep you warm in fall", zone: "middle" },
+          { text: "Come in many colors", zone: "middle" }
+        ]
+      },
+      {
+        title: "Hayride vs Corn Maze",
+        context: "Fall Activities",
+        left: { label: "Hayride", emoji: "🛻" },
+        right: { label: "Corn Maze", emoji: "🌽" },
+        cards: [
+          { text: "Ride on bales of hay", zone: "left" },
+          { text: "Pulled by a tractor", zone: "left" },
+          { text: "Walk through tall corn", zone: "right" },
+          { text: "Find the way out", zone: "right" },
+          { text: "Fun at farms in fall", zone: "middle" },
+          { text: "Go with family or friends", zone: "middle" }
+        ]
+      },
+      {
+        title: "Football Game vs Bonfire",
+        context: "Weekend Events",
+        left: { label: "Football Game", emoji: "🏈" },
+        right: { label: "Bonfire", emoji: "🔥" },
+        cards: [
+          { text: "Watch teams play", zone: "left" },
+          { text: "Cheer in the stands", zone: "left" },
+          { text: "Sit or stand by a fire", zone: "right" },
+          { text: "Roast marshmallows", zone: "right" },
+          { text: "Happens outdoors in fall", zone: "middle" },
+          { text: "Invite friends to join", zone: "middle" }
+        ]
+      },
+      {
+        title: "Raking Leaves vs Jumping in Leaves",
+        context: "Yard Time",
+        left: { label: "Raking Leaves", emoji: "🧹" },
+        right: { label: "Jumping in Leaves", emoji: "🍁" },
+        cards: [
+          { text: "Use a rake to clean", zone: "left" },
+          { text: "Make a big leaf pile", zone: "left" },
+          { text: "Run and jump into the pile", zone: "right" },
+          { text: "Leaves scatter in the air", zone: "right" },
+          { text: "Happens outside with leaves", zone: "middle" },
+          { text: "Fun fall yard activity", zone: "middle" }
+        ]
+      },
+      {
+        title: "Scarecrow vs Jack-o'-Lantern",
+        context: "Fall Decorations",
+        left: { label: "Scarecrow", emoji: "🧑‍🌾" },
+        right: { label: "Jack-o'-Lantern", emoji: "🎃" },
+        cards: [
+          { text: "Stuffed with straw", zone: "left" },
+          { text: "Stands in a field", zone: "left" },
+          { text: "Carved pumpkin with face", zone: "right" },
+          { text: "Glows with a candle", zone: "right" },
+          { text: "Used as fall decor", zone: "middle" },
+          { text: "Seen at farms or homes", zone: "middle" }
+        ]
+      },
+      {
+        title: "Hot Chocolate vs Apple Cider",
+        context: "Warm Drinks",
+        left: { label: "Hot Chocolate", emoji: "🍫" },
+        right: { label: "Apple Cider", emoji: "🍎" },
+        cards: [
+          { text: "Made with cocoa", zone: "left" },
+          { text: "Topped with marshmallows", zone: "left" },
+          { text: "Made from apples", zone: "right" },
+          { text: "Can be spiced and warm", zone: "right" },
+          { text: "Drinks served in mugs", zone: "middle" },
+          { text: "Popular in cool weather", zone: "middle" }
+        ]
+      },
+      {
+        title: "Pumpkin Patch vs Orchard",
+        context: "Places to Visit",
+        left: { label: "Pumpkin Patch", emoji: "🎃" },
+        right: { label: "Orchard", emoji: "🍏" },
+        cards: [
+          { text: "Pick pumpkins from vines", zone: "left" },
+          { text: "See many sizes and shapes", zone: "left" },
+          { text: "Pick apples from trees", zone: "right" },
+          { text: "Carry a basket or bag", zone: "right" },
+          { text: "Families take photos", zone: "middle" },
+          { text: "Open during fall season", zone: "middle" }
+        ]
+      },
+      {
+        title: "Gloves vs Mittens",
+        context: "Cold-Weather Gear",
+        left: { label: "Gloves", emoji: "🧤" },
+        right: { label: "Mittens", emoji: "🧤" },
+        cards: [
+          { text: "Five finger spaces", zone: "left" },
+          { text: "Easier for small tasks", zone: "left" },
+          { text: "All fingers together", zone: "right" },
+          { text: "Very warm for hands", zone: "right" },
+          { text: "Keep hands covered", zone: "middle" },
+          { text: "Worn in cold weather", zone: "middle" }
+        ]
+      },
+      {
+        title: "Fall vs Winter",
+        context: "Seasons",
+        left: { label: "Fall", emoji: "🍂" },
+        right: { label: "Winter", emoji: "❄️" },
+        cards: [
+          { text: "Leaves change color", zone: "left" },
+          { text: "Harvest time on farms", zone: "left" },
+          { text: "Very cold temperatures", zone: "right" },
+          { text: "Snow and ice are common", zone: "right" },
+          { text: "Shorter daylight than summer", zone: "middle" },
+          { text: "Need warm clothes", zone: "middle" }
+        ]
+      }
+    ];
+
+    // ===== State =====
+    let draggedCard = null;
+    let currentIndex = 0;
+
+    // ===== Element Refs =====
+    const topicNav = document.getElementById('topicNav');
+    const titleEl = document.getElementById('activityTitle');
+    const contextEl = document.getElementById('contextTag');
+    const leftTitleEl = document.getElementById('leftTitle');
+    const rightTitleEl = document.getElementById('rightTitle');
+    const leftEmojiEl = document.getElementById('leftEmoji');
+    const rightEmojiEl = document.getElementById('rightEmoji');
+    const leftZone = document.getElementById('leftZone').querySelector('.card-stack');
+    const middleZone = document.getElementById('middleZone').querySelector('.card-stack');
+    const rightZone = document.getElementById('rightZone').querySelector('.card-stack');
+    const bank = document.getElementById('cardBank');
+    const feedbackBox = document.getElementById('feedbackBox');
+    const feedbackTitle = document.getElementById('feedbackTitle');
+    const feedbackText = document.getElementById('feedbackText');
+    const checkBtn = document.getElementById('checkBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const showHintBtn = document.getElementById('showAnswersBtn');
+
+    // ===== UI Builders =====
+    function buildNav() {
+      topicNav.innerHTML = '';
+      activities.forEach((activity, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'topic-btn';
+        btn.innerHTML = `${activity.left.emoji}<span>${activity.title}</span>`;
+        btn.addEventListener('click', () => loadActivity(index));
+        topicNav.appendChild(btn);
+      });
+    }
+
+    function clearZones() {
+      [leftZone, middleZone, rightZone, bank].forEach(z => z.innerHTML = '');
+      feedbackBox.style.display = 'none';
+      feedbackBox.classList.remove('error');
+    }
+
+    function createCard(card, index) {
+      const cardEl = document.createElement('div');
+      cardEl.className = 'info-card';
+      cardEl.draggable = true;
+      cardEl.dataset.zone = card.zone;
+      cardEl.dataset.index = index;
+      cardEl.innerHTML = `<span class="emoji-tag">📌</span><span>${card.text}</span>`;
+
+      cardEl.addEventListener('dragstart', (e) => {
+        draggedCard = cardEl;
+        cardEl.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+      });
+
+      cardEl.addEventListener('dragend', () => {
+        draggedCard = null;
+        cardEl.classList.remove('dragging');
+      });
+
+      cardEl.addEventListener('dblclick', () => {
+        bank.appendChild(cardEl);
+        cardEl.classList.remove('placed', 'incorrect');
+      });
+
+      return cardEl;
+    }
+
+    function setupDropZones() {
+      document.querySelectorAll('.drop-zone').forEach(zone => {
+        zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+        zone.addEventListener('drop', () => {
+          if (draggedCard) {
+            zone.classList.remove('drag-over');
+            zone.querySelector('.card-stack').appendChild(draggedCard);
+            draggedCard.classList.remove('incorrect');
+            draggedCard.classList.add('placed');
+          }
+        });
+      });
+
+      bank.addEventListener('dragover', (e) => e.preventDefault());
+      bank.addEventListener('drop', () => {
+        if (draggedCard) {
+          bank.appendChild(draggedCard);
+          draggedCard.classList.remove('incorrect', 'placed');
+        }
+      });
+    }
+
+    // ===== Core Logic =====
+    function loadActivity(index) {
+      currentIndex = index;
+      const a = activities[index];
+      clearZones();
+
+      // highlight active button
+      document.querySelectorAll('.topic-btn').forEach((btn, i) => btn.classList.toggle('active', i === index));
+
+      // update titles
+      titleEl.textContent = a.title;
+      contextEl.textContent = a.context;
+      leftTitleEl.textContent = a.left.label;
+      leftEmojiEl.textContent = a.left.emoji;
+      rightTitleEl.textContent = a.right.label;
+      rightEmojiEl.textContent = a.right.emoji;
+
+      // update frames
+      document.getElementById('similarText').placeholder = `Both ${a.left.label} and ${a.right.label} are alike because ...`;
+      document.getElementById('differenceText').placeholder = `${a.left.label} and ${a.right.label} are different because ...`;
+      document.getElementById('similarText').value = '';
+      document.getElementById('differenceText').value = '';
+
+      // load cards
+      [...a.cards].sort(() => Math.random() - 0.5).forEach((card, i) => bank.appendChild(createCard(card, i)));
+    }
+
+    function zoneLabel(zone, a) {
+      if (zone === 'left') return a.left.label;
+      if (zone === 'right') return a.right.label;
+      return 'Both';
+    }
+
+    function checkAnswers() {
+      const a = activities[currentIndex];
+      const cardZones = {
+        left: Array.from(document.getElementById('leftZone').querySelector('.card-stack').children),
+        middle: Array.from(document.getElementById('middleZone').querySelector('.card-stack').children),
+        right: Array.from(document.getElementById('rightZone').querySelector('.card-stack').children)
+      };
+
+      let correct = 0; const total = a.cards.length; const mistakes = [];
+
+      ['left','middle','right'].forEach(zoneName => {
+        cardZones[zoneName].forEach(cardEl => {
+          const expected = cardEl.dataset.zone;
+          if (expected === zoneName) { correct++; cardEl.classList.remove('incorrect'); }
+          else {
+            cardEl.classList.add('incorrect');
+            const msg = `“${cardEl.innerText.trim()}” belongs under ${zoneLabel(expected, a)}.`;
+            if (!mistakes.includes(msg)) mistakes.push(msg);
+          }
+        });
+      });
+
+      if (correct === total) {
+        feedbackTitle.textContent = 'Great job!';
+        feedbackText.textContent = 'All cards are in the correct bubbles.';
+        feedbackBox.classList.remove('error');
+      } else {
+        feedbackTitle.textContent = 'Keep going!';
+        feedbackText.innerHTML = mistakes.join('<br>');
+        feedbackBox.classList.add('error');
+      }
+      feedbackBox.style.display = 'block';
+    }
+
+    function showHint() {
+      const a = activities[currentIndex];
+      const zones = [
+        document.getElementById('leftZone').querySelector('.card-stack'),
+        document.getElementById('middleZone').querySelector('.card-stack'),
+        document.getElementById('rightZone').querySelector('.card-stack')
+      ];
+      const placed = zones.flatMap(z => Array.from(z.children));
+      const wrong = placed.filter(c => c.dataset.zone !== c.parentElement.parentElement.dataset.zone);
+
+      if (wrong.length > 0) {
+        const hintCard = wrong[0];
+        hintCard.classList.add('incorrect');
+        feedbackBox.classList.add('error');
+        feedbackTitle.textContent = 'Hint:';
+        feedbackText.textContent = `Try moving “${hintCard.innerText.trim()}” to ${zoneLabel(hintCard.dataset.zone, a)}.`;
+        feedbackBox.style.display = 'block';
+        return;
+      }
+
+      const bankCards = Array.from(bank.children);
+      if (bankCards.length > 0) {
+        const hint = bankCards[0];
+        feedbackBox.classList.add('error');
+        feedbackTitle.textContent = 'Hint:';
+        feedbackText.textContent = `Place “${hint.innerText.trim()}” in ${zoneLabel(hint.dataset.zone, a)}.`;
+        feedbackBox.style.display = 'block';
+      } else {
+        feedbackBox.classList.remove('error');
+        feedbackTitle.textContent = 'Nice work!';
+        feedbackText.textContent = 'No hints needed right now.';
+        feedbackBox.style.display = 'block';
+      }
+    }
+
+    function resetCards() {
+      loadActivity(currentIndex);
+      feedbackBox.style.display = 'none';
+      document.getElementById('similarText').value = '';
+      document.getElementById('differenceText').value = '';
+    }
+
+    // ===== Init =====
+    buildNav();
+    setupDropZones();
+    loadActivity(0);
+    document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+    document.getElementById('resetBtn').addEventListener('click', resetCards);
+    document.getElementById('showAnswersBtn').addEventListener('click', showHint);
+  </script>
+</body>
+</html>

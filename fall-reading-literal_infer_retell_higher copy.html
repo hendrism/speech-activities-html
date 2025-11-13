@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fall Reading Stories</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #fef5e7, #fdebd0);
+            min-height: 100vh;
+        }
+        h1 {
+            color: #d35400;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .navigation {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            text-align: center;
+        }
+        .nav-btn {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover {
+            background: #e67e22;
+        }
+        .nav-btn.active {
+            background: #d35400;
+            transform: scale(1.1);
+        }
+        .question-toggle {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #9b59b6;
+            text-align: center;
+        }
+        .toggle-btn {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .toggle-btn:hover {
+            background: #8e44ad;
+        }
+        .toggle-btn.active {
+            background: #6c3483;
+            transform: scale(1.05);
+        }
+        .toggle-label {
+            display: block;
+            color: #6c3483;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .story {
+            background: white;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            display: none;
+        }
+        .story.active {
+            display: block;
+        }
+        h2 {
+            color: #e67e22;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 10px;
+        }
+        .story-text {
+            line-height: 1.9;
+            font-size: 1.15em;
+            color: #2c3e50;
+            background: #fef9f3;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+        }
+        .question-text {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+        .help-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .help-btn:hover {
+            background: #2980b9;
+        }
+        .help-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        .choices {
+            margin-top: 15px;
+            display: none;
+        }
+        .choice {
+            background: white;
+            border: 2px solid #3498db;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .choice:hover {
+            background: #ebf5fb;
+            transform: translateX(5px);
+        }
+        .choice.correct {
+            background: #d5f4e6;
+            border-color: #27ae60;
+            font-weight: bold;
+        }
+        .choice.incorrect {
+            background: #fadbd8;
+            border-color: #e74c3c;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.correct {
+            background: #d5f4e6;
+            color: #27ae60;
+            display: block;
+        }
+        .feedback.incorrect {
+            background: #fadbd8;
+            color: #e74c3c;
+            display: block;
+        }
+        .retelling-section {
+            margin: 20px 0;
+        }
+        .retelling-prompt {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+        }
+        .retelling-label {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .sentence-starter {
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+        .retelling-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            margin-top: 8px;
+            resize: vertical;
+            min-height: 60px;
+        }
+        .retelling-input:focus {
+            outline: none;
+            border-color: #2e7d32;
+            background: #f1f8e9;
+        }
+        .next-btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .next-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .next-btn:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        .next-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍂 Fall Reading Stories 🍁</h1>
+    
+    <div class="navigation" id="navigation"></div>
+    
+    <div class="question-toggle">
+        <span class="toggle-label">Question Type:</span>
+        <button class="toggle-btn active" onclick="setQuestionType('basic')">Basic Questions</button>
+        <button class="toggle-btn" onclick="setQuestionType('advanced')">Advanced Questions</button>
+        <button class="toggle-btn" onclick="setQuestionType('retelling')">Retelling</button>
+    </div>
+    
+    <div id="stories-container"></div>
+    
+    <div class="next-btn-container">
+        <button class="next-btn" id="next-btn" onclick="nextStory()">Next Story →</button>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        let questionType = 'basic';
+        
+        const stories = [
+            {
+                title: "Apple Picking Day",
+                text: [
+                    "On a crisp autumn morning, Liam and his mom drove to the apple orchard.",
+                    "Rows of apple trees stretched across the hillside, their branches heavy with bright red fruit.",
+                    "Liam carefully selected the best apples, gently twisting each one before placing it in his basket.",
+                    "The cool breeze carried the sweet scent of ripe apples throughout the orchard.",
+                    "That evening, they transformed their fresh harvest into a delicious homemade apple pie."
+                ],
+                retellingPrompts: [
+                    "Liam and his mom went to",
+                    "At the orchard, Liam",
+                    "The orchard was special because",
+                    "When they got home, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who went to the apple orchard?",
+                        correct: "Liam and his mom",
+                        wrong: ["Liam and his dad", "Liam and his friends", "Liam's whole family"]
+                    },
+                    {
+                        q: "What did they pick at the orchard?",
+                        correct: "Red apples",
+                        wrong: ["Pumpkins", "Pears", "Peaches"]
+                    },
+                    {
+                        q: "Where did the apple trees grow?",
+                        correct: "On a hillside",
+                        wrong: ["In a valley", "Near a river", "In a greenhouse"]
+                    },
+                    {
+                        q: "When did they make the apple pie?",
+                        correct: "That evening",
+                        wrong: ["The next morning", "At the orchard", "The following week"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why did the breeze carry a sweet scent?",
+                        correct: "The ripe apples gave off a sweet smell",
+                        wrong: ["Someone was baking nearby", "There were flowers blooming", "The trees were freshly planted"]
+                    },
+                    {
+                        q: "How did Liam probably feel during the apple picking?",
+                        correct: "Excited and careful to choose the best apples",
+                        wrong: ["Bored and wanting to leave", "Scared of climbing trees", "Angry about working"]
+                    },
+                    {
+                        q: "What problem did making pie at home solve?",
+                        correct: "They could use the fresh apples they picked",
+                        wrong: ["They didn't have any food", "The orchard was closed", "They needed to go shopping"]
+                    },
+                    {
+                        q: "What caused the branches to be heavy?",
+                        correct: "They were full of ripe apples",
+                        wrong: ["It had rained recently", "Birds were sitting on them", "They were old and weak"]
+                    }
+                ]
+            },
+            {
+                title: "The Pumpkin Patch Adventure",
+                text: [
+                    "Mia's entire class boarded the yellow school bus for their field trip to the pumpkin patch.",
+                    "Walking through the muddy rows, Mia searched carefully for the perfect small, round pumpkin.",
+                    "Meanwhile, her best friend discovered an enormous, bumpy pumpkin that barely fit in her arms.",
+                    "Everyone climbed aboard the hay wagon, which bounced along the dirt path back to the farm stand.",
+                    "The friendly farmer waved enthusiastically as the children called out their goodbyes."
+                ],
+                retellingPrompts: [
+                    "Mia's class took a field trip to",
+                    "Mia was looking for",
+                    "Her best friend found",
+                    "They rode back on"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who went on the field trip?",
+                        correct: "Mia's class",
+                        wrong: ["Mia's family", "Mia and one friend", "Just Mia and her teacher"]
+                    },
+                    {
+                        q: "What kind of pumpkin was Mia looking for?",
+                        correct: "A small, round one",
+                        wrong: ["A big, lumpy one", "An orange and white one", "The biggest one there"]
+                    },
+                    {
+                        q: "How did they travel back to the farm stand?",
+                        correct: "On a hay wagon",
+                        wrong: ["Walking", "On the school bus", "In trucks"]
+                    },
+                    {
+                        q: "What did the farmer do when they left?",
+                        correct: "Waved at them",
+                        wrong: ["Gave them more pumpkins", "Took their picture", "Rode with them"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why were the rows muddy?",
+                        correct: "It's an outdoor farm with dirt paths",
+                        wrong: ["Someone spilled water", "The children made a mess", "It was raining that day"]
+                    },
+                    {
+                        q: "How did Mia's friend probably feel about her pumpkin?",
+                        correct: "Proud and excited to find such a big one",
+                        wrong: ["Disappointed it wasn't prettier", "Sad it was too heavy", "Upset it was lumpy"]
+                    },
+                    {
+                        q: "What was the effect of riding the hay wagon?",
+                        correct: "They could carry their pumpkins easily",
+                        wrong: ["They got to school faster", "They stayed cleaner", "They found more pumpkins"]
+                    },
+                    {
+                        q: "Why did the children call out goodbyes?",
+                        correct: "They were grateful and had fun at the farm",
+                        wrong: ["The teacher told them they had to", "They were being too loud", "They wanted to come back"]
+                    }
+                ]
+            },
+            {
+                title: "Dancing Leaves in the Park",
+                text: [
+                    "Caleb and his father strolled through the neighborhood park on a breezy afternoon.",
+                    "The towering oak trees displayed brilliant shades of crimson, amber, and golden yellow.",
+                    "With each kick, Caleb sent leaves spiraling through the air like tiny dancers.",
+                    "They paused beneath the tallest tree to capture a family photo, with colorful leaves framing the shot.",
+                    "Gusts of wind swirled around them, making the fallen leaves skip and twirl across the grass."
+                ],
+                retellingPrompts: [
+                    "Caleb and his father walked through",
+                    "The trees had leaves that were",
+                    "Caleb was having fun by",
+                    "They took a photo"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who walked through the park?",
+                        correct: "Caleb and his father",
+                        wrong: ["Caleb and his mother", "Caleb alone", "Caleb's whole family"]
+                    },
+                    {
+                        q: "What colors were the leaves?",
+                        correct: "Red, orange, and yellow",
+                        wrong: ["Green and brown", "Purple and pink", "Only orange"]
+                    },
+                    {
+                        q: "Where did they take a photo?",
+                        correct: "Under the tallest tree",
+                        wrong: ["By the park entrance", "Near a pond", "On a bench"]
+                    },
+                    {
+                        q: "What made the leaves move?",
+                        correct: "The wind",
+                        wrong: ["People walking", "Animals running", "Cars passing by"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why were the leaves these bright colors?",
+                        correct: "Trees change color in autumn",
+                        wrong: ["Someone painted them", "The park planted special trees", "It was a trick of the light"]
+                    },
+                    {
+                        q: "How did Caleb feel while kicking leaves?",
+                        correct: "Playful and enjoying the simple fun",
+                        wrong: ["Frustrated and angry", "Scared of getting dirty", "Tired and wanting to go home"]
+                    },
+                    {
+                        q: "Why did they choose that specific tree for the photo?",
+                        correct: "It was the tallest and most impressive",
+                        wrong: ["It was the only tree there", "They were tired of walking", "Someone told them to"]
+                    },
+                    {
+                        q: "What effect did the wind have on their experience?",
+                        correct: "It made the scene more magical and active",
+                        wrong: ["It made them cold and uncomfortable", "It ruined their photo", "It made them leave early"]
+                    }
+                ]
+            },
+            {
+                title: "Cozy Hot Chocolate Afternoon",
+                text: [
+                    "Emma shivered as she walked through the front door after a chilly day at school.",
+                    "Noticing her sister's discomfort, her older sister immediately headed to the kitchen to prepare something warm.",
+                    "Soon, two steaming mugs of hot chocolate topped with fluffy marshmallows sat waiting on the coffee table.",
+                    "The sisters snuggled together under a soft fleece blanket, watching raindrops race down the windowpane.",
+                    "The warm, sweet drink not only heated their cold fingers but also filled them with a sense of comfort and happiness."
+                ],
+                retellingPrompts: [
+                    "When Emma came home from school, she",
+                    "Emma's older sister decided to",
+                    "The sisters sat together and",
+                    "The hot chocolate made them feel"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who made the hot chocolate?",
+                        correct: "Emma's older sister",
+                        wrong: ["Emma", "Their mother", "Their father"]
+                    },
+                    {
+                        q: "What was on top of the hot chocolate?",
+                        correct: "Marshmallows",
+                        wrong: ["Whipped cream", "Sprinkles", "Chocolate chips"]
+                    },
+                    {
+                        q: "Where did they sit together?",
+                        correct: "Under a blanket on the couch",
+                        wrong: ["At the kitchen table", "In their bedrooms", "On the porch"]
+                    },
+                    {
+                        q: "What weather were they watching outside?",
+                        correct: "Rain",
+                        wrong: ["Snow", "Sunshine", "Wind"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "What caused Emma to shiver?",
+                        correct: "The cold weather outside made her cold",
+                        wrong: ["She was scared of something", "She was sick with a fever", "The house was freezing"]
+                    },
+                    {
+                        q: "How did Emma's sister feel about her?",
+                        correct: "Caring and wanted to help her feel better",
+                        wrong: ["Annoyed and bothered", "Jealous and mean", "Worried she was sick"]
+                    },
+                    {
+                        q: "What problem did the hot chocolate solve?",
+                        correct: "It warmed them up and made them feel better",
+                        wrong: ["They were hungry for dinner", "They needed something to do", "They had to finish their homework"]
+                    },
+                    {
+                        q: "Why did the drink warm their hearts, not just their hands?",
+                        correct: "It made them feel loved and cozy together",
+                        wrong: ["The chocolate was really hot", "They had a heart condition", "They were sad before"]
+                    }
+                ]
+            },
+            {
+                title: "The Leaf-Raking Project",
+                text: [
+                    "Mr. Lee organized his students into teams to tackle the enormous leaf-covered school yard.",
+                    "Working together with rakes, they gathered the fallen leaves into an impressive mountain-sized pile.",
+                    "Unable to resist, every student took turns leaping into the crunchy mound, erupting with laughter.",
+                    "They cooperated patiently, sharing the rakes and taking turns throughout the afternoon.",
+                    "By the time they finished, the yard looked neat and tidy, ready for the next school day."
+                ],
+                retellingPrompts: [
+                    "Mr. Lee's students worked together to",
+                    "They made a big pile and then",
+                    "The students were good at",
+                    "When they finished, the yard"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who organized the leaf raking?",
+                        correct: "Mr. Lee",
+                        wrong: ["The principal", "The janitor", "The students themselves"]
+                    },
+                    {
+                        q: "What did they jump into?",
+                        correct: "A big pile of leaves",
+                        wrong: ["A pile of dirt", "A pile of hay", "A swimming pool"]
+                    },
+                    {
+                        q: "Where did this activity happen?",
+                        correct: "The school yard",
+                        wrong: ["The park", "Mr. Lee's house", "The playground"]
+                    },
+                    {
+                        q: "How did the yard look when they finished?",
+                        correct: "Neat and tidy",
+                        wrong: ["Still messy", "Worse than before", "Covered with more leaves"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why did Mr. Lee organize students into teams?",
+                        correct: "To work together efficiently and cooperate",
+                        wrong: ["To make them compete", "Because he was lazy", "To keep them separated"]
+                    },
+                    {
+                        q: "How did the students feel about this work project?",
+                        correct: "They enjoyed it and had fun while working",
+                        wrong: ["They hated it and complained", "They were too tired to care", "They wanted to go inside"]
+                    },
+                    {
+                        q: "What was the effect of taking turns with the rakes?",
+                        correct: "Everyone got to participate fairly",
+                        wrong: ["The work took much longer", "Some students didn't work at all", "They broke the rakes"]
+                    },
+                    {
+                        q: "What lesson did students learn from this activity?",
+                        correct: "Teamwork and cooperation make tasks easier and fun",
+                        wrong: ["Raking leaves is always terrible", "Teachers make you do all the work", "It's better to work alone"]
+                    }
+                ]
+            },
+            {
+                title: "Friday Night Football",
+                text: [
+                    "Carlos and his entire family arrived at the crowded stadium just as the sun began to set.",
+                    "He cheered enthusiastically every time the red team made a great play on the field.",
+                    "They munched on buttery popcorn and sipped warm apple cider throughout the exciting game.",
+                    "The athletes sprinted across the field with incredible speed, their uniforms bright under the stadium lights.",
+                    "As darkness fell and the game concluded, the stadium lights illuminated the night sky."
+                ],
+                retellingPrompts: [
+                    "Carlos and his family went to",
+                    "During the game, Carlos",
+                    "They ate and drank",
+                    "The game was exciting because"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who attended the football game?",
+                        correct: "Carlos and his family",
+                        wrong: ["Just Carlos and his dad", "Carlos's class", "Carlos alone"]
+                    },
+                    {
+                        q: "Which team did Carlos cheer for?",
+                        correct: "The red team",
+                        wrong: ["The blue team", "The home team", "The visiting team"]
+                    },
+                    {
+                        q: "What did they drink at the game?",
+                        correct: "Warm apple cider",
+                        wrong: ["Hot chocolate", "Cold soda", "Lemonade"]
+                    },
+                    {
+                        q: "When did the stadium lights turn on?",
+                        correct: "As it got dark",
+                        wrong: ["Before the game started", "At halftime", "They never turned on"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why did they arrive as the sun began to set?",
+                        correct: "The game was scheduled for evening",
+                        wrong: ["They were running late", "They missed the beginning", "The sun sets early in fall"]
+                    },
+                    {
+                        q: "How did Carlos feel during the game?",
+                        correct: "Excited and enthusiastic about his team",
+                        wrong: ["Bored and wanting to leave", "Angry his team was losing", "Scared of the crowd"]
+                    },
+                    {
+                        q: "What was the purpose of eating popcorn and cider?",
+                        correct: "To enjoy the game experience and stay warm",
+                        wrong: ["They hadn't eaten dinner", "The food was free", "They were required to buy it"]
+                    },
+                    {
+                        q: "What effect did the stadium lights have?",
+                        correct: "They allowed the game to continue after dark",
+                        wrong: ["They made it too bright to see", "They heated up the stadium", "They scared away the players"]
+                    }
+                ]
+            },
+            {
+                title: "The Watchful Scarecrow",
+                text: [
+                    "A weathered scarecrow stood guard in the farmer's vegetable garden, surveying the crops below.",
+                    "Its costume consisted of a battered straw hat and a faded plaid flannel shirt.",
+                    "Gentle autumn breezes caused its stuffed arms to sway slightly from side to side.",
+                    "Black crows circled overhead but quickly veered away when they spotted the human-like figure.",
+                    "The farmer smiled with satisfaction, knowing his creation was protecting the harvest effectively."
+                ],
+                retellingPrompts: [
+                    "A scarecrow stood in",
+                    "The scarecrow was wearing",
+                    "When crows flew over, they",
+                    "The farmer was happy because"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Where did the scarecrow stand?",
+                        correct: "In the vegetable garden",
+                        wrong: ["In the corn field", "On the barn roof", "By the farmhouse"]
+                    },
+                    {
+                        q: "What was the scarecrow wearing?",
+                        correct: "A straw hat and plaid shirt",
+                        wrong: ["A raincoat and boots", "A suit and tie", "A crown and cape"]
+                    },
+                    {
+                        q: "What made the scarecrow's arms move?",
+                        correct: "The breeze",
+                        wrong: ["The farmer pulled strings", "It was alive", "Birds landed on them"]
+                    },
+                    {
+                        q: "How did the farmer feel?",
+                        correct: "Satisfied and happy",
+                        wrong: ["Angry and frustrated", "Worried and nervous", "Sad and disappointed"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why did the farmer build the scarecrow?",
+                        correct: "To protect his crops from hungry birds",
+                        wrong: ["To decorate his garden", "To have a companion", "To enter a contest"]
+                    },
+                    {
+                        q: "Why did the crows fly away?",
+                        correct: "They thought it was a real person who would harm them",
+                        wrong: ["They found food elsewhere", "The farmer chased them", "They were migrating south"]
+                    },
+                    {
+                        q: "What problem did the scarecrow solve?",
+                        correct: "It kept birds from eating the vegetables",
+                        wrong: ["It watered the plants", "It harvested the crops", "It scared away deer"]
+                    },
+                    {
+                        q: "Why could the wind move the arms easily?",
+                        correct: "They were stuffed with light straw, not solid",
+                        wrong: ["They were broken and loose", "The wind was extremely strong", "The farmer made them move"]
+                    }
+                ]
+            },
+            {
+                title: "The Downtown Fall Festival",
+                text: [
+                    "Nora's family strolled through the bustling downtown streets filled with festival activities.",
+                    "She savored every bite of her sticky caramel apple while munching on fresh kettle corn.",
+                    "Her adventurous brother climbed to the top of the enormous inflatable slide, then whooshed down with a grin.",
+                    "The family danced together when live music played, and they tested their skills at various game booths.",
+                    "Colorful string lights flickered to life as twilight approached, creating a magical atmosphere."
+                ],
+                retellingPrompts: [
+                    "Nora's family went to",
+                    "Nora ate",
+                    "Her brother",
+                    "As it got dark, the festival"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Where was the festival located?",
+                        correct: "Downtown",
+                        wrong: ["At a farm", "In a park", "At school"]
+                    },
+                    {
+                        q: "What did Nora eat?",
+                        correct: "Caramel apple and kettle corn",
+                        wrong: ["Hot dogs and fries", "Pizza and soda", "Ice cream and cookies"]
+                    },
+                    {
+                        q: "What did Nora's brother ride?",
+                        correct: "An inflatable slide",
+                        wrong: ["A carousel", "A roller coaster", "A Ferris wheel"]
+                    },
+                    {
+                        q: "When did the lights turn on?",
+                        correct: "As twilight approached",
+                        wrong: ["When they arrived", "At midnight", "At noon"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why did the family go to the festival?",
+                        correct: "To celebrate fall and spend time together",
+                        wrong: ["They had nothing else to do", "They were forced to go", "They needed to buy groceries"]
+                    },
+                    {
+                        q: "How did Nora's brother feel on the slide?",
+                        correct: "Excited and adventurous",
+                        wrong: ["Scared and nervous", "Bored and uninterested", "Angry and frustrated"]
+                    },
+                    {
+                        q: "What was the effect of the string lights?",
+                        correct: "They created a magical, festive atmosphere",
+                        wrong: ["They helped people see where to walk", "They kept people awake", "They made it too bright"]
+                    },
+                    {
+                        q: "Why did they test their skills at game booths?",
+                        correct: "For fun and to win prizes",
+                        wrong: ["They had to play every game", "They were bored with everything else", "The games were free"]
+                    }
+                ]
+            },
+            {
+                title: "Lost and Found in the Corn Maze",
+                text: [
+                    "Evan and three of his closest friends ventured into the towering corn maze, armed with determination.",
+                    "The corn stalks stretched far above their heads, blocking their view of the path ahead.",
+                    "They carefully studied the directional signs posted at each intersection, trying to navigate their way out.",
+                    "When they realized they had circled back to the same spot, they burst into giggles at their mistake.",
+                    "Finally emerging victorious, they celebrated by devouring warm pumpkin-spice donuts at the exit."
+                ],
+                retellingPrompts: [
+                    "Evan and his friends went into",
+                    "Finding their way out was hard because",
+                    "When they got lost, they",
+                    "After they finished the maze, they"
+                ],
+                basicQuestions: [
+                    {
+                        q: "Who went into the corn maze?",
+                        correct: "Evan and three friends",
+                        wrong: ["Evan and his family", "Evan alone", "Evan and his class"]
+                    },
+                    {
+                        q: "What helped them find their way?",
+                        correct: "Directional signs",
+                        wrong: ["A map", "A guide", "Their phones"]
+                    },
+                    {
+                        q: "What did they eat after finishing?",
+                        correct: "Pumpkin-spice donuts",
+                        wrong: ["Apple pie", "Candy", "Hot dogs"]
+                    },
+                    {
+                        q: "How tall was the corn?",
+                        correct: "Taller than they were",
+                        wrong: ["Up to their knees", "As tall as they were", "Shorter than them"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why did they laugh when they got lost?",
+                        correct: "They thought it was funny, not scary or frustrating",
+                        wrong: ["They were nervous and anxious", "They were making fun of each other", "They had given up trying"]
+                    },
+                    {
+                        q: "What was challenging about the maze?",
+                        correct: "The tall corn blocked their view and made navigation hard",
+                        wrong: ["It was too cold outside", "There were no signs", "It was raining"]
+                    },
+                    {
+                        q: "How did the friends feel toward each other?",
+                        correct: "Close and supportive, having fun together",
+                        wrong: ["Competitive and arguing", "Annoyed with each other", "Scared and wanting to separate"]
+                    },
+                    {
+                        q: "Why were the donuts a good reward?",
+                        correct: "They earned a treat after working hard to find the exit",
+                        wrong: ["They were starving and hadn't eaten all day", "The donuts were free", "Someone forced them to eat"]
+                    }
+                ]
+            },
+            {
+                title: "Morning Mist and Sweater Weather",
+                text: [
+                    "Lila selected her favorite burnt-orange sweater from the closet, anticipating the cool morning air.",
+                    "Stepping outside, she felt the crisp autumn breeze against her face.",
+                    "She met up with her friends, and together they walked along the sidewalk toward the bus stop.",
+                    "A mysterious blanket of fog hovered just above the damp grass in the front yards they passed.",
+                    "Before long, the rising sun broke through the gray clouds, casting warm golden rays across the neighborhood."
+                ],
+                retellingPrompts: [
+                    "On a cool fall morning, Lila",
+                    "She walked to the bus stop with",
+                    "The morning was foggy and",
+                    "Then the sun came out and"
+                ],
+                basicQuestions: [
+                    {
+                        q: "What color was Lila's sweater?",
+                        correct: "Burnt-orange",
+                        wrong: ["Bright red", "Dark blue", "Light pink"]
+                    },
+                    {
+                        q: "Where was Lila going?",
+                        correct: "To the bus stop",
+                        wrong: ["To school directly", "To the store", "To a friend's house"]
+                    },
+                    {
+                        q: "What was on the grass?",
+                        correct: "Fog",
+                        wrong: ["Frost", "Dew", "Snow"]
+                    },
+                    {
+                        q: "What happened to the clouds?",
+                        correct: "The sun broke through them",
+                        wrong: ["They brought rain", "They got darker", "They disappeared completely"]
+                    }
+                ],
+                advancedQuestions: [
+                    {
+                        q: "Why did Lila choose to wear a sweater?",
+                        correct: "She knew it would be cool outside",
+                        wrong: ["Her mother forced her to", "She spilled something on her shirt", "It was the only clean thing"]
+                    },
+                    {
+                        q: "What caused the fog to appear?",
+                        correct: "Cool morning air creates moisture near the ground",
+                        wrong: ["Someone was spraying water", "It was smoke from fires", "The grass was on fire"]
+                    },
+                    {
+                        q: "How did Lila feel about going to school?",
+                        correct: "Comfortable and ready for the day",
+                        wrong: ["Dreading it and wanting to stay home", "Nervous and worried", "Excited because it was her birthday"]
+                    },
+                    {
+                        q: "What was the effect of the sun breaking through?",
+                        correct: "It warmed the morning and brightened their walk",
+                        wrong: ["It made them too hot", "It hurt their eyes", "It made them late for the bus"]
+                    }
+                ]
+            }
+        ];
+
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function setQuestionType(type) {
+            questionType = type;
+            
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+            toggleBtns.forEach(btn => {
+                if ((type === 'basic' && btn.textContent.includes('Basic')) ||
+                    (type === 'advanced' && btn.textContent.includes('Advanced')) ||
+                    (type === 'retelling' && btn.textContent.includes('Retelling'))) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            goToStory(currentStory);
+        }
+
+        function createStory(story, index) {
+            const storyDiv = document.createElement('div');
+            storyDiv.className = index === 0 ? 'story active' : 'story';
+            storyDiv.id = `story-${index}`;
+            
+            let html = `<h2>${story.title}</h2>`;
+            html += `<div class="story-text">`;
+            story.text.forEach(line => {
+                html += `${line}<br>`;
+            });
+            html += `</div>`;
+            
+            if (questionType === 'retelling') {
+                html += `<div class="retelling-section">`;
+                html += `<div class="retelling-label" style="margin: 20px 0 15px 0; font-size: 1.2em; color: #2e7d32;">Now retell the story in your own words:</div>`;
+                
+                story.retellingPrompts.forEach((prompt, pIndex) => {
+                    const promptId = `retell-${index}-${pIndex}`;
+                    html += `
+                        <div class="retelling-prompt">
+                            <label class="retelling-label">${pIndex + 1}. <span class="sentence-starter">${prompt}</span></label>
+                            <textarea class="retelling-input" id="${promptId}" placeholder="Type your answer here..."></textarea>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            } else {
+                const questions = questionType === 'basic' ? story.basicQuestions : story.advancedQuestions;
+                
+                questions.forEach((question, qIndex) => {
+                    const questionId = `q-${index}-${qIndex}-${questionType}`;
+                    html += `
+                        <div class="question">
+                            <div class="question-text">${question.q}</div>
+                            <button class="help-btn" onclick="showHelp('${questionId}')">I need help</button>
+                            <div class="choices" id="${questionId}-choices"></div>
+                            <div class="feedback" id="${questionId}-feedback"></div>
+                        </div>
+                    `;
+                });
+            }
+            
+            storyDiv.innerHTML = html;
+            return storyDiv;
+        }
+
+        function goToStory(index) {
+            currentStory = index;
+            
+            const container = document.getElementById('stories-container');
+            container.innerHTML = '';
+            
+            stories.forEach((story, i) => {
+                container.appendChild(createStory(story, i));
+            });
+            
+            const allStories = document.querySelectorAll('.story');
+            allStories.forEach(story => story.classList.remove('active'));
+            document.getElementById(`story-${index}`).classList.add('active');
+            
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            const nextBtn = document.getElementById('next-btn');
+            if (index === stories.length - 1) {
+                nextBtn.textContent = 'All Done! 🎉';
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.textContent = 'Next Story →';
+                nextBtn.disabled = false;
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function nextStory() {
+            if (currentStory < stories.length - 1) {
+                goToStory(currentStory + 1);
+            }
+        }
+
+        function showHelp(questionId) {
+            const parts = questionId.split('-');
+            const storyIndex = parseInt(parts[1]);
+            const qIndex = parseInt(parts[2]);
+            const qType = parts[3];
+            
+            const questions = qType === 'basic' ? stories[storyIndex].basicQuestions : stories[storyIndex].advancedQuestions;
+            const question = questions[qIndex];
+            
+            const allChoices = [question.correct, ...question.wrong];
+            const shuffled = shuffle(allChoices);
+            
+            const choicesDiv = document.getElementById(`${questionId}-choices`);
+            choicesDiv.innerHTML = '';
+            choicesDiv.style.display = 'block';
+            
+            shuffled.forEach(choice => {
+                const choiceDiv = document.createElement('div');
+                choiceDiv.className = 'choice';
+                choiceDiv.textContent = choice;
+                choiceDiv.onclick = () => checkAnswer(questionId, choice, question.correct);
+                choicesDiv.appendChild(choiceDiv);
+            });
+            
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = 'Help shown';
+        }
+
+        function checkAnswer(questionId, selected, correct) {
+            const choicesDiv = document.getElementById(`${questionId}-choices`);
+            const choices = choicesDiv.getElementsByClassName('choice');
+            const feedbackDiv = document.getElementById(`${questionId}-feedback`);
+            
+            for (let choice of choices) {
+                choice.style.pointerEvents = 'none';
+                if (choice.textContent === correct) {
+                    choice.classList.add('correct');
+                } else if (choice.textContent === selected) {
+                    choice.classList.add('incorrect');
+                }
+            }
+            
+            if (selected === correct) {
+                feedbackDiv.textContent = '✓ Great job! That\'s correct!';
+                feedbackDiv.className = 'feedback correct';
+            } else {
+                feedbackDiv.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        const navigation = document.getElementById('navigation');
+        
+        stories.forEach((story, index) => {
+            const navBtn = document.createElement('button');
+            navBtn.className = index === 0 ? 'nav-btn active' : 'nav-btn';
+            navBtn.textContent = `${index + 1}`;
+            navBtn.onclick = () => goToStory(index);
+            navigation.appendChild(navBtn);
+        });
+        
+        const container = document.getElementById('stories-container');
+        stories.forEach((story, index) => {
+            container.appendChild(createStory(story, index));
+        });
+    </script>
+</body>
+</html>

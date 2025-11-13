@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fall Reading Stories</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #fef5e7, #fdebd0);
+            min-height: 100vh;
+        }
+        h1 {
+            color: #d35400;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .navigation {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            text-align: center;
+        }
+        .nav-btn {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover {
+            background: #e67e22;
+        }
+        .nav-btn.active {
+            background: #d35400;
+            transform: scale(1.1);
+        }
+        .story {
+            background: white;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+            display: none;
+        }
+        .story.active {
+            display: block;
+        }
+        h2 {
+            color: #e67e22;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 10px;
+        }
+        .story-text {
+            line-height: 1.8;
+            font-size: 1.1em;
+            color: #2c3e50;
+            background: #fef9f3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+        }
+        .question-text {
+            font-weight: bold;
+            color: #e67e22;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+        .help-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .help-btn:hover {
+            background: #2980b9;
+        }
+        .help-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        .choices {
+            margin-top: 15px;
+            display: none;
+        }
+        .choice {
+            background: white;
+            border: 2px solid #3498db;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .choice:hover {
+            background: #ebf5fb;
+            transform: translateX(5px);
+        }
+        .choice.correct {
+            background: #d5f4e6;
+            border-color: #27ae60;
+            font-weight: bold;
+        }
+        .choice.incorrect {
+            background: #fadbd8;
+            border-color: #e74c3c;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.correct {
+            background: #d5f4e6;
+            color: #27ae60;
+            display: block;
+        }
+        .feedback.incorrect {
+            background: #fadbd8;
+            color: #e74c3c;
+            display: block;
+        }
+        .next-btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .next-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .next-btn:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        .next-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍂 Fall Reading Stories 🍁</h1>
+    
+    <div class="navigation" id="navigation"></div>
+    
+    <div id="stories-container"></div>
+    
+    <div class="next-btn-container">
+        <button class="next-btn" id="next-btn" onclick="nextStory()">Next Story →</button>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        
+        const stories = [
+            {
+                title: "Apple Picking Day",
+                text: [
+                    "Liam and his mom go to the apple farm.",
+                    "They see big red apples on the trees.",
+                    "Liam picks apples and puts them in a basket.",
+                    "The air feels cool and smells sweet.",
+                    "They eat warm apple pie when they get home."
+                ],
+                questions: [
+                    {
+                        q: "Why does the air smell sweet?",
+                        correct: "Because of the apples",
+                        wrong: ["Because of flowers", "Because of the grass", "Because someone is baking"]
+                    },
+                    {
+                        q: "How does Liam probably feel at the farm?",
+                        correct: "Happy and excited",
+                        wrong: ["Sad and bored", "Angry and upset", "Scared and worried"]
+                    },
+                    {
+                        q: "What season is it in the story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Summer", "Winter", "Spring"]
+                    },
+                    {
+                        q: "Why do they make apple pie at home?",
+                        correct: "They picked fresh apples to use",
+                        wrong: ["They bought apples at the store", "They don't like apples", "They wanted to make cookies"]
+                    }
+                ]
+            },
+            {
+                title: "The Pumpkin Patch",
+                text: [
+                    "Mia and her class visit the pumpkin patch.",
+                    "She looks for a small, round pumpkin.",
+                    "Her friend finds a big, lumpy one.",
+                    "They ride on a hay wagon together.",
+                    "Everyone laughs and waves to the farmer."
+                ],
+                questions: [
+                    {
+                        q: "Why do they ride on a hay wagon?",
+                        correct: "To get around the pumpkin patch",
+                        wrong: ["Because they are tired", "Because it's raining", "Because they can't walk"]
+                    },
+                    {
+                        q: "How does Mia feel on this trip?",
+                        correct: "Happy and excited",
+                        wrong: ["Sad and lonely", "Angry and frustrated", "Sleepy and bored"]
+                    },
+                    {
+                        q: "Why does everyone wave to the farmer?",
+                        correct: "To be friendly and say thank you",
+                        wrong: ["Because they are leaving", "Because they need help", "Because they are angry"]
+                    },
+                    {
+                        q: "What will they probably do with the pumpkins?",
+                        correct: "Carve them or decorate for fall",
+                        wrong: ["Throw them away", "Plant them", "Give them back"]
+                    }
+                ]
+            },
+            {
+                title: "Leaves Falling Down",
+                text: [
+                    "Caleb walks in the park with his dad.",
+                    "The trees have red, orange, and yellow leaves.",
+                    "He kicks the leaves and watches them fly.",
+                    "They take a picture by a tall tree.",
+                    "The wind makes the leaves dance."
+                ],
+                questions: [
+                    {
+                        q: "Why are the leaves red, orange, and yellow?",
+                        correct: "It's fall and leaves change colors",
+                        wrong: ["Someone painted them", "The trees are sick", "It's always like that"]
+                    },
+                    {
+                        q: "How does Caleb feel in the park?",
+                        correct: "Happy and playful",
+                        wrong: ["Sad and upset", "Angry and mean", "Scared and nervous"]
+                    },
+                    {
+                        q: "Why do they take a picture?",
+                        correct: "To remember the beautiful day",
+                        wrong: ["Because the camera is broken", "Because they have to", "Because they are lost"]
+                    },
+                    {
+                        q: "Why does the wind make the leaves dance?",
+                        correct: "The wind blows them around",
+                        wrong: ["The leaves are alive", "Someone is shaking the trees", "It's magic"]
+                    }
+                ]
+            },
+            {
+                title: "Hot Chocolate Time",
+                text: [
+                    "Emma feels cold after school.",
+                    "Her sister makes hot chocolate with marshmallows.",
+                    "They sit on the couch under a blanket.",
+                    "They watch the rain fall outside.",
+                    "The drink warms their hands and hearts."
+                ],
+                questions: [
+                    {
+                        q: "Why does Emma feel cold?",
+                        correct: "It's a cold, rainy day",
+                        wrong: ["She has a fever", "The house is broken", "She forgot her coat at school"]
+                    },
+                    {
+                        q: "Why do they sit under a blanket?",
+                        correct: "To stay warm and cozy",
+                        wrong: ["To hide from someone", "Because there are no chairs", "Because they are sleepy"]
+                    },
+                    {
+                        q: "How do Emma and her sister feel?",
+                        correct: "Warm, cozy, and happy",
+                        wrong: ["Cold and sad", "Angry and upset", "Bored and lonely"]
+                    },
+                    {
+                        q: "Why does the drink warm their hearts?",
+                        correct: "They feel happy and loved together",
+                        wrong: ["The chocolate is too hot", "Their hearts are actually cold", "They are sick"]
+                    }
+                ]
+            },
+            {
+                title: "Raking the Yard",
+                text: [
+                    "Mr. Lee and his students rake the school yard.",
+                    "The leaves make a giant pile.",
+                    "Everyone jumps into the pile and laughs.",
+                    "They take turns using the rake.",
+                    "The yard looks clean when they finish."
+                ],
+                questions: [
+                    {
+                        q: "Why do they rake the yard?",
+                        correct: "To clean up the fallen leaves",
+                        wrong: ["Because Mr. Lee is mean", "To find something lost", "Because they are bored"]
+                    },
+                    {
+                        q: "How do the students feel about raking?",
+                        correct: "Happy and having fun",
+                        wrong: ["Sad and upset", "Angry and frustrated", "Scared and worried"]
+                    },
+                    {
+                        q: "Why do they jump in the leaf pile?",
+                        correct: "For fun and because it looks soft",
+                        wrong: ["Because they fell down", "Because Mr. Lee told them to", "Because they are fighting"]
+                    },
+                    {
+                        q: "What season is it in this story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Spring", "Summer", "Winter"]
+                    }
+                ]
+            },
+            {
+                title: "Football Game Fun",
+                text: [
+                    "Carlos goes to a football game with his family.",
+                    "He cheers for the red team.",
+                    "They eat popcorn and drink warm cider.",
+                    "The players run fast across the field.",
+                    "It gets dark when the game ends."
+                ],
+                questions: [
+                    {
+                        q: "Why does it get dark during the game?",
+                        correct: "The game lasts until evening",
+                        wrong: ["There's a storm", "The lights broke", "Someone turned off the sun"]
+                    },
+                    {
+                        q: "How does Carlos feel at the game?",
+                        correct: "Excited and happy",
+                        wrong: ["Sad and bored", "Angry and upset", "Scared and nervous"]
+                    },
+                    {
+                        q: "Why do they eat popcorn and drink cider?",
+                        correct: "It's part of the fun at games",
+                        wrong: ["They didn't eat breakfast", "The store was out of food", "They have to"]
+                    },
+                    {
+                        q: "What time of day does the game end?",
+                        correct: "Evening or night",
+                        wrong: ["Morning", "Noon", "Afternoon"]
+                    }
+                ]
+            },
+            {
+                title: "Scarecrow in the Garden",
+                text: [
+                    "A scarecrow stands tall in the garden.",
+                    "It wears a hat and an old plaid shirt.",
+                    "The wind moves its arms a little bit.",
+                    "Crows fly away when they see it.",
+                    "The farmer smiles at his good work."
+                ],
+                questions: [
+                    {
+                        q: "Why did the farmer make the scarecrow?",
+                        correct: "To scare birds away from the garden",
+                        wrong: ["To have a friend", "Because he was bored", "To sell it"]
+                    },
+                    {
+                        q: "Why do the crows fly away?",
+                        correct: "They think it's a real person",
+                        wrong: ["They are going to find food", "They don't like gardens", "The farmer chased them"]
+                    },
+                    {
+                        q: "How does the farmer feel?",
+                        correct: "Proud and happy with his work",
+                        wrong: ["Sad and lonely", "Angry and upset", "Scared and worried"]
+                    },
+                    {
+                        q: "Why can the wind move the scarecrow's arms?",
+                        correct: "They're made of light, soft materials",
+                        wrong: ["The scarecrow is alive", "The arms are broken", "The farmer moves them"]
+                    }
+                ]
+            },
+            {
+                title: "Fall Festival",
+                text: [
+                    "Nora's family goes to the fall festival downtown.",
+                    "She eats caramel apples and popcorn.",
+                    "Her brother rides the big slide.",
+                    "They dance to the music and play games.",
+                    "The lights shine when the sun goes down."
+                ],
+                questions: [
+                    {
+                        q: "Why do they go to the festival?",
+                        correct: "To have fun and celebrate fall",
+                        wrong: ["Because they have to", "Because they are lost", "Because it's raining"]
+                    },
+                    {
+                        q: "How does Nora feel at the festival?",
+                        correct: "Happy and excited",
+                        wrong: ["Sad and bored", "Angry and mean", "Tired and sleepy"]
+                    },
+                    {
+                        q: "Why do the lights shine when the sun goes down?",
+                        correct: "So people can see in the dark",
+                        wrong: ["Because someone turned them on by accident", "To scare people", "Because it's Christmas"]
+                    },
+                    {
+                        q: "What time of day do they probably leave?",
+                        correct: "Evening or nighttime",
+                        wrong: ["Early morning", "Noon", "Right after lunch"]
+                    }
+                ]
+            },
+            {
+                title: "The Corn Maze",
+                text: [
+                    "Evan and his friends go in the corn maze.",
+                    "The corn is taller than they are!",
+                    "They follow signs to find the way out.",
+                    "They laugh when they get lost.",
+                    "At the end, they eat pumpkin donuts."
+                ],
+                questions: [
+                    {
+                        q: "Why do they laugh when lost?",
+                        correct: "They're having fun and not worried",
+                        wrong: ["They are scared", "They think it's funny to be mean", "They want to go home"]
+                    },
+                    {
+                        q: "How do Evan and his friends feel?",
+                        correct: "Happy and playful",
+                        wrong: ["Sad and scared", "Angry and upset", "Bored and sleepy"]
+                    },
+                    {
+                        q: "Why is the corn taller than them?",
+                        correct: "Corn grows very tall and they are children",
+                        wrong: ["The corn is magic", "They are lying down", "The corn is on a hill"]
+                    },
+                    {
+                        q: "Why do they eat donuts at the end?",
+                        correct: "As a treat or reward for finishing",
+                        wrong: ["Because they have to", "Because they didn't eat breakfast", "Because the donuts are free"]
+                    }
+                ]
+            },
+            {
+                title: "Sweater Weather",
+                text: [
+                    "Lila puts on her favorite orange sweater.",
+                    "The morning air feels cool.",
+                    "She walks to the bus stop with her friends.",
+                    "They see fog on the grass.",
+                    "Soon, the sun shines through the clouds."
+                ],
+                questions: [
+                    {
+                        q: "Why does Lila wear a sweater?",
+                        correct: "Because the air is cool outside",
+                        wrong: ["Because her mom told her to", "Because she spilled on her shirt", "Because it's her birthday"]
+                    },
+                    {
+                        q: "How does Lila probably feel?",
+                        correct: "Happy and ready for school",
+                        wrong: ["Sad and upset", "Angry and mean", "Scared and worried"]
+                    },
+                    {
+                        q: "Why is there fog on the grass?",
+                        correct: "The cool morning air makes fog",
+                        wrong: ["Someone sprayed water", "It's smoke", "The grass is on fire"]
+                    },
+                    {
+                        q: "What season is it in this story?",
+                        correct: "Fall or autumn",
+                        wrong: ["Summer", "Winter", "Spring"]
+                    }
+                ]
+            }
+        ];
+
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function createStory(story, index) {
+            const storyDiv = document.createElement('div');
+            storyDiv.className = index === 0 ? 'story active' : 'story';
+            storyDiv.id = `story-${index}`;
+            
+            let html = `<h2>${story.title}</h2>`;
+            html += `<div class="story-text">`;
+            story.text.forEach(line => {
+                html += `${line}<br>`;
+            });
+            html += `</div>`;
+            
+            story.questions.forEach((question, qIndex) => {
+                const questionId = `q-${index}-${qIndex}`;
+                html += `
+                    <div class="question">
+                        <div class="question-text">${question.q}</div>
+                        <button class="help-btn" onclick="showHelp('${questionId}')">I need help</button>
+                        <div class="choices" id="${questionId}-choices"></div>
+                        <div class="feedback" id="${questionId}-feedback"></div>
+                    </div>
+                `;
+            });
+            
+            storyDiv.innerHTML = html;
+            return storyDiv;
+        }
+
+        function goToStory(index) {
+            currentStory = index;
+            
+            // Hide all stories
+            const allStories = document.querySelectorAll('.story');
+            allStories.forEach(story => story.classList.remove('active'));
+            
+            // Show selected story
+            document.getElementById(`story-${index}`).classList.add('active');
+            
+            // Update navigation buttons
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Update next button
+            const nextBtn = document.getElementById('next-btn');
+            if (index === stories.length - 1) {
+                nextBtn.textContent = 'All Done! 🎉';
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.textContent = 'Next Story →';
+                nextBtn.disabled = false;
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function nextStory() {
+            if (currentStory < stories.length - 1) {
+                goToStory(currentStory + 1);
+            }
+        }
+
+        function showHelp(questionId) {
+            const [_, storyIndex, qIndex] = questionId.split('-').map(Number);
+            const question = stories[storyIndex].questions[qIndex];
+            
+            const allChoices = [question.correct, ...question.wrong];
+            const shuffled = shuffle(allChoices);
+            
+            const choicesDiv = document.getElementById(`${questionId}-choices`);
+            choicesDiv.innerHTML = '';
+            choicesDiv.style.display = 'block';
+            
+            shuffled.forEach(choice => {
+                const choiceDiv = document.createElement('div');
+                choiceDiv.className = 'choice';
+                choiceDiv.textContent = choice;
+                choiceDiv.onclick = () => checkAnswer(questionId, choice, question.correct);
+                choicesDiv.appendChild(choiceDiv);
+            });
+            
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = 'Help shown';
+        }
+
+        function checkAnswer(questionId, selected, correct) {
+            const choicesDiv = document.getElementById(`${questionId}-choices`);
+            const choices = choicesDiv.getElementsByClassName('choice');
+            const feedbackDiv = document.getElementById(`${questionId}-feedback`);
+            
+            for (let choice of choices) {
+                choice.style.pointerEvents = 'none';
+                if (choice.textContent === correct) {
+                    choice.classList.add('correct');
+                } else if (choice.textContent === selected) {
+                    choice.classList.add('incorrect');
+                }
+            }
+            
+            if (selected === correct) {
+                feedbackDiv.textContent = '✓ Great job! That\'s correct!';
+                feedbackDiv.className = 'feedback correct';
+            } else {
+                feedbackDiv.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        // Initialize
+        const container = document.getElementById('stories-container');
+        const navigation = document.getElementById('navigation');
+        
+        // Create navigation buttons
+        stories.forEach((story, index) => {
+            const navBtn = document.createElement('button');
+            navBtn.className = index === 0 ? 'nav-btn active' : 'nav-btn';
+            navBtn.textContent = `${index + 1}`;
+            navBtn.onclick = () => goToStory(index);
+            navigation.appendChild(navBtn);
+        });
+        
+        // Create all stories
+        stories.forEach((story, index) => {
+            container.appendChild(createStory(story, index));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading Comprehension - Inference & Compare/Contrast</title>
+<style>
+  :root {
+    --w: 1200px;
+    --accent: #2563eb;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #f59e0b;
+    --purple: #8b5cf6;
+    --orange: #ea580c;
+    --gray: #64748b;
+    --green: #10b981;
+    --blue: #0ea5e9;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+  
+  .story-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .story-btn {
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .story-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .activity-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .story-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .story-title {
+    color: var(--accent);
+    font-size: 28px;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  
+  .activity-toggle {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .toggle-btn {
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .toggle-btn.active {
+    background: var(--purple);
+    color: white;
+    border-color: var(--purple);
+  }
+  
+  .story-text {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  
+  .story-text p {
+    margin: 0 0 20px;
+  }
+  
+  .story-text p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .activity-section {
+    display: none;
+  }
+  
+  .activity-section.active {
+    display: block;
+  }
+
+  /* Inference Activity */
+  .inference-activity {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .inference-question {
+    background: #f0f9ff;
+    border: 2px solid var(--blue);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .question-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .question-prompt {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--ink);
+  }
+  
+  .inference-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+  }
+  
+  .help-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .help-box {
+    background: #fef3c7;
+    border: 2px solid var(--warning);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 15px;
+    display: none;
+  }
+  
+  .help-box.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .help-box h4 {
+    color: #92400e;
+    margin: 0 0 10px;
+    font-size: 16px;
+  }
+  
+  .multiple-choice {
+    display: none;
+    margin-top: 20px;
+  }
+  
+  .multiple-choice.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .choice-option {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .choice-option:hover {
+    border-color: var(--purple);
+    background: #f8fafc;
+  }
+  
+  .choice-option.selected {
+    border-color: var(--blue);
+    background: #eff6ff;
+  }
+  
+  .choice-option.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .choice-option.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+
+  /* Compare/Contrast Activity */
+  .compare-activity {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .items-bank {
+    background: #fffbeb;
+    border: 3px dashed var(--warning);
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 500px;
+  }
+  
+  .items-bank h3 {
+    color: #92400e;
+    margin: 0 0 16px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .comparison-zones {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .similarities-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+  .differences-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .drop-zone {
+    min-height: 200px;
+    border: 3px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .drop-zone h3 {
+    text-align: center;
+    margin: 0 0 12px;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .similarities-zone {
+    background: #f0fdf4;
+    border-color: var(--green);
+  }
+  
+  .similarities-zone h3 {
+    background: var(--green);
+    color: white;
+  }
+  
+  .item1-zone {
+    background: #eff6ff;
+    border-color: var(--blue);
+  }
+  
+  .item1-zone h3 {
+    background: var(--blue);
+    color: white;
+  }
+  
+  .item2-zone {
+    background: #faf5ff;
+    border-color: var(--purple);
+  }
+  
+  .item2-zone h3 {
+    background: var(--purple);
+    color: white;
+  }
+  
+  .drop-zone.drag-over {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .similarities-zone.drag-over {
+    border-color: #15803d;
+    background: #dcfce7;
+  }
+  
+  .item1-zone.drag-over {
+    border-color: #0284c7;
+    background: #dbeafe;
+  }
+  
+  .item2-zone.drag-over {
+    border-color: #9333ea;
+    background: #f3e8ff;
+  }
+  
+  .draggable-item {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: move;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .draggable-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .draggable-item.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+  }
+  
+  .draggable-item.placed {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .draggable-item.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #1d4ed8;
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+
+  button.small {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+  }
+  
+  .feedback.show {
+    display: block;
+  }
+  
+  .feedback.success {
+    background: #f0fdf4;
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: #fef2f2;
+    border-color: var(--err);
+    color: #991b1b;
+  }
+
+  .empty-zone-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gray);
+    font-style: italic;
+    text-align: center;
+    pointer-events: none;
+    font-size: 13px;
+  }
+  
+  .zone-content {
+    min-height: 150px;
+    position: relative;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @media (max-width: 768px) {
+    .compare-activity {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .differences-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .items-bank {
+      order: -1;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+    }
+    
+    .controls {
+      justify-content: center;
+    }
+    
+    .help-section {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <h1>Reading Skills</h1>
+      <div class="controls">
+        <button id="resetActivity" class="warning">🔄 Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="story-selector" id="storySelector">
+      <!-- Story buttons will be generated -->
+    </div>
+
+    <div class="activity-container">
+      <div class="story-header">
+        <h2 class="story-title" id="storyTitle">Story Title</h2>
+      </div>
+
+      <div class="activity-toggle">
+        <button class="toggle-btn active" data-activity="inference">🧠 Making Inferences</button>
+        <button class="toggle-btn" data-activity="compare">⚖️ Compare & Contrast</button>
+      </div>
+
+      <div class="story-text" id="storyText">
+        <!-- Story content will be populated here -->
+      </div>
+
+      <!-- Inference Activity -->
+      <div class="activity-section active" id="inferenceSection">
+        <div class="inference-activity" id="inferenceActivity">
+          <!-- Inference questions will be populated here -->
+        </div>
+      </div>
+
+      <!-- Compare & Contrast Activity -->
+      <div class="activity-section" id="compareSection">
+        <div class="compare-activity">
+          <div class="items-bank">
+            <h3>🏷️ Drag Items</h3>
+            <div id="itemsBank">
+              <!-- Items will be populated here -->
+            </div>
+          </div>
+
+          <div class="comparison-zones">
+            <div class="similarities-row">
+              <div class="drop-zone similarities-zone" data-zone="similarity">
+                <h3>🤝 Similarities</h3>
+                <div class="zone-content" id="similarityZone">
+                  <div class="empty-zone-message">Things both share</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="differences-row">
+              <div class="drop-zone item1-zone" data-zone="item1">
+                <h3 id="item1Header">🔵 Item 1</h3>
+                <div class="zone-content" id="item1Zone">
+                  <div class="empty-zone-message">Unique to first item</div>
+                </div>
+              </div>
+
+              <div class="drop-zone item2-zone" data-zone="item2">
+                <h3 id="item2Header">🟣 Item 2</h3>
+                <div class="zone-content" id="item2Zone">
+                  <div class="empty-zone-message">Unique to second item</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button id="checkComparison" class="primary" style="margin-top: 20px;">✓ Check My Work</button>
+        <div class="feedback" id="compareFeedback"></div>
+      </div>
+    </div>
+  </main>
+
+<script>
+const stories = [
+  {
+    title: "The Championship Tryouts",
+    text: `Marcus had been dreaming about making the varsity basketball team all summer. He practiced every single day, working on his free throws until his arms hurt. His best friend Tyler was also trying out, but Tyler was naturally taller and seemed to make every shot without even trying.
+
+On tryout day, Marcus arrived two hours early to practice. His palms were sweaty, and his stomach felt like it was full of butterflies. When Coach Williams called his name, Marcus took a deep breath and walked onto the court. He missed his first shot, then his second. Tyler stepped up after him and swished three shots in a row like it was nothing. After tryouts, Marcus sat in the parking lot staring at his phone, not wanting to go home and face his dad. Tyler came over and asked, "Hey man, you okay?" Marcus just shrugged and said, "Yeah, whatever. I'm fine."`,
+    
+    inference: [
+      {
+        character: "Marcus",
+        question: "How does Marcus feel after the tryouts?",
+        context: "Think about a time when you worked really hard for something and it didn't go the way you hoped it would.",
+        choices: [
+          "Disappointed and embarrassed",
+          "Angry at Tyler",
+          "Excited and confident",
+          "Proud of his effort"
+        ],
+        correct: 0,
+        evidence: ["missed his first shot, then his second", "sat in the parking lot staring at his phone", "didn't want to go home and face his dad", "just shrugged and said, 'Yeah, whatever. I'm fine.'"]
+      },
+      {
+        character: "Tyler", 
+        question: "What is Tyler probably thinking when he sees Marcus upset?",
+        context: "Think about how you would feel if your best friend was struggling with something you found easy.",
+        choices: [
+          "He wants to help Marcus feel better",
+          "He's happy he did better than Marcus",
+          "He's worried Marcus will be mad at him",
+          "He thinks Marcus should quit basketball"
+        ],
+        correct: 0,
+        evidence: ["Tyler came over and sat next to him", "Hey man, you okay?", "Tyler asked"]
+      }
+    ],
+
+    compare: {
+      item1: "Marcus",
+      item2: "Tyler", 
+      items: [
+        { text: "Trying out for the varsity basketball team", type: "similarity" },
+        { text: "Friends with each other", type: "similarity" },
+        { text: "Practiced every day all summer", type: "item1" },
+        { text: "Naturally taller", type: "item2" },
+        { text: "Arrived two hours early to practice", type: "item1" },
+        { text: "Made shots easily during tryouts", type: "item2" },
+        { text: "Felt nervous during tryouts", type: "item1" },
+        { text: "Seemed confident during tryouts", type: "item2" },
+        { text: "Cares about the other person's feelings", type: "item2" }
+      ]
+    }
+  },
+
+  {
+    title: "The Gaming Tournament",
+    text: `Jake had been preparing for the Fortnite tournament for weeks. His strategy was all about playing it safe - staying hidden, avoiding fights, and making it to the final circle. His teammate Alex had a completely different approach. Alex loved to drop into crowded areas, take on multiple opponents, and go for high-action games.
+
+"Dude, we need to be aggressive if we want to win this thing," Alex said during their practice session. The tournament was starting in an hour, and they still couldn't agree on a strategy. Jake felt his chest getting tight - they had trained so hard for this, and now they might mess it up because they couldn't work together. Alex was pacing around the room, cracking his knuckles loudly. "Fine, whatever. We'll play your boring way," Alex muttered, throwing his controller on the couch.`,
+
+    inference: [
+      {
+        character: "Jake",
+        question: "How is Jake feeling about the upcoming tournament?",
+        context: "Think about a time when you and a friend couldn't agree on something important right before you had to do it together.",
+        choices: [
+          "Anxious and worried about their teamwork",
+          "Excited and confident about winning", 
+          "Angry at Alex for disagreeing",
+          "Ready to play solo instead"
+        ],
+        correct: 0,
+        evidence: ["felt his chest getting tight", "they might mess it up because they couldn't work together", "they still couldn't agree on a strategy"]
+      },
+      {
+        character: "Alex",
+        question: "What does Alex's behavior show about how he's feeling?",
+        context: "Think about how people act when they feel like their ideas aren't being heard or valued.",
+        choices: [
+          "Frustrated and giving up on having input",
+          "Happy to compromise with Jake",
+          "Scared about the tournament",
+          "Confident they'll win either way"
+        ],
+        correct: 0,
+        evidence: ["pacing around the room", "cracking his knuckles loudly", "Fine, whatever", "throwing his controller on the couch"]
+      }
+    ],
+
+    compare: {
+      item1: "Jake's Strategy",
+      item2: "Alex's Strategy",
+      items: [
+        { text: "Wants to win the tournament", type: "similarity" },
+        { text: "Requires good gaming skills", type: "similarity" },
+        { text: "Staying hidden from other players", type: "item1" },
+        { text: "Dropping into crowded areas", type: "item2" },
+        { text: "Avoiding fights when possible", type: "item1" },
+        { text: "Taking on multiple opponents", type: "item2" },
+        { text: "Focus on making it to final circle", type: "item1" },
+        { text: "Going for high-action games", type: "item2" },
+        { text: "Playing it safe", type: "item1" },
+        { text: "Being aggressive", type: "item2" }
+      ]
+    }
+  },
+
+  {
+    title: "The Project Choice",
+    text: `Mr. Rodriguez announced that students could choose between two final projects for science class. Option A was building a working robot that required coding and engineering. Option B was creating a documentary about climate change with research, interviews, and video editing.
+
+Ethan's eyes lit up when he heard about the robot project. He had been teaching himself to code Python all year and loved taking apart electronics at home. But when he looked around the room, he noticed that all the "smart kids" - the ones who always got A's - were already talking about forming groups for the robot project. Meanwhile, his friend Carlos was excited about the documentary. "Think about it, man. We could interview real scientists and film some cool locations. Plus, it actually matters for the world," Carlos said. Ethan nodded, but kept glancing at the robot group. His palms started to sweat as he realized he had to make a decision by tomorrow.`,
+
+    inference: [
+      {
+        character: "Ethan",
+        question: "What is Ethan's internal conflict about?",
+        context: "Think about a time when you wanted to do something but worried about whether you belonged or were good enough.",
+        choices: [
+          "He wants to do the robot project but feels intimidated by the other students",
+          "He can't decide if robots or documentaries are cooler",
+          "He's worried about working with Carlos",
+          "He thinks the teacher will be unfair"
+        ],
+        correct: 0,
+        evidence: ["Ethan's eyes lit up when he heard about the robot project", "all the 'smart kids' were already talking about forming groups", "kept glancing at the robot group", "palms started to sweat"]
+      },
+      {
+        character: "Carlos",
+        question: "How does Carlos feel about the documentary project?",
+        context: "Think about how someone sounds when they're genuinely excited about an idea and trying to get their friend interested too.",
+        choices: [
+          "Enthusiastic and passionate about making a difference",
+          "Only interested because it seems easier than coding",
+          "Worried that Ethan won't choose it",
+          "Unsure about which project to pick"
+        ],
+        correct: 0,
+        evidence: ["Carlos was excited about the documentary", "Think about it, man", "it's something that actually matters for the world"]
+      }
+    ],
+
+    compare: {
+      item1: "Robot Project",
+      item2: "Documentary Project",
+      items: [
+        { text: "Final project for science class", type: "similarity" },
+        { text: "Requires working with technology", type: "similarity" },
+        { text: "Involves coding and programming", type: "item1" },
+        { text: "Involves research and interviews", type: "item2" },
+        { text: "Requires engineering skills", type: "item1" },
+        { text: "Requires video editing skills", type: "item2" },
+        { text: "Building something that moves and works", type: "item1" },
+        { text: "Creating content about real-world issues", type: "item2" },
+        { text: "Appeals to students who like electronics", type: "item1" },
+        { text: "Could involve traveling to film locations", type: "item2" }
+      ]
+    }
+  },
+
+  {
+    title: "The School Choice Decision", 
+    text: `Danny's family was moving across town, and his parents said he could choose between the public high school or a private school they could afford with financial aid. Lincoln Public High was huge with an amazing football program where he could probably blend in with the crowd. St. Mary's Private was smaller, more focused on academics, and had a reputation for tight-knit friendships but no football team.
+
+At Lincoln, Danny could continue playing football, which he'd been doing since middle school. The coach had already called him twice, talking about scholarships and state championships. But when Danny visited, the hallways felt like a maze, and most students seemed to already have their friend groups locked down. St. Mary's felt more welcoming when he toured it. Students actually made eye contact and said hello, and teachers seemed to know every kid's name. Danny sat in his room that night, staring at both acceptance letters. His dad wanted him to go to Lincoln for the sports opportunities, but something in his gut was pulling him toward St. Mary's.`,
+
+    inference: [
+      {
+        character: "Danny",
+        question: "What is Danny's biggest worry about this decision?",
+        context: "Think about starting at a new school where you don't know anyone and have to make all new friends.",
+        choices: [
+          "He's worried about fitting in and making friends",
+          "He's only concerned about playing football",
+          "He thinks the academics will be too hard",
+          "He doesn't want to disappoint anyone"
+        ],
+        correct: 0,
+        evidence: ["he could probably blend in", "most students seemed to already have their friend groups locked down", "Roosevelt felt more welcoming", "Students actually made eye contact and said hello"]
+      },
+      {
+        character: "Danny",
+        question: "How does Danny feel about his dad's opinion?",
+        context: "Think about when a parent wants you to make one choice, but your heart is telling you something different.",
+        choices: [
+          "Torn between doing what his dad wants and following his instincts",
+          "Completely agrees with his dad's choice",
+          "Angry that his dad has an opinion",
+          "Sure his dad is wrong about everything"
+        ],
+        correct: 0,
+        evidence: ["His dad wanted him to go to Lincoln", "but something in his gut was pulling him toward Roosevelt", "Danny sat in his room that night, staring at both acceptance letters"]
+      }
+    ],
+
+    compare: {
+      item1: "Lincoln Public High",
+      item2: "St. Mary's Private",
+      items: [
+        { text: "High school options for Danny", type: "similarity" },
+        { text: "Both accepted Danny as a student", type: "similarity" },
+        { text: "Amazing football program", type: "item1" },
+        { text: "No football team available", type: "item2" },
+        { text: "Huge student body", type: "item1" },
+        { text: "Smaller, more intimate school", type: "item2" },
+        { text: "Could probably blend in easily", type: "item1" },
+        { text: "Students made eye contact and said hello", type: "item2" },
+        { text: "Scholarship opportunities in sports", type: "item1" },
+        { text: "More focused on academics", type: "item2" },
+        { text: "Friend groups seemed already formed", type: "item1" },
+        { text: "Reputation for tight-knit friendships", type: "item2" }
+      ]
+    }
+  },
+
+  {
+    title: "The Sports Season Dilemma",
+    text: `Miguel had always played soccer in the fall, but this year the new football coach had been trying to recruit him. "You've got the speed and the build for it, Miguel. We could really use you as a running back," Coach Thompson said after seeing Miguel outrun everyone in gym class.
+
+Soccer had been Miguel's first love since he was six years old. He knew every move, every strategy, and his teammates were like brothers to him. But football was more popular at school, and Miguel couldn't help but notice how the football players got more attention from everyone. Miguel's little brother Carlos looked up to him and came to every soccer game, wearing Miguel's old jersey. "You're not really going to quit soccer, are you?" Carlos asked one evening. Miguel ruffled his brother's hair but couldn't give him a straight answer. The deadline to sign up for teams was tomorrow.`,
+
+    inference: [
+      {
+        character: "Miguel",
+        question: "What is Miguel's main internal struggle?",
+        context: "Think about having to choose between something you love and something that might give you more popularity or recognition.",
+        choices: [
+          "Torn between staying loyal to soccer and the appeal of football popularity",
+          "Worried about getting injured in either sport",
+          "Unsure if he's athletic enough for either team",
+          "Mad at the football coach for recruiting him"
+        ],
+        correct: 0,
+        evidence: ["Soccer had been Miguel's first love", "football was more popular at school", "football players got more attention", "Miguel still had no idea what to do"]
+      },
+      {
+        character: "Carlos",
+        question: "How does Carlos feel about Miguel possibly switching sports?",
+        context: "Think about how a little brother would feel if his hero changed something that they shared together.",
+        choices: [
+          "Disappointed and worried about losing their special connection",
+          "Excited about football being more popular",
+          "Indifferent about which sport Miguel plays",
+          "Angry at Miguel for considering football"
+        ],
+        correct: 0,
+        evidence: ["came to every soccer game, wearing Miguel's old jersey", "You're not really going to quit soccer, are you?", "looked up to him"]
+      }
+    ],
+
+    compare: {
+      item1: "Soccer",
+      item2: "Football", 
+      items: [
+        { text: "Fall sports at Miguel's school", type: "similarity" },
+        { text: "Both require speed and athletic ability", type: "similarity" },
+        { text: "Miguel's first love since age six", type: "item1" },
+        { text: "Newly offered opportunity for Miguel", type: "item2" },
+        { text: "Teammates are like brothers", type: "item1" },
+        { text: "Coach wants Miguel as running back", type: "item2" },
+        { text: "Miguel knows every move and strategy", type: "item1" },
+        { text: "More popular sport at school", type: "item2" },
+        { text: "Players get more attention from everyone", type: "item2" },
+        { text: "Carlos comes to watch wearing Miguel's jersey", type: "item1" }
+      ]
+    }
+  },
+  
+  {
+    title: "The Game Store Dilemma",
+    text: `Ryan finally had permission to buy a new video game and stood at GameStop trying to decide between two he'd been wanting forever. Call of Duty was the game all his friends were playing online. They talked about it constantly at lunch and always invited each other to play after school.
+
+But Ryan had also been eyeing Minecraft for months. He loved building things and creating his own worlds, but none of his friends were into it. "Dude, just get Call of Duty. We can all play together tonight," his friend Jake said, pulling out his phone to show Ryan a cool moment from the game. Ryan stared at both game cases. Call of Duty would mean fitting in with his friends, but Minecraft was what he actually wanted to play. The store was closing in ten minutes.`,
+    
+    inference: [
+      {
+        character: "Ryan",
+        question: "What is Ryan's main conflict about buying the game?",
+        context: "Think about a time when you had to choose between what your friends wanted and what you really wanted.",
+        choices: [
+          "He's torn between fitting in with friends and choosing what he actually enjoys",
+          "He's worried about spending too much money",
+          "He can't decide which game has better graphics",
+          "He's upset that his friends play video games"
+        ],
+        correct: 0,
+        evidence: ["Call of Duty would mean fitting in with his friends", "but Minecraft was what he actually wanted to play", "stood between two games he'd been wanting forever"]
+      }
+    ],
+
+    compare: {
+      item1: "Call of Duty",
+      item2: "Minecraft",
+      items: [
+        { text: "Video games that Ryan wants", type: "similarity" },
+        { text: "Both available at the game store", type: "similarity" },
+        { text: "All his friends are playing this", type: "item1" },
+        { text: "None of his friends play this", type: "item2" },
+        { text: "Friends talk about it constantly at lunch", type: "item1" },
+        { text: "Ryan loves building and creating worlds", type: "item2" },
+        { text: "Friends invite each other to play after school", type: "item1" },
+        { text: "What Ryan actually wants to play", type: "item2" },
+        { text: "Would help Ryan fit in", type: "item1" }
+      ]
+    }
+  },
+
+  {
+    title: "The Test Strategy",
+    text: `The biggest history test of the semester was tomorrow, and Jamal still hadn't studied. His friend Chris always made flashcards and studied for hours, usually getting A's on everything. "Just make flashcards and memorize all the dates," Chris told him. "That's how you ace these tests."
+
+But Jamal learned differently. He liked to read everything once, then explain it out loud to himself like he was teaching someone else. It took longer, but information stuck better in his brain that way. Chris looked stressed, shuffling through his huge stack of flashcards. "You're going to fail if you don't study like me," Chris warned. Jamal looked at his textbook, then at Chris's flashcards. There were only four hours left to study, and he had to pick a method.`,
+    
+    inference: [
+      {
+        character: "Jamal",
+        question: "How is Jamal feeling about the test situation?",
+        context: "Think about a time when someone told you the 'right' way to do something, but you knew you learned better a different way.",
+        choices: [
+          "Pressured to study like Chris but knows he learns differently",
+          "Confident that Chris's method will work for him",
+          "Not worried about the test at all",
+          "Angry at Chris for giving advice"
+        ],
+        correct: 0,
+        evidence: ["Jamal learned differently", "information stuck better in his brain that way", "he had to pick a method", "Chris warned"]
+      }
+    ],
+
+    compare: {
+      item1: "Chris's Method",
+      item2: "Jamal's Method",
+      items: [
+        { text: "Ways to study for the history test", type: "similarity" },
+        { text: "Both require time and effort", type: "similarity" },
+        { text: "Making flashcards", type: "item1" },
+        { text: "Reading everything once", type: "item1" },
+        { text: "Memorizing all the dates", type: "item1" },
+        { text: "Explaining out loud like teaching", type: "item2" },
+        { text: "Usually gets A's on tests", type: "item1" },
+        { text: "Information sticks better in brain", type: "item2" },
+        { text: "Takes longer to do", type: "item2" }
+      ]
+    }
+  },
+
+  {
+    title: "The Lunch Table Choice",
+    text: `It was Aiden's first day at a new school, and lunchtime was the scariest part. He stood in the cafeteria holding his tray, looking around at all the different groups. At one table sat the athletes - they were loud, laughing, and seemed really confident. Aiden had played JV basketball at his old school, so maybe he could fit in there.
+
+At another table, he spotted some kids playing card games and talking about video games and anime. They seemed quieter but more relaxed, and Aiden recognized some of the games they were discussing. One of the athlete kids noticed him standing there. "Hey new guy, you can sit here if you want," he called out. But at the same moment, a kid from the gaming table looked up and waved him over. "We've got room if you play Magic cards," he said. Aiden had to choose where to sit, knowing it might determine his whole social life at this school.`,
+    
+    inference: [
+      {
+        character: "Aiden",
+        question: "What is Aiden most worried about in this moment?",
+        context: "Think about starting somewhere new where you don't know anyone and having to figure out where you belong.",
+        choices: [
+          "Making the right choice about which group to join",
+          "Whether the food in the cafeteria is good",
+          "Getting good grades at his new school",
+          "Finding his way to his next class"
+        ],
+        correct: 0,
+        evidence: ["lunchtime was the scariest part", "Aiden had to choose where to sit", "knowing it might determine his whole social life at this school"]
+      }
+    ],
+
+    compare: {
+      item1: "Athletes Table",
+      item2: "Gaming Table", 
+      items: [
+        { text: "Groups of students at lunch", type: "similarity" },
+        { text: "Both invited Aiden to sit with them", type: "similarity" },
+        { text: "Loud and laughing", type: "item1" },
+        { text: "Quieter but more relaxed", type: "item2" },
+        { text: "Seemed really confident", type: "item1" },
+        { text: "Playing card games", type: "item2" },
+        { text: "Aiden played JV basketball before", type: "item1" },
+        { text: "Talking about video games and anime", type: "item2" },
+        { text: "Aiden recognized some games they discussed", type: "item2" }
+      ]
+    }
+  }
+];
+
+let currentStory = 0;
+let currentActivity = 'inference';
+let draggedElement = null;
+
+function initializePage() {
+  createStorySelector();
+  loadStory(0);
+  setupEventListeners();
+}
+
+function createStorySelector() {
+  const selector = document.getElementById('storySelector');
+  stories.forEach((story, index) => {
+    const btn = document.createElement('button');
+    btn.className = `story-btn ${index === 0 ? 'active' : ''}`;
+    btn.dataset.story = index;
+    btn.textContent = `Story ${index + 1}`;
+    selector.appendChild(btn);
+  });
+}
+
+function loadStory(index) {
+  currentStory = index;
+  const story = stories[index];
+  
+  document.getElementById('storyTitle').textContent = story.title;
+  document.getElementById('storyText').innerHTML = story.text.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
+  
+  updateStorySelector();
+  loadInferenceActivity();
+  loadCompareActivity();
+  
+  // Reset activity toggle
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.activity === currentActivity);
+  });
+  
+  showActivity(currentActivity);
+}
+
+function updateStorySelector() {
+  document.querySelectorAll('.story-btn').forEach((btn, index) => {
+    btn.classList.toggle('active', index === currentStory);
+  });
+}
+
+function loadInferenceActivity() {
+  const story = stories[currentStory];
+  const container = document.getElementById('inferenceActivity');
+  container.innerHTML = '';
+  
+  story.inference.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'inference-question';
+    questionDiv.innerHTML = `
+      <div class="question-title">Question ${index + 1}: About ${question.character}</div>
+      
+      <div class="question-prompt">${question.question}</div>
+      
+      <textarea class="inference-input" id="inference_${index}" 
+                placeholder="Think about what you read and type your answer here..."></textarea>
+      
+      <div class="help-section">
+        <button class="warning small" onclick="showInferenceHelp(${index}, 1)">💡 I need help</button>
+        <button class="warning small" onclick="showInferenceHelp(${index}, 2)" style="display:none;" id="helpBtn2_${index}">💡 I need more help</button>
+        <button class="primary" onclick="checkInferenceAnswer(${index})">✓ Check My Answer</button>
+      </div>
+      
+      <div class="help-box" id="help1_${index}">
+        <h4>💭 Think About This:</h4>
+        <p>${question.context}</p>
+      </div>
+      
+      <div class="multiple-choice" id="choices_${index}">
+        <h4>Choose the best answer:</h4>
+        ${question.choices.map((choice, choiceIndex) => 
+          `<div class="choice-option" data-question="${index}" data-choice="${choiceIndex}">${choice}</div>`
+        ).join('')}
+        <button class="primary" onclick="checkMultipleChoice(${index})" style="margin-top: 10px;">Check Selected Answer</button>
+      </div>
+      
+      <div class="feedback" id="inferenceFeedback_${index}"></div>
+    `;
+    
+    container.appendChild(questionDiv);
+  });
+  
+  // Add event listeners for multiple choice
+  document.querySelectorAll('.choice-option').forEach(option => {
+    option.addEventListener('click', function() {
+      const questionIndex = this.dataset.question;
+      document.querySelectorAll(`[data-question="${questionIndex}"]`).forEach(opt => opt.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+
+function loadCompareActivity() {
+  const story = stories[currentStory];
+  const compareData = story.compare;
+  
+  // Update headers
+  document.getElementById('item1Header').textContent = `🔵 ${compareData.item1}`;
+  document.getElementById('item2Header').textContent = `🟣 ${compareData.item2}`;
+  
+  // Clear zones
+  document.getElementById('similarityZone').innerHTML = '<div class="empty-zone-message">Things both share</div>';
+  document.getElementById('item1Zone').innerHTML = `<div class="empty-zone-message">Unique to ${compareData.item1.toLowerCase()}</div>`;
+  document.getElementById('item2Zone').innerHTML = `<div class="empty-zone-message">Unique to ${compareData.item2.toLowerCase()}</div>`;
+  
+  // Create draggable items
+  const itemsBank = document.getElementById('itemsBank');
+  itemsBank.innerHTML = '';
+  
+  // Shuffle items for variety
+  const shuffledItems = [...compareData.items].sort(() => Math.random() - 0.5);
+  
+  shuffledItems.forEach((item, index) => {
+    const itemElement = document.createElement('div');
+    itemElement.className = 'draggable-item';
+    itemElement.draggable = true;
+    itemElement.textContent = item.text;
+    itemElement.dataset.type = item.type;
+    itemElement.dataset.index = index;
+    
+    itemElement.addEventListener('dragstart', handleDragStart);
+    itemElement.addEventListener('dragend', handleDragEnd);
+    
+    itemsBank.appendChild(itemElement);
+  });
+  
+  setupDropZones();
+  document.getElementById('compareFeedback').classList.remove('show');
+}
+
+function showActivity(activityType) {
+  currentActivity = activityType;
+  document.querySelectorAll('.activity-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.activity === activityType);
+  });
+  
+  if (activityType === 'inference') {
+    document.getElementById('inferenceSection').classList.add('active');
+  } else {
+    document.getElementById('compareSection').classList.add('active');
+  }
+}
+
+// Inference functions
+function showInferenceHelp(questionIndex, helpLevel) {
+  if (helpLevel === 1) {
+    const helpBox = document.getElementById(`help1_${questionIndex}`);
+    helpBox.classList.add('show');
+    document.getElementById(`helpBtn2_${questionIndex}`).style.display = 'inline-block';
+  } else if (helpLevel === 2) {
+    const choicesBox = document.getElementById(`choices_${questionIndex}`);
+    choicesBox.classList.add('show');
+  }
+}
+
+function checkInferenceAnswer(questionIndex) {
+  const input = document.getElementById(`inference_${questionIndex}`);
+  const feedback = document.getElementById(`inferenceFeedback_${questionIndex}`);
+  const story = stories[currentStory];
+  const question = story.inference[questionIndex];
+  
+  if (input.value.trim() === '') {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please write your answer first!</strong>';
+    return;
+  }
+  
+  feedback.className = 'feedback success show';
+  feedback.innerHTML = `
+    <strong>Your thinking:</strong> "${input.value}"<br><br>
+    <strong>Great job thinking about it!</strong> The clues in the text that support this include: "${question.evidence.join('", "')}"<br><br>
+    <em>Talk with your teacher about your answer - you might have picked up on something they didn't even notice!</em>
+  `;
+}
+
+function checkMultipleChoice(questionIndex) {
+  const selected = document.querySelector(`[data-question="${questionIndex}"].selected`);
+  const feedback = document.getElementById(`inferenceFeedback_${questionIndex}`);
+  const story = stories[currentStory];
+  const question = story.inference[questionIndex];
+  
+  if (!selected) {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = '<strong>Please pick an answer first!</strong>';
+    return;
+  }
+  
+  const choiceIndex = parseInt(selected.dataset.choice);
+  const isCorrect = choiceIndex === question.correct;
+  
+  document.querySelectorAll(`[data-question="${questionIndex}"]`).forEach(option => {
+    const optionIndex = parseInt(option.dataset.choice);
+    if (optionIndex === question.correct) {
+      option.classList.add('correct');
+    } else if (option.classList.contains('selected') && !isCorrect) {
+      option.classList.add('incorrect');
+    }
+  });
+  
+  if (isCorrect) {
+    feedback.className = 'feedback success show';
+    feedback.innerHTML = `<strong>🎉 Exactly right!</strong> You used the clues in the story to understand what ${question.character} was really feeling inside.`;
+  } else {
+    feedback.className = 'feedback error show';
+    feedback.innerHTML = `<strong>Not quite.</strong> Look at the text evidence again: "${question.evidence.join('", "')}" - what do these clues tell you about how ${question.character} feels?`;
+  }
+}
+
+// Compare & Contrast functions
+function handleDragStart(e) {
+  draggedElement = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragEnd(e) {
+  e.target.classList.remove('dragging');
+  draggedElement = null;
+}
+
+function setupDropZones() {
+  const dropZones = document.querySelectorAll('.drop-zone');
+  
+  dropZones.forEach(zone => {
+    zone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+    });
+    
+    zone.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    });
+    
+    zone.addEventListener('dragleave', (e) => {
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        e.currentTarget.classList.remove('drag-over');
+      }
+    });
+    
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      
+      if (draggedElement) {
+        const zoneContent = e.currentTarget.querySelector('.zone-content');
+        
+        draggedElement.remove();
+        zoneContent.appendChild(draggedElement);
+        updateEmptyMessages();
+        draggedElement.classList.add('placed');
+        draggedElement.classList.remove('incorrect');
+      }
+    });
+  });
+}
+
+function updateEmptyMessages() {
+  ['similarityZone', 'item1Zone', 'item2Zone'].forEach(zoneId => {
+    const zone = document.getElementById(zoneId);
+    const message = zone.querySelector('.empty-zone-message');
+    const items = zone.querySelectorAll('.draggable-item');
+    if (message) message.style.display = items.length > 0 ? 'none' : 'block';
+  });
+}
+
+function checkComparison() {
+  const zones = ['similarityZone', 'item1Zone', 'item2Zone'];
+  const zoneTypes = ['similarity', 'item1', 'item2'];
+  
+  let correct = 0;
+  let total = 0;
+  let feedback = [];
+  
+  zones.forEach((zoneId, zoneIndex) => {
+    const zone = document.getElementById(zoneId);
+    const items = zone.querySelectorAll('.draggable-item');
+    const expectedType = zoneTypes[zoneIndex];
+    
+    items.forEach(item => {
+      total++;
+      if (item.dataset.type === expectedType) {
+        correct++;
+        item.classList.remove('incorrect');
+        item.classList.add('placed');
+      } else {
+        item.classList.add('incorrect');
+        const correctZone = zoneTypes.indexOf(item.dataset.type);
+        const story = stories[currentStory].compare;
+        const zoneName = correctZone === 0 ? 'Similarities' : 
+                        correctZone === 1 ? story.item1 : 
+                        story.item2;
+        feedback.push(`"${item.textContent}" belongs in ${zoneName}`);
+      }
+    });
+  });
+  
+  const feedbackEl = document.getElementById('compareFeedback');
+  
+  if (correct === total && total === stories[currentStory].compare.items.length) {
+    feedbackEl.className = 'feedback success show';
+    feedbackEl.innerHTML = `
+      <strong>🎉 Outstanding work!</strong><br>
+      You correctly identified all the similarities and differences! You really understand how to compare and contrast.
+    `;
+  } else {
+    feedbackEl.className = 'feedback error show';
+    feedbackEl.innerHTML = `
+      <strong>Score: ${correct} out of ${total}</strong><br>
+      ${feedback.length > 0 ? 'Try moving these items:<br>• ' + feedback.join('<br>• ') : ''}
+      ${total < stories[currentStory].compare.items.length ? '<br>Don\'t forget to place all items from the bank!' : ''}
+    `;
+  }
+}
+
+function resetActivity() {
+  if (currentActivity === 'inference') {
+    // Reset inference activity
+    document.querySelectorAll('[id^="inference_"]').forEach(input => {
+      input.value = '';
+    });
+    document.querySelectorAll('[id^="inferenceFeedback_"]').forEach(feedback => {
+      feedback.classList.remove('show');
+    });
+    document.querySelectorAll('[id^="help1_"]').forEach(help => {
+      help.classList.remove('show');
+    });
+    document.querySelectorAll('[id^="choices_"]').forEach(choices => {
+      choices.classList.remove('show');
+    });
+    document.querySelectorAll('[id^="helpBtn2_"]').forEach(btn => {
+      btn.style.display = 'none';
+    });
+    document.querySelectorAll('.choice-option').forEach(choice => {
+      choice.classList.remove('selected', 'correct', 'incorrect');
+    });
+  } else {
+    // Reset compare activity
+    const allItems = document.querySelectorAll('.draggable-item');
+    const itemsBank = document.getElementById('itemsBank');
+    
+    allItems.forEach(item => {
+      item.classList.remove('placed', 'incorrect');
+      itemsBank.appendChild(item);
+    });
+    
+    const story = stories[currentStory].compare;
+    document.getElementById('similarityZone').innerHTML = '<div class="empty-zone-message">Things both share</div>';
+    document.getElementById('item1Zone').innerHTML = `<div class="empty-zone-message">Unique to ${story.item1.toLowerCase()}</div>`;
+    document.getElementById('item2Zone').innerHTML = `<div class="empty-zone-message">Unique to ${story.item2.toLowerCase()}</div>`;
+    
+    document.getElementById('compareFeedback').classList.remove('show');
+  }
+}
+
+function setupEventListeners() {
+  // Story selector
+  document.getElementById('storySelector').addEventListener('click', (e) => {
+    if (e.target.classList.contains('story-btn')) {
+      const storyIndex = parseInt(e.target.dataset.story);
+      loadStory(storyIndex);
+    }
+  });
+  
+  // Activity toggle
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showActivity(btn.dataset.activity);
+    });
+  });
+  
+  // Control buttons
+  document.getElementById('checkComparison').addEventListener('click', checkComparison);
+  document.getElementById('resetActivity').addEventListener('click', resetActivity);
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+</body>
+</html>
