@@ -185,7 +185,7 @@ I can create any of these for you - just ask!
 - Initial/medial/final word lists for all phonemes
 - Minimal pairs lists
 - Blend and digraph combinations
-- Vocalic R word lists
+- Vocalic R word lists (see `resources/word-lists/vocalic-r-word-lists.json`)
 
 ### Language Resources:
 - Category word lists (animals, food, clothing, etc.)

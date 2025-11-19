@@ -66,124 +66,155 @@
   }
 
   .btn {
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
   }
 
   .btn-primary {
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
     color: white;
+    box-shadow: 0 3px 10px rgba(139, 92, 246, 0.3);
   }
 
   .btn-primary:hover {
-    background: #7c3aed;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
   }
 
   .btn-secondary {
     background: white;
     color: var(--ink);
-    border: 2px solid #e2e8f0;
+    border: 2px solid #cbd5e1;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
 
   .btn-secondary:hover {
     border-color: var(--accent);
     color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(139, 92, 246, 0.15);
   }
 
   .scenario-selector {
     background: white;
     border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 24px;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   }
 
   .scenario-selector h2 {
-    margin: 0 0 16px;
+    margin: 0 0 20px;
     color: var(--accent);
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 700;
   }
 
   .scenario-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
   }
 
   .scenario-btn {
-    background: #f8fafc;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: 10px;
+    padding: 18px;
     text-align: left;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     font-size: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
 
   .scenario-btn:hover {
     border-color: var(--accent);
-    background: #faf5ff;
+    background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.15);
   }
 
   .scenario-btn.active {
     border-color: var(--accent);
-    background: #faf5ff;
+    background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%);
     border-width: 3px;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+  }
+
+  .scenario-btn strong {
+    color: var(--accent);
+    font-weight: 700;
   }
 
   .activity-container {
     background: white;
     border: 2px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: 18px;
+    padding: 36px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   }
 
   .scenario-display {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 24px;
-    border-radius: 12px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    padding: 28px;
+    border-radius: 14px;
+    margin-bottom: 36px;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
   }
 
   .scenario-display h3 {
-    margin: 0 0 12px;
-    font-size: 18px;
-    opacity: 0.9;
+    margin: 0 0 14px;
+    font-size: 16px;
+    opacity: 0.95;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
   }
 
   .scenario-text {
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: 19px;
+    line-height: 1.7;
     font-weight: 500;
     margin: 0;
   }
 
   .response-section {
-    margin-bottom: 32px;
+    margin-bottom: 48px;
+    background: #fafbfc;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .response-section:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   }
 
   .response-type-badge {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 10px 18px;
+    border-radius: 20px;
     font-weight: 600;
-    font-size: 16px;
-    margin-bottom: 16px;
+    font-size: 14px;
+    margin-bottom: 18px;
     display: inline-block;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.35);
+    letter-spacing: 0.02em;
   }
 
   .response-header {
@@ -217,53 +248,61 @@
     width: 100%;
     padding: 16px;
     border: 2px solid #cbd5e1;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
     font-family: inherit;
-    min-height: 100px;
+    min-height: 110px;
     resize: vertical;
-    transition: border-color 0.2s;
+    transition: all 0.2s ease;
+    background: white;
+    line-height: 1.6;
   }
 
   .response-input:focus {
     outline: none;
     border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+    background: #fafbfc;
   }
 
   .hint-system {
-    margin-top: 16px;
+    margin-top: 20px;
   }
 
   .hint-buttons {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 12px;
   }
 
   .hint-btn {
-    padding: 8px 16px;
+    padding: 9px 16px;
     border: 2px solid #e2e8f0;
     background: white;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     transition: all 0.2s;
     display: flex;
     align-items: center;
     gap: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
 
   .hint-btn:hover {
     border-color: var(--orange);
     color: var(--orange);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.2);
   }
 
   .hint-btn.active {
-    background: #fff7ed;
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
     border-color: var(--orange);
     color: var(--orange);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
   }
 
   .hint-icon {
@@ -271,13 +310,14 @@
   }
 
   .hint-content {
-    background: #fef3c7;
+    background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
     border: 2px solid var(--warning);
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: 10px;
+    padding: 18px;
     margin-top: 12px;
     display: none;
     animation: fadeIn 0.3s ease;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.12);
   }
 
   .hint-content.show {
@@ -285,28 +325,32 @@
   }
 
   .hint-content h4 {
-    margin: 0 0 8px;
+    margin: 0 0 10px;
     color: #92400e;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
 
   .hint-content p {
     margin: 0;
     color: #78350f;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 14px;
   }
 
   .hint-list {
     list-style: none;
     padding: 0;
-    margin: 8px 0 0;
+    margin: 10px 0 0;
   }
 
   .hint-list li {
-    padding: 6px 0 6px 20px;
+    padding: 8px 0 8px 24px;
     position: relative;
     color: #78350f;
+    line-height: 1.6;
   }
 
   .hint-list li:before {
@@ -315,58 +359,67 @@
     left: 0;
     font-weight: bold;
     color: var(--warning);
+    font-size: 16px;
   }
 
   .prediction-section {
-    background: #eff6ff;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
     border: 2px solid var(--blue);
     border-radius: 12px;
-    padding: 24px;
-    margin-top: 32px;
+    padding: 20px;
+    margin-top: 24px;
+    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15);
   }
 
   .prediction-section h3 {
-    margin: 0 0 16px;
+    margin: 0 0 14px;
     color: #0c4a6e;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .prediction-icon {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .prediction-input {
     width: 100%;
-    padding: 16px;
+    padding: 14px;
     border: 2px solid #bae6fd;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 15px;
     font-family: inherit;
-    min-height: 80px;
+    min-height: 90px;
     resize: vertical;
     background: white;
+    line-height: 1.6;
+    transition: all 0.2s ease;
   }
 
   .prediction-input:focus {
     outline: none;
     border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+    background: #fafbfc;
   }
 
   .response-differences {
-    background: #f0fdf4;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
     border: 2px solid var(--green);
-    border-radius: 12px;
-    padding: 24px;
+    border-radius: 14px;
+    padding: 28px;
     margin-top: 24px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
   }
 
   .response-differences h3 {
-    margin: 0 0 16px;
+    margin: 0 0 18px;
     color: #065f46;
-    font-size: 18px;
+    font-size: 19px;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -376,17 +429,21 @@
     width: 100%;
     padding: 16px;
     border: 2px solid #86efac;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 15px;
     font-family: inherit;
-    min-height: 80px;
+    min-height: 100px;
     resize: vertical;
     background: white;
+    line-height: 1.6;
+    transition: all 0.2s ease;
   }
 
   .difference-input:focus {
     outline: none;
     border-color: var(--green);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    background: #fafbfc;
   }
 
   .example-section {
@@ -438,24 +495,39 @@
   }
 
   .progress-indicator {
-    background: #f8fafc;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 24px;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   }
 
   .progress-text {
     font-size: 14px;
     color: #64748b;
+    font-weight: 500;
   }
 
   .checkmark {
     color: var(--ok);
-    font-size: 20px;
+    font-size: 22px;
+    animation: checkPop 0.3s ease;
+  }
+
+  @keyframes checkPop {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   @media (max-width: 768px) {
@@ -506,13 +578,13 @@
       </div>
 
       <div class="response-type-badge" id="type-1"></div>
-      
-      <textarea 
-        class="response-input" 
-        id="response1" 
+
+      <textarea
+        class="response-input"
+        id="response1"
         placeholder="Type your first response here..."
       ></textarea>
-      
+
       <div class="hint-system">
         <div class="hint-buttons">
           <button class="hint-btn" data-hint="1" data-response="1">
@@ -529,6 +601,19 @@
         <div class="hint-content" id="hint2-1"></div>
         <div class="hint-content" id="hint3-1"></div>
       </div>
+
+      <!-- Prediction for Response 1 -->
+      <div class="prediction-section">
+        <h3>
+          <span class="prediction-icon">🔮</span>
+          Predict: How might the other person respond to this?
+        </h3>
+        <textarea
+          class="prediction-input"
+          id="prediction1"
+          placeholder="If I say this response, they might..."
+        ></textarea>
+      </div>
     </div>
 
     <!-- Response 2 -->
@@ -539,13 +624,13 @@
       </div>
 
       <div class="response-type-badge" id="type-2"></div>
-      
-      <textarea 
-        class="response-input" 
-        id="response2" 
+
+      <textarea
+        class="response-input"
+        id="response2"
         placeholder="Type your second response here..."
       ></textarea>
-      
+
       <div class="hint-system">
         <div class="hint-buttons">
           <button class="hint-btn" data-hint="1" data-response="2">
@@ -562,6 +647,19 @@
         <div class="hint-content" id="hint2-2"></div>
         <div class="hint-content" id="hint3-2"></div>
       </div>
+
+      <!-- Prediction for Response 2 -->
+      <div class="prediction-section">
+        <h3>
+          <span class="prediction-icon">🔮</span>
+          Predict: How might the other person respond to this?
+        </h3>
+        <textarea
+          class="prediction-input"
+          id="prediction2"
+          placeholder="If I say this response, they might..."
+        ></textarea>
+      </div>
     </div>
 
     <!-- Response Differences -->
@@ -570,31 +668,10 @@
         <span>✨</span>
         How are your two responses different?
       </h3>
-      <textarea 
-        class="difference-input" 
-        id="differences" 
+      <textarea
+        class="difference-input"
+        id="differences"
         placeholder="Explain how Response #1 and Response #2 are different from each other..."
-      ></textarea>
-    </div>
-
-    <!-- Prediction Section -->
-    <div class="prediction-section">
-      <h3>
-        <span class="prediction-icon">🔮</span>
-        Predict: How might the other person respond?
-      </h3>
-      <p style="margin: 0 0 12px; color: #0c4a6e;">Think about Response #1. What might they say or do next?</p>
-      <textarea 
-        class="prediction-input" 
-        id="prediction1" 
-        placeholder="If I say Response #1, they might..."
-      ></textarea>
-      
-      <p style="margin: 16px 0 12px; color: #0c4a6e;">Now think about Response #2. What might they say or do next?</p>
-      <textarea 
-        class="prediction-input" 
-        id="prediction2" 
-        placeholder="If I say Response #2, they might..."
       ></textarea>
     </div>
 

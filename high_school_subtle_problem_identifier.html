@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>High School Subtle Problem Identifier</title>
+    <style>
+        :root {
+            --accent: #2563eb;
+            --secondary: #f97316;
+            --bg: #f5f7fb;
+            --ink: #0f172a;
+            --card: #ffffff;
+            --muted: #64748b;
+            --success: #16a34a;
+            --warning: #ea580c;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--card);
+            border-bottom: 4px solid var(--accent);
+            box-shadow: 0 3px 12px rgba(15, 23, 42, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .bar {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .bar h1 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 15px;
+        }
+
+        .tag {
+            background: #e0edff;
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        main {
+            max-width: 1040px;
+            margin: 32px auto;
+            padding: 0 24px 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .intro {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 28px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .intro h2 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .intro-card {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 16px;
+            border: 1px dashed #cbd5f5;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 20px;
+        }
+
+        .panel {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 24px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+        }
+
+        .panel h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .impulse-chip {
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 14px;
+            background: #fef3c7;
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        .scenario-text {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+            min-height: 150px;
+        }
+
+        .scenario-text p {
+            margin: 0;
+            font-size: 17px;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 11px 18px;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        button:focus-visible {
+            outline: 3px solid #bfdbfe;
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #fff7ed;
+            color: var(--secondary);
+            border: 1px solid #fed7aa;
+        }
+
+        .clues {
+            margin-top: 18px;
+            padding: 16px;
+            border-radius: 14px;
+            background: #e0f2fe;
+            border: 1px solid #bae6fd;
+            display: none;
+        }
+
+        .clues ul {
+            margin: 12px 0 0;
+            padding-left: 18px;
+        }
+
+        .clues li {
+            margin-bottom: 6px;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 14px 0;
+        }
+
+        .badge {
+            padding: 6px 10px;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: #4338ca;
+            font-size: 14px;
+        }
+
+        .scanner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .scanner-btn {
+            background: #f8fafc;
+            color: var(--muted);
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px;
+            text-align: left;
+            font-size: 14px;
+            min-height: 90px;
+        }
+
+        .scanner-btn.active {
+            border-color: var(--accent);
+            background: #eff6ff;
+            color: var(--ink);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            border-radius: 14px;
+            border: 2px solid #e2e8f0;
+            padding: 14px;
+            font-size: 15px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .coach-note {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid #bbf7d0;
+            background: #ecfccb;
+            color: #14532d;
+            display: none;
+        }
+
+        .reflection-panel {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 24px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .reflection-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .reflection-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 14px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .thought-log {
+            margin-top: 18px;
+            background: #f1f5f9;
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .log-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .log-list li {
+            background: white;
+            border-radius: 12px;
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 680px) {
+            .bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <h1>Hidden Problem Spotter</h1>
+            <div class="tags">
+                <span class="tag">high school</span>
+                <span class="tag">impulse filter</span>
+                <span class="tag">autism & ADHD supports</span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="intro">
+            <h2>Goal: name the real problem even when no one says it out loud</h2>
+            <p>Some situations feel funny or harmless on the surface, especially when you love a good shock reaction. In each scenario, pause the impulse to perform and look for what is quietly going wrong: boundaries, feelings, safety, or trust. Use the filters below to scan for those softer warning lights.</p>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <strong>Check yourself first</strong>
+                    <p>Notice your urge to shock or joke. Rate it from 1-5 in your head, then investigate what the group needs before acting.</p>
+                </div>
+                <div class="intro-card">
+                    <strong>Clue hunt</strong>
+                    <p>Look for eye contact changes, short replies, adults hovering, or a friend suddenly going quiet. Those are clues a problem is brewing.</p>
+                </div>
+                <div class="intro-card">
+                    <strong>Problem statement</strong>
+                    <p>Write one clear sentence that explains the hidden issue (ex: “People are laughing, but I’m putting Maya on the spot with personal info”).</p>
+                </div>
+            </div>
+        </section>
+        <section class="activity-grid">
+            <article class="panel">
+                <div class="scenario-header">
+                    <h3 id="scenarioTitle">Scenario</h3>
+                    <span class="impulse-chip" id="impulseLevel">Impulse Level 3</span>
+                </div>
+                <div class="scenario-text">
+                    <p id="scenarioText"></p>
+                </div>
+                <div class="badge-row" id="signalBadges"></div>
+                <div class="clues" id="clueBox">
+                    <strong>Clues to notice</strong>
+                    <ul id="clueList"></ul>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-secondary" id="clueToggle">Show subtle clues</button>
+                    <button class="btn-primary" id="newScenario">Switch scenario</button>
+                </div>
+            </article>
+            <article class="panel">
+                <h3>Problem scanner</h3>
+                <p>Tap the filters that match what feels off. Then write your problem statement and compare it to the coach note.</p>
+                <div class="scanner-grid" id="scannerGrid"></div>
+                <textarea id="problemInput" placeholder="Describe the hidden problem in one sentence..."></textarea>
+                <div class="btn-row" style="margin-top: 12px;">
+                    <button class="btn-primary" id="saveThought">Save problem idea</button>
+                    <button class="btn-secondary" id="coachToggle">Reveal coach note</button>
+                </div>
+                <div class="coach-note" id="coachNote"></div>
+            </article>
+        </section>
+        <section class="reflection-panel">
+            <h3>Reflection + receipts</h3>
+            <p>Use a prompt below if you need more structure. Keeping a receipt of your thinking shows how you slowed down the impulse.</p>
+            <div class="reflection-list" id="promptList"></div>
+            <div class="thought-log">
+                <strong>Stored problem statements</strong>
+                <ul class="log-list" id="thoughtLog"></ul>
+            </div>
+        </section>
+    </main>
+    <script>
+        const scenarios = [
+            {
+                title: "Group Chat Shock Value",
+                text: "During a group project chat, you drop a meme that jokes about suspensions just to see who reacts. Everyone leaves the heart emoji, but two people suddenly stop typing and the teacher supervisor silently joins the chat.",
+                impulseLevel: 4,
+                signals: ["boundary test", "respect shift", "adult monitoring"],
+                clues: [
+                    "Replies get shorter right after your message.",
+                    "Your friend who usually jokes with you switches to homework questions.",
+                    "The teacher joins but does not say anything yet."
+                ],
+                hiddenProblem: "Even if no one complains, you introduced a topic that makes school safety sound like a joke, so people feel exposed and watched.",
+                prompts: [
+                    "Who could be uncomfortable even if they laugh?",
+                    "What rule or shared expectation could teachers say was crossed?"
+                ]
+            },
+            {
+                title: "Drama Rehearsal Improv",
+                text: "You improvise a line that copies a teacher’s real-life catchphrase. The cast bursts out laughing and the director freezes, but no one tells you to stop. The teacher is in the hallway hearing it.",
+                impulseLevel: 3,
+                signals: ["privacy leak", "adult reputation", "mixed reactions"],
+                clues: [
+                    "The director’s eyes widen but they stay quiet.",
+                    "One actor laughs while another looks at the floor.",
+                    "You spot the teacher’s shoes near the door."
+                ],
+                hiddenProblem: "The joke uses a real adult’s identity without permission, which can break trust with staff and make classmates unsure about sharing things with you.",
+                prompts: [
+                    "How would you want people to talk about you when you are not there?",
+                    "What does the director’s silence tell you about the tone in the room?"
+                ]
+            },
+            {
+                title: "Science Lab Demo",
+                text: "During a safety demo, you whisper sarcastic commentary about accidents. Your lab partner chuckles the first time and then quietly moves the goggles away from you.",
+                impulseLevel: 2,
+                signals: ["safety drift", "partner disconnect", "tone mismatch"],
+                clues: [
+                    "Your partner stops making eye contact and only nods.",
+                    "The teacher glances over more often but keeps talking.",
+                    "Equipment is shifted away from you."
+                ],
+                hiddenProblem: "Your humor is telling people you are not taking safety seriously, so the partner does not trust you with shared materials.",
+                prompts: [
+                    "What job are you expected to do during a demo?",
+                    "How is your partner communicating without words?"
+                ]
+            },
+            {
+                title: "Bus Ride Overshare",
+                text: "On the ride to a game, you hype everyone up with wild stories and mention a teammate’s old meltdown in detail. The teammate stares out the window and the manager changes the song.",
+                impulseLevel: 5,
+                signals: ["privacy risk", "friend distancing", "tone shift"],
+                clues: [
+                    "The bus stays loud, but the teammate goes silent.",
+                    "Someone who usually encourages you gives a short \"chill\" comment.",
+                    "The team manager switches the music abruptly."
+                ],
+                hiddenProblem: "You turned a friend’s personal struggle into entertainment, so the trust inside the team is getting weaker even if people laugh.",
+                prompts: [
+                    "What part of that story belonged to you versus someone else?",
+                    "Who benefits from sharing it, and who carries the cost?"
+                ]
+            },
+            {
+                title: "Lunchroom Challenge",
+                text: "You dare everyone to invent the most savage nickname for a kid who is not sitting there. Staff nearby glance over but keep walking, and your table keeps giggling.",
+                impulseLevel: 3,
+                signals: ["respect drift", "target absent", "adult warning glance"],
+                clues: [
+                    "Someone laughs but quietly says “this is mean”.",
+                    "Another friend shrugs and looks at their phone instead of playing.",
+                    "Staff pause for a second before walking away."
+                ],
+                hiddenProblem: "You are creating a roast session about someone who cannot defend themselves, which can count as harassment even if teachers do not step in.",
+                prompts: [
+                    "Would this still feel funny if the student walked up?",
+                    "What is the difference between playful teasing and targeting?"
+                ]
+            },
+            {
+                title: "Student Council Pitch",
+                text: "You propose a “roast wall” at the pep rally so people can post anonymous digs. Peers laugh, but the advisor asks, “How would we keep it safe?” and the room goes quiet.",
+                impulseLevel: 2,
+                signals: ["tone read", "advisor question", "peer silence"],
+                clues: [
+                    "The advisor asks about safety but waits for your response.",
+                    "The laughter stops at the same time.",
+                    "A friend texts you under the table, “maybe not?”"
+                ],
+                hiddenProblem: "The idea sounds exciting but invites people to insult each other publicly, so it threatens school climate and could become bullying.",
+                prompts: [
+                    "What does the advisor’s question suggest about their concern?",
+                    "How fast did the energy in the room change?"
+                ]
+            }
+        ];
+
+        const scannerFilters = [
+            { id: "respect", label: "Respect + Dignity", detail: "Are people being talked about like humans or props?" },
+            { id: "privacy", label: "Privacy + Trust", detail: "Is someone’s story being used without permission?" },
+            { id: "safety", label: "Safety + Rules", detail: "Is the tone making adults wonder about safety?" },
+            { id: "timing", label: "Timing + Audience", detail: "Did the context change but the behavior did not?" },
+            { id: "impact", label: "Impact vs. Intent", detail: "Does the reaction match what you hoped for?" }
+        ];
+
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioText = document.getElementById("scenarioText");
+        const impulseLevel = document.getElementById("impulseLevel");
+        const signalBadges = document.getElementById("signalBadges");
+        const clueBox = document.getElementById("clueBox");
+        const clueList = document.getElementById("clueList");
+        const clueToggle = document.getElementById("clueToggle");
+        const newScenarioBtn = document.getElementById("newScenario");
+        const scannerGrid = document.getElementById("scannerGrid");
+        const problemInput = document.getElementById("problemInput");
+        const coachToggle = document.getElementById("coachToggle");
+        const coachNote = document.getElementById("coachNote");
+        const promptList = document.getElementById("promptList");
+        const thoughtLog = document.getElementById("thoughtLog");
+        const saveThought = document.getElementById("saveThought");
+
+        let currentScenario = 0;
+
+        function renderScenario(index) {
+            const data = scenarios[index];
+            scenarioTitle.textContent = data.title;
+            scenarioText.textContent = data.text;
+            impulseLevel.textContent = `Impulse Level ${data.impulseLevel}`;
+            signalBadges.innerHTML = "";
+            data.signals.forEach(signal => {
+                const badge = document.createElement("span");
+                badge.className = "badge";
+                badge.textContent = signal;
+                signalBadges.appendChild(badge);
+            });
+            clueList.innerHTML = "";
+            data.clues.forEach(clue => {
+                const item = document.createElement("li");
+                item.textContent = clue;
+                clueList.appendChild(item);
+            });
+            promptList.innerHTML = "";
+            data.prompts.forEach(prompt => {
+                const div = document.createElement("div");
+                div.className = "reflection-item";
+                div.textContent = prompt;
+                promptList.appendChild(div);
+            });
+            clueBox.style.display = "none";
+            clueToggle.textContent = "Show subtle clues";
+            coachNote.style.display = "none";
+            coachNote.textContent = data.hiddenProblem;
+            problemInput.value = "";
+            clearFilterSelection();
+        }
+
+        function clearFilterSelection() {
+            document.querySelectorAll(".scanner-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
+        }
+
+        function createScannerButtons() {
+            scannerFilters.forEach(filter => {
+                const btn = document.createElement("button");
+                btn.className = "scanner-btn";
+                btn.type = "button";
+                btn.innerHTML = `<strong>${filter.label}</strong><br>${filter.detail}`;
+                btn.addEventListener("click", () => {
+                    btn.classList.toggle("active");
+                });
+                scannerGrid.appendChild(btn);
+            });
+        }
+
+        function getRandomScenarioIndex() {
+            let idx = Math.floor(Math.random() * scenarios.length);
+            if (idx === currentScenario) {
+                idx = (idx + 1) % scenarios.length;
+            }
+            return idx;
+        }
+
+        clueToggle.addEventListener("click", () => {
+            const visible = clueBox.style.display === "block";
+            clueBox.style.display = visible ? "none" : "block";
+            clueToggle.textContent = visible ? "Show subtle clues" : "Hide subtle clues";
+        });
+
+        newScenarioBtn.addEventListener("click", () => {
+            currentScenario = getRandomScenarioIndex();
+            renderScenario(currentScenario);
+        });
+
+        coachToggle.addEventListener("click", () => {
+            const visible = coachNote.style.display === "block";
+            coachNote.style.display = visible ? "none" : "block";
+            coachToggle.textContent = visible ? "Reveal coach note" : "Hide coach note";
+        });
+
+        saveThought.addEventListener("click", () => {
+            const text = problemInput.value.trim();
+            if (!text) {
+                problemInput.focus();
+                return;
+            }
+            const li = document.createElement("li");
+            li.textContent = text;
+            thoughtLog.prepend(li);
+            problemInput.value = "";
+        });
+
+        createScannerButtons();
+        renderScenario(currentScenario);
+    </script>
+</body>
+</html>

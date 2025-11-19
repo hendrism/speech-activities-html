@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Idea & Details Lab</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --paper: #f8fafc;
+      --card: #ffffff;
+      --accent: #3b82f6;
+      --accent-dark: #1d4ed8;
+      --detail: #10b981;
+      --warn: #f97316;
+      --border: #cbd5f5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Trebuchet MS, system-ui, sans-serif;
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #bfdbfe, #c4b5fd);
+      color: var(--ink);
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: inset 0 -6px 0 rgba(15, 23, 42, 0.08);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      font-weight: 800;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 3px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .story-selector {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .story-selector button {
+      border: 2px solid var(--accent);
+      background: transparent;
+      color: var(--accent-dark);
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .story-selector button.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+    }
+
+    .story-meta {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: #475569;
+      margin-bottom: 5px;
+    }
+
+    .story-title {
+      margin: 0 0 18px;
+      font-size: 1.9rem;
+      color: var(--accent-dark);
+    }
+
+    .story-text {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 25px;
+      font-size: 1.05rem;
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .options-grid section {
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .options-grid h3 {
+      margin-top: 0;
+      color: var(--accent-dark);
+      font-size: 1.1rem;
+    }
+
+  .statement {
+    background: #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    border-left: 5px solid #94a3b8;
+    cursor: grab;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+  .statement:last-child { margin-bottom: 0; }
+  
+  .statement.dragging {
+    opacity: 0.6;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+  }
+  
+  .statement.correct {
+    border-left-color: var(--detail);
+    background: #ecfdf5;
+  }
+  
+  .statement.incorrect {
+    border-left-color: var(--warn);
+    background: #fff7ed;
+  }
+  
+  .statement-bank {
+    border: 2px dashed #94a3b8;
+    border-radius: 14px;
+    padding: 16px;
+    min-height: 220px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .drop-lab {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin: 30px 0;
+  }
+  
+  .drop-zone {
+    border: 2px solid #cbd5f5;
+    border-radius: 16px;
+    padding: 18px;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .drop-zone.wide {
+    grid-column: span 2;
+  }
+  
+  @media (max-width: 800px) {
+    .drop-zone.wide {
+      grid-column: span 1;
+    }
+  }
+  
+  .drop-label h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--accent-dark);
+  }
+  
+  .drop-label p {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    color: #475569;
+  }
+  
+  .drop-area {
+    min-height: 90px;
+    border: 2px dashed #94a3b8;
+    border-radius: 12px;
+    padding: 10px;
+    background: #fff;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  
+  .drop-area.drag-over {
+    border-color: var(--accent);
+    background: #eef2ff;
+  }
+  
+  .drop-area .placeholder {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #94a3b8;
+  }
+  
+  .drop-area .statement {
+    margin-bottom: 8px;
+  }
+  
+  .drop-area .statement:last-child {
+    margin-bottom: 0;
+  }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    button.check {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+    }
+
+    button.reset {
+      background: transparent;
+      color: var(--accent-dark);
+      border: 2px solid var(--accent);
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .feedback {
+      margin-top: 18px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .tips {
+      font-size: 0.95rem;
+      color: #475569;
+      background: #f1f5f9;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    ul {
+      margin: 12px 0 0 20px;
+    }
+
+    @media (max-width: 640px) {
+      header h1 { font-size: 2rem; }
+      .card { padding: 22px; }
+      .story-selector { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Main Idea & Details Lab</h1>
+    <p>Read each short passage, study the statement bank, and choose the one sentence that sums up the main idea plus two sentences that prove it with key details.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="story-meta">Choose a passage</div>
+      <div class="story-selector" id="storySelector"></div>
+    </section>
+
+    <section class="card">
+      <p class="story-meta">Current passage</p>
+      <h2 class="story-title" id="storyTitle"></h2>
+      <p class="story-text" id="storyText"></p>
+    </section>
+
+    <section class="card">
+      <div class="options-grid">
+        <section>
+          <h3>Statement Bank</h3>
+          <p style="margin-top:0">Drag each sentence into the correct box. Drop it back here to try again.</p>
+          <div id="statementBank" class="statement-bank" data-drop-area data-zone="bank">
+            <!-- statements render here -->
+          </div>
+        </section>
+        <section>
+          <h3>How to solve</h3>
+          <div class="tips">
+            <ul>
+              <li>Find one sentence that tells what the entire passage is mostly about.</li>
+              <li>Pick two supporting details that prove or explain the main idea.</li>
+              <li>Skip statements that add new topics or feel too tiny in scope.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div class="drop-lab">
+        <div class="drop-zone">
+          <div class="drop-label">
+            <h3>Main Idea</h3>
+            <p>1 sentence that tells what the whole passage is about.</p>
+          </div>
+          <div class="drop-area" data-drop-area data-zone="main" data-max="1">
+            <p class="placeholder">Drop the main idea sentence here.</p>
+          </div>
+        </div>
+        <div class="drop-zone">
+          <div class="drop-label">
+            <h3>Key Detail #1</h3>
+            <p>Evidence that supports the main idea.</p>
+          </div>
+          <div class="drop-area" data-drop-area data-zone="detailOne" data-max="1">
+            <p class="placeholder">Drop a key detail here.</p>
+          </div>
+        </div>
+        <div class="drop-zone">
+          <div class="drop-label">
+            <h3>Key Detail #2</h3>
+            <p>Another fact that proves the main idea.</p>
+          </div>
+          <div class="drop-area" data-drop-area data-zone="detailTwo" data-max="1">
+            <p class="placeholder">Drop another key detail here.</p>
+          </div>
+        </div>
+        <div class="drop-zone wide">
+          <div class="drop-label">
+            <h3>Distractors</h3>
+            <p>Sentences that do not match the passage.</p>
+          </div>
+          <div class="drop-area" data-drop-area data-zone="distraction" data-max="2" data-default-placeholder="Drop distractor sentences here.">
+            <p class="placeholder">Drop distractor sentences here.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="check" id="checkBtn">Check Answers</button>
+        <button class="reset" id="resetBtn">Reset Choices</button>
+      </div>
+      <p class="feedback" id="feedback"></p>
+    </section>
+  </main>
+
+  <script>
+    const stories = [
+      {
+        title: 'Community Garden Workday',
+        passage: 'On Saturday morning, dozens of neighbors gathered to transform the weedy corner lot into a community garden. Mr. Ortiz marked wide beds for vegetables while Mrs. Lee studied where the sun landed and mapped tomato rows. Two middle schoolers rinsed donated pickle buckets and turned them into rain barrels so the plants could be watered without wasting tap water. By lunchtime, the beds were mulched and everyone agreed to meet weekly to keep the garden thriving.',
+        options: [
+          'Neighbors worked together to transform a vacant lot into a community garden.',
+          'Mrs. Lee mapped the sunny spots for tomato rows.',
+          'Two middle schoolers built rain barrels from donated buckets.',
+          'The city hired a landscaping company to mow the lot for the neighbors.',
+          'Everyone agreed to meet only once a year to check on the plants.'
+        ],
+        mainIdea: 'Neighbors worked together to transform a vacant lot into a community garden.',
+        details: [
+          'Mrs. Lee mapped the sunny spots for tomato rows.',
+          'Two middle schoolers built rain barrels from donated buckets.'
+        ]
+      },
+      {
+        title: 'School News Podcast Team',
+        passage: 'The fifth graders launched a weekly podcast so the whole school could hear news and celebrations. On Tuesdays the hosts wrote scripts and practiced reading them smoothly. Maya booked the media lab on Thursdays so she could edit the audio and tuck in gentle sound effects. Each Friday morning the finished episode was posted on the school website so families could listen on the walk to school.',
+        options: [
+          'Fifth graders created a weekly podcast to share school news.',
+          'Students wrote scripts on Tuesdays to practice fluent reading.',
+          'Maya edited the audio in the library’s media lab each Thursday.',
+          'The team mailed compact discs to every home each Monday.',
+          'Teachers banned the students from interviewing classmates.'
+        ],
+        mainIdea: 'Fifth graders created a weekly podcast to share school news.',
+        details: [
+          'Students wrote scripts on Tuesdays to practice fluent reading.',
+          'Maya edited the audio in the library’s media lab each Thursday.'
+        ]
+      },
+      {
+        title: 'Cedar River Cleanup Challenge',
+        passage: 'The science club organized a cleanup along the Cedar River to see how much trash they could remove before fish returned to the shallow coves. Teams mapped sections of shoreline and collected every bottle cap, wrapper, and soda can they could find. Volunteers weighed each bag of trash to track their progress, and students logged wildlife sightings in a shared notebook to notice how the river responded over time.',
+        options: [
+          'The science club organized a river cleanup to protect the Cedar River.',
+          'Teams mapped shoreline sections and picked up every piece of litter.',
+          'Volunteers weighed each bag of trash to track progress.',
+          'The cleanup lasted only ten minutes before everyone went home.',
+          'Students decided to build a skateboard ramp by the river instead.'
+        ],
+        mainIdea: 'The science club organized a river cleanup to protect the Cedar River.',
+        details: [
+          'Teams mapped shoreline sections and picked up every piece of litter.',
+          'Volunteers weighed each bag of trash to track progress.'
+        ]
+      },
+      {
+        title: 'Pop-Up STEM Night Volunteers',
+        passage: 'To boost family turnout, student leaders planned a pop-up STEM night that filled the gym with hands-on stations. The robotics crew coded tiny bots to drive through tape mazes while teammates explained how sensors worked. Nearby, the art club built pasta towers, recorded which design held more washers, and invited guests to test their own ideas. Between rotations, hosts handed out reflection cards so visitors could jot one discovery to share on the morning announcements.',
+        options: [
+          'Students organized interactive STEM stations for families during pop-up night.',
+          'The robotics crew coded mini bots to drive through tape mazes.',
+          'Art club members built pasta towers and tracked which design held more weight.',
+          'The principal canceled the event because no one volunteered.',
+          'Only teachers were allowed to demonstrate projects while students watched.'
+        ],
+        mainIdea: 'Students organized interactive STEM stations for families during pop-up night.',
+        details: [
+          'The robotics crew coded mini bots to drive through tape mazes.',
+          'Art club members built pasta towers and tracked which design held more weight.'
+        ]
+      },
+      {
+        title: 'Library Book Swap Festival',
+        passage: 'The public library hosted a weekend book swap so readers could trade stories without spending money. Student helpers labeled tables by genre, which kept fantasy paperbacks far from biographies. Before setting down a donation, each guest filled out a colorful review card so the next reader would know what made the book memorable. Families lingered for cocoa, then left with stacks of “new-to-me” titles tucked under their arms.',
+        options: [
+          'The library hosted a book swap so readers could trade favorites.',
+          'Student helpers labeled genre tables to keep the swap organized.',
+          'Guests filled out review cards before placing books on display.',
+          'The library bought a brand-new hardcover for every visitor instead of swapping.',
+          'The festival allowed only adults with digital tickets ordered weeks ahead.'
+        ],
+        mainIdea: 'The library hosted a book swap so readers could trade favorites.',
+        details: [
+          'Student helpers labeled genre tables to keep the swap organized.',
+          'Guests filled out review cards before placing books on display.'
+        ]
+      },
+      {
+        title: 'Weather Station Morning Crew',
+        passage: 'Each dawn, a sixth-grade crew hustled to the school garden to run its new weather station. Two students clipped temperature, humidity, and wind readings before the first bell, checking the sensors twice for accuracy. Another pair uploaded the numbers to a hallway display and added a short forecast to the principal’s daily email. Their routine meant teachers could plan recess and science experiments using fresh data gathered by their own students.',
+        options: [
+          'Sixth graders ran a morning weather station and shared data with the school.',
+          'Two students measured temperature, humidity, and wind before the first bell.',
+          'Another pair uploaded the readings to the hallway display and daily email.',
+          'They dismantled the weather station after only one week.',
+          'The crew skipped collecting data whenever the sky looked clear.'
+        ],
+        mainIdea: 'Sixth graders ran a morning weather station and shared data with the school.',
+        details: [
+          'Two students measured temperature, humidity, and wind before the first bell.',
+          'Another pair uploaded the readings to the hallway display and daily email.'
+        ]
+      },
+      {
+        title: 'Track Team Hydration Lab',
+        passage: 'Coach Diaz turned track practice into a quick science lab about hydration. Each runner logged how much water they drank during the school day on a shared spreadsheet before lacing up. Assistant coaches timed repeat laps and compared the splits of athletes who met their water goals with those who forgot their bottles. At the end of the week, the team discussed the charts and agreed to set reminders so afternoon workouts stayed strong.',
+        options: [
+          'The track team studied hydration habits to improve practice stamina.',
+          'Runners logged their water intake in a shared spreadsheet before workouts.',
+          'Coaches compared lap times of hydrated runners and those who forgot their bottles.',
+          'The study ended instantly because a snowstorm closed school for a month.',
+          'Only former athletes tested prototype shoes on the track that week.'
+        ],
+        mainIdea: 'The track team studied hydration habits to improve practice stamina.',
+        details: [
+          'Runners logged their water intake in a shared spreadsheet before workouts.',
+          'Coaches compared lap times of hydrated runners and those who forgot their bottles.'
+        ]
+      },
+      {
+        title: 'Therapy Dog Reading Hour',
+        passage: 'Once a month, certified therapy dogs padded into the media center so hesitant readers could practice aloud without judgment. Volunteers showed students how to greet each dog and settle on beanbag mats beside their furry listener. After finishing a chapter, readers jotted confidence scores in their journals and shared one tricky word they conquered. Teachers noticed quieter students raising their hands in class after a few calm sessions with their canine buddies.',
+        options: [
+          'Therapy dogs visited reading hour so students could practice aloud comfortably.',
+          'Volunteers taught students how to greet the dogs before sitting on beanbags.',
+          'Readers recorded confidence scores and tricky words in their journals after sessions.',
+          'Dogs waited outside while students read alone in total silence.',
+          'The school replaced the program with a silent study hall instead.'
+        ],
+        mainIdea: 'Therapy dogs visited reading hour so students could practice aloud comfortably.',
+        details: [
+          'Volunteers taught students how to greet the dogs before sitting on beanbags.',
+          'Readers recorded confidence scores and tricky words in their journals after sessions.'
+        ]
+      },
+      {
+        title: 'Class Plant Patrol',
+        passage: 'Ms. Rao started a plant patrol chart so her students would remember to care for the fern on the window ledge. Each morning the helper opened the blinds to give the plant sunshine. After lunch the helper checked the soil and added a small cup of water if it felt dry. On Friday the class measured the fern to see how much it had grown.',
+        options: [
+          "Ms. Rao's class took turns caring for the fern on the window ledge.",
+          'Each morning the helper opened the blinds to give the plant sunshine.',
+          'After lunch the helper checked the soil and added a small cup of water if it felt dry.',
+          'The class baked cupcakes for the fern every afternoon.',
+          'Students built a robot to water every plant in the city.'
+        ],
+        mainIdea: "Ms. Rao's class took turns caring for the fern on the window ledge.",
+        details: [
+          'Each morning the helper opened the blinds to give the plant sunshine.',
+          'After lunch the helper checked the soil and added a small cup of water if it felt dry.'
+        ]
+      },
+      {
+        title: 'Morning Announcement Helpers',
+        passage: 'Two fourth graders helped the principal with the morning announcements. Before school they checked the whiteboard for birthdays and club reminders. They practiced the script quietly so the words would sound smooth. When the bell rang, they pressed the intercom button and read the updates to the whole building.',
+        options: [
+          'Two fourth graders helped the principal with the morning announcements.',
+          'They checked the whiteboard for birthdays and club reminders.',
+          'They practiced the script quietly so the words would sound smooth.',
+          'They skipped school so no one heard the announcements.',
+          'Only teachers were allowed to touch the intercom button.'
+        ],
+        mainIdea: 'Two fourth graders helped the principal with the morning announcements.',
+        details: [
+          'They checked the whiteboard for birthdays and club reminders.',
+          'They practiced the script quietly so the words would sound smooth.'
+        ]
+      },
+      {
+        title: 'Rainy Day Gym Walkers',
+        passage: 'When rain covered the playground, Coach Lin turned the gym into a walking track. Students followed taped arrows and counted how many laps they could finish in ten minutes. Helpers passed out stickers every five laps so walkers could keep score. By the end, everyone felt warm even without going outside.',
+        options: [
+          'Coach Lin set up an indoor walking track for rainy days.',
+          'Students followed taped arrows and counted their laps.',
+          'Helpers passed out stickers every five laps so walkers could keep score.',
+          'Students napped on the bleachers instead of moving.',
+          'Recess was canceled for the rest of the year.'
+        ],
+        mainIdea: 'Coach Lin set up an indoor walking track for rainy days.',
+        details: [
+          'Students followed taped arrows and counted their laps.',
+          'Helpers passed out stickers every five laps so walkers could keep score.'
+        ]
+      },
+      {
+        title: 'Neighborhood Lemonade Goal',
+        passage: 'Maya and Theo opened a lemonade stand to earn money for new watercolor paints. They squeezed lemons in the kitchen and made a bright poster that pointed neighbors to their table. Each customer signed a thank-you note that the kids taped to the jar. By sunset they had enough dollars to buy the paint set they wanted.',
+        options: [
+          'Maya and Theo ran a lemonade stand to buy watercolor paints.',
+          'They squeezed lemons and made a bright poster for their table.',
+          'Customers signed thank-you notes that the kids taped to the jar.',
+          'They spent the money on video games instead of art supplies.',
+          'The stand sold hot chocolate in the middle of winter.'
+        ],
+        mainIdea: 'Maya and Theo ran a lemonade stand to buy watercolor paints.',
+        details: [
+          'They squeezed lemons and made a bright poster for their table.',
+          'Customers signed thank-you notes that the kids taped to the jar.'
+        ]
+      },
+      {
+        title: 'Bus Buddy Bench',
+        passage: 'To make dismissal calmer, fifth graders waited by the buddy bench to help younger students find their buses. When a bus number was called, a helper walked the younger student to the correct line. The helpers wore bright sashes so teachers could spot them quickly. After the last bus left, they rolled the bench back under the awning for the next day.',
+        options: [
+          'Fifth graders used a buddy bench to help younger students find their buses.',
+          'Helpers walked younger students to the correct bus line.',
+          'They wore bright sashes so teachers could spot them.',
+          'Older students hid during dismissal so no one found a bus.',
+          'Bus drivers stayed home instead of coming to school.'
+        ],
+        mainIdea: 'Fifth graders used a buddy bench to help younger students find their buses.',
+        details: [
+          'Helpers walked younger students to the correct bus line.',
+          'They wore bright sashes so teachers could spot them.'
+        ]
+      }
+    ];
+
+    const storySelector = document.getElementById('storySelector');
+    const storyTitle = document.getElementById('storyTitle');
+    const storyText = document.getElementById('storyText');
+    const statementBank = document.getElementById('statementBank');
+    const mainArea = document.querySelector('.drop-area[data-zone="main"]');
+    const detailAreaOne = document.querySelector('.drop-area[data-zone="detailOne"]');
+    const detailAreaTwo = document.querySelector('.drop-area[data-zone="detailTwo"]');
+    const distractionArea = document.querySelector('.drop-area[data-zone="distraction"]');
+    const dropAreas = document.querySelectorAll('[data-drop-area]');
+    const checkBtn = document.getElementById('checkBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const feedback = document.getElementById('feedback');
+
+    let currentStory = 0;
+    let draggedId = null;
+    let statementIdCounter = 0;
+
+    function createStoryButtons() {
+      storySelector.innerHTML = '';
+      stories.forEach((story, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = story.title;
+        if (index === currentStory) btn.classList.add('active');
+        btn.addEventListener('click', () => {
+          currentStory = index;
+          Array.from(storySelector.children).forEach(child => child.classList.remove('active'));
+          btn.classList.add('active');
+          loadStory();
+        });
+        storySelector.appendChild(btn);
+      });
+    }
+
+    function createStatementElement(text) {
+      const div = document.createElement('div');
+      div.className = 'statement';
+      div.textContent = text;
+      div.setAttribute('draggable', 'true');
+      div.dataset.id = `statement-${statementIdCounter++}`;
+      div.addEventListener('dragstart', handleDragStart);
+      div.addEventListener('dragend', handleDragEnd);
+      return div;
+    }
+
+    function updatePlaceholder(area) {
+      const placeholder = area.querySelector('.placeholder');
+      if (!placeholder) return;
+      const hasStatement = area.querySelector('.statement');
+      placeholder.style.display = hasStatement ? 'none' : 'block';
+    }
+
+    function clearDropAreas() {
+      dropAreas.forEach(area => {
+        Array.from(area.querySelectorAll('.statement')).forEach(el => el.remove());
+        area.classList.remove('drag-over');
+        updatePlaceholder(area);
+      });
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function renderStatementBank(story) {
+      statementBank.innerHTML = '';
+      const randomized = shuffle([...story.options]);
+      randomized.forEach(text => {
+        statementBank.appendChild(createStatementElement(text));
+      });
+    }
+
+    function updateDistractionGuidance(story) {
+      const distractorCount = story.options.length - (1 + story.details.length);
+      distractionArea.dataset.max = distractorCount;
+      const placeholder = distractionArea.querySelector('.placeholder');
+      if (placeholder) {
+        placeholder.textContent = `Drop ${distractorCount} distractor sentence${distractorCount === 1 ? '' : 's'} here.`;
+      }
+      updatePlaceholder(distractionArea);
+    }
+
+    function loadStory() {
+      const story = stories[currentStory];
+      storyTitle.textContent = story.title;
+      storyText.textContent = story.passage;
+      statementIdCounter = 0;
+      clearDropAreas();
+      renderStatementBank(story);
+      updateDistractionGuidance(story);
+      feedback.textContent = '';
+    }
+
+    function canAccept(area) {
+      if (area.dataset.zone === 'bank') return true;
+      const max = parseInt(area.dataset.max, 10) || 99;
+      const current = area.querySelectorAll('.statement').length;
+      return current < max;
+    }
+
+    function handleDragStart(event) {
+      draggedId = event.target.dataset.id;
+      event.dataTransfer.setData('text/plain', draggedId);
+      setTimeout(() => event.target.classList.add('dragging'), 0);
+    }
+
+    function handleDragEnd(event) {
+      event.target.classList.remove('dragging');
+      draggedId = null;
+      dropAreas.forEach(area => area.classList.remove('drag-over'));
+    }
+
+    function handleDragOver(event) {
+      const area = event.currentTarget;
+      if (canAccept(area)) {
+        event.preventDefault();
+        area.classList.add('drag-over');
+      }
+    }
+
+    function handleDragLeave(event) {
+      event.currentTarget.classList.remove('drag-over');
+    }
+
+    function handleDrop(event) {
+      event.preventDefault();
+      const area = event.currentTarget;
+      area.classList.remove('drag-over');
+      const id = event.dataTransfer.getData('text/plain');
+      const statement = document.querySelector(`.statement[data-id="${id}"]`);
+      if (!statement || !canAccept(area)) return;
+      const previousParent = statement.parentElement;
+      area.appendChild(statement);
+      updatePlaceholder(previousParent);
+      updatePlaceholder(area);
+    }
+
+    dropAreas.forEach(area => {
+      area.addEventListener('dragover', handleDragOver);
+      area.addEventListener('dragleave', handleDragLeave);
+      area.addEventListener('drop', handleDrop);
+    });
+
+    function getStatement(area) {
+      return area.querySelector('.statement');
+    }
+
+    function getStatements(area) {
+      return Array.from(area.querySelectorAll('.statement'));
+    }
+
+    function resetBoard() {
+      loadStory();
+    }
+
+    function checkAnswers() {
+      const story = stories[currentStory];
+      const allStatements = document.querySelectorAll('.statement');
+      allStatements.forEach(el => el.classList.remove('correct', 'incorrect'));
+      let score = 0;
+      const total = 4;
+
+      const mainStatement = getStatement(mainArea);
+      if (mainStatement) {
+        if (mainStatement.textContent === story.mainIdea) {
+          mainStatement.classList.add('correct');
+          score += 1;
+        } else {
+          mainStatement.classList.add('incorrect');
+        }
+      }
+
+      const remainingDetails = new Set(story.details);
+      [detailAreaOne, detailAreaTwo].forEach(area => {
+        const detailStatement = getStatement(area);
+        if (!detailStatement) return;
+        const text = detailStatement.textContent;
+        if (remainingDetails.has(text)) {
+          detailStatement.classList.add('correct');
+          remainingDetails.delete(text);
+          score += 1;
+        } else {
+          detailStatement.classList.add('incorrect');
+        }
+      });
+
+      const distractionStatements = story.options.filter(option => option !== story.mainIdea && !story.details.includes(option));
+      const droppedDistractors = getStatements(distractionArea);
+      if (droppedDistractors.length) {
+        const texts = droppedDistractors.map(el => el.textContent);
+        const correct = texts.length === distractionStatements.length &&
+          texts.every(text => distractionStatements.includes(text));
+        droppedDistractors.forEach(el => el.classList.add(correct ? 'correct' : 'incorrect'));
+        if (correct) score += 1;
+      }
+
+      const missingMain = !mainStatement;
+      const missingDetails = [detailAreaOne, detailAreaTwo].some(area => !getStatement(area));
+      const distractorRequirement = distractionStatements.length;
+      const missingDistractors = droppedDistractors.length !== distractorRequirement;
+
+      if (missingMain || missingDetails || missingDistractors) {
+        feedback.textContent = `You scored ${score}/${total}. Make sure every box has the right number of statements before checking again.`;
+      } else {
+        feedback.textContent = `You scored ${score}/${total}. ${score === total ? 'Awesome sorting!' : 'Re-read the passage and adjust any orange highlights.'}`;
+      }
+    }
+
+    checkBtn.addEventListener('click', checkAnswers);
+    resetBtn.addEventListener('click', resetBoard);
+
+    createStoryButtons();
+    loadStory();
+  </script>
+</body>
+</html>

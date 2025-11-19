@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inappropriate Behavior Solution Practice</title>
+    <style>
+        :root {
+            --accent: #0ea5e9;
+            --accent-dark: #0284c7;
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --simple: #22c55e;
+            --medium: #f97316;
+            --stretch: #ef4444;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--card);
+            border-bottom: 4px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        .bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 22px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bar h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--accent-dark);
+        }
+
+        .bar p {
+            margin: 0;
+            color: var(--muted);
+            flex: 1;
+            min-width: 280px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 24px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .panel {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 32px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .panel:hover {
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+        }
+
+        .panel > h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            color: var(--ink);
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .difficulty-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .difficulty-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 22px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            background: #e2e8f0;
+            color: var(--muted);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .difficulty-btn.active {
+            color: white;
+            box-shadow: 0 5px 14px rgba(14, 165, 233, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .difficulty-btn[data-level="simple"].active { background: var(--simple); }
+        .difficulty-btn[data-level="medium"].active { background: var(--medium); }
+        .difficulty-btn[data-level="stretch"].active { background: var(--stretch); }
+
+        .scenario-head {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .scenario-head > div {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .scenario-head > div > p {
+            margin: 0 0 8px 0;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--ink);
+        }
+
+        .chip {
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 13px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .chip.simple { background: linear-gradient(135deg, var(--simple) 0%, #16a34a 100%); }
+        .chip.medium { background: linear-gradient(135deg, var(--medium) 0%, #ea580c 100%); }
+        .chip.stretch { background: linear-gradient(135deg, var(--stretch) 0%, #dc2626 100%); }
+
+        .scenario-card {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-radius: 16px;
+            padding: 28px;
+            border: 2px solid #d6e3f5;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.08);
+        }
+
+        .scenario-card h2 {
+            margin: 0 0 16px 0;
+            font-size: 22px;
+            color: var(--accent-dark);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .scenario-card p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.75;
+            color: #334155;
+        }
+
+        .impact {
+            margin-top: 24px;
+            padding: 20px 22px;
+            border-radius: 12px;
+            border-left: 5px solid #ef4444;
+            background: linear-gradient(135deg, #fef2f2 0%, #fff5f5 100%);
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+        }
+
+        .impact strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .impact ul {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .impact li {
+            margin-bottom: 8px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .impact li:last-child {
+            margin-bottom: 0;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            margin-top: 24px;
+            border-radius: 12px;
+            border: 2px solid #cbd5e1;
+            padding: 16px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            line-height: 1.6;
+            transition: all 0.2s ease;
+            background: #ffffff;
+        }
+
+        textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15), 0 2px 8px rgba(14, 165, 233, 0.1);
+            background: #fafbfc;
+        }
+
+        textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 13px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:focus-visible {
+            outline: 3px solid #bae6fd;
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #fff7ed;
+            color: var(--medium);
+            border: 2px solid #fed7aa;
+            box-shadow: 0 1px 3px rgba(249, 115, 22, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: #ffedd5;
+            border-color: #fb923c;
+            transform: translateY(-1px);
+        }
+
+        .coach-card {
+            margin-top: 18px;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #86efac;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            color: #166534;
+            display: none;
+            line-height: 1.7;
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.12);
+            font-size: 15px;
+        }
+
+        .coach-card::before {
+            content: "💡 Coach's suggestion:";
+            display: block;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #15803d;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .log-panel {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 28px;
+            border: 2px dashed #cbd5f5;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+        }
+
+        .log-panel h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: var(--accent-dark);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .log-panel > p {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .log-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .log-entry {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 16px 18px;
+            border: 2px solid #e0f2fe;
+            box-shadow: 0 2px 6px rgba(14, 165, 233, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .log-entry:hover {
+            border-color: #bae6fd;
+            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.12);
+            transform: translateX(2px);
+        }
+
+        .log-entry strong {
+            color: var(--accent-dark);
+            font-size: 15px;
+        }
+
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .stats-row span {
+            padding: 4px 10px;
+            background: #e0f2fe;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #0369a1;
+        }
+
+        @media (max-width: 720px) {
+            .bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <h1>Behavior Repair Lab</h1>
+            <p>Read short scenarios where someone reacts or behaves inappropriately. Slow down, scan why it is a problem, and write a solution that restores safety, respect, or focus.</p>
+        </div>
+    </header>
+    <main>
+        <section class="panel">
+            <h2>Pick a difficulty tier</h2>
+            <div class="difficulty-tabs">
+                <button class="difficulty-btn active" data-level="simple">Simple warm-up</button>
+                <button class="difficulty-btn" data-level="medium">Medium challenge</button>
+                <button class="difficulty-btn" data-level="stretch">Medium-high stretch</button>
+            </div>
+            <div class="scenario-head">
+                <div>
+                    <p id="scenarioCounter">Scenario 1 of 4</p>
+                    <div class="stats-row">
+                        <span>Impulsivity repair</span>
+                        <span>Solution focused</span>
+                    </div>
+                </div>
+                <span class="chip simple" id="difficultyChip">Simple</span>
+            </div>
+            <div class="scenario-card">
+                <h2 id="scenarioTitle">Scenario title</h2>
+                <p id="scenarioText"></p>
+            </div>
+            <div class="impact">
+                <strong>Why this is a problem</strong>
+                <ul id="impactList"></ul>
+            </div>
+            <textarea id="solutionInput" placeholder="Plan an appropriate solution or repair..."></textarea>
+            <div class="btn-row">
+                <button class="btn-primary" id="nextScenario">Next scenario</button>
+                <button class="btn-primary" id="saveSolution">Save my solution</button>
+                <button class="btn-secondary" id="coachToggle">Show coach idea</button>
+            </div>
+            <div class="coach-card" id="coachCard"></div>
+        </section>
+        <section class="log-panel">
+            <h3>Solution log</h3>
+            <p>Store your best fixes so you can compare how your ideas become more detailed across the tiers.</p>
+            <ul class="log-list" id="solutionLog"></ul>
+        </section>
+    </main>
+    <script>
+        const scenarios = [
+            {
+                id: 1,
+                difficulty: "simple",
+                title: "Pencil Drum Distraction",
+                text: "It's Thursday morning during silent reading time in your English class. You've been tapping your pencil on the desk in a rhythmic pattern for about 5 minutes. The teacher walks over and quietly says, \"The tapping is distracting others who are trying to read.\" You nod but continue tapping just a few seconds later, now switching to tapping on your notebook instead. The students around you exchange frustrated glances, and your teacher stops by your desk again with a more serious expression.",
+                impact: [
+                    "Classmates cannot focus on their reading even though they are trying to ignore the noise, affecting their comprehension and assignment completion.",
+                    "You are showing the teacher that you either didn't listen to the first reminder or chose to ignore it, suggesting you need repeated corrections.",
+                    "It can escalate to the teacher confiscating your materials or moving you to a different seat, disrupting your own learning."
+                ],
+                solution: "Apologize sincerely and immediately, put the pencil down completely or switch to a silent fidget object (like a stress ball or fidget cube), and demonstrate you can work quietly for the remainder of the reading period without additional reminders."
+            },
+            {
+                id: 2,
+                difficulty: "simple",
+                title: "GIF Storm in Homework Chat",
+                text: "It's 8:30 PM on a Sunday night, and your group chat for the history project is active with classmates asking about the rubric and clarifying which sources are acceptable. You think the stress level is too high, so you start posting funny memes and GIFs—first one, then three more in a row, then a few reaction GIFs to what people are saying. Within two minutes, you've posted about 8 GIFs total. The chat is scrolling so fast that messages with actual questions are getting buried. Someone types \"can we please focus?\" but you send one more laughing GIF in response.",
+                impact: [
+                    "Peers miss important instructions and have to scroll back through all your GIFs to find the actual homework discussion, wasting valuable study time.",
+                    "It signals to your group members that you don't take the assignment seriously or don't care about their genuine stress and need for help.",
+                    "People may mute the chat, remove you from the group, or stop including you in future collaborative work because you're seen as unreliable."
+                ],
+                solution: "Stop posting GIFs immediately, delete the most recent ones if possible, send a brief \"my bad, got carried away—back to the assignment\" message, and either contribute helpful answers to the homework questions or stay quiet to let others work through their questions."
+            },
+            {
+                id: 3,
+                difficulty: "simple",
+                title: "Mocking a Friend",
+                text: "You're sitting at your usual lunch table with about six friends. One of your friends, Alex, has a distinct way of saying certain words with a slight accent. You start imitating how Alex says \"literally\" in an exaggerated, high-pitched voice to make the group laugh. A few people chuckle, so you do it again, this time mimicking an entire sentence Alex said earlier. Alex says, \"Okay, that's enough, it's getting annoying,\" but you're enjoying the attention and continue with another impression, adding exaggerated hand gestures. Alex's smile has faded, and the rest of the table has gone quiet.",
+                impact: [
+                    "Alex feels singled out and embarrassed in front of the friend group, potentially making them not want to speak up or share stories in the future.",
+                    "You demonstrate to everyone at the table that you don't respect personal boundaries when someone directly asks you to stop.",
+                    "It increases the likelihood of a direct confrontation with Alex, damaged friendship, or other friends distancing themselves from you because they don't want to be mocked next."
+                ],
+                solution: "Immediately stop the impression, acknowledge out loud that you crossed a line (\"You're right, I should've stopped—sorry\"), check in with Alex privately after lunch to make sure they're okay and apologize again, then intentionally shift the conversation to a different, neutral topic for the rest of lunch."
+            },
+            {
+                id: 4,
+                difficulty: "simple",
+                title: "\"No Duh\" to the Teacher",
+                text: "It's the last 10 minutes of your math class on a Friday afternoon. Your teacher, Ms. Rodriguez, is reminding students about upcoming missing assignments before the weekend. She walks by your desk and says in a calm, private tone, \"Just a reminder, you still have two homework assignments from this week that haven't been turned in.\" You're tired and frustrated because you already know this, so you roll your eyes, turn slightly toward your classmates, and say loudly enough for others to hear, \"No duh, I know that already.\" The room goes quiet, and Ms. Rodriguez's expression shifts from helpful to disappointed.",
+                impact: [
+                    "Public disrespect toward a teacher can result in immediate consequences like a detention, office referral, or parent contact, escalating what could have been a simple reminder.",
+                    "Other students witness you dismissing adult support, which can influence how they treat teachers and may lower the overall respect level in the classroom.",
+                    "Your sarcastic response shuts down any opportunity for Ms. Rodriguez to offer help, extensions, or strategies to complete the work, leaving you stuck with the missing assignments."
+                ],
+                solution: "Take a deep breath and reset your tone, then restate your understanding more respectfully (e.g., \"You're right, I do need to finish those—can I get a checklist of what's missing?\"), and if you're feeling overwhelmed, ask for a brief private conversation after class instead of reacting with sarcasm in front of everyone."
+            },
+            {
+                id: 5,
+                difficulty: "medium",
+                title: "Storming Out of Practice",
+                text: "It's Wednesday after school, and you're at drama club rehearsal for the spring play. You and your scene partner, Jordan, are running through a key emotional scene for the third time. Jordan has been struggling with memorization all week and forgets a major line again, breaking character and asking for a line cue. You've been feeling stressed about the upcoming performance, and this feels like the last straw. You throw your script down on the stage, say loudly, \"Why do I even try with you? This is a waste of my time,\" and walk out of the auditorium. The director calls after you, but you don't turn back. The rest of the cast sits in uncomfortable silence.",
+                impact: [
+                    "You severely damage trust with Jordan, who may now feel anxious and unsupported, and the director may question your reliability and professionalism for future productions.",
+                    "The entire rehearsal loses valuable time while the director and cast process what happened and decide whether to continue or wait for your return, setting everyone behind schedule.",
+                    "Your outburst sends a harmful message to the group that mistakes aren't acceptable, creating a tense environment where others may be afraid to take risks or ask for help."
+                ],
+                solution: "Return to the rehearsal within a few minutes (or by the next day at the latest), apologize to Jordan and the director in front of the group for the outburst and for wasting everyone's time, acknowledge that you were frustrated but handled it poorly, suggest taking a 5-minute reset break together before running the scene again, and offer to work with Jordan outside of rehearsal to help with line memorization."
+            },
+            {
+                id: 6,
+                difficulty: "medium",
+                title: "Last-Minute Slide Takeover",
+                text: "Your group has been working on a biology presentation for two weeks, and everyone divided up the slides. It's due tomorrow at 9 AM. Around 11 PM tonight, you review the shared Google Slides and decide that the formatting is inconsistent and some slides are too text-heavy. Without messaging the group chat or asking anyone, you spend the next hour completely redesigning everyone's slides—changing fonts, colors, rewriting bullet points, and rearranging the slide order based on what you think flows better. You finish at midnight and go to bed. The next morning, your three group members wake up at 7 AM to do final reviews and are shocked and confused to see completely different slides than what they created.",
+                impact: [
+                    "Group members wake up to unrecognizable work just hours before the presentation, causing panic, confusion, and no time to review or adjust to the changes you made.",
+                    "It clearly communicates that you don't trust or value your teammates' contributions, damaging group morale and making them feel disrespected and undermined.",
+                    "If your changes introduced any errors or removed important content, there's no time to catch or fix it collaboratively, potentially lowering the group's grade."
+                ],
+                solution: "As soon as you wake up and realize what happened, immediately message the group apologizing for the takeover, offer to restore the original slides using version history in Google Slides, suggest a quick 15-minute video call or in-person huddle before class to review both versions together and collaboratively decide which design elements to keep, and commit to asking for group input before making major changes in the future."
+            },
+            {
+                id: 7,
+                difficulty: "medium",
+                title: "Blocking the Hallway",
+                text: "It's passing period between third and fourth period, and the hallways are packed. You and your friend Tyler stop right in the middle of the main doorway that connects two hallway sections to finish a conversation about weekend plans. You're both laughing and joking, and neither of you notices that a line of students is forming behind you trying to get through. One student says, \"Excuse me,\" but you don't hear them over the noise. Another student says more loudly, \"We need to get through, we're going to be late,\" and you glance back but don't move, saying, \"Just a sec.\" Tyler keeps talking, and you keep responding. The bell rings, and several students push past you looking frustrated.",
+                impact: [
+                    "Multiple students are now late to their next class because you physically blocked the only efficient route, potentially earning them tardies that affect their records.",
+                    "You create tension and frustration with both peers (who may avoid or resent you later) and staff members monitoring the hallway who have to manage the bottleneck you caused.",
+                    "You're violating school safety protocols about keeping exits and pathways clear, which are in place for emergencies like fire drills or lockdowns, putting everyone at risk."
+                ],
+                solution: "Immediately move to the side of the hallway or out of the doorway as soon as someone asks, turn around and apologize directly to the students you delayed (\"Sorry for blocking you, that was my bad\"), and establish a new meeting spot with Tyler—like near the lockers or outside the cafeteria—that doesn't obstruct high-traffic areas during passing periods."
+            },
+            {
+                id: 8,
+                difficulty: "medium",
+                title: "Eye-Rolling at Lab Safety",
+                text: "It's Monday in your chemistry class, and the teacher, Mr. Patel, is reviewing the safety procedures before starting a lab involving acidic solutions. He's handing out safety goggles and explaining the steps. When he brings goggles to your lab table, you push them to the side and mutter, \"This is so unnecessary.\" Mr. Patel stops and says, \"Everyone needs to wear goggles during this lab—no exceptions.\" You roll your eyes dramatically, cross your arms, and say loudly, \"Nothing's going to happen, this is such a waste of time,\" while he's still giving instructions. Your lab partners look uncomfortable, and Mr. Patel asks you to step outside for a conversation.",
+                impact: [
+                    "You model unsafe behavior for your lab partners and other students watching, potentially encouraging them to also skip safety steps and putting everyone in danger.",
+                    "The entire class loses instructional time because Mr. Patel has to pause the lesson to address your refusal and defiance, delaying the lab for everyone.",
+                    "If a chemical accident occurs—whether to you or someone else—because proper safety protocols weren't followed, the lab could be shut down, the class could lose lab privileges, and you could face serious disciplinary or even medical consequences."
+                ],
+                solution: "Immediately put on the safety goggles and return to your seat, apologize to Mr. Patel both privately and in front of the class for being disrespectful and disregarding safety rules, and ask one of your lab partners to verbally review the safety steps with you so you're fully clear on the procedure and can demonstrate you're taking it seriously going forward."
+            },
+            {
+                id: 9,
+                difficulty: "stretch",
+                title: "Posting the Teammate Video",
+                text: "It's Friday evening, and you just got home from basketball practice. During a scrimmage drill, your teammate Chris slipped on the court while going for a layup and fell in a really awkward, sprawling way—arms and legs everywhere. It looked funny in the moment, and you had your phone out recording drills. When you get home, you trim the 10-second clip of Chris's fall, add a laughing emoji and the caption \"Epic fail,\" and upload it to the team's group chat thinking everyone will get a laugh out of it. Within minutes, several teammates react with laughing emojis, but Chris doesn't respond. An hour later, your coach messages the group saying, \"Who posted that video? That's not okay.\" You realize Chris might not have been okay with it being shared.",
+                impact: [
+                    "Chris loses trust in you and may feel humiliated or betrayed, potentially refusing to practice with you or communicate openly in the future, harming team chemistry.",
+                    "Your coach and teammates see that private, vulnerable team moments aren't safe with you, which can damage the team's culture of support and psychological safety.",
+                    "Once something is posted online—even in a private group chat—screenshots or copies can spread beyond the team to other students, social media, or even parents, escalating the situation and creating long-term reputation damage for Chris and potential discipline for you."
+                ],
+                solution: "Immediately delete the video from the group chat and any other platforms, send a direct private message to Chris with a sincere apology explaining you didn't think it through and shouldn't have posted without asking first, also apologize to the coach and team in the group chat, and work with Chris and the coach to establish clear boundaries and agreements about what can be recorded and shared in the future to rebuild trust."
+            },
+            {
+                id: 10,
+                difficulty: "stretch",
+                title: "Laughing During a Vulnerable Share",
+                text: "It's Thursday afternoon, and you're in a small counseling group of six students that meets weekly to talk about stress and mental health. The counselor has been building a safe space where everyone is encouraged to share openly. Today, another student named Sam starts talking about their struggles with anxiety, explaining that they sometimes have panic attacks before tests and feel like they can't breathe. As Sam is describing this, their voice cracks slightly with emotion. You're uncomfortable with the heavy mood, so you let out a short laugh and say, \"Same though, literally everyone feels like that,\" trying to lighten the tone. Sam stops talking mid-sentence and looks down. The room goes silent. The counselor looks at you with concern.",
+                impact: [
+                    "You minimize and dismiss Sam's real, serious feelings by treating their vulnerable moment as a casual joke, which breaks their trust in the group and may prevent them from sharing again.",
+                    "Other group members who were considering opening up may now feel unsafe and choose to stay silent, fearing their emotions will also be laughed at or minimized, undermining the entire purpose of the group.",
+                    "The counselor now has to stop the session and repair the emotional safety of the space before anyone can continue, losing valuable group time and potentially requiring individual follow-up with Sam."
+                ],
+                solution: "Immediately acknowledge your mistake out loud (\"I'm sorry, that laugh was out of line and I shouldn't have made a joke\"), validate Sam's feelings directly (\"What you're going through sounds really hard, and I didn't mean to make it seem like it wasn't serious\"), ask the counselor and group how you can help keep the space respectful and supportive going forward, and if appropriate, follow up with Sam privately after group to offer a more personal apology and check in on how they're doing."
+            }
+        ];
+
+        const difficultyOrder = ["simple", "medium", "stretch"];
+        const difficultyLabels = {
+            simple: "Simple",
+            medium: "Medium",
+            stretch: "Medium-high"
+        };
+
+        const difficultyButtons = document.querySelectorAll(".difficulty-btn");
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioText = document.getElementById("scenarioText");
+        const impactList = document.getElementById("impactList");
+        const solutionInput = document.getElementById("solutionInput");
+        const coachCard = document.getElementById("coachCard");
+        const coachToggle = document.getElementById("coachToggle");
+        const nextScenario = document.getElementById("nextScenario");
+        const saveSolution = document.getElementById("saveSolution");
+        const solutionLog = document.getElementById("solutionLog");
+        const difficultyChip = document.getElementById("difficultyChip");
+        const scenarioCounter = document.getElementById("scenarioCounter");
+
+        let currentDifficulty = "simple";
+        let currentScenarioId = null;
+
+        function getPool(level) {
+            return scenarios.filter(s => s.difficulty === level);
+        }
+
+        function pickScenario(level) {
+            const pool = getPool(level);
+            if (!pool.length) return null;
+            let candidate = pool[Math.floor(Math.random() * pool.length)];
+            if (candidate.id === currentScenarioId && pool.length > 1) {
+                candidate = pool[(pool.indexOf(candidate) + 1) % pool.length];
+            }
+            currentScenarioId = candidate.id;
+            renderScenario(candidate);
+        }
+
+        function renderScenario(data) {
+            scenarioTitle.textContent = data.title;
+            scenarioText.textContent = data.text;
+            impactList.innerHTML = "";
+            data.impact.forEach(point => {
+                const li = document.createElement("li");
+                li.textContent = point;
+                impactList.appendChild(li);
+            });
+            solutionInput.value = "";
+            coachCard.style.display = "none";
+            coachCard.textContent = data.solution;
+            coachToggle.textContent = "Show coach idea";
+            difficultyChip.textContent = `${difficultyLabels[data.difficulty]} tier`;
+            difficultyChip.className = `chip ${data.difficulty}`;
+            const pool = getPool(data.difficulty);
+            const position = pool.findIndex(item => item.id === data.id) + 1;
+            scenarioCounter.textContent = `Scenario ${position} of ${pool.length}`;
+        }
+
+        difficultyButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const level = btn.dataset.level;
+                if (level === currentDifficulty) return;
+                currentDifficulty = level;
+                difficultyButtons.forEach(b => b.classList.toggle("active", b.dataset.level === level));
+                pickScenario(level);
+            });
+        });
+
+        nextScenario.addEventListener("click", () => {
+            pickScenario(currentDifficulty);
+        });
+
+        coachToggle.addEventListener("click", () => {
+            if (!currentScenarioId) return;
+            const visible = coachCard.style.display === "block";
+            coachCard.style.display = visible ? "none" : "block";
+            coachToggle.textContent = visible ? "Show coach idea" : "Hide coach idea";
+        });
+
+        saveSolution.addEventListener("click", () => {
+            const text = solutionInput.value.trim();
+            if (!text) {
+                solutionInput.focus();
+                return;
+            }
+            const item = scenarios.find(s => s.id === currentScenarioId);
+            const li = document.createElement("li");
+            li.className = "log-entry";
+            li.innerHTML = `<strong>${item.title}</strong><br>${text}`;
+            solutionLog.prepend(li);
+            solutionInput.value = "";
+        });
+
+        // Initialize first simple scenario
+        pickScenario(currentDifficulty);
+    </script>
+</body>
+</html>

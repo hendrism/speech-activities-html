@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Idea Mini Stories</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --paper: #f8fafc;
+            --card: #ffffff;
+            --accent: #2563eb;
+            --accent-soft: #bfdbfe;
+            --good: #10b981;
+            --oops: #f97316;
+            --stretch: #7c3aed;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #bfdbfe, #dde5ff);
+            padding: 48px 20px 36px 20px;
+            text-align: center;
+            box-shadow: inset 0 -6px 0 rgba(15, 23, 42, 0.08);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.6rem;
+            color: var(--ink);
+        }
+
+        header p {
+            max-width: 760px;
+            margin: 12px auto 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .story-nav {
+            position: sticky;
+            top: 0;
+            z-index: 25;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--accent-soft);
+            box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
+        }
+
+        .nav-grid {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 14px 16px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            border: 2px solid var(--accent);
+            border-radius: 999px;
+            padding: 10px 18px;
+            background: transparent;
+            color: var(--ink);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .nav-btn:hover {
+            background: #eef2ff;
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.active {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .nav-btn.stretch {
+            border-color: var(--stretch);
+        }
+
+        .nav-btn.stretch.active {
+            background: var(--stretch);
+            box-shadow: 0 6px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        main {
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 0 20px;
+            min-height: 60vh;
+        }
+
+        .story-card {
+            display: none;
+            background: var(--card);
+            border: 3px solid var(--accent-soft);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
+            scroll-margin-top: 140px;
+        }
+
+        .story-card.active {
+            display: block;
+        }
+
+        .story-label {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .story-label.stretch {
+            color: var(--stretch);
+        }
+
+        .story-title {
+            margin: 0 0 16px;
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+
+        .story-text {
+            background: #eff6ff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 22px;
+            font-size: 1.05rem;
+        }
+
+        .question {
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .choice-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        button.choice {
+            border: 2px solid var(--accent);
+            background: #fff;
+            border-radius: 18px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        button.choice:hover:not([data-locked="true"]) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+        }
+
+        button.choice.correct {
+            border-color: var(--good);
+            background: #ecfdf5;
+        }
+
+        button.choice.incorrect {
+            border-color: var(--oops);
+            background: #fff7ed;
+        }
+
+        .feedback {
+            margin-top: 16px;
+            font-weight: 600;
+            min-height: 1.2em;
+        }
+
+        .feedback.good {
+            color: var(--good);
+        }
+
+        .feedback.try-again {
+            color: var(--oops);
+        }
+
+        .story-controls {
+            margin-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .pager {
+            border: 2px solid #c7d7fe;
+            background: #e0e7ff;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .pager:hover {
+            background: #c7d2fe;
+        }
+
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .story-card {
+                padding: 24px;
+            }
+
+            .nav-grid {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Main Idea Mini Stories</h1>
+        <p>Read one short story at a time, decide what everything is mostly about, and choose the best main idea. Use the navigation bar to hop between stories. Choices shuffle each time you reload the page.</p>
+    </header>
+
+    <nav class="story-nav" aria-label="Story navigation">
+        <div class="nav-grid" id="navGrid"></div>
+    </nav>
+
+    <main>
+        <section id="activity-area" aria-live="polite"></section>
+    </main>
+
+    <script>
+        const stories = [
+            {
+                level: 'Quick Story',
+                title: 'Garden Helpers',
+                text: 'Maya wakes up early to water the school garden. She pulls weeds so the vegetables have space to grow and checks that the soil is not too dry.',
+                options: [
+                    { text: 'Maya takes care of the garden so the plants stay healthy.', correct: true },
+                    { text: 'Maya wants to build a birdhouse with her friends.', correct: false },
+                    { text: 'Maya forgets to water the plants every day.', correct: false }
+                ]
+            },
+            {
+                level: 'Quick Story',
+                title: 'Snowy Surprise',
+                text: 'Leo wakes up to quiet streets covered in snow. He brushes off the front steps, packs a snowball for his sister, and warms cocoa for everyone while the kettle sings.',
+                options: [
+                    { text: 'Leo helps his family enjoy the snowy morning.', correct: true },
+                    { text: 'Leo stays in bed and ignores the weather.', correct: false },
+                    { text: 'Leo buys new boots at the store.', correct: false }
+                ]
+            },
+            {
+                level: 'Quick Story',
+                title: 'Library List',
+                text: 'Tara keeps a list of every book she borrows from the library. After dinner she checks off the chapters she read and sets a reminder to return the books on time.',
+                options: [
+                    { text: 'Tara stays organized so she can read and return her books on time.', correct: true },
+                    { text: 'Tara forgets where she puts her homework.', correct: false },
+                    { text: 'Tara sells old books at a yard sale.', correct: false }
+                ]
+            },
+            {
+                level: 'Quick Story',
+                title: 'Smooth Bus Ride',
+                text: 'The class goes on a field trip, and Devin passes out snacks, reminds friends to buckle up, and leads a quiet sing-along so the bus driver can focus.',
+                options: [
+                    { text: 'Devin keeps the bus ride calm and helpful for everyone.', correct: true },
+                    { text: 'Devin sleeps through the bus ride.', correct: false },
+                    { text: 'Devin gets lost at the museum gift shop.', correct: false }
+                ]
+            },
+            {
+                level: 'Quick Story',
+                title: 'Market Morning',
+                text: 'Nia walks through the farmers market with a small list. She compares prices, chooses ripe fruit, and thanks each farmer for growing fresh food for the neighborhood.',
+                options: [
+                    { text: 'Nia carefully shops for healthy food at the market.', correct: true },
+                    { text: 'Nia spends the day playing video games.', correct: false },
+                    { text: 'Nia forgets to bring her list and money.', correct: false }
+                ]
+            },
+            {
+                level: 'Quick Story',
+                title: 'Bike Check',
+                text: 'Before the weekend ride, Omar pumps air into every tire, tests the brakes, and adds lights so his friends can ride safely at dusk.',
+                options: [
+                    { text: 'Omar makes sure the bikes are ready and safe to ride.', correct: true },
+                    { text: 'Omar decides to sell his bike online.', correct: false },
+                    { text: 'Omar learns to swim at the community pool.', correct: false }
+                ]
+            },
+            {
+                level: 'Quick Story',
+                title: 'Neighborhood Cleanup',
+                text: 'Jaden and his cousins bring gloves to the park on Saturday. They fill buckets with litter, sort the recyclables, and leave chalk notes thanking neighbors for helping keep the area tidy.',
+                options: [
+                    { text: 'Jaden leads a cleanup to keep the park neat.', correct: true },
+                    { text: 'Jaden paints a mural inside the school gym.', correct: false },
+                    { text: 'Jaden opens a lemonade stand for spending money.', correct: false }
+                ]
+            },
+            {
+                level: 'Quick Story',
+                title: 'Lunchtime Music Club',
+                text: 'Each lunch break, Lila opens the music room early. She tapes a practice list to the wall, tunes the keyboard, and helps younger students clap the beat so they are ready for the showcase.',
+                options: [
+                    { text: 'Lila runs the lunch music club so everyone can practice.', correct: true },
+                    { text: 'Lila skips lunch to finish science homework.', correct: false },
+                    { text: 'Lila sells old instruments at a yard sale.', correct: false }
+                ]
+            },
+            {
+                level: 'Stretch Story',
+                title: 'Science Fair Fix',
+                text: 'Elena\'s volcano cracks the night before the science fair. She sketches a repair plan, mixes fresh plaster, and asks her brother to steady the base so the eruption will still work.',
+                options: [
+                    { text: 'Elena calmly repairs her project so it is ready for the fair.', correct: true },
+                    { text: 'Elena builds a brand-new rocket instead of a volcano.', correct: false },
+                    { text: 'Elena ignores the crack and watches TV all night.', correct: false }
+                ]
+            },
+            {
+                level: 'Stretch Story',
+                title: 'Storm Prep Crew',
+                text: 'When the forecast warns of heavy rain, Coach Imani forms teams to stack sandbags, label walkie-talkies, and call families about pickup changes so the after-school program can close safely.',
+                options: [
+                    { text: 'Coach Imani organizes students to prepare the program for the storm.', correct: true },
+                    { text: 'Coach Imani keeps everyone outside to play in the rain.', correct: false },
+                    { text: 'Coach Imani cancels practice because no one volunteered.', correct: false }
+                ]
+            },
+            {
+                level: 'Stretch Story',
+                title: 'Community Kitchen Rush',
+                text: 'Saturday orders double, so Raya reorganizes the prep table, assigns volunteers to chopping, stirring, and delivery, and tracks allergies on a clipboard to keep every meal on schedule.',
+                options: [
+                    { text: 'Raya manages the busy kitchen by organizing every helper.', correct: true },
+                    { text: 'Raya leaves the kitchen to buy new decorations.', correct: false },
+                    { text: 'Raya cooks one meal and closes the kitchen early.', correct: false }
+                ]
+            },
+            {
+                level: 'Stretch Story',
+                title: 'Repair Café Updates',
+                text: 'During the repair café, Theo interviews neighbors about their broken gadgets, matches them with the right mentor, and posts timing updates on the chalkboard so visitors know when their turn is coming.',
+                options: [
+                    { text: 'Theo keeps the repair café organized by guiding visitors and mentors.', correct: true },
+                    { text: 'Theo spends the day taking apart his own skateboard.', correct: false },
+                    { text: 'Theo shuts down the event because no one brings items.', correct: false }
+                ]
+            }
+        ];
+
+        const navGrid = document.getElementById('navGrid');
+        const activityArea = document.getElementById('activity-area');
+        const cards = [];
+        const navButtons = [];
+
+        function renderStoryCard(story, index) {
+            const card = document.createElement('article');
+            card.className = 'story-card';
+            card.id = `story-${index + 1}`;
+            card.setAttribute('role', 'region');
+            card.setAttribute('aria-labelledby', `story-title-${index + 1}`);
+
+            const labelClass = story.level === 'Stretch Story' ? 'story-label stretch' : 'story-label';
+
+            card.innerHTML = `
+                <p class="${labelClass}">${story.level}</p>
+                <h2 class="story-title" id="story-title-${index + 1}">${story.title}</h2>
+                <p class="story-text">${story.text}</p>
+                <p class="question">What is the main idea?</p>
+                <div class="choice-list" role="group" aria-label="Main idea choices"></div>
+                <p class="feedback" aria-live="polite"></p>
+                <div class="story-controls">
+                    <button type="button" class="pager prev" data-direction="-1">Previous Story</button>
+                    <button type="button" class="pager next" data-direction="1">Next Story</button>
+                </div>
+            `;
+
+            const choiceList = card.querySelector('.choice-list');
+            const feedback = card.querySelector('.feedback');
+
+            const shuffledOptions = [...story.options].sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'choice';
+                button.type = 'button';
+                button.textContent = option.text;
+                button.setAttribute('aria-pressed', 'false');
+
+                button.addEventListener('click', () => {
+                    if (button.dataset.locked === 'true') {
+                        return;
+                    }
+
+                    [...choiceList.children].forEach(btn => {
+                        btn.dataset.locked = 'true';
+                        btn.setAttribute('aria-pressed', 'false');
+                        btn.disabled = true;
+                    });
+
+                    button.setAttribute('aria-pressed', 'true');
+
+                    if (option.correct) {
+                        button.classList.add('correct');
+                        feedback.textContent = 'Great! That sentence sums up the whole story.';
+                        feedback.className = 'feedback good';
+                    } else {
+                        button.classList.add('incorrect');
+                        const correctButton = [...choiceList.children].find(btn => btn.dataset.correct === 'true');
+                        if (correctButton) {
+                            correctButton.classList.add('correct');
+                        }
+                        feedback.textContent = 'Not quite. Look for the idea that covers the whole story.';
+                        feedback.className = 'feedback try-again';
+                    }
+                });
+
+                if (option.correct) {
+                    button.dataset.correct = 'true';
+                }
+
+                choiceList.appendChild(button);
+            });
+
+            card.querySelectorAll('.pager').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const direction = Number(btn.dataset.direction);
+                    const target = (index + direction + stories.length) % stories.length;
+                    setActiveStory(target);
+                });
+            });
+
+            return card;
+        }
+
+        function createNavButton(story, index) {
+            const button = document.createElement('button');
+            button.className = 'nav-btn';
+            if (story.level === 'Stretch Story') {
+                button.classList.add('stretch');
+            }
+            button.type = 'button';
+            button.textContent = `Story ${index + 1}`;
+            button.title = story.title;
+            button.addEventListener('click', () => setActiveStory(index));
+            return button;
+        }
+
+        function setActiveStory(index, { scroll = true } = {}) {
+            if (index < 0 || index >= cards.length) {
+                return;
+            }
+
+            cards.forEach((card, cardIndex) => {
+                card.classList.toggle('active', cardIndex === index);
+            });
+
+            navButtons.forEach((btn, btnIndex) => {
+                btn.classList.toggle('active', btnIndex === index);
+            });
+
+            if (scroll) {
+                cards[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        stories.forEach((story, index) => {
+            const card = renderStoryCard(story, index);
+            cards.push(card);
+            activityArea.appendChild(card);
+
+            const navBtn = createNavButton(story, index);
+            navButtons.push(navBtn);
+            navGrid.appendChild(navBtn);
+        });
+
+        setActiveStory(0, { scroll: false });
+    </script>
+</body>
+</html>

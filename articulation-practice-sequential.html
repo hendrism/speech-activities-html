@@ -179,6 +179,30 @@
             background: var(--aps-adjective);
         }
 
+        .aps-summary-chip.adverb {
+            background: #f97316;
+        }
+
+        .aps-summary-chip.pronoun {
+            background: #0ea5e9;
+        }
+
+        .aps-summary-chip.preposition {
+            background: #a3e635;
+        }
+
+        .aps-summary-chip.conjunction {
+            background: #ec4899;
+        }
+
+        .aps-summary-chip.determiner {
+            background: #facc15;
+        }
+
+        .aps-summary-chip.other {
+            background: #94a3b8;
+        }
+
         .aps-summary-note {
             margin: 0;
             color: var(--aps-muted);
@@ -490,6 +514,11 @@
                 id: 'shSound',
                 name: '"Sh" Sound (All Positions)',
                 file: 'resources/word-lists/sh-all-positions.json'
+            },
+            {
+                id: 'vocalicR',
+                name: 'Vocalic /r/ (air, ar, ear, er, ire, or)',
+                file: 'resources/word-lists/vocalic-r-word-lists.json'
             }
         ];
 
@@ -522,13 +551,25 @@
         const POS_LABELS = {
             noun: 'Noun',
             verb: 'Verb',
-            adjective: 'Adjective'
+            adjective: 'Adjective',
+            adverb: 'Adverb',
+            pronoun: 'Pronoun',
+            preposition: 'Preposition',
+            conjunction: 'Conjunction',
+            determiner: 'Determiner',
+            other: 'Other'
         };
 
         const POS_EMOJI = {
             noun: '🔵',
             verb: '🟢',
-            adjective: '🟣'
+            adjective: '🟣',
+            adverb: '🟠',
+            pronoun: '🟦',
+            preposition: '🟢',
+            conjunction: '🟣',
+            determiner: '🟡',
+            other: '⚪️'
         };
 
         // State
@@ -560,7 +601,12 @@
                 case 'noun': return 'noun';
                 case 'verb': return 'verb';
                 case 'adjective': return 'adjective';
-                default: return 'neutral';
+                case 'adverb': return 'adverb';
+                case 'pronoun': return 'pronoun';
+                case 'preposition': return 'preposition';
+                case 'conjunction': return 'conjunction';
+                case 'determiner': return 'determiner';
+                default: return 'other';
             }
         }
 
@@ -615,7 +661,7 @@
                 return null;
             }
 
-            const allowedPos = ['noun', 'verb', 'adjective'];
+            const allowedPos = ['noun', 'verb', 'adjective', 'adverb', 'pronoun', 'preposition', 'conjunction', 'determiner', 'other'];
             const normalizedPos = (entry.pos || 'noun').toLowerCase();
             return {
                 text: entry.text,
