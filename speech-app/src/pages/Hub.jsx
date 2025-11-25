@@ -74,6 +74,72 @@ export default function Hub() {
                     color="bg-teal-700"
                     id="context-clues-hard"
                 />
+                <ActivityCard
+                    title="Analogies"
+                    icon={Brain}
+                    color="bg-indigo-500"
+                    id="analogies"
+                />
+                <ActivityCard
+                    title="Synonyms (Thanksgiving)"
+                    icon={MessageCircle}
+                    color="bg-green-500"
+                    id="synonyms"
+                />
+                <ActivityCard
+                    title="Antonyms (Fall)"
+                    icon={MessageCircle}
+                    color="bg-orange-500"
+                    id="antonyms"
+                />
+                <ActivityCard
+                    title="Multiple Meanings"
+                    icon={Brain}
+                    color="bg-pink-500"
+                    id="multiple-meanings"
+                />
+                <ActivityCard
+                    title="Fall Nouns"
+                    icon={MessageCircle}
+                    color="bg-orange-600"
+                    id="fall-nouns"
+                />
+                <ActivityCard
+                    title="Context Clues (Thanksgiving)"
+                    icon={Search}
+                    color="bg-amber-600"
+                    id="thanksgiving-clues"
+                />
+                <ActivityCard
+                    title="Inference Practice (Grade 9)"
+                    icon={Brain}
+                    color="bg-blue-600"
+                    id="inference-clues"
+                />
+                <ActivityCard
+                    title="Past Tense Verbs"
+                    icon={MessageCircle}
+                    color="bg-purple-600"
+                    id="past-tense"
+                />
+                <ActivityCard
+                    title="Context Clues Detective"
+                    icon={Search}
+                    color="bg-indigo-600"
+                    id="detective-clues"
+                />
+                <ActivityCard
+                    title="Multiple Meanings (Advanced)"
+                    icon={Brain}
+                    color="bg-pink-600"
+                    id="multiple-meanings-advanced"
+                />
+                <ActivityCard
+                    title="Plural Nouns Practice"
+                    icon={MessageCircle}
+                    color="bg-green-600"
+                    id="plural-nouns"
+                />
             </div>
         </Layout>
     );

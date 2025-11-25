@@ -120,13 +120,17 @@
 
     <script type="module">
         import { wordDefinitions, contextClues } from './js/language-data.js';
+        import { contextCluesSet2Easy, contextCluesSet2Medium, contextCluesSet2Hard } from './speech-app/src/data/contextCluesSet2.js';
+        import { contextCluesSet3Easy, contextCluesSet3Medium, contextCluesSet3Hard } from './speech-app/src/data/contextCluesSet3.js';
+        import { fallNounsCategory, fallNounsFunction } from './speech-app/src/data/fallNounsData.js';
         import { QuizEngine } from './js/quiz-engine.js';
 
         // Determine which activity to load based on query param or filename
         // For this demo, we'll default to Context Clues if not specified
         // In a real app, we might check window.location.search
 
-        const activityType = window.activityType || 'contextClues'; // Default
+        const urlParams = new URLSearchParams(window.location.search);
+        const activityType = urlParams.get('type') || window.activityType || 'contextClues'; // Default
 
         let data = [];
         let title = '';
@@ -136,7 +140,44 @@
             data = wordDefinitions;
             title = '🎯 Word Definitions';
             subtitle = 'Match the words to their meanings';
+        } else if (activityType === 'contextClues') {
+            data = contextClues;
+            title = '🔍 Context Clues (Set 1)';
+            subtitle = 'Use clues to find the meaning';
+        } else if (activityType === 'contextCluesSet2Easy') {
+            data = contextCluesSet2Easy;
+            title = '🔍 Context Clues (Set 2 - Easy)';
+            subtitle = 'Use clues to find the meaning';
+        } else if (activityType === 'contextCluesSet2Medium') {
+            data = contextCluesSet2Medium;
+            title = '🔍 Context Clues (Set 2 - Medium)';
+            subtitle = 'Use clues to find the meaning';
+        } else if (activityType === 'contextCluesSet2Hard') {
+            data = contextCluesSet2Hard;
+            title = '🔍 Context Clues (Set 2 - Hard)';
+            subtitle = 'Use clues to find the meaning';
+        } else if (activityType === 'contextCluesSet3Easy') {
+            data = contextCluesSet3Easy;
+            title = '🔍 Context Clues (Set 3 - Easy)';
+            subtitle = 'Use clues to find the meaning';
+        } else if (activityType === 'contextCluesSet3Medium') {
+            data = contextCluesSet3Medium;
+            title = '🔍 Context Clues (Set 3 - Medium)';
+            subtitle = 'Use clues to find the meaning';
+        } else if (activityType === 'contextCluesSet3Hard') {
+            data = contextCluesSet3Hard;
+            title = '🔍 Context Clues (Set 3 - Hard)';
+            subtitle = 'Use clues to find the meaning';
+        } else if (activityType === 'fallNounsCategory') {
+            data = fallNounsCategory;
+            title = '🍂 Fall Nouns - Categories';
+            subtitle = 'Identify the category of the item';
+        } else if (activityType === 'fallNounsFunction') {
+            data = fallNounsFunction;
+            title = '🍂 Fall Nouns - Functions';
+            subtitle = 'Identify what the item does';
         } else {
+            // Fallback
             data = contextClues;
             title = '🔍 Context Clues';
             subtitle = 'Use clues to find the meaning';
