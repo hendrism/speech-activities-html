@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
         .header h1 {
             font-size: 3em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .header p {
@@ -29,7 +30,7 @@
             background: white;
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .search-input {
@@ -64,12 +65,12 @@
             color: #333;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .filter-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
         .filter-btn.active {
@@ -90,7 +91,7 @@
             background: white;
             padding: 20px;
             border-radius: 15px 15px 0 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .category-title {
@@ -110,7 +111,7 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 12px;
             padding: 15px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 0 0 15px 15px;
         }
 
@@ -118,7 +119,7 @@
             background: white;
             border-radius: 10px;
             padding: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
@@ -130,7 +131,7 @@
 
         .activity-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
         .activity-icon {
@@ -182,7 +183,7 @@
             background: white;
             border-radius: 10px;
             padding: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             display: flex;
@@ -200,7 +201,7 @@
 
         .expandable-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
         .expand-icon {
@@ -289,6 +290,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <h1>🗣️ Speech Therapy Activities Hub</h1>
@@ -318,6 +320,26 @@
 
     <script>
         const activities = [
+            {
+                category: 'new-system',
+                title: '✨ New Activity System',
+                items: [
+                    {
+                        title: 'Word Definitions (New)',
+                        file: 'activity-loader.html?id=definitions',
+                        icon: '🎯',
+                        description: 'Match words to their meanings (uses new engine).',
+                        tags: ['New System', 'Vocabulary']
+                    },
+                    {
+                        title: 'Context Clues (New)',
+                        file: 'activity-loader.html?id=context-clues',
+                        icon: '🔍',
+                        description: 'Use clues to find meaning (uses new engine).',
+                        tags: ['New System', 'Context Clues']
+                    }
+                ]
+            },
             {
                 category: 'articulation',
                 title: 'Articulation & Phonology',
@@ -942,7 +964,7 @@
                             </div>
                         `;
 
-                        card.querySelector('.expandable-header').addEventListener('click', function(e) {
+                        card.querySelector('.expandable-header').addEventListener('click', function (e) {
                             e.stopPropagation();
                             card.classList.toggle('expanded');
                             card.querySelector('.levels-container').classList.toggle('show');
@@ -983,7 +1005,7 @@
 
         // Filter buttons
         document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 const filter = this.dataset.filter;
@@ -993,7 +1015,7 @@
         });
 
         // Search
-        document.getElementById('searchInput').addEventListener('input', function() {
+        document.getElementById('searchInput').addEventListener('input', function () {
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
             renderActivities(filter, this.value);
         });
@@ -1002,4 +1024,5 @@
         renderActivities();
     </script>
 </body>
+
 </html>
