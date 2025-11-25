@@ -111,6 +111,68 @@
                 transform: translateY(0);
             }
         }
+
+        /* Navigation Styles */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #64748b;
+        }
+
+        .nav-btn:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .nav-btn.active {
+            background: #f97316;
+            /* Orange active state */
+            color: white;
+            border-color: #f97316;
+            font-weight: bold;
+        }
+
+        /* Help Buttons */
+        .btn-help {
+            background: #fff;
+            border: 2px solid #f59e0b;
+            color: #d97706;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-help:hover {
+            background: #fffbeb;
+        }
+
+        .btn-help-more {
+            background: #fff;
+            border: 2px solid #3b82f6;
+            color: #2563eb;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-help-more:hover {
+            background: #eff6ff;
+        }
     </style>
 </head>
 
@@ -125,6 +187,8 @@
                 <a href="index.html" style="color: white; text-decoration: underline;">← Back to Hub</a>
             </div>
         </header>
+
+        <div id="nav-container"></div>
 
         <main class="content-area">
             <div id="activity-container">
