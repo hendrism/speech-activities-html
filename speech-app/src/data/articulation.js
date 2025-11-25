@@ -205,3 +205,37 @@ export const sentenceTemplates = [
     { id: 19, page: 2, template: 'My sister dropped her', blank: { pos: 'noun' }, ending: 'on the floor.' },
     { id: 20, page: 2, template: 'They want to', blank: { pos: 'verb' }, ending: 'something new today.' }
 ];
+
+// Helper to generate data for BuilderEngine
+export const generateArticulationData = (setupState) => {
+    const { category, blends } = setupState;
+    if (!category || !blends || blends.length === 0) return { items: [], slots: [] };
+
+    const categoryData = articulationWordData[category];
+    let words = [];
+
+    blends.forEach(blend => {
+        if (categoryData.blends[blend]) {
+            words = words.concat(categoryData.blends[blend]);
+        }
+    });
+
+    // Format items for BuilderEngine
+    const items = words.map((w, i) => ({
+        id: `word-${i}-${w.text}`,
+        text: w.text,
+        type: w.pos
+    }));
+
+    // Format slots for BuilderEngine (using sentence templates)
+    const slots = sentenceTemplates.map(sent => ({
+        id: `sentence-${sent.id}`,
+        template: [
+            { text: sent.template, isSlot: false },
+            { isSlot: true, type: sent.blank.pos, placeholder: sent.blank.pos },
+            { text: sent.ending, isSlot: false }
+        ]
+    }));
+
+    return { items, slots };
+};

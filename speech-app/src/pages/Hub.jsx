@@ -35,6 +35,27 @@ export default function Hub() {
                     description="Build sentences using words with specific target sounds."
                     icon={BookOpen}
                 />
+
+                <ActivityCard
+                    id="fall-stories"
+                    title="Fall Stories"
+                    description="Read short stories about Fall and answer comprehension questions."
+                    icon={BookOpen}
+                />
+
+                <ActivityCard
+                    id="social-scenarios"
+                    title="Social Problem Solving"
+                    description="Practice solving social problems with guided hints."
+                    icon={BookOpen}
+                />
+
+                <ActivityCard
+                    id="compare-contrast"
+                    title="Compare & Contrast"
+                    description="Sort items to compare and contrast different topics."
+                    icon={BookOpen}
+                />
             </div>
         </Layout>
     );
