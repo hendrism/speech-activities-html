@@ -3,7 +3,7 @@
  * Contains word lists, definitions, and context clues.
  */
 
-export const wordDefinitions = [
+window.wordDefinitions = [
     {
         word: "BICYCLE",
         item: "bicycle",
@@ -268,7 +268,7 @@ export const wordDefinitions = [
     }
 ];
 
-export const contextClues = [
+window.contextClues = [
     {
         text: "My best <span class='target-word'>friend</span>, someone who likes me and I like them back, invited me to her birthday party.",
         type: "Definition",

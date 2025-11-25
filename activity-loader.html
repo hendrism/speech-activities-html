@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,17 +87,17 @@
             justify-content: space-between;
             margin-top: 30px;
         }
-        
+
         .image-container {
             text-align: center;
             margin-bottom: 20px;
         }
-        
+
         .activity-image {
             max-width: 100%;
             max-height: 300px;
             border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         @keyframes fadeIn {
@@ -112,6 +113,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="app-container">
         <header class="main-header">
@@ -131,32 +133,38 @@
         </main>
     </div>
 
-    <script type="module">
-        import { activityRegistry } from './js/activity-registry.js';
-        import { QuizEngine } from './js/quiz-engine.js';
+    <script src="js/language-data.js"></script>
+    <script src="js/quiz-engine.js"></script>
+    <script src="js/activity-registry.js"></script>
 
+    <script>
         // Get activity ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const activityId = urlParams.get('id');
 
-        const config = activityRegistry[activityId];
+        // Wait for scripts to load if needed, but since they are blocking scripts, they should be ready.
+        // However, let's wrap in DOMContentLoaded just in case.
+        document.addEventListener('DOMContentLoaded', () => {
+            const config = window.activityRegistry ? window.activityRegistry[activityId] : null;
 
-        if (!config) {
-            document.getElementById('activityTitle').textContent = 'Activity Not Found';
-            document.getElementById('activitySubtitle').textContent = 'Please check the URL or go back to the hub.';
-        } else {
-            document.getElementById('activityTitle').textContent = config.title;
-            document.getElementById('activitySubtitle').textContent = config.subtitle;
+            if (!config) {
+                document.getElementById('activityTitle').textContent = 'Activity Not Found';
+                document.getElementById('activitySubtitle').textContent = 'Please check the URL or go back to the hub.';
+            } else {
+                document.getElementById('activityTitle').textContent = config.title;
+                document.getElementById('activitySubtitle').textContent = config.subtitle;
 
-            if (config.type === 'quiz') {
-                const engine = new QuizEngine({
-                    data: config.data,
-                    containerId: 'activity-container',
-                    // Pass the specific configuration for this activity type
-                    config: config.engineConfig
-                });
+                if (config.type === 'quiz') {
+                    const engine = new window.QuizEngine({
+                        data: config.data,
+                        containerId: 'activity-container',
+                        // Pass the specific configuration for this activity type
+                        config: config.engineConfig
+                    });
+                }
             }
-        }
+        });
     </script>
 </body>
+
 </html>

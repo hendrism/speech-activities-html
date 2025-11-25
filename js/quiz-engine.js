@@ -3,7 +3,7 @@
  * Handles common logic for quiz-style activities (Context Clues, Definitions, etc.)
  */
 
-export class QuizEngine {
+window.QuizEngine = class QuizEngine {
     constructor(config) {
         this.data = config.data;
         this.containerId = config.containerId || 'activity-container';

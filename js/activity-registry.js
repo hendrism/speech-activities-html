@@ -3,14 +3,14 @@
  * Maps activity IDs to their configuration, data, and engine type.
  */
 
-import { wordDefinitions, contextClues } from './language-data.js';
+// Data is now loaded globally via language-data.js
 
-export const activityRegistry = {
+window.activityRegistry = {
     'definitions': {
         title: '🎯 Word Definitions',
         subtitle: 'Match the words to their meanings',
         type: 'quiz',
-        data: wordDefinitions,
+        data: window.wordDefinitions,
         engineConfig: {
             questionTemplate: (item) => `What is the definition of <span class="target-word">${item.word}</span>?`,
             hintTemplate: (item) => item.categoryHint,
@@ -22,7 +22,7 @@ export const activityRegistry = {
         title: '🔍 Context Clues',
         subtitle: 'Use clues to find the meaning',
         type: 'quiz',
-        data: contextClues,
+        data: window.contextClues,
         engineConfig: {
             questionTemplate: (item) => `
                 <div class="question-text">${item.text}</div>
