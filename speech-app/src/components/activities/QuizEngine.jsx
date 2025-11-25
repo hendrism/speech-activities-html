@@ -17,6 +17,7 @@ export default function QuizEngine({
     const [score, setScore] = useState(0);
     const [isComplete, setIsComplete] = useState(false);
     const [shuffledData, setShuffledData] = useState([]);
+    const [currentOptions, setCurrentOptions] = useState([]);
 
     // Initialize and shuffle data
     useEffect(() => {
@@ -29,6 +30,16 @@ export default function QuizEngine({
     }, [data]);
 
     const currentItem = shuffledData[currentIndex];
+
+    // Shuffle options when current item changes
+    useEffect(() => {
+        if (currentItem && getOptions) {
+            const rawOptions = getOptions(currentItem);
+            // Create a copy and shuffle
+            const shuffled = [...rawOptions].sort(() => Math.random() - 0.5);
+            setCurrentOptions(shuffled);
+        }
+    }, [currentItem, getOptions]);
 
     const handleNext = () => {
         if (currentIndex < shuffledData.length - 1) {
@@ -140,7 +151,7 @@ export default function QuizEngine({
                         onIncorrect={handleIncorrect}
                         helpLevel={helpLevel}
                         setHelpLevel={setHelpLevel}
-                        getOptions={getOptions}
+                        getOptions={() => currentOptions}
                         getCorrectAnswer={getCorrectAnswer}
                         hintTemplate={hintTemplate}
                     />

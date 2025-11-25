@@ -1,6 +1,6 @@
 import Layout from '../components/layout/Layout';
 import ActivityCard from '../components/common/ActivityCard';
-import { BookOpen, Search } from 'lucide-react';
+import { BookOpen, MessageCircle, Mic, Brain, Layout, Search } from 'lucide-react';
 
 export default function Hub() {
     return (
@@ -51,10 +51,28 @@ export default function Hub() {
                 />
 
                 <ActivityCard
-                    id="compare-contrast"
                     title="Compare & Contrast"
-                    description="Sort items to compare and contrast different topics."
-                    icon={BookOpen}
+                    icon={Layout}
+                    color="bg-purple-500"
+                    id="compare-contrast"
+                />
+                <ActivityCard
+                    title="Context Clues (Easy)"
+                    icon={Search}
+                    color="bg-teal-500"
+                    id="context-clues-easy"
+                />
+                <ActivityCard
+                    title="Context Clues (Medium)"
+                    icon={Search}
+                    color="bg-teal-600"
+                    id="context-clues-medium"
+                />
+                <ActivityCard
+                    title="Context Clues (Hard)"
+                    icon={Search}
+                    color="bg-teal-700"
+                    id="context-clues-hard"
                 />
             </div>
         </Layout>

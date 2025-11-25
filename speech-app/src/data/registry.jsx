@@ -1,9 +1,10 @@
 import { wordDefinitions } from './definitions';
-import { contextClues } from './contextClues';
+
 import { articulationWordData, generateArticulationData } from './articulation';
 import { fallStories } from './fallStories';
 import { socialScenarios } from './socialScenarios';
 import { compareContrastData } from './compareContrast';
+import { contextCluesEasy, contextCluesMedium, contextCluesHard } from './contextClues';
 import QuizEngine from '../components/activities/QuizEngine';
 import BuilderEngine from '../components/activities/BuilderEngine';
 import StoryEngine from '../components/activities/StoryEngine';
@@ -30,29 +31,7 @@ export const activityRegistry = {
             getCorrectAnswer: (item) => item.category
         }
     },
-    'context-clues': {
-        title: 'Context Clues',
-        subtitle: 'Use clues to find the meaning',
-        component: QuizEngine,
-        data: contextClues,
-        config: {
-            questionTemplate: (item) => (
-                <div className="bg-slate-50 p-6 rounded-xl border-l-4 border-blue-500">
-                    <p
-                        className="text-xl leading-relaxed text-slate-800"
-                        dangerouslySetInnerHTML={{ __html: item.text }}
-                    />
-                    <p className="mt-4 text-slate-500 font-medium">
-                        What does <strong>{item.word}</strong> mean?
-                    </p>
-                </div>
-            ),
-            hintTemplate: (item) => item.hint,
-            getOptions: (item) => item.choices,
-            // Assuming first choice is correct based on legacy data structure
-            getCorrectAnswer: (item) => item.choices[0]
-        }
-    },
+
     'articulation': {
         title: 'Articulation Practice',
         subtitle: 'Build sentences with target sounds',
@@ -141,10 +120,63 @@ export const activityRegistry = {
         config: {}
     },
     'compare-contrast': {
-        title: 'Compare & Contrast',
-        subtitle: 'Sort ideas into categories',
         component: VisualizerEngine,
         data: compareContrastData,
+        title: "Compare & Contrast",
+        subtitle: "Organize items into categories",
+        // VisualizerEngine handles its own rendering logic
         config: {}
+    },
+    'context-clues-easy': {
+        component: QuizEngine,
+        data: contextCluesEasy,
+        title: "Context Clues (Easy)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
+    },
+    'context-clues-medium': {
+        component: QuizEngine,
+        data: contextCluesMedium,
+        title: "Context Clues (Medium)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
+    },
+    'context-clues-hard': {
+        component: QuizEngine,
+        data: contextCluesHard,
+        title: "Context Clues (Hard)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
     }
 };
+
