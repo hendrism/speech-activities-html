@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Clues – Thanksgiving</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #f97316 0%, #facc15 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 3px solid #f97316;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            color: #f97316;
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: #0f766e;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 28px auto;
+            padding: 0 20px;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 { color: #f97316; margin-bottom: 10px; font-size: 18px; }
+        .info-box p { line-height: 1.6; color: #1f2937; }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .word-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 18px;
+        }
+
+        .nav-pill {
+            background: white;
+            border: 2px solid #e5e7eb;
+            color: #f97316;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-pill:hover { border-color: #f97316; }
+        .nav-pill.active {
+            background: #f97316;
+            color: white;
+            border-color: #f97316;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f97316, #0f766e);
+            transition: width 0.3s ease;
+        }
+
+        .sentence-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sentence-number {
+            background: #f97316;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .clue-type {
+            background: #ecfeff;
+            color: #0f766e;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 2px solid #0f766e;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .sentence-display {
+            background: #f9fafb;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            border-left: 4px solid #f97316;
+        }
+
+        .sentence-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #1f2937;
+        }
+
+        .word { font-weight: 700; color: #f97316; background: #ffedd5; padding: 2px 6px; border-radius: 4px; }
+
+        .question-text { font-size: 17px; font-weight: 700; color: #1f2937; margin: 10px 0; }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 12px;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #f97316;
+        }
+
+        .helper {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .hint-btn {
+            background: white;
+            border: 2px solid #f59e0b;
+            color: #b45309;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hint-btn:hover { background: #f59e0b; color: white; }
+
+        .hint-content {
+            display: none;
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            color: #92400e;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .options-wrap { display: none; }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .option {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option:hover { border-color: #f97316; transform: translateX(4px); }
+        .option input { margin: 0; cursor: pointer; }
+        .option span { flex: 1; font-size: 15px; color: #1f2937; }
+
+        .option.correct { background: #dcfce7; border-color: #22c55e; }
+        .option.incorrect { background: #fee2e2; border-color: #ef4444; }
+        .option.disabled { pointer-events: none; opacity: 0.75; }
+
+        .feedback {
+            display: none;
+            padding: 14px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .feedback.show { display: block; }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .prev-btn { background: white; border: 2px solid #e5e7eb; color: #6b7280; }
+        .prev-btn:hover:not(:disabled) { border-color: #f97316; color: #f97316; }
+        .prev-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .next-btn { background: #f97316; color: white; }
+        .next-btn:hover:not(:disabled) { background: #ea580c; }
+        .next-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🔍 Context Clues</h1>
+            <div class="level-badge">Thanksgiving Edition</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="info-box">
+            <h3>About This Activity</h3>
+            <p>Use the context clues in each Thanksgiving sentence to figure out the meaning of the highlighted word. Tap “I need help” for a clue or “I need more help” for a stronger hint. Choose the best definition.</p>
+        </div>
+
+        <div class="word-nav" id="wordNav"></div>
+
+        <div class="card" id="card"></div>
+    </div>
+
+    <script>
+        const items = [
+            {
+                word: "harvest",
+                type: "Example",
+                sentence: "After weeks of tending the garden, the <span class='word'>harvest</span> filled baskets with pumpkins and corn for the feast.",
+                hint: "Clue type: examples. Look at what filled the baskets.",
+                more: "The harvest is all the crops gathered from the field.",
+                choices: [
+                    "the crops that are picked and gathered",
+                    "a small seed you plant",
+                    "a metal shovel",
+                    "the name of a rain cloud"
+                ]
+            },
+            {
+                word: "feast",
+                type: "Example",
+                sentence: "We planned a huge <span class='word'>feast</span> with a long table full of turkey, potatoes, and pies.",
+                hint: "Clue type: list/example. Notice the table full of many dishes.",
+                more: "A feast is a big special meal with lots of food.",
+                choices: [
+                    "a big special meal with many dishes",
+                    "a tiny snack",
+                    "a cooking pan",
+                    "a kind of parade float"
+                ]
+            },
+            {
+                word: "grateful",
+                type: "Situation",
+                sentence: "Mia felt <span class='word'>grateful</span> when her neighbor brought soup, and she said thank you right away.",
+                hint: "Clue type: reaction. She says thank you.",
+                more: "Grateful means feeling thankful for help or kindness.",
+                choices: [
+                    "feeling thankful for help or kindness",
+                    "feeling sleepy after lunch",
+                    "feeling angry at someone",
+                    "feeling hungry for dessert"
+                ]
+            },
+            {
+                word: "aroma",
+                type: "Sensory",
+                sentence: "The <span class='word'>aroma</span> of cinnamon and roasting turkey drifted through the house and made everyone smile.",
+                hint: "Clue type: sensory example. Cinnamon and turkey drifted through the house.",
+                more: "Aroma means a smell in the air.",
+                choices: [
+                    "a smell in the air",
+                    "a bright light",
+                    "a loud cheer",
+                    "a heavy box"
+                ]
+            },
+            {
+                word: "parade",
+                type: "Example",
+                sentence: "We arrived early to find a spot for the <span class='word'>parade</span> and watched floats and marching bands roll by.",
+                hint: "Clue type: examples. Floats and marching bands are part of it.",
+                more: "A parade is a line of people and floats moving for a celebration.",
+                choices: [
+                    "a line of floats and people marching for a celebration",
+                    "a quiet nap after lunch",
+                    "a small kitchen tool",
+                    "a type of fruit"
+                ]
+            },
+            {
+                word: "stuffing",
+                type: "Location",
+                sentence: "Grandma scooped <span class='word'>stuffing</span> from inside the turkey and put extra on my plate.",
+                hint: "Clue type: location. It is inside the turkey.",
+                more: "Stuffing is a bread mix cooked inside a turkey.",
+                choices: [
+                    "a bread mix cooked inside a turkey",
+                    "a kind of dessert pie",
+                    "a new dinner plate",
+                    "a holiday song"
+                ]
+            },
+            {
+                word: "leftovers",
+                type: "Time",
+                sentence: "The day after Thanksgiving, we stacked containers of <span class='word'>leftovers</span> in the fridge for lunch.",
+                hint: "Clue type: time clue. The day after, in containers.",
+                more: "Leftovers are food saved to eat later after a meal.",
+                choices: [
+                    "food saved to eat later after a meal",
+                    "brand-new groceries",
+                    "a tablecloth",
+                    "a firework show"
+                ]
+            },
+            {
+                word: "volunteer",
+                type: "Explanation",
+                sentence: "Lena went to the shelter to <span class='word'>volunteer</span>, serving food without getting paid.",
+                hint: "Clue type: explanation. Serving food without pay.",
+                more: "To volunteer is to help for free.",
+                choices: [
+                    "help or work for free",
+                    "eat first before others",
+                    "manage a store for money",
+                    "join a singing contest"
+                ]
+            },
+            {
+                word: "cozy",
+                type: "Situation",
+                sentence: "We wrapped in blankets by the fire and felt <span class='word'>cozy</span> while the wind blew outside.",
+                hint: "Clue type: situation. Blankets, fire, and wind outside.",
+                more: "Cozy means warm and snug.",
+                choices: [
+                    "warm and snug",
+                    "bright and loud",
+                    "cold and hard",
+                    "fast and wild"
+                ]
+            },
+            {
+                word: "carving",
+                type: "Action",
+                sentence: "Dad began <span class='word'>carving</span> the turkey with a sharp knife, slicing pieces for everyone.",
+                hint: "Clue type: action/example. Using a knife to slice pieces.",
+                more: "Carving means cutting pieces with a knife.",
+                choices: [
+                    "cutting pieces with a knife",
+                    "stirring soup in a pot",
+                    "mixing dough in a bowl",
+                    "watching TV on the couch"
+                ]
+            },
+            {
+                word: "tradition",
+                type: "Definition",
+                sentence: "Every year we watch the same parade as part of our family <span class='word'>tradition</span>, which means a repeated custom.",
+                hint: "Clue type: definition. The sentence explains the word.",
+                more: "A tradition is a custom that is repeated each year.",
+                choices: [
+                    "a custom that is repeated each year",
+                    "a brand-new activity tried once",
+                    "a tool used in the kitchen",
+                    "a kind of dessert topping"
+                ]
+            },
+            {
+                word: "generous",
+                type: "Synonym",
+                sentence: "The neighbors were <span class='word'>generous</span>; they were giving and shared extra pies with everyone.",
+                hint: "Clue type: synonym. The words 'giving' and 'shared' are similar.",
+                more: "Generous means willing to share.",
+                choices: [
+                    "willing to share and give",
+                    "wanting to take from others",
+                    "feeling sleepy after dinner",
+                    "being afraid of the dark"
+                ]
+            },
+            {
+                word: "abundant",
+                type: "Antonym",
+                sentence: "Food was <span class='word'>abundant</span> at the table; nothing was scarce or missing.",
+                hint: "Clue type: antonym. It says the opposite of scarce.",
+                more: "Abundant means plenty, not scarce.",
+                choices: [
+                    "plentiful and not scarce",
+                    "very hard to find",
+                    "burned and unusable",
+                    "small and broken"
+                ]
+            },
+            {
+                word: "baste",
+                type: "Example",
+                sentence: "We used a spoon to <span class='word'>baste</span> the turkey, dripping melted butter over the skin as it cooked.",
+                hint: "Clue type: example. It shows dripping butter over the turkey.",
+                more: "To baste is to spoon liquid over food while it cooks.",
+                choices: [
+                    "spoon liquid over food while it cooks",
+                    "freeze food to save it",
+                    "cut food into cubes",
+                    "store food on the top shelf"
+                ]
+            },
+            {
+                word: "garnish",
+                type: "Example",
+                sentence: "We <span class='word'>garnished</span> the platter with orange slices and parsley to make it look pretty.",
+                hint: "Clue type: examples. Orange slices and parsley added on top.",
+                more: "To garnish is to add small items on top to decorate food.",
+                choices: [
+                    "add small items on top to decorate food",
+                    "burn food until it is dark",
+                    "hide food under the table",
+                    "throw food away before serving"
+                ]
+            },
+            {
+                word: "portion",
+                type: "Definition",
+                sentence: "Each person took a small <span class='word'>portion</span>, or serving amount, so there would be enough for all.",
+                hint: "Clue type: definition. It explains 'serving amount.'",
+                more: "A portion is the amount of food for one serving.",
+                choices: [
+                    "the amount of food for one serving",
+                    "a giant pot used for soup",
+                    "the oven timer on the stove",
+                    "a musical instrument"
+                ]
+            },
+            {
+                word: "pardon",
+                type: "Definition",
+                sentence: "The president will <span class='word'>pardon</span> a turkey, meaning the bird is officially forgiven and not eaten.",
+                hint: "Clue type: definition. It says 'meaning officially forgiven.'",
+                more: "To pardon is to officially forgive and excuse from punishment.",
+                choices: [
+                    "to officially forgive and excuse",
+                    "to cook at a high temperature",
+                    "to decorate with sauce",
+                    "to carry a heavy tray"
+                ]
+            },
+            {
+                word: "postpone",
+                type: "Antonym",
+                sentence: "Bad weather made us <span class='word'>postpone</span> the outdoor game, instead of starting it right away.",
+                hint: "Clue type: antonym. Instead of starting right away.",
+                more: "Postpone means to delay something until later.",
+                choices: [
+                    "to delay until later",
+                    "to begin immediately",
+                    "to cancel forever",
+                    "to make it shorter"
+                ]
+            },
+            {
+                word: "gratitude",
+                type: "Definition",
+                sentence: "We went around the table sharing our <span class='word'>gratitude</span>, or thankfulness, for friends and family.",
+                hint: "Clue type: definition. The phrase 'or thankfulness' explains it.",
+                more: "Gratitude means a feeling of thankfulness.",
+                choices: [
+                    "a feeling of thankfulness",
+                    "a plan to leave early",
+                    "a list of chores",
+                    "a type of musical note"
+                ]
+            },
+            {
+                word: "donation",
+                type: "Example",
+                sentence: "Our family made a <span class='word'>donation</span> to the food pantry, giving cans and boxes to help others.",
+                hint: "Clue type: examples. Giving cans and boxes to help.",
+                more: "A donation is something you give to help someone or a group.",
+                choices: [
+                    "something you give to help others",
+                    "a dessert you bake for yourself",
+                    "a receipt from the store",
+                    "a recipe you keep secret"
+                ]
+            }
+        ];
+
+        let currentIndex = 0;
+        const sequence = shuffle(items);
+
+        const card = document.getElementById("card");
+        const wordNav = document.getElementById("wordNav");
+
+        function shuffle(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function shuffleChoices(arr) {
+            return shuffle(arr.map((text, idx) => ({ text, correct: idx === 0 })));
+        }
+
+        function buildNav() {
+            wordNav.innerHTML = sequence.map((item, i) => {
+                return `<button class="nav-pill" data-index="${i}">${i + 1}. ${item.word}</button>`;
+            }).join("");
+            wordNav.querySelectorAll(".nav-pill").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    currentIndex = parseInt(btn.dataset.index, 10);
+                    renderCard();
+                    card.scrollIntoView({ behavior: "smooth" });
+                });
+            });
+        }
+
+        function updateNavActive() {
+            wordNav.querySelectorAll(".nav-pill").forEach((btn, i) => {
+                btn.classList.toggle("active", i === currentIndex);
+            });
+        }
+
+        function renderCard() {
+            const item = sequence[currentIndex];
+            const shuffledChoices = shuffleChoices(item.choices);
+
+            card.innerHTML = `
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${((currentIndex + 1) / sequence.length) * 100}%;"></div>
+                </div>
+
+                <div class="sentence-info">
+                    <span class="sentence-number">Word ${currentIndex + 1} of ${sequence.length}</span>
+                    <span class="clue-type">${item.type} Clue</span>
+                </div>
+
+                <div class="sentence-display">
+                    <div class="sentence-text">${item.sentence}</div>
+                </div>
+
+                <div class="question-text">What does "<strong>${item.word}</strong>" mean?</div>
+                <textarea class="answer-input" id="openResponse" placeholder="Type your own definition before checking the choices..."></textarea>
+
+                <div class="helper">
+                    <button class="hint-btn" id="hintBtn">💡 I need help</button>
+                    <button class="hint-btn" id="moreBtn">📘 I need more help</button>
+                </div>
+                <div class="hint-content" id="hintBox"><strong>Hint:</strong> ${item.hint}</div>
+
+                <div class="options-wrap" id="optionsWrap">
+                    <div class="options" id="options">
+                        ${shuffledChoices.map((choice, i) => `
+                            <label class="option" data-correct="${choice.correct}" id="opt-${i}">
+                                <input type="radio" name="choice" value="${choice.text.replace(/"/g, "&quot;")}">
+                                <span>${choice.text}</span>
+                            </label>
+                        `).join("")}
+                    </div>
+                </div>
+
+                <div class="feedback" id="feedback"></div>
+
+                <div class="navigation">
+                    <button class="nav-btn prev-btn" id="prevBtn"${currentIndex === 0 ? " disabled" : ""}>⬅ Back</button>
+                    <button class="nav-btn next-btn" id="nextBtn" disabled>${currentIndex === sequence.length - 1 ? "Finish" : "Next ➡"}</button>
+                </div>
+            `;
+            updateNavActive();
+
+            const hintBox = document.getElementById("hintBox");
+            const optionsWrap = document.getElementById("optionsWrap");
+            document.getElementById("hintBtn").addEventListener("click", () => {
+                hintBox.style.display = hintBox.style.display === "block" ? "none" : "block";
+            });
+            document.getElementById("moreBtn").addEventListener("click", () => {
+                optionsWrap.style.display = "block";
+                hintBox.style.display = "none";
+            });
+
+            const feedback = document.getElementById("feedback");
+            const nextBtn = document.getElementById("nextBtn");
+            const optionEls = Array.from(document.querySelectorAll(".option"));
+
+            optionEls.forEach(opt => {
+                opt.addEventListener("click", () => {
+                    optionEls.forEach(o => o.classList.add("disabled"));
+                    const isCorrect = opt.dataset.correct === "true";
+                    opt.classList.add(isCorrect ? "correct" : "incorrect");
+                    if (!isCorrect) {
+                        optionEls.forEach(o => { if (o.dataset.correct === "true") o.classList.add("correct"); });
+                    }
+                    feedback.classList.add("show");
+                    feedback.textContent = isCorrect ? "🎉 Correct! Great job." : "The correct meaning is highlighted above.";
+                    feedback.style.background = isCorrect ? "#dcfce7" : "#fee2e2";
+                    feedback.style.color = isCorrect ? "#166534" : "#991b1b";
+                    nextBtn.disabled = false;
+                });
+            });
+
+            document.getElementById("prevBtn").addEventListener("click", () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    renderCard();
+                }
+            });
+
+            nextBtn.addEventListener("click", () => {
+                if (currentIndex < sequence.length - 1) {
+                    currentIndex++;
+                    renderCard();
+                } else {
+                    nextBtn.disabled = true;
+                }
+            });
+        }
+
+        buildNav();
+        renderCard();
+    </script>
+</body>
+</html>

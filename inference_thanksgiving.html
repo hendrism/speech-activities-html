@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanksgiving Inferences</title>
+    <style>
+        :root {
+            --bg: #f7f2ea;
+            --surface: #ffffff;
+            --accent: #b45309;
+            --accent-2: #0f766e;
+            --muted: #475569;
+            --radius: 18px;
+            --shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+            --max-width: 1000px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 15% 20%, #fff9f2, #f1e4d7 70%);
+            color: #0f172a;
+            line-height: 1.6;
+            padding: 24px 16px 48px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 30px;
+            color: var(--accent);
+        }
+
+        header p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .shell {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(148, 163, 184, 0.18);
+            padding: 24px;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .nav button {
+            border: 2px solid rgba(180, 83, 9, 0.25);
+            background: white;
+            color: var(--accent);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav button:hover { background: rgba(250, 204, 21, 0.14); }
+        .nav button.active {
+            background: var(--accent);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 16px rgba(180, 83, 9, 0.2);
+        }
+
+        .story-card {
+            background: rgba(15, 118, 110, 0.07);
+            border: 2px solid rgba(15, 118, 110, 0.15);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .story-title {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: var(--accent-2);
+        }
+
+        .story-text {
+            margin: 0;
+            font-size: 16px;
+            color: #0f172a;
+        }
+
+        .question {
+            background: rgba(148, 163, 184, 0.12);
+            border-radius: 12px;
+            padding: 12px;
+            border: 2px solid rgba(148, 163, 184, 0.25);
+            margin-bottom: 12px;
+        }
+
+        .question strong { display: block; margin-bottom: 8px; color: var(--accent); }
+
+        textarea {
+            width: 100%;
+            min-height: 70px;
+            border-radius: 10px;
+            border: 2px solid rgba(148, 163, 184, 0.4);
+            padding: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            background: white;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.15);
+        }
+
+        .hint {
+            display: none;
+            margin-top: 8px;
+            padding: 10px;
+            background: rgba(250, 204, 21, 0.18);
+            border-radius: 10px;
+            color: #92400e;
+            border: 2px solid rgba(250, 204, 21, 0.3);
+            font-size: 14px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .actions button {
+            border: 2px solid rgba(180, 83, 9, 0.25);
+            background: white;
+            color: var(--accent);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .actions button.primary {
+            background: var(--accent);
+            color: white;
+            border-color: transparent;
+        }
+
+        .actions button:hover { transform: translateY(-1px); }
+
+        @media (max-width: 720px) {
+            .actions { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thanksgiving Inferences</h1>
+        <p>Read each short Thanksgiving scenario, then answer the inference questions using context clues.</p>
+    </header>
+
+    <div class="shell">
+        <div class="nav" id="nav"></div>
+
+        <div class="story-card">
+            <h2 class="story-title" id="storyTitle"></h2>
+            <p class="story-text" id="storyText"></p>
+        </div>
+
+        <div id="questions"></div>
+
+        <div class="actions">
+            <button id="prevBtn">← Previous</button>
+            <button id="revealAllBtn">👀 Reveal All Hints</button>
+            <button class="primary" id="nextBtn">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        const stories = [
+            {
+                title: "The Quiet Kitchen",
+                text: "The kitchen smelled like cinnamon and sage. Marcus chopped vegetables while his grandma stirred a pot, humming softly. Every few minutes he peeked at the clock. At 11:45 he set the timer for the oven and asked if he could mash the potatoes next. His younger cousins kept running in, asking when they could set out plates with the good napkins and candles.",
+                questions: [
+                    { prompt: "What meal are they preparing for?", hint: "They are watching the clock and using special napkins." },
+                    { prompt: "Why does Marcus keep checking the time?", hint: "Something needs to be ready by a certain hour when others will arrive." }
+                ]
+            },
+            {
+                title: "Two Plates, No Table",
+                text: "Lina balanced two steaming plates on her knees while a football game played quietly in the corner of her laptop. The radiator hissed, and the window showed a rainy city street below. She sent a photo of the meal to her parents back home and typed, “Miss you, but we’re making our own little tradition.” Her roommate clinked a mug of apple cider against hers.",
+                questions: [
+                    { prompt: "Where are Lina and her roommate celebrating?", hint: "Think small space, city noise, and a laptop as a TV." },
+                    { prompt: "Why did Lina send the photo?", hint: "Consider who she misses and wants to include from afar." },
+                    { prompt: "How do you know the meal is special to them?", hint: "Look at what she calls it and the effort they made." }
+                ]
+            },
+            {
+                title: "The Early Morning Trip",
+                text: "Before the sun rose, Jamal pulled on his scout uniform and met his troop at the community center. They loaded boxes of canned goods and bags of potatoes into a van. At their second stop, an elderly man smiled and said, “You saved me a bus ride.” Jamal’s hands were cold, but he felt proud as he handed over a frozen turkey and a recipe booklet.",
+                questions: [
+                    { prompt: "What are the scouts doing around the holiday?", hint: "Think about the food items and who they’re visiting." },
+                    { prompt: "Why did the elderly man feel relieved?", hint: "Consider his transportation and what he received." }
+                ]
+            },
+            {
+                title: "The Outdoor Table",
+                text: "Anya’s family pushed two picnic tables together under the big oak tree. They added quilts as tablecloths and filled mason jars with leaves and cranberries. When everyone sat down, they kept their coats on. Steam rose from the dishes, and a gust of wind blew paper name cards across the grass, making everyone laugh as they chased them.",
+                questions: [
+                    { prompt: "Why are they wearing coats while eating?", hint: "Look at the setting and the season." },
+                    { prompt: "What tradition might this family have started?", hint: "Think about where they chose to place the tables." },
+                    { prompt: "Why did everyone laugh when the cards blew away?", hint: "Consider the playful, relaxed mood." }
+                ]
+            },
+            {
+                title: "The Last-Minute Store Run",
+                text: "Ava stared at the nearly empty baking aisle. Only one small can of pumpkin remained, dented on the side. She grabbed it, paid, and hurried home. When she walked in, her aunt sighed in relief and slid a pie crust toward her. “You saved dessert,” her aunt said, handing Ava a cinnamon jar that was already open on the counter.",
+                questions: [
+                    { prompt: "Why was the store almost out of pumpkin?", hint: "Think about the time of year and popular dishes." },
+                    { prompt: "What dessert are they likely making?", hint: "Notice what Ava grabbed and the crust waiting at home." }
+                ]
+            },
+            {
+                title: "A Different Main Dish",
+                text: "Rae set a platter of golden roasted vegetables in the center of the table. Next to it was a stuffed acorn squash that smelled like garlic and herbs. When Uncle Ben arrived with a foil-covered pan, he whispered, “My surprise ham is in the car, should I bring it?” Rae smiled and pointed to a note on the fridge: “Plant-based Thanksgiving this year—please join us!”",
+                questions: [
+                    { prompt: "Why did Uncle Ben whisper about his ham?", hint: "Look at the meal theme written on the fridge." },
+                    { prompt: "What is different about this family’s main course?", hint: "Notice what is on the table instead of meat." }
+                ]
+            },
+            {
+                title: "Two Houses, One Pie",
+                text: "Jay measured sugar while his mom rolled out pie dough. He packed paper plates and plastic forks into a tote bag, then wrapped the cooled pie in foil. At noon he slid everything into the back seat next to his backpack.\n\nOn the drive he checked the clock and said, “If the parade ends on time, we’ll make it before the football game starts.” His mom reminded him to save half the pie for the evening stop. Jay laughed and said, “I know—two Thanksgivings means two slices.”",
+                questions: [
+                    { prompt: "Why did Jay pack plates and forks with the pie?", hint: "He wants to serve the dessert somewhere else." },
+                    { prompt: "Why does Jay mention two slices?", hint: "He will celebrate the holiday in two places." },
+                    { prompt: "What does the talk about the parade and football game show?", hint: "They are planning around two family visits in one day." }
+                ]
+            },
+            {
+                title: "String Lights in the Gym",
+                text: "Maya unlocked the school gym and flipped on the stage lights. She dragged cafeteria tables into long rows and taped paper leaves to the ends. Her backpack held extension cords and a box of string lights she bought with her weekend pay.\n\nBy late afternoon, classmates arrived with foil pans and slow cookers. Coach Lopez carried a stack of plates and said, “This is for everyone who couldn’t travel.” As music played softly, Maya dimmed the bright gym lights so the string lights made the room feel like a cozy dining room.",
+                questions: [
+                    { prompt: "Why are they eating in the school gym?", hint: "Think about students who stayed in town for the holiday." },
+                    { prompt: "Why did Maya bring string lights?", hint: "She wanted the big gym to feel warm and homey." },
+                    { prompt: "What does the coach’s comment tell you?", hint: "This meal is meant to include people who couldn’t go home." }
+                ]
+            },
+            {
+                title: "Gate B16 Thanksgiving",
+                text: "Tessa and her brother sat at Gate B16 with backpacks at their feet. Their dad pulled leftovers from a cooler and handed out plastic forks. A text popped up from Aunt Kim: “Flight still on time? Save room for stuffing!” Tessa snapped a photo of their mini airport picnic and wrote back, “We’re bringing some!”\n\nAn announcement crackled: the flight was delayed forty-five minutes. Their dad checked his watch and sighed, then joked, “First Thanksgiving in the sky?” Tessa tightened her scarf and said, “As long as we land before dessert.”",
+                questions: [
+                    { prompt: "Why do they have a cooler at the airport?", hint: "They are traveling with food to share at a family meal." },
+                    { prompt: "Why is the delay stressful for them?", hint: "They want to arrive in time for Thanksgiving dinner." },
+                    { prompt: "What does the dad’s joke about the sky mean?", hint: "They might be eating part of the meal on the plane if the delay lasts." }
+                ]
+            }
+        ];
+
+        let current = 0;
+        const nav = document.getElementById("nav");
+        const titleEl = document.getElementById("storyTitle");
+        const textEl = document.getElementById("storyText");
+        const qContainer = document.getElementById("questions");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const revealAllBtn = document.getElementById("revealAllBtn");
+
+        function buildNav() {
+            nav.innerHTML = "";
+            stories.forEach((story, index) => {
+                const btn = document.createElement("button");
+                btn.textContent = `${index + 1}. ${story.title}`;
+                btn.addEventListener("click", () => loadStory(index));
+                nav.appendChild(btn);
+            });
+        }
+
+        function renderQuestions(story) {
+            qContainer.innerHTML = "";
+            story.questions.forEach((q, i) => {
+                const wrapper = document.createElement("div");
+                wrapper.className = "question";
+
+                const label = document.createElement("strong");
+                label.textContent = `Question ${i + 1}: ${q.prompt}`;
+
+                const input = document.createElement("textarea");
+                input.placeholder = "Type your inference here...";
+
+                const hint = document.createElement("div");
+                hint.className = "hint";
+                hint.textContent = `Hint: ${q.hint}`;
+
+                const hintBtn = document.createElement("button");
+                hintBtn.textContent = "Show hint";
+                hintBtn.addEventListener("click", () => {
+                    const showing = hint.style.display === "block";
+                    hint.style.display = showing ? "none" : "block";
+                    hintBtn.textContent = showing ? "Show hint" : "Hide hint";
+                });
+
+                wrapper.appendChild(label);
+                wrapper.appendChild(input);
+                wrapper.appendChild(hintBtn);
+                wrapper.appendChild(hint);
+                qContainer.appendChild(wrapper);
+            });
+        }
+
+        function loadStory(index) {
+            current = index;
+            const story = stories[index];
+            titleEl.textContent = story.title;
+            textEl.textContent = story.text;
+            renderQuestions(story);
+            syncNavButtons();
+        }
+
+        function syncNavButtons() {
+            nav.querySelectorAll("button").forEach((btn, i) => {
+                btn.classList.toggle("active", i === current);
+            });
+            prevBtn.disabled = current === 0;
+            nextBtn.disabled = current === stories.length - 1;
+        }
+
+        prevBtn.addEventListener("click", () => {
+            if (current > 0) loadStory(current - 1);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (current < stories.length - 1) loadStory(current + 1);
+        });
+
+        revealAllBtn.addEventListener("click", () => {
+            document.querySelectorAll(".question .hint").forEach(h => h.style.display = "block");
+            document.querySelectorAll(".question button").forEach(btn => btn.textContent = "Hide hint");
+        });
+
+        buildNav();
+        loadStory(0);
+    </script>
+</body>
+</html>

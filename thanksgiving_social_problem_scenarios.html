@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanksgiving Social Problem Scenarios</title>
+    <style>
+        :root {
+            --bg: #f7f7f7;
+            --card: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --accent: #c2410c;
+            --border: #e5e7eb;
+            --radius: 14px;
+            --max-width: 980px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 48px;
+        }
+
+        header {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 22px 18px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        header p {
+            margin: 10px auto 0;
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 22px auto 0;
+            padding: 0 18px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+            padding: 20px;
+        }
+
+        .nav-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--ink);
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .nav-btn:hover {
+            background: #fff7ed;
+            border-color: #fcd34d;
+        }
+
+        .nav-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: #9a3412;
+        }
+
+        .scenario-title {
+            margin: 0 0 8px;
+            font-size: 22px;
+            color: var(--ink);
+        }
+
+        .scenario-text {
+            margin: 0 0 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            color: var(--ink);
+        }
+
+        label {
+            font-weight: 700;
+            color: var(--ink);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            min-height: 80px;
+            background: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.18);
+        }
+
+        .prompt {
+            margin: 0 0 10px;
+            color: var(--muted);
+        }
+
+        .clue-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .clue {
+            background: #eef2ff;
+            color: #1d4ed8;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .checklist label {
+            font-weight: 600;
+            color: var(--muted);
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 640px) {
+            header h1 { font-size: 22px; }
+            .scenario-title { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thanksgiving Social Problem Scenarios</h1>
+        <p>Read each scenario. Decide what the social problem or conflict is, even if it is subtle. Use the prompts to explain your reasoning.</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <div class="nav-row" id="nav-row"></div>
+        </section>
+
+        <section class="card">
+            <h2 class="scenario-title" id="scenario-title">Scenario</h2>
+            <p class="scenario-text" id="scenario-text"></p>
+
+            <p class="prompt">What is the social problem or conflict? Describe it clearly.</p>
+            <textarea id="problem-box" placeholder="The main problem is..."></textarea>
+
+            <p class="prompt">What clues tell you there is a problem?</p>
+            <div class="clue-row" id="clue-row"></div>
+            <textarea id="clue-box" placeholder="I noticed that... which shows..."></textarea>
+
+            <p class="prompt">What could help fix or improve the situation?</p>
+            <textarea id="solution-box" placeholder="They could..."></textarea>
+        </section>
+    </main>
+
+    <script>
+        const scenarios = [
+            {
+                id: "late-ride",
+                title: "Late Ride to Family Dinner",
+                text: "You and your older sibling are late picking up a cousin for family dinner. When you arrive, the cousin says, “Everyone is waiting for us.” You notice texts from relatives asking where you are.",
+                clues: ["running late", "people waiting", "missed communication"]
+            },
+            {
+                id: "inside-chat",
+                title: "Inside Chat at School",
+                text: "At school before break, two classmates talk about their plans and hardly look at you. You try to add a comment, but they keep talking to each other and you go quiet.",
+                clues: ["exclusion", "no eye contact", "tries to join but ignored"]
+            },
+            {
+                id: "group-text",
+                title: "Group Text About Plans",
+                text: "A group text about weekend plans blows up. You reply late with “I don’t know,” and someone posts, “If you can’t decide, we’ll plan without you.”",
+                clues: ["slow response", "group impatience", "possible exclusion"]
+            },
+            {
+                id: "loud-comment",
+                title: "Loud Comment on Food",
+                text: "At the family table, you say loudly, “The turkey tastes dry this year.” The relative who cooked it looks down and stops talking.",
+                clues: ["public criticism", "cook’s reaction", "tone"]
+            },
+            {
+                id: "phone-at-table",
+                title: "Phone at the Table",
+                text: "During family dinner talk, you scroll on your phone. Your aunt asks a question and waits, but you answer with “What?” without looking up.",
+                clues: ["device use", "missing cues", "others waiting"]
+            },
+            {
+                id: "seat-change",
+                title: "Changing Seats",
+                text: "Place cards are set for family dinner. You move your card to sit by a friend, leaving your grandparent in a loud spot near the kitchen.",
+                clues: ["ignoring seating plan", "comfort of others", "noise"]
+            },
+            {
+                id: "game-invite",
+                title: "Game Invite Missed",
+                text: "After dinner, older cousins start a video game. You hover nearby, but they hand controllers to each other and say, “We only have two.”",
+                clues: ["exclusion", "limited resources", "nonverbal signals"]
+            },
+            {
+                id: "leftovers-share",
+                title: "Taking Leftovers",
+                text: "When dinner ends, you fill several containers of leftovers without asking. Other relatives glance at each other because they planned to take some too.",
+                clues: ["no permission", "quantity taken", "others’ expectations"]
+            },
+            {
+                id: "allergy-label",
+                title: "Allergy Label Missing",
+                text: "You put a dessert with nuts on the table without a label. A relative with a nut allergy asks, “Is this safe?” and looks worried.",
+                clues: ["missing label", "safety risk", "guest concern"]
+            },
+            {
+                id: "photo-share",
+                title: "Posting a Group Photo",
+                text: "You take a group photo and post it online without asking. Later, a cousin texts you that they didn’t want their picture shared.",
+                clues: ["no consent", "public sharing", "privacy"]
+            }
+        ];
+
+        const navRow = document.getElementById("nav-row");
+        const scenarioTitle = document.getElementById("scenario-title");
+        const scenarioText = document.getElementById("scenario-text");
+        const clueRow = document.getElementById("clue-row");
+
+        function renderNav(activeId) {
+            navRow.innerHTML = scenarios.map(item => `
+                <button class="nav-btn ${item.id === activeId ? "active" : ""}" data-id="${item.id}">
+                    ${item.title}
+                </button>
+            `).join("");
+        }
+
+        function renderScenario(scenario) {
+            scenarioTitle.textContent = scenario.title;
+            scenarioText.textContent = scenario.text;
+            clueRow.innerHTML = scenario.clues.map(word => `<span class="clue">${word}</span>`).join("");
+            hookButtons(scenario.id);
+        }
+
+        function hookButtons(activeId) {
+            navRow.querySelectorAll(".nav-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const nextId = btn.getAttribute("data-id");
+                    renderNav(nextId);
+                    const next = scenarios.find(item => item.id === nextId);
+                    renderScenario(next);
+                    clearInputs();
+                });
+            });
+        }
+
+        function clearInputs() {
+            document.getElementById("problem-box").value = "";
+            document.getElementById("clue-box").value = "";
+            document.getElementById("solution-box").value = "";
+            document.querySelectorAll(".checklist input[type='checkbox']").forEach(box => box.checked = false);
+        }
+
+        renderNav(scenarios[0].id);
+        renderScenario(scenarios[0]);
+    </script>
+</body>
+</html>

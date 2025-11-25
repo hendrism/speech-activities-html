@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Stutter</title>
+    <style>
+        :root {
+            --bg: #f7f2ea;
+            --surface: #ffffff;
+            --accent: #c85a12;
+            --accent-2: #0f766e;
+            --muted: #475569;
+            --radius: 16px;
+            --shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+            --max-width: 1100px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 18% 18%, #fff9f2, #f2e6d8 70%);
+            color: #0f172a;
+            line-height: 1.6;
+            padding: 24px 16px 48px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+            color: var(--accent);
+        }
+
+        header p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .shell {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(148, 163, 184, 0.18);
+            padding: 20px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .card {
+            background: rgba(148, 163, 184, 0.1);
+            border: 2px solid rgba(148, 163, 184, 0.2);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .card h2 {
+            margin: 0 0 8px;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        .card p { margin: 0 0 10px; color: #0f172a; }
+
+        .list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 10px;
+        }
+
+        .item {
+            background: #fff;
+            border: 2px solid rgba(148, 163, 184, 0.25);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .item h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+            color: var(--accent-2);
+        }
+
+        textarea, input {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid rgba(148, 163, 184, 0.35);
+            padding: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #fff;
+        }
+
+        textarea { min-height: 80px; }
+
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(200, 90, 18, 0.15);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+        }
+
+        .step {
+            background: #fff;
+            border: 2px solid rgba(148, 163, 184, 0.25);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .step strong { display: block; margin-bottom: 6px; color: var(--accent); }
+
+        .note {
+            margin: 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .output {
+            background: rgba(15, 118, 110, 0.08);
+            border: 2px solid rgba(15, 118, 110, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .output h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+            color: var(--accent-2);
+        }
+
+        .output p { margin: 0; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Share Your Stutter</h1>
+        <p>Explain your stutter in simple words, then practice saying it out loud.</p>
+    </header>
+
+    <div class="shell">
+        <section class="card">
+            <h2>Why Share?</h2>
+            <p>Sharing takes away surprise and lets listeners support you. Keep it short: name it, normalize it, say what helps, and invite patience.</p>
+            <div class="steps">
+                <div class="step"><strong>Name it</strong><span class="note">“I stutter sometimes.”</span></div>
+                <div class="step"><strong>Normalize it</strong><span class="note">“It’s okay. My words just get stuck.”</span></div>
+                <div class="step"><strong>Say what helps</strong><span class="note">“Going slow helps me.”</span></div>
+                <div class="step"><strong>Invite support</strong><span class="note">“Give me a moment to finish.”</span></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Make Your Script (Step-by-Step)</h2>
+            <div class="steps">
+                <div class="step">
+                    <strong>1. Pick a “loud” thing</strong>
+                    <input id="favoriteThing" type="text" placeholder="Example: drum, megaphone">
+                    <p class="note">Something that reminds you to speak up.</p>
+                </div>
+                <div class="step">
+                    <strong>2. Sample script to hear</strong>
+                    <p class="note">“Hey, I stutter, so you might hear me get stuck on some words. I just need a bit more time to get them out.”</p>
+                </div>
+                <div class="step">
+                    <strong>3. Brainstorm: how you say you stutter</strong>
+                    <textarea id="brainstormSay" placeholder="Examples: I stutter. My words get stuck. I repeat some sounds."></textarea>
+                </div>
+                <div class="step">
+                    <strong>4. Brainstorm: a simple definition</strong>
+                    <textarea id="brainstormDefine" placeholder="Examples: My speech muscles get stuck. I need extra time for words."></textarea>
+                </div>
+                <div class="step">
+                    <strong>5. Brainstorm: what you ask for</strong>
+                    <textarea id="brainstormAsk" placeholder="Examples: Please give me time. Ask if you don’t understand."></textarea>
+                </div>
+            </div>
+            <div class="output">
+                <h3>Draft Script</h3>
+                <p id="scriptOutput">I stutter, so sounds can get stuck sometimes. Slowing down and not being interrupted helps. Please give me time and let me finish.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Write Your Final Script</h2>
+            <div class="list">
+                <div class="item">
+                    <h3>How I describe my stutter</h3>
+                    <textarea id="scriptDescribe" placeholder="Example: I stutter, so sounds can get stuck."></textarea>
+                </div>
+                <div class="item">
+                    <h3>What helps me</h3>
+                    <textarea id="scriptHelp" placeholder="Example: Please give me time and keep eye contact."></textarea>
+                </div>
+                <div class="item">
+                    <h3>What I want you to do</h3>
+                    <textarea id="scriptAsk" placeholder="Example: Please don’t finish my words. Let me try."></textarea>
+                </div>
+            </div>
+            <div class="output">
+                <h3>Final Script</h3>
+                <p id="finalScript">I stutter, so sounds can get stuck sometimes. Slowing down and not being interrupted helps. Please give me time and let me finish.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Activities to Try</h2>
+            <div class="steps">
+                <div class="step">
+                    <strong>Share with one person</strong>
+                    <p class="note">Pick a safe person (friend, family, teacher) and read your script.</p>
+                </div>
+                <div class="step">
+                    <strong>Share before you speak</strong>
+                    <p class="note">Before asking a question or ordering, say one line: “I stutter, so I might take a moment.”</p>
+                </div>
+                <div class="step">
+                    <strong>Record yourself</strong>
+                    <p class="note">Read your script aloud, record it, listen back, and notice what feels confident.</p>
+                </div>
+                <div class="step">
+                    <strong>Group practice</strong>
+                    <p class="note">In a small group, each person reads a script and others practice waiting and listening.</p>
+                </div>
+                <div class="step">
+                    <strong>Update your ask</strong>
+                    <p class="note">Rewrite your “what I want you to do” line for class, home, and online settings.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Speak It Out</h2>
+            <div class="list">
+                <div class="item">
+                    <h3>Simple starter</h3>
+                    <input id="starterSimple" type="text" placeholder="I stutter, so my words can take a moment.">
+                </div>
+                <div class="item">
+                    <h3>Longer starter</h3>
+                    <textarea id="starterLong" placeholder="I stutter, and that’s okay. Giving me time and not guessing my words helps me the most."></textarea>
+                </div>
+                <div class="item">
+                    <h3>Custom starter</h3>
+                    <textarea id="starterCustom" placeholder="Write your own starter here."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Rate & Reflect</h2>
+            <div class="list">
+                <div class="item">
+                    <h3>How much does sharing help?</h3>
+                    <input id="rateHelp" type="range" min="0" max="10" value="5">
+                    <p class="note">0 = not at all, 10 = a lot</p>
+                </div>
+                <div class="item">
+                    <h3>How satisfied are you with your speech right now?</h3>
+                    <input id="rateSatisfaction" type="range" min="0" max="10" value="5">
+                    <p class="note">0 = not at all, 10 = very satisfied</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const describe = document.getElementById("scriptDescribe");
+        const help = document.getElementById("scriptHelp");
+        const ask = document.getElementById("scriptAsk");
+        const output = document.getElementById("scriptOutput");
+        const finalScript = document.getElementById("finalScript");
+        const brainstormSay = document.getElementById("brainstormSay");
+        const brainstormDefine = document.getElementById("brainstormDefine");
+        const brainstormAsk = document.getElementById("brainstormAsk");
+        const favoriteThing = document.getElementById("favoriteThing");
+
+        function buildDraft() {
+            const say = (brainstormSay.value.trim() || describe.value.trim() || "I stutter, so sounds can get stuck sometimes.");
+            const define = (brainstormDefine.value.trim() || help.value.trim() || "Slowing down and not being interrupted helps.");
+            const request = (brainstormAsk.value.trim() || ask.value.trim() || "Please give me time and let me finish.");
+            const loud = favoriteThing.value.trim();
+            const loudLine = loud ? ` My reminder to speak up is a ${loud}.` : "";
+            output.textContent = `${say} ${define} ${request}${loudLine}`;
+        }
+
+        function buildFinal() {
+            const d = describe.value.trim() || "I stutter, so sounds can get stuck sometimes.";
+            const h = help.value.trim() || "Slowing down and not being interrupted helps.";
+            const a = ask.value.trim() || "Please give me time and let me finish.";
+            finalScript.textContent = `${d} ${h} ${a}`;
+        }
+
+        [describe, help, ask].forEach(el => el.addEventListener("input", () => {
+            buildDraft();
+            buildFinal();
+        }));
+        [brainstormSay, brainstormDefine, brainstormAsk, favoriteThing].forEach(el => el.addEventListener("input", buildDraft));
+
+        buildDraft();
+        buildFinal();
+    </script>
+</body>
+</html>

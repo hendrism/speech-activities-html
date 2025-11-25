@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanksgiving Inferences – Easy</title>
+    <style>
+        :root {
+            --accent: #f97316;
+            --accent-2: #0f766e;
+            --muted: #475569;
+            --bg: #f7f2ea;
+            --card: #ffffff;
+            --radius: 14px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #f97316 0%, #facc15 100%);
+            min-height: 100vh;
+            padding-bottom: 48px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 { margin: 0 0 6px; color: var(--accent); font-size: 28px; }
+        .badge { display: inline-block; background: var(--accent-2); color: white; padding: 8px 16px; border-radius: 18px; font-weight: 700; }
+
+        .container { max-width: 900px; margin: 24px auto; padding: 0 20px; }
+
+        .info-box {
+            background: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 14px;
+        }
+
+        .info-box h3 { margin: 0 0 8px; color: var(--accent); }
+        .info-box p { margin: 0; color: var(--muted); }
+
+        .story-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 16px;
+        }
+
+        .pill {
+            background: white;
+            border: 2px solid #e2e8f0;
+            color: var(--accent);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill:hover { border-color: var(--accent); }
+        .pill.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 18px;
+        }
+
+        .story-title { margin: 0 0 6px; color: var(--accent-2); font-size: 18px; }
+        .story-text { margin: 0 0 12px; line-height: 1.6; color: #0f172a; }
+
+        .question-card {
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .question-card h4 { margin: 0 0 6px; color: #0f172a; font-size: 16px; }
+
+        textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            padding: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 8px;
+        }
+
+        textarea:focus { outline: none; border-color: var(--accent); }
+
+        .helper-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            border: 2px solid #f59e0b;
+            background: white;
+            color: #b45309;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn:hover { background: #f59e0b; color: white; }
+
+        .hint-box {
+            display: none;
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        .options { display: none; margin-bottom: 6px; }
+        .option {
+            display: block;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .option:hover { border-color: var(--accent); transform: translateX(4px); }
+        .option.correct { background: #dcfce7; border-color: #22c55e; }
+        .option.incorrect { background: #fee2e2; border-color: #ef4444; }
+        .option.disabled { pointer-events: none; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🦃 Inferences – Easy</h1>
+            <div class="badge">Thanksgiving Stories</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="info-box">
+            <h3>How it works</h3>
+            <p>Read the short story. Answer the question. If you need it, press “I need help” for a clue, or “I need more help” to see choices (one is correct).</p>
+        </div>
+
+        <div class="story-nav" id="storyNav"></div>
+
+        <div class="card">
+            <h3 class="story-title" id="storyTitle"></h3>
+            <p class="story-text" id="storyText"></p>
+            <div id="questions"></div>
+        </div>
+    </div>
+
+    <script>
+        const stories = [
+            {
+                title: "Sandwich Trip",
+                text: "Jamal and his mom made sandwiches to take to the shelter. He woke up early and packed them in a cooler. They got in the car before the sun came up. The cooler was heavy, so his mom carried it to the door. When they drove, the sky started to turn pink.",
+                questions: [
+                    {
+                        prompt: "Why did Jamal wake up early?",
+                        hint: "Think about taking food to the shelter before people arrive.",
+                        choices: [
+                            "He wanted the food ready to help people.",
+                            "He wanted to watch cartoons.",
+                            "He needed to sleep more.",
+                            "He was going to a movie."
+                        ]
+                    },
+                    {
+                        prompt: "Who will get the sandwiches?",
+                        hint: "They are bringing them to the shelter.",
+                        choices: [
+                            "People at the shelter",
+                            "The cashier at the store",
+                            "Their neighbors next door",
+                            "The bus driver"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Saved Pie",
+                text: "Marisol put the last slice of pie in the fridge. She wrote a note that said, “For Dad” and taped it to the plate. Her dad was working late and would come home after dinner. She wanted him to have a treat. She closed the fridge door and smiled.",
+                questions: [
+                    {
+                        prompt: "Why did Marisol leave a note?",
+                        hint: "She wants someone to save the pie for a person.",
+                        choices: [
+                            "To tell others it was for her dad",
+                            "To say the pie was burnt",
+                            "To show the pie was old",
+                            "To make the fridge look pretty"
+                        ]
+                    },
+                    {
+                        prompt: "Who is the pie for?",
+                        hint: "Read the note she taped.",
+                        choices: [
+                            "Her dad",
+                            "Her friend",
+                            "Her teacher",
+                            "Her cousin"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Parade Spot",
+                text: "Carlos’s family brought folding chairs and a blanket to the parade. They arrived an hour early and sat near the street. The band would start soon, and Carlos wanted to see the balloons. His sister held a small flag. They ate muffins while they waited.",
+                questions: [
+                    {
+                        prompt: "Why did they arrive early?",
+                        hint: "They want a good place to watch.",
+                        choices: [
+                            "To find a good spot before it filled up",
+                            "To sleep on the sidewalk",
+                            "To clean the street",
+                            "To sell the chairs"
+                        ]
+                    },
+                    {
+                        prompt: "What does bringing a blanket tell you?",
+                        hint: "Blankets can cover you when it is cold.",
+                        choices: [
+                            "It might be chilly outside",
+                            "They plan to swim",
+                            "They want to paint",
+                            "They will play soccer"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Lights Out",
+                text: "The power went out during dinner. The family lit candles and kept eating. Uncle Ben told funny stories, and the kids put down their phones. The room felt quiet but safe. They laughed and kept eating while the food was still warm.",
+                questions: [
+                    {
+                        prompt: "Why did they use candles?",
+                        hint: "There was no power for the lights.",
+                        choices: [
+                            "Because the lights did not work",
+                            "Because they like the smell",
+                            "Because they were scared of the dark",
+                            "Because they wanted to bake"
+                        ]
+                    },
+                    {
+                        prompt: "Why did the kids stop using their phones?",
+                        hint: "Phones need power to keep working.",
+                        choices: [
+                            "The phones might run out of battery",
+                            "They were bored of their phones",
+                            "They wanted to watch TV",
+                            "They were too cold"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Airport Delay",
+                text: "At the airport, Mom opened a bag of snacks when the screen said “Delayed.” The kids played a card game while they waited. They sat by the window and watched planes take off. A voice said the new time was one hour later. The kids yawned but kept playing.",
+                questions: [
+                    {
+                        prompt: "Why did Mom share snacks?",
+                        hint: "They will be waiting longer.",
+                        choices: [
+                            "So no one got hungry while waiting",
+                            "Because the plane was leaving fast",
+                            "Because the store was closed",
+                            "Because the snacks were free"
+                        ]
+                    },
+                    {
+                        prompt: "What does playing cards show?",
+                        hint: "They need to pass the time.",
+                        choices: [
+                            "They were trying to pass the time",
+                            "They were doing homework",
+                            "They were training for sports",
+                            "They were fixing the plane"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "After the Game",
+                text: "After playing football outside, the kids came in with muddy shoes. They changed clothes, and Grandma followed them holding extra towels. The cold air made their cheeks red. Grandma did not want mud on the floor. She handed them towels to dry off.",
+                questions: [
+                    {
+                        prompt: "Why did Grandma bring towels?",
+                        hint: "The kids were muddy and wet.",
+                        choices: [
+                            "To help them dry off and clean up",
+                            "To cover the TV",
+                            "To wrap the dog",
+                            "To decorate the room"
+                        ]
+                    },
+                    {
+                        prompt: "Why did the kids change clothes?",
+                        hint: "They had muddy shoes.",
+                        choices: [
+                            "Their clothes were dirty",
+                            "They wanted to dress up",
+                            "They were going to bed",
+                            "They wanted to match colors"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Thankful Notes",
+                text: "Sophie wrote short notes that said “Thank you” and put them by each plate. Her brother helped fold the paper. After setting the table, they waited for their family to sit down. Sophie hoped everyone would read their note.",
+                questions: [
+                    {
+                        prompt: "Why did Sophie put notes by each plate?",
+                        hint: "She wants people to see a message when they sit down.",
+                        choices: [
+                            "So each person would read a thank-you note",
+                            "So there would be more napkins",
+                            "So the plates would look taller",
+                            "So she could hide her homework"
+                        ]
+                    },
+                    {
+                        prompt: "Who are the notes for?",
+                        hint: "They are by each plate.",
+                        choices: [
+                            "Everyone at the table",
+                            "Only Sophie",
+                            "Only her teacher",
+                            "Only the mail carrier"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Extra Chair",
+                text: "Aunt Maya brought an extra folding chair when she came in. She said, “Our cousin will be here too.” Dad moved things so the chair could fit at the table. Everyone scooted over to make space.",
+                questions: [
+                    {
+                        prompt: "Why did they add another chair?",
+                        hint: "Someone else is joining the meal.",
+                        choices: [
+                            "A cousin was coming to eat with them",
+                            "The chair was broken",
+                            "They wanted more decorations",
+                            "They needed to hold blankets"
+                        ]
+                    },
+                    {
+                        prompt: "What does scooting over show?",
+                        hint: "They are making room.",
+                        choices: [
+                            "They wanted to make space for another person",
+                            "They wanted to leave the table",
+                            "They wanted to reach the TV",
+                            "They wanted to nap on the floor"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Smoke Alarm",
+                text: "The oven smoked while the rolls were baking. A loud beep started, and Dad opened the windows. Mom waved a towel under the alarm. The rolls were a little dark, but the family laughed.",
+                questions: [
+                    {
+                        prompt: "Why did the alarm beep?",
+                        hint: "Think about the oven and the smoke.",
+                        choices: [
+                            "Smoke from the oven set it off",
+                            "It was time for bedtime",
+                            "The doorbell was broken",
+                            "Someone turned on music"
+                        ]
+                    },
+                    {
+                        prompt: "Why did Dad open windows?",
+                        hint: "He wants the smoke to leave.",
+                        choices: [
+                            "To let the smoke out",
+                            "To cool the soup",
+                            "To see the parade",
+                            "To dry the laundry"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Cold Walk",
+                text: "After dinner, Lina and her grandpa took a short walk. They wore hats and gloves because the wind was strong. When Lina shivered, Grandpa said, “Let’s head back and make cocoa.” They hurried toward the warm house.",
+                questions: [
+                    {
+                        prompt: "Why did they wear hats and gloves?",
+                        hint: "The wind felt strong outside.",
+                        choices: [
+                            "It was cold and windy",
+                            "It was very sunny",
+                            "They wanted to play soccer",
+                            "They needed to paint"
+                        ]
+                    },
+                    {
+                        prompt: "Why did they go back to the house?",
+                        hint: "Lina was cold.",
+                        choices: [
+                            "To warm up and make cocoa",
+                            "To water the garden",
+                            "To feed the pets outside",
+                            "To look for lost keys"
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        let current = 0;
+        const storyNav = document.getElementById("storyNav");
+        const titleEl = document.getElementById("storyTitle");
+        const textEl = document.getElementById("storyText");
+        const questionsEl = document.getElementById("questions");
+
+        function shuffle(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function buildNav() {
+            storyNav.innerHTML = stories.map((s, i) => `<button class="pill" data-index="${i}">${i + 1}. ${s.title}</button>`).join("");
+            storyNav.querySelectorAll(".pill").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    current = parseInt(btn.dataset.index, 10);
+                    renderStory();
+                    document.querySelector(".card").scrollIntoView({ behavior: "smooth" });
+                });
+            });
+        }
+
+        function renderStory() {
+            const story = stories[current];
+            titleEl.textContent = story.title;
+            textEl.textContent = story.text;
+            storyNav.querySelectorAll(".pill").forEach((btn, i) => btn.classList.toggle("active", i === current));
+
+            questionsEl.innerHTML = story.questions.map((q, idx) => {
+                const shuffledChoices = shuffle(q.choices.map((text, choiceIndex) => ({ text, correct: choiceIndex === 0 })));
+                return `
+                    <div class="question-card" data-q="${idx}">
+                        <h4>Q${idx + 1}. ${q.prompt}</h4>
+                        <textarea placeholder="Type your answer..."></textarea>
+                        <div class="helper-row">
+                            <button class="btn hint-btn">I need help</button>
+                            <button class="btn more-btn">I need more help</button>
+                        </div>
+                        <div class="hint-box">Hint: ${q.hint}</div>
+                        <div class="options" data-state="hidden">
+                            ${shuffledChoices.map((choice, i) => `
+                                <button class="option" data-correct="${choice.correct}">${choice.text}</button>
+                            `).join("")}
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            attachHandlers();
+        }
+
+        function attachHandlers() {
+            questionsEl.querySelectorAll(".question-card").forEach(card => {
+                const hintBox = card.querySelector(".hint-box");
+                const optionsBox = card.querySelector(".options");
+                card.querySelector(".hint-btn").addEventListener("click", () => {
+                    hintBox.style.display = hintBox.style.display === "block" ? "none" : "block";
+                });
+                card.querySelector(".more-btn").addEventListener("click", () => {
+                    const showing = optionsBox.style.display === "block";
+                    optionsBox.style.display = showing ? "none" : "block";
+                });
+                card.querySelectorAll(".option").forEach(opt => {
+                    opt.addEventListener("click", () => {
+                        card.querySelectorAll(".option").forEach(o => o.classList.add("disabled"));
+                        const correct = opt.dataset.correct === "true";
+                        opt.classList.add(correct ? "correct" : "incorrect");
+                        if (!correct) {
+                            card.querySelectorAll(".option").forEach(o => {
+                                if (o.dataset.correct === "true") o.classList.add("correct");
+                            });
+                        }
+                    });
+                });
+            });
+        }
+
+        buildNav();
+        renderStory();
+    </script>
+</body>
+</html>

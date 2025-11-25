@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanksgiving Descriptor Stories</title>
+    <style>
+        :root {
+            --bg: #f7f2ea;
+            --surface: #ffffff;
+            --accent: #c75b12;
+            --accent-2: #0f766e;
+            --muted: #475569;
+            --radius: 16px;
+            --shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+            --max-width: 1100px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: radial-gradient(circle at 18% 20%, #fff9f2, #f1e4d7 70%);
+            color: #0f172a;
+            line-height: 1.6;
+            padding: 24px 16px 48px;
+        }
+
+        .shell {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(148, 163, 184, 0.18);
+            padding: 20px;
+        }
+
+        header { text-align: center; margin-bottom: 16px; }
+        header h1 { margin: 0 0 8px; font-size: 28px; color: var(--accent); }
+        header p { margin: 0; color: var(--muted); }
+
+        .instructions {
+            background: rgba(249, 115, 22, 0.12);
+            border: 2px solid rgba(249, 115, 22, 0.28);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            color: #92400e;
+            font-size: 14px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        select {
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 2px solid rgba(148, 163, 184, 0.35);
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .counter {
+            background: rgba(15, 118, 110, 0.1);
+            border: 2px solid rgba(15, 118, 110, 0.3);
+            color: var(--accent-2);
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            flex: 1 1 220px;
+        }
+
+        .counter.full {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.35);
+            color: #166534;
+        }
+
+        .story-box {
+            background: #f8fafc;
+            border: 3px dashed rgba(148, 163, 184, 0.45);
+            border-radius: 14px;
+            padding: 18px;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .clickable {
+            cursor: pointer;
+            padding: 3px 6px;
+            border-radius: 6px;
+            background: #ffe8c7;
+            border: 2px dashed rgba(199, 91, 18, 0.65);
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .clickable:hover { transform: translateY(-2px); background: #ffd59a; }
+        .clickable.selected { background: #0f766e; color: white; border-color: transparent; }
+
+        .descriptor-area { display: none; }
+        .descriptor-area.show { display: block; }
+
+        .descriptor-item {
+            background: rgba(148, 163, 184, 0.12);
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .descriptor-item h3 { margin: 0 0 6px; font-size: 15px; color: var(--accent); }
+        .descriptor-item .hint { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+
+        textarea {
+            width: 100%;
+            min-height: 70px;
+            border-radius: 10px;
+            border: 2px solid rgba(148, 163, 184, 0.35);
+            padding: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #fff;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(199, 91, 18, 0.15);
+        }
+
+        .help-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 6px 0;
+            flex-wrap: wrap;
+        }
+
+        .help-btn {
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .help-panel {
+            display: none;
+            background: #fff;
+            border: 2px solid rgba(148, 163, 184, 0.35);
+            border-radius: 10px;
+            padding: 8px;
+            margin-top: 6px;
+            gap: 6px;
+        }
+
+        .help-panel.show { display: flex; flex-wrap: wrap; }
+
+        .chip {
+            background: rgba(15, 118, 110, 0.1);
+            color: #0f766e;
+            border: 1px solid rgba(15, 118, 110, 0.25);
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .generate {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .generate:disabled { background: #d8d8d8; cursor: not-allowed; }
+
+        .results { display: none; margin-top: 16px; }
+        .results.show { display: block; }
+
+        .story-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .story-block {
+            background: #f8fafc;
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+            line-height: 1.7;
+        }
+
+        .story-block h3 { margin: 0 0 6px; font-size: 16px; color: var(--accent-2); text-align: center; }
+        .highlight { background: #fde68a; padding: 0 2px; border-radius: 4px; font-weight: 700; }
+
+        @media (max-width: 780px) {
+            .story-compare { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <header>
+            <h1>Thanksgiving Descriptor Stories</h1>
+            <p>Select story words, add descriptors, tap “I need help” for ideas, then see the improved story.</p>
+        </header>
+
+        <div class="instructions">
+            1) Pick a Thanksgiving story. 2) Click at least three highlighted spots. 3) Add descriptive words or phrases. 4) Use “I need help” for quick ideas.
+        </div>
+
+        <div class="controls">
+            <label for="storySelect" style="font-weight:700;color:var(--accent-2);">Choose a story:</label>
+            <select id="storySelect"></select>
+            <div class="counter" id="counter">Click 3 or more places to describe.</div>
+        </div>
+
+        <div class="story-box" id="storyContainer"></div>
+
+        <div id="descriptorArea" class="descriptor-area"></div>
+
+        <button class="generate" id="generateBtn" disabled>Build My Story</button>
+
+        <div id="results" class="results">
+            <div class="story-compare">
+                <div class="story-block">
+                    <h3>Original Story</h3>
+                    <p id="originalStory"></p>
+                </div>
+                <div class="story-block">
+                    <h3>Story with Descriptors</h3>
+                    <p id="improvedStory"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const helpWords = {
+            appearance: ["golden", "shiny", "plain", "colorful", "messy", "cozy"],
+            size: ["tiny", "small", "big", "huge", "crowded", "spacious"],
+            taste: ["savory", "sweet", "buttery", "spicy", "salty", "cinnamon"],
+            texture: ["soft", "creamy", "crispy", "flaky", "chewy", "smooth"],
+            temperature: ["warm", "hot", "steaming", "cool", "chilly"],
+            sound: ["quiet", "noisy", "cheering", "clattering", "booming"],
+            smell: ["sweet-smelling", "smoky", "buttery", "spiced"],
+            feeling: ["happy", "excited", "proud", "thankful", "sleepy", "nervous"],
+            movement: ["slowly", "quickly", "carefully", "marching", "bouncing"],
+            color: ["orange", "brown", "golden", "bright"],
+            light: ["glowing", "dim", "sparkling", "softly lit"]
+        };
+
+        const stories = [
+            {
+                title: "Cooking Morning",
+                text: "On Thanksgiving morning, the {cook} stood in the {kitchen} stirring a pot of {soup}. The {turkey} rested on the counter while {steam} filled the air.",
+                slots: {
+                    cook: { hint: "How does the cook look or feel?", groups: ["appearance", "feeling"] },
+                    kitchen: { hint: "What does the kitchen look or smell like?", groups: ["appearance", "smell"] },
+                    soup: { hint: "Taste, texture, or temperature?", groups: ["taste", "texture", "temperature"] },
+                    turkey: { hint: "Size, taste, or color of the turkey?", groups: ["size", "taste", "color"] },
+                    steam: { hint: "How does the steam look or feel?", groups: ["appearance", "temperature", "smell"] }
+                }
+            },
+            {
+                title: "Parade Day",
+                text: "At the Thanksgiving parade, a {balloon} floated above the {crowd}. The {band} marched past while {drums} echoed down the {street}.",
+                slots: {
+                    balloon: { hint: "How does the balloon look or move?", groups: ["appearance", "color", "movement"] },
+                    crowd: { hint: "How big or loud is the crowd?", groups: ["size", "sound", "feeling"] },
+                    band: { hint: "How does the band look or move?", groups: ["appearance", "movement"] },
+                    drums: { hint: "What do the drums sound like?", groups: ["sound"] },
+                    street: { hint: "Describe the street or setting.", groups: ["appearance", "size"] }
+                }
+            },
+            {
+                title: "Family Table",
+                text: "Around the table, {grandma} passed the {rolls} while {kids} told {stories}. A {pie} cooled by the {window}.",
+                slots: {
+                    grandma: { hint: "How does grandma look or feel?", groups: ["appearance", "feeling"] },
+                    rolls: { hint: "Taste or texture of the rolls?", groups: ["taste", "texture"] },
+                    kids: { hint: "How are the kids acting?", groups: ["feeling", "movement"] },
+                    stories: { hint: "How are the stories told?", groups: ["sound", "feeling"] },
+                    pie: { hint: "Describe the pie (smell, taste, color).", groups: ["smell", "taste", "color"] },
+                    window: { hint: "What does the window area feel like?", groups: ["appearance", "temperature", "light"] }
+                }
+            },
+            {
+                title: "Helping Out",
+                text: "Outside the shelter, {volunteers} served {meals} to {visitors}. A {bonfire} glowed while {music} played.",
+                slots: {
+                    volunteers: { hint: "How do the volunteers act or feel?", groups: ["feeling", "movement"] },
+                    meals: { hint: "Describe the warm meals.", groups: ["taste", "smell", "temperature"] },
+                    visitors: { hint: "How do the visitors look or feel?", groups: ["appearance", "feeling"] },
+                    bonfire: { hint: "What does the bonfire look, smell, or feel like?", groups: ["appearance", "light", "smell", "temperature"] },
+                    music: { hint: "What does the music sound like?", groups: ["sound"] }
+                }
+            },
+            {
+                title: "Backyard Football Break",
+                text: "After dinner, {players} grabbed a football in the {yard}. {leaves} crunched under their feet as one {pass} flew through the air and {cheers} came from the porch.",
+                slots: {
+                    players: { hint: "How do the players look or feel?", groups: ["appearance", "feeling", "movement"] },
+                    yard: { hint: "What does the yard look like?", groups: ["appearance", "size"] },
+                    leaves: { hint: "Sound or color of the leaves?", groups: ["sound", "color"] },
+                    pass: { hint: "How did the ball move?", groups: ["movement", "speed"] },
+                    cheers: { hint: "What do the cheers sound like?", groups: ["sound", "feeling"] }
+                }
+            },
+            {
+                title: "Pumpkin Patch Visit",
+                text: "At the pumpkin patch, {pumpkins} lined the {path}. A {wagon} rolled by while families took {photos} and sipped {cider}.",
+                slots: {
+                    pumpkins: { hint: "Describe the pumpkins (color, size, texture).", groups: ["color", "size", "texture"] },
+                    path: { hint: "How does the path look or feel?", groups: ["appearance", "size"] },
+                    wagon: { hint: "How does the wagon move or sound?", groups: ["movement", "sound"] },
+                    photos: { hint: "How do the photos feel or look?", groups: ["feeling", "light"] },
+                    cider: { hint: "Taste, smell, or warmth of the cider?", groups: ["taste", "smell", "temperature"] }
+                }
+            },
+            {
+                title: "Travel Day",
+                text: "At the busy airport, {family} waited with {suitcases} near the {gate}. A loud {announcement} echoed while they shared {snacks}.",
+                slots: {
+                    family: { hint: "How does the family look or feel?", groups: ["appearance", "feeling"] },
+                    suitcases: { hint: "Size or look of the suitcases?", groups: ["size", "appearance"] },
+                    gate: { hint: "Describe the gate area.", groups: ["appearance", "light"] },
+                    announcement: { hint: "What does the announcement sound like?", groups: ["sound"] },
+                    snacks: { hint: "How do the snacks taste or smell?", groups: ["taste", "smell", "texture"] }
+                }
+            },
+            {
+                title: "Pie Bake-Off",
+                text: "For the bake-off, {bakers} rolled out {crust} and poured {filling} into tins. The {oven} timer beeped as the {judges} smiled.",
+                slots: {
+                    bakers: { hint: "How do the bakers look or feel?", groups: ["appearance", "feeling"] },
+                    crust: { hint: "Texture or look of the crust?", groups: ["texture", "appearance"] },
+                    filling: { hint: "Taste, smell, or color of the filling?", groups: ["taste", "smell", "color"] },
+                    oven: { hint: "Sound or heat from the oven?", groups: ["sound", "temperature"] },
+                    judges: { hint: "How do the judges look or feel?", groups: ["appearance", "feeling"] }
+                }
+            }
+        ];
+
+        let selections = [];
+
+        const storySelect = document.getElementById("storySelect");
+        const storyContainer = document.getElementById("storyContainer");
+        const descriptorArea = document.getElementById("descriptorArea");
+        const counterEl = document.getElementById("counter");
+        const generateBtn = document.getElementById("generateBtn");
+        const originalStory = document.getElementById("originalStory");
+        const improvedStory = document.getElementById("improvedStory");
+        const results = document.getElementById("results");
+
+        function initSelect() {
+            stories.forEach((story, index) => {
+                const opt = document.createElement("option");
+                opt.value = index;
+                opt.textContent = story.title;
+                storySelect.appendChild(opt);
+            });
+        }
+
+        function loadStory() {
+            const index = parseInt(storySelect.value, 10);
+            const story = stories[index];
+            selections = [];
+            results.classList.remove("show");
+            descriptorArea.classList.remove("show");
+            generateBtn.disabled = true;
+
+            let counter = 0;
+            const html = story.text.replace(/\{([^}]+)\}/g, (_, slot) => {
+                const id = `slot-${counter++}`;
+                return `<span class="clickable" id="${id}" data-slot="${slot}">${slot}</span>`;
+            });
+            storyContainer.innerHTML = html;
+            descriptorArea.innerHTML = "";
+            updateCounter();
+        }
+
+        function updateCounter() {
+            const count = selections.length;
+            if (count >= 3) {
+                counterEl.textContent = `✓ You selected ${count}! Add descriptors below.`;
+                counterEl.classList.add("full");
+                descriptorArea.classList.add("show");
+            } else {
+                const remaining = 3 - count;
+                counterEl.textContent = `Click ${remaining} more place${remaining === 1 ? "" : "s"} to describe (min 3).`;
+                counterEl.classList.remove("full");
+                descriptorArea.classList.remove("show");
+            }
+            generateBtn.disabled = selections.length < 3 || selections.some(s => !s.descriptor);
+        }
+
+        function toggleSelection(target) {
+            const slotName = target.dataset.slot;
+            const id = target.id;
+            const existing = selections.find(s => s.id === id);
+            if (existing) {
+                selections = selections.filter(s => s.id !== id);
+                target.classList.remove("selected");
+            } else {
+                selections.push({ id, slot: slotName, descriptor: "" });
+                target.classList.add("selected");
+            }
+            buildDescriptors();
+            updateCounter();
+        }
+
+        function buildDescriptors() {
+            const index = parseInt(storySelect.value, 10);
+            const story = stories[index];
+            descriptorArea.innerHTML = selections.map((sel, i) => {
+                const slotData = story.slots[sel.slot] || { hint: "Add descriptive words.", groups: [] };
+                const groups = slotData.groups || [];
+                const helpIds = groups.join(",");
+                return `
+                    <div class="descriptor-item" data-index="${i}">
+                        <h3>Describe: "${sel.slot}"</h3>
+                        <p class="hint">${slotData.hint}</p>
+                        <div class="help-row">
+                            <button class="help-btn" data-groups="${helpIds}" type="button">I need help</button>
+                            <span class="note" style="font-size:13px;color:${'#6b7280'};">Tap ideas to add</span>
+                        </div>
+                        <div class="help-panel" id="help-${i}"></div>
+                        <textarea data-index="${i}" placeholder="Add words or phrases...">${sel.descriptor || ""}</textarea>
+                    </div>
+                `;
+            }).join("");
+            attachHelpPanels();
+        }
+
+        function attachHelpPanels() {
+            descriptorArea.querySelectorAll(".help-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const groups = btn.dataset.groups.split(",").filter(Boolean);
+                    const panel = btn.parentElement.nextElementSibling;
+                    if (panel.classList.contains("show")) {
+                        panel.classList.remove("show");
+                        panel.innerHTML = "";
+                        return;
+                    }
+                    const words = [];
+                    groups.forEach(g => {
+                        (helpWords[g] || []).forEach(w => words.push(w));
+                    });
+                    panel.innerHTML = words.length ? words.map(w => `<span class="chip" data-word="${w}">${w}</span>`).join("") : `<span class="note">No suggestions yet.</span>`;
+                    panel.classList.add("show");
+                    panel.querySelectorAll(".chip").forEach(chip => {
+                        chip.addEventListener("click", e => {
+                            const word = e.target.dataset.word;
+                            const item = e.target.closest(".descriptor-item");
+                            const idx = parseInt(item.dataset.index, 10);
+                            const textarea = item.querySelector("textarea");
+                            const current = textarea.value.trim();
+                            textarea.value = current ? `${current} ${word}` : word;
+                            selections[idx].descriptor = textarea.value.trim();
+                            generateBtn.disabled = selections.length < 3 || selections.some(s => !s.descriptor);
+                        });
+                    });
+                });
+            });
+
+            descriptorArea.querySelectorAll("textarea").forEach(area => {
+                area.addEventListener("input", e => {
+                    const idx = parseInt(e.target.dataset.index, 10);
+                    if (selections[idx]) {
+                        selections[idx].descriptor = e.target.value.trim();
+                    }
+                    generateBtn.disabled = selections.length < 3 || selections.some(s => !s.descriptor);
+                });
+            });
+        }
+
+        function buildStory() {
+            const index = parseInt(storySelect.value, 10);
+            const story = stories[index];
+            const original = story.text.replace(/\{([^}]+)\}/g, "$1");
+            let improved = story.text;
+            selections.forEach(sel => {
+                const insert = `<span class="highlight">${sel.descriptor} ${sel.slot}</span>`;
+                improved = improved.replace(`{${sel.slot}}`, insert);
+            });
+            improved = improved.replace(/\{([^}]+)\}/g, "$1");
+            originalStory.innerHTML = original;
+            improvedStory.innerHTML = improved;
+            results.classList.add("show");
+        }
+
+        storySelect.addEventListener("change", loadStory);
+        storyContainer.addEventListener("click", e => {
+            if (e.target.classList.contains("clickable")) {
+                toggleSelection(e.target);
+            }
+        });
+        generateBtn.addEventListener("click", buildStory);
+
+        initSelect();
+        loadStory();
+    </script>
+</body>
+</html>

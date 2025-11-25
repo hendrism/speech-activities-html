@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Purpose, Theme, Main Idea + Sentence Builder</title>
+    <style>
+        :root {
+            --bg: #f7f7f7;
+            --card: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --accent: #2563eb;
+            --border: #e5e7eb;
+            --radius: 16px;
+            --max-width: 1100px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: linear-gradient(120deg, #2563eb, #3b82f6, #60a5fa);
+            color: #fff;
+            padding: 26px 18px;
+            text-align: center;
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        header p {
+            margin: 10px auto 0;
+            max-width: 820px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 24px auto 0;
+            padding: 0 18px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+            padding: 22px;
+        }
+
+        .nav-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--ink);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .nav-btn:hover { background: #eef2ff; border-color: #d1d5db; }
+        .nav-btn.active {
+            background: #2563eb;
+            color: #fff;
+            border-color: #1d4ed8;
+        }
+
+        .passage {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 17px;
+            line-height: 1.65;
+            margin-bottom: 14px;
+        }
+
+        h3 { margin: 0 0 8px; color: var(--ink); }
+        h4 { margin: 0 0 6px; color: var(--ink); }
+        p { margin: 0 0 10px; color: var(--muted); }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        textarea, input[type="text"], select {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            background: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        textarea { min-height: 70px; resize: vertical; }
+
+        textarea:focus, input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+        }
+
+        .builder {
+            background: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .builder-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .helper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 6px 0;
+        }
+
+        .helper span {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 6px 8px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .hint-btn {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid #bfdbfe;
+            background: #eef2ff;
+            color: #1d4ed8;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .hint-btn:hover {
+            background: #dbeafe;
+            border-color: #93c5fd;
+        }
+
+        .hint-box {
+            display: none;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 6px;
+            color: #0f172a;
+            font-size: 14px;
+        }
+
+        @media (max-width: 640px) {
+            header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Purpose, Theme, Main Idea + Complex Sentence</h1>
+        <p>Read each passage, find the author’s purpose, theme, and main idea, then build one clear complex sentence with conjunctions, prepositions, and adverbs.</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h3>Select a Passage</h3>
+            <div class="nav-row" id="nav-row"></div>
+        </section>
+
+        <section class="card">
+            <div class="passage" id="passage-text"></div>
+
+            <div class="section-grid">
+                <div>
+                    <h4>Author’s Purpose</h4>
+                    <p>Choose the best fit.</p>
+                    <select id="purpose">
+                        <option value="">Select...</option>
+                        <option value="inform">Inform</option>
+                        <option value="persuade">Persuade</option>
+                        <option value="entertain">Entertain</option>
+                        <option value="explain">Explain</option>
+                    </select>
+                    <button class="hint-btn" data-target="hint-purpose">Hint</button>
+                    <div class="hint-box" id="hint-purpose">Look for facts, steps, or instructions (inform/explain). Look for reasons or a call to act (persuade). Look for jokes or just telling a story (entertain).</div>
+                </div>
+                <div>
+                    <h4>Theme</h4>
+                    <p>Big idea about life or people.</p>
+                    <textarea id="theme" placeholder="Write the theme in 1-2 short sentences."></textarea>
+                    <button class="hint-btn" data-target="hint-theme">Hint</button>
+                    <div class="hint-box" id="hint-theme">Ask: What lesson or message could someone learn? Avoid small details; think about the overall idea or feeling.</div>
+                </div>
+                <div>
+                    <h4>Main Idea</h4>
+                    <p>What the passage is mostly about.</p>
+                    <textarea id="main-idea" placeholder="Write the main idea in one clear sentence."></textarea>
+                    <button class="hint-btn" data-target="hint-mainidea">Hint</button>
+                    <div class="hint-box" id="hint-mainidea">Combine the who/what with the most important action or goal. Keep it one sentence that covers the whole passage.</div>
+                </div>
+            </div>
+
+            <div class="builder" style="margin-top:14px;">
+                <h4>Build a Complex Sentence</h4>
+                <p>Fill the slots to build one clear sentence that states purpose, theme, and main idea.</p>
+                <div class="builder-row">
+                    <div>
+                        <label for="purpose-slot">Purpose slot</label>
+                        <textarea id="purpose-slot" placeholder="This text’s purpose is to..."></textarea>
+                    </div>
+                    <div>
+                        <label for="conjunction">Conjunction</label>
+                        <select id="conjunction">
+                            <option value="">Select...</option>
+                            <option value="because">because</option>
+                            <option value="while">while</option>
+                            <option value="although">although</option>
+                            <option value="when">when</option>
+                            <option value="so">so</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="theme-slot">Theme slot</label>
+                        <textarea id="theme-slot" placeholder="The theme shows..."></textarea>
+                    </div>
+                </div>
+                <div class="builder-row">
+                    <div>
+                        <label for="preposition">Add a preposition or adverb</label>
+                        <select id="preposition">
+                            <option value="">Select...</option>
+                            <option value="in the kitchen">in the kitchen</option>
+                            <option value="during the parade">during the parade</option>
+                            <option value="at school">at school</option>
+                            <option value="quickly">quickly</option>
+                            <option value="calmly">calmly</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="main-idea-slot">Main idea slot</label>
+                        <textarea id="main-idea-slot" placeholder="The main idea is..."></textarea>
+                    </div>
+                </div>
+                <label for="final-sentence">Your final complex sentence</label>
+                <textarea id="final-sentence" placeholder="This text’s purpose is to (purpose) (conjunction) the theme shows (theme) (preposition/adverb) and the main idea is (main idea)."></textarea>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const passages = [
+            {
+                id: "kitchen",
+                title: "Helping in the Kitchen",
+                text: "During the holiday, Maya helped her aunt in the kitchen. She set the table, washed vegetables, and watched how to roast them with oil and herbs. Maya asked questions about oven temperature and timing. She wanted to remember the steps so she could cook the same meal later for her friends.",
+                type: "Informational / How-to"
+            },
+            {
+                id: "parade",
+                title: "Watching the Parade",
+                text: "Jonah and his cousins watched the parade on TV from the living room couch. They liked the bright floats, marching bands, and dancers who moved in time with the music. Jonah noticed how each float matched a song theme. He took notes on colors and shapes because he wanted to design a float for the school parade someday.",
+                type: "Entertain / Describe"
+            },
+            {
+                id: "shelter",
+                title: "Collecting Cans",
+                text: "A group of students collected cans for the local shelter. They made posters, asked neighbors to help, and organized the boxes by food type so families could receive balanced meals. They worked after school to sort and label everything. They hoped every family would have enough for a good meal and planned to visit the shelter to see the impact of their project.",
+                type: "Persuade / Inform to help"
+            },
+            {
+                id: "travel",
+                title: "Travel Delay",
+                text: "Olivia’s family waited at the airport when their flight was delayed two hours. They used the time to call grandparents, play a card game, and check the flight app for updates. Even though they were tired, they stayed patient and took short walks so the trip would start smoothly once they boarded.",
+                type: "Inform / Explain"
+            },
+            {
+                id: "thankfulness",
+                title: "Thankful Notes",
+                text: "In class, students wrote short notes about what they were thankful for. One student mentioned having a calm place to read after school. Another student wrote about a friend who always helped with homework and stayed on video calls until the work was done. The notes were posted on a wall to remind the class of small things that made them feel supported.",
+                type: "Reflect / Inform"
+            },
+            {
+                id: "school-persuasive",
+                title: "Join the Food Drive",
+                text: "Students at Lincoln Middle made a short speech to classes about the food drive. They said the food drive needed canned vegetables, pasta, and rice to support local families before winter. They explained that even one can from each student could fill many boxes. They also promised to share photos of the donations being delivered, hoping everyone would join in.",
+                type: "Persuade"
+            },
+            {
+                id: "why-rest",
+                title: "Why Rest Matters",
+                text: "The school counselor wrote a note about taking breaks. She said short rests help students focus better and feel less stressed after long study sessions. She gave simple examples like taking a short walk, stretching between chapters, or breathing slowly for one minute. She encouraged students to test which break helped them return to work with more energy.",
+                type: "Informational / Explain"
+            }
+        ];
+
+        const navRow = document.getElementById("nav-row");
+        const passageText = document.getElementById("passage-text");
+
+        function renderNav(activeId) {
+            navRow.innerHTML = passages.map(p => `
+                <button class="nav-btn ${p.id === activeId ? "active" : ""}" data-id="${p.id}">
+                    ${p.title}
+                </button>
+            `).join("");
+        }
+
+        function renderPassage(passage) {
+            passageText.textContent = passage.text;
+            renderNav(passage.id);
+            hookNav();
+            clearFields();
+        }
+
+        function hookNav() {
+            navRow.querySelectorAll(".nav-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const id = btn.getAttribute("data-id");
+                    const next = passages.find(p => p.id === id);
+                    renderPassage(next);
+                });
+            });
+        }
+
+        function clearFields() {
+            document.getElementById("purpose").value = "";
+            document.getElementById("theme").value = "";
+            document.getElementById("main-idea").value = "";
+            document.getElementById("purpose-slot").value = "";
+            document.getElementById("conjunction").value = "";
+            document.getElementById("theme-slot").value = "";
+            document.getElementById("preposition").value = "";
+            document.getElementById("main-idea-slot").value = "";
+            document.getElementById("final-sentence").value = "";
+        }
+
+        document.querySelectorAll(".helper span").forEach(span => {
+            span.addEventListener("click", () => {
+                const text = span.dataset.insert;
+                const finalBox = document.getElementById("final-sentence");
+                finalBox.value = finalBox.value ? finalBox.value + " " + text : text;
+            });
+        });
+
+        // Hint toggles
+        document.querySelectorAll(".hint-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const target = document.getElementById(btn.dataset.target);
+                if (!target) return;
+                target.style.display = target.style.display === "block" ? "none" : "block";
+            });
+        });
+
+        renderPassage(passages[0]);
+    </script>
+</body>
+</html>

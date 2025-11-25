@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Response Practice – Thanksgiving</title>
+    <style>
+        :root {
+            --w: 920px;
+            --accent: #c2410c;
+            --accent2: #f59e0b;
+            --bg: #fff8ed;
+            --card: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --border: #e5e7eb;
+            --shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #fff5e5, #ffe8cc 55%, #fffaf3);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(120deg, #f97316, #fb923c, #fbbf24);
+            border-bottom: 3px solid #ea580c;
+            box-shadow: 0 10px 24px rgba(249, 115, 22, 0.18);
+            padding: 22px 18px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .bar {
+            max-width: var(--w);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #c2410c;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover { transform: translateY(-1px); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        main {
+            max-width: var(--w);
+            margin: 26px auto 50px;
+            padding: 0 18px;
+        }
+
+        .scenario-selector {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .scenario-selector h2 {
+            margin: 0 0 16px;
+            color: var(--accent);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .scenario-btn {
+            background: linear-gradient(135deg, #fffaf5, #fff);
+            border: 2px solid #f97316;
+            color: #9a3412;
+            border-radius: 12px;
+            padding: 14px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .scenario-btn:hover {
+            border-color: #ea580c;
+            background: #fff1e0;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .scenario-btn.active {
+            border-color: #c2410c;
+            background: #f97316;
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(249, 115, 22, 0.2);
+        }
+
+        .scenario-btn strong { display: block; font-weight: 800; margin-bottom: 6px; }
+        .scenario-btn span { display: block; color: #6b7280; font-size: 13px; }
+
+        .activity-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .scenario-display {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: #fff;
+            padding: 22px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 24px rgba(249, 115, 22, 0.25);
+        }
+
+        .scenario-display h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .scenario-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .response-section {
+            margin-bottom: 26px;
+            background: #fffaf5;
+            border: 1px solid #fcd34d;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .response-section h4 {
+            margin: 0 0 8px;
+            color: #9a3412;
+            font-size: 16px;
+        }
+
+        .response-type-badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: #3730a3;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            padding: 4px 10px;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .response-section p {
+            margin: 0 0 10px;
+            color: var(--muted);
+        }
+
+        .textarea {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            min-height: 90px;
+            background: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .option-btn {
+            border: 2px solid #fcd34d;
+            background: #fff;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: left;
+            cursor: default;
+            font-weight: 700;
+            color: #9a3412;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .option-btn:hover { border-color: #f97316; background: #fff7ed; }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            color: #fff;
+            transition: all 0.15s ease;
+        }
+
+        .prev { background: #6b7280; }
+        .next { background: #c2410c; }
+
+        .prev:hover { background: #4b5563; }
+        .next:hover { background: #9a3412; }
+
+        .hint-system {
+            margin-top: 10px;
+        }
+
+        .hint-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .hint-btn {
+            padding: 8px 12px;
+            border: 1px solid #fcd34d;
+            background: #fff7ed;
+            color: #9a3412;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all 0.15s ease;
+        }
+
+        .hint-btn:hover { background: #fde68a; border-color: #f59e0b; }
+
+        .hint-content {
+            display: none;
+            background: #fffaf5;
+            border: 1px solid #fcd34d;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 6px;
+            color: #7c2d12;
+            font-size: 14px;
+        }
+
+        @media (max-width: 640px) {
+            .bar { flex-direction: column; align-items: flex-start; }
+            .nav-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <h1>Conversation Response – Thanksgiving</h1>
+            <div class="controls">
+                <button class="btn btn-primary" id="randomBtn">Random Scenario</button>
+                <button class="btn btn-secondary" id="resetBtn">Reset</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="scenario-selector">
+            <h2>Select a Scenario</h2>
+            <div class="scenario-grid" id="scenarioGrid"></div>
+        </section>
+
+        <section class="activity-container">
+            <div class="scenario-display">
+                <h3 id="scenarioTitle">Scenario</h3>
+                <p class="scenario-text" id="scenarioText"></p>
+            </div>
+
+            <div class="response-section">
+                <h4>Response Option 1</h4>
+                <div class="response-type-badge" id="type1"></div>
+                <p>First way you could reply. Include words and tone.</p>
+                <textarea class="textarea" id="response1" placeholder="Type your first response..."></textarea>
+                <div class="hint-system">
+                    <div class="hint-buttons">
+                        <button class="hint-btn" data-target="hint1a">I need help</button>
+                        <button class="hint-btn" data-target="choices1">I need more help</button>
+                    </div>
+                    <div class="hint-content" id="hint1a"></div>
+                    <div class="options" id="choices1"></div>
+                </div>
+                <p style="margin-top:10px;font-weight:700;color:#9a3412;">How might they react?</p>
+                <textarea class="textarea" id="prediction1" placeholder="If I say this, they might..."></textarea>
+            </div>
+
+            <div class="response-section">
+                <h4>Response Option 2 (Different)</h4>
+                <div class="response-type-badge" id="type2"></div>
+                <p>Try a different approach from #1.</p>
+                <textarea class="textarea" id="response2" placeholder="Type your second response..."></textarea>
+                <div class="hint-system">
+                    <div class="hint-buttons">
+                        <button class="hint-btn" data-target="hint1b">I need help</button>
+                        <button class="hint-btn" data-target="choices2">I need more help</button>
+                    </div>
+                    <div class="hint-content" id="hint1b"></div>
+                    <div class="options" id="choices2"></div>
+                </div>
+                <p style="margin-top:10px;font-weight:700;color:#9a3412;">How might they react?</p>
+                <textarea class="textarea" id="prediction2" placeholder="If I say this, they might..."></textarea>
+            </div>
+
+            <div class="response-section">
+                <h4>Compare Your Two Responses</h4>
+                <p>How are they different? Which feels better? Why?</p>
+                <textarea class="textarea" id="differenceBox" placeholder="What changed between response 1 and 2? Why might one work better?"></textarea>
+            </div>
+
+            <div class="nav-row">
+                <button class="nav-btn prev" id="prevBtn">⬅ Back</button>
+                <button class="nav-btn next" id="nextBtn">Next ➡</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const scenarios = [
+            {
+                title: "Arriving for Family Dinner",
+                text: "You get to your aunt’s house a little late. Everyone is already seated. Your aunt smiles and says, “Hey, we already started eating, but I’m glad you made it.”",
+                type1: "Show appreciation + join in",
+                type2: "Get caught up + offer help",
+                choices1: ["Thanks for having me—everything looks great. Where should I sit?", "I’m happy to be here. Want help passing plates or drinks?"],
+                choices2: ["Thanks for saving me a spot. What did I miss so far?", "I appreciate it—can I help with dishes or serving?"],
+                hints: {
+                    response1: {
+                        hint1: "Start with thanks.",
+                        hint2: "Offer to join in smoothly.",
+                        hint3: "Keep tone warm."
+                    },
+                    response2: {
+                        hint1: "Thank them and ask what you missed.",
+                        hint2: "Offer a simple way to help.",
+                        hint3: "Stay friendly and brief."
+                    }
+                }
+            },
+            {
+                title: "Talking Plans at School",
+                text: "At school before break, a classmate asks, “What are you doing for Thanksgiving break?” You don’t talk much in class, but they seem friendly.",
+                type1: "Share a simple plan",
+                type2: "Name one activity + ask back",
+                choices1: ["I’m going to my grandparents’ house. You?", "Family dinner at home—what about you?"],
+                choices2: ["We’re cooking and watching movies. Do you have plans?", "Probably relaxing with family. Anything fun for you?"],
+                hints: {
+                    response1: {
+                        hint1: "Share a simple plan.",
+                        hint2: "Ask about their plan.",
+                        hint3: "Keep it short."
+                    },
+                    response2: {
+                        hint1: "Mention one activity.",
+                        hint2: "Invite them to share.",
+                        hint3: "Use a calm tone."
+                    }
+                }
+            },
+            {
+                title: "Helping Younger Cousins",
+                text: "Before dinner, your parent asks, “Could you play a game with the younger cousins for a bit?” You feel shy but want to be helpful.",
+                type1: "Agree + ask what/where",
+                type2: "Set a short time + clarify",
+                choices1: ["Sure—what game do they want?", "Yes, I can. Do you want us in the living room?"],
+                choices2: ["I can for a little while. Which game works?", "Okay. Should I set them up at the table?"],
+                hints: {
+                    response1: {
+                        hint1: "Agree briefly.",
+                        hint2: "Ask for the game/location.",
+                        hint3: "Keep tone cooperative."
+                    },
+                    response2: {
+                        hint1: "Give a time limit if needed.",
+                        hint2: "Clarify where/what to play.",
+                        hint3: "Stay calm and clear."
+                    }
+                }
+            },
+            {
+                title: "Grandparent Question",
+                text: "During dinner, your grandparent smiles and asks, “What’s one thing you’re thankful for this year?” People are listening, and you want to keep it short.",
+                type1: "Share a simple thanks",
+                type2: "Share a calm, short thanks",
+                choices1: ["I’m thankful for our family dinners together.", "I’m thankful for friends who help me at school."],
+                choices2: ["I’m thankful for having a calm place to relax here.", "I’m thankful for everyone cooking today."],
+                hints: {
+                    response1: {
+                        hint1: "Pick a simple, true thing.",
+                        hint2: "Family or friends work well.",
+                        hint3: "Speak at a steady pace."
+                    },
+                    response2: {
+                        hint1: "Choose a calm, easy topic.",
+                        hint2: "Keep it short.",
+                        hint3: "Tone: respectful and steady."
+                    }
+                }
+            },
+            {
+                title: "Passing Food",
+                text: "At the table, someone asks, “Can you pass the mashed potatoes?” You feel quiet but want to answer politely.",
+                type1: "Say yes + pass",
+                type2: "Say yes + check needs",
+                choices1: ["Sure, here you go.", "Of course—do you want extra butter too?"],
+                choices2: ["Yep—do you need anything else?", "I’ll pass them over. Careful, they’re warm."],
+                hints: {
+                    response1: {
+                        hint1: "Say yes and act.",
+                        hint2: "Keep words short.",
+                        hint3: "Tone: polite."
+                    },
+                    response2: {
+                        hint1: "Check if they need more.",
+                        hint2: "Keep it simple.",
+                        hint3: "Stay calm."
+                    }
+                }
+            },
+            {
+                title: "After-Break Check-In",
+                text: "After break, a teacher asks the class, “What was one highlight of your Thanksgiving?” You want to share one simple thing.",
+                type1: "One highlight",
+                type2: "Short, calm detail",
+                choices1: ["I watched movies with my family.", "We cooked together, and I liked that."],
+                choices2: ["I enjoyed relaxing and eating with family.", "My favorite part was dessert night."],
+                hints: {
+                    response1: {
+                        hint1: "Name one simple highlight.",
+                        hint2: "Keep it to one sentence.",
+                        hint3: "Tone: calm, steady."
+                    },
+                    response2: {
+                        hint1: "Pick an easy moment (food/relax).",
+                        hint2: "Stay brief.",
+                        hint3: "Speak clearly."
+                    }
+                }
+            },
+            {
+                title: "Trying a New Food",
+                text: "At dinner, a relative says, “I made a new side dish—want to try a little?” You are unsure but want to answer kindly.",
+                type1: "Accept with small portion",
+                type2: "Accept briefly",
+                choices1: ["Sure, I’ll try a small scoop.", "Yes, thank you—just a little please."],
+                choices2: ["I’ll start with a tiny bit to see if I like it.", "Okay, a small taste would be great."],
+                hints: {
+                    response1: {
+                        hint1: "Say yes if you’re okay trying it.",
+                        hint2: "Ask for a small amount.",
+                        hint3: "Tone: polite."
+                    },
+                    response2: {
+                        hint1: "Keep it brief and specific.",
+                        hint2: "Mention a small portion.",
+                        hint3: "Stay calm."
+                    }
+                }
+            },
+            {
+                title: "Quiet Break",
+                text: "After lots of talking, you feel overwhelmed. Your cousin notices and asks, “Want to go outside for some air?”",
+                type1: "Accept briefly",
+                type2: "Accept + time cue",
+                choices1: ["Yes, a short walk sounds good.", "That would help—thanks for asking."],
+                choices2: ["Sure, let’s step out for a few minutes.", "Yes, I’d like some quiet. Can we go now?"],
+                hints: {
+                    response1: {
+                        hint1: "Accept simply.",
+                        hint2: "Keep words few.",
+                        hint3: "Tone: calm."
+                    },
+                    response2: {
+                        hint1: "Say yes and set a short time.",
+                        hint2: "Ask to go now if needed.",
+                        hint3: "Stay steady."
+                    }
+                }
+            },
+            {
+                title: "Sharing the Remote",
+                text: "While watching a game with family, a sibling says, “Can we switch to the parade for a bit?”",
+                type1: "Agree + time limit",
+                type2: "Trade turns",
+                choices1: ["Sure, we can switch for a while.", "Yeah, let’s watch the parade and then go back to the game."],
+                choices2: ["Okay, want to switch after this play?", "We can trade turns—parade now, game after."],
+                hints: {
+                    response1: {
+                        hint1: "Agree and set a brief time.",
+                        hint2: "Offer a simple plan.",
+                        hint3: "Tone: neutral."
+                    },
+                    response2: {
+                        hint1: "Suggest a short wait or turn-taking.",
+                        hint2: "Keep it direct.",
+                        hint3: "Stay calm."
+                    }
+                }
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const scenarioGrid = document.getElementById("scenarioGrid");
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioText = document.getElementById("scenarioText");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const randomBtn = document.getElementById("randomBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const response1 = document.getElementById("response1");
+        const response2 = document.getElementById("response2");
+        const prediction1 = document.getElementById("prediction1");
+        const prediction2 = document.getElementById("prediction2");
+        const differenceBox = document.getElementById("differenceBox");
+        const choices1 = document.getElementById("choices1");
+        const choices2 = document.getElementById("choices2");
+        const hint1a = document.getElementById("hint1a");
+        const hint1b = document.getElementById("hint1b");
+        const type1 = document.getElementById("type1");
+        const type2 = document.getElementById("type2");
+
+        function buildGrid() {
+            scenarioGrid.innerHTML = scenarios.map((sc, i) => `
+                <button class="scenario-btn ${i === currentIndex ? "active" : ""}" data-index="${i}">
+                    <strong>${sc.title}</strong>
+                    <span>Scenario ${i + 1}</span>
+                </button>
+            `).join("");
+
+            scenarioGrid.querySelectorAll(".scenario-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    currentIndex = parseInt(btn.dataset.index, 10);
+                    renderScenario();
+                });
+            });
+        }
+
+        function renderScenario() {
+            const sc = scenarios[currentIndex];
+            scenarioTitle.textContent = sc.title;
+            scenarioText.textContent = sc.text;
+            clearInputs();
+            renderHelps(sc);
+            renderHints(sc);
+            type1.textContent = sc.type1 || "";
+            type2.textContent = sc.type2 || "";
+            type1.style.display = sc.type1 ? "inline-block" : "none";
+            type2.style.display = sc.type2 ? "inline-block" : "none";
+            updateNavButtons();
+            buildGrid();
+        }
+
+        function updateNavButtons() {
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.textContent = currentIndex === scenarios.length - 1 ? "Finish" : "Next ➡";
+        }
+
+        function clearInputs() {
+            response1.value = "";
+            response2.value = "";
+            prediction1.value = "";
+            prediction2.value = "";
+            differenceBox.value = "";
+        }
+
+        function renderHelps(sc) {
+            choices1.innerHTML = sc.choices1 ? sc.choices1.map(text => `<div class="option-btn">${text}</div>`).join("") : "";
+            choices2.innerHTML = sc.choices2 ? sc.choices2.map(text => `<div class="option-btn">${text}</div>`).join("") : "";
+            choices1.style.display = "none";
+            choices2.style.display = "none";
+        }
+
+        function renderHints(sc) {
+            hint1a.textContent = [sc.hints?.response1?.hint1, sc.hints?.response1?.hint2, sc.hints?.response1?.hint3].filter(Boolean).join(" • ");
+            hint1b.textContent = [sc.hints?.response2?.hint1, sc.hints?.response2?.hint2, sc.hints?.response2?.hint3].filter(Boolean).join(" • ");
+            [hint1a, hint1b].forEach(h => { h.style.display = "none"; });
+        }
+
+        function setupHintButtons() {
+            document.querySelectorAll(".hint-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const targetId = btn.dataset.target;
+                    const el = document.getElementById(targetId);
+                    if (!el) return;
+                    const isChoices = targetId.startsWith("choices");
+                    if (isChoices) {
+                        el.style.display = el.style.display === "grid" ? "none" : "grid";
+                    } else {
+                        el.style.display = el.style.display === "block" ? "none" : "block";
+                    }
+                });
+            });
+        }
+
+        prevBtn.addEventListener("click", () => {
+            if (currentIndex > 0) {
+                currentIndex -= 1;
+                renderScenario();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (currentIndex < scenarios.length - 1) {
+                currentIndex += 1;
+            } else {
+                currentIndex = 0;
+            }
+            renderScenario();
+        });
+
+        randomBtn.addEventListener("click", () => {
+            currentIndex = Math.floor(Math.random() * scenarios.length);
+            renderScenario();
+        });
+
+        resetBtn.addEventListener("click", () => {
+            currentIndex = 0;
+            renderScenario();
+        });
+
+        renderScenario();
+        setupHintButtons();
+    </script>
+</body>
+</html>

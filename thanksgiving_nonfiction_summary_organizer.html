@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanksgiving Nonfiction Summary Organizer</title>
+    <style>
+        :root {
+            --bg: #f5f5f5;
+            --card: #ffffff;
+            --ink: #111827;
+            --muted: #4b5563;
+            --accent: #2563eb;
+            --border: #e5e7eb;
+            --radius: 14px;
+            --max-width: 980px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 22px 18px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        header p {
+            margin: 10px auto 0;
+            max-width: 720px;
+            font-size: 16px;
+            color: var(--muted);
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 24px auto 0;
+            padding: 0 18px 40px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            padding: 20px;
+        }
+
+        .intro h2 {
+            margin: 0 0 12px;
+            color: var(--ink);
+            font-size: 20px;
+        }
+
+        .intro ul {
+            margin: 8px 0 0;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        .nav-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--ink);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .nav-btn:hover {
+            background: #eef2ff;
+            border-color: #d1d5db;
+        }
+
+        .nav-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #1d4ed8;
+        }
+
+        .passage-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .passage-header h2 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--ink);
+        }
+
+        .text-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 17px;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .text-box p {
+            margin: 0 0 12px;
+        }
+
+        .organizer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 14px;
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .panel h3 {
+            margin: 0 0 10px;
+            color: var(--ink);
+            font-size: 17px;
+        }
+
+        .panel p {
+            margin: 0 0 8px;
+            color: var(--muted);
+        }
+
+        .choice-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .choice {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 10px;
+        }
+
+        .fields {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 700;
+            color: var(--ink);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #fff;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        textarea { resize: vertical; min-height: 70px; }
+
+        .clue-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 8px 0 6px;
+        }
+
+        .clue {
+            background: #eef2ff;
+            color: #1d4ed8;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 6px;
+        }
+
+        .checklist label {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .summary-frame {
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 12px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .summary-frame span {
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .summary-box {
+            min-height: 140px;
+        }
+
+        .summary-wide {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 700px) {
+            header h1 { font-size: 22px; }
+            .passage-header { gap: 8px; }
+            .organizer { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thanksgiving Nonfiction Summary Organizer</h1>
+        <p>Read two short informational paragraphs, pull out the main idea and key details, then use the frame to write a clear summary.</p>
+    </header>
+
+    <main>
+        <section class="card intro">
+            <h2>How to use this page</h2>
+            <ul>
+                <li>Read the two paragraphs to see the big idea.</li>
+                <li>Choose the main idea, then note three short details.</li>
+                <li>Fill in who, where, why, and result to stay focused.</li>
+                <li>Use the frame to write a two- to three-sentence summary.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <div class="nav-row" id="nav-row"></div>
+        </section>
+
+        <article class="card" id="passage-card">
+            <div class="passage-header">
+                <div>
+                    <h2 id="passage-title">Title</h2>
+                </div>
+            </div>
+
+            <div class="text-box" id="passage-text"></div>
+
+            <div class="organizer" id="organizer"></div>
+        </article>
+    </main>
+
+    <script>
+        const passages = [
+            {
+                title: "Why Turkey Became the Main Dish",
+                paragraphs: [
+                    "Early Thanksgiving meals did not always feature turkey. Colonists and Native peoples ate deer, fish, and corn. By the 1800s, turkeys became common because they were large enough to feed many people and were easy to raise on farms.",
+                    "Writers and newspapers helped make turkey the star of the holiday meal. Recipes showed simple ways to roast the bird, and families liked that one turkey could serve a crowd. Today, millions of turkeys are grown each fall for Thanksgiving tables across the country."
+                ],
+                mainIdeaOptions: [
+                    "Turkey became the main Thanksgiving dish because it fed many people and was promoted over time.",
+                    "Colonists only ate fish for every holiday meal.",
+                    "Modern Thanksgiving dinners do not include any meat."
+                ],
+                clueWords: ["colonists", "1800s", "large bird", "holiday meal"],
+                frameHints: {
+                    topic: "how turkey became the main dish",
+                    purpose: "to explain why turkey is served on Thanksgiving",
+                    key: "turkey was practical and then widely promoted"
+                }
+            },
+            {
+                id: "parade",
+                title: "Macy's Thanksgiving Day Parade",
+                paragraphs: [
+                    "The Macy's Thanksgiving Day Parade began in New York City in 1924. Store employees dressed in costumes and marched to celebrate the holiday and the start of the shopping season. Large animal balloons were added a few years later to draw bigger crowds.",
+                    "Television made the parade famous across the country. Today, the route is about two and a half miles long, and giant character balloons require many handlers. The parade still ends at the Macy's store to signal the beginning of winter shopping."
+                ],
+                mainIdeaOptions: [
+                    "The Macy's parade started in 1924 and grew with balloons and TV to mark the holiday shopping season.",
+                    "The parade began last year and only uses paper decorations.",
+                    "The route is short because the city does not allow balloons."
+                ],
+                clueWords: ["1924", "New York City", "balloons", "shopping season"],
+                frameHints: {
+                    topic: "the history of the Macy's parade",
+                    purpose: "to show how the parade became a tradition",
+                    key: "media and balloons helped it grow"
+                }
+            },
+            {
+                id: "cranberry",
+                title: "Cranberry Sauce on the Table",
+                paragraphs: [
+                    "Cranberries are native to North America and grow in wet bogs. Wampanoag and other Native peoples used the tart berries in food and medicine. When European settlers arrived, they learned to harvest cranberries in the fall.",
+                    "By the early 1900s, companies began canning cranberry sauce, making it easy to serve. Families liked the bright color and sweet-tart taste alongside turkey and stuffing. Today, cranberry sauce is a common side dish at many Thanksgiving meals."
+                ],
+                mainIdeaOptions: [
+                    "Cranberry sauce became a Thanksgiving side because the native berry was easy to harvest and later easy to can.",
+                    "Cranberries only grow in deserts far from water.",
+                    "People avoid cranberries because they are too hard to cook."
+                ],
+                clueWords: ["native berry", "bogs", "canned", "side dish"],
+                frameHints: {
+                    topic: "how cranberries became a Thanksgiving side",
+                    purpose: "to explain why cranberry sauce is common",
+                    key: "local berries plus canning made it popular"
+                }
+            },
+            {
+                id: "food-drive",
+                title: "Thanksgiving Food Drives",
+                paragraphs: [
+                    "Many schools and community groups run food drives in November. They collect canned vegetables, boxed stuffing, and other shelf-stable foods. These items go to food pantries that prepare boxes for families before the holiday.",
+                    "Food drives often set goals based on the number of meals they want to support. Volunteers sort donations by type and check dates. Local businesses may match donations with money to buy fresh produce. Together, these efforts help more households have a full Thanksgiving meal."
+                ],
+                mainIdeaOptions: [
+                    "Thanksgiving food drives gather shelf-stable items and funds so pantries can give full meal boxes to families.",
+                    "Food drives only accept fresh pies from restaurants.",
+                    "Pantries do not organize donations before sharing them."
+                ],
+                clueWords: ["food drives", "pantries", "donations", "meal boxes"],
+                frameHints: {
+                    topic: "how food drives support Thanksgiving meals",
+                    purpose: "to show how donations reach families",
+                    key: "organized collecting and sorting fills meal boxes"
+                }
+            },
+            {
+                id: "safety",
+                title: "Thanksgiving Kitchen Safety",
+                paragraphs: [
+                    "Cooking large holiday meals requires careful food safety. Raw turkey can contain bacteria, so it should stay separate from vegetables and be kept in the refrigerator until cooking time. Clean cutting boards and washing hands reduce the spread of germs.",
+                    "A food thermometer checks that turkey reaches a safe temperature of 165°F. Leftovers should be cooled in shallow containers and placed in the fridge within two hours. Following these steps lowers the chance of foodborne illness during Thanksgiving."
+                ],
+                mainIdeaOptions: [
+                    "Simple food safety steps, like separation and proper cooking, keep Thanksgiving meals safe to eat.",
+                    "Turkeys never need to be refrigerated before cooking.",
+                    "Leftovers can stay on the counter all day without risk."
+                ],
+                clueWords: ["165°F", "separate", "refrigerate", "leftovers"],
+                frameHints: {
+                    topic: "food safety for the holiday meal",
+                    purpose: "to prevent illness from germs",
+                    key: "safe handling and cooking protect families"
+                }
+            }
+        ];
+
+        const navRow = document.getElementById("nav-row");
+        const passageTitle = document.getElementById("passage-title");
+        const passageText = document.getElementById("passage-text");
+        const organizer = document.getElementById("organizer");
+
+        function renderNav(activeId) {
+            navRow.innerHTML = passages.map(passage => `
+                <button class="nav-btn ${passage.id === activeId ? "active" : ""}" data-id="${passage.id}">
+                    ${passage.title}
+                </button>
+            `).join("");
+        }
+
+        function renderPassage(passage) {
+            passageTitle.textContent = passage.title;
+            passageText.innerHTML = passage.paragraphs.map(paragraph => `<p>${paragraph}</p>`).join("");
+            organizer.innerHTML = buildOrganizer(passage);
+            hookNavButtons(passage.id);
+        }
+
+        function buildOrganizer(passage) {
+            const choices = passage.mainIdeaOptions.map((option, index) => `
+                <label class="choice">
+                    <input type="radio" name="main-idea-${passage.id}" value="${option}">
+                    <span>${String.fromCharCode(65 + index)}. ${option}</span>
+                </label>
+            `).join("");
+
+            const clues = passage.clueWords.map(word => `<span class="clue">${word}</span>`).join("");
+
+            return `
+                <section class="panel">
+                    <h3>Find the Main Idea</h3>
+                    <p>Pick the best choice, then restate it in your own words.</p>
+                    <div class="choice-list">${choices}</div>
+                    <div class="clue-row">${clues}</div>
+                    <label for="main-idea-write-${passage.id}">My main idea sentence</label>
+                    <textarea id="main-idea-write-${passage.id}" placeholder="This text is mostly about..."></textarea>
+                </section>
+                <section class="panel">
+                    <h3>Who, Where, Why</h3>
+                    <p>Fill the boxes with simple notes. Keep each answer short.</p>
+                    <div class="fields">
+                        <div>
+                            <label for="who-${passage.id}">Who or what is mostly involved?</label>
+                            <input type="text" id="who-${passage.id}" placeholder="Neighbors, students, helpers...">
+                        </div>
+                        <div>
+                            <label for="where-${passage.id}">Where and when?</label>
+                            <input type="text" id="where-${passage.id}" placeholder="At the park, at the airport...">
+                        </div>
+                        <div>
+                            <label for="why-${passage.id}">Why is this happening?</label>
+                            <input type="text" id="why-${passage.id}" placeholder="To share food, to travel, to stay safe...">
+                        </div>
+                        <div>
+                            <label for="result-${passage.id}">Result or outcome</label>
+                            <input type="text" id="result-${passage.id}" placeholder="Families get meals, parade is ready...">
+                        </div>
+                    </div>
+                </section>
+                <section class="panel summary-wide">
+                    <h3>Build the Summary</h3>
+                    <p>Use this frame. Then write it smoothly in the box.</p>
+                    <div class="summary-frame">
+                        <div><span>Start:</span> This text explains <input type="text" placeholder="main topic (what it is about)">.</div>
+                        <div><span>Why:</span> It shows this because <input type="text" placeholder="reason or purpose">.</div>
+                        <div><span>Main point:</span> The most important idea is <input type="text" placeholder="big idea in your words">.</div>
+                    </div>
+                    <label for="summary-${passage.id}">My summary (2-3 sentences)</label>
+                    <textarea class="summary-box" id="summary-${passage.id}" placeholder="Combine your notes into 2-3 clear sentences."></textarea>
+                </section>
+            `;
+        }
+
+        function hookNavButtons(activeId) {
+            const buttons = navRow.querySelectorAll(".nav-btn");
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const chosenId = button.getAttribute("data-id");
+                    renderNav(chosenId);
+                    const nextPassage = passages.find(item => item.id === chosenId);
+                    renderPassage(nextPassage);
+                });
+            });
+        }
+
+        renderNav(passages[0].id);
+        renderPassage(passages[0]);
+    </script>
+</body>
+</html>

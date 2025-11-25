@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanksgiving Compare & Contrast</title>
+    <style>
+        :root {
+            --bg: #f7f2ea;
+            --surface: #ffffff;
+            --accent: #c75b12;
+            --accent-dark: #8c3f0c;
+            --teal: #0f766e;
+            --muted: #475569;
+            --radius: 18px;
+            --max-width: 1100px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #fff9f2, #f3e6d8 70%);
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(120deg, #facc15, #f97316, #c2410c);
+            color: white;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 10px 24px rgba(196, 125, 20, 0.35);
+            position: sticky;
+            top: 0;
+            z-index: 12;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            margin: 10px auto 0;
+            max-width: 760px;
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 30px auto 60px;
+            padding: 0 18px;
+        }
+
+        .topic-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+
+        .topic-btn {
+            border: 2px solid rgba(199, 91, 18, 0.25);
+            background: white;
+            color: var(--accent);
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .topic-btn:hover {
+            background: rgba(249, 115, 22, 0.12);
+            border-color: rgba(199, 91, 18, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .topic-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 18px rgba(199, 91, 18, 0.25);
+        }
+
+        .activity-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 26px;
+            box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+            border: 2px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .activity-header h2 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .info-chip {
+            background: rgba(15, 118, 110, 0.12);
+            color: var(--teal);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .instructions {
+            background: rgba(249, 115, 22, 0.12);
+            border: 2px solid rgba(249, 115, 22, 0.28);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            color: #92400e;
+            font-size: 15px;
+        }
+
+        .word-bank {
+            background: rgba(15, 118, 110, 0.08);
+            border: 2px dashed rgba(15, 118, 110, 0.3);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 22px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .word-bank strong { color: var(--teal); }
+
+        .activity-body {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+        }
+
+        .card-bank-panel {
+            width: 260px;
+            background: rgba(199, 91, 18, 0.08);
+            border: 2px solid rgba(199, 91, 18, 0.25);
+            border-radius: 18px;
+            padding: 16px;
+            position: sticky;
+            top: 120px;
+            box-shadow: 0 12px 24px rgba(199, 91, 18, 0.12);
+        }
+
+        .card-bank-panel h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .card-bank-panel p {
+            font-size: 13px;
+            color: var(--muted);
+            text-align: center;
+            margin: 0 0 12px;
+        }
+
+        .double-bubble {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .bubble-column {
+            background: rgba(148, 163, 184, 0.12);
+            border-radius: 18px;
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            padding: 16px;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .bubble-column.similar {
+            background: rgba(15, 118, 110, 0.12);
+            border-color: rgba(15, 118, 110, 0.3);
+        }
+
+        .column-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .column-title span {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .drop-zone {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            border: 2px dashed rgba(148, 163, 184, 0.4);
+            padding: 12px;
+            min-height: 160px;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--accent);
+            background: rgba(249, 115, 22, 0.08);
+        }
+
+        .card-stack { display: grid; gap: 10px; }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            border: 2px solid rgba(199, 91, 18, 0.22);
+            padding: 10px 12px;
+            font-size: 15px;
+            cursor: grab;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .info-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(199, 91, 18, 0.18);
+        }
+
+        .info-card.dragging {
+            opacity: 0.5;
+            transform: scale(1.03);
+        }
+
+        .info-card.placed { border-color: var(--teal); background: rgba(15, 118, 110, 0.1); }
+        .info-card.incorrect { border-color: #dc2626; background: rgba(220, 38, 38, 0.08); }
+
+        .emoji-tag { font-size: 20px; width: 28px; text-align: center; }
+
+        .feedback {
+            background: rgba(15, 118, 110, 0.12);
+            border: 2px solid rgba(15, 118, 110, 0.3);
+            border-radius: 14px;
+            padding: 14px 16px;
+            color: #065f46;
+            margin-bottom: 24px;
+            display: none;
+        }
+
+        .feedback.error {
+            background: rgba(220, 38, 38, 0.12);
+            border-color: rgba(220, 38, 38, 0.35);
+            color: #991b1b;
+        }
+
+        .tools {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+
+        .tools button {
+            border: 2px solid rgba(199, 91, 18, 0.25);
+            background: white;
+            color: var(--accent);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tools button:hover {
+            background: rgba(249, 115, 22, 0.1);
+            border-color: rgba(199, 91, 18, 0.4);
+        }
+
+        .tools button.primary {
+            background: var(--accent);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 16px rgba(199, 91, 18, 0.25);
+        }
+
+        .writing-frame {
+            background: rgba(148, 163, 184, 0.12);
+            border-radius: 14px;
+            border: 2px solid rgba(148, 163, 184, 0.25);
+            padding: 18px;
+        }
+
+        .writing-frame h3 {
+            margin: 0 0 12px;
+            font-size: 16px;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .sentence-frame { display: grid; gap: 12px; }
+
+        .sentence-frame textarea {
+            min-height: 90px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(148, 163, 184, 0.4);
+            padding: 10px 12px;
+            font-family: inherit;
+            background: white;
+        }
+
+        .sentence-frame textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+        }
+
+        @media (max-width: 900px) {
+            .activity-body { flex-direction: column; }
+            .card-bank-panel { position: static; width: 100%; }
+            .double-bubble { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thanksgiving Compare & Contrast</h1>
+        <p>Drag each idea into the correct bubble, then use the sentence frames to explain how the Thanksgiving items are alike and different.</p>
+    </header>
+
+    <main>
+        <div class="topic-nav" id="topicNav"></div>
+
+        <section class="activity-card">
+            <div class="activity-header">
+                <h2 id="activityTitle">Roast Turkey vs Vegetarian Roast</h2>
+                <span class="info-chip" id="contextTag">Main Course Choices</span>
+            </div>
+
+            <div class="instructions">
+                ✦ Drag each card into the matching bubble.<br>
+                ✦ Shared ideas belong in the middle bubble. Unique ideas go to the left or right bubble.<br>
+                ✦ Double-click a card to send it back to the idea bank.
+            </div>
+
+            <div class="word-bank">
+                <strong>Helpful Words:</strong> both, alike, similarly, also, however, unlike, different, while, in contrast
+            </div>
+
+            <div class="activity-body">
+                <aside class="card-bank-panel">
+                    <h3>Idea Cards</h3>
+                    <p>Drag each card into a bubble. Double-click to return it to this bank.</p>
+                    <div class="card-stack" id="cardBank"></div>
+                </aside>
+
+                <div class="bubble-wrapper">
+                    <div class="double-bubble">
+                        <div class="bubble-column">
+                            <div class="column-title">
+                                <span id="leftEmoji">🦃</span>
+                                <strong id="leftTitle">Roast Turkey</strong>
+                                <span>Only for this side</span>
+                            </div>
+                            <div class="drop-zone" data-zone="left" id="leftZone"><div class="card-stack"></div></div>
+                        </div>
+
+                        <div class="bubble-column similar">
+                            <div class="column-title">
+                                <span>🤝</span>
+                                <strong>Both</strong>
+                                <span>Shared ideas</span>
+                            </div>
+                            <div class="drop-zone" data-zone="middle" id="middleZone"><div class="card-stack"></div></div>
+                        </div>
+
+                        <div class="bubble-column">
+                            <div class="column-title">
+                                <span id="rightEmoji">🌱</span>
+                                <strong id="rightTitle">Vegetarian Roast</strong>
+                                <span>Only for this side</span>
+                            </div>
+                            <div class="drop-zone" data-zone="right" id="rightZone"><div class="card-stack"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="feedback" id="feedbackBox">
+                        <strong id="feedbackTitle">Great job!</strong>
+                        <p id="feedbackText">All cards are in the right bubbles.</p>
+                    </div>
+
+                    <div class="tools">
+                        <button class="primary" id="checkBtn">✓ Check My Bubbles</button>
+                        <button id="showAnswersBtn">👀 Show One Hint</button>
+                        <button id="resetBtn">🔄 Reset Cards</button>
+                    </div>
+
+                    <div class="writing-frame">
+                        <h3>Sentence Frames</h3>
+                        <div class="sentence-frame">
+                            <textarea id="similarText" placeholder="Both ______ and ______ are alike because ..."></textarea>
+                            <textarea id="differenceText" placeholder="They are different because ..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const activities = [
+            {
+                title: "Roast Turkey vs Vegetarian Roast",
+                context: "Main Course Choices",
+                left: { label: "Roast Turkey", emoji: "🦃" },
+                right: { label: "Vegetarian Roast", emoji: "🌱" },
+                cards: [
+                    { text: "Traditional Thanksgiving meat option", zone: "left" },
+                    { text: "Often basted and roasted for hours", zone: "left" },
+                    { text: "Plant-based main dish", zone: "right" },
+                    { text: "Usually shaped like a loaf or roast", zone: "right" },
+                    { text: "Served as the centerpiece entrée", zone: "middle" },
+                    { text: "Sliced and shared at the table", zone: "middle" }
+                ]
+            },
+            {
+                title: "Parade vs Football Game",
+                context: "Thanksgiving Day Events",
+                left: { label: "Parade", emoji: "🎈" },
+                right: { label: "Football Game", emoji: "🏈" },
+                cards: [
+                    { text: "Features balloons and floats", zone: "left" },
+                    { text: "Often watched in the morning", zone: "left" },
+                    { text: "Teams compete and keep score", zone: "right" },
+                    { text: "Crowds cheer in stadiums", zone: "right" },
+                    { text: "Watched with family or friends", zone: "middle" },
+                    { text: "Part of many Thanksgiving traditions", zone: "middle" }
+                ]
+            },
+            {
+                title: "Dining at Home vs Dining Out",
+                context: "Where to Celebrate",
+                left: { label: "Dining at Home", emoji: "🏠" },
+                right: { label: "Dining Out", emoji: "🍽️" },
+                cards: [
+                    { text: "Cook recipes in your own kitchen", zone: "left" },
+                    { text: "Set the table with family dishes", zone: "left" },
+                    { text: "Meals prepared by restaurant staff", zone: "right" },
+                    { text: "No clean-up after the meal", zone: "right" },
+                    { text: "Share food together on the holiday", zone: "middle" },
+                    { text: "Plan ahead and reserve time to eat", zone: "middle" }
+                ]
+            },
+            {
+                title: "Pumpkin Pie vs Pecan Pie",
+                context: "Dessert Table",
+                left: { label: "Pumpkin Pie", emoji: "🥧" },
+                right: { label: "Pecan Pie", emoji: "🌰" },
+                cards: [
+                    { text: "Made with spiced pumpkin filling", zone: "left" },
+                    { text: "Silky, custard-like texture", zone: "left" },
+                    { text: "Filled with toasted pecans", zone: "right" },
+                    { text: "Sticky, caramel-like sweetness", zone: "right" },
+                    { text: "Often topped with whipped cream", zone: "middle" },
+                    { text: "Served as a Thanksgiving dessert", zone: "middle" }
+                ]
+            },
+            {
+                title: "Volunteering vs Donating",
+                context: "Giving Back",
+                left: { label: "Volunteering", emoji: "👐" },
+                right: { label: "Donating", emoji: "🎁" },
+                cards: [
+                    { text: "Serve meals at a community kitchen", zone: "left" },
+                    { text: "Requires planning time to help in person", zone: "left" },
+                    { text: "Provide canned goods or funds", zone: "right" },
+                    { text: "Collected through drives or drop-off boxes", zone: "right" },
+                    { text: "Supports neighbors during the holiday", zone: "middle" },
+                    { text: "Shows gratitude through helping others", zone: "middle" }
+                ]
+            },
+            {
+                title: "Playing Board Games vs Watching Movies",
+                context: "After-Dinner Fun",
+                left: { label: "Board Games", emoji: "🎲" },
+                right: { label: "Watching Movies", emoji: "🎬" },
+                cards: [
+                    { text: "Use cards, dice, or game pieces", zone: "left" },
+                    { text: "Players take turns around a table", zone: "left" },
+                    { text: "Sit together and view a screen", zone: "right" },
+                    { text: "Stories unfold without taking turns", zone: "right" },
+                    { text: "Spend relaxing time with family", zone: "middle" },
+                    { text: "Can become a yearly Thanksgiving tradition", zone: "middle" }
+                ]
+            },
+            {
+                title: "Roast Turkey vs Ham",
+                context: "Main Dish Choices",
+                left: { label: "Roast Turkey", emoji: "🦃" },
+                right: { label: "Ham", emoji: "🍖" },
+                cards: [
+                    { text: "Turkey meat main dish", zone: "left" },
+                    { text: "Roasted in the oven for a long time", zone: "left" },
+                    { text: "Pork meat main dish", zone: "right" },
+                    { text: "Often baked with a sweet glaze", zone: "right" },
+                    { text: "Cut into slices to share", zone: "middle" },
+                    { text: "Served as the main protein", zone: "middle" }
+                ]
+            },
+            {
+                title: "Cornbread vs Dinner Rolls",
+                context: "Bread Basket",
+                left: { label: "Cornbread", emoji: "🫓" },
+                right: { label: "Dinner Rolls", emoji: "🥐" },
+                cards: [
+                    { text: "Made with cornmeal batter", zone: "left" },
+                    { text: "Cut in squares or wedges", zone: "left" },
+                    { text: "Made with soft yeast dough", zone: "right" },
+                    { text: "Round little buns", zone: "right" },
+                    { text: "Served warm with butter", zone: "middle" },
+                    { text: "Bread passed around the table", zone: "middle" }
+                ]
+            },
+            {
+                title: "Cranberry Sauce vs Gravy",
+                context: "Toppings & Sauces",
+                left: { label: "Cranberry Sauce", emoji: "🫐" },
+                right: { label: "Gravy", emoji: "🥣" },
+                cards: [
+                    { text: "Sweet-tart berry taste", zone: "left" },
+                    { text: "Red color", zone: "left" },
+                    { text: "Savory sauce from meat juice", zone: "right" },
+                    { text: "Brown and salty", zone: "right" },
+                    { text: "Poured on turkey or potatoes", zone: "middle" },
+                    { text: "Adds extra sauce to food", zone: "middle" }
+                ]
+            },
+            {
+                title: "Green Beans vs Corn",
+                context: "Vegetable Sides",
+                left: { label: "Green Beans", emoji: "🫘" },
+                right: { label: "Corn", emoji: "🌽" },
+                cards: [
+                    { text: "Long green veggie sticks", zone: "left" },
+                    { text: "Can be steamed or in a casserole", zone: "left" },
+                    { text: "Small yellow kernels", zone: "right" },
+                    { text: "Can be on or off the cob", zone: "right" },
+                    { text: "Veggie side dishes", zone: "middle" },
+                    { text: "Cook fast for dinner", zone: "middle" }
+                ]
+            },
+            {
+                title: "Mashed Potatoes vs Sweet Potatoes",
+                context: "Comfort Sides",
+                left: { label: "Mashed Potatoes", emoji: "🥔" },
+                right: { label: "Sweet Potatoes", emoji: "🍠" },
+                cards: [
+                    { text: "Creamy mashed white potatoes", zone: "left" },
+                    { text: "Tastes savory and salty", zone: "left" },
+                    { text: "Orange mashed sweet potatoes", zone: "right" },
+                    { text: "Tastes sweet, often with marshmallows", zone: "right" },
+                    { text: "Both mashed and warm", zone: "middle" },
+                    { text: "Classic holiday sides", zone: "middle" }
+                ]
+            },
+            {
+                title: "Pumpkin Pie vs Apple Pie",
+                context: "Dessert Favorites",
+                left: { label: "Pumpkin Pie", emoji: "🥧" },
+                right: { label: "Apple Pie", emoji: "🍎" },
+                cards: [
+                    { text: "Smooth pumpkin filling with spice", zone: "left" },
+                    { text: "Soft, custard-like texture", zone: "left" },
+                    { text: "Slices of apples inside", zone: "right" },
+                    { text: "Flaky crust, sometimes a lattice", zone: "right" },
+                    { text: "Both are classic pies", zone: "middle" },
+                    { text: "Often served with whipped cream or ice cream", zone: "middle" }
+                ]
+            },
+            {
+                title: "Paper Plates vs Real Plates",
+                context: "Setting the Table",
+                left: { label: "Paper Plates", emoji: "📄" },
+                right: { label: "Real Plates", emoji: "🍽️" },
+                cards: [
+                    { text: "Used one time then thrown away", zone: "left" },
+                    { text: "Feel light and bendy", zone: "left" },
+                    { text: "Washed and used again", zone: "right" },
+                    { text: "Feel heavy and solid", zone: "right" },
+                    { text: "Hold food for the meal", zone: "middle" },
+                    { text: "Set on the table for eating", zone: "middle" }
+                ]
+            },
+            {
+                title: "Helping Cook vs Watching TV",
+                context: "Holiday Jobs",
+                left: { label: "Helping Cook", emoji: "🥄" },
+                right: { label: "Watching TV", emoji: "📺" },
+                cards: [
+                    { text: "Stir and carry food", zone: "left" },
+                    { text: "Wear an apron", zone: "left" },
+                    { text: "Sit on the couch", zone: "right" },
+                    { text: "Hold a remote", zone: "right" },
+                    { text: "Things people do on the holiday", zone: "middle" },
+                    { text: "Happens before the big meal", zone: "middle" }
+                ]
+            },
+            {
+                title: "Road Trip vs Stay Home",
+                context: "Where You Eat",
+                left: { label: "Road Trip", emoji: "🚗" },
+                right: { label: "Stay Home", emoji: "🏠" },
+                cards: [
+                    { text: "Pack bags and drive", zone: "left" },
+                    { text: "Eat at another house", zone: "left" },
+                    { text: "Sleep in your own bed", zone: "right" },
+                    { text: "Eat in your own kitchen", zone: "right" },
+                    { text: "Share food with family", zone: "middle" },
+                    { text: "Make a plan for the day", zone: "middle" }
+                ]
+            },
+            {
+                title: "Homemade Pie vs Store Pie",
+                context: "Dessert Choices",
+                left: { label: "Homemade Pie", emoji: "👩‍🍳" },
+                right: { label: "Store Pie", emoji: "🛒" },
+                cards: [
+                    { text: "Mixed and baked at home", zone: "left" },
+                    { text: "Smells fresh from the oven", zone: "left" },
+                    { text: "Bought ready to eat", zone: "right" },
+                    { text: "In a box from a bakery", zone: "right" },
+                    { text: "Sweet dessert after dinner", zone: "middle" },
+                    { text: "Cut into slices to share", zone: "middle" }
+                ]
+            },
+            {
+                title: "Leftover Sandwich vs Leftover Plate",
+                context: "Day-After Lunch",
+                left: { label: "Leftover Sandwich", emoji: "🥪" },
+                right: { label: "Leftover Plate", emoji: "🍛" },
+                cards: [
+                    { text: "Turkey and stuffing between bread", zone: "left" },
+                    { text: "Easy to hold in your hand", zone: "left" },
+                    { text: "Food warmed on a plate", zone: "right" },
+                    { text: "Eat with a fork", zone: "right" },
+                    { text: "Uses Thanksgiving leftovers", zone: "middle" },
+                    { text: "Eaten the next day", zone: "middle" }
+                ]
+            }
+        ];
+
+        let draggedCard = null;
+        let currentIndex = 0;
+
+        const topicNav = document.getElementById("topicNav");
+        const titleEl = document.getElementById("activityTitle");
+        const contextEl = document.getElementById("contextTag");
+        const leftTitleEl = document.getElementById("leftTitle");
+        const rightTitleEl = document.getElementById("rightTitle");
+        const leftEmojiEl = document.getElementById("leftEmoji");
+        const rightEmojiEl = document.getElementById("rightEmoji");
+        const leftZone = document.getElementById("leftZone").querySelector(".card-stack");
+        const middleZone = document.getElementById("middleZone").querySelector(".card-stack");
+        const rightZone = document.getElementById("rightZone").querySelector(".card-stack");
+        const bank = document.getElementById("cardBank");
+        const feedbackBox = document.getElementById("feedbackBox");
+        const feedbackTitle = document.getElementById("feedbackTitle");
+        const feedbackText = document.getElementById("feedbackText");
+        const checkBtn = document.getElementById("checkBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const showHintBtn = document.getElementById("showAnswersBtn");
+        const similarText = document.getElementById("similarText");
+        const differenceText = document.getElementById("differenceText");
+
+        function buildNav() {
+            topicNav.innerHTML = "";
+            activities.forEach((activity, index) => {
+                const btn = document.createElement("button");
+                btn.className = "topic-btn";
+                btn.innerHTML = `${activity.left.emoji}<span>${activity.title}</span>`;
+                btn.addEventListener("click", () => loadActivity(index));
+                topicNav.appendChild(btn);
+            });
+        }
+
+        function clearZones() {
+            [leftZone, middleZone, rightZone, bank].forEach(zone => {
+                zone.innerHTML = "";
+            });
+            feedbackBox.style.display = "none";
+            feedbackBox.classList.remove("error");
+        }
+
+        function createCard(card) {
+            const cardEl = document.createElement("div");
+            cardEl.className = "info-card";
+            cardEl.draggable = true;
+            cardEl.dataset.zone = card.zone;
+            cardEl.innerHTML = `<span class="emoji-tag">📌</span><span>${card.text}</span>`;
+
+            cardEl.addEventListener("dragstart", event => {
+                draggedCard = cardEl;
+                cardEl.classList.add("dragging");
+                event.dataTransfer.effectAllowed = "move";
+            });
+
+            cardEl.addEventListener("dragend", () => {
+                draggedCard = null;
+                cardEl.classList.remove("dragging");
+            });
+
+            cardEl.addEventListener("dblclick", () => {
+                bank.appendChild(cardEl);
+                cardEl.classList.remove("placed", "incorrect");
+            });
+
+            return cardEl;
+        }
+
+        function setupDropZones() {
+            document.querySelectorAll(".drop-zone").forEach(zone => {
+                zone.addEventListener("dragover", event => {
+                    event.preventDefault();
+                    zone.classList.add("drag-over");
+                });
+
+                zone.addEventListener("dragleave", () => {
+                    zone.classList.remove("drag-over");
+                });
+
+                zone.addEventListener("drop", () => {
+                    if (draggedCard) {
+                        zone.classList.remove("drag-over");
+                        zone.querySelector(".card-stack").appendChild(draggedCard);
+                        draggedCard.classList.remove("incorrect");
+                        draggedCard.classList.add("placed");
+                    }
+                });
+            });
+
+            bank.addEventListener("dragover", event => event.preventDefault());
+            bank.addEventListener("drop", () => {
+                if (draggedCard) {
+                    bank.appendChild(draggedCard);
+                    draggedCard.classList.remove("incorrect", "placed");
+                }
+            });
+        }
+
+        function loadActivity(index) {
+            currentIndex = index;
+            const activity = activities[index];
+            clearZones();
+
+            document.querySelectorAll(".topic-btn").forEach((btn, i) => {
+                btn.classList.toggle("active", i === index);
+            });
+
+            titleEl.textContent = activity.title;
+            contextEl.textContent = activity.context;
+            leftTitleEl.textContent = activity.left.label;
+            leftEmojiEl.textContent = activity.left.emoji;
+            rightTitleEl.textContent = activity.right.label;
+            rightEmojiEl.textContent = activity.right.emoji;
+
+            similarText.placeholder = `Both ${activity.left.label} and ${activity.right.label} are alike because ...`;
+            differenceText.placeholder = `${activity.left.label} and ${activity.right.label} are different because ...`;
+            similarText.value = "";
+            differenceText.value = "";
+
+            [...activity.cards]
+                .sort(() => Math.random() - 0.5)
+                .forEach(card => bank.appendChild(createCard(card)));
+        }
+
+        function zoneLabel(zoneKey, activity) {
+            if (zoneKey === "left") {
+                return activity.left.label;
+            }
+            if (zoneKey === "right") {
+                return activity.right.label;
+            }
+            return "Both";
+        }
+
+        function checkAnswers() {
+            const activity = activities[currentIndex];
+            const dropAreas = {
+                left: Array.from(document.getElementById("leftZone").querySelector(".card-stack").children),
+                middle: Array.from(document.getElementById("middleZone").querySelector(".card-stack").children),
+                right: Array.from(document.getElementById("rightZone").querySelector(".card-stack").children)
+            };
+
+            let correct = 0;
+            const total = activity.cards.length;
+            const mistakes = [];
+
+            ["left", "middle", "right"].forEach(zoneName => {
+                dropAreas[zoneName].forEach(cardEl => {
+                    const expected = cardEl.dataset.zone;
+                    if (expected === zoneName) {
+                        correct += 1;
+                        cardEl.classList.remove("incorrect");
+                    } else {
+                        cardEl.classList.add("incorrect");
+                        const message = `“${cardEl.innerText.trim()}” belongs under ${zoneLabel(expected, activity)}.`;
+                        if (!mistakes.includes(message)) {
+                            mistakes.push(message);
+                        }
+                    }
+                });
+            });
+
+            if (correct === total) {
+                feedbackTitle.textContent = "Great job!";
+                feedbackText.textContent = "All cards are in the correct bubbles.";
+                feedbackBox.classList.remove("error");
+            } else {
+                feedbackTitle.textContent = "Keep going!";
+                feedbackText.innerHTML = mistakes.join("<br>");
+                feedbackBox.classList.add("error");
+            }
+            feedbackBox.style.display = "block";
+        }
+
+        function showHint() {
+            const activity = activities[currentIndex];
+            const zones = [
+                document.getElementById("leftZone").querySelector(".card-stack"),
+                document.getElementById("middleZone").querySelector(".card-stack"),
+                document.getElementById("rightZone").querySelector(".card-stack")
+            ];
+            const placed = zones.flatMap(zone => Array.from(zone.children));
+            const incorrectCards = placed.filter(card => card.dataset.zone !== card.parentElement.parentElement.dataset.zone);
+
+            if (incorrectCards.length > 0) {
+                const hintCard = incorrectCards[0];
+                hintCard.classList.add("incorrect");
+                feedbackBox.classList.add("error");
+                feedbackTitle.textContent = "Hint:";
+                feedbackText.textContent = `Try moving “${hintCard.innerText.trim()}” to ${zoneLabel(hintCard.dataset.zone, activity)}.`;
+                feedbackBox.style.display = "block";
+                return;
+            }
+
+            const bankCards = Array.from(bank.children);
+            if (bankCards.length > 0) {
+                const hint = bankCards[0];
+                feedbackBox.classList.add("error");
+                feedbackTitle.textContent = "Hint:";
+                feedbackText.textContent = `Place “${hint.innerText.trim()}” in ${zoneLabel(hint.dataset.zone, activity)}.`;
+                feedbackBox.style.display = "block";
+            } else {
+                feedbackBox.classList.remove("error");
+                feedbackTitle.textContent = "Nice work!";
+                feedbackText.textContent = "No hints needed right now.";
+                feedbackBox.style.display = "block";
+            }
+        }
+
+        function resetCards() {
+            loadActivity(currentIndex);
+            feedbackBox.style.display = "none";
+            similarText.value = "";
+            differenceText.value = "";
+        }
+
+        buildNav();
+        setupDropZones();
+        loadActivity(0);
+        checkBtn.addEventListener("click", checkAnswers);
+        resetBtn.addEventListener("click", resetCards);
+        showHintBtn.addEventListener("click", showHint);
+    </script>
+</body>
+</html>

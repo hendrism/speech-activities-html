@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fight-or-Flight & Stuttering</title>
+    <style>
+        :root {
+            --bg: #f7f2ea;
+            --surface: #ffffff;
+            --accent: #c85a12;
+            --accent-2: #0f766e;
+            --muted: #475569;
+            --radius: 16px;
+            --shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+            --max-width: 1100px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 18% 20%, #fff9f2, #f2e6d8 70%);
+            color: #0f172a;
+            line-height: 1.6;
+            padding: 24px 16px 48px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+            color: var(--accent);
+            letter-spacing: 0.4px;
+        }
+
+        header p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .shell {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(148, 163, 184, 0.18);
+            padding: 20px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .card {
+            background: rgba(148, 163, 184, 0.1);
+            border: 2px solid rgba(148, 163, 184, 0.2);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .card h2 {
+            margin: 0 0 8px;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        .card p { margin: 0 0 10px; color: #0f172a; }
+
+        .list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 10px;
+        }
+
+        .item {
+            background: #fff;
+            border: 2px solid rgba(148, 163, 184, 0.25);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .item h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+            color: var(--accent-2);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            border-radius: 10px;
+            border: 2px solid rgba(148, 163, 184, 0.35);
+            padding: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #fff;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(200, 90, 18, 0.15);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+        }
+
+        .step {
+            background: #fff;
+            border: 2px solid rgba(148, 163, 184, 0.25);
+            border-radius: 12px;
+            padding: 10px;
+        }
+
+        .step strong { display: block; margin-bottom: 4px; color: var(--accent); }
+
+        .note {
+            margin: 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fight-or-Flight & Stuttering</h1>
+        <p>Learn the simple fight-or-flight steps and map your own stuttering moments to each one.</p>
+    </header>
+
+    <div class="shell">
+        <section class="card">
+            <h2>Quick Explanation</h2>
+            <p>Fight-or-flight is the body’s quick alarm system for danger. It often shows up with stuttering because our brain treats speaking as risky. Here is the simple order:</p>
+            <div class="steps">
+                <div class="step"><strong>Finding</strong><span class="note">You notice a possible speaking “threat.”</span></div>
+                <div class="step"><strong>Freezing</strong><span class="note">Your body tenses and speech muscles can lock.</span></div>
+                <div class="step"><strong>Fleeing</strong><span class="note">You avoid or change words to escape.</span></div>
+                <div class="step"><strong>Fighting</strong><span class="note">You push hard against a stuck sound.</span></div>
+                <div class="step"><strong>Folding</strong><span class="note">You give up, stay quiet, or leave.</span></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>How It Affects Me</h2>
+            <p>Write what stuttering brings up for you. You can use bullet points or sentences.</p>
+            <div class="list">
+                <div class="item">
+                    <h3>Things That Are Difficult</h3>
+                    <textarea placeholder="Examples: ordering food, saying names, phone calls..."></textarea>
+                </div>
+                <div class="item">
+                    <h3>Things That Are Scary</h3>
+                    <textarea placeholder="Examples: speaking tests, new people, being called on..."></textarea>
+                </div>
+                <div class="item">
+                    <h3>Things That Are Embarrassing</h3>
+                    <textarea placeholder="Examples: long blocks, people finishing my words..."></textarea>
+                </div>
+                <div class="item">
+                    <h3>Things That Are Exhausting</h3>
+                    <textarea placeholder="Examples: hiding stuttering, switching words all day..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Place Each One Into a Step</h2>
+            <p>Match your notes above to the 5 steps. This helps you spot where to change your reaction.</p>
+            <div class="steps">
+                <div class="step">
+                    <strong>Finding</strong>
+                    <textarea placeholder="When do you start watching for stuttering?"></textarea>
+                </div>
+                <div class="step">
+                    <strong>Freezing</strong>
+                    <textarea placeholder="When do you tense up or get stuck?"></textarea>
+                </div>
+                <div class="step">
+                    <strong>Fleeing</strong>
+                    <textarea placeholder="When do you avoid or switch words?"></textarea>
+                </div>
+                <div class="step">
+                    <strong>Fighting</strong>
+                    <textarea placeholder="When do you push hard on sounds?"></textarea>
+                </div>
+                <div class="step">
+                    <strong>Folding</strong>
+                    <textarea placeholder="When do you stop talking or give up?"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Action Plan (Optional)</h2>
+            <p>Write one small change to try for each step (example: “take a slow breath before my turn”).</p>
+            <div class="steps">
+                <div class="step"><strong>Finding</strong><textarea placeholder="What helps you stay calm when you notice a speaking chance?"></textarea></div>
+                <div class="step"><strong>Freezing</strong><textarea placeholder="What keeps your speech moving instead of locking?"></textarea></div>
+                <div class="step"><strong>Fleeing</strong><textarea placeholder="How can you move forward instead of avoiding?"></textarea></div>
+                <div class="step"><strong>Fighting</strong><textarea placeholder="How can you ease through stuck sounds?"></textarea></div>
+                <div class="step"><strong>Folding</strong><textarea placeholder="What helps you finish what you want to say?"></textarea></div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
