@@ -7,6 +7,7 @@ export const wordDefinitions = [
     {
         word: "BICYCLE",
         item: "bicycle",
+        imageUrl: "images/objects/bicycle.jpg", // Example image path
         category: "vehicle",
         categoryHint: "It's something people use for transportation",
         categoryChoices: ["vehicle", "toy", "machine", "furniture"],
@@ -20,6 +21,7 @@ export const wordDefinitions = [
     {
         word: "DICTIONARY",
         item: "dictionary",
+        imageUrl: "images/objects/dictionary.jpg", // Example image path
         category: "book",
         categoryHint: "It's something you can read that has many pages",
         categoryChoices: ["book", "tool", "game", "furniture"],

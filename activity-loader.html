@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Loader</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Activity-specific overrides */
+        .quiz-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .target-word {
+            color: var(--primary-color);
+            font-weight: bold;
+            background: #e0e7ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .option-btn {
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary-color);
+            background: #f8fafc;
+        }
+
+        .option-btn.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .option-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .feedback-area {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .hint-box {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .activity-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <div class="header-content">
+                <h1 id="activityTitle">Activity Loading...</h1>
+                <p id="activitySubtitle">Practice your language skills</p>
+            </div>
+            <div style="margin-top: 10px;">
+                <a href="index.html" style="color: white; text-decoration: underline;">← Back to Hub</a>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <div id="activity-container">
+                <!-- Content will be injected here -->
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { activityRegistry } from './js/activity-registry.js';
+        import { QuizEngine } from './js/quiz-engine.js';
+
+        // Get activity ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const activityId = urlParams.get('id');
+
+        const config = activityRegistry[activityId];
+
+        if (!config) {
+            document.getElementById('activityTitle').textContent = 'Activity Not Found';
+            document.getElementById('activitySubtitle').textContent = 'Please check the URL or go back to the hub.';
+        } else {
+            document.getElementById('activityTitle').textContent = config.title;
+            document.getElementById('activitySubtitle').textContent = config.subtitle;
+
+            if (config.type === 'quiz') {
+                const engine = new QuizEngine({
+                    data: config.data,
+                    containerId: 'activity-container',
+                    // Pass the specific configuration for this activity type
+                    config: config.engineConfig
+                });
+            }
+        }
+    </script>
+</body>
+</html>
