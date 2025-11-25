@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanksgiving Literal Comprehension Stories</title>
+    <style>
+        :root {
+            --orange: #f08a24;
+            --deep-orange: #d35400;
+            --soft-cream: #fff7ed;
+            --stone: #334155;
+            --soft-blue: #e2e8f0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(120deg, #fff3e0, #ffe0b2);
+            margin: 0;
+            padding: 0;
+            color: var(--stone);
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 20px 40px;
+        }
+        h1 {
+            text-align: center;
+            color: var(--deep-orange);
+            margin-bottom: 8px;
+        }
+        .intro {
+            background: white;
+            border: 1px solid #f1dec6;
+            border-radius: 14px;
+            padding: 16px 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(3px);
+            border: 1px solid #f1dec6;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            z-index: 10;
+        }
+        .nav-btn {
+            border: 1px solid #f1dec6;
+            background: var(--soft-cream);
+            color: var(--stone);
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .nav-btn:hover {
+            background: #ffe8cc;
+            border-color: #f5c086;
+        }
+        .nav-btn.active {
+            background: var(--deep-orange);
+            color: white;
+            border-color: var(--deep-orange);
+            box-shadow: 0 4px 12px rgba(211, 84, 0, 0.35);
+        }
+        .story-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #f1dec6;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .story-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #f1dec6;
+            padding-bottom: 10px;
+        }
+        .story-title {
+            color: var(--deep-orange);
+            margin: 0;
+        }
+        .story-level {
+            background: var(--soft-blue);
+            color: #0f172a;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .story-text {
+            margin: 16px 0 8px;
+            line-height: 1.7;
+            background: var(--soft-cream);
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px dashed #f1dec6;
+        }
+        .questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+        .question-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px;
+            background: #f8fafc;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .question-text {
+            font-weight: 700;
+        }
+        .clue {
+            display: none;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 10px;
+            padding: 10px;
+            color: #92400e;
+        }
+        .choice-btn {
+            width: 100%;
+            text-align: left;
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .choice-btn:hover {
+            border-color: #94a3b8;
+            background: #e2e8f0;
+        }
+        .choice-btn.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+            font-weight: 700;
+        }
+        .choice-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+        .help-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .btn-clue {
+            background: #0ea5e9;
+            color: white;
+        }
+        .btn-clue:disabled,
+        .btn-choices:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            color: #475569;
+        }
+        .btn-choices {
+            background: var(--orange);
+            color: white;
+        }
+        .choices-wrap {
+            display: none;
+            margin-top: 4px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        .feedback {
+            display: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 700;
+        }
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+        @media (max-width: 640px) {
+            .nav-bar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Thanksgiving Literal Comprehension Stories</h1>
+        <div class="intro">
+            Use the top bar to jump between ten stories. For each question, first tap "Show clue" to read a written hint, then unlock four randomized choices. Pick an answer and the card will mark it right or wrong so you can keep going.
+        </div>
+        <div class="nav-bar" id="story-nav"></div>
+        <div id="story-container"></div>
+    </div>
+    <script>
+        const stories = [
+            {
+                id: 'story-1',
+                title: 'The Cranberry Spill',
+                level: 'Simple',
+                text: 'Lena carried a bowl of cranberries to the table. She tripped on the rug. The cranberries spilled onto the floor. Her brother helped her pick them up. They washed the berries and put them back in the bowl.',
+                questions: [
+                    {
+                        prompt: 'What did Lena carry?',
+                        answer: 'a bowl of cranberries',
+                        clue: 'She was holding a bowl filled with small red berries.',
+                        choices: [
+                            'a bowl of cranberries',
+                            'a plate of cookies',
+                            'a basket of apples',
+                            'a tray of cups'
+                        ]
+                    },
+                    {
+                        prompt: 'What made her trip?',
+                        answer: 'the rug',
+                        clue: 'Her foot caught on something on the floor.',
+                        choices: [
+                            'the rug',
+                            'a chair leg',
+                            'a loose tile',
+                            'a toy car'
+                        ]
+                    },
+                    {
+                        prompt: 'Where did the cranberries fall?',
+                        answer: 'onto the floor',
+                        clue: 'They scattered down where her feet were.',
+                        choices: [
+                            'onto the floor',
+                            'onto the table',
+                            'into the sink',
+                            'into the trash'
+                        ]
+                    },
+                    {
+                        prompt: 'Who helped her?',
+                        answer: 'her brother',
+                        clue: 'A sibling came to help.',
+                        choices: [
+                            'her brother',
+                            'her sister',
+                            'her mom',
+                            'her neighbor'
+                        ]
+                    },
+                    {
+                        prompt: 'What did they do after picking up the berries?',
+                        answer: 'washed them and put them back in the bowl',
+                        clue: 'They cleaned the berries and returned them to where they started.',
+                        choices: [
+                            'washed them and put them back in the bowl',
+                            'threw them away',
+                            'fed them to the dog',
+                            'used them to make sauce'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-2',
+                title: 'The Big Parade',
+                level: 'Simple',
+                text: 'Sam sat on the couch to watch the Thanksgiving parade. His mom brought him a blanket. A giant turkey balloon floated across the screen. Sam pointed and laughed. His mom sat next to him and watched too.',
+                questions: [
+                    {
+                        prompt: 'What did Sam watch?',
+                        answer: 'the Thanksgiving parade',
+                        clue: 'It was a holiday parade on TV.',
+                        choices: [
+                            'the Thanksgiving parade',
+                            'a football game',
+                            'a cooking show',
+                            'a movie'
+                        ]
+                    },
+                    {
+                        prompt: 'What did his mom bring him?',
+                        answer: 'a blanket',
+                        clue: 'She brought something warm to cover him.',
+                        choices: [
+                            'a blanket',
+                            'hot cocoa',
+                            'a pillow',
+                            'a stuffed animal'
+                        ]
+                    },
+                    {
+                        prompt: 'What big balloon did Sam see?',
+                        answer: 'a giant turkey balloon',
+                        clue: 'It was shaped like the Thanksgiving bird.',
+                        choices: [
+                            'a giant turkey balloon',
+                            'a big pumpkin balloon',
+                            'a giant balloon dog',
+                            'a huge balloon snowman'
+                        ]
+                    },
+                    {
+                        prompt: 'What did Sam do when he saw it?',
+                        answer: 'pointed and laughed',
+                        clue: 'He reacted with a happy gesture and sound.',
+                        choices: [
+                            'pointed and laughed',
+                            'hid under the blanket',
+                            'took a picture',
+                            'called his friend'
+                        ]
+                    },
+                    {
+                        prompt: 'Who sat next to him?',
+                        answer: 'his mom',
+                        clue: 'The same person who brought the blanket sat beside him.',
+                        choices: [
+                            'his mom',
+                            'his sister',
+                            'his dad',
+                            'his grandma'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-3',
+                title: 'The Pie Decision',
+                level: 'Simple',
+                text: 'Jordan opened the fridge. He saw pumpkin pie and apple pie. He asked his sister which one he should choose. She told him to try the apple pie. Jordan cut a small slice.',
+                questions: [
+                    {
+                        prompt: 'What did Jordan open?',
+                        answer: 'the fridge',
+                        clue: 'He looked inside the cold place where food is kept.',
+                        choices: [
+                            'the fridge',
+                            'the oven',
+                            'a cupboard',
+                            'the pantry door'
+                        ]
+                    },
+                    {
+                        prompt: 'What two pies did he see?',
+                        answer: 'pumpkin pie and apple pie',
+                        clue: 'They were two classic fall pies.',
+                        choices: [
+                            'pumpkin pie and apple pie',
+                            'cherry pie and pecan pie',
+                            'blueberry pie and peach pie',
+                            'chocolate pie and lemon pie'
+                        ]
+                    },
+                    {
+                        prompt: 'Who did he ask for help?',
+                        answer: 'his sister',
+                        clue: 'He asked a sibling.',
+                        choices: [
+                            'his sister',
+                            'his dad',
+                            'his friend',
+                            'his teacher'
+                        ]
+                    },
+                    {
+                        prompt: 'Which pie did she suggest?',
+                        answer: 'the apple pie',
+                        clue: 'She picked the one with fruit slices.',
+                        choices: [
+                            'the apple pie',
+                            'the pumpkin pie',
+                            'the cherry pie',
+                            'the pecan pie'
+                        ]
+                    },
+                    {
+                        prompt: 'What did Jordan do at the end?',
+                        answer: 'cut a small slice',
+                        clue: 'He served himself a little piece.',
+                        choices: [
+                            'cut a small slice',
+                            'took both pies',
+                            'closed the fridge without eating',
+                            'burned the pie'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-4',
+                title: 'Setting the Table',
+                level: 'Simple',
+                text: 'Maya placed plates on the table. She added forks and spoons. She put a paper turkey in the middle. Her cousins brought napkins. Soon the table was ready.',
+                questions: [
+                    {
+                        prompt: 'What did Maya put on the table first?',
+                        answer: 'plates',
+                        clue: 'She started with the dishes people eat from.',
+                        choices: [
+                            'plates',
+                            'cups',
+                            'napkins',
+                            'glasses'
+                        ]
+                    },
+                    {
+                        prompt: 'What did she add next?',
+                        answer: 'forks and spoons',
+                        clue: 'She set out the utensils.',
+                        choices: [
+                            'forks and spoons',
+                            'cups',
+                            'chairs',
+                            'candles'
+                        ]
+                    },
+                    {
+                        prompt: 'What did she place in the middle of the table?',
+                        answer: 'a paper turkey',
+                        clue: 'She added a paper decoration shaped like the main bird.',
+                        choices: [
+                            'a paper turkey',
+                            'a vase of flowers',
+                            'a bowl of fruit',
+                            'a candle'
+                        ]
+                    },
+                    {
+                        prompt: 'Who brought napkins?',
+                        answer: 'her cousins',
+                        clue: 'Other kids in the family helped.',
+                        choices: [
+                            'her cousins',
+                            'her parents',
+                            'her neighbor',
+                            'her teacher'
+                        ]
+                    },
+                    {
+                        prompt: 'What was ready at the end?',
+                        answer: 'the table',
+                        clue: 'All the place settings were complete.',
+                        choices: [
+                            'the table',
+                            'the dessert',
+                            'the living room',
+                            'the dishwasher'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-5',
+                title: 'The Turkey Timer',
+                level: 'Simple',
+                text: 'Owen watched the oven clock. The turkey had five minutes left. His grandma told him not to open the door. Owen stood very still. When the timer beeped, he called her right away.',
+                questions: [
+                    {
+                        prompt: 'What was Owen watching?',
+                        answer: 'the oven clock',
+                        clue: 'He kept his eyes on the time for the turkey.',
+                        choices: [
+                            'the oven clock',
+                            'the TV',
+                            'the microwave',
+                            'the window'
+                        ]
+                    },
+                    {
+                        prompt: 'How many minutes were left?',
+                        answer: 'five minutes',
+                        clue: 'The turkey needed just a little more time, only one hand number.',
+                        choices: [
+                            'five minutes',
+                            'ten minutes',
+                            'two minutes',
+                            'fifteen minutes'
+                        ]
+                    },
+                    {
+                        prompt: 'Who told him not to open the door?',
+                        answer: 'his grandma',
+                        clue: 'An older family member gave the instruction.',
+                        choices: [
+                            'his grandma',
+                            'his mom',
+                            'his dad',
+                            'his sister'
+                        ]
+                    },
+                    {
+                        prompt: 'What did Owen do while he waited?',
+                        answer: 'stood very still',
+                        clue: 'He stayed in one spot without moving much.',
+                        choices: [
+                            'stood very still',
+                            'paced around the kitchen',
+                            'played a game',
+                            'took a nap'
+                        ]
+                    },
+                    {
+                        prompt: 'What happened when the timer beeped?',
+                        answer: 'he called her right away',
+                        clue: 'He got her attention immediately when it beeped.',
+                        choices: [
+                            'he called her right away',
+                            'he opened the oven',
+                            'he turned off the oven',
+                            'he walked outside'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-6',
+                title: 'The Pumpkin Patch',
+                level: 'Moderate',
+                text: 'Rosa and her dad walked slowly through the pumpkin patch, taking their time as they looked at each row. She wanted a pumpkin that was small enough for her to carry but still round and bright. After checking several spots, she found one sitting near a wooden fence. Her dad picked it up to make sure it wasn\'t soft or damaged, then handed it back to her with a smile. They talked about turning it into pie later that evening.',
+                questions: [
+                    {
+                        prompt: 'Who walked through the pumpkin patch with Rosa?',
+                        answer: 'her dad',
+                        clue: 'A parent joined Rosa on the walk.',
+                        choices: [
+                            'her dad',
+                            'her mom',
+                            'her brother',
+                            'her friend'
+                        ]
+                    },
+                    {
+                        prompt: 'What kind of pumpkin was she looking for?',
+                        answer: 'a small, round, bright pumpkin she could carry',
+                        clue: 'She wanted one she could lift herself but that still looked nicely shaped.',
+                        choices: [
+                            'a small, round, bright pumpkin she could carry',
+                            'a huge pumpkin for carving',
+                            'a tall skinny pumpkin',
+                            'a green unripe pumpkin'
+                        ]
+                    },
+                    {
+                        prompt: 'Where did she find the pumpkin she liked?',
+                        answer: 'near a wooden fence',
+                        clue: 'It was sitting close to a fence.',
+                        choices: [
+                            'near a wooden fence',
+                            'beside the barn door',
+                            'by the hay bales',
+                            'next to the wagon'
+                        ]
+                    },
+                    {
+                        prompt: 'What did her dad check before giving it to her?',
+                        answer: 'that it wasn\'t soft or damaged',
+                        clue: 'He made sure the pumpkin felt firm and healthy.',
+                        choices: [
+                            'that it wasn\'t soft or damaged',
+                            'that it cost less',
+                            'that it was the biggest',
+                            'that it had a long stem'
+                        ]
+                    },
+                    {
+                        prompt: 'What did they plan to make with the pumpkin?',
+                        answer: 'pie',
+                        clue: 'They talked about turning it into dessert later.',
+                        choices: [
+                            'pie',
+                            'soup',
+                            'a jack-o-lantern',
+                            'pumpkin bread'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-7',
+                title: 'The Leftovers',
+                level: 'Moderate',
+                text: 'After the Thanksgiving meal, Caleb opened several containers to see what was left. He chose a few slices of turkey and placed them neatly on his plate. He added mashed potatoes and a spoonful of stuffing because they were his favorites. Once everything was ready, he warmed the food in the microwave and watched the numbers count down. When he tasted the first bite, he felt glad to have another small holiday meal.',
+                questions: [
+                    {
+                        prompt: 'What did Caleb open after the meal?',
+                        answer: 'several containers',
+                        clue: 'He looked through storage boxes of food.',
+                        choices: [
+                            'several containers',
+                            'the oven',
+                            'a cookbook',
+                            'a gift box'
+                        ]
+                    },
+                    {
+                        prompt: 'What did he put on his plate first?',
+                        answer: 'slices of turkey',
+                        clue: 'He started with meat.',
+                        choices: [
+                            'slices of turkey',
+                            'mashed potatoes',
+                            'stuffing',
+                            'vegetables'
+                        ]
+                    },
+                    {
+                        prompt: 'What two sides did he add?',
+                        answer: 'mashed potatoes and stuffing',
+                        clue: 'He picked his two favorite soft sides.',
+                        choices: [
+                            'mashed potatoes and stuffing',
+                            'corn and salad',
+                            'bread and soup',
+                            'cranberry sauce and green beans'
+                        ]
+                    },
+                    {
+                        prompt: 'Where did he warm the food?',
+                        answer: 'in the microwave',
+                        clue: 'He watched the numbers count down on this appliance.',
+                        choices: [
+                            'in the microwave',
+                            'on the stove',
+                            'in the oven',
+                            'on a grill'
+                        ]
+                    },
+                    {
+                        prompt: 'How did he feel when he took his first bite?',
+                        answer: 'glad to have another small holiday meal',
+                        clue: 'He felt happy to enjoy the food again.',
+                        choices: [
+                            'glad to have another small holiday meal',
+                            'disappointed it was cold',
+                            'nervous about the taste',
+                            'too full to eat'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-8',
+                title: 'The Fall Walk',
+                level: 'Moderate',
+                text: 'After their Thanksgiving meal, Nora and her aunt went outside for a walk to enjoy the cool air. The ground was covered in colorful leaves, and some of them made a soft crunch under their shoes. Nora kicked a small pile just to see the leaves scatter in the air. Her aunt laughed and told her it reminded her of when she was a kid. They continued walking, talking about their favorite parts of the day.',
+                questions: [
+                    {
+                        prompt: 'When did Nora and her aunt go for a walk?',
+                        answer: 'after their Thanksgiving meal',
+                        clue: 'They went outside once they finished eating.',
+                        choices: [
+                            'after their Thanksgiving meal',
+                            'before breakfast',
+                            'late at night',
+                            'during a rainstorm'
+                        ]
+                    },
+                    {
+                        prompt: 'What covered the ground?',
+                        answer: 'colorful leaves',
+                        clue: 'The path was layered with fallen leaves.',
+                        choices: [
+                            'colorful leaves',
+                            'snow',
+                            'mud puddles',
+                            'pebbles'
+                        ]
+                    },
+                    {
+                        prompt: 'What did Nora do with the pile of leaves?',
+                        answer: 'kicked a small pile to scatter them',
+                        clue: 'She knocked a pile with her foot.',
+                        choices: [
+                            'kicked a small pile to scatter them',
+                            'sat down in them',
+                            'raked them neatly',
+                            'put them in a bag'
+                        ]
+                    },
+                    {
+                        prompt: 'What did her aunt say it reminded her of?',
+                        answer: 'when she was a kid',
+                        clue: 'It made her think about her own childhood.',
+                        choices: [
+                            'when she was a kid',
+                            'a movie',
+                            'last summer\'s trip',
+                            'a song'
+                        ]
+                    },
+                    {
+                        prompt: 'What did they talk about as they walked?',
+                        answer: 'their favorite parts of the day',
+                        clue: 'They shared highlights from the day.',
+                        choices: [
+                            'their favorite parts of the day',
+                            'tomorrow\'s chores',
+                            'news headlines',
+                            'what to buy at the store'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-9',
+                title: 'The Grocery Run',
+                level: 'Moderate',
+                text: 'Ty picked up the shopping list from the counter and read the items his mom still needed. She asked him to find a package of dinner rolls while she checked the produce section. Ty walked down the bread aisle and scanned the shelves until he spotted the rolls on the top shelf. He reached up, grabbed the package, and carried it back to the cart. His mom thanked him for helping and crossed the item off the list.',
+                questions: [
+                    {
+                        prompt: 'What did Ty pick up from the counter?',
+                        answer: 'the shopping list',
+                        clue: 'He grabbed the note of items they needed.',
+                        choices: [
+                            'the shopping list',
+                            'a receipt',
+                            'his phone',
+                            'a coupon'
+                        ]
+                    },
+                    {
+                        prompt: 'What did his mom tell him to find?',
+                        answer: 'a package of dinner rolls',
+                        clue: 'She asked for bread to go with dinner.',
+                        choices: [
+                            'a package of dinner rolls',
+                            'a gallon of milk',
+                            'a bag of apples',
+                            'a box of cereal'
+                        ]
+                    },
+                    {
+                        prompt: 'Where did Ty look for the rolls?',
+                        answer: 'in the bread aisle',
+                        clue: 'He walked along the aisle with loaves and buns.',
+                        choices: [
+                            'in the bread aisle',
+                            'in the freezer section',
+                            'by the deli counter',
+                            'in the produce area'
+                        ]
+                    },
+                    {
+                        prompt: 'Where were the rolls located on the shelf?',
+                        answer: 'on the top shelf',
+                        clue: 'He had to reach up to get them.',
+                        choices: [
+                            'on the top shelf',
+                            'on the bottom shelf',
+                            'in the middle bin',
+                            'behind the counter'
+                        ]
+                    },
+                    {
+                        prompt: 'What did his mom do after he brought them back?',
+                        answer: 'thanked him and crossed the item off the list',
+                        clue: 'She showed appreciation and marked it as done.',
+                        choices: [
+                            'thanked him and crossed the item off the list',
+                            'asked him to return them',
+                            'put them back on the shelf',
+                            'told him to find more milk'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-10',
+                title: 'The Family Photo',
+                level: 'Moderate',
+                text: 'The whole family gathered in the living room after dinner to take a holiday photo. Uncle Ray balanced his phone on a stack of books to get a good angle, then set a countdown timer. Everyone shifted around until they had a spot, and several people adjusted their shirts or hair. When the flash went off, they all froze for a moment before relaxing again. They checked the picture together and laughed at how one cousin blinked right when the photo was taken.',
+                questions: [
+                    {
+                        prompt: 'Where did the family gather for the photo?',
+                        answer: 'in the living room',
+                        clue: 'They met in the room with couches after dinner.',
+                        choices: [
+                            'in the living room',
+                            'outside on the porch',
+                            'in the kitchen',
+                            'in the backyard'
+                        ]
+                    },
+                    {
+                        prompt: 'What did Uncle Ray balance his phone on?',
+                        answer: 'a stack of books',
+                        clue: 'He used some books to prop up his phone.',
+                        choices: [
+                            'a stack of books',
+                            'a chair',
+                            'a tripod',
+                            'a shelf'
+                        ]
+                    },
+                    {
+                        prompt: 'What did everyone do before the picture was taken?',
+                        answer: 'found a spot and adjusted their shirts or hair',
+                        clue: 'They moved into position and fixed how they looked.',
+                        choices: [
+                            'found a spot and adjusted their shirts or hair',
+                            'ate dessert',
+                            'left the room',
+                            'started a video call'
+                        ]
+                    },
+                    {
+                        prompt: 'What happened when the flash went off?',
+                        answer: 'they all froze for a moment',
+                        clue: 'They held still at the exact moment of the photo.',
+                        choices: [
+                            'they all froze for a moment',
+                            'they closed their eyes to rest',
+                            'they ran out of the room',
+                            'they waved at the camera'
+                        ]
+                    },
+                    {
+                        prompt: 'Why did they laugh when they looked at the photo?',
+                        answer: 'one cousin blinked right when the photo was taken',
+                        clue: 'They noticed a relative had eyes closed in the shot.',
+                        choices: [
+                            'one cousin blinked right when the photo was taken',
+                            'the picture was blurry',
+                            'the phone fell over',
+                            'someone was not in the frame'
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const navBar = document.getElementById('story-nav');
+        const storyContainer = document.getElementById('story-container');
+        let activeStoryId = stories[0].id;
+
+        function shuffle(array) {
+            const copy = [...array];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function renderNav() {
+            navBar.innerHTML = '';
+            stories.forEach((story, index) => {
+                const btn = document.createElement('button');
+                btn.className = story.id === activeStoryId ? 'nav-btn active' : 'nav-btn';
+                btn.textContent = `${index + 1}. ${story.title}`;
+                btn.addEventListener('click', () => {
+                    activeStoryId = story.id;
+                    renderNav();
+                    renderStory();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+                navBar.appendChild(btn);
+            });
+        }
+
+        function renderStory() {
+            const story = stories.find((s) => s.id === activeStoryId);
+            if (!story) return;
+
+            storyContainer.innerHTML = '';
+            const card = document.createElement('article');
+            card.className = 'story-card';
+
+            const header = document.createElement('div');
+            header.className = 'story-header';
+
+            const title = document.createElement('h2');
+            title.className = 'story-title';
+            title.textContent = story.title;
+
+            const badge = document.createElement('div');
+            badge.className = 'story-level';
+            badge.textContent = `${story.level} • 5 questions`;
+
+            header.appendChild(title);
+            header.appendChild(badge);
+
+            const text = document.createElement('div');
+            text.className = 'story-text';
+            text.textContent = story.text;
+
+            const questionsWrap = document.createElement('div');
+            questionsWrap.className = 'questions';
+            story.questions.forEach((q, idx) => {
+                questionsWrap.appendChild(createQuestionCard(q, idx));
+            });
+
+            card.appendChild(header);
+            card.appendChild(text);
+            card.appendChild(questionsWrap);
+
+            storyContainer.appendChild(card);
+        }
+
+        function createQuestionCard(question, index) {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            const questionText = document.createElement('div');
+            questionText.className = 'question-text';
+            questionText.textContent = `${index + 1}. ${question.prompt}`;
+
+            const helpRow = document.createElement('div');
+            helpRow.className = 'help-row';
+
+            const clueBtn = document.createElement('button');
+            clueBtn.className = 'btn btn-clue';
+            clueBtn.textContent = 'Show clue';
+
+            const choicesBtn = document.createElement('button');
+            choicesBtn.className = 'btn btn-choices';
+            choicesBtn.textContent = 'Show answer choices';
+            choicesBtn.disabled = true;
+
+            helpRow.appendChild(clueBtn);
+            helpRow.appendChild(choicesBtn);
+
+            const clueBox = document.createElement('div');
+            clueBox.className = 'clue';
+            clueBox.textContent = `Clue: ${question.clue}`;
+
+            const choicesWrap = document.createElement('div');
+            choicesWrap.className = 'choices-wrap';
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+
+            clueBtn.addEventListener('click', () => {
+                clueBox.style.display = 'block';
+                clueBtn.disabled = true;
+                choicesBtn.disabled = false;
+            });
+
+            choicesBtn.addEventListener('click', () => {
+                renderChoices(choicesWrap, question);
+                choicesWrap.style.display = 'grid';
+                choicesBtn.disabled = true;
+            });
+
+            card.appendChild(questionText);
+            card.appendChild(helpRow);
+            card.appendChild(clueBox);
+            card.appendChild(choicesWrap);
+            card.appendChild(feedback);
+
+            return card;
+        }
+
+        function renderChoices(container, question) {
+            container.innerHTML = '';
+            const feedback = container.parentElement.querySelector('.feedback');
+            feedback.style.display = 'none';
+            feedback.className = 'feedback';
+
+            const options = shuffle(question.choices);
+            options.forEach((choice) => {
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn';
+                btn.textContent = choice;
+                btn.addEventListener('click', () => {
+                    handleAnswer(btn, container, question.answer, feedback);
+                });
+                container.appendChild(btn);
+            });
+        }
+
+        function handleAnswer(selectedBtn, container, correctAnswer, feedback) {
+            const buttons = container.querySelectorAll('.choice-btn');
+            buttons.forEach((btn) => {
+                btn.disabled = true;
+                if (btn.textContent === correctAnswer) {
+                    btn.classList.add('correct');
+                }
+            });
+
+            if (selectedBtn.textContent === correctAnswer) {
+                feedback.textContent = 'Correct! Great reading.';
+                feedback.classList.add('correct');
+            } else {
+                selectedBtn.classList.add('incorrect');
+                feedback.textContent = 'Not quite. The correct answer is highlighted.';
+                feedback.classList.add('incorrect');
+            }
+            feedback.style.display = 'block';
+        }
+
+        renderNav();
+        renderStory();
+    </script>
+</body>
+</html>
