@@ -1,6 +1,6 @@
 import Layout from '../components/layout/Layout';
 import ActivityCard from '../components/common/ActivityCard';
-import { BookOpen, MessageCircle, Mic, Brain, Layout, Search } from 'lucide-react';
+import { Layout as LayoutIcon, MessageSquare, BookOpen, Brain, Search, MessageCircle, Split, Users } from 'lucide-react';
 
 export default function Hub() {
     return (
@@ -52,7 +52,7 @@ export default function Hub() {
 
                 <ActivityCard
                     title="Compare & Contrast"
-                    icon={Layout}
+                    icon={LayoutIcon}
                     color="bg-purple-500"
                     id="compare-contrast"
                 />
@@ -73,6 +73,42 @@ export default function Hub() {
                     icon={Search}
                     color="bg-teal-700"
                     id="context-clues-hard"
+                />
+                <ActivityCard
+                    title="Context Clues Set 3 (Easy)"
+                    icon={Search}
+                    color="bg-teal-500"
+                    id="context-clues-3-easy"
+                />
+                <ActivityCard
+                    title="Context Clues Set 3 (Medium)"
+                    icon={Search}
+                    color="bg-teal-600"
+                    id="context-clues-3-medium"
+                />
+                <ActivityCard
+                    title="Context Clues Set 3 (Hard)"
+                    icon={Search}
+                    color="bg-teal-700"
+                    id="context-clues-3-hard"
+                />
+                <ActivityCard
+                    title="Context Clues Set 2 (Easy)"
+                    icon={Search}
+                    color="bg-teal-500"
+                    id="context-clues-2-easy"
+                />
+                <ActivityCard
+                    title="Context Clues Set 2 (Medium)"
+                    icon={Search}
+                    color="bg-teal-600"
+                    id="context-clues-2-medium"
+                />
+                <ActivityCard
+                    title="Context Clues Set 2 (Hard)"
+                    icon={Search}
+                    color="bg-teal-700"
+                    id="context-clues-2-hard"
                 />
                 <ActivityCard
                     title="Analogies"
@@ -104,6 +140,50 @@ export default function Hub() {
                     color="bg-orange-600"
                     id="fall-nouns"
                 />
+                <ActivityCard
+                    title="Fall Nouns (Quiz Mode)"
+                    icon={MessageCircle}
+                    color="bg-orange-700"
+                    id="fall-nouns-quiz"
+                />
+                <ActivityCard
+                    title="Reading Comprehension"
+                    icon={BookOpen}
+                    color="bg-blue-600"
+                    id="reading-comprehension"
+                />
+                <ActivityCard
+                    title="Sentence Builder (Middle)"
+                    icon={MessageCircle}
+                    color="bg-purple-600"
+                    id="sentence-builder-middle"
+                />
+                <ActivityCard
+                    title="Main Idea & Details"
+                    icon={Brain}
+                    color="bg-emerald-600"
+                    id="main-idea-details"
+                />
+                <ActivityCard
+                    title="Sentence Builder (Elem)"
+                    icon={MessageCircle}
+                    color="bg-cyan-500"
+                    id="sentence-builder-elementary"
+                />
+                <ActivityCard
+                    title="Multiple Meanings (Elem)"
+                    icon={Split}
+                    color="bg-violet-500"
+                    id="multiple-meanings-elementary"
+                />
+                <ActivityCard
+                    title="Social Stories (Elem)"
+                    icon={Users}
+                    color="bg-indigo-500"
+                    id="social-stories-elementary"
+                />
+
+
                 <ActivityCard
                     title="Context Clues (Thanksgiving)"
                     icon={Search}

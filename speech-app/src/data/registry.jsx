@@ -5,11 +5,25 @@ import { fallStories } from './fallStories';
 import { socialScenarios } from './socialScenarios';
 import { compareContrastData } from './compareContrast';
 import { contextCluesEasy, contextCluesMedium, contextCluesHard } from './contextClues';
+import { contextCluesSet3Easy, contextCluesSet3Medium, contextCluesSet3Hard } from './contextCluesSet3';
+import { contextCluesSet2Easy, contextCluesSet2Medium, contextCluesSet2Hard } from './contextCluesSet2';
+
+
 import { analogiesData } from './analogies';
 import { synonymsData } from './synonyms';
 import { antonymsData } from './antonyms';
 import { multipleMeaningsData } from './multipleMeanings';
 import { fallNounsData } from './fallNouns';
+import { fallNounsCategory, fallNounsFunction } from './fallNounsData';
+import { readingComprehensionData } from './readingComprehension';
+import { sentenceBuilderMiddleData } from './sentenceBuilderMiddle';
+import { mainIdeaDetailsData } from './mainIdeaDetails';
+import { sentenceBuilderElementaryData } from './sentenceBuilderElementary';
+import { multipleMeaningsElementaryData } from './multipleMeaningsElementary';
+import { socialStoriesElementaryData } from './socialStoriesElementary';
+
+
+
 import { thanksgivingCluesData } from './thanksgivingClues';
 import { inferenceCluesData } from './inferenceClues';
 import { pastTenseData } from './pastTense';
@@ -189,6 +203,110 @@ export const activityRegistry = {
             getCorrectAnswer: (item) => item.choices[0]
         }
     },
+    'context-clues-3-easy': {
+        component: QuizEngine,
+        data: contextCluesSet3Easy,
+        title: "Context Clues Set 3 (Easy)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
+    },
+    'context-clues-3-medium': {
+        component: QuizEngine,
+        data: contextCluesSet3Medium,
+        title: "Context Clues Set 3 (Medium)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
+    },
+    'context-clues-3-hard': {
+        component: QuizEngine,
+        data: contextCluesSet3Hard,
+        title: "Context Clues Set 3 (Hard)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
+    },
+    'context-clues-2-easy': {
+        component: QuizEngine,
+        data: contextCluesSet2Easy,
+        title: "Context Clues Set 2 (Easy)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
+    },
+    'context-clues-2-medium': {
+        component: QuizEngine,
+        data: contextCluesSet2Medium,
+        title: "Context Clues Set 2 (Medium)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
+    },
+    'context-clues-2-hard': {
+        component: QuizEngine,
+        data: contextCluesSet2Hard,
+        title: "Context Clues Set 2 (Hard)",
+        subtitle: "Use clues to find the meaning",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-lg text-slate-600">What does <strong>{item.word}</strong> mean?</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.choices[0]
+        }
+    },
+
+
     'analogies': {
         component: QuizEngine,
         data: analogiesData,
@@ -282,6 +400,23 @@ export const activityRegistry = {
             getCorrectAnswer: (item) => item.answer
         }
     },
+    'fall-nouns-quiz': {
+        component: QuizEngine,
+        data: [...fallNounsCategory, ...fallNounsFunction],
+        title: "Fall Nouns (Quiz Mode)",
+        subtitle: "Identify categories and functions",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.correctAnswer
+        }
+    },
+
     'thanksgiving-clues': {
         component: QuizEngine,
         data: thanksgivingCluesData,
@@ -393,7 +528,101 @@ export const activityRegistry = {
             getOptions: (item) => [item.plural, ...item.foils],
             getCorrectAnswer: (item) => item.plural
         }
+    },
+    'reading-comprehension': {
+        component: StoryEngine,
+        data: readingComprehensionData,
+        title: "Reading Comprehension",
+        subtitle: "Main Ideas & Vocabulary",
+        config: {}
+    },
+    'sentence-builder-middle': {
+        component: QuizEngine,
+        data: sentenceBuilderMiddleData,
+        title: "Sentence Builder (Middle School)",
+        subtitle: "Learn words and build sentences",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4">
+                        What is the definition of <strong>{item.word}</strong>?
+                    </div>
+                    <div className="text-sm text-slate-500 italic mb-4">Hint: {item.hint}</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.example,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.definition
+        }
+    },
+    'main-idea-details': {
+        component: QuizEngine,
+        data: mainIdeaDetailsData,
+        title: "Main Idea & Details Lab",
+        subtitle: "Identify the main idea",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-lg text-slate-700 mb-4 p-4 bg-slate-50 rounded-lg border-l-4 border-blue-500">
+                        {item.passage}
+                    </div>
+                    <div className="text-xl font-medium text-slate-800">
+                        What is the <strong>Main Idea</strong> of this passage?
+                    </div>
+                </div>
+            ),
+            hintTemplate: (item) => "Look for the sentence that summarizes the entire passage, not just one detail.",
+            getOptions: (item) => item.options,
+            getCorrectAnswer: (item) => item.mainIdea
+        }
+    },
+    'sentence-builder-elementary': {
+        component: QuizEngine,
+        data: sentenceBuilderElementaryData,
+        title: "Sentence Builder (Elementary)",
+        subtitle: "Learn words and their meanings",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4">
+                        Which word means: <strong>"{item.definition}"</strong>?
+                    </div>
+                    <div className="text-sm text-slate-500 italic mb-4">Hint: {item.hint}</div>
+                </div>
+            ),
+            hintTemplate: (item) => item.example,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.word
+        }
+    },
+    'multiple-meanings-elementary': {
+        component: QuizEngine,
+        data: multipleMeaningsElementaryData,
+        title: "Multiple Meanings (Elementary)",
+        subtitle: "Match the definition to the sentence",
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.sentence }} />
+                    <div className="text-lg text-slate-600">
+                        Which definition matches the bold word?
+                    </div>
+                </div>
+            ),
+            hintTemplate: (item) => "Read the sentence carefully to understand how the word is used.",
+            getOptions: (item) => item.options,
+            getCorrectAnswer: (item) => item.correct
+        }
+    },
+    'social-stories-elementary': {
+        component: StoryEngine,
+        data: socialStoriesElementaryData,
+        title: "Social Stories (Elementary)",
+        subtitle: "Read and reflect on social situations",
+        config: {}
     }
+
+
 
 };
 
