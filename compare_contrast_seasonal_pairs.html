@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasonal Compare & Contrast</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 24px 24px 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #764ba2;
+            text-align: center;
+            margin-bottom: 6px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 18px;
+            font-size: 1.05em;
+        }
+
+        .nav-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .nav-btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 2px solid #e0e7ff;
+            background: #f8fafc;
+            color: #4b5563;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border-color: #22c55e;
+            color: white;
+            box-shadow: 0 10px 24px rgba(34, 197, 94, 0.35);
+        }
+
+        .word-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 18px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+        }
+
+        .word-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .word-title {
+            font-size: 2em;
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .image-row.hidden {
+            display: none;
+        }
+
+        .word-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
+            background: #f8fafc;
+        }
+
+        .description-section {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .description-item {
+            margin-bottom: 10px;
+        }
+
+        .description-item label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .description-item input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .description-item input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .hint-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e7ff;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+        .hint-title {
+            font-weight: 700;
+            color: #4b5563;
+            margin-bottom: 8px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hint-btn {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            color: #334155;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hint-btn:hover {
+            background: #eef2ff;
+            border-color: #818cf8;
+        }
+
+        .hint-line {
+            color: #475569;
+            font-size: 0.95em;
+            margin-bottom: 4px;
+            display: none;
+            padding: 6px 8px;
+            border-left: 3px solid #a5b4fc;
+            border-radius: 6px;
+        }
+
+        .comparison-section {
+            margin-top: 18px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .detail-counter {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 18px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.05em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .add-similarity {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .add-difference {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            color: white;
+        }
+
+        .reset-btn {
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9em;
+        }
+
+        .responses-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .response-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .similarity-item {
+            border-left-color: #38ef7d;
+        }
+
+        .difference-item {
+            border-left-color: #ff6a00;
+        }
+
+        .response-label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .response-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .response-input {
+            flex: 1;
+            min-width: 150px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .response-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .word-label {
+            font-weight: 700;
+            color: #764ba2;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+        .completion-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            display: none;
+        }
+
+        .completion-message.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .word-pair {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍂 Seasonal Compare & Contrast 🍁</h1>
+        <p class="subtitle">Pick a pair, describe each word, then add similarities and differences.</p>
+
+        <div class="nav-bar" id="pair-nav"></div>
+        <div class="button-group" style="margin-top: 0; margin-bottom: 12px;">
+            <button class="reset-btn" id="toggle-images-btn">Show pictures</button>
+        </div>
+
+        <div class="word-pair">
+            <div class="word-box">
+                <div class="word-title" id="word1">Turkey</div>
+                <div class="image-row hidden" id="word1-images">
+                    <img id="word1-img1" class="word-image" src="" alt="Image of Turkey 1">
+                    <img id="word1-img2" class="word-image" src="" alt="Image of Turkey 2">
+                </div>
+                <div class="description-section">
+                    <div class="description-item">
+                        <label>What category is it in?</label>
+                        <input type="text" id="word1-category" placeholder="e.g., animal, food, thing...">
+                    </div>
+                    <div class="description-item">
+                        <label>What does it do/what is it for?</label>
+                        <input type="text" id="word1-function" placeholder="e.g., its purpose or action...">
+                    </div>
+                    <div class="description-item">
+                        <label>What does it look like/other details?</label>
+                        <input type="text" id="word1-attributes" placeholder="e.g., size, color, where it is...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="word-box">
+                <div class="word-title" id="word2">Chicken</div>
+                <div class="image-row hidden" id="word2-images">
+                    <img id="word2-img1" class="word-image" src="" alt="Image of Chicken 1">
+                    <img id="word2-img2" class="word-image" src="" alt="Image of Chicken 2">
+                </div>
+                <div class="description-section">
+                    <div class="description-item">
+                        <label>What category is it in?</label>
+                        <input type="text" id="word2-category" placeholder="e.g., animal, food, thing...">
+                    </div>
+                    <div class="description-item">
+                        <label>What does it do/what is it for?</label>
+                        <input type="text" id="word2-function" placeholder="e.g., its purpose or action...">
+                    </div>
+                    <div class="description-item">
+                        <label>What does it look like/other details?</label>
+                        <input type="text" id="word2-attributes" placeholder="e.g., size, color, where it is...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hint-box" id="hint-box">
+            <div class="hint-title">
+                Hints
+                <button class="hint-btn" id="btn-hint-similar">Show similarity hint</button>
+                <button class="hint-btn" id="btn-hint-different">Show difference hint</button>
+            </div>
+            <div class="hint-line" id="hint-similar"></div>
+            <div class="hint-line" id="hint-different"></div>
+        </div>
+
+        <div class="comparison-section">
+            <div class="section-header">
+                <div class="section-title">Comparisons</div>
+                <div class="detail-counter">
+                    <span id="detail-count">0</span> details added
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="add-similarity" onclick="addSimilarity()">
+                    ✓ Add Similarity
+                </button>
+                <button class="add-difference" onclick="addDifference()">
+                    ⚡ Add Difference
+                </button>
+                <button class="reset-btn" onclick="resetActivity()">
+                    🔄 Reset
+                </button>
+            </div>
+
+            <div class="responses-container" id="responses-container"></div>
+
+            <div class="completion-message" id="completion-message">
+                🎉 Great work! You've added 4 or more details! 🎉
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pairs = [
+            { label: 'Turkey / Chicken', words: ['Turkey', 'Chicken'], similar: 'Both are farm birds raised for meat or eggs.', different: 'One is much larger and linked to special meals; the other is smaller and eaten year-round.' },
+            { label: 'Mittens / Gloves', words: ['Mittens', 'Gloves'], similar: 'Both cover hands in cold weather.', different: 'One keeps fingers together; the other separates them for more movement.' },
+            { label: 'Pumpkin / Squash', words: ['Pumpkin', 'Squash'], similar: 'Both are gourds that grow on vines.', different: 'One is round and often carved; the other comes in many shapes for cooking.' },
+            { label: 'Sweater / Jacket', words: ['Sweater', 'Jacket'], similar: 'Both keep your upper body warm.', different: 'One is knit fabric; the other is an outer layer with zippers or snaps.' },
+            { label: 'Apple / Pear', words: ['Apple', 'Pear'], similar: 'Both are sweet fruits that grow on trees.', different: 'One is usually round and crisp; the other is wider at the bottom and softer.' },
+            { label: 'Pie / Cake', words: ['Pie', 'Cake'], similar: 'Both are sweet desserts served in slices.', different: 'One has a crust with filling; the other is fluffy and frosted.' },
+            { label: 'Gravy / Sauce', words: ['Gravy', 'Sauce'], similar: 'Both are liquids that add flavor to food.', different: 'One comes from pan drippings; the other can be tomato, cream, or cheese-based.' },
+            { label: 'Cranberries / Grapes', words: ['Cranberries', 'Grapes'], similar: 'Both are small fruits that grow in clusters.', different: 'One is tart and often cooked; the other is sweet and often eaten fresh.' },
+            { label: 'Stuffing / Mashed Potatoes', words: ['Stuffing', 'Mashed Potatoes'], similar: 'Both are starchy sides at big meals.', different: 'One is seasoned bread with broth; the other is smooth cooked potatoes.' },
+            { label: 'Scarf / Hat', words: ['Scarf', 'Hat'], similar: 'Both are winter accessories.', different: 'One wraps the neck; the other covers the head.' },
+            { label: 'Leaves / Snow', words: ['Leaves', 'Snow'], similar: 'Both can blanket the ground in cool seasons.', different: 'One falls from trees; the other falls as frozen water from clouds.' },
+            { label: 'Scarecrow / Snowman', words: ['Scarecrow', 'Snowman'], similar: 'Both are human-shaped figures outside.', different: 'One is made to scare birds from crops; the other is built for winter fun.' },
+            { label: 'Cornucopia / Basket', words: ['Cornucopia', 'Basket'], similar: 'Both hold items inside.', different: 'One is horn-shaped and symbolic; the other is a basic woven container.' },
+            { label: 'Feast / Picnic', words: ['Feast', 'Picnic'], similar: 'Both are meals shared by groups.', different: 'One is large and often indoors; the other is casual and outdoors.' },
+            { label: 'Harvest / Winter', words: ['Harvest', 'Winter'], similar: 'Both are times that change what happens with plants and food.', different: 'One is the gathering of crops; the other is the cold season when plants rest.' },
+            { label: 'Pilgrim / Farmer', words: ['Pilgrim', 'Farmer'], similar: 'Both relate to land and early communities.', different: 'One is an early settler seeking freedom; the other grows crops or raises animals.' },
+            { label: 'Hot Chocolate / Lemonade', words: ['Hot Chocolate', 'Lemonade'], similar: 'Both are sweet drinks people enjoy.', different: 'One is warm with cocoa; the other is cold with lemon.' }
+        ];
+
+        let detailCount = 0;
+        let responseId = 0;
+        let currentPairIndex = 0;
+        let showImages = false;
+
+        function toImageKey(word) {
+            return word.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+        }
+
+        function buildNav() {
+            const nav = document.getElementById('pair-nav');
+            nav.innerHTML = '';
+            pairs.forEach((pair, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn' + (idx === 0 ? ' active' : '');
+                btn.textContent = `${idx + 1}. ${pair.label}`;
+                btn.addEventListener('click', () => loadPair(idx));
+                nav.appendChild(btn);
+            });
+        }
+
+        function loadPair(index) {
+            currentPairIndex = index;
+            const pair = pairs[index];
+            document.getElementById('word1').textContent = pair.words[0];
+            document.getElementById('word2').textContent = pair.words[1];
+            document.getElementById('hint-similar').textContent = `Similarity hint: ${pair.similar}`;
+            document.getElementById('hint-different').textContent = `Difference hint: ${pair.different}`;
+            document.getElementById('hint-similar').style.display = 'none';
+            document.getElementById('hint-different').style.display = 'none';
+
+            const key1 = toImageKey(pair.words[0]);
+            const key2 = toImageKey(pair.words[1]);
+            document.getElementById('word1-img1').src = `images/compare_contrast_seasonal/${key1}_1.jpg`;
+            document.getElementById('word1-img2').src = `images/compare_contrast_seasonal/${key1}_2.jpg`;
+            document.getElementById('word1-img1').alt = `${pair.words[0]} photo 1`;
+            document.getElementById('word1-img2').alt = `${pair.words[0]} photo 2`;
+
+            document.getElementById('word2-img1').src = `images/compare_contrast_seasonal/${key2}_1.jpg`;
+            document.getElementById('word2-img2').src = `images/compare_contrast_seasonal/${key2}_2.jpg`;
+            document.getElementById('word2-img1').alt = `${pair.words[1]} photo 1`;
+            document.getElementById('word2-img2').alt = `${pair.words[1]} photo 2`;
+
+            // clear inputs and responses when switching
+            resetFieldsOnly();
+
+            Array.from(document.querySelectorAll('.nav-btn')).forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === index);
+            });
+        }
+
+        function addSimilarity() {
+            responseId++;
+            detailCount++;
+            updateCounter();
+
+            const container = document.getElementById('responses-container');
+            const responseItem = document.createElement('div');
+            responseItem.className = 'response-item similarity-item';
+            responseItem.id = `response-${responseId}`;
+
+            responseItem.innerHTML = `
+                <span class="response-label">Similarity:</span>
+                <div class="response-input-group">
+                    <span>They are both</span>
+                    <input type="text" class="response-input" placeholder="Type here..." />
+                    <button class="delete-btn" onclick="deleteResponse(${responseId})">Delete</button>
+                </div>
+            `;
+
+            container.appendChild(responseItem);
+            checkCompletion();
+        }
+
+        function addDifference() {
+            const pair = pairs[currentPairIndex];
+            responseId++;
+            detailCount++;
+            updateCounter();
+
+            const container = document.getElementById('responses-container');
+            const responseItem = document.createElement('div');
+            responseItem.className = 'response-item difference-item';
+            responseItem.id = `response-${responseId}`;
+
+            responseItem.innerHTML = `
+                <span class="response-label">Difference:</span>
+                <div class="response-input-group">
+                    <span class="word-label">${pair.words[0]}</span>
+                    <input type="text" class="response-input" placeholder="Type here..." />
+                </div>
+                <div class="response-input-group" style="margin-top: 8px;">
+                    <span class="word-label">${pair.words[1]}</span>
+                    <input type="text" class="response-input" placeholder="Type here..." />
+                    <button class="delete-btn" onclick="deleteResponse(${responseId})">Delete</button>
+                </div>
+            `;
+
+            container.appendChild(responseItem);
+            checkCompletion();
+        }
+
+        function deleteResponse(id) {
+            const element = document.getElementById(`response-${id}`);
+            if (element) {
+                element.remove();
+                detailCount--;
+                updateCounter();
+                checkCompletion();
+            }
+        }
+
+        function updateCounter() {
+            document.getElementById('detail-count').textContent = detailCount;
+        }
+
+        function checkCompletion() {
+            const message = document.getElementById('completion-message');
+            if (detailCount >= 4) {
+                message.classList.add('show');
+            } else {
+                message.classList.remove('show');
+            }
+        }
+
+        function resetFieldsOnly() {
+            document.getElementById('responses-container').innerHTML = '';
+            document.getElementById('word1-category').value = '';
+            document.getElementById('word1-function').value = '';
+            document.getElementById('word1-attributes').value = '';
+            document.getElementById('word2-category').value = '';
+            document.getElementById('word2-function').value = '';
+            document.getElementById('word2-attributes').value = '';
+            detailCount = 0;
+            updateCounter();
+            checkCompletion();
+            document.getElementById('hint-similar').style.display = 'none';
+            document.getElementById('hint-different').style.display = 'none';
+            document.getElementById('word1-images').classList.toggle('hidden', !showImages);
+            document.getElementById('word2-images').classList.toggle('hidden', !showImages);
+        }
+
+        function resetActivity() {
+            if (confirm('Are you sure you want to reset? This will clear all your responses.')) {
+                resetFieldsOnly();
+            }
+        }
+
+        buildNav();
+
+        document.getElementById('btn-hint-similar').addEventListener('click', () => {
+            document.getElementById('hint-similar').style.display = 'block';
+        });
+        document.getElementById('btn-hint-different').addEventListener('click', () => {
+            document.getElementById('hint-different').style.display = 'block';
+        });
+
+        document.getElementById('toggle-images-btn').addEventListener('click', () => {
+            showImages = !showImages;
+            document.getElementById('word1-images').classList.toggle('hidden', !showImages);
+            document.getElementById('word2-images').classList.toggle('hidden', !showImages);
+            document.getElementById('toggle-images-btn').textContent = showImages ? 'Hide pictures' : 'Show pictures';
+        });
+
+        loadPair(0);
+    </script>
+</body>
+</html>

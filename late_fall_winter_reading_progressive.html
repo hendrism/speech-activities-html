@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Late Fall & Winter Reading - Progressive Hints</title>
+    <style>
+        :root {
+            --pine: #1f3a5f;
+            --amber: #f59e0b;
+            --frost: #e2e8f0;
+            --cream: #fff9f2;
+            --berry: #9f1239;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #fef6e4, #e0f2fe 45%, #f8fafc);
+            margin: 0;
+            color: var(--pine);
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 20px 40px;
+        }
+        h1 {
+            text-align: center;
+            margin: 0 0 8px;
+            color: var(--pine);
+            letter-spacing: 0.4px;
+        }
+        .intro {
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 16px;
+            padding: 16px 18px;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            z-index: 10;
+        }
+        .nav-btn {
+            border: 1px solid var(--frost);
+            background: var(--cream);
+            color: var(--pine);
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .nav-btn:hover {
+            background: #fff2d7;
+            border-color: #fcd34d;
+        }
+        .nav-btn.active {
+            background: var(--pine);
+            color: white;
+            border-color: var(--pine);
+            box-shadow: 0 4px 12px rgba(31, 58, 95, 0.35);
+        }
+        .story-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--frost);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .story-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--frost);
+            padding-bottom: 10px;
+        }
+        .story-title {
+            margin: 0;
+            color: var(--pine);
+        }
+        .story-tag {
+            background: #e0f2fe;
+            color: #0f172a;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .story-text {
+            margin: 16px 0 12px;
+            line-height: 1.7;
+            background: var(--cream);
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px dashed var(--frost);
+        }
+        .questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+        .question-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px;
+            background: #f8fafc;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .question-text {
+            font-weight: 700;
+        }
+        .clue {
+            display: none;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 10px;
+            padding: 10px;
+            color: #92400e;
+        }
+        .choice-btn {
+            width: 100%;
+            text-align: left;
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .choice-btn:hover {
+            border-color: #94a3b8;
+            background: #e2e8f0;
+        }
+        .choice-btn.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+            font-weight: 700;
+        }
+        .choice-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+        .help-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .btn-clue {
+            background: #0ea5e9;
+            color: white;
+        }
+        .btn-choices {
+            background: var(--amber);
+            color: #3b2600;
+        }
+        .btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            color: #475569;
+        }
+        .choices-wrap {
+            display: none;
+            margin-top: 4px;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        .feedback {
+            display: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 700;
+        }
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+        .summary-card {
+            margin-top: 14px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #fdf7ff;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+        .summary-title {
+            margin: 0 0 8px;
+            color: var(--berry);
+        }
+        .summary-prompt {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .summary-help {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .summary-btn {
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: var(--pine);
+            border-radius: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .summary-btn:hover {
+            background: #eef2ff;
+            border-color: #6366f1;
+        }
+        .summary-hint,
+        .summary-keywords {
+            display: none;
+            background: #fffef3;
+            border: 1px solid #fde68a;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            color: #92400e;
+        }
+        .summary-keywords .chip {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0f172a;
+            border: 1px solid #bae6fd;
+            border-radius: 12px;
+            padding: 6px 10px;
+            margin: 4px 6px 0 0;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .summary-input {
+            width: 100%;
+            min-height: 90px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            box-sizing: border-box;
+            background: white;
+        }
+        @media (max-width: 640px) {
+            .nav-bar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Late Fall & Winter Reading - Progressive Hints</h1>
+        <div class="intro">
+            Read each informational passage, then answer the factual questions. Tap "Show clue" to unlock a written hint, then "Show choices" to reveal answer options. Finish by drafting a short summary using the scaffolded frame and key word chips.
+        </div>
+        <div class="nav-bar" id="story-nav"></div>
+        <div id="story-container"></div>
+    </div>
+    <script>
+        const stories = [
+            {
+                id: 'story-1',
+                title: 'How Turkeys Live on a Farm',
+                tag: 'Farm Life',
+                text: [
+                    'Turkeys on a farm spend most of their day walking around large open spaces. They peck at the ground looking for food and stretch their wings when they want to move faster. Farmers check on them often to make sure they are healthy and safe.',
+                    'Turkeys usually eat a simple diet made of grains, seeds, and clean water. The farmer gives them plenty of space so they have room to grow. When the weather gets colder in late fall, farmers make sure the turkeys have warm shelters.'
+                ],
+                questions: [
+                    {
+                        prompt: 'What two things do turkeys look for while pecking the ground?',
+                        answer: 'grains and seeds',
+                        clue: 'Their simple diet is made of these small foods.',
+                        choices: [
+                            'grains and seeds',
+                            'worms and leaves',
+                            'fruit and vegetables',
+                            'nuts and berries'
+                        ]
+                    },
+                    {
+                        prompt: 'What do farmers give turkeys to help them grow?',
+                        answer: 'plenty of space',
+                        clue: 'It lets them move around as their bodies get bigger.',
+                        choices: [
+                            'plenty of space',
+                            'heavy blankets',
+                            'crowded pens',
+                            'nightly treats'
+                        ]
+                    },
+                    {
+                        prompt: 'Why do farmers provide warm shelters in late fall?',
+                        answer: 'because the weather gets colder',
+                        clue: 'The season change brings chilly air.',
+                        choices: [
+                            'because the weather gets colder',
+                            'so the turkeys can hide from the sun',
+                            'because turkeys stop eating outside',
+                            'so they do not wander away'
+                        ]
+                    }
+                ],
+                summaryPrompt: 'Explain what turkeys need to stay healthy on a farm.',
+                keywords: ['open space', 'grains and seeds', 'clean water', 'warm shelter']
+            },
+            {
+                id: 'story-2',
+                title: 'Why Leaves Change Color',
+                tag: 'Science',
+                text: [
+                    'In late fall, the days get shorter, and there is less sunlight. Trees begin to slow down the process that keeps their leaves green. As the green color fades, other colors like red, orange, and yellow start to show.',
+                    'The leaves eventually dry out because the tree is not sending them as much water. After a few weeks, the leaves become crisp and fall to the ground. This helps the tree save energy during the winter months.'
+                ],
+                questions: [
+                    {
+                        prompt: 'Why do leaves stop staying green?',
+                        answer: 'the tree gets less sunlight and slows the green process',
+                        clue: 'Shorter days change how the tree makes color.',
+                        choices: [
+                            'the tree gets less sunlight and slows the green process',
+                            'the wind blows the color away',
+                            'bugs eat the green color off',
+                            'rain washes the green away'
+                        ]
+                    },
+                    {
+                        prompt: 'What happens to the leaves after the tree sends less water?',
+                        answer: 'they dry out and become crisp',
+                        clue: 'With less water, they lose softness.',
+                        choices: [
+                            'they dry out and become crisp',
+                            'they grow larger',
+                            'they turn into flowers',
+                            'they stay thick and wet'
+                        ]
+                    },
+                    {
+                        prompt: 'Why do trees let their leaves fall?',
+                        answer: 'to save energy during winter',
+                        clue: 'Dropping leaves helps them rest in the cold months.',
+                        choices: [
+                            'to save energy during winter',
+                            'to make space for snow',
+                            'to keep birds away',
+                            'to clean the ground'
+                        ]
+                    }
+                ],
+                summaryPrompt: 'Describe how and why leaves change during late fall.',
+                keywords: ['shorter days', 'less sunlight', 'colors show', 'leaves fall', 'save energy']
+            },
+            {
+                id: 'story-3',
+                title: 'Preparing Food for Thanksgiving',
+                tag: 'Home Life',
+                text: [
+                    'Many families start preparing for Thanksgiving a day or two early. They make lists of what dishes they want to cook and gather ingredients like vegetables, spices, and bread. Some foods need to be cooked slowly, so people often start early in the morning.',
+                    'The kitchen becomes busy as different dishes cook at the same time. People take turns chopping, stirring, and checking the oven. Even simple tasks like washing vegetables or setting the table help the meal come together.'
+                ],
+                questions: [
+                    {
+                        prompt: 'Why do some families begin preparing food early?',
+                        answer: 'because some foods need slow cooking time',
+                        clue: 'Long-cooking dishes require extra hours.',
+                        choices: [
+                            'because some foods need slow cooking time',
+                            'so they can skip making lists',
+                            'to finish before buying ingredients',
+                            'so they do not have to clean'
+                        ]
+                    },
+                    {
+                        prompt: 'What are two tasks someone might do in the kitchen?',
+                        answer: 'chopping and stirring',
+                        clue: 'These are hands-on steps before food goes in the oven.',
+                        choices: [
+                            'chopping and stirring',
+                            'painting and sweeping leaves',
+                            'building shelves and raking',
+                            'mowing grass and washing cars'
+                        ]
+                    },
+                    {
+                        prompt: 'Why is teamwork helpful when cooking a big meal?',
+                        answer: 'many tasks happen at once so helpers keep things moving',
+                        clue: 'Shared jobs make the whole meal come together on time.',
+                        choices: [
+                            'many tasks happen at once so helpers keep things moving',
+                            'it keeps the kitchen cold',
+                            'people can avoid making lists',
+                            'it stops the oven from beeping'
+                        ]
+                    }
+                ],
+                summaryPrompt: 'Tell how families get ready for a Thanksgiving meal.',
+                keywords: ['plan dishes', 'gather ingredients', 'start early', 'share kitchen jobs']
+            },
+            {
+                id: 'story-4',
+                title: 'Animals Getting Ready for Winter',
+                tag: 'Wildlife',
+                text: [
+                    'Many animals start preparing for winter when late fall arrives. Squirrels gather nuts and hide them in different places so they have food later. Birds begin flying south where the weather is warmer.',
+                    'Other animals grow thicker coats of fur. Deer and rabbits develop warm layers that help them stay safe in cold air. Each animal has its own way of surviving the winter months.'
+                ],
+                questions: [
+                    {
+                        prompt: 'What do squirrels do to prepare for winter?',
+                        answer: 'gather nuts and hide them',
+                        clue: 'They collect food and store it in many spots.',
+                        choices: [
+                            'gather nuts and hide them',
+                            'sleep all summer',
+                            'build nests in water',
+                            'chase birds south'
+                        ]
+                    },
+                    {
+                        prompt: 'Why do some birds fly south?',
+                        answer: 'to find warmer weather',
+                        clue: 'They travel to places that are not as cold.',
+                        choices: [
+                            'to find warmer weather',
+                            'to look for thicker fur',
+                            'to dig for nuts',
+                            'to build new ponds'
+                        ]
+                    },
+                    {
+                        prompt: 'How do deer and rabbits stay warm?',
+                        answer: 'they grow thicker coats of fur',
+                        clue: 'Their bodies add extra layers.',
+                        choices: [
+                            'they grow thicker coats of fur',
+                            'they wear feathers',
+                            'they sleep underwater',
+                            'they build fires'
+                        ]
+                    }
+                ],
+                summaryPrompt: 'Explain how different animals get ready for winter.',
+                keywords: ['store food', 'fly south', 'thicker fur', 'stay warm']
+            },
+            {
+                id: 'story-5',
+                title: 'How Snow Is Formed',
+                tag: 'Weather',
+                text: [
+                    'Snow begins high in the clouds when tiny drops of water freeze into ice crystals. These crystals join together to make snowflakes. Each snowflake has its own shape, but all of them have six sides.',
+                    'When the air below the clouds is cold enough, the snowflakes fall to the ground. If the air is warmer, they melt into rain. The temperature decides whether we see snow or rain.'
+                ],
+                questions: [
+                    {
+                        prompt: 'What forms first before a snowflake is made?',
+                        answer: 'ice crystals',
+                        clue: 'Tiny frozen drops join together.',
+                        choices: [
+                            'ice crystals',
+                            'hail stones',
+                            'dust chunks',
+                            'frozen leaves'
+                        ]
+                    },
+                    {
+                        prompt: 'What happens when the air below the clouds is warm?',
+                        answer: 'the snowflakes melt into rain',
+                        clue: 'Warm air changes their form before they reach the ground.',
+                        choices: [
+                            'the snowflakes melt into rain',
+                            'the snowflakes get bigger',
+                            'the snowflakes turn to ice pellets',
+                            'the snowflakes float forever'
+                        ]
+                    },
+                    {
+                        prompt: 'What do all snowflakes have in common?',
+                        answer: 'each has six sides',
+                        clue: 'Their shapes differ, but one feature always matches.',
+                        choices: [
+                            'each has six sides',
+                            'each is a perfect square',
+                            'each has the same size',
+                            'each is eight-sided'
+                        ]
+                    }
+                ],
+                summaryPrompt: 'Describe how snow forms and when it falls as snow instead of rain.',
+                keywords: ['ice crystals', 'join into flakes', 'six sides', 'cold air vs warm air']
+            },
+            {
+                id: 'story-6',
+                title: 'How People Stay Warm in Winter',
+                tag: 'Daily Life',
+                text: [
+                    'When winter begins, people use different ways to stay warm. They wear coats, hats, and gloves when they go outside. Many homes use heaters to keep the rooms comfortable.',
+                    'Hot drinks like cocoa and tea help warm people up. Families may add extra blankets to their beds at night. These small steps make cold weather easier to handle.'
+                ],
+                questions: [
+                    {
+                        prompt: 'What clothing helps people stay warm outside?',
+                        answer: 'coats, hats, and gloves',
+                        clue: 'They cover the head, hands, and body.',
+                        choices: [
+                            'coats, hats, and gloves',
+                            'sandals and shorts',
+                            'rain boots and umbrellas',
+                            'swim caps and goggles'
+                        ]
+                    },
+                    {
+                        prompt: 'What do homes use to stay warm inside?',
+                        answer: 'heaters',
+                        clue: 'These machines warm up the rooms.',
+                        choices: [
+                            'heaters',
+                            'open windows',
+                            'ice packs',
+                            'fans'
+                        ]
+                    },
+                    {
+                        prompt: 'How do hot drinks help in winter?',
+                        answer: 'they warm people up',
+                        clue: 'Drinks like cocoa and tea raise body warmth.',
+                        choices: [
+                            'they warm people up',
+                            'they cool people down',
+                            'they keep hands dry',
+                            'they make rooms colder'
+                        ]
+                    }
+                ],
+                summaryPrompt: 'Tell how people keep themselves warm during winter.',
+                keywords: ['warm clothing', 'heaters', 'hot drinks', 'extra blankets']
+            },
+            {
+                id: 'story-7',
+                title: 'Winter Birds That Stay Behind',
+                tag: 'Birds',
+                text: [
+                    'Not all birds fly south when winter arrives. Some birds, such as cardinals and blue jays, stay in colder places. These birds look for berries, seeds, and small insects to eat.',
+                    'People sometimes help winter birds by putting out bird feeders. Feeders give birds extra food when natural food is hard to find. This support helps them survive the cold months.'
+                ],
+                questions: [
+                    {
+                        prompt: 'What are two birds that stay for the winter?',
+                        answer: 'cardinals and blue jays',
+                        clue: 'They are colorful birds that do not migrate.',
+                        choices: [
+                            'cardinals and blue jays',
+                            'pelicans and flamingos',
+                            'parrots and toucans',
+                            'owls and penguins'
+                        ]
+                    },
+                    {
+                        prompt: 'What kinds of food do winter birds look for?',
+                        answer: 'berries, seeds, and small insects',
+                        clue: 'They search for tiny foods they can find in cold weather.',
+                        choices: [
+                            'berries, seeds, and small insects',
+                            'fish and shrimp',
+                            'nuts and large fruit',
+                            'bread and cheese'
+                        ]
+                    },
+                    {
+                        prompt: 'How do bird feeders help?',
+                        answer: 'they provide extra food when natural food is scarce',
+                        clue: 'Feeders add to what birds can find outdoors.',
+                        choices: [
+                            'they provide extra food when natural food is scarce',
+                            'they warm the birds up',
+                            'they give birds new feathers',
+                            'they teach birds to sing'
+                        ]
+                    }
+                ],
+                summaryPrompt: 'Explain how winter birds survive and how people can help them.',
+                keywords: ['stay in cold areas', 'berries and seeds', 'bird feeders', 'extra food']
+            },
+            {
+                id: 'story-8',
+                title: 'Weather Patterns in Late Fall',
+                tag: 'Season Shift',
+                text: [
+                    'Late fall brings cooler temperatures and stronger winds. The days get shorter, and the sun sets earlier. Some areas have more rain, while others start seeing frost on the grass in the morning.',
+                    'These weather changes help prepare the environment for winter. Plants stop growing as quickly, and animals shift their behaviors. People notice these signs as they get ready for colder months.'
+                ],
+                questions: [
+                    {
+                        prompt: 'What two changes happen to the weather in late fall?',
+                        answer: 'temperatures get cooler and winds get stronger',
+                        clue: 'The air feels colder and moves faster.',
+                        choices: [
+                            'temperatures get cooler and winds get stronger',
+                            'days get hotter and wind stops',
+                            'temperatures rise and snow falls daily',
+                            'sunlight lasts longer with calm air'
+                        ]
+                    },
+                    {
+                        prompt: 'What might people see on the grass in the morning?',
+                        answer: 'frost',
+                        clue: 'A thin icy layer can appear overnight.',
+                        choices: [
+                            'frost',
+                            'sand',
+                            'fallen fruit',
+                            'heavy snow piles'
+                        ]
+                    },
+                    {
+                        prompt: 'How do plants change during this time?',
+                        answer: 'they stop growing as quickly',
+                        clue: 'Growth slows as the season shifts.',
+                        choices: [
+                            'they stop growing as quickly',
+                            'they grow faster than in summer',
+                            'they bloom new flowers daily',
+                            'they turn into vines'
+                        ]
+                    }
+                ],
+                summaryPrompt: 'Describe what late-fall weather is like and how it signals winter.',
+                keywords: ['cooler air', 'shorter days', 'frost or rain', 'plants slow down']
+            }
+        ];
+
+        const navEl = document.getElementById('story-nav');
+        const storyContainer = document.getElementById('story-container');
+
+        function shuffle(array) {
+            const copy = array.slice();
+            for (let i = copy.length - 1; i > 0; i -= 1) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function renderNav() {
+            navEl.innerHTML = '';
+            stories.forEach((story, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn' + (idx === 0 ? ' active' : '');
+                btn.dataset.id = story.id;
+                btn.textContent = `${idx + 1}. ${story.title}`;
+                btn.addEventListener('click', () => loadStory(story.id));
+                navEl.appendChild(btn);
+            });
+        }
+
+        function buildStoryText(textArr) {
+            return textArr.map(line => `<p>${line}</p>`).join('');
+        }
+
+        function createQuestionCard(question, index) {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            const questionText = document.createElement('div');
+            questionText.className = 'question-text';
+            questionText.textContent = `Q${index + 1}. ${question.prompt}`;
+            card.appendChild(questionText);
+
+            const helpRow = document.createElement('div');
+            helpRow.className = 'help-row';
+
+            const clueBtn = document.createElement('button');
+            clueBtn.className = 'btn btn-clue';
+            clueBtn.textContent = 'Show clue';
+
+            const choicesBtn = document.createElement('button');
+            choicesBtn.className = 'btn btn-choices';
+            choicesBtn.textContent = 'Show choices';
+            choicesBtn.disabled = true;
+
+            helpRow.appendChild(clueBtn);
+            helpRow.appendChild(choicesBtn);
+            card.appendChild(helpRow);
+
+            const clue = document.createElement('div');
+            clue.className = 'clue';
+            clue.textContent = question.clue;
+            card.appendChild(clue);
+
+            const choicesWrap = document.createElement('div');
+            choicesWrap.className = 'choices-wrap';
+            card.appendChild(choicesWrap);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            card.appendChild(feedback);
+
+            clueBtn.addEventListener('click', () => {
+                clue.style.display = 'block';
+                choicesBtn.disabled = false;
+            });
+
+            choicesBtn.addEventListener('click', () => {
+                choicesWrap.innerHTML = '';
+                choicesWrap.style.display = 'grid';
+                const options = shuffle(question.choices);
+                options.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = choice;
+                    btn.addEventListener('click', () => {
+                        const isCorrect = choice === question.answer;
+                        feedback.textContent = isCorrect ? 'Correct!' : 'Try again.';
+                        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+                        feedback.style.display = 'block';
+                        btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    });
+                    choicesWrap.appendChild(btn);
+                });
+            });
+
+            return card;
+        }
+
+        function createSummaryCard(story) {
+            const wrap = document.createElement('div');
+            wrap.className = 'summary-card';
+
+            const summaryInput = document.createElement('textarea');
+            summaryInput.className = 'summary-input';
+            summaryInput.placeholder = 'Start with the topic and add the most important details...';
+
+            const title = document.createElement('h3');
+            title.className = 'summary-title';
+            title.textContent = 'Summary Scaffold';
+            wrap.appendChild(title);
+
+            const prompt = document.createElement('div');
+            prompt.className = 'summary-prompt';
+            prompt.textContent = story.summaryPrompt;
+            wrap.appendChild(prompt);
+
+            const summaryHelp = document.createElement('div');
+            summaryHelp.className = 'summary-help';
+
+            const frameBtn = document.createElement('button');
+            frameBtn.className = 'summary-btn';
+            frameBtn.textContent = 'Show frame';
+
+            const keywordBtn = document.createElement('button');
+            keywordBtn.className = 'summary-btn';
+            keywordBtn.textContent = 'More key words';
+            keywordBtn.disabled = true;
+
+            summaryHelp.appendChild(frameBtn);
+            summaryHelp.appendChild(keywordBtn);
+            wrap.appendChild(summaryHelp);
+
+            const frameHint = document.createElement('div');
+            frameHint.className = 'summary-hint';
+            frameHint.innerHTML = '<strong>Use this order:</strong> (1) Name the topic, (2) Tell the main actions/changes, (3) Add why it matters or what it leads to.';
+            wrap.appendChild(frameHint);
+
+            const keywordHint = document.createElement('div');
+            keywordHint.className = 'summary-keywords';
+            keywordHint.innerHTML = '<strong>Key words to include:</strong> ';
+            story.keywords.forEach(word => {
+                const chip = document.createElement('span');
+                chip.className = 'chip';
+                chip.textContent = word;
+                chip.addEventListener('click', () => {
+                    summaryInput.value = summaryInput.value
+                        ? `${summaryInput.value.trim()} ${word}`
+                        : word;
+                    summaryInput.focus();
+                });
+                keywordHint.appendChild(chip);
+            });
+            wrap.appendChild(keywordHint);
+
+            wrap.appendChild(summaryInput);
+
+            frameBtn.addEventListener('click', () => {
+                frameHint.style.display = 'block';
+                keywordBtn.disabled = false;
+            });
+
+            keywordBtn.addEventListener('click', () => {
+                keywordHint.style.display = 'block';
+            });
+
+            return wrap;
+        }
+
+        function loadStory(id) {
+            const story = stories.find(item => item.id === id);
+            if (!story) {
+                return;
+            }
+            Array.from(navEl.children).forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.id === id);
+            });
+
+            storyContainer.innerHTML = '';
+            const card = document.createElement('div');
+            card.className = 'story-card';
+
+            const header = document.createElement('div');
+            header.className = 'story-header';
+            const title = document.createElement('h2');
+            title.className = 'story-title';
+            title.textContent = story.title;
+            const tag = document.createElement('span');
+            tag.className = 'story-tag';
+            tag.textContent = story.tag;
+            header.appendChild(title);
+            header.appendChild(tag);
+            card.appendChild(header);
+
+            const textBlock = document.createElement('div');
+            textBlock.className = 'story-text';
+            textBlock.innerHTML = buildStoryText(story.text);
+            card.appendChild(textBlock);
+
+            const questionsWrap = document.createElement('div');
+            questionsWrap.className = 'questions';
+            story.questions.forEach((question, idx) => {
+                questionsWrap.appendChild(createQuestionCard(question, idx));
+            });
+            card.appendChild(questionsWrap);
+
+            card.appendChild(createSummaryCard(story));
+            storyContainer.appendChild(card);
+        }
+
+        renderNav();
+        loadStory(stories[0].id);
+    </script>
+</body>
+</html>

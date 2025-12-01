@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Perspective Taking - Progressive Hints</title>
+    <style>
+        :root {
+            --navy: #0f172a;
+            --teal: #0ea5e9;
+            --gold: #f59e0b;
+            --sand: #f8fafc;
+            --ink: #111827;
+            --cream: #fff7ed;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: radial-gradient(circle at 15% 20%, #fef3c7, #e0f2fe 50%, #f8fafc);
+            color: var(--ink);
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: white;
+            border-bottom: 3px solid #fcd34d;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        }
+        .bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .bar h1 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--navy);
+            letter-spacing: 0.3px;
+        }
+        .bar-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .reset-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            background: #fff1e6;
+            color: #b45309;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid #fcd34d;
+            transition: all 0.2s ease;
+        }
+        .reset-btn:hover {
+            background: #fef3c7;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 20px 40px;
+        }
+        .intro {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 16px 18px;
+            line-height: 1.6;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+        }
+        .nav-bar {
+            position: sticky;
+            top: 70px;
+            background: #0f172a;
+            border: 1px solid #1f2937;
+            border-radius: 14px;
+            padding: 10px;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.3);
+            display: flex;
+            gap: 8px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            z-index: 15;
+        }
+        .nav-btn {
+            border: none;
+            background: rgba(148, 163, 184, 0.18);
+            color: #e2e8f0;
+            padding: 9px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .nav-btn:hover {
+            background: rgba(226, 232, 240, 0.2);
+            transform: translateY(-1px);
+        }
+        .nav-btn.active {
+            background: #38bdf8;
+            color: #0f172a;
+            box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+        }
+        .scenario-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        .scenario-title {
+            margin: 0;
+            color: var(--navy);
+        }
+        .scenario-tag {
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+        .scenario-text {
+            margin: 14px 0 12px;
+            line-height: 1.7;
+            background: var(--sand);
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px dashed #e5e7eb;
+        }
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+        }
+        .prompt-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px;
+            background: #f8fafc;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .prompt-title {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--navy);
+        }
+        .prompt-text {
+            font-weight: 700;
+        }
+        .help-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .btn-hint {
+            background: var(--teal);
+            color: white;
+        }
+        .btn-choices {
+            background: var(--gold);
+            color: #3b2600;
+        }
+        .btn-check {
+            background: var(--navy);
+            color: white;
+        }
+        .btn:disabled {
+            background: #cbd5e1;
+            color: #475569;
+            cursor: not-allowed;
+        }
+        .hint-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0f4a6e;
+        }
+        .hint {
+            display: none;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 10px;
+            padding: 10px;
+            color: #92400e;
+            margin-top: 6px;
+        }
+        .choices {
+            display: none;
+            margin-top: 6px;
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            border-radius: 10px;
+            background: white;
+        }
+        .choices .helper {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+        .response-box {
+            width: 100%;
+            min-height: 76px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: white;
+            box-sizing: border-box;
+        }
+        .support-box {
+            margin-top: 10px;
+            padding: 12px;
+            border: 2px solid #fcd34d;
+            border-radius: 12px;
+            background: #fff7ed;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sub-label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 4px 0 4px;
+        }
+        .choice-row {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            padding: 8px;
+            border-radius: 10px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .choice-row.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+        }
+        .choice-row.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .feedback {
+            display: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 700;
+        }
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .feedback.partial {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+        @media (max-width: 640px) {
+            .nav-bar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <h1>Social Perspective Taking - Progressive Hints</h1>
+            <div class="bar-actions">
+                <button class="reset-btn" id="reset-btn">Reset activity</button>
+            </div>
+        </div>
+    </header>
+    <div class="page">
+        <div class="intro">
+            Read each scenario, then answer both prompts. First, jot what the person might think or feel, then explain their perspective (why they might feel that way). If needed, tap Hint 1 and Hint 2 to unlock clues, then reveal choices. Pick the one best answer for each prompt and tap "Check answers" to see feedback.
+        </div>
+        <div class="nav-bar" id="nav"></div>
+        <div id="scenario-container"></div>
+    </div>
+    <script>
+        const scenarios = [
+            {
+                id: 'scenario-1',
+                title: 'Group Project Tension',
+                tag: 'Collaboration',
+                scenario: 'Two students are partners for a project with a deadline later in the week. One student finishes their part early and keeps checking in, asking the other if they are done yet and reminding them about the due date. The second student has had a lot of homework, sports practice, and family chores, so they have not started their section yet.',
+                prompts: [
+                    {
+                        label: 'Prompt A',
+                        question: 'How might the student who finished early be feeling or thinking?',
+                        hints: [
+                            'Think about feeling pressure, wanting the project to go well, or being overwhelmed.',
+                            'This student may be focused on timing and making sure the project stays on track.'
+                        ],
+                        choices: [
+                            'They might be nervous the project will not get done on time.',
+                            'They might just be excited to finish early and want to keep the group moving.',
+                            'They might feel embarrassed they have not started yet.',
+                            'They might feel stressed because they are juggling too many assignments right now.',
+                            'They might want a break and do not want to talk about the project yet.'
+                        ],
+                        correct: [0],
+                        perspectiveChoices: [
+                            'They value meeting deadlines and worry about their grade being affected by delays.',
+                            'They feel responsible for making sure the whole team succeeds.',
+                            'They are comparing themselves to their partner and feeling competitive.',
+                            'They want to control how the project turns out because they do not trust others.',
+                            'They are bored and have nothing else to do, so they keep checking in.'
+                        ],
+                        perspectiveCorrect: [0]
+                    },
+                    {
+                        label: 'Prompt B',
+                        question: 'How might the student who has not started be feeling or thinking?',
+                        hints: [
+                            'Consider juggling many tasks or feeling behind before starting.',
+                            'This student may feel overwhelmed, unsure, or embarrassed about being late.'
+                        ],
+                        choices: [
+                            'They might be nervous the project will not get done on time.',
+                            'They might just be excited to finish early and want to keep the group moving.',
+                            'They might feel embarrassed they have not started yet.',
+                            'They might feel stressed because they are juggling too many assignments right now.',
+                            'They might want a break and do not want to talk about the project yet.'
+                        ],
+                        correct: [3],
+                        perspectiveChoices: [
+                            'They have competing priorities pulling their attention in multiple directions.',
+                            'They do not care about the project or their grade.',
+                            'They want their partner to do all the work for them.',
+                            'They are trying to avoid responsibility and hope their partner forgets about it.',
+                            'They think the deadline does not really matter and can be extended easily.'
+                        ],
+                        perspectiveCorrect: [0]
+                    }
+                ]
+            },
+            {
+                id: 'scenario-2',
+                title: 'Lost Seat at Lunch',
+                tag: 'Lunchroom',
+                scenario: 'A student usually sits in the same seat at lunch because it feels comfortable and predictable. Today someone new is sitting there and chatting with the group. The group waves the usual student over to squeeze in, but the student pauses by the table, unsure where to sit.',
+                prompts: [
+                    {
+                        label: 'Prompt A',
+                        question: 'How might the usual student feel?',
+                        hints: [
+                            'Think about routine, comfort, and liking predictable spots.',
+                            'Losing the usual seat could make someone feel off-balance or unsure about belonging.'
+                        ],
+                        choices: [
+                            'They might feel thrown off because they like their usual spot.',
+                            'They might worry the group does not want them there.',
+                            'The new student might feel nervous and just picked an empty seat.',
+                            'The new student might be trying to make friends.',
+                            'Both students might feel awkward but not upset.'
+                        ],
+                        correct: [0],
+                        perspectiveChoices: [
+                            'They rely on routines to feel comfortable and having predictable seating helps them manage social anxiety.',
+                            'They think the seat belongs to them and nobody else should ever sit there.',
+                            'They are being dramatic and should just sit somewhere else without any hesitation.',
+                            'They do not actually care about where they sit and are just being difficult.',
+                            'They want to control the entire lunch table and decide who sits where.'
+                        ],
+                        perspectiveCorrect: [0]
+                    },
+                    {
+                        label: 'Prompt B',
+                        question: 'How might the new student feel?',
+                        hints: [
+                            'Think about joining a group for the first time.',
+                            'The new student may be nervous, guessing where to sit, or testing if the group is friendly.'
+                        ],
+                        choices: [
+                            'They might feel thrown off because they like their usual spot.',
+                            'They might worry the group does not want them there.',
+                            'The new student might feel nervous and just picked an empty seat.',
+                            'The new student might be trying to make friends.',
+                            'Both students might feel awkward but not upset.'
+                        ],
+                        correct: [2],
+                        perspectiveChoices: [
+                            'They are taking a social risk to connect with peers and do not know the unspoken seating rules yet.',
+                            'They are intentionally trying to make the usual student uncomfortable and take their spot.',
+                            'They do not notice or care about other people\'s feelings when choosing where to sit.',
+                            'They think they deserve the best seat and got there first, so they have more rights to it.',
+                            'They are trying to show off and be the center of attention at the table.'
+                        ],
+                        perspectiveCorrect: [0]
+                    }
+                ]
+            },
+            {
+                id: 'scenario-3',
+                title: 'Phone Not Answered',
+                tag: 'Communication',
+                scenario: 'A student texts their friend about after-school plans and sees the message marked as read. Hours pass with no reply. Later the friend shows up at the meeting spot acting normal and ready to hang out.',
+                prompts: [
+                    {
+                        label: 'Prompt A',
+                        question: 'How might the texter feel after waiting?',
+                        hints: [
+                            'Waiting for a reply can make someone feel unsure or ignored.',
+                            'They might worry plans are falling apart or feel confused by the silence.'
+                        ],
+                        choices: [
+                            'The texter might feel confused or ignored.',
+                            'They might worry the friend forgot.',
+                            'The friend might have been busy or lost track of time.',
+                            'The friend might think it was not urgent.',
+                            'The friend might not realize the texter felt stressed about waiting.'
+                        ],
+                        correct: [0],
+                        perspectiveChoices: [
+                            'They value clear communication and need confirmation to feel secure about their plans.',
+                            'They think their friend is deliberately ignoring them to be mean.',
+                            'They believe everyone should respond to texts immediately no matter what.',
+                            'They enjoy feeling worried and anxious about plans falling apart.',
+                            'They are being overly sensitive and should not care about getting a response.'
+                        ],
+                        perspectiveCorrect: [0]
+                    },
+                    {
+                        label: 'Prompt B',
+                        question: 'What might the friend be thinking when they show up later?',
+                        hints: [
+                            'Consider everyday reasons someone might delay a reply.',
+                            'They could have been busy, thought it was not urgent, or not noticed the time.'
+                        ],
+                        choices: [
+                            'The texter might feel confused or ignored.',
+                            'They might worry the friend forgot.',
+                            'The friend might have been busy or lost track of time.',
+                            'The friend might think it was not urgent.',
+                            'The friend might not realize the texter felt stressed about waiting.'
+                        ],
+                        correct: [2],
+                        perspectiveChoices: [
+                            'They were focused on other tasks and assumed showing up was enough confirmation without needing to text back.',
+                            'They wanted to make their friend worry on purpose to teach them a lesson.',
+                            'They do not value the friendship and do not care about responding.',
+                            'They think texting back is never necessary if you are planning to show up anyway.',
+                            'They are testing whether their friend will get mad at them for not replying.'
+                        ],
+                        perspectiveCorrect: [0]
+                    }
+                ]
+            },
+            {
+                id: 'scenario-4',
+                title: 'Unexpected Compliment',
+                tag: 'Classroom',
+                scenario: 'A quiet student answers a question well in class after rarely speaking up. Another student turns around with a surprised look and says, “Hey, that was actually a really good answer,” loud enough for a few nearby classmates to hear.',
+                prompts: [
+                    {
+                        label: 'Prompt A',
+                        question: 'How might the quiet student feel?',
+                        hints: [
+                            'Think about getting noticed in class after speaking up.',
+                            'They might feel proud, surprised, or unsure how to respond to attention.'
+                        ],
+                        choices: [
+                            'They might feel proud or happy to be noticed.',
+                            'They might feel unsure how to respond.',
+                            'The other student might just be trying to be friendly.',
+                            'The other student might be impressed and wanted to say something nice.',
+                            'The comment might be meant as encouragement, not sarcasm.'
+                        ],
+                        correct: [0],
+                        perspectiveChoices: [
+                            'They took a risk by speaking up and the positive feedback validates their effort and builds confidence.',
+                            'They think the compliment is fake and the other student is making fun of them.',
+                            'They do not care what other people think about their answers.',
+                            'They expect everyone to praise them whenever they speak in class.',
+                            'They are annoyed that someone commented on their answer instead of staying silent.'
+                        ],
+                        perspectiveCorrect: [0]
+
+                    },
+                    {
+                        label: 'Prompt B',
+                        question: 'What might the other student’s intent be?',
+                        hints: [
+                            'Focus on why someone might comment after hearing a good answer.',
+                            'They could be impressed, friendly, or trying to encourage more participation.'
+                        ],
+                        choices: [
+                            'They might feel proud or happy to be noticed.',
+                            'They might feel unsure how to respond.',
+                            'The other student might just be trying to be friendly.',
+                            'The other student might be impressed and wanted to say something nice.',
+                            'The comment might be meant as encouragement, not sarcasm.'
+                        ],
+                        correct: [3],
+                        perspectiveChoices: [
+                            'They genuinely appreciated the answer and wanted to offer encouragement to someone who rarely participates.',
+                            'They are trying to embarrass the quiet student by drawing attention to them.',
+                            'They are competing with the quiet student and want to make them feel inferior.',
+                            'They always have to comment on everyone else\'s answers to show they are smarter.',
+                            'They are being sarcastic and actually think the answer was terrible.'
+                        ],
+                        perspectiveCorrect: [0]
+
+                    }
+                ]
+            },
+            {
+                id: 'scenario-5',
+                title: 'Borrowed Item Mix-Up',
+                tag: 'Locker Room',
+                scenario: 'Two students have identical water bottles. After gym, one accidentally grabs the wrong bottle from the bench and hurries to class. Later the student who is missing theirs opens their locker and sees the other bottle sitting there.',
+                prompts: [
+                    {
+                        label: 'Prompt A',
+                        question: 'How might the student who discovers their bottle is gone feel at first?',
+                        hints: [
+                            'Think about realizing something familiar is missing.',
+                            'They might feel annoyed, mixed up, or wonder if it was taken on purpose.'
+                        ],
+                        choices: [
+                            'They might feel annoyed or confused at first.',
+                            'They might think someone took it on purpose, even if that is not true.',
+                            'The student who grabbed the wrong one might feel embarrassed.',
+                            'They might want to give it back right away.',
+                            'They might be worried the other student will be upset, but know it was an accident.'
+                        ],
+                        correct: [0],
+                        perspectiveChoices: [
+                            'They depend on having their belongings in predictable places and the disruption causes stress.',
+                            'They think everyone is always trying to steal from them.',
+                            'They believe their water bottle is more important than anyone else\'s.',
+                            'They want to get the other student in trouble even though it was clearly an accident.',
+                            'They are being overly dramatic about a minor mix-up that happens all the time.'
+                        ],
+                        perspectiveCorrect: [0]
+
+                    },
+                    {
+                        label: 'Prompt B',
+                        question: 'How might the student who took the wrong bottle feel?',
+                        hints: [
+                            'Consider how someone feels after realizing they grabbed the wrong item.',
+                            'They might feel embarrassed and want to fix the mistake quickly.'
+                        ],
+                        choices: [
+                            'They might feel annoyed or confused at first.',
+                            'They might think someone took it on purpose, even if that is not true.',
+                            'The student who grabbed the wrong one might feel embarrassed.',
+                            'They might want to give it back right away.',
+                            'They might be worried the other student will be upset, but know it was an accident.'
+                        ],
+                        correct: [2],
+                        perspectiveChoices: [
+                            'They are flexible and see the partner switch as an opportunity to learn from different people.',
+                            'They are tired of their best friend and wanted an excuse to work with someone else.',
+                            'They do not value their friendship and would rather work with anyone else.',
+                            'They are trying to make their friend jealous by being extra friendly with the new partner.',
+                            'They think working with their best friend is boring and want someone more fun.'
+                        ],
+                        perspectiveCorrect: [0]
+
+                    }
+                ]
+            },
+            {
+                id: 'scenario-6',
+                title: 'Partner Switch in PE',
+                tag: 'PE Class',
+                scenario: 'The PE teacher randomly switches partners for a new activity. One student hoped to work with their best friend, but when the friend is paired with someone else, the friend quickly joins the new partner and seems comfortable with the switch.',
+                prompts: [
+                    {
+                        label: 'Prompt A',
+                        question: 'How might the first student feel?',
+                        hints: [
+                            'Think about expecting to partner with a best friend and then being switched.',
+                            'They might feel disappointed, confused, or wonder if they did something wrong.'
+                        ],
+                        choices: [
+                            'The student might feel disappointed or confused.',
+                            'They might worry they did something wrong.',
+                            'The friend might just want to try working with different people.',
+                            'The friend might feel like they do better in class with someone else.',
+                            'The friend might not realize their reaction looked hurtful.'
+                        ],
+                        correct: [0],
+                        perspectiveChoices: [
+                            'They want their effort and success to be acknowledged and valued by people close to them.',
+                            'They need everyone to make a huge deal about every single accomplishment.',
+                            'They are bragging and showing off to make their friend feel bad.',
+                            'They think their friend should drop everything and celebrate them immediately.',
+                            'They are being too needy and should not care about their friend\'s reaction.'
+                        ],
+                        perspectiveCorrect: [0]
+
+                    },
+                    {
+                        label: 'Prompt B',
+                        question: 'What might the best friend be thinking?',
+                        hints: [
+                            'Consider neutral reasons someone might welcome a partner change.',
+                            'They might want variety or believe another partner helps them learn better.'
+                        ],
+                        choices: [
+                            'The student might feel disappointed or confused.',
+                            'They might worry they did something wrong.',
+                            'The friend might just want to try working with different people.',
+                            'The friend might feel like they do better in class with someone else.',
+                            'The friend might not realize their reaction looked hurtful.'
+                        ],
+                        correct: [2]
+                    }
+                ]
+            },
+            {
+                id: 'scenario-7',
+                title: 'Sharing a Win',
+                tag: 'Celebrations',
+                scenario: 'A student gets a good grade on a test and proudly shows the paper to a friend in the hallway. The friend glances at it, shrugs, and says, “Cool, I guess,” without much expression before looking back at their phone.',
+                prompts: [
+                    {
+                        label: 'Prompt A',
+                        question: 'How might the student who got the good grade feel?',
+                        hints: [
+                            'Think about sharing good news and getting a flat reaction.',
+                            'They might feel proud of the grade but disappointed by the friend’s response.'
+                        ],
+                        choices: [
+                            'They might feel let down because they wanted a bigger reaction.',
+                            'They might feel proud but confused by their friend’s response.',
+                            'The friend might be tired or thinking about something else.',
+                            'The friend might actually be happy for them but not show emotion.',
+                            'The friend might be struggling with their own grade and feel a little down.'
+                        ],
+                        correct: [0]
+                    },
+                    {
+                        label: 'Prompt B',
+                        question: 'What might the friend be feeling even if they do not show it?',
+                        hints: [
+                            'Not everyone shows excitement the same way.',
+                            'The friend could be distracted, tired, or upset about their own grade.'
+                        ],
+                        choices: [
+                            'They might feel let down because they wanted a bigger reaction.',
+                            'They might feel proud but confused by their friend’s response.',
+                            'The friend might be tired or thinking about something else.',
+                            'The friend might actually be happy for them but not show emotion.',
+                            'The friend might be struggling with their own grade and feel a little down.'
+                        ],
+                        correct: [4],
+                        perspectiveChoices: [
+                            'They may be dealing with their own challenges and do not have the energy to show excitement right now.',
+                            'They are deliberately trying to ruin their friend\'s happy moment.',
+                            'They are jealous and want their friend to fail.',
+                            'They think good grades do not matter and their friend is wasting time celebrating.',
+                            'They do not care about their friend at all and wish they would go away.'
+                        ],
+                        perspectiveCorrect: [0]
+
+                    }
+                ]
+            },
+            {
+                id: 'scenario-8',
+                title: 'Hallway Bump',
+                tag: 'Transitions',
+                scenario: 'Between classes the hallway is crowded and noisy. A student gets bumped hard by someone rushing past with a backpack, and a notebook drops to the floor. The rushing student keeps moving and does not look back.',
+                prompts: [
+                    {
+                        label: 'Prompt A',
+                        question: 'How might the bumped student feel?',
+                        hints: [
+                            'Think about being bumped in a crowd unexpectedly.',
+                            'They might feel startled, irritated, or wonder if the other person noticed.'
+                        ],
+                        choices: [
+                            'They might feel startled or irritated.',
+                            'They might feel like the other person did not care.',
+                            'The rushing student might not have realized they bumped someone.',
+                            'They might have been late or stressed about getting to class.',
+                            'They might be focused on something else and not notice the reaction behind them.'
+                        ],
+                        correct: [0],
+                        perspectiveChoices: [
+                            'They experienced an unexpected physical disruption and feel disrespected when there is no acknowledgment.',
+                            'They think everyone in the hallway is purposely trying to hurt them.',
+                            'They expect everyone to walk perfectly and never make mistakes in crowded spaces.',
+                            'They want the other student to be punished for a minor accident in a busy hallway.',
+                            'They are overreacting to something that happens all the time and should not bother anyone.'
+                        ],
+                        perspectiveCorrect: [0]
+
+                    },
+                    {
+                        label: 'Prompt B',
+                        question: 'Why might the rushing student not look back?',
+                        hints: [
+                            'Consider reasons someone might keep moving in a crowd.',
+                            'They might be late, stressed, or not realize they bumped anyone.'
+                        ],
+                        choices: [
+                            'They might feel startled or irritated.',
+                            'They might feel like the other person did not care.',
+                            'The rushing student might not have realized they bumped someone.',
+                            'They might have been late or stressed about getting to class.',
+                            'They might be focused on something else and not notice the reaction behind them.'
+                        ],
+                        correct: [2],
+                        perspectiveChoices: [
+                            'They are focused on getting to class and genuinely did not notice the impact or the dropped notebook.',
+                            'They saw what happened but do not care about other people at all.',
+                            'They bumped the student on purpose to be mean and kept walking.',
+                            'They think it is funny to bump people and never apologize.',
+                            'They believe hallways are a free-for-all and nobody should expect any courtesy.'
+                        ],
+                        perspectiveCorrect: [0]
+
+                    }
+                ]
+            }
+        ];
+
+        const navEl = document.getElementById('nav');
+        const scenarioContainer = document.getElementById('scenario-container');
+        const resetBtn = document.getElementById('reset-btn');
+
+        function shuffle(array) {
+            const copy = array.slice();
+            for (let i = copy.length - 1; i > 0; i -= 1) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function renderNav() {
+            navEl.innerHTML = '';
+            scenarios.forEach((scenario, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn' + (idx === 0 ? ' active' : '');
+                btn.dataset.id = scenario.id;
+                btn.textContent = `${idx + 1}. ${scenario.title}`;
+                btn.addEventListener('click', () => loadScenario(scenario.id));
+                navEl.appendChild(btn);
+            });
+        }
+
+        function buildHint(hintText) {
+            const hint = document.createElement('div');
+            hint.className = 'hint';
+            hint.textContent = hintText;
+            return hint;
+        }
+
+        function createChoices(prompt, feedbackEl) {
+            const wrap = document.createElement('div');
+            wrap.className = 'choices';
+
+            const helper = document.createElement('div');
+            helper.className = 'helper';
+            helper.textContent = 'Pick the one best choice that matches this prompt, then tap "Check answers."';
+            wrap.appendChild(helper);
+
+            const options = shuffle(prompt.choices.map((choice, idx) => ({ choice, idx })));
+
+            options.forEach(opt => {
+                const row = document.createElement('label');
+                row.className = 'choice-row';
+
+                const box = document.createElement('input');
+                box.type = 'checkbox';
+                box.dataset.index = opt.idx;
+                box.style.marginTop = '4px';
+
+                const text = document.createElement('div');
+                text.textContent = opt.choice;
+
+                row.appendChild(box);
+                row.appendChild(text);
+                wrap.appendChild(row);
+            });
+
+            const checkBtn = document.createElement('button');
+            checkBtn.className = 'btn btn-check';
+            checkBtn.textContent = 'Check answers';
+            checkBtn.style.marginTop = '8px';
+            wrap.appendChild(checkBtn);
+
+            checkBtn.addEventListener('click', () => {
+                const rows = Array.from(wrap.querySelectorAll('.choice-row'));
+                const selected = rows
+                    .map(row => ({ index: Number(row.querySelector('input').dataset.index), checked: row.querySelector('input').checked }));
+                const selectedIndices = selected.filter(item => item.checked).map(item => item.index);
+                const correctAnswer = prompt.correct[0];
+
+                rows.forEach(row => {
+                    const idx = Number(row.querySelector('input').dataset.index);
+                    row.classList.remove('correct', 'incorrect');
+                    if (row.querySelector('input').checked) {
+                        row.classList.add(idx === correctAnswer ? 'correct' : 'incorrect');
+                    }
+                });
+
+                feedbackEl.style.display = 'block';
+                if (selectedIndices.length === 1 && selectedIndices[0] === correctAnswer) {
+                    feedbackEl.className = 'feedback correct';
+                    feedbackEl.textContent = 'Great! You picked the best-fitting perspective.';
+                } else if (selectedIndices.length === 0) {
+                    feedbackEl.className = 'feedback incorrect';
+                    feedbackEl.textContent = 'Try again. Choose the one option that fits best.';
+                } else {
+                    feedbackEl.className = 'feedback incorrect';
+                    feedbackEl.textContent = 'That is not the best match. Re-read the scenario and hints, then pick one choice.';
+                }
+            });
+
+            return wrap;
+        }
+
+        function createChoicesPerspective(prompt, feedbackEl) {
+            const wrap = document.createElement('div');
+            wrap.className = 'choices';
+
+            const helper = document.createElement('div');
+            helper.className = 'helper';
+            helper.textContent = 'Pick the one best explanation for WHY they might feel or think this way:';
+            wrap.appendChild(helper);
+
+            // Create perspective-based choices from the prompt data
+            // These explain WHY the person feels/thinks the way they do
+            const perspectiveChoices = prompt.perspectiveChoices || [];
+            const options = shuffle(perspectiveChoices.map((choice, idx) => ({ choice, idx })));
+
+            options.forEach(opt => {
+                const row = document.createElement('label');
+                row.className = 'choice-row';
+
+                const box = document.createElement('input');
+                box.type = 'checkbox';
+                box.dataset.index = opt.idx;
+                box.style.marginTop = '4px';
+
+                const text = document.createElement('div');
+                text.textContent = opt.choice;
+
+                row.appendChild(box);
+                row.appendChild(text);
+                wrap.appendChild(row);
+            });
+
+            const checkBtn = document.createElement('button');
+            checkBtn.className = 'btn btn-check';
+            checkBtn.textContent = 'Check answers';
+            checkBtn.style.marginTop = '8px';
+            wrap.appendChild(checkBtn);
+
+            checkBtn.addEventListener('click', () => {
+                const rows = Array.from(wrap.querySelectorAll('.choice-row'));
+                const selected = rows
+                    .map(row => ({ index: Number(row.querySelector('input').dataset.index), checked: row.querySelector('input').checked }));
+                const selectedIndices = selected.filter(item => item.checked).map(item => item.index);
+                const correctAnswer = prompt.perspectiveCorrect ? prompt.perspectiveCorrect[0] : 0;
+
+                rows.forEach(row => {
+                    const idx = Number(row.querySelector('input').dataset.index);
+                    row.classList.remove('correct', 'incorrect');
+                    if (row.querySelector('input').checked) {
+                        row.classList.add(idx === correctAnswer ? 'correct' : 'incorrect');
+                    }
+                });
+
+                feedbackEl.style.display = 'block';
+                if (selectedIndices.length === 1 && selectedIndices[0] === correctAnswer) {
+                    feedbackEl.className = 'feedback correct';
+                    feedbackEl.textContent = 'Excellent! You identified the best explanation for their perspective.';
+                } else if (selectedIndices.length === 0) {
+                    feedbackEl.className = 'feedback incorrect';
+                    feedbackEl.textContent = 'Try again. Choose the one explanation that best explains their perspective.';
+                } else {
+                    feedbackEl.className = 'feedback incorrect';
+                    feedbackEl.textContent = 'That is not the best explanation. Re-read the scenario and hint, then pick one choice.';
+                }
+            });
+
+            return wrap;
+        }
+
+        function createPromptCard(prompt) {
+            const card = document.createElement('div');
+            card.className = 'prompt-card';
+
+            const title = document.createElement('p');
+            title.className = 'prompt-title';
+            title.textContent = prompt.label;
+            card.appendChild(title);
+
+            const text = document.createElement('div');
+            text.className = 'prompt-text';
+            text.textContent = prompt.question + ' (Choose one best answer.)';
+            card.appendChild(text);
+
+            const responseBox = document.createElement('textarea');
+            responseBox.className = 'response-box';
+            responseBox.placeholder = 'Type how the person might feel or what they might be thinking...';
+            card.appendChild(responseBox);
+
+            // Support box for first question (feelings/thoughts)
+            const supportBox1 = document.createElement('div');
+            supportBox1.className = 'support-box';
+
+            const helpRow1 = document.createElement('div');
+            helpRow1.className = 'help-row';
+            const hintBtn1 = document.createElement('button');
+            hintBtn1.className = 'btn btn-hint';
+            hintBtn1.textContent = 'Hint 1';
+            const choicesBtn1 = document.createElement('button');
+            choicesBtn1.className = 'btn btn-choices';
+            choicesBtn1.textContent = 'Show choices';
+            choicesBtn1.disabled = true;
+            helpRow1.appendChild(hintBtn1);
+            helpRow1.appendChild(choicesBtn1);
+            supportBox1.appendChild(helpRow1);
+
+            const hint1 = buildHint(prompt.hints[0]);
+            supportBox1.appendChild(hint1);
+
+            const feedback1 = document.createElement('div');
+            feedback1.className = 'feedback';
+            supportBox1.appendChild(feedback1);
+
+            const choicesWrap1 = createChoices(prompt, feedback1);
+            supportBox1.appendChild(choicesWrap1);
+
+            card.appendChild(supportBox1);
+
+            // Second question - perspective
+            const perspectiveLabel = document.createElement('div');
+            perspectiveLabel.className = 'sub-label';
+            perspectiveLabel.textContent = 'Explain their perspective (why they might feel/think that way):';
+            card.appendChild(perspectiveLabel);
+
+            const perspectiveBox = document.createElement('textarea');
+            perspectiveBox.className = 'response-box';
+            perspectiveBox.placeholder = 'Explain their perspective, goals, or what might be driving this reaction...';
+            card.appendChild(perspectiveBox);
+
+            // Support box for second question (perspective)
+            const supportBox2 = document.createElement('div');
+            supportBox2.className = 'support-box';
+
+            const helpRow2 = document.createElement('div');
+            helpRow2.className = 'help-row';
+            const hintBtn2 = document.createElement('button');
+            hintBtn2.className = 'btn btn-hint';
+            hintBtn2.textContent = 'Hint 2';
+            hintBtn2.disabled = true;
+            const choicesBtn2 = document.createElement('button');
+            choicesBtn2.className = 'btn btn-choices';
+            choicesBtn2.textContent = 'Show choices';
+            choicesBtn2.disabled = true;
+            helpRow2.appendChild(hintBtn2);
+            helpRow2.appendChild(choicesBtn2);
+            supportBox2.appendChild(helpRow2);
+
+            const hint2 = buildHint(prompt.hints[1]);
+            supportBox2.appendChild(hint2);
+
+            const feedback2 = document.createElement('div');
+            feedback2.className = 'feedback';
+            supportBox2.appendChild(feedback2);
+
+            const choicesWrap2 = createChoicesPerspective(prompt, feedback2);
+            supportBox2.appendChild(choicesWrap2);
+
+            card.appendChild(supportBox2);
+
+            // Event listeners for first question
+            hintBtn1.addEventListener('click', () => {
+                hint1.style.display = 'block';
+                choicesBtn1.disabled = false;
+            });
+
+            choicesBtn1.addEventListener('click', () => {
+                choicesWrap1.style.display = 'block';
+            });
+
+            // Event listeners for second question
+            hintBtn2.addEventListener('click', () => {
+                hint2.style.display = 'block';
+                choicesBtn2.disabled = false;
+            });
+
+            choicesBtn2.addEventListener('click', () => {
+                choicesWrap2.style.display = 'block';
+            });
+
+            // Enable hint 2 after hint 1 is clicked
+            hintBtn1.addEventListener('click', () => {
+                hintBtn2.disabled = false;
+            });
+
+            return card;
+        }
+
+        function loadScenario(id) {
+            const scenario = scenarios.find(item => item.id === id);
+            if (!scenario) {
+                return;
+            }
+
+            Array.from(navEl.children).forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.id === id);
+            });
+
+            scenarioContainer.innerHTML = '';
+            const card = document.createElement('div');
+            card.className = 'scenario-card';
+
+            const header = document.createElement('div');
+            header.className = 'scenario-header';
+            const title = document.createElement('h2');
+            title.className = 'scenario-title';
+            title.textContent = scenario.title;
+            const tag = document.createElement('span');
+            tag.className = 'scenario-tag';
+            tag.textContent = scenario.tag;
+            header.appendChild(title);
+            header.appendChild(tag);
+            card.appendChild(header);
+
+            const textBlock = document.createElement('div');
+            textBlock.className = 'scenario-text';
+            textBlock.textContent = scenario.scenario;
+            card.appendChild(textBlock);
+
+            const grid = document.createElement('div');
+            grid.className = 'prompt-grid';
+            scenario.prompts.forEach(prompt => {
+                grid.appendChild(createPromptCard(prompt));
+            });
+            card.appendChild(grid);
+
+            scenarioContainer.appendChild(card);
+        }
+
+        renderNav();
+        loadScenario(scenarios[0].id);
+
+        resetBtn.addEventListener('click', () => {
+            loadScenario(scenarios[0].id);
+            navEl.scrollTo({ left: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

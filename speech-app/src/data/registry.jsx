@@ -21,6 +21,10 @@ import { mainIdeaDetailsData } from './mainIdeaDetails';
 import { sentenceBuilderElementaryData } from './sentenceBuilderElementary';
 import { multipleMeaningsElementaryData } from './multipleMeaningsElementary';
 import { socialStoriesElementaryData } from './socialStoriesElementary';
+import { fallReadingStoriesData } from './fallReadingStories';
+import { finalLBlendStoriesData } from './finalLBlendStories';
+import { hsStoryRetellingData } from './hsStoryRetelling';
+
 
 
 
@@ -620,9 +624,44 @@ export const activityRegistry = {
         title: "Social Stories (Elementary)",
         subtitle: "Read and reflect on social situations",
         config: {}
-    }
+    },
+    'fall-reading-stories': {
+        component: StoryEngine,
+        data: fallReadingStoriesData,
+        title: "Fall Reading Stories",
+        subtitle: "Seasonal reading comprehension",
+        config: {}
+    },
+    'final-l-blend-stories': {
+        component: StoryEngine,
+        data: finalLBlendStoriesData,
+        title: "Final /l/ Blend Stories",
+        subtitle: "Phonics practice with stories",
+        config: {}
+    },
+    'hs-story-retelling': {
+        component: StoryEngine,
+        data: hsStoryRetellingData,
+        title: "HS Story Retelling",
+        subtitle: "High-interest stories for retelling",
+        config: {}
+    },
+
+
+
 
 
 
 };
+
+// Auto-Discovery: Load all activity files from the 'activities' directory
+const activityFiles = import.meta.glob('./activities/*.js', { eager: true });
+
+Object.values(activityFiles).forEach(module => {
+    const activity = module.default;
+    if (activity && activity.id) {
+        activityRegistry[activity.id] = activity;
+    }
+});
+
 
