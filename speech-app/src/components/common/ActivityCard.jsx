@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 export default function ActivityCard({ id, title, description, icon: Icon }) {
     return (
-        <motion.div
+        <Motion.div
             whileHover={{ y: -5 }}
             transition={{ type: "spring", stiffness: 300 }}
         >
@@ -26,6 +26,6 @@ export default function ActivityCard({ id, title, description, icon: Icon }) {
                     {description}
                 </p>
             </Link>
-        </motion.div>
+        </Motion.div>
     );
 }

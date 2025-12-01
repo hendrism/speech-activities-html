@@ -383,7 +383,7 @@ export const activityRegistry = {
                     <div className="text-lg text-slate-600">Which definition matches the word <strong>{item.word}</strong> in this sentence?</div>
                 </div>
             ),
-            hintTemplate: (item) => "Read the sentence carefully. How is the word being used?",
+            hintTemplate: () => "Read the sentence carefully. How is the word being used?",
             getOptions: (item) => item.definitions,
             getCorrectAnswer: (item) => item.correctDefinition
         }
@@ -575,7 +575,7 @@ export const activityRegistry = {
                     </div>
                 </div>
             ),
-            hintTemplate: (item) => "Look for the sentence that summarizes the entire passage, not just one detail.",
+            hintTemplate: () => "Look for the sentence that summarizes the entire passage, not just one detail.",
             getOptions: (item) => item.options,
             getCorrectAnswer: (item) => item.mainIdea
         }
@@ -613,7 +613,7 @@ export const activityRegistry = {
                     </div>
                 </div>
             ),
-            hintTemplate: (item) => "Read the sentence carefully to understand how the word is used.",
+            hintTemplate: () => "Read the sentence carefully to understand how the word is used.",
             getOptions: (item) => item.options,
             getCorrectAnswer: (item) => item.correct
         }

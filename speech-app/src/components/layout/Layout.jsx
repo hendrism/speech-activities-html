@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Home } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 export default function Layout({ children }) {
     return (
@@ -18,13 +18,13 @@ export default function Layout({ children }) {
             </header>
 
             <main className="max-w-5xl mx-auto px-4 py-8">
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
                     {children}
-                </motion.div>
+                </Motion.div>
             </main>
         </div>
     );
