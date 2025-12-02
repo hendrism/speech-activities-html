@@ -338,6 +338,7 @@ export const thanksgivingStoriesData = [
 
 export default {
     id: 'thanksgiving-stories',
+    category: 'reading',
     title: 'Thanksgiving Stories',
     subtitle: 'Literal comprehension practice',
     component: StoryEngine,

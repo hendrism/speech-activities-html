@@ -115,6 +115,7 @@ export const thanksgivingFluencyData = [
 
 export default {
     id: 'thanksgiving-fluency',
+    category: 'articulation',
     title: 'Thanksgiving Conversation',
     subtitle: 'Fluency and Articulation practice',
     component: ConversationEngine,

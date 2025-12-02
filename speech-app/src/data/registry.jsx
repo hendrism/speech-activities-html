@@ -43,6 +43,7 @@ import clsx from 'clsx';
 
 export const activityRegistry = {
     'definitions': {
+        category: 'language',
         title: 'Word Definitions',
         subtitle: 'Match the words to their meanings',
         component: QuizEngine,
@@ -62,6 +63,7 @@ export const activityRegistry = {
     },
 
     'articulation': {
+        category: 'articulation',
         title: 'Articulation Practice',
         subtitle: 'Build sentences with target sounds',
         component: BuilderEngine,
@@ -135,6 +137,7 @@ export const activityRegistry = {
         }
     },
     'fall-stories': {
+        category: 'reading',
         title: 'Fall Reading Stories',
         subtitle: 'Read short stories and answer questions',
         component: StoryEngine,
@@ -142,6 +145,7 @@ export const activityRegistry = {
         config: {}
     },
     'social-scenarios': {
+        category: 'social',
         title: 'Social Problem Solving',
         subtitle: 'Explore solutions to social challenges',
         component: ScenarioEngine,
@@ -149,6 +153,7 @@ export const activityRegistry = {
         config: {}
     },
     'compare-contrast': {
+        category: 'language',
         component: VisualizerEngine,
         data: compareContrastData,
         title: "Compare & Contrast",
@@ -157,6 +162,7 @@ export const activityRegistry = {
         config: {}
     },
     'context-clues-easy': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesEasy,
         title: "Context Clues (Easy)",
@@ -174,6 +180,7 @@ export const activityRegistry = {
         }
     },
     'context-clues-medium': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesMedium,
         title: "Context Clues (Medium)",
@@ -191,6 +198,7 @@ export const activityRegistry = {
         }
     },
     'context-clues-hard': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesHard,
         title: "Context Clues (Hard)",
@@ -208,6 +216,7 @@ export const activityRegistry = {
         }
     },
     'context-clues-3-easy': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesSet3Easy,
         title: "Context Clues Set 3 (Easy)",
@@ -225,6 +234,7 @@ export const activityRegistry = {
         }
     },
     'context-clues-3-medium': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesSet3Medium,
         title: "Context Clues Set 3 (Medium)",
@@ -242,6 +252,7 @@ export const activityRegistry = {
         }
     },
     'context-clues-3-hard': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesSet3Hard,
         title: "Context Clues Set 3 (Hard)",
@@ -259,6 +270,7 @@ export const activityRegistry = {
         }
     },
     'context-clues-2-easy': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesSet2Easy,
         title: "Context Clues Set 2 (Easy)",
@@ -276,6 +288,7 @@ export const activityRegistry = {
         }
     },
     'context-clues-2-medium': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesSet2Medium,
         title: "Context Clues Set 2 (Medium)",
@@ -293,6 +306,7 @@ export const activityRegistry = {
         }
     },
     'context-clues-2-hard': {
+        category: 'language',
         component: QuizEngine,
         data: contextCluesSet2Hard,
         title: "Context Clues Set 2 (Hard)",
@@ -312,6 +326,7 @@ export const activityRegistry = {
 
 
     'analogies': {
+        category: 'language',
         component: QuizEngine,
         data: analogiesData,
         title: "Analogies",
@@ -338,6 +353,7 @@ export const activityRegistry = {
         }
     },
     'synonyms': {
+        category: 'language',
         component: QuizEngine,
         data: synonymsData,
         title: "Synonyms (Thanksgiving)",
@@ -355,6 +371,7 @@ export const activityRegistry = {
         }
     },
     'antonyms': {
+        category: 'language',
         component: QuizEngine,
         data: antonymsData,
         title: "Antonyms (Fall)",
@@ -372,6 +389,7 @@ export const activityRegistry = {
         }
     },
     'multiple-meanings': {
+        category: 'language',
         component: QuizEngine,
         data: multipleMeaningsData,
         title: "Multiple Meanings",
@@ -389,6 +407,7 @@ export const activityRegistry = {
         }
     },
     'fall-nouns': {
+        category: 'language',
         component: QuizEngine,
         data: fallNounsData,
         title: "Fall Nouns",
@@ -405,6 +424,7 @@ export const activityRegistry = {
         }
     },
     'fall-nouns-quiz': {
+        category: 'language',
         component: QuizEngine,
         data: [...fallNounsCategory, ...fallNounsFunction],
         title: "Fall Nouns (Quiz Mode)",
@@ -422,6 +442,7 @@ export const activityRegistry = {
     },
 
     'thanksgiving-clues': {
+        category: 'language',
         component: QuizEngine,
         data: thanksgivingCluesData,
         title: "Context Clues (Thanksgiving)",
@@ -439,6 +460,7 @@ export const activityRegistry = {
         }
     },
     'inference-clues': {
+        category: 'reading',
         component: ScenarioEngine,
         data: inferenceCluesData,
         title: "Inference Practice (Grade 9)",
@@ -448,6 +470,7 @@ export const activityRegistry = {
         }
     },
     'past-tense': {
+        category: 'grammar',
         component: QuizEngine,
         data: pastTenseData.flatMap(verb => verb.sentences.map(s => ({ ...s, verb: verb.verb, answer: verb.answer }))),
         title: "Past Tense Verbs",
@@ -472,6 +495,7 @@ export const activityRegistry = {
         }
     },
     'detective-clues': {
+        category: 'language',
         component: QuizEngine,
         data: detectiveCluesData,
         title: "Context Clues Detective",
@@ -496,6 +520,7 @@ export const activityRegistry = {
         }
     },
     'multiple-meanings-advanced': {
+        category: 'language',
         component: QuizEngine,
         data: multipleMeaningsAdvancedData,
         title: "Multiple Meanings (Advanced)",
@@ -515,6 +540,7 @@ export const activityRegistry = {
         }
     },
     'plural-nouns': {
+        category: 'grammar',
         component: QuizEngine,
         data: pluralNounsData,
         title: "Plural Nouns Practice",
@@ -534,6 +560,7 @@ export const activityRegistry = {
         }
     },
     'reading-comprehension': {
+        category: 'reading',
         component: StoryEngine,
         data: readingComprehensionData,
         title: "Reading Comprehension",
@@ -541,6 +568,7 @@ export const activityRegistry = {
         config: {}
     },
     'sentence-builder-middle': {
+        category: 'language',
         component: QuizEngine,
         data: sentenceBuilderMiddleData,
         title: "Sentence Builder (Middle School)",
@@ -560,6 +588,7 @@ export const activityRegistry = {
         }
     },
     'main-idea-details': {
+        category: 'reading',
         component: QuizEngine,
         data: mainIdeaDetailsData,
         title: "Main Idea & Details Lab",
@@ -581,6 +610,7 @@ export const activityRegistry = {
         }
     },
     'sentence-builder-elementary': {
+        category: 'language',
         component: QuizEngine,
         data: sentenceBuilderElementaryData,
         title: "Sentence Builder (Elementary)",
@@ -600,6 +630,7 @@ export const activityRegistry = {
         }
     },
     'multiple-meanings-elementary': {
+        category: 'language',
         component: QuizEngine,
         data: multipleMeaningsElementaryData,
         title: "Multiple Meanings (Elementary)",
@@ -619,6 +650,7 @@ export const activityRegistry = {
         }
     },
     'social-stories-elementary': {
+        category: 'reading',
         component: StoryEngine,
         data: socialStoriesElementaryData,
         title: "Social Stories (Elementary)",
@@ -626,6 +658,7 @@ export const activityRegistry = {
         config: {}
     },
     'fall-reading-stories': {
+        category: 'reading',
         component: StoryEngine,
         data: fallReadingStoriesData,
         title: "Fall Reading Stories",
@@ -633,6 +666,7 @@ export const activityRegistry = {
         config: {}
     },
     'final-l-blend-stories': {
+        category: 'reading',
         component: StoryEngine,
         data: finalLBlendStoriesData,
         title: "Final /l/ Blend Stories",
@@ -640,6 +674,7 @@ export const activityRegistry = {
         config: {}
     },
     'hs-story-retelling': {
+        category: 'reading',
         component: StoryEngine,
         data: hsStoryRetellingData,
         title: "HS Story Retelling",

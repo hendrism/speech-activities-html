@@ -325,6 +325,7 @@ export const fallReadingStoriesData = [
 
 export default {
     id: 'fall-reading-stories',
+    category: 'reading',
     title: 'Fall Reading Stories',
     subtitle: 'Seasonal reading comprehension',
     component: StoryEngine,

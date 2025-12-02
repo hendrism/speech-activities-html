@@ -65,6 +65,7 @@ export const thanksgivingSocialData = [
 
 export default {
     id: 'thanksgiving-social',
+    category: 'social',
     title: 'Thanksgiving Social Scenarios',
     subtitle: 'Identify and solve social problems',
     component: SocialEngine,
