@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowy Day Reading - Literal & Inferential Tabs</title>
+    <style>
+        :root {
+            --midnight: #0f172a;
+            --frost: #e2e8f0;
+            --sky: #38bdf8;
+            --sun: #fbbf24;
+            --snow: #f8fafc;
+            --spruce: #0b6e4f;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #f1f5f9, #e0f2fe 45%, #f8fafc);
+            color: var(--midnight);
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 18px 40px;
+        }
+        h1 {
+            text-align: center;
+            margin: 0 0 10px;
+            letter-spacing: 0.3px;
+        }
+        .intro {
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .nav-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            position: sticky;
+            top: 0;
+            background: rgba(241, 245, 249, 0.92);
+            padding: 8px 0 4px;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+        .nav-btn {
+            border: 1px solid var(--frost);
+            background: white;
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--midnight);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.07);
+            transition: all 0.2s ease;
+        }
+        .nav-btn:hover {
+            border-color: var(--sky);
+            transform: translateY(-1px);
+        }
+        .nav-btn.active {
+            background: linear-gradient(135deg, #e0f2fe, #fef9c3);
+            border-color: var(--sun);
+            color: #92400e;
+        }
+        .story-card {
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+            margin-top: 12px;
+        }
+        .story-top {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 14px;
+            align-items: start;
+        }
+        .story-text {
+            background: var(--snow);
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 12px;
+            line-height: 1.6;
+        }
+        .story-text p {
+            margin: 0 0 8px;
+        }
+        .image-placeholder {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 10px, #eef2ff 10px, #eef2ff 20px);
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            color: #475569;
+            text-align: center;
+            font-weight: 700;
+        }
+        .image-placeholder span {
+            display: block;
+            font-size: 0.95rem;
+        }
+        .question-tabs {
+            display: inline-flex;
+            gap: 8px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            padding: 6px;
+            margin: 12px 0;
+        }
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 9px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #475569;
+            transition: all 0.15s ease;
+        }
+        .tab-btn.active {
+            background: white;
+            color: var(--midnight);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--frost);
+        }
+        .questions {
+            display: grid;
+            gap: 12px;
+        }
+        .question-card {
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 12px;
+            background: #f8fafc;
+        }
+        .question-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .question-label {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .question-prompt {
+            font-weight: 700;
+            margin: 6px 0 10px;
+        }
+        .help-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .btn-clue {
+            background: #0ea5e9;
+            color: white;
+        }
+        .btn-choices {
+            background: var(--sun);
+            color: #92400e;
+        }
+        .btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            color: #475569;
+        }
+        .clue {
+            display: none;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: #ecfeff;
+            border: 1px solid #bae6fd;
+            color: #0f172a;
+        }
+        .choices-wrap {
+            display: none;
+            margin-top: 6px;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        .choice-btn {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px 12px;
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .choice-btn:hover {
+            border-color: var(--sky);
+            transform: translateY(-1px);
+        }
+        .choice-btn.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+        .choice-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+        .feedback {
+            display: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+        @media (max-width: 820px) {
+            .story-top {
+                grid-template-columns: 1fr;
+            }
+            .nav-bar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Snowy Day Reading - Literal & Inferential Tabs</h1>
+        <div class="intro">
+            Ten short winter scenes with two sets of questions per story. Use the tabs to flip between literal and inferential prompts. Each question unlocks in two steps: tap "Show clue" for a scaffold, then "Show choices" to reveal three randomized answers. Image placeholders are ready—drop in local images by filling the <code>image</code> path inside the story data.
+        </div>
+        <div class="nav-bar" id="story-nav"></div>
+        <div id="story-container"></div>
+    </div>
+    <script>
+        const stories = [
+            {
+                id: 'story-1',
+                title: 'Snowy Arrival',
+                image: 'images/winter_stories/story1_snowy-arrival.png',
+                alt: 'Students entering a school while snow falls',
+                text: [
+                    'Snow starts falling outside the school.',
+                    'The ground turns white.',
+                    'Students walk to the door slowly.',
+                    'They go inside to get warm.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'Who walks toward the building?',
+                                clue: 'Think about which group is moving together.',
+                                choices: [
+                                    { text: 'The students', isCorrect: true },
+                                    { text: 'The bus drivers', isCorrect: false },
+                                    { text: 'The neighbors', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What is falling outside the school?',
+                                clue: 'It is a type of frozen weather falling from the sky.',
+                                choices: [
+                                    { text: 'Snow', isCorrect: true },
+                                    { text: 'Rain', isCorrect: false },
+                                    { text: 'Falling leaves', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where are the students walking as the snow falls?',
+                                clue: 'They are heading toward a place to enter the school.',
+                                choices: [
+                                    { text: 'To the door', isCorrect: true },
+                                    { text: 'To the playground', isCorrect: false },
+                                    { text: 'To the cafeteria', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What color does the ground turn?',
+                                clue: 'Snow covers the ground with this color.',
+                                choices: [
+                                    { text: 'White', isCorrect: true },
+                                    { text: 'Green', isCorrect: false },
+                                    { text: 'Brown', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why do the students walk slowly?',
+                                clue: 'Consider what fresh snow does to the ground.',
+                                choices: [
+                                    { text: 'So they do not slip on the snow', isCorrect: true },
+                                    { text: 'So they can make loud noises', isCorrect: false },
+                                    { text: 'So they can block the doorway', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why do the students go inside?',
+                                clue: 'Look at what they want to feel.',
+                                choices: [
+                                    { text: 'To get warm', isCorrect: true },
+                                    { text: 'To start recess', isCorrect: false },
+                                    { text: 'To meet the bus driver', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might the students feel once they reach the warm building?',
+                                clue: 'Think about how cold bodies feel in heat.',
+                                choices: [
+                                    { text: 'Relieved and cozy', isCorrect: true },
+                                    { text: 'Sleepy and bored', isCorrect: false },
+                                    { text: 'Upset and angry', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How does the snow change what they do outside?',
+                                clue: 'Notice how the weather affects their routine.',
+                                choices: [
+                                    { text: 'They go inside instead of staying out', isCorrect: true },
+                                    { text: 'They start a long playground game', isCorrect: false },
+                                    { text: 'They run laps around the school', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-2',
+                title: 'Layering Up',
+                image: 'images/winter_stories/story2.png',
+                alt: 'Child putting on winter clothing',
+                text: [
+                    'Sam puts on his coat.',
+                    'Then he puts on his hat.',
+                    'Next he puts on his gloves.',
+                    'Now he is ready to go outside.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'What clothing item does Sam put on first?',
+                                clue: 'It covers his upper body.',
+                                choices: [
+                                    { text: 'His coat', isCorrect: true },
+                                    { text: 'His gloves', isCorrect: false },
+                                    { text: 'His scarf', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does Sam put on right after his coat?',
+                                clue: 'It goes on his head before his gloves.',
+                                choices: [
+                                    { text: 'His hat', isCorrect: true },
+                                    { text: 'His gloves', isCorrect: false },
+                                    { text: 'His boots', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Which item comes after the hat?',
+                                clue: 'It keeps his hands warm.',
+                                choices: [
+                                    { text: 'His gloves', isCorrect: true },
+                                    { text: 'His socks', isCorrect: false },
+                                    { text: 'His backpack', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What is Sam ready to do after putting on his clothes?',
+                                clue: 'The last sentence explains his plan.',
+                                choices: [
+                                    { text: 'Go outside', isCorrect: true },
+                                    { text: 'Go to sleep', isCorrect: false },
+                                    { text: 'Make lunch', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why is Sam adding all these layers?',
+                                clue: 'Think about the weather outside.',
+                                choices: [
+                                    { text: 'To stay warm outdoors', isCorrect: true },
+                                    { text: 'To swim in a pool', isCorrect: false },
+                                    { text: 'To take a nap', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might Sam feel once he is dressed?',
+                                clue: 'He put on enough to face the cold.',
+                                choices: [
+                                    { text: 'Cozy and ready to play', isCorrect: true },
+                                    { text: 'Hot and sleepy', isCorrect: false },
+                                    { text: 'Hungry and worried', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why might Sam put on his hat before his gloves?',
+                                clue: 'Think about what part of the body loses heat fast.',
+                                choices: [
+                                    { text: 'To keep his head warm first', isCorrect: true },
+                                    { text: 'To practice balancing', isCorrect: false },
+                                    { text: 'To match his boots', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What might Sam still need to add before snow play?',
+                                clue: 'He covered his head and hands but not his feet.',
+                                choices: [
+                                    { text: 'Boots to protect his feet', isCorrect: true },
+                                    { text: 'A swimsuit', isCorrect: false },
+                                    { text: 'Indoor slippers', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-3',
+                title: 'Bus Stop Chill',
+                image: 'images/winter_stories/story3_new.png',
+                alt: 'Student finding a seat on a bus in winter',
+                text: [
+                    'The bus stops at the corner.',
+                    'Ben steps onto the bus, and cold air comes in behind him.',
+                    'He walks down the aisle to find a seat.',
+                    'Then he sits in an empty spot and warms his hands.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'Where does the bus stop?',
+                                clue: 'It halts at the corner of the street.',
+                                choices: [
+                                    { text: 'At the corner', isCorrect: true },
+                                    { text: 'In a parking garage', isCorrect: false },
+                                    { text: 'Inside the school', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Who steps onto the bus?',
+                                clue: 'Check the second sentence for the name.',
+                                choices: [
+                                    { text: 'Ben', isCorrect: true },
+                                    { text: 'Sam', isCorrect: false },
+                                    { text: 'Mr. Lee', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What comes in behind Ben?',
+                                clue: 'It follows him through the open door.',
+                                choices: [
+                                    { text: 'Cold air', isCorrect: true },
+                                    { text: 'Hot air', isCorrect: false },
+                                    { text: 'Falling leaves', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does Ben do after finding a seat?',
+                                clue: 'He tries to make his hands feel better.',
+                                choices: [
+                                    { text: 'He warms his hands', isCorrect: true },
+                                    { text: 'He reads a book', isCorrect: false },
+                                    { text: 'He opens a window', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why does cold air come in behind Ben?',
+                                clue: 'Think about what happens when a bus door opens in winter.',
+                                choices: [
+                                    { text: 'The open door lets winter air inside', isCorrect: true },
+                                    { text: 'The heater is blowing cold air', isCorrect: false },
+                                    { text: 'The windows are all open', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why might Ben walk down the aisle before sitting?',
+                                clue: 'He needs to find a certain place.',
+                                choices: [
+                                    { text: 'To find an empty seat', isCorrect: true },
+                                    { text: 'To tell the driver to leave', isCorrect: false },
+                                    { text: 'To close all the windows', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might Ben feel as he warms his hands?',
+                                clue: 'Consider the change from cold to warm.',
+                                choices: [
+                                    { text: 'Relieved and more comfortable', isCorrect: true },
+                                    { text: 'Angry and impatient', isCorrect: false },
+                                    { text: 'Sleepy and ready for bed', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why is warming his hands important before the ride?',
+                                clue: 'Cold hands can affect comfort during travel.',
+                                choices: [
+                                    { text: 'Warm hands help him feel cozy during the ride', isCorrect: true },
+                                    { text: 'Warm hands make the bus go faster', isCorrect: false },
+                                    { text: 'Warm hands keep the windows clear', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-4',
+                title: 'Bird on the Fence',
+                image: 'images/winter_stories/story4.png',
+                alt: 'Small bird perched on a snowy fence',
+                text: [
+                    'A bird lands on the fence.',
+                    'It shakes off the snow.',
+                    'It looks around for food.',
+                    'Then it flies away.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'Where does the bird land?',
+                                clue: 'It is a long wooden or metal line by a yard.',
+                                choices: [
+                                    { text: 'On the fence', isCorrect: true },
+                                    { text: 'On a tree branch', isCorrect: false },
+                                    { text: 'On a roof', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does the bird shake off?',
+                                clue: 'It is light and cold.',
+                                choices: [
+                                    { text: 'Snow', isCorrect: true },
+                                    { text: 'Leaves', isCorrect: false },
+                                    { text: 'Water drops', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does the bird look around for?',
+                                clue: 'It is something the bird wants to eat.',
+                                choices: [
+                                    { text: 'Food', isCorrect: true },
+                                    { text: 'Sticks', isCorrect: false },
+                                    { text: 'Water to swim in', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does the bird do after looking around?',
+                                clue: 'It moves away through the air.',
+                                choices: [
+                                    { text: 'It flies away', isCorrect: true },
+                                    { text: 'It digs a hole', isCorrect: false },
+                                    { text: 'It goes to sleep', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why does the bird shake off the snow?',
+                                clue: 'Think about what snow does to feathers.',
+                                choices: [
+                                    { text: 'To dry off and fly comfortably', isCorrect: true },
+                                    { text: 'To make a nest', isCorrect: false },
+                                    { text: 'To call other birds', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How is the bird acting when it looks around for food?',
+                                clue: 'Notice its careful movements.',
+                                choices: [
+                                    { text: 'Alert and searching', isCorrect: true },
+                                    { text: 'Sleepy and resting', isCorrect: false },
+                                    { text: 'Upset and noisy', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why might the bird fly away after looking?',
+                                clue: 'Think about whether it found what it needed.',
+                                choices: [
+                                    { text: 'It may need to search somewhere else', isCorrect: true },
+                                    { text: 'It is tired of flying', isCorrect: false },
+                                    { text: 'It wants to play with snow', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might the cold weather make the bird feel?',
+                                clue: 'Birds need warmth to stay comfortable.',
+                                choices: [
+                                    { text: 'Chilly and eager to find shelter', isCorrect: true },
+                                    { text: 'Sweaty and hot', isCorrect: false },
+                                    { text: 'Soaking wet from rain', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-5',
+                title: 'Warm Cocoa',
+                image: 'images/winter_stories/story5.png',
+                alt: 'Mug of hot cocoa being stirred',
+                text: [
+                    'Maya makes hot cocoa.',
+                    'She stirs it with a spoon.',
+                    'She takes one small sip.',
+                    'Then she smiles because it is warm.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'Who makes the hot cocoa?',
+                                clue: 'Look at the name in the first sentence.',
+                                choices: [
+                                    { text: 'Maya', isCorrect: true },
+                                    { text: 'Tia', isCorrect: false },
+                                    { text: 'Jay', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does Maya use to stir the cocoa?',
+                                clue: 'It is a small tool from the kitchen drawer.',
+                                choices: [
+                                    { text: 'A spoon', isCorrect: true },
+                                    { text: 'A straw', isCorrect: false },
+                                    { text: 'A fork', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does Maya do right after stirring?',
+                                clue: 'She tests the drink with a small taste.',
+                                choices: [
+                                    { text: 'Takes one small sip', isCorrect: true },
+                                    { text: 'Pours it out', isCorrect: false },
+                                    { text: 'Adds more snow', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How does Maya react after sipping?',
+                                clue: 'Notice her facial expression.',
+                                choices: [
+                                    { text: 'She smiles', isCorrect: true },
+                                    { text: 'She frowns', isCorrect: false },
+                                    { text: 'She coughs', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why does Maya stir the cocoa?',
+                                clue: 'She wants the drink to be mixed evenly.',
+                                choices: [
+                                    { text: 'To mix the cocoa so it is smooth', isCorrect: true },
+                                    { text: 'To cool it down quickly', isCorrect: false },
+                                    { text: 'To make bubbles for fun', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why does she take only a small sip first?',
+                                clue: 'Think about the temperature of hot drinks.',
+                                choices: [
+                                    { text: 'To test the heat safely', isCorrect: true },
+                                    { text: 'To finish it in one gulp', isCorrect: false },
+                                    { text: 'To share it with everyone', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How does the warm cocoa make her feel?',
+                                clue: 'She smiles because of this feeling.',
+                                choices: [
+                                    { text: 'Cozy and happy', isCorrect: true },
+                                    { text: 'Bored and tired', isCorrect: false },
+                                    { text: 'Cold and shivery', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might the cocoa help on a snowy day?',
+                                clue: 'Think about what a warm drink does to a cold body.',
+                                choices: [
+                                    { text: 'It warms her up from the inside', isCorrect: true },
+                                    { text: 'It makes her colder', isCorrect: false },
+                                    { text: 'It makes her run faster', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-6',
+                title: 'Snowy Recess Path',
+                image: 'images/winter_stories/story6.png',
+                alt: 'Students making a walking path in the snow',
+                text: [
+                    'The class lines up for recess.',
+                    'They walk into the snowy yard.',
+                    'They make one big path in the snow.',
+                    'Then they follow the path back inside.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'When does the class line up?',
+                                clue: 'Check the first sentence for the time of day.',
+                                choices: [
+                                    { text: 'For recess', isCorrect: true },
+                                    { text: 'For lunch', isCorrect: false },
+                                    { text: 'For dismissal', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where do they walk together?',
+                                clue: 'It is outside and covered in snow.',
+                                choices: [
+                                    { text: 'Into the snowy yard', isCorrect: true },
+                                    { text: 'Into the library', isCorrect: false },
+                                    { text: 'Into the cafeteria', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What do they make in the snow?',
+                                clue: 'It is a single route for everyone to use.',
+                                choices: [
+                                    { text: 'One big path', isCorrect: true },
+                                    { text: 'A snow fort', isCorrect: false },
+                                    { text: 'A tall snowman', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where do they go after using the path?',
+                                clue: 'They return to the building.',
+                                choices: [
+                                    { text: 'Back inside', isCorrect: true },
+                                    { text: 'To the bus stop', isCorrect: false },
+                                    { text: 'To the gym', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why do they make one big path?',
+                                clue: 'Consider how snow can be tricky to walk through.',
+                                choices: [
+                                    { text: 'To keep a clear, safe walkway', isCorrect: true },
+                                    { text: 'To hide their footprints', isCorrect: false },
+                                    { text: 'To make the snow deeper', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might one shared path help the teachers?',
+                                clue: 'Think about watching students in the snow.',
+                                choices: [
+                                    { text: 'It is easier to supervise one route', isCorrect: true },
+                                    { text: 'It makes the path louder', isCorrect: false },
+                                    { text: 'It lets students get lost', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why do they follow the same path back inside?',
+                                clue: 'Fresh snow can soak shoes.',
+                                choices: [
+                                    { text: 'To avoid deep snow and stay dry', isCorrect: true },
+                                    { text: 'To erase their work', isCorrect: false },
+                                    { text: 'To confuse their friends', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might the students feel while walking the path?',
+                                clue: 'Picture kids exploring snow together.',
+                                choices: [
+                                    { text: 'Excited and careful', isCorrect: true },
+                                    { text: 'Angry and scared', isCorrect: false },
+                                    { text: 'Sleepy and bored', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-7',
+                title: 'Melting the Ice',
+                image: 'images/winter_stories/story7.png',
+                alt: 'Salt being spread on an icy sidewalk',
+                text: [
+                    'Ice covers the sidewalk.',
+                    'Mr. Lee spreads salt on the ground.',
+                    'The ice starts to melt.',
+                    'Students walk across safely.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'What covers the sidewalk at first?',
+                                clue: 'It is frozen water.',
+                                choices: [
+                                    { text: 'Ice', isCorrect: true },
+                                    { text: 'Leaves', isCorrect: false },
+                                    { text: 'Sand', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Who spreads salt on the ground?',
+                                clue: 'Read the second sentence for the name.',
+                                choices: [
+                                    { text: 'Mr. Lee', isCorrect: true },
+                                    { text: 'Ms. Park', isCorrect: false },
+                                    { text: 'Ben', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What happens to the ice after the salt is added?',
+                                clue: 'Look at the third sentence.',
+                                choices: [
+                                    { text: 'It starts to melt', isCorrect: true },
+                                    { text: 'It turns thicker', isCorrect: false },
+                                    { text: 'It becomes snow', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How do students walk once the ice melts?',
+                                clue: 'Check the last sentence.',
+                                choices: [
+                                    { text: 'They walk across safely', isCorrect: true },
+                                    { text: 'They slide across for fun', isCorrect: false },
+                                    { text: 'They stay inside all day', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why does Mr. Lee spread salt on the sidewalk?',
+                                clue: 'Think about how salt affects ice.',
+                                choices: [
+                                    { text: 'To melt the ice so people can walk safely', isCorrect: true },
+                                    { text: 'To decorate the sidewalk', isCorrect: false },
+                                    { text: 'To make the ground warmer for plants', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might the sidewalk feel after the salt works?',
+                                clue: 'Consider the surface when ice is gone.',
+                                choices: [
+                                    { text: 'Less slippery and safer', isCorrect: true },
+                                    { text: 'Stickier and muddy', isCorrect: false },
+                                    { text: 'Hot like summer pavement', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why is it important for students to walk safely here?',
+                                clue: 'Think about what could happen on ice.',
+                                choices: [
+                                    { text: 'To prevent falls and injuries', isCorrect: true },
+                                    { text: 'To make the walk shorter', isCorrect: false },
+                                    { text: 'To stay perfectly silent', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might students feel after seeing the ice melt?',
+                                clue: 'They can move without fear.',
+                                choices: [
+                                    { text: 'Confident and relieved', isCorrect: true },
+                                    { text: 'Confused and upset', isCorrect: false },
+                                    { text: 'Sleepy and bored', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-8',
+                title: 'Windy Walk',
+                image: 'images/winter_stories/story8.png',
+                alt: 'Student holding a scarf while wind blows',
+                text: [
+                    'A cold wind blows hard.',
+                    'Tia pulls up her hood.',
+                    'She holds her scarf close to her face.',
+                    'Then she hurries into the building.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'What blows hard at the start of the story?',
+                                clue: 'It is a type of weather, not snow.',
+                                choices: [
+                                    { text: 'A cold wind', isCorrect: true },
+                                    { text: 'Heavy rain', isCorrect: false },
+                                    { text: 'Hot sunshine', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Who pulls up her hood?',
+                                clue: 'Look for the name in the second sentence.',
+                                choices: [
+                                    { text: 'Tia', isCorrect: true },
+                                    { text: 'Maya', isCorrect: false },
+                                    { text: 'Jay', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does she hold close to her face?',
+                                clue: 'It is a winter accessory.',
+                                choices: [
+                                    { text: 'Her scarf', isCorrect: true },
+                                    { text: 'Her backpack', isCorrect: false },
+                                    { text: 'Her notebook', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where does she hurry at the end?',
+                                clue: 'She moves toward a warm place.',
+                                choices: [
+                                    { text: 'Into the building', isCorrect: true },
+                                    { text: 'Into the snowy yard', isCorrect: false },
+                                    { text: 'Onto the playground', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why does Tia pull up her hood?',
+                                clue: 'Think about protecting herself from the wind.',
+                                choices: [
+                                    { text: 'To block the cold wind from her head', isCorrect: true },
+                                    { text: 'To hide from her friends', isCorrect: false },
+                                    { text: 'To show off her hat', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How does holding her scarf close help her?',
+                                clue: 'Consider how scarves can be used in cold weather.',
+                                choices: [
+                                    { text: 'It shields her face from the cold air', isCorrect: true },
+                                    { text: 'It helps her run faster', isCorrect: false },
+                                    { text: 'It changes the color of the scarf', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might Tia feel while the wind blows hard?',
+                                clue: 'Think about a strong, cold wind.',
+                                choices: [
+                                    { text: 'Cold and eager to get inside', isCorrect: true },
+                                    { text: 'Hot and sweating', isCorrect: false },
+                                    { text: 'Sleepy and yawning', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why does she hurry into the building?',
+                                clue: 'Notice what she is trying to escape.',
+                                choices: [
+                                    { text: 'To get out of the wind and warm up', isCorrect: true },
+                                    { text: 'To avoid doing homework', isCorrect: false },
+                                    { text: 'To start a race in the hall', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-9',
+                title: 'Snowflake Catch',
+                image: 'images/winter_stories/story9.png',
+                alt: 'Hand catching a snowflake on a glove',
+                text: [
+                    'Snow falls during dismissal.',
+                    'Jay steps outside.',
+                    'He catches a snowflake on his glove.',
+                    'Then he watches it melt.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'When does the snow fall in this story?',
+                                clue: 'Check the first sentence for the time.',
+                                choices: [
+                                    { text: 'During dismissal', isCorrect: true },
+                                    { text: 'During breakfast', isCorrect: false },
+                                    { text: 'During lunch', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Who steps outside?',
+                                clue: 'Look at the second sentence.',
+                                choices: [
+                                    { text: 'Jay', isCorrect: true },
+                                    { text: 'Maya', isCorrect: false },
+                                    { text: 'Tia', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where does Jay catch the snowflake?',
+                                clue: 'It lands on something he is wearing on his hand.',
+                                choices: [
+                                    { text: 'On his glove', isCorrect: true },
+                                    { text: 'On his sleeve', isCorrect: false },
+                                    { text: 'On his notebook', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does Jay watch happen to the snowflake?',
+                                clue: 'It changes because of warmth.',
+                                choices: [
+                                    { text: 'It melts', isCorrect: true },
+                                    { text: 'It turns into rain', isCorrect: false },
+                                    { text: 'It freezes harder', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why does the snowflake melt on his glove?',
+                                clue: 'Consider the temperature of his hand covering.',
+                                choices: [
+                                    { text: 'The warmth of his glove melts it', isCorrect: true },
+                                    { text: 'The wind blows it away', isCorrect: false },
+                                    { text: 'The bus heater melts it', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might Jay feel while watching the snowflake melt?',
+                                clue: 'He is paying close attention.',
+                                choices: [
+                                    { text: 'Curious and fascinated', isCorrect: true },
+                                    { text: 'Angry and upset', isCorrect: false },
+                                    { text: 'Sleepy and uninterested', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why might Jay catch the snowflake on a glove instead of his bare hand?',
+                                clue: 'Think about which surface keeps a snowflake longer.',
+                                choices: [
+                                    { text: 'A glove is softer and melts it slower', isCorrect: true },
+                                    { text: 'A glove tastes better', isCorrect: false },
+                                    { text: 'A glove makes it grow', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What might Jay notice about the snowflake before it melts?',
+                                clue: 'Snowflakes have unique patterns.',
+                                choices: [
+                                    { text: 'Its small, detailed shape', isCorrect: true },
+                                    { text: 'Its loud buzzing sound', isCorrect: false },
+                                    { text: 'Its bright green color', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-10',
+                title: 'Warm Classroom',
+                image: 'images/winter_stories/story10.png',
+                alt: 'Heater warming a classroom',
+                text: [
+                    'The classroom feels chilly.',
+                    'Ms. Park turns on the heater.',
+                    'The room warms up slowly.',
+                    'Students sit down and begin their work.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'How does the classroom feel at the start?',
+                                clue: 'Look at the first sentence.',
+                                choices: [
+                                    { text: 'Chilly', isCorrect: true },
+                                    { text: 'Hot', isCorrect: false },
+                                    { text: 'Flooded', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Who turns on the heater?',
+                                clue: 'The third sentence names the person.',
+                                choices: [
+                                    { text: 'Ms. Park', isCorrect: true },
+                                    { text: 'Mr. Lee', isCorrect: false },
+                                    { text: 'Sam', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What happens to the room after the heater is on?',
+                                clue: 'It does this slowly.',
+                                choices: [
+                                    { text: 'It warms up slowly', isCorrect: true },
+                                    { text: 'It fills with snow', isCorrect: false },
+                                    { text: 'It gets darker', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What do students do once the room warms?',
+                                clue: 'Check the last sentence.',
+                                choices: [
+                                    { text: 'Sit down and begin their work', isCorrect: true },
+                                    { text: 'Run outside to play', isCorrect: false },
+                                    { text: 'Go to the cafeteria', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why does Ms. Park turn on the heater?',
+                                clue: 'Think about the chilly start.',
+                                choices: [
+                                    { text: 'To make the room comfortable', isCorrect: true },
+                                    { text: 'To dry wet paint', isCorrect: false },
+                                    { text: 'To keep the windows open', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might students feel as the room warms up?',
+                                clue: 'Warmth changes comfort and focus.',
+                                choices: [
+                                    { text: 'More comfortable and focused', isCorrect: true },
+                                    { text: 'Sleepy from the cold', isCorrect: false },
+                                    { text: 'Scared of the heater', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why does the room warm up slowly instead of instantly?',
+                                clue: 'Consider how heaters change temperature.',
+                                choices: [
+                                    { text: 'Heaters take time to change the air', isCorrect: true },
+                                    { text: 'The heater is filled with ice', isCorrect: false },
+                                    { text: 'The windows are wide open', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How does a warmer room affect their work time?',
+                                clue: 'Think about working while comfortable.',
+                                choices: [
+                                    { text: 'It helps them stay on task', isCorrect: true },
+                                    { text: 'It stops them from writing', isCorrect: false },
+                                    { text: 'It makes them leave early', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const navContainer = document.getElementById('story-nav');
+        const storyContainer = document.getElementById('story-container');
+
+        function shuffle(array) {
+            const copy = array.map(choice => ({ ...choice }));
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function renderNav(activeId) {
+            navContainer.innerHTML = '';
+            stories.forEach((story, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn' + (story.id === activeId ? ' active' : '');
+                btn.textContent = `${index + 1}. ${story.title}`;
+                btn.addEventListener('click', () => renderStory(story.id));
+                navContainer.appendChild(btn);
+            });
+        }
+
+        function renderStory(storyId) {
+            const story = stories.find(item => item.id === storyId) || stories[0];
+            renderNav(story.id);
+            storyContainer.innerHTML = '';
+
+            const card = document.createElement('div');
+            card.className = 'story-card';
+
+            const top = document.createElement('div');
+            top.className = 'story-top';
+
+            const textWrap = document.createElement('div');
+            textWrap.className = 'story-text';
+
+            const heading = document.createElement('h2');
+            heading.textContent = story.title;
+            heading.style.margin = '0 0 8px';
+            heading.style.color = 'var(--spruce)';
+            textWrap.appendChild(heading);
+
+            story.text.forEach(line => {
+                const p = document.createElement('p');
+                p.textContent = line;
+                textWrap.appendChild(p);
+            });
+
+            const imageArea = document.createElement('div');
+            imageArea.className = 'image-placeholder';
+            const imageNote = document.createElement('span');
+            imageNote.textContent = story.image ? 'Image will display here.' : 'Image placeholder — add a local path to the "image" field.';
+            imageArea.appendChild(imageNote);
+
+            if (story.image) {
+                const img = document.createElement('img');
+                img.src = story.image;
+                img.alt = story.alt || 'Story image';
+                img.style.maxWidth = '100%';
+                img.style.borderRadius = '10px';
+                img.style.display = 'block';
+                imageArea.innerHTML = '';
+                imageArea.appendChild(img);
+            }
+
+            top.appendChild(textWrap);
+            top.appendChild(imageArea);
+            card.appendChild(top);
+
+            const tabBar = document.createElement('div');
+            tabBar.className = 'question-tabs';
+            const questionsWrap = document.createElement('div');
+            questionsWrap.className = 'questions';
+
+            function renderTabQuestions(activeKey) {
+                questionsWrap.innerHTML = '';
+                tabBar.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.key === activeKey);
+                });
+                const set = story.questionSets.find(q => q.key === activeKey) || story.questionSets[0];
+                set.questions.forEach((question, idx) => {
+                    questionsWrap.appendChild(buildQuestionCard(question, idx + 1));
+                });
+            }
+
+            story.questionSets.forEach((set, idx) => {
+                const tab = document.createElement('button');
+                tab.className = 'tab-btn' + (idx === 0 ? ' active' : '');
+                tab.dataset.key = set.key;
+                tab.textContent = set.label;
+                tab.addEventListener('click', () => renderTabQuestions(set.key));
+                tabBar.appendChild(tab);
+            });
+
+            card.appendChild(tabBar);
+            card.appendChild(questionsWrap);
+            storyContainer.appendChild(card);
+
+            renderTabQuestions(story.questionSets[0].key);
+        }
+
+        function buildQuestionCard(question, number) {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            const header = document.createElement('div');
+            header.className = 'question-header';
+            const label = document.createElement('span');
+            label.className = 'question-label';
+            label.textContent = `Question ${number}`;
+            header.appendChild(label);
+            card.appendChild(header);
+
+            const prompt = document.createElement('div');
+            prompt.className = 'question-prompt';
+            prompt.textContent = question.prompt;
+            card.appendChild(prompt);
+
+            const helpRow = document.createElement('div');
+            helpRow.className = 'help-row';
+            const clueBtn = document.createElement('button');
+            clueBtn.className = 'btn btn-clue';
+            clueBtn.textContent = 'Show clue';
+            const choicesBtn = document.createElement('button');
+            choicesBtn.className = 'btn btn-choices';
+            choicesBtn.textContent = 'Show choices';
+            choicesBtn.disabled = true;
+            helpRow.appendChild(clueBtn);
+            helpRow.appendChild(choicesBtn);
+            card.appendChild(helpRow);
+
+            const clueBox = document.createElement('div');
+            clueBox.className = 'clue';
+            clueBox.textContent = question.clue;
+            card.appendChild(clueBox);
+
+            const choicesWrap = document.createElement('div');
+            choicesWrap.className = 'choices-wrap';
+            card.appendChild(choicesWrap);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            card.appendChild(feedback);
+
+            clueBtn.addEventListener('click', () => {
+                clueBox.style.display = 'block';
+                choicesBtn.disabled = false;
+                clueBtn.disabled = true;
+            });
+
+            choicesBtn.addEventListener('click', () => {
+                choicesWrap.innerHTML = '';
+                feedback.style.display = 'none';
+                feedback.textContent = '';
+                feedback.className = 'feedback';
+
+                const shuffled = shuffle(question.choices);
+                shuffled.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = choice.text;
+                    btn.addEventListener('click', () => {
+                        choicesWrap.querySelectorAll('button').forEach(b => {
+                            b.disabled = true;
+                        });
+                        if (choice.isCorrect) {
+                            btn.classList.add('correct');
+                            feedback.textContent = 'Correct! Nice job using the clue.';
+                            feedback.classList.add('correct');
+                        } else {
+                            btn.classList.add('incorrect');
+                            feedback.textContent = 'Not quite. Re-read the clue and try another story next.';
+                            feedback.classList.add('incorrect');
+                        }
+                        feedback.style.display = 'block';
+                    });
+                    choicesWrap.appendChild(btn);
+                });
+
+                choicesWrap.style.display = 'grid';
+                choicesBtn.disabled = true;
+            });
+
+            return card;
+        }
+
+        renderStory(stories[0].id);
+    </script>
+</body>
+</html>

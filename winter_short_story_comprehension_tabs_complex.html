@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowy Day Reading - Complex Literal & Inferential Tabs</title>
+    <style>
+        :root {
+            --midnight: #0f172a;
+            --frost: #e2e8f0;
+            --sky: #38bdf8;
+            --sun: #fbbf24;
+            --snow: #f8fafc;
+            --spruce: #0b6e4f;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #f1f5f9, #e0f2fe 45%, #f8fafc);
+            color: var(--midnight);
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 18px 40px;
+        }
+        h1 {
+            text-align: center;
+            margin: 0 0 10px;
+            letter-spacing: 0.3px;
+        }
+        .intro {
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .nav-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            position: sticky;
+            top: 0;
+            background: rgba(241, 245, 249, 0.92);
+            padding: 8px 0 4px;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+        .nav-btn {
+            border: 1px solid var(--frost);
+            background: white;
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--midnight);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.07);
+            transition: all 0.2s ease;
+        }
+        .nav-btn:hover {
+            border-color: var(--sky);
+            transform: translateY(-1px);
+        }
+        .nav-btn.active {
+            background: linear-gradient(135deg, #e0f2fe, #fef9c3);
+            border-color: var(--sun);
+            color: #92400e;
+        }
+        .story-card {
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+            margin-top: 12px;
+        }
+        .story-top {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 14px;
+            align-items: start;
+        }
+        .story-text {
+            background: var(--snow);
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 12px;
+            line-height: 1.6;
+        }
+        .story-text p {
+            margin: 0 0 8px;
+        }
+        .image-placeholder {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 10px, #eef2ff 10px, #eef2ff 20px);
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            color: #475569;
+            text-align: center;
+            font-weight: 700;
+        }
+        .image-placeholder span {
+            display: block;
+            font-size: 0.95rem;
+        }
+        .question-tabs {
+            display: inline-flex;
+            gap: 8px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            padding: 6px;
+            margin: 12px 0;
+        }
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 9px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #475569;
+            transition: all 0.15s ease;
+        }
+        .tab-btn.active {
+            background: white;
+            color: var(--midnight);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--frost);
+        }
+        .questions {
+            display: grid;
+            gap: 12px;
+        }
+        .question-card {
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 12px;
+            background: #f8fafc;
+        }
+        .question-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .question-label {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .question-prompt {
+            font-weight: 700;
+            margin: 6px 0 10px;
+        }
+        .help-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .btn-clue {
+            background: #0ea5e9;
+            color: white;
+        }
+        .btn-choices {
+            background: var(--sun);
+            color: #92400e;
+        }
+        .btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            color: #475569;
+        }
+        .clue {
+            display: none;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: #ecfeff;
+            border: 1px solid #bae6fd;
+            color: #0f172a;
+        }
+        .choices-wrap {
+            display: none;
+            margin-top: 6px;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        .choice-btn {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px 12px;
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .choice-btn:hover {
+            border-color: var(--sky);
+            transform: translateY(-1px);
+        }
+        .choice-btn.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+        .choice-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+        .feedback {
+            display: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+        @media (max-width: 820px) {
+            .story-top {
+                grid-template-columns: 1fr;
+            }
+            .nav-bar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Snowy Day Reading - Complex Literal & Inferential Tabs</h1>
+        <div class="intro">
+            Ten richer winter scenes with tabbed literal and inferential questions. Each prompt still uses the clue-first unlock and three randomized answer choices. Images are already paired; use the same local assets from the simpler set.
+        </div>
+        <div class="nav-bar" id="story-nav"></div>
+        <div id="story-container"></div>
+    </div>
+    <script>
+        const stories = [
+            {
+                id: 'story-1',
+                title: 'Snowy Arrival',
+                image: 'images/winter_stories/story1_snowy-arrival.png',
+                alt: 'Students entering a school while snow falls',
+                text: [
+                    'Snow covered the school yard early in the morning, leaving everything bright and quiet.',
+                    'Students walked slowly because the ground looked slick, and a cold wind pushed against their jackets.',
+                    'As they moved toward the doors, they talked about how winter arrived so quickly.',
+                    'Everyone felt calmer once they stepped into the warm hallway.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'What covered the school yard in the morning?',
+                                clue: 'It left everything bright and quiet.',
+                                choices: [
+                                    { text: 'Snow', isCorrect: true },
+                                    { text: 'Falling leaves', isCorrect: false },
+                                    { text: 'Rain puddles', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the students walk across the yard?',
+                                clue: 'They moved carefully because the ground looked slick.',
+                                choices: [
+                                    { text: 'Slowly', isCorrect: true },
+                                    { text: 'Running fast', isCorrect: false },
+                                    { text: 'Skipping in circles', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where were the students heading?',
+                                clue: 'They moved toward this part of the school.',
+                                choices: [
+                                    { text: 'The doors', isCorrect: true },
+                                    { text: 'The playground', isCorrect: false },
+                                    { text: 'The bus stop', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where did everyone feel calmer?',
+                                clue: 'They stepped into this warm place.',
+                                choices: [
+                                    { text: 'The hallway', isCorrect: true },
+                                    { text: 'The snowy yard', isCorrect: false },
+                                    { text: 'The parking lot', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did the students walk slowly across the yard?',
+                                clue: 'Consider how the slick ground affects their steps.',
+                                choices: [
+                                    { text: 'They wanted to avoid slipping', isCorrect: true },
+                                    { text: 'They were waiting for the bus', isCorrect: false },
+                                    { text: 'They were counting their steps', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does their talk about winter arriving quickly suggest?',
+                                clue: 'Think about their reaction to the sudden snow.',
+                                choices: [
+                                    { text: 'They were surprised by the fast change', isCorrect: true },
+                                    { text: 'They were bored with winter', isCorrect: false },
+                                    { text: 'They wanted it to be hotter', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did they feel calmer inside the hallway?',
+                                clue: 'Compare the hallway to the windy, slick yard.',
+                                choices: [
+                                    { text: 'It was warm and out of the wind', isCorrect: true },
+                                    { text: 'It was louder than outside', isCorrect: false },
+                                    { text: 'It was darker and scarier', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might the bright, quiet yard make the morning feel?',
+                                clue: 'Snow often changes the mood of a place.',
+                                choices: [
+                                    { text: 'Peaceful and still', isCorrect: true },
+                                    { text: 'Chaotic and noisy', isCorrect: false },
+                                    { text: 'Crowded and busy', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-2',
+                title: 'Layering Up',
+                image: 'images/winter_stories/story2.png',
+                alt: 'Child putting on winter clothing',
+                text: [
+                    'Sam layered on his winter clothes, starting with his thick coat and then pulling on a knit hat that covered his ears.',
+                    'He added gloves because the air outside was freezing today.',
+                    'When he finally stepped outdoors, a burst of cold hit his face, but he kept walking with steady steps.',
+                    'He felt more confident knowing he was fully bundled up.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'What clothing did Sam put on first?',
+                                clue: 'It was thick and went over his body.',
+                                choices: [
+                                    { text: 'His coat', isCorrect: true },
+                                    { text: 'His gloves', isCorrect: false },
+                                    { text: 'His boots', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What did Sam pull on after his coat?',
+                                clue: 'It was a knit item that covered his ears.',
+                                choices: [
+                                    { text: 'A hat', isCorrect: true },
+                                    { text: 'A scarf', isCorrect: false },
+                                    { text: 'A backpack', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did Sam add gloves?',
+                                clue: 'The text mentions the temperature outside.',
+                                choices: [
+                                    { text: 'Because the air was freezing', isCorrect: true },
+                                    { text: 'Because he lost his hat', isCorrect: false },
+                                    { text: 'Because it was raining', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What happened when Sam stepped outdoors?',
+                                clue: 'It hit his face right away.',
+                                choices: [
+                                    { text: 'A burst of cold hit his face', isCorrect: true },
+                                    { text: 'Snow piled on his feet', isCorrect: false },
+                                    { text: 'A bird landed on his hat', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did Sam keep steady steps even when the cold hit?',
+                                clue: 'Think about how prepared he was.',
+                                choices: [
+                                    { text: 'He felt protected by his layers', isCorrect: true },
+                                    { text: 'He was rushing to finish a race', isCorrect: false },
+                                    { text: 'He wanted to cool down', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did layering make Sam feel?',
+                                clue: 'Check the last sentence for his emotion.',
+                                choices: [
+                                    { text: 'More confident and ready', isCorrect: true },
+                                    { text: 'Sleepy and tired', isCorrect: false },
+                                    { text: 'Too warm to move', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why is the hat that covers his ears important?',
+                                clue: 'Ears get cold quickly in freezing air.',
+                                choices: [
+                                    { text: 'It helps keep his ears warm', isCorrect: true },
+                                    { text: 'It keeps snow off his shoes', isCorrect: false },
+                                    { text: 'It makes his coat lighter', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What does Sam’s reaction to the cold burst show?',
+                                clue: 'He keeps walking with steady steps.',
+                                choices: [
+                                    { text: 'He is determined to handle the cold', isCorrect: true },
+                                    { text: 'He wants to go back inside immediately', isCorrect: false },
+                                    { text: 'He forgot to zip his coat', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-3',
+                title: 'Bus Stop Chill',
+                image: 'images/winter_stories/story3_new.png',
+                alt: 'Student finding a seat on a bus in winter',
+                text: [
+                    'The bus arrived with a puff of warm steam rising from the exhaust into the icy air.',
+                    'When Ben climbed the steps, a wave of cold blew in behind him, making him shiver for a moment.',
+                    'He moved down the aisle and picked a seat near the window so he could watch the falling snow.',
+                    'As the bus started up again, he felt his hands slowly warm in the heated air.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'What rose from the bus exhaust?',
+                                clue: 'It looked warm in the icy air.',
+                                choices: [
+                                    { text: 'A puff of warm steam', isCorrect: true },
+                                    { text: 'A burst of leaves', isCorrect: false },
+                                    { text: 'A spray of water', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What happened when Ben climbed the steps?',
+                                clue: 'It made him shiver.',
+                                choices: [
+                                    { text: 'A wave of cold blew in', isCorrect: true },
+                                    { text: 'The lights went off', isCorrect: false },
+                                    { text: 'The bus drove away', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where did Ben choose to sit?',
+                                clue: 'He wanted to watch the snow.',
+                                choices: [
+                                    { text: 'Near the window', isCorrect: true },
+                                    { text: 'Beside the driver', isCorrect: false },
+                                    { text: 'On the bus steps', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What happened to Ben’s hands as the bus started?',
+                                clue: 'The heated air affected them.',
+                                choices: [
+                                    { text: 'They slowly warmed up', isCorrect: true },
+                                    { text: 'They got colder', isCorrect: false },
+                                    { text: 'They became wet', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did Ben shiver when he climbed the steps?',
+                                clue: 'Notice what blew in behind him.',
+                                choices: [
+                                    { text: 'Cold air rushed in through the open door', isCorrect: true },
+                                    { text: 'The heater turned off suddenly', isCorrect: false },
+                                    { text: 'He forgot his gloves at home', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did Ben pick a seat near the window?',
+                                clue: 'He wanted to see something outside.',
+                                choices: [
+                                    { text: 'To watch the falling snow', isCorrect: true },
+                                    { text: 'To keep the window shut tight', isCorrect: false },
+                                    { text: 'To avoid talking to anyone', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the heated air change Ben’s comfort?',
+                                clue: 'Think about his hands.',
+                                choices: [
+                                    { text: 'It made him feel warmer and more relaxed', isCorrect: true },
+                                    { text: 'It made the bus feel colder', isCorrect: false },
+                                    { text: 'It dried his coat too much', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might watching the snow from the window make the ride feel?',
+                                clue: 'Snow can affect mood.',
+                                choices: [
+                                    { text: 'Calm and interesting', isCorrect: true },
+                                    { text: 'Loud and distracting', isCorrect: false },
+                                    { text: 'Fast and scary', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-4',
+                title: 'Bird on the Fence',
+                image: 'images/winter_stories/story4.png',
+                alt: 'Small bird perched on a snowy fence',
+                text: [
+                    'A small bird landed on the fence outside the classroom window, shaking snow from its feathers.',
+                    'It hopped from one spot to another, looking for food hidden beneath the frozen ground.',
+                    'The students watched quietly because they didn’t want to scare it away.',
+                    'After a moment, the bird lifted its wings and flew off toward a nearby tree.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'Where did the small bird land?',
+                                clue: 'It was outside the classroom window.',
+                                choices: [
+                                    { text: 'On the fence', isCorrect: true },
+                                    { text: 'On a desk', isCorrect: false },
+                                    { text: 'On the bus', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What did the bird shake from its feathers?',
+                                clue: 'It is cold and white.',
+                                choices: [
+                                    { text: 'Snow', isCorrect: true },
+                                    { text: 'Water', isCorrect: false },
+                                    { text: 'Sand', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What were the students doing while watching?',
+                                clue: 'They did not want to scare the bird.',
+                                choices: [
+                                    { text: 'Watching quietly', isCorrect: true },
+                                    { text: 'Shouting loudly', isCorrect: false },
+                                    { text: 'Clapping hands', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where did the bird fly after a moment?',
+                                clue: 'It left for another place nearby.',
+                                choices: [
+                                    { text: 'Toward a nearby tree', isCorrect: true },
+                                    { text: 'Inside the classroom', isCorrect: false },
+                                    { text: 'Into a nest on the bus', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did the students stay quiet?',
+                                clue: 'They wanted the bird to keep looking for food.',
+                                choices: [
+                                    { text: 'To avoid scaring the bird away', isCorrect: true },
+                                    { text: 'To make the room colder', isCorrect: false },
+                                    { text: 'To practice whispering', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why was the bird hopping from spot to spot?',
+                                clue: 'It searched beneath the frozen ground.',
+                                choices: [
+                                    { text: 'To find hidden food', isCorrect: true },
+                                    { text: 'To build a snow fort', isCorrect: false },
+                                    { text: 'To make a nest on the fence', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did the bird shake snow from its feathers?',
+                                clue: 'Consider how snow feels on a small body.',
+                                choices: [
+                                    { text: 'To stay dry and ready to fly', isCorrect: true },
+                                    { text: 'To make more noise', isCorrect: false },
+                                    { text: 'To show off to the students', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why might the bird fly to the nearby tree?',
+                                clue: 'Think about what trees can provide.',
+                                choices: [
+                                    { text: 'For safety and shelter', isCorrect: true },
+                                    { text: 'To race the students', isCorrect: false },
+                                    { text: 'To get closer to the bus', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-5',
+                title: 'Warm Cocoa',
+                image: 'images/winter_stories/story5.png',
+                alt: 'Mug of hot cocoa being stirred',
+                text: [
+                    'Maya made a cup of hot cocoa during lunch, stirring the warm drink until it smelled sweet and chocolatey.',
+                    'The heat from the cup spread through her fingers, which had been cold from walking outside.',
+                    'She took a slow sip and felt the warmth move through her chest.',
+                    'It made her feel calm and more ready to finish the rest of her school day.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'When did Maya make the cup of hot cocoa?',
+                                clue: 'Look at the first sentence for the time of day.',
+                                choices: [
+                                    { text: 'During lunch', isCorrect: true },
+                                    { text: 'Before school started', isCorrect: false },
+                                    { text: 'After bedtime', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the cocoa smell after stirring?',
+                                clue: 'Two words describe the scent.',
+                                choices: [
+                                    { text: 'Sweet and chocolatey', isCorrect: true },
+                                    { text: 'Spicy and minty', isCorrect: false },
+                                    { text: 'Sour and salty', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What spread through Maya’s fingers?',
+                                clue: 'It came from the cup.',
+                                choices: [
+                                    { text: 'The heat from the cup', isCorrect: true },
+                                    { text: 'Falling snow', isCorrect: false },
+                                    { text: 'Cold wind', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where did Maya feel the warmth move after she sipped?',
+                                clue: 'It moved through this part of her body.',
+                                choices: [
+                                    { text: 'Through her chest', isCorrect: true },
+                                    { text: 'Through her shoes', isCorrect: false },
+                                    { text: 'Through her backpack', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did Maya stir the cocoa?',
+                                clue: 'She wanted it to be ready to drink.',
+                                choices: [
+                                    { text: 'To mix it evenly for good flavor', isCorrect: true },
+                                    { text: 'To cool it down too fast', isCorrect: false },
+                                    { text: 'To spill it on purpose', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did the heat from the cup matter to Maya?',
+                                clue: 'Think about her hands before holding the cup.',
+                                choices: [
+                                    { text: 'Her fingers were cold from being outside', isCorrect: true },
+                                    { text: 'She wanted to freeze her hands', isCorrect: false },
+                                    { text: 'She needed to dry wet paint', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the warm cocoa affect her mood?',
+                                clue: 'Notice how she felt after drinking.',
+                                choices: [
+                                    { text: 'Calm and ready to finish the day', isCorrect: true },
+                                    { text: 'Upset and distracted', isCorrect: false },
+                                    { text: 'Sleepy and unable to work', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might the cocoa help her with the rest of the school day?',
+                                clue: 'Warmth can change energy and focus.',
+                                choices: [
+                                    { text: 'It gave her comfort to keep working', isCorrect: true },
+                                    { text: 'It made her too cold to write', isCorrect: false },
+                                    { text: 'It stopped her from talking', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-6',
+                title: 'Snowy Recess Path',
+                image: 'images/winter_stories/story6.png',
+                alt: 'Students making a walking path in the snow',
+                text: [
+                    'During recess, the class walked into the snow-covered yard, leaving a winding trail of footprints behind them.',
+                    'The cold air made their cheeks sting, but they kept moving and followed each other in a long line.',
+                    'Some students joked about how deep the snow felt under their boots.',
+                    'When the bell rang, they headed back inside, grateful for the warm building.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'When did the class walk into the snow-covered yard?',
+                                clue: 'Look for the time mentioned in the first sentence.',
+                                choices: [
+                                    { text: 'During recess', isCorrect: true },
+                                    { text: 'During math class', isCorrect: false },
+                                    { text: 'During dismissal', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What did they leave behind them in the snow?',
+                                clue: 'It was a winding trail.',
+                                choices: [
+                                    { text: 'Footprints', isCorrect: true },
+                                    { text: 'Bicycle tracks', isCorrect: false },
+                                    { text: 'Painted arrows', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What made their cheeks sting?',
+                                clue: 'It was the weather around them.',
+                                choices: [
+                                    { text: 'The cold air', isCorrect: true },
+                                    { text: 'Hot sunlight', isCorrect: false },
+                                    { text: 'Falling rain', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where did the students go when the bell rang?',
+                                clue: 'They were glad to reach this place.',
+                                choices: [
+                                    { text: 'Back inside the warm building', isCorrect: true },
+                                    { text: 'To the bus stop', isCorrect: false },
+                                    { text: 'To the cafeteria', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did they follow each other in a long line?',
+                                clue: 'Consider how to move through deep snow.',
+                                choices: [
+                                    { text: 'It made a clear path to walk safely', isCorrect: true },
+                                    { text: 'They wanted to block the doorway', isCorrect: false },
+                                    { text: 'They were racing to be first', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did some students joke about the deep snow?',
+                                clue: 'Think about how they reacted to the cold situation.',
+                                choices: [
+                                    { text: 'They were having fun together despite the cold', isCorrect: true },
+                                    { text: 'They were angry about recess', isCorrect: false },
+                                    { text: 'They wanted to end recess early', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why were they grateful when they headed back inside?',
+                                clue: 'Compare the warm building to the cold yard.',
+                                choices: [
+                                    { text: 'The building was warm and comfortable', isCorrect: true },
+                                    { text: 'They missed a bus ride', isCorrect: false },
+                                    { text: 'They wanted to get wet again', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the cold air change their experience outside?',
+                                clue: 'Notice its effect on their faces and movement.',
+                                choices: [
+                                    { text: 'It made their cheeks sting and slowed them down', isCorrect: true },
+                                    { text: 'It made them feel hot and sweaty', isCorrect: false },
+                                    { text: 'It kept the snow from piling up', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-7',
+                title: 'Melting the Ice',
+                image: 'images/winter_stories/story7.png',
+                alt: 'Salt being spread on an icy sidewalk',
+                text: [
+                    'Ice covered part of the sidewalk near the entrance, so Mr. Lee grabbed a bag of salt and spread it across the ground.',
+                    'The ice began to melt slowly, creating a safer path for the students.',
+                    'Many kids watched and talked about how slippery it had been earlier.',
+                    'Once the walkway looked clear, Mr. Lee nodded and let everyone continue inside.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'What covered part of the sidewalk near the entrance?',
+                                clue: 'It made the ground slippery.',
+                                choices: [
+                                    { text: 'Ice', isCorrect: true },
+                                    { text: 'Leaves', isCorrect: false },
+                                    { text: 'Sand', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Who spread salt across the ground?',
+                                clue: 'Find the name in the first sentence.',
+                                choices: [
+                                    { text: 'Mr. Lee', isCorrect: true },
+                                    { text: 'Ms. Park', isCorrect: false },
+                                    { text: 'Ben', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What started to happen after the salt was spread?',
+                                clue: 'The surface began to change.',
+                                choices: [
+                                    { text: 'The ice began to melt', isCorrect: true },
+                                    { text: 'Snow piled up higher', isCorrect: false },
+                                    { text: 'The salt turned to ice', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'When did Mr. Lee let everyone continue inside?',
+                                clue: 'He waited for a change on the walkway.',
+                                choices: [
+                                    { text: 'After the walkway looked clear', isCorrect: true },
+                                    { text: 'Before he spread any salt', isCorrect: false },
+                                    { text: 'Right when the ice appeared', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did Mr. Lee spread salt on the sidewalk?',
+                                clue: 'Think about what salt does to ice.',
+                                choices: [
+                                    { text: 'To melt the ice and make it safer', isCorrect: true },
+                                    { text: 'To decorate the walkway', isCorrect: false },
+                                    { text: 'To make the ground colder', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why were the kids talking about the slippery ground?',
+                                clue: 'It affected them earlier.',
+                                choices: [
+                                    { text: 'They remembered how unsafe it felt', isCorrect: true },
+                                    { text: 'They wanted to play soccer there', isCorrect: false },
+                                    { text: 'They were planning to make it icy again', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did melting the ice change the path?',
+                                clue: 'Consider the safety of the walkway.',
+                                choices: [
+                                    { text: 'It reduced slipping and made it safer', isCorrect: true },
+                                    { text: 'It made the path darker', isCorrect: false },
+                                    { text: 'It stopped people from using it', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did Mr. Lee wait to let everyone inside until the walkway looked clear?',
+                                clue: 'He wanted to protect the students.',
+                                choices: [
+                                    { text: 'To be sure it was safe to walk', isCorrect: true },
+                                    { text: 'To make the line longer', isCorrect: false },
+                                    { text: 'To count every student', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-8',
+                title: 'Windy Walk',
+                image: 'images/winter_stories/story8.png',
+                alt: 'Student holding a scarf while wind blows',
+                text: [
+                    'A strong winter wind blew across the parking lot, pushing against Tia’s hood as she tried to walk.',
+                    'She held her scarf close to her mouth because the air felt sharp and cold.',
+                    'Every few steps, the wind made her take a smaller stride.',
+                    'When she finally reached the building, she felt immediate relief as the warm air wrapped around her.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'What pushed against Tia’s hood?',
+                                clue: 'It was moving across the parking lot.',
+                                choices: [
+                                    { text: 'A strong winter wind', isCorrect: true },
+                                    { text: 'Falling rain', isCorrect: false },
+                                    { text: 'A passing car', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What did Tia hold close to her mouth?',
+                                clue: 'It helped block the sharp air.',
+                                choices: [
+                                    { text: 'Her scarf', isCorrect: true },
+                                    { text: 'Her notebook', isCorrect: false },
+                                    { text: 'Her lunch bag', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the wind change her walking?',
+                                clue: 'It affected the length of her steps.',
+                                choices: [
+                                    { text: 'It made her take smaller strides', isCorrect: true },
+                                    { text: 'It made her run faster', isCorrect: false },
+                                    { text: 'It made her jump higher', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where did Tia feel relief?',
+                                clue: 'She felt it when she reached a warm place.',
+                                choices: [
+                                    { text: 'Inside the building', isCorrect: true },
+                                    { text: 'In the middle of the parking lot', isCorrect: false },
+                                    { text: 'On the playground', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did Tia hold her scarf close to her mouth?',
+                                clue: 'Think about the air she was breathing.',
+                                choices: [
+                                    { text: 'To block the sharp, cold air', isCorrect: true },
+                                    { text: 'To hide from friends', isCorrect: false },
+                                    { text: 'To keep the scarf from falling', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did the wind make her take smaller strides?',
+                                clue: 'Consider what strong wind does to balance.',
+                                choices: [
+                                    { text: 'Smaller steps helped her stay steady', isCorrect: true },
+                                    { text: 'She wanted to count more steps', isCorrect: false },
+                                    { text: 'She hoped to make the walk longer', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did Tia likely feel once she entered the building?',
+                                clue: 'Warm air replaced the cold wind.',
+                                choices: [
+                                    { text: 'Relieved and comfortable', isCorrect: true },
+                                    { text: 'Hot and dizzy', isCorrect: false },
+                                    { text: 'Still freezing', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the strong wind affect her walk overall?',
+                                clue: 'Think about her pace and effort.',
+                                choices: [
+                                    { text: 'It slowed her and made the walk harder', isCorrect: true },
+                                    { text: 'It made her float quickly', isCorrect: false },
+                                    { text: 'It made the path shorter', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-9',
+                title: 'Snowflake Catch',
+                image: 'images/winter_stories/story9.png',
+                alt: 'Hand catching a snowflake on a glove',
+                text: [
+                    'Snowflakes drifted down during dismissal, landing softly on Jay’s jacket and hair.',
+                    'He held out his glove to catch a few, watching how each one melted into a tiny drop of water.',
+                    'The quiet snowfall made everything feel slower and more peaceful.',
+                    'Jay took a deep breath and walked to the bus line, enjoying the winter moment.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'When did the snowflakes drift down?',
+                                clue: 'Check the first sentence for the time.',
+                                choices: [
+                                    { text: 'During dismissal', isCorrect: true },
+                                    { text: 'During breakfast', isCorrect: false },
+                                    { text: 'During midnight', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Where did the snowflakes land on Jay?',
+                                clue: 'Two parts of his clothing and body are named.',
+                                choices: [
+                                    { text: 'On his jacket and hair', isCorrect: true },
+                                    { text: 'On his shoes and socks', isCorrect: false },
+                                    { text: 'On his backpack and desk', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What did Jay hold out to catch the snowflakes?',
+                                clue: 'It covered his hand.',
+                                choices: [
+                                    { text: 'His glove', isCorrect: true },
+                                    { text: 'His notebook', isCorrect: false },
+                                    { text: 'His umbrella', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What happened to the snowflakes he caught?',
+                                clue: 'They changed form on his glove.',
+                                choices: [
+                                    { text: 'They melted into tiny drops of water', isCorrect: true },
+                                    { text: 'They turned into ice cubes', isCorrect: false },
+                                    { text: 'They stayed frozen for hours', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did Jay watch the snowflakes melt?',
+                                clue: 'Think about his interest in them.',
+                                choices: [
+                                    { text: 'He was curious about how they change', isCorrect: true },
+                                    { text: 'He wanted to freeze them solid', isCorrect: false },
+                                    { text: 'He needed to count them for homework', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the quiet snowfall affect the setting?',
+                                clue: 'It changed the pace of everything.',
+                                choices: [
+                                    { text: 'It made things feel slower and peaceful', isCorrect: true },
+                                    { text: 'It made the area loud and busy', isCorrect: false },
+                                    { text: 'It made the ground shake', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did Jay take a deep breath before walking to the bus line?',
+                                clue: 'Consider his enjoyment of the moment.',
+                                choices: [
+                                    { text: 'He wanted to enjoy the calm winter air', isCorrect: true },
+                                    { text: 'He was out of breath from running', isCorrect: false },
+                                    { text: 'He was holding his breath too long', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might catching snowflakes have made Jay feel?',
+                                clue: 'Think about his actions and the peaceful scene.',
+                                choices: [
+                                    { text: 'Curious and content', isCorrect: true },
+                                    { text: 'Angry and rushed', isCorrect: false },
+                                    { text: 'Scared and nervous', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'story-10',
+                title: 'Warm Classroom',
+                image: 'images/winter_stories/story10.png',
+                alt: 'Heater warming a classroom',
+                text: [
+                    'The classroom felt chilly in the morning, so Ms. Park turned on the heater to warm the space.',
+                    'Students gathered at their desks and rubbed their hands together while waiting for the room to heat up.',
+                    'As the minutes passed, the air grew warmer and the windows began to clear.',
+                    'Everyone settled into their work once they felt more comfortable.'
+                ],
+                questionSets: [
+                    {
+                        key: 'literal',
+                        label: 'Literal',
+                        questions: [
+                            {
+                                prompt: 'Who turned on the heater?',
+                                clue: 'The first sentence names the person.',
+                                choices: [
+                                    { text: 'Ms. Park', isCorrect: true },
+                                    { text: 'Mr. Lee', isCorrect: false },
+                                    { text: 'Sam', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'When did the classroom feel chilly?',
+                                clue: 'Note the time of day in the first sentence.',
+                                choices: [
+                                    { text: 'In the morning', isCorrect: true },
+                                    { text: 'At midnight', isCorrect: false },
+                                    { text: 'In the afternoon', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What were students doing while waiting for the room to heat up?',
+                                clue: 'It involved their hands.',
+                                choices: [
+                                    { text: 'Rubbing their hands together', isCorrect: true },
+                                    { text: 'Playing tag in the hall', isCorrect: false },
+                                    { text: 'Opening all the windows', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'What happened to the windows as the room warmed?',
+                                clue: 'They changed as the air grew warmer.',
+                                choices: [
+                                    { text: 'They began to clear', isCorrect: true },
+                                    { text: 'They turned blue', isCorrect: false },
+                                    { text: 'They opened wide', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'inferential',
+                        label: 'Inferential',
+                        questions: [
+                            {
+                                prompt: 'Why did Ms. Park turn on the heater?',
+                                clue: 'Think about the temperature at the start.',
+                                choices: [
+                                    { text: 'To warm the chilly classroom', isCorrect: true },
+                                    { text: 'To cool the room further', isCorrect: false },
+                                    { text: 'To make more noise', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Why did the windows begin to clear as the room warmed?',
+                                clue: 'Consider what heat does to moisture on windows.',
+                                choices: [
+                                    { text: 'The warmth removed the foggy condensation', isCorrect: true },
+                                    { text: 'The heater painted the windows', isCorrect: false },
+                                    { text: 'The wind blew the glass clean', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How did the warmer air affect the students?',
+                                clue: 'Notice what they did after feeling comfortable.',
+                                choices: [
+                                    { text: 'They settled into their work', isCorrect: true },
+                                    { text: 'They left the room quickly', isCorrect: false },
+                                    { text: 'They took a nap on the floor', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'How might the students have felt once the room was warm?',
+                                clue: 'Compare their comfort before and after.',
+                                choices: [
+                                    { text: 'Comfortable and focused', isCorrect: true },
+                                    { text: 'Too cold to think', isCorrect: false },
+                                    { text: 'Hot and unable to work', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const navContainer = document.getElementById('story-nav');
+        const storyContainer = document.getElementById('story-container');
+
+        function shuffle(array) {
+            const copy = array.map(choice => ({ ...choice }));
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function renderNav(activeId) {
+            navContainer.innerHTML = '';
+            stories.forEach((story, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn' + (story.id === activeId ? ' active' : '');
+                btn.textContent = `${index + 1}. ${story.title}`;
+                btn.addEventListener('click', () => renderStory(story.id));
+                navContainer.appendChild(btn);
+            });
+        }
+
+        function renderStory(storyId) {
+            const story = stories.find(item => item.id === storyId) || stories[0];
+            renderNav(story.id);
+            storyContainer.innerHTML = '';
+
+            const card = document.createElement('div');
+            card.className = 'story-card';
+
+            const top = document.createElement('div');
+            top.className = 'story-top';
+
+            const textWrap = document.createElement('div');
+            textWrap.className = 'story-text';
+
+            const heading = document.createElement('h2');
+            heading.textContent = story.title;
+            heading.style.margin = '0 0 8px';
+            heading.style.color = 'var(--spruce)';
+            textWrap.appendChild(heading);
+
+            story.text.forEach(line => {
+                const p = document.createElement('p');
+                p.textContent = line;
+                textWrap.appendChild(p);
+            });
+
+            const imageArea = document.createElement('div');
+            imageArea.className = 'image-placeholder';
+            const imageNote = document.createElement('span');
+            imageNote.textContent = story.image ? 'Image will display here.' : 'Image placeholder — add a local path to the "image" field.';
+            imageArea.appendChild(imageNote);
+
+            if (story.image) {
+                const img = document.createElement('img');
+                img.src = story.image;
+                img.alt = story.alt || 'Story image';
+                img.style.maxWidth = '100%';
+                img.style.borderRadius = '10px';
+                img.style.display = 'block';
+                imageArea.innerHTML = '';
+                imageArea.appendChild(img);
+            }
+
+            top.appendChild(textWrap);
+            top.appendChild(imageArea);
+            card.appendChild(top);
+
+            const tabBar = document.createElement('div');
+            tabBar.className = 'question-tabs';
+            const questionsWrap = document.createElement('div');
+            questionsWrap.className = 'questions';
+
+            function renderTabQuestions(activeKey) {
+                questionsWrap.innerHTML = '';
+                tabBar.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.key === activeKey);
+                });
+                const set = story.questionSets.find(q => q.key === activeKey) || story.questionSets[0];
+                set.questions.forEach((question, idx) => {
+                    questionsWrap.appendChild(buildQuestionCard(question, idx + 1));
+                });
+            }
+
+            story.questionSets.forEach((set, idx) => {
+                const tab = document.createElement('button');
+                tab.className = 'tab-btn' + (idx === 0 ? ' active' : '');
+                tab.dataset.key = set.key;
+                tab.textContent = set.label;
+                tab.addEventListener('click', () => renderTabQuestions(set.key));
+                tabBar.appendChild(tab);
+            });
+
+            card.appendChild(tabBar);
+            card.appendChild(questionsWrap);
+            storyContainer.appendChild(card);
+
+            renderTabQuestions(story.questionSets[0].key);
+        }
+
+        function buildQuestionCard(question, number) {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            const header = document.createElement('div');
+            header.className = 'question-header';
+            const label = document.createElement('span');
+            label.className = 'question-label';
+            label.textContent = `Question ${number}`;
+            header.appendChild(label);
+            card.appendChild(header);
+
+            const prompt = document.createElement('div');
+            prompt.className = 'question-prompt';
+            prompt.textContent = question.prompt;
+            card.appendChild(prompt);
+
+            const helpRow = document.createElement('div');
+            helpRow.className = 'help-row';
+            const clueBtn = document.createElement('button');
+            clueBtn.className = 'btn btn-clue';
+            clueBtn.textContent = 'Show clue';
+            const choicesBtn = document.createElement('button');
+            choicesBtn.className = 'btn btn-choices';
+            choicesBtn.textContent = 'Show choices';
+            choicesBtn.disabled = true;
+            helpRow.appendChild(clueBtn);
+            helpRow.appendChild(choicesBtn);
+            card.appendChild(helpRow);
+
+            const clueBox = document.createElement('div');
+            clueBox.className = 'clue';
+            clueBox.textContent = question.clue;
+            card.appendChild(clueBox);
+
+            const choicesWrap = document.createElement('div');
+            choicesWrap.className = 'choices-wrap';
+            card.appendChild(choicesWrap);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            card.appendChild(feedback);
+
+            clueBtn.addEventListener('click', () => {
+                clueBox.style.display = 'block';
+                choicesBtn.disabled = false;
+                clueBtn.disabled = true;
+            });
+
+            choicesBtn.addEventListener('click', () => {
+                choicesWrap.innerHTML = '';
+                feedback.style.display = 'none';
+                feedback.textContent = '';
+                feedback.className = 'feedback';
+
+                const shuffled = shuffle(question.choices);
+                shuffled.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = choice.text;
+                    btn.addEventListener('click', () => {
+                        choicesWrap.querySelectorAll('button').forEach(b => {
+                            b.disabled = true;
+                        });
+                        if (choice.isCorrect) {
+                            btn.classList.add('correct');
+                            feedback.textContent = 'Correct! Nice job using the clue.';
+                            feedback.classList.add('correct');
+                        } else {
+                            btn.classList.add('incorrect');
+                            feedback.textContent = 'Not quite. Re-read the clue and try another story next.';
+                            feedback.classList.add('incorrect');
+                        }
+                        feedback.style.display = 'block';
+                    });
+                    choicesWrap.appendChild(btn);
+                });
+
+                choicesWrap.style.display = 'grid';
+                choicesBtn.disabled = true;
+            });
+
+            return card;
+        }
+
+        renderStory(stories[0].id);
+    </script>
+</body>
+</html>
