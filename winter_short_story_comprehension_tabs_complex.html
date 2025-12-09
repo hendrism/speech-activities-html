@@ -241,6 +241,93 @@
             background: #fee2e2;
             color: #7f1d1d;
         }
+        .input-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 8px 0;
+        }
+        .text-input {
+            flex: 1;
+            min-width: 220px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            font-size: 1rem;
+        }
+        .text-input.correct {
+            border-color: #22c55e;
+            background: #dcfce7;
+        }
+        .text-input.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+        .sentence-preview {
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            font-weight: 700;
+        }
+        .fill-word {
+            color: var(--spruce);
+            font-weight: 800;
+        }
+        .conj-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 8px 0;
+        }
+        .conj-btn {
+            border: 1px solid var(--frost);
+            border-radius: 10px;
+            padding: 8px 12px;
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .conj-btn:hover {
+            border-color: var(--sky);
+            transform: translateY(-1px);
+        }
+        .conj-btn.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+        .conj-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+        .conj-sentence {
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            font-weight: 700;
+        }
+        .pager {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .pill {
+            background: #e2e8f0;
+            color: #0f172a;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
         @media (max-width: 820px) {
             .story-top {
                 grid-template-columns: 1fr;
@@ -255,7 +342,14 @@
     <div class="page">
         <h1>Snowy Day Reading - Complex Literal & Inferential Tabs</h1>
         <div class="intro">
-            Ten richer winter scenes with tabbed literal and inferential questions. Each prompt still uses the clue-first unlock and three randomized answer choices. Images are already paired; use the same local assets from the simpler set.
+            Ten richer winter scenes with tabbed literal, inferential, and irregular past-tense practice questions. Each prompt still uses the clue-first unlock and three randomized answer choices. Images are already paired; use the same local assets from the simpler set.
+        </div>
+        <div id="tabFilter" style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;">
+            <label><input type="checkbox" value="conjunctions"> Connecting Ideas</label>
+            <label><input type="checkbox" value="literal"> Literal</label>
+            <label><input type="checkbox" value="inferential"> Inferential</label>
+            <label><input type="checkbox" value="events"> Event Recall</label>
+            <label><input type="checkbox" value="past"> Irregular Past</label>
         </div>
         <div class="nav-bar" id="story-nav"></div>
         <div id="story-container"></div>
@@ -354,6 +448,384 @@
                                     { text: 'Peaceful and still', isCorrect: true },
                                     { text: 'Chaotic and noisy', isCorrect: false },
                                     { text: 'Crowded and busy', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of go: "The students ______ into the warm building."',
+                                clue: 'The past tense of "go" rhymes with "sent."',
+                                choices: [
+                                    { text: 'Went', isCorrect: true },
+                                    { text: 'Goed', isCorrect: false },
+                                    { text: 'Gone', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of blow: "A cold wind ______ against their jackets."',
+                                clue: 'The past tense ends with "-ew."',
+                                choices: [
+                                    { text: 'Blew', isCorrect: true },
+                                    { text: 'Blowed', isCorrect: false },
+                                    { text: 'Blown', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of feel: "Everyone ______ calmer once they stepped inside."',
+                                clue: 'It is a four-letter past tense form.',
+                                choices: [
+                                    { text: 'Felt', isCorrect: true },
+                                    { text: 'Feeled', isCorrect: false },
+                                    { text: 'Fell', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of fall: "Snow ______ early in the morning and covered the yard."',
+                                clue: 'Think of the past tense of "fall" that ends with "-ell."',
+                                choices: [
+                                    { text: 'Fell', isCorrect: true },
+                                    { text: 'Fallen', isCorrect: false },
+                                    { text: 'Falled', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of put: "Sam ______ on his thick coat first."',
+                                clue: 'The past tense of "put" is spelled the same as the present tense.',
+                                choices: [
+                                    { text: 'Put', isCorrect: true },
+                                    { text: 'Putted', isCorrect: false },
+                                    { text: 'Puts', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of hit: "A burst of cold ______ his face when he stepped outdoors."',
+                                clue: 'This past tense form does not add -ed and stays the same as the base verb.',
+                                choices: [
+                                    { text: 'Hit', isCorrect: true },
+                                    { text: 'Hitted', isCorrect: false },
+                                    { text: 'Hits', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of keep: "He ______ walking with steady steps even in the freezing air."',
+                                clue: 'The past tense of "keep" ends with "-pt."',
+                                choices: [
+                                    { text: 'Kept', isCorrect: true },
+                                    { text: 'Keeped', isCorrect: false },
+                                    { text: 'Keep', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of feel: "He ______ more confident once he was fully bundled up."',
+                                clue: 'It is a four-letter past tense form.',
+                                choices: [
+                                    { text: 'Felt', isCorrect: true },
+                                    { text: 'Feeled', isCorrect: false },
+                                    { text: 'Fell', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of rise: "Warm steam ______ from the exhaust into the icy air."',
+                                clue: 'The past tense of "rise" ends with "-ose."',
+                                choices: [
+                                    { text: 'Rose', isCorrect: true },
+                                    { text: 'Rised', isCorrect: false },
+                                    { text: 'Risen', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of blow: "A wave of cold ______ in behind Ben when he climbed the steps."',
+                                clue: 'The past tense ends with "-ew."',
+                                choices: [
+                                    { text: 'Blew', isCorrect: true },
+                                    { text: 'Blowed', isCorrect: false },
+                                    { text: 'Blown', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of go: "He ______ down the aisle to pick a seat near the window."',
+                                clue: 'The past tense of "go" rhymes with "sent."',
+                                choices: [
+                                    { text: 'Went', isCorrect: true },
+                                    { text: 'Goed', isCorrect: false },
+                                    { text: 'Gone', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of choose: "Ben ______ a seat near the window so he could watch the snow."',
+                                clue: 'The past tense of "choose" ends with "-ose."',
+                                choices: [
+                                    { text: 'Chose', isCorrect: true },
+                                    { text: 'Choosed', isCorrect: false },
+                                    { text: 'Chosen', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of sit: "The small bird ______ on the fence outside the classroom window."',
+                                clue: 'The past tense of "sit" uses a short a vowel sound.',
+                                choices: [
+                                    { text: 'Sat', isCorrect: true },
+                                    { text: 'Sit', isCorrect: false },
+                                    { text: 'Sitted', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of shake: "It ______ snow from its feathers."',
+                                clue: 'The past tense ends with "-ook."',
+                                choices: [
+                                    { text: 'Shook', isCorrect: true },
+                                    { text: 'Shaked', isCorrect: false },
+                                    { text: 'Shaken', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of keep: "The students ______ quiet because they did not want to scare it away."',
+                                clue: 'The past tense of "keep" ends with "-pt."',
+                                choices: [
+                                    { text: 'Kept', isCorrect: true },
+                                    { text: 'Keeped', isCorrect: false },
+                                    { text: 'Keep', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of fly: "After a moment, the bird ______ off toward a nearby tree."',
+                                clue: 'The past tense of "fly" ends with "-ew."',
+                                choices: [
+                                    { text: 'Flew', isCorrect: true },
+                                    { text: 'Flied', isCorrect: false },
+                                    { text: 'Flown', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of make: "Maya ______ a cup of hot cocoa during lunch."',
+                                clue: 'The past tense of "make" ends with "-ade."',
+                                choices: [
+                                    { text: 'Made', isCorrect: true },
+                                    { text: 'Maked', isCorrect: false },
+                                    { text: 'Make', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of take: "She ______ a slow sip and felt the warmth move through her chest."',
+                                clue: 'The past tense of "take" ends with "-ook."',
+                                choices: [
+                                    { text: 'Took', isCorrect: true },
+                                    { text: 'Taked', isCorrect: false },
+                                    { text: 'Taken', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of spread: "The heat from the cup ______ through her fingers."',
+                                clue: 'The past tense of this verb is spelled the same as the base word.',
+                                choices: [
+                                    { text: 'Spread', isCorrect: true },
+                                    { text: 'Spreaded', isCorrect: false },
+                                    { text: 'Spreads', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of feel: "She ______ calmer and more ready to finish the day."',
+                                clue: 'It is a four-letter past tense form.',
+                                choices: [
+                                    { text: 'Felt', isCorrect: true },
+                                    { text: 'Feeled', isCorrect: false },
+                                    { text: 'Fell', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of leave: "The class ______ a winding trail of footprints behind them."',
+                                clue: 'The past tense of "leave" ends with "-eft."',
+                                choices: [
+                                    { text: 'Left', isCorrect: true },
+                                    { text: 'Leaved', isCorrect: false },
+                                    { text: 'Leave', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of sting: "The cold air ______ their cheeks."',
+                                clue: 'The past tense ends with "-ung."',
+                                choices: [
+                                    { text: 'Stung', isCorrect: true },
+                                    { text: 'Stinged', isCorrect: false },
+                                    { text: 'Stang', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of ring: "When the bell ______, they headed back inside."',
+                                clue: 'Think of the past tense of "ring" that rhymes with "sang."',
+                                choices: [
+                                    { text: 'Rang', isCorrect: true },
+                                    { text: 'Rung', isCorrect: false },
+                                    { text: 'Ringed', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of go: "They ______ back inside, grateful for the warm building."',
+                                clue: 'The past tense of "go" rhymes with "sent."',
+                                choices: [
+                                    { text: 'Went', isCorrect: true },
+                                    { text: 'Goed', isCorrect: false },
+                                    { text: 'Gone', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of take: "Mr. Lee ______ a bag of salt and spread it across the ground."',
+                                clue: 'The past tense of "take" ends with "-ook."',
+                                choices: [
+                                    { text: 'Took', isCorrect: true },
+                                    { text: 'Taked', isCorrect: false },
+                                    { text: 'Taken', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of begin: "The ice ______ to melt slowly."',
+                                clue: 'The past tense of "begin" ends with "-gan."',
+                                choices: [
+                                    { text: 'Began', isCorrect: true },
+                                    { text: 'Beginned', isCorrect: false },
+                                    { text: 'Begun', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of stand: "Many kids ______ and talked about how slippery it had been."',
+                                clue: 'The past tense of "stand" ends with "-ood."',
+                                choices: [
+                                    { text: 'Stood', isCorrect: true },
+                                    { text: 'Standed', isCorrect: false },
+                                    { text: 'Stooded', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of let: "Mr. Lee ______ everyone continue inside once the walkway looked clear."',
+                                clue: 'The past tense of this verb stays the same as the base form.',
+                                choices: [
+                                    { text: 'Let', isCorrect: true },
+                                    { text: 'Letted', isCorrect: false },
+                                    { text: 'Lets', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of blow: "A strong winter wind ______ across the parking lot."',
+                                clue: 'The past tense ends with "-ew."',
+                                choices: [
+                                    { text: 'Blew', isCorrect: true },
+                                    { text: 'Blowed', isCorrect: false },
+                                    { text: 'Blown', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of feel: "The air ______ sharp and cold on her face."',
+                                clue: 'It is a four-letter past tense form.',
+                                choices: [
+                                    { text: 'Felt', isCorrect: true },
+                                    { text: 'Feeled', isCorrect: false },
+                                    { text: 'Fell', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of make: "The wind ______ her take a smaller stride every few steps."',
+                                clue: 'The past tense of "make" ends with "-ade."',
+                                choices: [
+                                    { text: 'Made', isCorrect: true },
+                                    { text: 'Maked', isCorrect: false },
+                                    { text: 'Makes', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of get: "When she finally ______ to the building, she felt immediate relief."',
+                                clue: 'The past tense of "get" is three letters long.',
+                                choices: [
+                                    { text: 'Got', isCorrect: true },
+                                    { text: 'Getted', isCorrect: false },
+                                    { text: 'Gets', isCorrect: false }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of fall: "Snowflakes ______ down during dismissal."',
+                                clue: 'The past tense of "fall" ends with "-ell."',
+                                choices: [
+                                    { text: 'Fell', isCorrect: true },
+                                    { text: 'Falled', isCorrect: false },
+                                    { text: 'Fallen', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of hold: "Jay ______ out his glove to catch a few."',
+                                clue: 'The past tense of "hold" changes the vowel sound.',
+                                choices: [
+                                    { text: 'Held', isCorrect: true },
+                                    { text: 'Holded', isCorrect: false },
+                                    { text: 'Holds', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of make: "The quiet snowfall ______ everything feel slower and peaceful."',
+                                clue: 'The past tense of "make" ends with "-ade."',
+                                choices: [
+                                    { text: 'Made', isCorrect: true },
+                                    { text: 'Maked', isCorrect: false },
+                                    { text: 'Make', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of take: "Jay ______ a deep breath before walking to the bus line."',
+                                clue: 'The past tense of "take" ends with "-ook."',
+                                choices: [
+                                    { text: 'Took', isCorrect: true },
+                                    { text: 'Taked', isCorrect: false },
+                                    { text: 'Taken', isCorrect: false }
                                 ]
                             }
                         ]
@@ -1239,13 +1711,1416 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        key: 'past',
+                        label: 'Irregular Past Tense',
+                        questions: [
+                            {
+                                prompt: 'Fill in the blank with the past tense of feel: "The classroom ______ chilly in the morning."',
+                                clue: 'It is a four-letter past tense form.',
+                                choices: [
+                                    { text: 'Felt', isCorrect: true },
+                                    { text: 'Feeled', isCorrect: false },
+                                    { text: 'Feel', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of sit: "Students ______ at their desks and rubbed their hands together."',
+                                clue: 'The past tense of "sit" uses a short a vowel sound.',
+                                choices: [
+                                    { text: 'Sat', isCorrect: true },
+                                    { text: 'Sit', isCorrect: false },
+                                    { text: 'Sitted', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of begin: "The windows ______ to clear as the air grew warmer."',
+                                clue: 'The past tense of "begin" ends with "-gan."',
+                                choices: [
+                                    { text: 'Began', isCorrect: true },
+                                    { text: 'Beginned', isCorrect: false },
+                                    { text: 'Begun', isCorrect: false }
+                                ]
+                            },
+                            {
+                                prompt: 'Fill in the blank with the past tense of get: "Everyone ______ into their work once they felt more comfortable."',
+                                clue: 'The past tense of "get" is three letters long.',
+                                choices: [
+                                    { text: 'Got', isCorrect: true },
+                                    { text: 'Getted', isCorrect: false },
+                                    { text: 'Gets', isCorrect: false }
+                                ]
+                            }
+                        ]
                     }
                 ]
             }
         ];
 
+        const eventRecallSets = {
+            'story-1': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: What covered the school yard early in the morning?',
+                        clue: 'It made everything bright and quiet.',
+                        choices: [
+                            { text: 'Snow covered the yard', isCorrect: true },
+                            { text: 'Leaves covered the yard', isCorrect: false },
+                            { text: 'Rain flooded the yard', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: How did students move across the slick ground?',
+                        clue: 'They wanted to avoid slipping.',
+                        choices: [
+                            { text: 'They walked slowly', isCorrect: true },
+                            { text: 'They ran quickly', isCorrect: false },
+                            { text: 'They skipped and jumped', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: What pushed against their jackets?',
+                        clue: 'It was part of the weather that morning.',
+                        choices: [
+                            { text: 'A cold wind', isCorrect: true },
+                            { text: 'A warm breeze', isCorrect: false },
+                            { text: 'Falling leaves', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: What did students say about winter?',
+                        clue: 'They noticed how fast it arrived.',
+                        choices: [
+                            { text: 'Winter arrived quickly', isCorrect: true },
+                            { text: 'Winter felt late this year', isCorrect: false },
+                            { text: 'Winter was too hot', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: Where did they feel calmer?',
+                        clue: 'Think about the warm place they entered.',
+                        choices: [
+                            { text: 'Inside the warm hallway', isCorrect: true },
+                            { text: 'Back in the snowy yard', isCorrect: false },
+                            { text: 'On the bus', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-2': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: What clothing did Sam put on first?',
+                        clue: 'It was thick and went over his body.',
+                        choices: [
+                            { text: 'His coat', isCorrect: true },
+                            { text: 'His gloves', isCorrect: false },
+                            { text: 'His boots', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: What did Sam pull on after his coat?',
+                        clue: 'It covered his ears.',
+                        choices: [
+                            { text: 'A knit hat', isCorrect: true },
+                            { text: 'A scarf', isCorrect: false },
+                            { text: 'A backpack', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: Why did he add gloves?',
+                        clue: 'Notice the weather outside.',
+                        choices: [
+                            { text: 'The air was freezing', isCorrect: true },
+                            { text: 'He lost his hat', isCorrect: false },
+                            { text: 'It was raining hard', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: What hit his face when he stepped outside?',
+                        clue: 'It made him feel the cold.',
+                        choices: [
+                            { text: 'A burst of cold air', isCorrect: true },
+                            { text: 'A splash of water', isCorrect: false },
+                            { text: 'A wave of heat', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: How did he keep moving?',
+                        clue: 'Think about his steps even with the cold.',
+                        choices: [
+                            { text: 'He kept steady steps confidently', isCorrect: true },
+                            { text: 'He ran back inside quickly', isCorrect: false },
+                            { text: 'He stopped and sat down', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-3': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: What rose from the bus exhaust?',
+                        clue: 'It looked warm in the icy air.',
+                        choices: [
+                            { text: 'Warm steam', isCorrect: true },
+                            { text: 'A cloud of dust', isCorrect: false },
+                            { text: 'Falling snow', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: What blew in behind Ben as he climbed the steps?',
+                        clue: 'It made him shiver.',
+                        choices: [
+                            { text: 'A wave of cold air', isCorrect: true },
+                            { text: 'A rush of hot steam', isCorrect: false },
+                            { text: 'A gust of rain', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: Where did Ben choose to sit?',
+                        clue: 'He wanted to watch the snow.',
+                        choices: [
+                            { text: 'Near the window', isCorrect: true },
+                            { text: 'Beside the driver', isCorrect: false },
+                            { text: 'On the bus steps', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: What happened to his hands as the bus warmed?',
+                        clue: 'The heated air changed how they felt.',
+                        choices: [
+                            { text: 'They slowly warmed up', isCorrect: true },
+                            { text: 'They got colder', isCorrect: false },
+                            { text: 'They became wet', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: How did he feel when the bus started up again?',
+                        clue: 'Think about his comfort in the heated air.',
+                        choices: [
+                            { text: 'Warmer and settled in his seat', isCorrect: true },
+                            { text: 'Still freezing and standing', isCorrect: false },
+                            { text: 'Ready to get off the bus', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-4': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: Where did the bird land?',
+                        clue: 'It was outside the classroom window.',
+                        choices: [
+                            { text: 'On the fence', isCorrect: true },
+                            { text: 'On a desk', isCorrect: false },
+                            { text: 'On the bus', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: What did the bird shake from its feathers?',
+                        clue: 'It was cold and white.',
+                        choices: [
+                            { text: 'Snow', isCorrect: true },
+                            { text: 'Water', isCorrect: false },
+                            { text: 'Sand', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: What was the bird looking for on the ground?',
+                        clue: 'It hopped from spot to spot.',
+                        choices: [
+                            { text: 'Food under the frozen ground', isCorrect: true },
+                            { text: 'A shiny rock', isCorrect: false },
+                            { text: 'A lost feather', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: How did students watch the bird?',
+                        clue: 'They did this to avoid scaring it.',
+                        choices: [
+                            { text: 'Quietly from the classroom', isCorrect: true },
+                            { text: 'By clapping loudly', isCorrect: false },
+                            { text: 'By tapping on the window', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: Where did the bird go next?',
+                        clue: 'It lifted its wings and flew there.',
+                        choices: [
+                            { text: 'Toward a nearby tree', isCorrect: true },
+                            { text: 'Into a backpack', isCorrect: false },
+                            { text: 'Onto the bus roof', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-5': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: When did Maya make the hot cocoa?',
+                        clue: 'Check the time of day.',
+                        choices: [
+                            { text: 'During lunch', isCorrect: true },
+                            { text: 'Before sunrise', isCorrect: false },
+                            { text: 'After bedtime', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: How did the cocoa smell after stirring?',
+                        clue: 'Two words describe it.',
+                        choices: [
+                            { text: 'Sweet and chocolatey', isCorrect: true },
+                            { text: 'Spicy and minty', isCorrect: false },
+                            { text: 'Sour and salty', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: What spread through Maya’s fingers?',
+                        clue: 'It came from the cup.',
+                        choices: [
+                            { text: 'Heat from the cup', isCorrect: true },
+                            { text: 'Snowflakes', isCorrect: false },
+                            { text: 'Cold water', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: What did she feel after taking a slow sip?',
+                        clue: 'It moved through her chest.',
+                        choices: [
+                            { text: 'Warmth moving through her chest', isCorrect: true },
+                            { text: 'A burst of cold', isCorrect: false },
+                            { text: 'A jolt of electricity', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: How did the cocoa change her mood?',
+                        clue: 'Notice how she felt about the rest of the day.',
+                        choices: [
+                            { text: 'Calm and ready to finish the day', isCorrect: true },
+                            { text: 'Too cold to work', isCorrect: false },
+                            { text: 'Sleepy and unable to think', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-6': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: When did the class walk into the snowy yard?',
+                        clue: 'Check the time in the first sentence.',
+                        choices: [
+                            { text: 'During recess', isCorrect: true },
+                            { text: 'During math class', isCorrect: false },
+                            { text: 'During dismissal', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: What did they leave behind in the snow?',
+                        clue: 'It shows the path they took.',
+                        choices: [
+                            { text: 'A winding trail of footprints', isCorrect: true },
+                            { text: 'Bike tire tracks', isCorrect: false },
+                            { text: 'A trail of leaves', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: What did the cold air do to their cheeks?',
+                        clue: 'It was uncomfortable.',
+                        choices: [
+                            { text: 'Made their cheeks sting', isCorrect: true },
+                            { text: 'Made their cheeks sunburn', isCorrect: false },
+                            { text: 'Made their cheeks sweaty', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: How did they move through the snow?',
+                        clue: 'They followed each other.',
+                        choices: [
+                            { text: 'In a long line joking about deep snow', isCorrect: true },
+                            { text: 'Running in every direction', isCorrect: false },
+                            { text: 'Standing still in one spot', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: What happened when the bell rang?',
+                        clue: 'Think about where they went.',
+                        choices: [
+                            { text: 'They headed back inside to the warm building', isCorrect: true },
+                            { text: 'They stayed outside longer', isCorrect: false },
+                            { text: 'They walked to the bus stop', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-7': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: What covered the sidewalk near the entrance?',
+                        clue: 'It made the ground slippery.',
+                        choices: [
+                            { text: 'Ice', isCorrect: true },
+                            { text: 'Leaves', isCorrect: false },
+                            { text: 'Sand', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: What did Mr. Lee spread on the ground?',
+                        clue: 'It helps melt ice.',
+                        choices: [
+                            { text: 'Salt', isCorrect: true },
+                            { text: 'Paint', isCorrect: false },
+                            { text: 'Water', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: What started happening after he spread it?',
+                        clue: 'The surface began to change.',
+                        choices: [
+                            { text: 'The ice began to melt', isCorrect: true },
+                            { text: 'Snow piled up higher', isCorrect: false },
+                            { text: 'The salt turned to ice', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: What were kids doing while watching?',
+                        clue: 'They remembered how it felt earlier.',
+                        choices: [
+                            { text: 'Talking about how slippery it was', isCorrect: true },
+                            { text: 'Building a snowman', isCorrect: false },
+                            { text: 'Racing on the ice', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: When did everyone continue inside?',
+                        clue: 'Mr. Lee waited for a safer moment.',
+                        choices: [
+                            { text: 'After the walkway looked clear', isCorrect: true },
+                            { text: 'Before spreading any salt', isCorrect: false },
+                            { text: 'While the ice was still thick', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-8': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: What blew across the parking lot?',
+                        clue: 'It pushed against Tia’s hood.',
+                        choices: [
+                            { text: 'A strong winter wind', isCorrect: true },
+                            { text: 'A rainstorm', isCorrect: false },
+                            { text: 'A flock of birds', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: What did Tia hold close to her mouth?',
+                        clue: 'It helped block the sharp air.',
+                        choices: [
+                            { text: 'Her scarf', isCorrect: true },
+                            { text: 'Her notebook', isCorrect: false },
+                            { text: 'Her lunch bag', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: How did the wind change her steps?',
+                        clue: 'It affected her stride length.',
+                        choices: [
+                            { text: 'She took smaller strides', isCorrect: true },
+                            { text: 'She leaped in long jumps', isCorrect: false },
+                            { text: 'She sprinted faster', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: What did the sharp air feel like on her face?',
+                        clue: 'It was not warm or soft.',
+                        choices: [
+                            { text: 'Sharp and cold', isCorrect: true },
+                            { text: 'Warm and gentle', isCorrect: false },
+                            { text: 'Humid and sticky', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: How did she feel when she reached the building?',
+                        clue: 'Think about the change in temperature.',
+                        choices: [
+                            { text: 'Relieved by the warm air', isCorrect: true },
+                            { text: 'Still freezing outside', isCorrect: false },
+                            { text: 'Too hot to breathe', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-9': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: When did the snowflakes drift down?',
+                        clue: 'Look for the time mentioned.',
+                        choices: [
+                            { text: 'During dismissal', isCorrect: true },
+                            { text: 'During midnight', isCorrect: false },
+                            { text: 'During breakfast', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: Where did the snowflakes land on Jay?',
+                        clue: 'Two places are named.',
+                        choices: [
+                            { text: 'On his jacket and hair', isCorrect: true },
+                            { text: 'On his shoes and socks', isCorrect: false },
+                            { text: 'On his backpack and desk', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: What did Jay hold out to catch the snowflakes?',
+                        clue: 'It covered his hand.',
+                        choices: [
+                            { text: 'His glove', isCorrect: true },
+                            { text: 'His notebook', isCorrect: false },
+                            { text: 'His umbrella', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: What happened to the flakes he caught?',
+                        clue: 'They changed form on his glove.',
+                        choices: [
+                            { text: 'They melted into tiny drops', isCorrect: true },
+                            { text: 'They stayed frozen for hours', isCorrect: false },
+                            { text: 'They turned into pebbles', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: How did the snowfall affect the moment for Jay?',
+                        clue: 'Consider the mood it created.',
+                        choices: [
+                            { text: 'It felt slower and peaceful as he walked to the bus line', isCorrect: true },
+                            { text: 'It made the area loud and rushed', isCorrect: false },
+                            { text: 'It made him run to escape', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-10': {
+                key: 'events',
+                label: 'Event Recall (5)',
+                questions: [
+                    {
+                        prompt: 'Event 1: How did the classroom feel in the morning?',
+                        clue: 'This led Ms. Park to take action.',
+                        choices: [
+                            { text: 'Chilly', isCorrect: true },
+                            { text: 'Overheated', isCorrect: false },
+                            { text: 'Flooded', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 2: What did Ms. Park do to change the temperature?',
+                        clue: 'She used a device in the room.',
+                        choices: [
+                            { text: 'Turned on the heater', isCorrect: true },
+                            { text: 'Opened all the windows', isCorrect: false },
+                            { text: 'Turned on a fan', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 3: What were students doing while waiting for warmth?',
+                        clue: 'It involved their hands.',
+                        choices: [
+                            { text: 'Rubbing their hands together', isCorrect: true },
+                            { text: 'Playing tag', isCorrect: false },
+                            { text: 'Building a snow fort', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 4: What happened to the windows as the room warmed?',
+                        clue: 'They changed as the air heated.',
+                        choices: [
+                            { text: 'They began to clear', isCorrect: true },
+                            { text: 'They frosted more', isCorrect: false },
+                            { text: 'They broke open', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Event 5: What did everyone do once they felt comfortable?',
+                        clue: 'It shows they were ready for learning.',
+                        choices: [
+                            { text: 'Settled into their work', isCorrect: true },
+                            { text: 'Left the classroom', isCorrect: false },
+                            { text: 'Started a snowball fight', isCorrect: false }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        const conjunctionSets = {
+            'story-1': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Combine these ideas: "The ground looked slick. Students walked slowly." Which conjunction best shows why?',
+                        clue: 'Think about the reason they walked slowly.',
+                        choices: [
+                            { text: 'The ground looked slick, so students walked slowly', isCorrect: true },
+                            { text: 'The ground looked slick, but students walked slowly', isCorrect: false },
+                            { text: 'The ground looked slick, or students walked slowly', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "Everyone felt calmer ______ they stepped into the warm hallway."',
+                        clue: 'What word shows when this feeling happened?',
+                        choices: [
+                            { text: 'when', isCorrect: true },
+                            { text: 'because', isCorrect: false },
+                            { text: 'although', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "A cold wind pushed against their jackets. They moved toward the doors." Which works best?',
+                        clue: 'These two things happened at the same time.',
+                        choices: [
+                            { text: 'A cold wind pushed against their jackets as they moved toward the doors', isCorrect: true },
+                            { text: 'A cold wind pushed against their jackets, so they moved toward the doors', isCorrect: false },
+                            { text: 'A cold wind pushed against their jackets, but they moved toward the doors', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "Snow covered the yard ______ left everything bright and quiet."',
+                        clue: 'This word connects two things that happened together.',
+                        choices: [
+                            { text: 'and', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'or', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-2': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Combine: "Sam layered on his winter clothes. The air outside was freezing." Which shows the reason?',
+                        clue: 'Why did Sam layer his clothes?',
+                        choices: [
+                            { text: 'Sam layered on his winter clothes because the air outside was freezing', isCorrect: true },
+                            { text: 'Sam layered on his winter clothes, but the air outside was freezing', isCorrect: false },
+                            { text: 'Sam layered on his winter clothes, or the air outside was freezing', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "A burst of cold hit his face, ______ he kept walking with steady steps."',
+                        clue: 'This word shows contrast—something unexpected happened.',
+                        choices: [
+                            { text: 'but', isCorrect: true },
+                            { text: 'so', isCorrect: false },
+                            { text: 'because', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "He put on his thick coat. He pulled on a knit hat." Which shows the sequence?',
+                        clue: 'Which word shows what happened next?',
+                        choices: [
+                            { text: 'He put on his thick coat, and then he pulled on a knit hat', isCorrect: true },
+                            { text: 'He put on his thick coat, so he pulled on a knit hat', isCorrect: false },
+                            { text: 'He put on his thick coat, but he pulled on a knit hat', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "He felt more confident ______ he was fully bundled up."',
+                        clue: 'What word shows the reason for his confidence?',
+                        choices: [
+                            { text: 'because', isCorrect: true },
+                            { text: 'although', isCorrect: false },
+                            { text: 'unless', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-3': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Fill in: "______ Ben climbed the steps, a wave of cold blew in behind him."',
+                        clue: 'What word shows when the cold air came in?',
+                        choices: [
+                            { text: 'When', isCorrect: true },
+                            { text: 'Because', isCorrect: false },
+                            { text: 'Unless', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Ben picked a seat near the window. He could watch the falling snow." Which shows the purpose?',
+                        clue: 'Why did he choose that seat?',
+                        choices: [
+                            { text: 'Ben picked a seat near the window so he could watch the falling snow', isCorrect: true },
+                            { text: 'Ben picked a seat near the window, but he could watch the falling snow', isCorrect: false },
+                            { text: 'Ben picked a seat near the window, and he could watch the falling snow', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "______ the bus started up, he felt his hands slowly warm."',
+                        clue: 'This word shows when his hands warmed.',
+                        choices: [
+                            { text: 'As', isCorrect: true },
+                            { text: 'Although', isCorrect: false },
+                            { text: 'Unless', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Warm steam rose from the exhaust. The air outside was icy." Which shows contrast?',
+                        clue: 'These two temperatures are opposite.',
+                        choices: [
+                            { text: 'Warm steam rose from the exhaust while the air outside was icy', isCorrect: true },
+                            { text: 'Warm steam rose from the exhaust, so the air outside was icy', isCorrect: false },
+                            { text: 'Warm steam rose from the exhaust because the air outside was icy', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-4': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Fill in: "The students watched quietly ______ they didn\'t want to scare the bird away."',
+                        clue: 'What word shows the reason they were quiet?',
+                        choices: [
+                            { text: 'because', isCorrect: true },
+                            { text: 'although', isCorrect: false },
+                            { text: 'unless', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "The bird hopped from spot to spot. It was looking for food." Which shows the purpose?',
+                        clue: 'Why was the bird hopping around?',
+                        choices: [
+                            { text: 'The bird hopped from spot to spot because it was looking for food', isCorrect: true },
+                            { text: 'The bird hopped from spot to spot, but it was looking for food', isCorrect: false },
+                            { text: 'The bird hopped from spot to spot, or it was looking for food', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "The bird shook snow from its feathers ______ flew off toward a nearby tree."',
+                        clue: 'What word shows what happened next?',
+                        choices: [
+                            { text: 'and then', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'because', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Students stayed quiet. The bird kept searching for food." Which shows the result?',
+                        clue: 'What happened because they were quiet?',
+                        choices: [
+                            { text: 'Students stayed quiet, so the bird kept searching for food', isCorrect: true },
+                            { text: 'Students stayed quiet, but the bird kept searching for food', isCorrect: false },
+                            { text: 'Students stayed quiet, or the bird kept searching for food', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-5': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Fill in: "Maya made hot cocoa ______ her fingers had been cold from walking outside."',
+                        clue: 'What word shows the reason she made cocoa?',
+                        choices: [
+                            { text: 'because', isCorrect: true },
+                            { text: 'although', isCorrect: false },
+                            { text: 'unless', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "She took a slow sip. The warmth moved through her chest." Which shows the sequence?',
+                        clue: 'What happened right after she sipped?',
+                        choices: [
+                            { text: 'She took a slow sip, and the warmth moved through her chest', isCorrect: true },
+                            { text: 'She took a slow sip, but the warmth moved through her chest', isCorrect: false },
+                            { text: 'She took a slow sip, or the warmth moved through her chest', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "She felt the warmth from the cup, ______ it made her feel calm."',
+                        clue: 'This word shows the result of feeling warm.',
+                        choices: [
+                            { text: 'and', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'or', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "The cocoa smelled sweet. Maya stirred it." Which shows when the smell happened?',
+                        clue: 'The smell came as a result of stirring.',
+                        choices: [
+                            { text: 'The cocoa smelled sweet after Maya stirred it', isCorrect: true },
+                            { text: 'The cocoa smelled sweet, but Maya stirred it', isCorrect: false },
+                            { text: 'The cocoa smelled sweet, or Maya stirred it', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-6': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Fill in: "The cold air made their cheeks sting, ______ they kept moving."',
+                        clue: 'This word shows contrast—they didn\'t stop despite the cold.',
+                        choices: [
+                            { text: 'but', isCorrect: true },
+                            { text: 'so', isCorrect: false },
+                            { text: 'because', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "The bell rang. They headed back inside." Which shows when they went in?',
+                        clue: 'What word shows the timing?',
+                        choices: [
+                            { text: 'When the bell rang, they headed back inside', isCorrect: true },
+                            { text: 'The bell rang, so they headed back inside', isCorrect: false },
+                            { text: 'The bell rang, but they headed back inside', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "They followed each other in a long line ______ joked about the deep snow."',
+                        clue: 'These two actions happened at the same time.',
+                        choices: [
+                            { text: 'and', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'or', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "They were outside in the cold. They felt grateful for the warm building." Which shows cause?',
+                        clue: 'Why did they feel grateful?',
+                        choices: [
+                            { text: 'Because they were outside in the cold, they felt grateful for the warm building', isCorrect: true },
+                            { text: 'They were outside in the cold, but they felt grateful for the warm building', isCorrect: false },
+                            { text: 'They were outside in the cold, or they felt grateful for the warm building', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-7': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Fill in: "Ice covered the sidewalk, ______ Mr. Lee spread salt across the ground."',
+                        clue: 'What word shows the result or action taken?',
+                        choices: [
+                            { text: 'so', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'or', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Mr. Lee spread the salt. The ice began to melt." Which shows the result?',
+                        clue: 'What happened because of the salt?',
+                        choices: [
+                            { text: 'After Mr. Lee spread the salt, the ice began to melt', isCorrect: true },
+                            { text: 'Mr. Lee spread the salt, but the ice began to melt', isCorrect: false },
+                            { text: 'Mr. Lee spread the salt, or the ice began to melt', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "______ the walkway looked clear, Mr. Lee let everyone continue inside."',
+                        clue: 'What word shows when he let them in?',
+                        choices: [
+                            { text: 'Once', isCorrect: true },
+                            { text: 'Although', isCorrect: false },
+                            { text: 'Unless', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Kids watched. They talked about how slippery it had been." Which connects these actions?',
+                        clue: 'Both things happened at the same time.',
+                        choices: [
+                            { text: 'Kids watched and talked about how slippery it had been', isCorrect: true },
+                            { text: 'Kids watched, so they talked about how slippery it had been', isCorrect: false },
+                            { text: 'Kids watched, but they talked about how slippery it had been', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-8': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Fill in: "The air felt sharp and cold, ______ Tia held her scarf close to her mouth."',
+                        clue: 'What word shows why she held her scarf?',
+                        choices: [
+                            { text: 'so', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'or', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "The wind was strong. Tia took smaller strides." Which shows the cause?',
+                        clue: 'Why did she take smaller steps?',
+                        choices: [
+                            { text: 'Because the wind was strong, Tia took smaller strides', isCorrect: true },
+                            { text: 'The wind was strong, but Tia took smaller strides', isCorrect: false },
+                            { text: 'The wind was strong, or Tia took smaller strides', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "______ she finally reached the building, she felt immediate relief."',
+                        clue: 'What word shows the timing?',
+                        choices: [
+                            { text: 'When', isCorrect: true },
+                            { text: 'Although', isCorrect: false },
+                            { text: 'Unless', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Wind pushed against her hood. She tried to walk." Which shows these happened together?',
+                        clue: 'Both actions were happening at the same time.',
+                        choices: [
+                            { text: 'Wind pushed against her hood as she tried to walk', isCorrect: true },
+                            { text: 'Wind pushed against her hood, so she tried to walk', isCorrect: false },
+                            { text: 'Wind pushed against her hood, or she tried to walk', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-9': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Fill in: "Jay held out his glove ______ catch a few snowflakes."',
+                        clue: 'What word shows his purpose or goal?',
+                        choices: [
+                            { text: 'to', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'or', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Snowflakes landed on his glove. They melted into drops." Which shows what happened next?',
+                        clue: 'What happened after they landed?',
+                        choices: [
+                            { text: 'Snowflakes landed on his glove and then melted into drops', isCorrect: true },
+                            { text: 'Snowflakes landed on his glove, but they melted into drops', isCorrect: false },
+                            { text: 'Snowflakes landed on his glove, or they melted into drops', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "The snowfall was quiet, ______ everything felt peaceful."',
+                        clue: 'What word shows the result of the quiet snowfall?',
+                        choices: [
+                            { text: 'so', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'or', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Jay watched the snowflakes melt. He walked to the bus line." Which connects both actions?',
+                        clue: 'He did the first action before the second.',
+                        choices: [
+                            { text: 'Jay watched the snowflakes melt before he walked to the bus line', isCorrect: true },
+                            { text: 'Jay watched the snowflakes melt, but he walked to the bus line', isCorrect: false },
+                            { text: 'Jay watched the snowflakes melt, or he walked to the bus line', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-10': {
+                key: 'conjunctions',
+                label: 'Connecting Ideas',
+                questions: [
+                    {
+                        prompt: 'Fill in: "The classroom felt chilly, ______ Ms. Park turned on the heater."',
+                        clue: 'What word shows the result or action taken?',
+                        choices: [
+                            { text: 'so', isCorrect: true },
+                            { text: 'but', isCorrect: false },
+                            { text: 'or', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "The air grew warmer. The windows began to clear." Which shows the cause?',
+                        clue: 'Why did the windows clear?',
+                        choices: [
+                            { text: 'As the air grew warmer, the windows began to clear', isCorrect: true },
+                            { text: 'The air grew warmer, but the windows began to clear', isCorrect: false },
+                            { text: 'The air grew warmer, or the windows began to clear', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in: "______ they felt more comfortable, everyone settled into their work."',
+                        clue: 'What word shows when they settled in?',
+                        choices: [
+                            { text: 'Once', isCorrect: true },
+                            { text: 'Although', isCorrect: false },
+                            { text: 'Unless', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Combine: "Students rubbed their hands together. They waited for the room to heat up." Which shows both actions happening together?',
+                        clue: 'These two things happened at the same time.',
+                        choices: [
+                            { text: 'Students rubbed their hands together while they waited for the room to heat up', isCorrect: true },
+                            { text: 'Students rubbed their hands together, so they waited for the room to heat up', isCorrect: false },
+                            { text: 'Students rubbed their hands together, but they waited for the room to heat up', isCorrect: false }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        const irregularPastSets = {
+            'story-1': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of go: "The students ______ into the warm building."',
+                        clue: 'The past tense of "go" rhymes with "sent."',
+                        choices: [
+                            { text: 'went', isCorrect: true },
+                            { text: 'goed', isCorrect: false },
+                            { text: 'gone', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of blow: "A cold wind ______ against their jackets."',
+                        clue: 'The past tense ends with "-ew."',
+                        choices: [
+                            { text: 'blew', isCorrect: true },
+                            { text: 'blowed', isCorrect: false },
+                            { text: 'blown', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of feel: "Everyone ______ calmer once they stepped inside."',
+                        clue: 'It is a four-letter past tense form.',
+                        choices: [
+                            { text: 'felt', isCorrect: true },
+                            { text: 'feeled', isCorrect: false },
+                            { text: 'fell', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of fall: "Snow ______ early in the morning and covered the yard."',
+                        clue: 'Think of the past tense of "fall" that ends with "-ell."',
+                        choices: [
+                            { text: 'fell', isCorrect: true },
+                            { text: 'fallen', isCorrect: false },
+                            { text: 'falled', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-2': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of put: "Sam ______ on his thick coat first."',
+                        clue: 'The past tense of "put" is spelled the same as the present tense.',
+                        choices: [
+                            { text: 'put', isCorrect: true },
+                            { text: 'putted', isCorrect: false },
+                            { text: 'puts', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of hit: "A burst of cold ______ his face when he stepped outdoors."',
+                        clue: 'This past tense form does not add -ed and stays the same as the base verb.',
+                        choices: [
+                            { text: 'hit', isCorrect: true },
+                            { text: 'hitted', isCorrect: false },
+                            { text: 'hits', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of keep: "He ______ walking with steady steps even in the freezing air."',
+                        clue: 'The past tense of "keep" ends with "-pt."',
+                        choices: [
+                            { text: 'kept', isCorrect: true },
+                            { text: 'keeped', isCorrect: false },
+                            { text: 'keep', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of feel: "He ______ more confident once he was fully bundled up."',
+                        clue: 'It is a four-letter past tense form.',
+                        choices: [
+                            { text: 'felt', isCorrect: true },
+                            { text: 'feeled', isCorrect: false },
+                            { text: 'fell', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-3': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of rise: "Warm steam ______ from the exhaust into the icy air."',
+                        clue: 'The past tense of "rise" ends with "-ose."',
+                        choices: [
+                            { text: 'rose', isCorrect: true },
+                            { text: 'rised', isCorrect: false },
+                            { text: 'risen', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of blow: "A wave of cold ______ in behind Ben when he climbed the steps."',
+                        clue: 'The past tense ends with "-ew."',
+                        choices: [
+                            { text: 'blew', isCorrect: true },
+                            { text: 'blowed', isCorrect: false },
+                            { text: 'blown', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of go: "He ______ down the aisle to pick a seat near the window."',
+                        clue: 'The past tense of "go" rhymes with "sent."',
+                        choices: [
+                            { text: 'went', isCorrect: true },
+                            { text: 'goed', isCorrect: false },
+                            { text: 'gone', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of choose: "Ben ______ a seat near the window so he could watch the snow."',
+                        clue: 'The past tense of "choose" ends with "-ose."',
+                        choices: [
+                            { text: 'chose', isCorrect: true },
+                            { text: 'choosed', isCorrect: false },
+                            { text: 'chosen', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-4': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of sit: "The small bird ______ on the fence outside the classroom window."',
+                        clue: 'The past tense of "sit" uses a short a vowel sound.',
+                        choices: [
+                            { text: 'sat', isCorrect: true },
+                            { text: 'sit', isCorrect: false },
+                            { text: 'sitted', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of shake: "It ______ snow from its feathers."',
+                        clue: 'The past tense ends with "-ook."',
+                        choices: [
+                            { text: 'shook', isCorrect: true },
+                            { text: 'shaked', isCorrect: false },
+                            { text: 'shaken', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of keep: "The students ______ quiet because they did not want to scare it away."',
+                        clue: 'The past tense of "keep" ends with "-pt."',
+                        choices: [
+                            { text: 'kept', isCorrect: true },
+                            { text: 'keeped', isCorrect: false },
+                            { text: 'keep', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of fly: "After a moment, the bird ______ off toward a nearby tree."',
+                        clue: 'The past tense of "fly" ends with "-ew."',
+                        choices: [
+                            { text: 'flew', isCorrect: true },
+                            { text: 'flied', isCorrect: false },
+                            { text: 'flown', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-5': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of make: "Maya ______ a cup of hot cocoa during lunch."',
+                        clue: 'The past tense of "make" ends with "-ade."',
+                        choices: [
+                            { text: 'made', isCorrect: true },
+                            { text: 'maked', isCorrect: false },
+                            { text: 'make', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of take: "She ______ a slow sip and felt the warmth move through her chest."',
+                        clue: 'The past tense of "take" ends with "-ook."',
+                        choices: [
+                            { text: 'took', isCorrect: true },
+                            { text: 'taked', isCorrect: false },
+                            { text: 'taken', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of spread: "The heat from the cup ______ through her fingers."',
+                        clue: 'The past tense of this verb is spelled the same as the base word.',
+                        choices: [
+                            { text: 'spread', isCorrect: true },
+                            { text: 'spreaded', isCorrect: false },
+                            { text: 'spreads', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of feel: "She ______ calmer and more ready to finish the day."',
+                        clue: 'It is a four-letter past tense form.',
+                        choices: [
+                            { text: 'felt', isCorrect: true },
+                            { text: 'feeled', isCorrect: false },
+                            { text: 'fell', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-6': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of leave: "The class ______ a winding trail of footprints behind them."',
+                        clue: 'The past tense of "leave" ends with "-eft."',
+                        choices: [
+                            { text: 'left', isCorrect: true },
+                            { text: 'leaved', isCorrect: false },
+                            { text: 'leave', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of sting: "The cold air ______ their cheeks."',
+                        clue: 'The past tense ends with "-ung."',
+                        choices: [
+                            { text: 'stung', isCorrect: true },
+                            { text: 'stinged', isCorrect: false },
+                            { text: 'stang', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of ring: "When the bell ______, they headed back inside."',
+                        clue: 'Think of the past tense of "ring" that rhymes with "sang."',
+                        choices: [
+                            { text: 'rang', isCorrect: true },
+                            { text: 'rung', isCorrect: false },
+                            { text: 'ringed', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of go: "They ______ back inside, grateful for the warm building."',
+                        clue: 'The past tense of "go" rhymes with "sent."',
+                        choices: [
+                            { text: 'went', isCorrect: true },
+                            { text: 'goed', isCorrect: false },
+                            { text: 'gone', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-7': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of take: "Mr. Lee ______ a bag of salt and spread it across the ground."',
+                        clue: 'The past tense of "take" ends with "-ook."',
+                        choices: [
+                            { text: 'took', isCorrect: true },
+                            { text: 'taked', isCorrect: false },
+                            { text: 'taken', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of begin: "The ice ______ to melt slowly."',
+                        clue: 'The past tense of "begin" ends with "-gan."',
+                        choices: [
+                            { text: 'began', isCorrect: true },
+                            { text: 'beginned', isCorrect: false },
+                            { text: 'begun', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of stand: "Many kids ______ and talked about how slippery it had been."',
+                        clue: 'The past tense of "stand" ends with "-ood."',
+                        choices: [
+                            { text: 'stood', isCorrect: true },
+                            { text: 'standed', isCorrect: false },
+                            { text: 'stooded', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of let: "Mr. Lee ______ everyone continue inside once the walkway looked clear."',
+                        clue: 'The past tense of this verb stays the same as the base form.',
+                        choices: [
+                            { text: 'let', isCorrect: true },
+                            { text: 'letted', isCorrect: false },
+                            { text: 'lets', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-8': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of blow: "A strong winter wind ______ across the parking lot."',
+                        clue: 'The past tense ends with "-ew."',
+                        choices: [
+                            { text: 'blew', isCorrect: true },
+                            { text: 'blowed', isCorrect: false },
+                            { text: 'blown', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of feel: "The air ______ sharp and cold on her face."',
+                        clue: 'It is a four-letter past tense form.',
+                        choices: [
+                            { text: 'felt', isCorrect: true },
+                            { text: 'feeled', isCorrect: false },
+                            { text: 'fell', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of make: "The wind ______ her take a smaller stride every few steps."',
+                        clue: 'The past tense of "make" ends with "-ade."',
+                        choices: [
+                            { text: 'made', isCorrect: true },
+                            { text: 'maked', isCorrect: false },
+                            { text: 'makes', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of get: "When she finally ______ to the building, she felt immediate relief."',
+                        clue: 'The past tense of "get" is three letters long.',
+                        choices: [
+                            { text: 'got', isCorrect: true },
+                            { text: 'getted', isCorrect: false },
+                            { text: 'gets', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-9': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of fall: "Snowflakes ______ down during dismissal."',
+                        clue: 'The past tense of "fall" ends with "-ell."',
+                        choices: [
+                            { text: 'fell', isCorrect: true },
+                            { text: 'falled', isCorrect: false },
+                            { text: 'fallen', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of hold: "Jay ______ out his glove to catch a few."',
+                        clue: 'The past tense of "hold" changes the vowel sound.',
+                        choices: [
+                            { text: 'held', isCorrect: true },
+                            { text: 'holded', isCorrect: false },
+                            { text: 'holds', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of make: "The quiet snowfall ______ everything feel slower and peaceful."',
+                        clue: 'The past tense of "make" ends with "-ade."',
+                        choices: [
+                            { text: 'made', isCorrect: true },
+                            { text: 'maked', isCorrect: false },
+                            { text: 'make', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of take: "Jay ______ a deep breath before walking to the bus line."',
+                        clue: 'The past tense of "take" ends with "-ook."',
+                        choices: [
+                            { text: 'took', isCorrect: true },
+                            { text: 'taked', isCorrect: false },
+                            { text: 'taken', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-10': {
+                key: 'past',
+                label: 'Irregular Past Tense',
+                questions: [
+                    {
+                        prompt: 'Fill in the blank with the past tense of feel: "The classroom ______ chilly in the morning."',
+                        clue: 'It is a four-letter past tense form.',
+                        choices: [
+                            { text: 'felt', isCorrect: true },
+                            { text: 'feeled', isCorrect: false },
+                            { text: 'feel', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of sit: "Students ______ at their desks and rubbed their hands together."',
+                        clue: 'The past tense of "sit" uses a short a vowel sound.',
+                        choices: [
+                            { text: 'sat', isCorrect: true },
+                            { text: 'sit', isCorrect: false },
+                            { text: 'sitted', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of begin: "The windows ______ to clear as the air grew warmer."',
+                        clue: 'The past tense of "begin" ends with "-gan."',
+                        choices: [
+                            { text: 'began', isCorrect: true },
+                            { text: 'beginned', isCorrect: false },
+                            { text: 'begun', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'Fill in the blank with the past tense of get: "Everyone ______ into their work once they felt more comfortable."',
+                        clue: 'The past tense of "get" is three letters long.',
+                        choices: [
+                            { text: 'got', isCorrect: true },
+                            { text: 'getted', isCorrect: false },
+                            { text: 'gets', isCorrect: false }
+                        ]
+                    }
+                ]
+            }
+        };
+
         const navContainer = document.getElementById('story-nav');
         const storyContainer = document.getElementById('story-container');
+        const tabFilter = document.getElementById('tabFilter');
+        let currentStoryId = null;
 
         function shuffle(array) {
             const copy = array.map(choice => ({ ...choice }));
@@ -1254,6 +3129,12 @@
                 [copy[i], copy[j]] = [copy[j], copy[i]];
             }
             return copy;
+        }
+
+        function selectedTabKeys() {
+            if (!tabFilter) return null;
+            const picks = Array.from(tabFilter.querySelectorAll('input:checked')).map(input => input.value);
+            return picks.length ? picks : null;
         }
 
         function renderNav(activeId) {
@@ -1269,8 +3150,22 @@
 
         function renderStory(storyId) {
             const story = stories.find(item => item.id === storyId) || stories[0];
+            currentStoryId = story.id;
             renderNav(story.id);
             storyContainer.innerHTML = '';
+
+            const baseSets = (story.questionSets || []).filter(set => set.key !== 'past');
+            const eventSet = eventRecallSets[story.id];
+            const conjunctionSet = conjunctionSets[story.id];
+            const pastSet = irregularPastSets[story.id];
+            const selected = selectedTabKeys();
+            const candidates = [
+                ...baseSets,
+                eventSet,
+                conjunctionSet,
+                pastSet
+            ].filter(Boolean);
+            const combinedSets = selected ? candidates.filter(set => selected.includes(set.key)) : candidates;
 
             const card = document.createElement('div');
             card.className = 'story-card';
@@ -1324,13 +3219,52 @@
                 tabBar.querySelectorAll('.tab-btn').forEach(btn => {
                     btn.classList.toggle('active', btn.dataset.key === activeKey);
                 });
-                const set = story.questionSets.find(q => q.key === activeKey) || story.questionSets[0];
+                const set = combinedSets.find(q => q.key === activeKey) || combinedSets[0];
+                if (set.key === 'conjunctions') {
+                    renderConjunctionTab(set);
+                    return;
+                }
                 set.questions.forEach((question, idx) => {
-                    questionsWrap.appendChild(buildQuestionCard(question, idx + 1));
+                    questionsWrap.appendChild(buildQuestionCard(question, idx + 1, set.key));
                 });
             }
 
-            story.questionSets.forEach((set, idx) => {
+            let conjunctionIndex = 0;
+
+            function renderConjunctionTab(set) {
+                questionsWrap.innerHTML = '';
+                const total = set.questions.length;
+                const cardView = buildConjunctionCard(set.questions[conjunctionIndex], conjunctionIndex + 1, total);
+                questionsWrap.appendChild(cardView);
+
+                const pager = document.createElement('div');
+                pager.className = 'pager';
+                const prev = document.createElement('button');
+                prev.className = 'btn btn-hint';
+                prev.textContent = 'Previous';
+                const counter = document.createElement('span');
+                counter.className = 'pill';
+                counter.textContent = `Question ${conjunctionIndex + 1} of ${total}`;
+                const next = document.createElement('button');
+                next.className = 'btn btn-hint';
+                next.textContent = 'Next';
+
+                prev.addEventListener('click', () => {
+                    conjunctionIndex = (conjunctionIndex - 1 + total) % total;
+                    renderConjunctionTab(set);
+                });
+                next.addEventListener('click', () => {
+                    conjunctionIndex = (conjunctionIndex + 1) % total;
+                    renderConjunctionTab(set);
+                });
+
+                pager.appendChild(prev);
+                pager.appendChild(counter);
+                pager.appendChild(next);
+                questionsWrap.appendChild(pager);
+            }
+
+            combinedSets.forEach((set, idx) => {
                 const tab = document.createElement('button');
                 tab.className = 'tab-btn' + (idx === 0 ? ' active' : '');
                 tab.dataset.key = set.key;
@@ -1343,10 +3277,160 @@
             card.appendChild(questionsWrap);
             storyContainer.appendChild(card);
 
-            renderTabQuestions(story.questionSets[0].key);
+            const defaultKey = combinedSets[0]?.key;
+            renderTabQuestions(defaultKey);
         }
 
-        function buildQuestionCard(question, number) {
+        function escapeHTML(value) {
+            return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        function escapeRegex(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        const conjunctionWords = [
+            'and then',
+            'so that',
+            'because',
+            'so',
+            'while',
+            'when',
+            'once',
+            'after',
+            'before',
+            'as',
+            'but',
+            'or',
+            'although',
+            'unless',
+            'and',
+            'then',
+            'to'
+        ];
+
+        function findConjunctionInSentence(text) {
+            const lower = (text || '').toLowerCase();
+            for (const word of conjunctionWords) {
+                const pattern = new RegExp(`\\b${escapeRegex(word)}\\b`);
+                if (pattern.test(lower)) {
+                    return word;
+                }
+            }
+            // fallback: look for comma+space word
+            const commaMatch = lower.match(/,\\s*([a-z]+(?:\\s+[a-z]+)?)/);
+            return commaMatch ? commaMatch[1] : '';
+        }
+
+        function buildConjunctionData(question) {
+            const options = question.choices || [];
+            const correctChoice = options.find(opt => opt.isCorrect) || options[0] || { text: '' };
+            const correctWord = findConjunctionInSentence(correctChoice.text);
+            const blankSentence = correctWord
+                ? correctChoice.text.replace(new RegExp(`\\b${escapeRegex(correctWord)}\\b`, 'i'), '_____')
+                : `${correctChoice.text} _____`;
+            const bankOptions = options.map(opt => {
+                const word = findConjunctionInSentence(opt.text) || opt.text;
+                return {
+                    label: word.trim(),
+                    isCorrect: !!opt.isCorrect
+                };
+            });
+            return { blankSentence, bankOptions };
+        }
+
+        function buildConjunctionCard(question, index, total) {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            const header = document.createElement('div');
+            header.className = 'question-header';
+            const label = document.createElement('span');
+            label.className = 'question-label';
+            label.textContent = `Question ${index} of ${total}`;
+            header.appendChild(label);
+            card.appendChild(header);
+
+            const prompt = document.createElement('div');
+            prompt.className = 'question-prompt';
+            prompt.textContent = question.prompt;
+            card.appendChild(prompt);
+
+            const clueBox = document.createElement('div');
+            clueBox.className = 'clue';
+            clueBox.textContent = question.clue;
+
+            const hintBtn = document.createElement('button');
+            hintBtn.className = 'btn btn-clue';
+            hintBtn.textContent = 'Show clue';
+            const bankWrap = document.createElement('div');
+            bankWrap.className = 'conj-bank';
+            const sentenceBox = document.createElement('div');
+            sentenceBox.className = 'conj-sentence';
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+
+            const { blankSentence, bankOptions } = buildConjunctionData(question);
+            sentenceBox.innerHTML = escapeHTML(blankSentence);
+
+            hintBtn.addEventListener('click', () => {
+                clueBox.style.display = 'block';
+                hintBtn.disabled = true;
+            });
+
+            let selected = null;
+
+            bankOptions.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'conj-btn';
+                btn.textContent = item.label || '…';
+                btn.addEventListener('click', () => {
+                    bankWrap.querySelectorAll('button').forEach(b => b.classList.remove('selected', 'correct', 'incorrect'));
+                    btn.classList.add('selected');
+                    selected = item;
+                    const filled = blankSentence.replace('_____', `<span class="fill-word">${escapeHTML(item.label || '')}</span>`);
+                    sentenceBox.innerHTML = filled;
+                    feedback.style.display = 'none';
+                });
+                bankWrap.appendChild(btn);
+            });
+
+            const checkBtn = document.createElement('button');
+            checkBtn.className = 'btn btn-choices';
+            checkBtn.textContent = 'Check answer';
+            checkBtn.addEventListener('click', () => {
+                if (!selected) {
+                    feedback.textContent = 'Pick a conjunction first.';
+                    feedback.className = 'feedback incorrect';
+                    feedback.style.display = 'block';
+                    return;
+                }
+                const isCorrect = selected.isCorrect;
+                feedback.textContent = isCorrect ? 'Nice choice!' : 'Try a different conjunction.';
+                feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+                feedback.style.display = 'block';
+                bankWrap.querySelectorAll('button').forEach(b => b.disabled = isCorrect ? true : false);
+                bankWrap.querySelectorAll('button').forEach(b => {
+                    if (b.classList.contains('selected')) {
+                        b.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    }
+                });
+            });
+
+            const controls = document.createElement('div');
+            controls.className = 'help-row';
+            controls.appendChild(hintBtn);
+            controls.appendChild(checkBtn);
+            card.appendChild(controls);
+            card.appendChild(clueBox);
+            card.appendChild(bankWrap);
+            card.appendChild(sentenceBox);
+            card.appendChild(feedback);
+
+            return card;
+        }
+
+        function buildQuestionCard(question, number, setKey) {
             const card = document.createElement('div');
             card.className = 'question-card';
 
@@ -1360,8 +3444,58 @@
 
             const prompt = document.createElement('div');
             prompt.className = 'question-prompt';
-            prompt.textContent = question.prompt;
+            let promptText = question.prompt;
+            const baseMatch = question.prompt.match(/past tense of ([a-zA-Z']+)/i);
+            if (baseMatch) {
+                promptText = `${question.prompt} (${baseMatch[1].toLowerCase()})`;
+            }
+            prompt.textContent = promptText;
             card.appendChild(prompt);
+
+            const correctChoice = question.choices.find(c => c.isCorrect);
+            const correctText = correctChoice ? correctChoice.text : '';
+
+            let inputEl;
+            let checkBtn;
+            let baseSentence = '';
+            const quoted = question.prompt.match(/"([^"]+)"|“([^”]+)”/);
+            if (quoted) {
+                baseSentence = quoted[1] || quoted[2] || '';
+            }
+
+            let sentenceBox;
+
+            if (setKey === 'past') {
+                sentenceBox = document.createElement('div');
+                sentenceBox.className = 'sentence-preview';
+                card.appendChild(sentenceBox);
+
+                const inputRow = document.createElement('div');
+                inputRow.className = 'input-row';
+                inputEl = document.createElement('input');
+                inputEl.type = 'text';
+                inputEl.className = 'text-input';
+                inputEl.placeholder = 'Type the past tense';
+                checkBtn = document.createElement('button');
+                checkBtn.className = 'btn btn-check';
+                checkBtn.textContent = 'Insert into sentence';
+                inputRow.appendChild(inputEl);
+                inputRow.appendChild(checkBtn);
+                card.appendChild(inputRow);
+            } else if (setKey === 'events') {
+                const inputRow = document.createElement('div');
+                inputRow.className = 'input-row';
+                inputEl = document.createElement('textarea');
+                inputEl.className = 'text-input';
+                inputEl.rows = 2;
+                inputEl.placeholder = 'Type the event in your own words...';
+                checkBtn = document.createElement('button');
+                checkBtn.className = 'btn btn-check';
+                checkBtn.textContent = 'Check entry';
+                inputRow.appendChild(inputEl);
+                inputRow.appendChild(checkBtn);
+                card.appendChild(inputRow);
+            }
 
             const helpRow = document.createElement('div');
             helpRow.className = 'help-row';
@@ -1407,31 +3541,110 @@
                     btn.className = 'choice-btn';
                     btn.textContent = choice.text;
                     btn.addEventListener('click', () => {
-                        choicesWrap.querySelectorAll('button').forEach(b => {
-                            b.disabled = true;
-                        });
-                        if (choice.isCorrect) {
-                            btn.classList.add('correct');
-                            feedback.textContent = 'Correct! Nice job using the clue.';
-                            feedback.classList.add('correct');
-                        } else {
-                            btn.classList.add('incorrect');
-                            feedback.textContent = 'Not quite. Re-read the clue and try another story next.';
-                            feedback.classList.add('incorrect');
+                        if (inputEl) {
+                            inputEl.value = choice.text;
                         }
-                        feedback.style.display = 'block';
+                        if (setKey === 'past') {
+                            updateSentence(choice.text);
+                        } else if (setKey === 'events') {
+                            evaluateEvent(choice.text, btn);
+                        } else {
+                            choicesWrap.querySelectorAll('button').forEach(b => {
+                                b.disabled = true;
+                            });
+                            checkAnswer(choice.isCorrect, btn);
+                        }
                     });
                     choicesWrap.appendChild(btn);
                 });
 
                 choicesWrap.style.display = 'grid';
-                choicesBtn.disabled = true;
+                choicesBtn.disabled = setKey !== 'past' && setKey !== 'events';
             });
+
+            function checkAnswer(isCorrect, clickedBtn) {
+                feedback.className = 'feedback';
+                if (isCorrect) {
+                    if (clickedBtn) clickedBtn.classList.add('correct');
+                    if (inputEl) {
+                        inputEl.classList.remove('incorrect');
+                        inputEl.classList.add('correct');
+                    }
+                    feedback.textContent = 'Correct! Nice job using the clue.';
+                    feedback.className = 'feedback correct';
+                } else {
+                    if (clickedBtn) clickedBtn.classList.add('incorrect');
+                    if (inputEl) {
+                        inputEl.classList.remove('correct');
+                        inputEl.classList.add('incorrect');
+                    }
+                    feedback.textContent = 'Not quite. Re-read the clue and try again.';
+                    feedback.className = 'feedback incorrect';
+                }
+                feedback.style.display = 'block';
+            }
+
+            function normalize(text) {
+                return (text || '').toLowerCase().replace(/[^a-z0-9\s']/g, '').trim();
+            }
+
+            function evaluateEvent(value, clickedBtn) {
+                const isCorrect = normalize(value) === normalize(correctText);
+                if (clickedBtn) {
+                    clickedBtn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+                if (inputEl) {
+                    inputEl.classList.toggle('correct', isCorrect);
+                    inputEl.classList.toggle('incorrect', !isCorrect);
+                }
+                feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+                feedback.textContent = isCorrect ? 'Event noted!' : 'Not yet—use the clue and try again.';
+                feedback.style.display = 'block';
+                if (isCorrect) {
+                    choicesWrap.querySelectorAll('button').forEach(b => b.disabled = true);
+                }
+            }
+
+            function updateSentence(word) {
+                if (!sentenceBox) return;
+                const safeBase = baseSentence ? escapeHTML(baseSentence) : 'Sentence';
+                const fill = word ? `<span class="fill-word">${escapeHTML(word)}</span>` : '______';
+                let rendered;
+                if (safeBase.match(/_{2,}/)) {
+                    rendered = safeBase.replace(/_{2,}/g, fill);
+                } else {
+                    rendered = `${safeBase.replace(/\\s+$/, '')} ${fill}`;
+                }
+                sentenceBox.innerHTML = rendered;
+            }
+
+            if (checkBtn && inputEl) {
+                if (setKey === 'past') {
+                    checkBtn.addEventListener('click', () => {
+                        updateSentence(inputEl.value);
+                    });
+                } else if (setKey === 'events') {
+                    checkBtn.addEventListener('click', () => {
+                        evaluateEvent(inputEl.value);
+                    });
+                }
+            }
+
+            if (setKey === 'past') {
+                updateSentence('');
+            }
 
             return card;
         }
 
         renderStory(stories[0].id);
+
+        if (tabFilter) {
+            tabFilter.addEventListener('change', () => {
+                const targetId = currentStoryId || stories[0].id;
+                renderStory(targetId);
+            });
+        }
     </script>
 </body>
 </html>

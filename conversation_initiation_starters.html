@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Initiation & Perspective-Taking</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --bg: #0b132b;
+            --surface: #0f1f3b;
+            --panel: #ffffff;
+            --accent: #22d3ee;
+            --accent-2: #a855f7;
+            --muted: #475569;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 15% 20%, rgba(34, 211, 238, 0.18), transparent 32%), radial-gradient(circle at 80% 0%, rgba(168, 85, 247, 0.18), transparent 34%), var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding: 18px;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.95), rgba(168, 85, 247, 0.95));
+            color: #0b1224;
+            padding: 22px 20px;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            margin: 0 0 6px;
+            font-size: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        header p {
+            margin: 0;
+            max-width: 940px;
+            font-size: 16px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .shell {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.32);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 14px;
+        }
+
+        .sidebar {
+            background: var(--panel);
+            border-radius: 16px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
+        }
+
+        .sidebar h2 {
+            margin: 2px 0 8px;
+            font-size: 18px;
+            color: #0ea5e9;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #ecfeff;
+            border: 1px solid #bae6fd;
+            font-weight: 700;
+            color: #0c4a6e;
+        }
+
+        .scenario-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .scenario-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .scenario-btn strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .scenario-btn span {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .scenario-btn:hover {
+            transform: translateX(2px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .scenario-btn.active {
+            border-color: #a5f3fc;
+            background: #e0f2fe;
+            box-shadow: 0 12px 26px rgba(14, 165, 233, 0.18);
+        }
+
+        .status-pill {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 999px;
+            padding: 4px 8px;
+            background: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.02em;
+        }
+
+        .status-pill.done {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .workspace {
+            background: var(--panel);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .scenario-top {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #075985;
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .scenario-title {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .scenario-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px;
+            line-height: 1.6;
+        }
+
+        .starters {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px 14px;
+            background: #fdf2ff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .starters h3 {
+            margin: 0;
+            color: #9333ea;
+            font-size: 17px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            border-radius: 999px;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            color: #0f172a;
+            transition: all 0.15s ease;
+        }
+
+        .chip:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+        }
+
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .input-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px;
+            background: #ffffff;
+        }
+
+        .input-card h4 {
+            margin: 0 0 6px;
+            color: #0ea5e9;
+            font-size: 16px;
+        }
+
+        .input-card label {
+            display: block;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 70px;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            background: #f8fafc;
+        }
+
+        textarea:focus {
+            outline: 2px solid var(--accent);
+            background: #ffffff;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #e2e8f0;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #0b1224;
+            border-color: transparent;
+            box-shadow: 0 10px 22px rgba(34, 211, 238, 0.25);
+        }
+
+        .btn:hover {
+            filter: brightness(0.98);
+        }
+
+        @media (max-width: 980px) {
+            body {
+                padding: 12px;
+            }
+            .layout {
+                grid-template-columns: 1fr;
+            }
+            .scenario-list {
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Conversation Initiation & Perspective-Taking</h1>
+        <p>Read each scenario. Come up with two openers and predict how the other person might respond. Use the sentence starters for ideas, keep it realistic and brief.</p>
+    </header>
+    <main>
+        <div class="shell">
+            <div class="layout">
+                <aside class="sidebar">
+                    <h2>Scenarios</h2>
+                    <div class="progress"><span id="progressCount">0/10 scenarios started</span><span id="progressHint">Fill any opener to log progress.</span></div>
+                    <div class="scenario-list" id="scenarioList"></div>
+                </aside>
+                <section class="workspace">
+                    <div class="scenario-top">
+                        <span class="badge" id="scenarioNumber">Scenario 1</span>
+                        <h2 class="scenario-title" id="scenarioTitle">Title</h2>
+                    </div>
+                    <div class="scenario-card" id="scenarioText"></div>
+                    <div class="starters">
+                        <h3>Possible sentence starters</h3>
+                        <div class="chip-row" id="starterRow"></div>
+                        <small style="color:var(--muted);font-weight:700;">Tip: click a starter to drop it into the opener you’re working on.</small>
+                    </div>
+                    <div class="inputs-grid">
+                        <div class="input-card">
+                            <h4>Opener 1</h4>
+                            <label for="opener1">What you might say:</label>
+                            <textarea id="opener1" placeholder="Example: Hey, I noticed you’re here early—what are you working on?"></textarea>
+                            <label for="response1" style="margin-top:8px;">Predicted response:</label>
+                            <textarea id="response1" placeholder="Example: Oh, just checking my schedule. How about you?"></textarea>
+                        </div>
+                        <div class="input-card">
+                            <h4>Opener 2</h4>
+                            <label for="opener2">What you might say:</label>
+                            <textarea id="opener2" placeholder="Example: I remember we had science together last year—how’s your day?"></textarea>
+                            <label for="response2" style="margin-top:8px;">Predicted response:</label>
+                            <textarea id="response2" placeholder="Example: Pretty good! Just catching up on texts before class."></textarea>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button class="btn" id="prevBtn">Previous</button>
+                        <button class="btn primary" id="nextBtn">Next scenario</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script>
+        const scenarios = [
+            {
+                title: "Early to Class",
+                text: "You get to class early and notice a girl you know a little bit from middle school sitting alone and looking at her phone.",
+                starters: [
+                    "Hey, I noticed…",
+                    "How’s your day going?",
+                    "I remember we had ___ together last year…",
+                    "Is that a ___ you’re looking at?",
+                    "Mind if I sit here?"
+                ]
+            },
+            {
+                title: "The Hoodie",
+                text: "You see a classmate wearing a hoodie from a show you like. You’ve never talked to her before.",
+                starters: [
+                    "Is that from ___? I love that show.",
+                    "Where did you get that hoodie?",
+                    "Did you finish the latest season?",
+                    "I just started watching—worth sticking with it?",
+                    "Who’s your favorite character?"
+                ]
+            },
+            {
+                title: "New Math Partner",
+                text: "Your math teacher assigns partners, and you’re paired with someone you haven’t worked with before.",
+                starters: [
+                    "Hey, I’m ___—have you looked at the instructions yet?",
+                    "How do you like starting projects—jump in or plan first?",
+                    "Want to split the problems or work together on each?",
+                    "What’s the toughest part of this unit so far?",
+                    "What’s your favorite way to check answers?"
+                ]
+            },
+            {
+                title: "Lunch Movie Talk",
+                text: "During lunch, you sit near a group who are talking about a new movie. You’ve seen it too.",
+                starters: [
+                    "I just saw that one too—mind if I join?",
+                    "What did you think of the ending?",
+                    "Who was your favorite character?",
+                    "No spoilers, but did you like it overall?",
+                    "I liked the soundtrack—did you?"
+                ]
+            },
+            {
+                title: "Sketchbook Curiosity",
+                text: "While waiting for dismissal, you notice a classmate flipping through a sketchbook.",
+                starters: [
+                    "Whoa, did you draw those?",
+                    "What are you working on right now?",
+                    "How long have you been sketching?",
+                    "Do you have a favorite thing to draw?",
+                    "Those look awesome—do you share your art anywhere?"
+                ]
+            },
+            {
+                title: "Field Trip Line",
+                text: "You’re lining up to get onto a bus for a field trip. The girl in front of you looks a little bored and is tapping her foot.",
+                starters: [
+                    "Excited for the trip?",
+                    "Do you know what we’re doing first when we get there?",
+                    "How long do you think the bus ride is?",
+                    "Have you been on this trip before?",
+                    "What are you most curious to see?"
+                ]
+            },
+            {
+                title: "After-School Club",
+                text: "You overhear two students talking about an after-school club you’ve been thinking about joining.",
+                starters: [
+                    "Are you talking about the ___ club?",
+                    "I’ve been thinking of joining—how do you like it?",
+                    "When do you usually meet?",
+                    "What do you do at a typical meeting?",
+                    "Is it beginner friendly?"
+                ]
+            },
+            {
+                title: "Colorful Pens",
+                text: "You walk into English class and notice someone organizing a stack of colorful pens and highlighters.",
+                starters: [
+                    "That’s a solid pen setup—do you color-code notes?",
+                    "Which pen is your favorite?",
+                    "Are those for a project today?",
+                    "I’ve been wanting to organize my notes—any tips?",
+                    "Do you use those for doodles or just notes?"
+                ]
+            },
+            {
+                title: "Book in the Hallway",
+                text: "You’re in the hallway and see a girl from your science class carrying a book you’ve read before.",
+                starters: [
+                    "I read that one—what do you think so far?",
+                    "Where are you in the story?",
+                    "Did you meet the main twist yet?",
+                    "I loved the ending—no spoilers, promise.",
+                    "Who’s your favorite character so far?"
+                ]
+            },
+            {
+                title: "Forgotten Water Bottle",
+                text: "Before gym, another student is tying her shoes and mutters something about forgetting her water bottle.",
+                starters: [
+                    "That’s rough—do you want to hit the fountain before we start?",
+                    "I’ve forgotten mine before too—want to split a quick trip to the bottle filler?",
+                    "Coach usually lets us grab water after warm-up—want to go then?",
+                    "Do you have a spare in your locker?",
+                    "We can ask if we can swing by the hall fountain first."
+                ]
+            }
+        ];
+
+        const responses = scenarios.map(() => ({
+            opener1: "",
+            response1: "",
+            opener2: "",
+            response2: ""
+        }));
+
+        let activeIndex = 0;
+        let lastFocused = null;
+
+        const scenarioList = document.getElementById("scenarioList");
+        const scenarioNumber = document.getElementById("scenarioNumber");
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioText = document.getElementById("scenarioText");
+        const starterRow = document.getElementById("starterRow");
+        const progressCount = document.getElementById("progressCount");
+        const progressHint = document.getElementById("progressHint");
+        const opener1 = document.getElementById("opener1");
+        const opener2 = document.getElementById("opener2");
+        const response1 = document.getElementById("response1");
+        const response2 = document.getElementById("response2");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        function renderScenarioList() {
+            scenarioList.innerHTML = "";
+            scenarios.forEach((scenario, index) => {
+                const btn = document.createElement("button");
+                btn.className = "scenario-btn" + (index === activeIndex ? " active" : "");
+                const strong = document.createElement("strong");
+                strong.textContent = `${index + 1}. ${scenario.title}`;
+                const subtitle = document.createElement("span");
+                subtitle.textContent = "2 openers + predicted responses";
+                const status = document.createElement("span");
+                status.className = "status-pill";
+                const hasContent = hasAnyContent(responses[index]);
+                if (hasContent) {
+                    status.textContent = "Started";
+                    status.classList.add("done");
+                } else {
+                    status.textContent = "—";
+                }
+                btn.appendChild(strong);
+                btn.appendChild(subtitle);
+                btn.appendChild(status);
+                btn.addEventListener("click", () => loadScenario(index));
+                scenarioList.appendChild(btn);
+            });
+        }
+
+        function loadScenario(index) {
+            activeIndex = index;
+            const scenario = scenarios[index];
+            scenarioNumber.textContent = `Scenario ${index + 1}`;
+            scenarioTitle.textContent = scenario.title;
+            scenarioText.textContent = scenario.text;
+            renderStarters(scenario.starters);
+            opener1.value = responses[index].opener1;
+            response1.value = responses[index].response1;
+            opener2.value = responses[index].opener2;
+            response2.value = responses[index].response2;
+            renderScenarioList();
+            updateProgress();
+        }
+
+        function renderStarters(starters) {
+            starterRow.innerHTML = "";
+            starters.forEach(text => {
+                const chip = document.createElement("button");
+                chip.type = "button";
+                chip.className = "chip";
+                chip.textContent = text;
+                chip.addEventListener("click", () => insertStarter(text));
+                starterRow.appendChild(chip);
+            });
+        }
+
+        function insertStarter(text) {
+            let target = null;
+            if (document.activeElement === opener1 || document.activeElement === opener2 || document.activeElement === response1 || document.activeElement === response2) {
+                target = document.activeElement;
+            } else if (!responses[activeIndex].opener1) {
+                target = opener1;
+            } else if (!responses[activeIndex].opener2) {
+                target = opener2;
+            } else {
+                target = opener1;
+            }
+            const current = target.value.trim();
+            target.value = current ? `${target.value} ${text}` : text;
+            saveInputs();
+            target.focus();
+        }
+
+        function saveInputs() {
+            responses[activeIndex].opener1 = opener1.value;
+            responses[activeIndex].response1 = response1.value;
+            responses[activeIndex].opener2 = opener2.value;
+            responses[activeIndex].response2 = response2.value;
+            updateProgress();
+            renderScenarioList();
+        }
+
+        function hasAnyContent(entry) {
+            return entry.opener1.trim() || entry.response1.trim() || entry.opener2.trim() || entry.response2.trim();
+        }
+
+        function updateProgress() {
+            const started = responses.filter(hasAnyContent).length;
+            progressCount.textContent = `${started}/${scenarios.length} scenarios started`;
+            const completedOpeners = responses.reduce((acc, curr) => acc + (curr.opener1.trim() ? 1 : 0) + (curr.opener2.trim() ? 1 : 0), 0);
+            progressHint.textContent = completedOpeners ? `${completedOpeners} opener(s) drafted` : "Fill any opener to log progress.";
+        }
+
+        [opener1, response1, opener2, response2].forEach(field => {
+            field.addEventListener("input", saveInputs);
+            field.addEventListener("focus", () => {
+                lastFocused = field;
+            });
+        });
+
+        prevBtn.addEventListener("click", () => {
+            const newIndex = activeIndex === 0 ? scenarios.length - 1 : activeIndex - 1;
+            loadScenario(newIndex);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            const newIndex = activeIndex === scenarios.length - 1 ? 0 : activeIndex + 1;
+            loadScenario(newIndex);
+        });
+
+        renderScenarioList();
+        loadScenario(0);
+        updateProgress();
+    </script>
+</body>
+</html>

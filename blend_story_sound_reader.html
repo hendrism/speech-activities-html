@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blend Story Reader - One at a Time</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --cloud: #e2e8f0;
+            --mint: #34d399;
+            --sea: #0ea5e9;
+            --sand: #f8fafc;
+            --amber: #f59e0b;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+            color: var(--ink);
+        }
+        .page {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 28px 18px 44px;
+        }
+        h1 {
+            margin: 0 0 10px;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+        .intro {
+            background: white;
+            border: 1px solid var(--cloud);
+            border-radius: 14px;
+            padding: 14px 16px;
+            line-height: 1.5;
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+            margin-bottom: 14px;
+        }
+        .set-tabs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin: 12px 0 16px;
+        }
+        .tab-btn {
+            border: 1px solid var(--cloud);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-weight: 700;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s ease;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #e0f2fe, #ecfeff);
+            border-color: var(--sea);
+            color: #075985;
+        }
+        .story-card {
+            background: white;
+            border: 1px solid var(--cloud);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
+        }
+        .story-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .story-meta span {
+            font-weight: 700;
+        }
+        .tag {
+            background: #ecfeff;
+            color: #075985;
+            border: 1px solid #bae6fd;
+            border-radius: 10px;
+            padding: 6px 10px;
+            font-size: 0.9rem;
+        }
+        .story-title {
+            margin: 0 0 8px;
+            color: var(--sea);
+        }
+        .story-text {
+            line-height: 1.6;
+            margin: 0 0 10px;
+        }
+        .targets {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: #fef9c3;
+            border: 1px solid #fde68a;
+            color: #92400e;
+            font-weight: 700;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .btn {
+            border: none;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+        .btn-primary {
+            background: var(--sea);
+            color: white;
+        }
+        .btn-secondary {
+            background: var(--mint);
+            color: #064e3b;
+        }
+        .btn-outline {
+            background: white;
+            color: var(--ink);
+            border: 1px solid var(--cloud);
+        }
+        .highlight {
+            background: #fef08a;
+            padding: 1px 3px;
+            border-radius: 4px;
+        }
+        .counter {
+            display: inline-block;
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: var(--sand);
+            border: 1px solid var(--cloud);
+            font-weight: 700;
+        }
+        @media (max-width: 720px) {
+            .story-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .controls {
+                flex-direction: column;
+            }
+            .controls .btn, .counter {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Blend Story Reader</h1>
+        <div class="intro">
+            One paragraph at a time to keep students focused on the target sounds. Choose a sound group, then move through the stories with the Next and Back buttons. Target sound words are listed for quick modeling.
+        </div>
+        <div class="set-tabs" id="set-tabs"></div>
+        <div class="story-card" id="story-card">
+            <div class="story-meta">
+                <span id="set-label"></span>
+                <span class="tag" id="target-tag"></span>
+            </div>
+            <h2 class="story-title" id="story-title"></h2>
+            <p class="story-text" id="story-text"></p>
+            <div class="targets" id="targets"></div>
+            <div class="controls">
+                <button class="btn btn-outline" id="back-btn">Back</button>
+                <button class="btn btn-primary" id="next-btn">Next</button>
+                <button class="btn btn-secondary" id="random-btn">Random story</button>
+                <button class="btn btn-outline" id="highlight-btn" aria-pressed="false">Highlight targets: Off</button>
+                <span class="counter" id="counter"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const storySets = [
+            {
+                key: 'initial-r',
+                label: 'Initial /r/ blends',
+                targetNote: 'br, cr, dr, fr, gr, pr, tr',
+                stories: [
+                    {
+                        title: 'Brandon breathes before the race',
+                        text: 'Brandon tried to freeze his nerves before the big track race. He crossed the field slowly, gripping his water bottle. The crowd grew louder as the runners lined up. Brandon took a deep breath, straightened his back, and felt a spark of pride as the race began.',
+                        targets: ['Brandon', 'track', 'crossed', 'crowd', 'gripping', 'straightened']
+                    },
+                    {
+                        title: 'Building a forest scene',
+                        text: 'The class planned a group project about creatures that crawl through the forest. Grace brought a crate filled with rocks, branches, and dried leaves to help create a model trail. Everyone crowded around the table and tried to craft a scene that looked real.',
+                        targets: ['group', 'creatures', 'Grace', 'crate', 'branches', 'trail']
+                    },
+                    {
+                        title: 'Trevor paints the fence',
+                        text: 'Trevor grabbed a brush and crouched near the fence to finish painting it. The fresh green color spread smoothly across the wood. His dog, Cricket, trotted around him, dragging a rope toy through the grass. Trevor grinned and kept brushing until the panel looked clean.',
+                        targets: ['Trevor', 'grabbed', 'brush', 'crouched', 'trotted', 'dragging']
+                    },
+                    {
+                        title: 'Crystal and the skateboard ramp',
+                        text: 'Crystal practiced a new trick on her skateboard behind the garage. She tried to drop into a small ramp, but the wheels scraped loudly when she landed wrong. She breathed in, reset her stance, and tried again, feeling more control with each run.',
+                        targets: ['Crystal', 'practiced', 'trick', 'tried', 'drop', 'scraped']
+                    },
+                    {
+                        title: 'Watching frost grow',
+                        text: 'During science class, the group observed how frost formed on a frozen tray of metal. The students crowded close as the crystals grew across the surface. Drew wrote careful notes while Grace traced the edges of the frost with her glove, amazed at the patterns.',
+                        targets: ['group', 'frost', 'frozen', 'crowded', 'crystals', 'Grace']
+                    },
+                    {
+                        title: 'Priya’s craft club project',
+                        text: 'Priya created a craft project for her art club. She grabbed bright red paper, trimmed the edges, and pressed glitter along the border. When the group arrived, they clapped softly and praised her creative idea. Priya smiled and started the next step.',
+                        targets: ['created', 'craft', 'grabbed', 'trimmed', 'pressed', 'praised']
+                    },
+                    {
+                        title: 'Greg trains for charity',
+                        text: 'Greg trained for a charity run by practicing around his block each morning. He tracked his progress carefully and drank cool water during breaks. His friend Brooke joined him, creating a friendly rivalry that pushed them both to try harder.',
+                        targets: ['Greg', 'trained', 'practicing', 'tracked', 'progress', 'Brooke']
+                    },
+                    {
+                        title: 'Storm over the cabin',
+                        text: 'A storm dragged across the region, bringing gray clouds and cracking thunder. The group in the cabin tried to stay calm while the wind pressed against the windows. Freddie grabbed a radio and checked for updates, grateful that the bridge into town was still clear.',
+                        targets: ['dragged', 'bringing', 'cracking', 'group', 'pressed', 'grateful']
+                    },
+                    {
+                        title: 'Brianna grows a garden',
+                        text: 'Brianna tried to grow a small garden behind the school. She brought crates of soil, trimmed broken branches, and created a row for each plant. Her friends crowded around to help, proud of the space they were building together.',
+                        targets: ['Brianna', 'tried', 'grow', 'crates', 'trimmed', 'branches']
+                    },
+                    {
+                        title: 'Crossing the creek',
+                        text: 'Trent crossed the creek carefully as the bridge creaked under his boots. He gripped the railing and tried to ignore the freezing spray from the water below. Once across, he breathed out and grinned at the trail stretching ahead.',
+                        targets: ['Trent', 'crossed', 'creek', 'bridge', 'gripped', 'trail']
+                    }
+                ]
+            },
+            {
+                key: 'final-l',
+                label: 'Final /l/ blends',
+                targetNote: '-bl, -cl, -fl, -gl, -pl, -sl',
+                stories: [
+                    {
+                        title: 'Fall festival welcome',
+                        text: 'The school held a fall festival with a simple goal: help every student feel welcome. People could juggle apples, sample warm pretzels, and watch a small magic table trick. Even the shy kids began to giggle, and the whole field felt cheerful.',
+                        targets: ['simple', 'juggle', 'sample', 'table', 'giggle', 'cheerful']
+                    },
+                    {
+                        title: 'Solving the bus stop puzzle',
+                        text: 'Mia tried to solve a difficult puzzle while waiting for the bus. Each small triangle had to match a color, but one angle didn’t seem to fit. She gave the board a gentle tap, and the final piece slid into place with a quiet rattle.',
+                        targets: ['puzzle', 'triangle', 'angle', 'gentle', 'final', 'rattle']
+                    },
+                    {
+                        title: 'Sharing crumble cookies',
+                        text: 'At lunch, Caleb shared a crumble cookie he made for a class project. The treat had a soft middle and a crisp sprinkle on top. His friends were grateful for the sample and told him his baking skills were incredible.',
+                        targets: ['Caleb', 'crumble', 'sprinkle', 'grateful', 'sample', 'incredible']
+                    },
+                    {
+                        title: 'Candle during the outage',
+                        text: 'A single candle flicked on the windowsill as the power went out. The tiny flame gave a warm glow that helped the family settle around the table. They played a simple card game, trying not to giggle when someone fumbled a rule.',
+                        targets: ['candle', 'flicked', 'windowsill', 'settle', 'table', 'giggle']
+                    },
+                    {
+                        title: 'Charcoal eagle drawing',
+                        text: 'During art club, Hazel worked on a charcoal drawing of an eagle. The strong angle of the wings made the whole picture feel powerful. She used a smudge tool to blend the final shadow until the image felt complete.',
+                        targets: ['charcoal', 'eagle', 'angle', 'smudge', 'final', 'complete']
+                    },
+                    {
+                        title: 'Dribble drill rhythm',
+                        text: 'Jamal practiced a small dribble drill in the gym after class. Each quick tap of the basketball made a steady rhythm that echoed across the wall. When he missed a step, he laughed, reset his stance, and tried to keep the final cycle smooth.',
+                        targets: ['dribble', 'drill', 'wall', 'missed', 'final', 'cycle']
+                    },
+                    {
+                        title: 'Sparkling droplet science',
+                        text: 'In science, the class studied how a tiny droplet can sparkle under bright light. The teacher placed a clear bubble on a slide, and the students watched the colors wiggle with every small movement. It was simple but beautiful.',
+                        targets: ['droplet', 'sparkle', 'bubble', 'slide', 'wiggle', 'simple']
+                    },
+                    {
+                        title: 'Locker clean-out',
+                        text: 'Rachel cleaned her locker after months of clutter. She found a tangled cable, a crumpled note, and a small purple marble that gave her a giggle. When she shut the door, the whole space felt peaceful and manageable.',
+                        targets: ['tangled', 'cable', 'crumpled', 'purple', 'marble', 'giggle']
+                    },
+                    {
+                        title: 'Gentle snowfall on the trail',
+                        text: 'A gentle snowfall covered the trail behind the school. The final sparkle on each crystal made the forest feel magical. As the group walked, their boots made a soft shuffle that echoed through the still air.',
+                        targets: ['gentle', 'snowfall', 'trail', 'final', 'crystal', 'shuffle']
+                    },
+                    {
+                        title: 'Building a castle model',
+                        text: 'The class prepared a small model of a medieval castle. They used gravel, cardboard, and a simple glue mixture to assemble the walls. When the final panel settled into place, everyone stepped back to admire the whole structure.',
+                        targets: ['model', 'castle', 'gravel', 'simple', 'final', 'panel']
+                    }
+                ]
+            }
+        ];
+
+        const setTabs = document.getElementById('set-tabs');
+        const setLabel = document.getElementById('set-label');
+        const targetTag = document.getElementById('target-tag');
+        const storyTitle = document.getElementById('story-title');
+        const storyText = document.getElementById('story-text');
+        const targetsBox = document.getElementById('targets');
+        const backBtn = document.getElementById('back-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const randomBtn = document.getElementById('random-btn');
+        const highlightBtn = document.getElementById('highlight-btn');
+        const counter = document.getElementById('counter');
+
+        let activeSetKey = storySets[0].key;
+        let storyIndex = 0;
+        let highlightOn = false;
+
+        function escapeRegExp(value) {
+            return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function highlightTargets(text, targets) {
+            const escaped = targets.map(escapeRegExp).filter(Boolean);
+            if (!escaped.length) return text;
+            const pattern = new RegExp(`\\b(${escaped.join('|')})\\b`, 'gi');
+            return text.replace(pattern, '<mark class="highlight">$1</mark>');
+        }
+
+        function renderTabs() {
+            setTabs.innerHTML = '';
+            storySets.forEach(set => {
+                const btn = document.createElement('button');
+                btn.className = 'tab-btn' + (set.key === activeSetKey ? ' active' : '');
+                btn.innerHTML = `<div>${set.label}</div><div style="font-weight:600; color:#475569; font-size:0.95rem;">Target: ${set.targetNote}</div>`;
+                btn.addEventListener('click', () => {
+                    activeSetKey = set.key;
+                    storyIndex = 0;
+                    renderTabs();
+                    renderStory();
+                });
+                setTabs.appendChild(btn);
+            });
+        }
+
+        function renderStory() {
+            const set = storySets.find(item => item.key === activeSetKey) || storySets[0];
+            const story = set.stories[storyIndex];
+
+            setLabel.textContent = `${set.label}`;
+            targetTag.textContent = `Target: ${set.targetNote}`;
+            storyTitle.textContent = story.title;
+            if (highlightOn) {
+                storyText.innerHTML = highlightTargets(story.text, story.targets);
+            } else {
+                storyText.textContent = story.text;
+            }
+            targetsBox.textContent = `Target words: ${story.targets.join(', ')}`;
+            counter.textContent = `Story ${storyIndex + 1} of ${set.stories.length}`;
+
+            backBtn.disabled = storyIndex === 0;
+            nextBtn.disabled = storyIndex === set.stories.length - 1;
+            highlightBtn.textContent = highlightOn ? 'Highlight targets: On' : 'Highlight targets: Off';
+            highlightBtn.setAttribute('aria-pressed', highlightOn ? 'true' : 'false');
+        }
+
+        backBtn.addEventListener('click', () => {
+            if (storyIndex > 0) {
+                storyIndex -= 1;
+                renderStory();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const set = storySets.find(item => item.key === activeSetKey) || storySets[0];
+            if (storyIndex < set.stories.length - 1) {
+                storyIndex += 1;
+                renderStory();
+            }
+        });
+
+        randomBtn.addEventListener('click', () => {
+            const set = storySets.find(item => item.key === activeSetKey) || storySets[0];
+            const max = set.stories.length;
+            if (max === 0) return;
+            let newIndex = Math.floor(Math.random() * max);
+            if (newIndex === storyIndex && max > 1) {
+                newIndex = (newIndex + 1) % max;
+            }
+            storyIndex = newIndex;
+            renderStory();
+        });
+
+        highlightBtn.addEventListener('click', () => {
+            highlightOn = !highlightOn;
+            renderStory();
+        });
+
+        renderTabs();
+        renderStory();
+    </script>
+</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prefix Practice</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --sand: #fff7ed;
+            --sunset: #f97316;
+            --sky: #22d3ee;
+            --leaf: #16a34a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --shadow: rgba(15, 23, 42, 0.12);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            background: radial-gradient(circle at 18% 20%, #ffedd5, #f8fafc 42%), linear-gradient(135deg, #fefce8 0%, #f8fafc 65%);
+            color: var(--ink);
+            padding: 28px 18px 56px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin: 0 0 8px;
+            letter-spacing: 0.4px;
+        }
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto 18px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 18px 40px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.12), transparent 36%),
+                        radial-gradient(circle at 78% 8%, rgba(249, 115, 22, 0.13), transparent 32%);
+            pointer-events: none;
+        }
+        .hero-inner { position: relative; z-index: 1; }
+        .hero p { margin: 6px 0; color: var(--muted); }
+        .nav {
+            max-width: 1100px;
+            margin: 0 auto 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px;
+        }
+        .nav button {
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--ink);
+            box-shadow: 0 8px 18px var(--shadow);
+            transition: all 0.2s ease;
+        }
+        .nav button:hover { border-color: var(--sunset); transform: translateY(-1px); }
+        .nav button.active {
+            background: linear-gradient(135deg, #ffe4cc, #ccfbf1);
+            border-color: var(--sunset);
+            color: #9a3412;
+        }
+        .section {
+            max-width: 1100px;
+            margin: 0 auto 14px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 16px 36px var(--shadow);
+            display: none;
+        }
+        .section.active { display: block; }
+        .section h2 { margin: 0 0 6px; font-size: 1.3rem; }
+        .section p { margin: 4px 0 12px; color: var(--muted); }
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+        .drop-zone {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            min-height: 120px;
+            padding: 12px;
+            background: #f8fafc;
+            position: relative;
+        }
+        .drop-zone h3 {
+            margin: 0 0 8px;
+            color: var(--ink);
+            font-size: 1.05rem;
+        }
+        .drop-zone .prefix-note {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin: 0 0 6px;
+        }
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .tile {
+            background: #fffbeb;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 10px;
+            cursor: grab;
+            font-weight: 700;
+            box-shadow: 0 8px 16px rgba(249, 115, 22, 0.14);
+            user-select: none;
+        }
+        .tile.selected { outline: 2px solid var(--sunset); }
+        .tile.correct { background: #dcfce7; border-color: #22c55e; color: #166534; }
+        .tile.incorrect { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; }
+        .controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 10px 0 4px;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 14px var(--shadow);
+            transition: all 0.2s ease;
+        }
+        .btn-hint { background: #e0f2fe; color: #075985; }
+        .btn-reveal { background: #fed7aa; color: #9a3412; }
+        .btn-check { background: #dcfce7; color: #166534; }
+        .btn-choices { background: #ede9fe; color: #5b21b6; }
+        .btn:hover { transform: translateY(-1px); }
+        .hint {
+            display: none;
+            margin: 6px 0;
+            padding: 10px;
+            background: #fffbeb;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            color: #9a3412;
+            font-weight: 600;
+        }
+        .feedback {
+            margin-top: 6px;
+            font-weight: 700;
+        }
+        .feedback.correct { color: #15803d; }
+        .feedback.incorrect { color: #b91c1c; }
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            box-shadow: 0 10px 22px var(--shadow);
+        }
+        .sentence { margin: 0 0 8px; color: var(--ink); }
+        .choice-list {
+            display: none;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+        .choice-btn {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 10px;
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .choice-btn:hover { border-color: var(--sunset); transform: translateY(-1px); }
+        .choice-btn.correct { background: #dcfce7; border-color: #22c55e; color: #166534; }
+        .choice-btn.incorrect { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; }
+        .pager {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .pill {
+            background: #e2e8f0;
+            color: #0f172a;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 720px) {
+            body { padding: 22px 12px 40px; }
+            .pager { flex-direction: column; align-items: flex-start; }
+            .choice-list { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Prefix Practice</h1>
+    <div class="hero">
+        <div class="hero-inner">
+            <p>Progressive help: try on your own first, then tap a hint, and reveal choices only if needed.</p>
+        </div>
+    </div>
+
+    <div class="nav" id="nav"></div>
+
+    <section class="section active" id="sort">
+        <h2>Word Sort</h2>
+        <p>Drag each word into the prefix box that matches its meaning. Select a word to get a hint, then check placements.</p>
+        <div class="word-bank" id="wordBank"></div>
+        <div class="row" id="dropZones"></div>
+        <div class="controls">
+            <button class="btn btn-hint" id="hintBtn" disabled>Show hint for selected word</button>
+            <button class="btn btn-check" id="checkBtn">Check placements</button>
+            <button class="btn btn-reveal" id="resetBtn">Send all words back</button>
+        </div>
+        <div class="hint" id="sortHint"></div>
+        <div class="feedback" id="sortFeedback"></div>
+    </section>
+
+    <section class="section" id="sentences">
+        <h2>Sentence Practice</h2>
+        <p>Read the sentence and pick the best prefix word. Use hint → choices if needed. One sentence shows at a time.</p>
+        <div class="card" id="sentenceCard"></div>
+        <div class="pager">
+            <button class="btn btn-hint" id="prevSentence">Previous</button>
+            <span class="pill" id="sentenceCounter"></span>
+            <button class="btn btn-hint" id="nextSentence">Next</button>
+        </div>
+    </section>
+
+    <script>
+        const sections = [
+            { id: 'sort', label: 'Word Sort' },
+            { id: 'sentences', label: 'Sentence Practice' }
+        ];
+
+        const sortWords = [
+            { word: 'preview', prefix: 'pre', hint: 'See something before the full thing.' },
+            { word: 'preheat', prefix: 'pre', hint: 'Warm it up before you cook.' },
+            { word: 'pretest', prefix: 'pre', hint: 'A test that happens first.' },
+            { word: 'postgame', prefix: 'post', hint: 'After the game, people talk about what happened.' },
+            { word: 'postseason', prefix: 'post', hint: 'Games that happen after the regular season.' },
+            { word: 'reread', prefix: 're', hint: 'Read it again.' },
+            { word: 'rewrite', prefix: 're', hint: 'Write it again to make it better.' },
+            { word: 'replay', prefix: 're', hint: 'Watch or play something again.' },
+            { word: 'rebuild', prefix: 're', hint: 'Build it again.' },
+            { word: 'unsafe', prefix: 'un', hint: 'The opposite of safe.' },
+            { word: 'unlock', prefix: 'un', hint: 'Take off what is locked.' },
+            { word: 'unclear', prefix: 'un', hint: 'Not clear or confusing.' },
+            { word: 'unfair', prefix: 'un', hint: 'The opposite of fair.' },
+            { word: 'misspell', prefix: 'mis', hint: 'Spell something the wrong way.' },
+            { word: 'misplace', prefix: 'mis', hint: 'Put something in the wrong spot.' },
+            { word: 'misread', prefix: 'mis', hint: 'Read it the wrong way.' }
+        ];
+
+        const dropData = [
+            { prefix: 'pre', label: 'pre-', note: 'before' },
+            { prefix: 'post', label: 'post-', note: 'after' },
+            { prefix: 're', label: 're-', note: 'again' },
+            { prefix: 'un', label: 'un-', note: 'not / opposite' },
+            { prefix: 'mis', label: 'mis-', note: 'wrong / badly' }
+        ];
+
+        const sentenceItems = [
+            {
+                prompt: "Let's _____ the movie trailer before we pick a movie.",
+                answer: 'preview',
+                choices: ['preview', 'postgame', 'rebuild', 'misplace'],
+                hint: 'You see a little bit before the whole thing.'
+            },
+            {
+                prompt: 'That broken ladder is _____ to climb.',
+                answer: 'unsafe',
+                choices: ['unsafe', 'unfair', 'pretest', 'postseason'],
+                hint: 'It is the opposite of safe.'
+            },
+            {
+                prompt: 'I always _____ my notes before a quiz.',
+                answer: 'reread',
+                choices: ['reread', 'misread', 'rewrite', 'replay'],
+                hint: 'You read them again.'
+            },
+            {
+                prompt: 'The _____ show explained the winning play.',
+                answer: 'postgame',
+                choices: ['postgame', 'preheat', 'rebuild', 'misspell'],
+                hint: 'This show happens after the game.'
+            },
+            {
+                prompt: 'Please _____ the oven before we bake cookies.',
+                answer: 'preheat',
+                choices: ['preheat', 'replay', 'unlock', 'misplace'],
+                hint: 'Warm it up ahead of time.'
+            },
+            {
+                prompt: 'If you _____ your keys, check your backpack.',
+                answer: 'misplace',
+                choices: ['misplace', 'misspell', 'unclear', 'postseason'],
+                hint: 'You put them in the wrong spot.'
+            },
+            {
+                prompt: 'After the storm, neighbors helped _____ the fence.',
+                answer: 'rebuild',
+                choices: ['rebuild', 'preview', 'unfair', 'misread'],
+                hint: 'They built it again.'
+            },
+            {
+                prompt: 'Be careful not to _____ your name on the test.',
+                answer: 'misspell',
+                choices: ['misspell', 'misread', 'rewrite', 'postgame'],
+                hint: 'Write the letters the correct way.'
+            },
+            {
+                prompt: 'We need to _____ the gate before we leave.',
+                answer: 'unlock',
+                choices: ['unlock', 'unfair', 'postgame', 'replay'],
+                hint: 'Do the opposite of keeping it locked.'
+            },
+            {
+                prompt: 'Our team made the _____, so the season is not over yet.',
+                answer: 'postseason',
+                choices: ['postseason', 'pretest', 'unsafe', 'rewrite'],
+                hint: 'Games that happen after the regular season.'
+            },
+            {
+                prompt: 'These directions are _____, so I asked for help.',
+                answer: 'unclear',
+                choices: ['unclear', 'unfair', 'preview', 'rebuild'],
+                hint: 'They are not clear.'
+            },
+            {
+                prompt: 'We will _____ the video to watch that trick again.',
+                answer: 'replay',
+                choices: ['replay', 'preheat', 'misplace', 'postgame'],
+                hint: 'You will watch it again.'
+            },
+            {
+                prompt: 'I need to _____ this paragraph to make it stronger.',
+                answer: 'rewrite',
+                choices: ['rewrite', 'misread', 'unlock', 'postseason'],
+                hint: 'You will write it again.'
+            },
+            {
+                prompt: 'I _____ the sign and went to the wrong room.',
+                answer: 'misread',
+                choices: ['misread', 'reread', 'pretest', 'rebuild'],
+                hint: 'You read it the wrong way.'
+            },
+            {
+                prompt: 'It felt _____ that only one person got an extra turn.',
+                answer: 'unfair',
+                choices: ['unfair', 'unsafe', 'postgame', 'replay'],
+                hint: 'The opposite of fair.'
+            }
+        ];
+
+        const navContainer = document.getElementById('nav');
+        const sectionsEls = document.querySelectorAll('.section');
+
+        sections.forEach((section, idx) => {
+            const btn = document.createElement('button');
+            btn.textContent = section.label;
+            btn.dataset.target = section.id;
+            btn.className = idx === 0 ? 'active' : '';
+            btn.addEventListener('click', () => switchSection(section.id));
+            navContainer.appendChild(btn);
+        });
+
+        function switchSection(id) {
+            sectionsEls.forEach(el => el.classList.toggle('active', el.id === id));
+            document.querySelectorAll('.nav button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.target === id);
+            });
+        }
+
+        // Word sort drag-and-drop
+        const wordBankEl = document.getElementById('wordBank');
+        const dropZonesEl = document.getElementById('dropZones');
+        const hintBtn = document.getElementById('hintBtn');
+        const sortHint = document.getElementById('sortHint');
+        const sortFeedback = document.getElementById('sortFeedback');
+        const checkBtn = document.getElementById('checkBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        let selectedTile = null;
+
+        function createTile(entry, index) {
+            const tile = document.createElement('div');
+            tile.className = 'tile';
+            tile.textContent = entry.word;
+            tile.setAttribute('draggable', 'true');
+            tile.dataset.prefix = entry.prefix;
+            tile.dataset.id = `tile-${index}`;
+            tile.dataset.hint = entry.hint;
+
+            tile.addEventListener('click', () => {
+                document.querySelectorAll('.tile').forEach(t => t.classList.remove('selected'));
+                tile.classList.add('selected');
+                selectedTile = tile;
+                hintBtn.disabled = false;
+                sortHint.style.display = 'none';
+            });
+
+            tile.addEventListener('dragstart', e => {
+                e.dataTransfer.setData('text/plain', tile.dataset.id);
+                selectedTile = tile;
+                document.querySelectorAll('.tile').forEach(t => t.classList.remove('selected'));
+                tile.classList.add('selected');
+                hintBtn.disabled = false;
+            });
+
+            return tile;
+        }
+
+        function buildWordBank() {
+            wordBankEl.innerHTML = '';
+            sortWords.forEach((entry, index) => {
+                wordBankEl.appendChild(createTile(entry, index));
+            });
+        }
+
+        function buildDropZones() {
+            dropZonesEl.innerHTML = '';
+            dropData.forEach(zone => {
+                const wrap = document.createElement('div');
+                wrap.className = 'drop-zone';
+                wrap.dataset.prefix = zone.prefix;
+
+                const title = document.createElement('h3');
+                title.textContent = `${zone.label} (${zone.note})`;
+                wrap.appendChild(title);
+
+                const note = document.createElement('p');
+                note.className = 'prefix-note';
+                note.textContent = `Place words that mean "${zone.note}."`;
+                wrap.appendChild(note);
+
+                wrap.addEventListener('dragover', e => e.preventDefault());
+                wrap.addEventListener('drop', e => {
+                    e.preventDefault();
+                    const id = e.dataTransfer.getData('text/plain');
+                    const tile = document.querySelector(`[data-id="${id}"]`);
+                    if (tile) {
+                        wrap.appendChild(tile);
+                        tile.classList.remove('correct', 'incorrect');
+                    }
+                });
+
+                dropZonesEl.appendChild(wrap);
+            });
+        }
+
+        hintBtn.addEventListener('click', () => {
+            if (!selectedTile) return;
+            sortHint.textContent = selectedTile.dataset.hint;
+            sortHint.style.display = 'block';
+        });
+
+        checkBtn.addEventListener('click', () => {
+            let correct = 0;
+            let totalPlaced = 0;
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.querySelectorAll('.tile').forEach(tile => {
+                    totalPlaced += 1;
+                    const isRight = tile.dataset.prefix === zone.dataset.prefix;
+                    tile.classList.toggle('correct', isRight);
+                    tile.classList.toggle('incorrect', !isRight);
+                    if (isRight) correct += 1;
+                });
+            });
+            if (totalPlaced === 0) {
+                sortFeedback.textContent = 'Place some words first.';
+                sortFeedback.className = 'feedback incorrect';
+                return;
+            }
+            const accuracy = Math.round((correct / totalPlaced) * 100);
+            sortFeedback.textContent = `Checked ${totalPlaced} words. ${correct} correct (${accuracy}%).`;
+            sortFeedback.className = 'feedback ' + (accuracy === 100 ? 'correct' : 'incorrect');
+        });
+
+        resetBtn.addEventListener('click', () => {
+            buildDropZones();
+            buildWordBank(); // rebuild after drop zones reset
+            sortHint.style.display = 'none';
+            sortFeedback.textContent = '';
+            hintBtn.disabled = true;
+            selectedTile = null;
+        });
+
+        // Sentence practice (combined)
+        const sentenceCard = document.getElementById('sentenceCard');
+        const sentenceCounter = document.getElementById('sentenceCounter');
+        let sentenceIndex = 0;
+
+        function renderSentence() {
+            const item = sentenceItems[sentenceIndex];
+            sentenceCard.innerHTML = '';
+
+            const sentence = document.createElement('p');
+            sentence.className = 'sentence';
+            sentence.textContent = item.prompt;
+            sentenceCard.appendChild(sentence);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+
+            const hint = document.createElement('div');
+            hint.className = 'hint';
+            hint.textContent = item.hint;
+
+            const choicesWrap = document.createElement('div');
+            choicesWrap.className = 'choice-list';
+
+            const controls = document.createElement('div');
+            controls.className = 'controls';
+
+            const hintBtn = document.createElement('button');
+            hintBtn.className = 'btn btn-hint';
+            hintBtn.textContent = 'Show hint';
+
+            const choiceBtn = document.createElement('button');
+            choiceBtn.className = 'btn btn-choices';
+            choiceBtn.textContent = 'Show choices';
+            choiceBtn.disabled = true;
+
+            controls.appendChild(hintBtn);
+            controls.appendChild(choiceBtn);
+            sentenceCard.appendChild(controls);
+            sentenceCard.appendChild(hint);
+            sentenceCard.appendChild(choicesWrap);
+            sentenceCard.appendChild(feedback);
+
+            hintBtn.addEventListener('click', () => {
+                hint.style.display = 'block';
+                choiceBtn.disabled = false;
+                hintBtn.disabled = true;
+            });
+
+            choiceBtn.addEventListener('click', () => {
+                choicesWrap.innerHTML = '';
+                choicesWrap.style.display = 'flex';
+                feedback.textContent = '';
+                item.choices.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = choice;
+                    btn.addEventListener('click', () => {
+                        const isCorrect = choice === item.answer;
+                        feedback.textContent = isCorrect ? 'Correct match!' : 'Try another word.';
+                        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+                        btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        if (isCorrect) {
+                            choicesWrap.querySelectorAll('button').forEach(b => b.disabled = true);
+                        }
+                    });
+                    choicesWrap.appendChild(btn);
+                });
+                choiceBtn.disabled = true;
+            });
+
+            sentenceCounter.textContent = `Sentence ${sentenceIndex + 1} of ${sentenceItems.length}`;
+        }
+
+        document.getElementById('prevSentence').addEventListener('click', () => {
+            sentenceIndex = (sentenceIndex - 1 + sentenceItems.length) % sentenceItems.length;
+            renderSentence();
+        });
+        document.getElementById('nextSentence').addEventListener('click', () => {
+            sentenceIndex = (sentenceIndex + 1) % sentenceItems.length;
+            renderSentence();
+        });
+
+        buildDropZones();
+        buildWordBank();
+        renderMatch();
+        renderComplete();
+    </script>
+</body>
+</html>

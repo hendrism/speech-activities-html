@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Breakdown Spotter</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --bg: #0b1224;
+            --panel: #f8fafc;
+            --card: #ffffff;
+            --accent: #f97316;
+            --accent-soft: #ffe8d7;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --yes: #22c55e;
+            --no: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.12), transparent 30%), radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.14), transparent 35%), var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 32px 20px 26px;
+            text-align: center;
+            color: #f8fafc;
+            background: linear-gradient(135deg, #0ea5e9, #f97316);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            margin: 0;
+            max-width: 840px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 17px;
+            opacity: 0.94;
+        }
+
+        main {
+            max-width: 1280px;
+            margin: -36px auto 50px;
+            padding: 0 20px;
+        }
+
+        .shell {
+            background: var(--panel);
+            border-radius: 26px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 18px;
+        }
+
+        .sidebar {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .sidebar h2 {
+            margin: 4px 0 10px;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff7ed;
+            padding: 10px 12px;
+            border: 1px solid #ffedd5;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #c2410c;
+        }
+
+        .scenario-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .scenario-btn {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 12px 14px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .scenario-btn:hover {
+            transform: translateX(3px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .scenario-btn.active {
+            border-color: #bfdbfe;
+            background: #e0f2fe;
+            box-shadow: 0 12px 24px rgba(14, 165, 233, 0.2);
+        }
+
+        .scenario-btn strong {
+            display: block;
+            font-size: 15px;
+            color: #0f172a;
+        }
+
+        .scenario-btn span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .status-pill {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .status-pill.yes {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-pill.no {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .workspace {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            box-shadow: 0 16px 38px rgba(15, 23, 42, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .scenario-top {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .scenario-badge {
+            background: #e2f3ff;
+            color: #075985;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .scenario-title {
+            font-size: 22px;
+            margin: 0;
+            color: var(--ink);
+        }
+
+        .scenario-copy {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px 16px;
+        }
+
+        .scenario-copy p {
+            margin: 6px 0;
+        }
+
+        .question-card {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            background: #fff7ed;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .question-card h3 {
+            margin: 0;
+            color: #c2410c;
+            font-size: 18px;
+        }
+
+        .decision-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .decision-btn {
+            flex: 1 1 120px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #0f172a;
+            transition: all 0.15s ease;
+        }
+
+        .decision-btn.yes {
+            background: #dcfce7;
+            border-color: #22c55e;
+        }
+
+        .decision-btn.no {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        .decision-btn.active {
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+        }
+
+        .causes {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .causes h3 {
+            margin: 0;
+            color: #0f172a;
+            font-size: 18px;
+        }
+
+        .cause-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            border-radius: 999px;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            color: #0f172a;
+            transition: all 0.15s ease;
+        }
+
+        .chip:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+        }
+
+        .chip.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.25);
+        }
+
+        .note-box {
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 12px 14px;
+            background: #fff;
+        }
+
+        .note-box label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+
+        .note-box textarea {
+            width: 100%;
+            min-height: 90px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            background: #f8fafc;
+        }
+
+        .note-box textarea:focus {
+            outline: 2px solid var(--accent);
+            background: #ffffff;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #e2e8f0;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .nav-btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.25);
+        }
+
+        .nav-btn:hover {
+            filter: brightness(0.98);
+        }
+
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 980px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Communication Breakdown Spotter</h1>
+        <p>Read each scenario, decide if a breakdown happened, then tag the cause. Focus on spotting the problem—no repairs here.</p>
+    </header>
+    <main>
+        <div class="shell">
+            <div class="layout">
+                <aside class="sidebar">
+                    <h2>Scenarios</h2>
+                    <div class="progress"><span id="progressCount">0/10 logged</span><span id="decisionHint">Log Yes/No first</span></div>
+                    <div class="scenario-list" id="scenarioList"></div>
+                </aside>
+                <section class="workspace">
+                    <div class="scenario-top">
+                        <span class="scenario-badge" id="scenarioNumber">Scenario 1</span>
+                        <h2 class="scenario-title" id="scenarioTitle">Title</h2>
+                    </div>
+                    <div class="scenario-copy" id="scenarioCopy"></div>
+                    <div class="question-card">
+                        <h3>Breakdown?</h3>
+                        <div class="decision-row">
+                            <button class="decision-btn yes" id="yesBtn" aria-pressed="false">Yes</button>
+                            <button class="decision-btn no" id="noBtn" aria-pressed="false">No</button>
+                        </div>
+                        <small style="color:#c2410c;">A breakdown happens when the listener does not understand the message.</small>
+                    </div>
+                    <div class="causes hidden" id="causeSection">
+                        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                            <h3>Causes (if Yes)</h3>
+                            <span id="causeStatus" style="color:var(--muted);font-weight:700;">Choose Yes to activate causes.</span>
+                        </div>
+                        <div class="cause-grid" id="causeGrid"></div>
+                    </div>
+                    <div class="note-box">
+                        <label for="decisionNotes">What clues told you yes or no?</label>
+                        <textarea id="decisionNotes" placeholder="Example: Listener asked for clarification, speaker used vague words."></textarea>
+                    </div>
+                    <div class="controls">
+                        <button class="nav-btn" id="prevBtn">Previous</button>
+                        <button class="nav-btn primary" id="nextBtn">Next scenario</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script>
+        const scenarios = [
+            {
+                title: "Jordan and the Math Problem",
+                copy: [
+                    "Jordan was explaining how to solve a math problem. She said, “You just move it over there and then do that part,” while pointing quickly at her paper.",
+                    "Her classmate looked confused and said, “Wait… what do you mean?”"
+                ],
+                causes: [
+                    "Explanation was too vague",
+                    "Missing key words",
+                    "Gestures were unclear",
+                    "Listener needed more details",
+                    "Other"
+                ]
+            },
+            {
+                title: "Luis and the Science Project",
+                copy: [
+                    "Luis told his partner, “Put it next to that one,” while looking down at the table.",
+                    "His partner paused and said, “Which one are you talking about?”"
+                ],
+                causes: [
+                    "Pronouns (“that one”) were unclear",
+                    "Not enough detail",
+                    "Lack of eye contact or direction",
+                    "Listener didn’t know the reference",
+                    "Other"
+                ]
+            },
+            {
+                title: "Maya’s Story About the Weekend",
+                copy: [
+                    "Maya started telling a story but jumped straight to the middle.",
+                    "Her friend said, “Hold on… who is that person you’re talking about?”"
+                ],
+                causes: [
+                    "Story was out of order",
+                    "Missing background information",
+                    "Unclear reference to a person",
+                    "Listener needed more context",
+                    "Other"
+                ]
+            },
+            {
+                title: "Olivia During Group Work",
+                copy: [
+                    "Olivia answered a question while facing away from the group, and she spoke softly.",
+                    "One group member said, “Sorry, I didn’t catch that.”"
+                ],
+                causes: [
+                    "Voice was too quiet",
+                    "Body turned away",
+                    "Listener couldn’t hear clearly",
+                    "Other"
+                ]
+            },
+            {
+                title: "Blake and the Directions",
+                copy: [
+                    "Blake gave directions to his friend but talked very fast.",
+                    "His friend frowned and said, “Can you say that again slower?”"
+                ],
+                causes: [
+                    "Pace was too fast",
+                    "Hard to follow the steps",
+                    "Listener couldn’t process quickly enough",
+                    "Other"
+                ]
+            },
+            {
+                title: "Sam Explaining a New Game",
+                copy: [
+                    "Sam tried to explain how to play a new game by saying, “You just do the thing after the other thing.”",
+                    "Everyone in the group looked confused."
+                ],
+                causes: [
+                    "Explanation was too vague",
+                    "Missing specific vocabulary",
+                    "Too many placeholder words",
+                    "Listener needed more detail",
+                    "Other"
+                ]
+            },
+            {
+                title: "Nina’s Reading Partner",
+                copy: [
+                    "Nina misread a key word in a sentence while reading aloud.",
+                    "Her partner tilted his head and asked, “Is that what it says?”"
+                ],
+                causes: [
+                    "Mispronunciation or misreading",
+                    "Listener misunderstood the meaning",
+                    "Important information changed",
+                    "Other"
+                ]
+            },
+            {
+                title: "Talia Asking for Supplies",
+                copy: [
+                    "Talia asked a classmate, “Can you hand me that?” without pointing or describing what she needed.",
+                    "Her classmate picked up the wrong item."
+                ],
+                causes: [
+                    "Request was unclear",
+                    "No gesture or description",
+                    "Listener couldn’t identify the object",
+                    "Other"
+                ]
+            },
+            {
+                title: "Theo Sharing His Opinion",
+                copy: [
+                    "Theo explained why he liked a book, and his friend nodded and added their own thoughts.",
+                    "Both seemed to understand each other easily."
+                ],
+                causes: [
+                    "None (no breakdown)",
+                    "Other"
+                ]
+            },
+            {
+                title: "Riley and the Group Presentation",
+                copy: [
+                    "During a presentation, Riley used a complex word incorrectly.",
+                    "A group member whispered, “I don’t think that’s what that means.”"
+                ],
+                causes: [
+                    "Incorrect word choice",
+                    "Listener became confused",
+                    "Meaning of the sentence changed",
+                    "Other"
+                ]
+            }
+        ];
+
+        const responses = scenarios.map(() => ({
+            decision: null,
+            causes: [],
+            notes: ""
+        }));
+
+        const scenarioList = document.getElementById("scenarioList");
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioCopy = document.getElementById("scenarioCopy");
+        const scenarioNumber = document.getElementById("scenarioNumber");
+        const causeGrid = document.getElementById("causeGrid");
+        const causeSection = document.getElementById("causeSection");
+        const causeStatus = document.getElementById("causeStatus");
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const progressCount = document.getElementById("progressCount");
+        const decisionHint = document.getElementById("decisionHint");
+        const decisionNotes = document.getElementById("decisionNotes");
+
+        let activeIndex = 0;
+
+        function renderScenarioList() {
+            scenarioList.innerHTML = "";
+            scenarios.forEach((scenario, index) => {
+                const btn = document.createElement("button");
+                btn.className = "scenario-btn";
+                if (index === activeIndex) {
+                    btn.classList.add("active");
+                }
+
+                const status = document.createElement("span");
+                status.className = "status-pill";
+                const decision = responses[index].decision;
+                if (decision === "yes") {
+                    status.textContent = "Yes";
+                    status.classList.add("yes");
+                } else if (decision === "no") {
+                    status.textContent = "No";
+                    status.classList.add("no");
+                } else {
+                    status.textContent = "—";
+                }
+
+                const strong = document.createElement("strong");
+                strong.textContent = `${index + 1}. ${scenario.title}`;
+                const subtitle = document.createElement("span");
+                subtitle.textContent = "Spot the breakdown and its cause.";
+
+                btn.appendChild(strong);
+                btn.appendChild(subtitle);
+                btn.appendChild(status);
+                btn.addEventListener("click", () => loadScenario(index));
+                scenarioList.appendChild(btn);
+            });
+        }
+
+        function loadScenario(index) {
+            activeIndex = index;
+            const scenario = scenarios[index];
+            scenarioTitle.textContent = scenario.title;
+            scenarioNumber.textContent = `Scenario ${index + 1}`;
+            scenarioCopy.innerHTML = scenario.copy.map(p => `<p>${p}</p>`).join("");
+            decisionNotes.value = responses[index].notes || "";
+            renderCauses(scenario.causes);
+            updateDecisionUI();
+            renderScenarioList();
+        }
+
+        function renderCauses(causes) {
+            causeGrid.innerHTML = "";
+            causes.forEach(cause => {
+                const chip = document.createElement("button");
+                chip.type = "button";
+                chip.className = "chip";
+                chip.textContent = cause;
+                if (responses[activeIndex].causes.includes(cause)) {
+                    chip.classList.add("active");
+                }
+                chip.addEventListener("click", () => toggleCause(cause));
+                causeGrid.appendChild(chip);
+            });
+            updateCauseAvailability();
+        }
+
+        function updateCauseAvailability() {
+            const decision = responses[activeIndex].decision;
+            const chips = causeGrid.querySelectorAll(".chip");
+            if (decision === "yes") {
+                causeSection.classList.remove("hidden");
+                chips.forEach(chip => chip.classList.remove("disabled"));
+                causeSection.classList.remove("disabled");
+                causeStatus.textContent = "Pick one or more causes that explain the breakdown.";
+            } else {
+                causeSection.classList.add("hidden");
+                chips.forEach(chip => chip.classList.add("disabled"));
+                causeSection.classList.add("disabled");
+                causeStatus.textContent = "Choose Yes to activate causes.";
+            }
+        }
+
+        function setDecision(decision) {
+            responses[activeIndex].decision = decision;
+            if (decision === "no") {
+                responses[activeIndex].causes = [];
+            }
+            updateDecisionUI();
+            updateProgress();
+            renderScenarioList();
+        }
+
+        function updateDecisionUI() {
+            const decision = responses[activeIndex].decision;
+            yesBtn.classList.toggle("active", decision === "yes");
+            noBtn.classList.toggle("active", decision === "no");
+            yesBtn.setAttribute("aria-pressed", decision === "yes");
+            noBtn.setAttribute("aria-pressed", decision === "no");
+            updateCauseAvailability();
+        }
+
+        function toggleCause(cause) {
+            if (responses[activeIndex].decision !== "yes") return;
+            const list = responses[activeIndex].causes;
+            const exists = list.indexOf(cause);
+            if (exists >= 0) {
+                list.splice(exists, 1);
+            } else {
+                list.push(cause);
+            }
+            renderCauses(scenarios[activeIndex].causes);
+        }
+
+        function updateProgress() {
+            const answered = responses.filter(r => r.decision !== null).length;
+            progressCount.textContent = `${answered}/${scenarios.length} logged`;
+            const allYes = responses.filter(r => r.decision === "yes").length;
+            const allNo = responses.filter(r => r.decision === "no").length;
+            const hintParts = [];
+            if (allYes) hintParts.push(`${allYes} marked Yes`);
+            if (allNo) hintParts.push(`${allNo} marked No`);
+            decisionHint.textContent = hintParts.length ? hintParts.join(" • ") : "Log Yes/No first";
+        }
+
+        yesBtn.addEventListener("click", () => setDecision("yes"));
+        noBtn.addEventListener("click", () => setDecision("no"));
+
+        prevBtn.addEventListener("click", () => {
+            const newIndex = activeIndex === 0 ? scenarios.length - 1 : activeIndex - 1;
+            loadScenario(newIndex);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            const newIndex = activeIndex === scenarios.length - 1 ? 0 : activeIndex + 1;
+            loadScenario(newIndex);
+        });
+
+        decisionNotes.addEventListener("input", (e) => {
+            responses[activeIndex].notes = e.target.value;
+        });
+
+        renderScenarioList();
+        loadScenario(0);
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -252,6 +252,80 @@
             margin-bottom: 8px;
             color: #92400e;
         }
+        .tab-bar {
+            display: inline-flex;
+            gap: 8px;
+            background: #f1f5f9;
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 6px;
+            margin: 12px 0 8px;
+        }
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 9px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #475569;
+            transition: all 0.15s ease;
+        }
+        .tab-btn.active {
+            background: white;
+            color: var(--pine);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--frost);
+        }
+        .tab-content {
+            margin-top: 4px;
+        }
+        .summary-steps {
+            display: grid;
+            gap: 12px;
+        }
+        .summary-step {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+        }
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: baseline;
+        }
+        .step-label {
+            font-weight: 700;
+            color: var(--berry);
+        }
+        .step-prompt {
+            margin: 6px 0 10px;
+            font-weight: 600;
+        }
+        .step-input {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+            box-sizing: border-box;
+        }
+        .summary-footer {
+            margin-top: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            background: #fffef9;
+        }
+        .chip-row {
+            margin: 8px 0;
+        }
         .summary-keywords .chip {
             display: inline-block;
             background: #e0f2fe;
@@ -285,7 +359,7 @@
     <div class="page">
         <h1>Late Fall & Winter Reading - Progressive Hints</h1>
         <div class="intro">
-            Read each informational passage, then answer the factual questions. Tap "Show clue" to unlock a written hint, then "Show choices" to reveal answer options. Finish by drafting a short summary using the scaffolded frame and key word chips.
+            Read each informational passage, then use the tabs to toggle between WH questions and the summary scaffold. Tap "Show clue" to unlock a hint, then "Show choices" to reveal options. The summary tab breaks the frame into topic, actions, and why-it-matters building blocks with the same clue-first support.
         </div>
         <div class="nav-bar" id="story-nav"></div>
         <div id="story-container"></div>
@@ -336,7 +410,48 @@
                     }
                 ],
                 summaryPrompt: 'Explain what turkeys need to stay healthy on a farm.',
-                keywords: ['open space', 'grains and seeds', 'clean water', 'warm shelter']
+                keywords: ['open space', 'grains and seeds', 'clean water', 'warm shelter'],
+                summarySteps: [
+                    {
+                        id: 'topic',
+                        label: 'Topic / Theme',
+                        prompt: 'What is this passage mainly about?',
+                        clue: 'Think about the main subject the details all connect to.',
+                        answer: 'how farm turkeys live and stay healthy',
+                        choices: [
+                            'how farm turkeys live and stay healthy',
+                            'how wild turkeys migrate long distances',
+                            'how to cook turkeys for dinner',
+                            'the history of turkeys in stories'
+                        ]
+                    },
+                    {
+                        id: 'actions',
+                        label: 'Main Actions',
+                        prompt: 'Which actions or routines show what happens in the passage?',
+                        clue: 'Notice what the turkeys do and how farmers care for them.',
+                        answer: 'they roam open spaces, peck grains and seeds, and farmers check on them with plenty of space',
+                        choices: [
+                            'they roam open spaces, peck grains and seeds, and farmers check on them with plenty of space',
+                            'they fly south and swim in ponds',
+                            'they hide in forests and chase other animals',
+                            'they only sleep indoors all day'
+                        ]
+                    },
+                    {
+                        id: 'result',
+                        label: 'Why It Matters',
+                        prompt: 'Why do these actions matter or what do they lead to?',
+                        clue: 'Think about how space, food, and warmth affect the turkeys.',
+                        answer: 'space, grains, water, and warm shelters keep turkeys healthy when it gets colder',
+                        choices: [
+                            'space, grains, water, and warm shelters keep turkeys healthy when it gets colder',
+                            'they make turkeys ready to fly south for winter',
+                            'they help turkeys learn new tricks',
+                            'they let turkeys avoid drinking water'
+                        ]
+                    }
+                ]
             },
             {
                 id: 'story-2',
@@ -382,7 +497,48 @@
                     }
                 ],
                 summaryPrompt: 'Describe how and why leaves change during late fall.',
-                keywords: ['shorter days', 'less sunlight', 'colors show', 'leaves fall', 'save energy']
+                keywords: ['shorter days', 'less sunlight', 'colors show', 'leaves fall', 'save energy'],
+                summarySteps: [
+                    {
+                        id: 'topic',
+                        label: 'Topic / Theme',
+                        prompt: 'What is this passage mainly about?',
+                        clue: 'Look for the overall process the whole passage explains.',
+                        answer: 'why leaves change color and fall in late fall',
+                        choices: [
+                            'why leaves change color and fall in late fall',
+                            'how to plant new trees in spring',
+                            'why animals grow thicker fur',
+                            'how to build a wooden birdhouse'
+                        ]
+                    },
+                    {
+                        id: 'actions',
+                        label: 'Main Actions',
+                        prompt: 'Which changes happen to the leaves?',
+                        clue: 'Follow what happens as sunlight lessens and water slows.',
+                        answer: 'shorter days reduce green color, other colors show, then leaves dry out and fall',
+                        choices: [
+                            'shorter days reduce green color, other colors show, then leaves dry out and fall',
+                            'leaves get greener and thicker all winter',
+                            'rain washes off all the colors and keeps leaves on the tree',
+                            'wind blows every leaf back onto the branches'
+                        ]
+                    },
+                    {
+                        id: 'result',
+                        label: 'Why It Matters',
+                        prompt: 'Why do these changes help the tree?',
+                        clue: 'Think about how the tree saves energy for winter.',
+                        answer: 'dropping colorful leaves helps the tree save energy for winter',
+                        choices: [
+                            'dropping colorful leaves helps the tree save energy for winter',
+                            'it lets the tree collect more sunlight in winter',
+                            'it prepares the tree to grow fruit in winter',
+                            'it keeps bugs away from the leaves'
+                        ]
+                    }
+                ]
             },
             {
                 id: 'story-3',
@@ -428,7 +584,48 @@
                     }
                 ],
                 summaryPrompt: 'Tell how families get ready for a Thanksgiving meal.',
-                keywords: ['plan dishes', 'gather ingredients', 'start early', 'share kitchen jobs']
+                keywords: ['plan dishes', 'gather ingredients', 'start early', 'share kitchen jobs'],
+                summarySteps: [
+                    {
+                        id: 'topic',
+                        label: 'Topic / Theme',
+                        prompt: 'What is the big idea of this passage?',
+                        clue: 'Focus on what the family is trying to get ready.',
+                        answer: 'how families prepare for a Thanksgiving meal',
+                        choices: [
+                            'how families prepare for a Thanksgiving meal',
+                            'how to grow vegetables in summer',
+                            'how to decorate for birthdays',
+                            'how to shop for winter coats'
+                        ]
+                    },
+                    {
+                        id: 'actions',
+                        label: 'Main Actions',
+                        prompt: 'Which actions show how they prepare?',
+                        clue: 'Notice the planning, cooking, and sharing jobs.',
+                        answer: 'they make lists, gather ingredients, start slow-cooking early, and share kitchen jobs',
+                        choices: [
+                            'they make lists, gather ingredients, start slow-cooking early, and share kitchen jobs',
+                            'they order takeout so they do not have to cook',
+                            'they skip planning and hope food appears',
+                            'they only clean the house and ignore the meal'
+                        ]
+                    },
+                    {
+                        id: 'result',
+                        label: 'Why It Matters',
+                        prompt: 'Why do these actions help?',
+                        clue: 'Think about what teamwork and early cooking do for the meal.',
+                        answer: 'early teamwork helps the meal come together on time',
+                        choices: [
+                            'early teamwork helps the meal come together on time',
+                            'it keeps the kitchen cold all day',
+                            'it makes everyone avoid eating together',
+                            'it means no one needs to chop or stir'
+                        ]
+                    }
+                ]
             },
             {
                 id: 'story-4',
@@ -474,7 +671,48 @@
                     }
                 ],
                 summaryPrompt: 'Explain how different animals get ready for winter.',
-                keywords: ['store food', 'fly south', 'thicker fur', 'stay warm']
+                keywords: ['store food', 'fly south', 'thicker fur', 'stay warm'],
+                summarySteps: [
+                    {
+                        id: 'topic',
+                        label: 'Topic / Theme',
+                        prompt: 'What is the main idea of this passage?',
+                        clue: 'All details point to how animals handle an upcoming season.',
+                        answer: 'how different animals prepare for winter',
+                        choices: [
+                            'how different animals prepare for winter',
+                            'how animals find friends in spring',
+                            'how pets learn tricks',
+                            'how birds build nests in summer'
+                        ]
+                    },
+                    {
+                        id: 'actions',
+                        label: 'Main Actions',
+                        prompt: 'Which actions show their winter prep?',
+                        clue: 'Look for gathering food, moving places, or changing bodies.',
+                        answer: 'squirrels store nuts, birds fly south, and deer and rabbits grow thicker fur',
+                        choices: [
+                            'squirrels store nuts, birds fly south, and deer and rabbits grow thicker fur',
+                            'squirrels build dams, birds dive for fish, and deer learn to hibernate underwater',
+                            'all animals sleep all summer and wake in spring',
+                            'the animals mostly sit still and do nothing new'
+                        ]
+                    },
+                    {
+                        id: 'result',
+                        label: 'Why It Matters',
+                        prompt: 'Why do these steps help the animals?',
+                        clue: 'Think about food, warmth, and survival in cold weather.',
+                        answer: 'these steps help the animals have food and warmth to survive winter',
+                        choices: [
+                            'these steps help the animals have food and warmth to survive winter',
+                            'the steps make the animals ready to travel to the ocean',
+                            'they help animals avoid drinking water',
+                            'they are only for making friends with people'
+                        ]
+                    }
+                ]
             },
             {
                 id: 'story-5',
@@ -520,7 +758,48 @@
                     }
                 ],
                 summaryPrompt: 'Describe how snow forms and when it falls as snow instead of rain.',
-                keywords: ['ice crystals', 'join into flakes', 'six sides', 'cold air vs warm air']
+                keywords: ['ice crystals', 'join into flakes', 'six sides', 'cold air vs warm air'],
+                summarySteps: [
+                    {
+                        id: 'topic',
+                        label: 'Topic / Theme',
+                        prompt: 'What is the big idea of this passage?',
+                        clue: 'It explains a weather process.',
+                        answer: 'how snowflakes form and what decides snow or rain',
+                        choices: [
+                            'how snowflakes form and what decides snow or rain',
+                            'how to build a snowman safely',
+                            'why umbrellas are helpful in storms',
+                            'how wind moves clouds across the sky'
+                        ]
+                    },
+                    {
+                        id: 'actions',
+                        label: 'Main Actions',
+                        prompt: 'What steps happen to make snow?',
+                        clue: 'Follow the tiny drops in the clouds.',
+                        answer: 'water freezes into ice crystals that join into six-sided flakes and fall if air is cold',
+                        choices: [
+                            'water freezes into ice crystals that join into six-sided flakes and fall if air is cold',
+                            'water turns into hail and melts back into ice cubes',
+                            'snowflakes start as sand and then turn to rainbows',
+                            'rain falls first and then freezes into leaves'
+                        ]
+                    },
+                    {
+                        id: 'result',
+                        label: 'Why It Matters',
+                        prompt: 'What decides whether we see snow or rain?',
+                        clue: 'Check what happens as flakes pass through warmer or colder air.',
+                        answer: 'cold air keeps flakes as snow but warm air melts them into rain',
+                        choices: [
+                            'cold air keeps flakes as snow but warm air melts them into rain',
+                            'the moon decides if flakes land or float',
+                            'loud noises turn snowflakes into hail',
+                            'snow always falls no matter the temperature'
+                        ]
+                    }
+                ]
             },
             {
                 id: 'story-6',
@@ -566,7 +845,48 @@
                     }
                 ],
                 summaryPrompt: 'Tell how people keep themselves warm during winter.',
-                keywords: ['warm clothing', 'heaters', 'hot drinks', 'extra blankets']
+                keywords: ['warm clothing', 'heaters', 'hot drinks', 'extra blankets'],
+                summarySteps: [
+                    {
+                        id: 'topic',
+                        label: 'Topic / Theme',
+                        prompt: 'What is this passage mainly about?',
+                        clue: 'Focus on the different ways people handle cold weather.',
+                        answer: 'how people stay warm in winter',
+                        choices: [
+                            'how people stay warm in winter',
+                            'how people learn to swim in summer',
+                            'how to cool a house in a heatwave',
+                            'how to build snow forts'
+                        ]
+                    },
+                    {
+                        id: 'actions',
+                        label: 'Main Actions',
+                        prompt: 'What actions do people take?',
+                        clue: 'Notice clothing, tools, and small routines.',
+                        answer: 'they wear coats hats and gloves, use heaters, drink hot drinks, and add blankets',
+                        choices: [
+                            'they wear coats hats and gloves, use heaters, drink hot drinks, and add blankets',
+                            'they open windows to let cold air in',
+                            'they only wear sandals and shorts',
+                            'they avoid any hot food or drinks'
+                        ]
+                    },
+                    {
+                        id: 'result',
+                        label: 'Why It Matters',
+                        prompt: 'Why do these steps help?',
+                        clue: 'Think about comfort and safety in cold temperatures.',
+                        answer: 'these steps keep people comfortable and warm during cold weather',
+                        choices: [
+                            'these steps keep people comfortable and warm during cold weather',
+                            'they make houses colder on purpose',
+                            'they help people avoid wearing any clothes',
+                            'they cool people down for summer sports'
+                        ]
+                    }
+                ]
             },
             {
                 id: 'story-7',
@@ -612,7 +932,48 @@
                     }
                 ],
                 summaryPrompt: 'Explain how winter birds survive and how people can help them.',
-                keywords: ['stay in cold areas', 'berries and seeds', 'bird feeders', 'extra food']
+                keywords: ['stay in cold areas', 'berries and seeds', 'bird feeders', 'extra food'],
+                summarySteps: [
+                    {
+                        id: 'topic',
+                        label: 'Topic / Theme',
+                        prompt: 'What is the main idea of this passage?',
+                        clue: 'Center on the birds that do not migrate.',
+                        answer: 'birds that stay for winter and how they find food',
+                        choices: [
+                            'birds that stay for winter and how they find food',
+                            'how penguins swim under ice',
+                            'how to teach parrots new words',
+                            'where flamingos travel in summer'
+                        ]
+                    },
+                    {
+                        id: 'actions',
+                        label: 'Main Actions',
+                        prompt: 'Which actions show how these birds get food?',
+                        clue: 'Notice what the birds search for and how people help.',
+                        answer: 'cardinals and blue jays look for berries seeds insects and people add feeders for extra food',
+                        choices: [
+                            'cardinals and blue jays look for berries seeds insects and people add feeders for extra food',
+                            'the birds dive for fish in the ocean every day',
+                            'people take away all food so birds must migrate',
+                            'the birds only eat big fruit and bread'
+                        ]
+                    },
+                    {
+                        id: 'result',
+                        label: 'Why It Matters',
+                        prompt: 'Why do these actions help the birds?',
+                        clue: 'Think about surviving cold months.',
+                        answer: 'extra food choices help the birds survive the cold months when food is scarce',
+                        choices: [
+                            'extra food choices help the birds survive the cold months when food is scarce',
+                            'it keeps the birds too warm to fly',
+                            'it makes birds want to travel farther south',
+                            'it teaches birds to sing new songs'
+                        ]
+                    }
+                ]
             },
             {
                 id: 'story-8',
@@ -658,7 +1019,48 @@
                     }
                 ],
                 summaryPrompt: 'Describe what late-fall weather is like and how it signals winter.',
-                keywords: ['cooler air', 'shorter days', 'frost or rain', 'plants slow down']
+                keywords: ['cooler air', 'shorter days', 'frost or rain', 'plants slow down'],
+                summarySteps: [
+                    {
+                        id: 'topic',
+                        label: 'Topic / Theme',
+                        prompt: 'What is the big idea of this passage?',
+                        clue: 'Look for the time of year and what is changing.',
+                        answer: 'late-fall weather changes that signal winter',
+                        choices: [
+                            'late-fall weather changes that signal winter',
+                            'summer activities at the beach',
+                            'how spring flowers grow',
+                            'how storms form in the ocean'
+                        ]
+                    },
+                    {
+                        id: 'actions',
+                        label: 'Main Actions',
+                        prompt: 'Which changes happen in late fall?',
+                        clue: 'Notice the weather shifts and how plants respond.',
+                        answer: 'temperatures get cooler, winds grow stronger, days shorten, rain or frost appears, and plants slow down',
+                        choices: [
+                            'temperatures get cooler, winds grow stronger, days shorten, rain or frost appears, and plants slow down',
+                            'temperatures rise, winds stop, and plants bloom faster',
+                            'snow falls every day with blazing sun',
+                            'the days get longer and warmer like summer'
+                        ]
+                    },
+                    {
+                        id: 'result',
+                        label: 'Why It Matters',
+                        prompt: 'Why do these changes matter?',
+                        clue: 'Think about what they show about the coming season.',
+                        answer: 'these changes prepare the environment and signal winter is coming',
+                        choices: [
+                            'these changes prepare the environment and signal winter is coming',
+                            'they mean winter will be skipped this year',
+                            'they make plants grow faster for harvest',
+                            'they help animals stay cool in summer heat'
+                        ]
+                    }
+                ]
             }
         ];
 
@@ -731,11 +1133,15 @@
             clueBtn.addEventListener('click', () => {
                 clue.style.display = 'block';
                 choicesBtn.disabled = false;
+                clueBtn.disabled = true;
             });
 
             choicesBtn.addEventListener('click', () => {
                 choicesWrap.innerHTML = '';
                 choicesWrap.style.display = 'grid';
+                feedback.textContent = '';
+                feedback.style.display = 'none';
+                feedback.className = 'feedback';
                 const options = shuffle(question.choices);
                 options.forEach(choice => {
                     const btn = document.createElement('button');
@@ -746,22 +1152,121 @@
                         feedback.textContent = isCorrect ? 'Correct!' : 'Try again.';
                         feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
                         feedback.style.display = 'block';
+                        if (isCorrect) {
+                            choicesWrap.querySelectorAll('button').forEach(b => b.disabled = true);
+                        }
                         btn.classList.add(isCorrect ? 'correct' : 'incorrect');
                     });
                     choicesWrap.appendChild(btn);
                 });
+                choicesBtn.disabled = true;
             });
 
             return card;
         }
 
-        function createSummaryCard(story) {
+        function createSummaryStepCard(step, index) {
+            const card = document.createElement('div');
+            card.className = 'summary-step';
+
+            const header = document.createElement('div');
+            header.className = 'step-header';
+
+            const label = document.createElement('div');
+            label.className = 'step-label';
+            label.textContent = `Step ${index + 1} • ${step.label}`;
+            header.appendChild(label);
+
+            card.appendChild(header);
+
+            const prompt = document.createElement('div');
+            prompt.className = 'step-prompt';
+            prompt.textContent = step.prompt;
+            card.appendChild(prompt);
+
+            const helpRow = document.createElement('div');
+            helpRow.className = 'help-row';
+
+            const clueBtn = document.createElement('button');
+            clueBtn.className = 'btn btn-clue';
+            clueBtn.textContent = 'Show clue';
+
+            const choicesBtn = document.createElement('button');
+            choicesBtn.className = 'btn btn-choices';
+            choicesBtn.textContent = 'Show choices';
+            choicesBtn.disabled = true;
+
+            helpRow.appendChild(clueBtn);
+            helpRow.appendChild(choicesBtn);
+            card.appendChild(helpRow);
+
+            const clueBox = document.createElement('div');
+            clueBox.className = 'clue';
+            clueBox.textContent = step.clue;
+            card.appendChild(clueBox);
+
+            const choicesWrap = document.createElement('div');
+            choicesWrap.className = 'choices-wrap';
+            card.appendChild(choicesWrap);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            card.appendChild(feedback);
+
+            const input = document.createElement('input');
+            input.className = 'step-input';
+            input.placeholder = 'Type this part in your own words...';
+            card.appendChild(input);
+
+            clueBtn.addEventListener('click', () => {
+                clueBox.style.display = 'block';
+                choicesBtn.disabled = false;
+                clueBtn.disabled = true;
+            });
+
+            choicesBtn.addEventListener('click', () => {
+                choicesWrap.innerHTML = '';
+                choicesWrap.style.display = 'grid';
+                feedback.textContent = '';
+                feedback.style.display = 'none';
+                feedback.className = 'feedback';
+
+                const options = shuffle(step.choices);
+                options.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = choice;
+                    btn.addEventListener('click', () => {
+                        const isCorrect = choice === step.answer;
+                        feedback.textContent = isCorrect
+                            ? 'Correct—drop this wording into your draft.'
+                            : 'Not quite. Re-read the clue and try another option.';
+                        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+                        feedback.style.display = 'block';
+                        btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        if (isCorrect) {
+                            choicesWrap.querySelectorAll('button').forEach(b => b.disabled = true);
+                            input.value = choice;
+                            input.focus();
+                        }
+                    });
+                    choicesWrap.appendChild(btn);
+                });
+                choicesBtn.disabled = true;
+            });
+
+            return {
+                card,
+                getValue: () => input.value.trim(),
+                setValue: value => {
+                    input.value = value;
+                }
+            };
+        }
+
+        function createSummaryTab(story) {
             const wrap = document.createElement('div');
             wrap.className = 'summary-card';
-
-            const summaryInput = document.createElement('textarea');
-            summaryInput.className = 'summary-input';
-            summaryInput.placeholder = 'Start with the topic and add the most important details...';
 
             const title = document.createElement('h3');
             title.className = 'summary-title';
@@ -773,29 +1278,37 @@
             prompt.textContent = story.summaryPrompt;
             wrap.appendChild(prompt);
 
-            const summaryHelp = document.createElement('div');
-            summaryHelp.className = 'summary-help';
-
-            const frameBtn = document.createElement('button');
-            frameBtn.className = 'summary-btn';
-            frameBtn.textContent = 'Show frame';
-
-            const keywordBtn = document.createElement('button');
-            keywordBtn.className = 'summary-btn';
-            keywordBtn.textContent = 'More key words';
-            keywordBtn.disabled = true;
-
-            summaryHelp.appendChild(frameBtn);
-            summaryHelp.appendChild(keywordBtn);
-            wrap.appendChild(summaryHelp);
-
             const frameHint = document.createElement('div');
             frameHint.className = 'summary-hint';
-            frameHint.innerHTML = '<strong>Use this order:</strong> (1) Name the topic, (2) Tell the main actions/changes, (3) Add why it matters or what it leads to.';
+            frameHint.style.display = 'block';
+            frameHint.innerHTML = '<strong>Use this order:</strong> (1) Name the topic/theme, (2) Tell the main actions/events, (3) Add why it matters or the result.';
             wrap.appendChild(frameHint);
+
+            const stepsWrap = document.createElement('div');
+            stepsWrap.className = 'summary-steps';
+            const stepCards = (story.summarySteps || []).map((step, idx) => {
+                const built = createSummaryStepCard(step, idx);
+                stepsWrap.appendChild(built.card);
+                return built;
+            });
+
+            wrap.appendChild(stepsWrap);
+
+            const footer = document.createElement('div');
+            footer.className = 'summary-footer';
+
+            const footerLabel = document.createElement('div');
+            footerLabel.className = 'summary-prompt';
+            footerLabel.textContent = 'Put the pieces together:';
+            footer.appendChild(footerLabel);
+
+            const summaryInput = document.createElement('textarea');
+            summaryInput.className = 'summary-input';
+            summaryInput.placeholder = 'Combine your three steps to write a concise summary...';
 
             const keywordHint = document.createElement('div');
             keywordHint.className = 'summary-keywords';
+            keywordHint.style.display = 'block';
             keywordHint.innerHTML = '<strong>Key words to include:</strong> ';
             story.keywords.forEach(word => {
                 const chip = document.createElement('span');
@@ -809,18 +1322,24 @@
                 });
                 keywordHint.appendChild(chip);
             });
-            wrap.appendChild(keywordHint);
 
-            wrap.appendChild(summaryInput);
-
-            frameBtn.addEventListener('click', () => {
-                frameHint.style.display = 'block';
-                keywordBtn.disabled = false;
+            const buildBtn = document.createElement('button');
+            buildBtn.className = 'summary-btn';
+            buildBtn.textContent = 'Use my step answers';
+            buildBtn.addEventListener('click', () => {
+                const parts = stepCards.map(card => card.getValue()).filter(Boolean);
+                if (!parts.length) {
+                    return;
+                }
+                const combined = parts.join('. ');
+                summaryInput.value = combined.endsWith('.') ? combined : `${combined}.`;
+                summaryInput.focus();
             });
 
-            keywordBtn.addEventListener('click', () => {
-                keywordHint.style.display = 'block';
-            });
+            footer.appendChild(buildBtn);
+            footer.appendChild(keywordHint);
+            footer.appendChild(summaryInput);
+            wrap.appendChild(footer);
 
             return wrap;
         }
@@ -855,15 +1374,47 @@
             textBlock.innerHTML = buildStoryText(story.text);
             card.appendChild(textBlock);
 
-            const questionsWrap = document.createElement('div');
-            questionsWrap.className = 'questions';
-            story.questions.forEach((question, idx) => {
-                questionsWrap.appendChild(createQuestionCard(question, idx));
-            });
-            card.appendChild(questionsWrap);
+            const tabBar = document.createElement('div');
+            tabBar.className = 'tab-bar';
+            const tabContent = document.createElement('div');
+            tabContent.className = 'tab-content';
 
-            card.appendChild(createSummaryCard(story));
+            const tabs = [
+                { key: 'questions', label: 'WH Questions' },
+                { key: 'summary', label: 'Summary Scaffold' }
+            ];
+
+            function renderTab(activeKey) {
+                tabContent.innerHTML = '';
+                tabBar.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.key === activeKey);
+                });
+
+                if (activeKey === 'summary') {
+                    tabContent.appendChild(createSummaryTab(story));
+                } else {
+                    const questionsWrap = document.createElement('div');
+                    questionsWrap.className = 'questions';
+                    story.questions.forEach((question, idx) => {
+                        questionsWrap.appendChild(createQuestionCard(question, idx));
+                    });
+                    tabContent.appendChild(questionsWrap);
+                }
+            }
+
+            tabs.forEach((tab, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
+                btn.dataset.key = tab.key;
+                btn.textContent = tab.label;
+                btn.addEventListener('click', () => renderTab(tab.key));
+                tabBar.appendChild(btn);
+            });
+
+            card.appendChild(tabBar);
+            card.appendChild(tabContent);
             storyContainer.appendChild(card);
+            renderTab('questions');
         }
 
         renderNav();

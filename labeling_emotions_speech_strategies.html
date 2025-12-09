@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labeling Emotions with Clear Speech Strategies</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --muted: #475569;
+            --bg: #0b1224;
+            --panel: #0f1f3b;
+            --surface: #ffffff;
+            --accent: #38bdf8;
+            --accent-2: #a855f7;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 12% 16%, rgba(56, 189, 248, 0.18), transparent 32%), radial-gradient(circle at 86% 0%, rgba(168, 85, 247, 0.18), transparent 34%), var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding: 18px;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.92), rgba(168, 85, 247, 0.92));
+            color: #0b1224;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+        }
+
+        header h1 {
+            margin: 0 0 6px;
+            font-size: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        header p {
+            margin: 0;
+            max-width: 980px;
+            font-size: 16px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .shell {
+            background: var(--panel);
+            border-radius: 20px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 14px;
+        }
+
+        .sidebar {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.12);
+        }
+
+        .sidebar h2 {
+            margin: 2px 0 8px;
+            font-size: 18px;
+            color: #0284c7;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #ecfeff;
+            border: 1px solid #bae6fd;
+            font-weight: 700;
+            color: #0c4a6e;
+        }
+
+        .scenario-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .scenario-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .scenario-btn strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .scenario-btn span {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .scenario-btn:hover {
+            transform: translateX(2px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .scenario-btn.active {
+            border-color: #a5f3fc;
+            background: #e0f2fe;
+            box-shadow: 0 12px 26px rgba(56, 189, 248, 0.18);
+        }
+
+        .status-pill {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 999px;
+            padding: 4px 8px;
+            background: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.02em;
+        }
+
+        .status-pill.done {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .workspace {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .scenario-top {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #075985;
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .scenario-title {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .scenario-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px;
+            line-height: 1.6;
+        }
+
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .prompt-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px;
+            background: #ffffff;
+            display: grid;
+            gap: 10px;
+        }
+
+        .prompt-card h3 {
+            margin: 0;
+            color: #0284c7;
+            font-size: 16px;
+        }
+
+        .clue {
+            background: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 10px;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .choices {
+            display: grid;
+            gap: 8px;
+        }
+
+        .choice-btn {
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.1);
+        }
+
+        label {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            background: #f8fafc;
+        }
+
+        textarea:focus {
+            outline: 2px solid var(--accent);
+            background: #ffffff;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #e2e8f0;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #0b1224;
+            border-color: transparent;
+            box-shadow: 0 10px 22px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn:hover {
+            filter: brightness(0.98);
+        }
+
+        .question {
+            margin: 0;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .help-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .help-btn {
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #e2e8f0;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .help-btn.secondary {
+            background: #fef3c7;
+            border-color: #fde68a;
+        }
+
+        .help-btn:hover {
+            filter: brightness(0.98);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 980px) {
+            body {
+                padding: 12px;
+            }
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Labeling Emotions with Clear Speech Strategies</h1>
+        <p>Read the scenario, answer two prompts with full sentences, and practice clear articulation. Use the clue and choices if you need support.</p>
+    </header>
+    <main>
+        <div class="shell">
+            <div class="layout">
+                <aside class="sidebar">
+                    <h2>Scenarios</h2>
+                    <div class="progress"><span id="progressCount">0/10 started</span><span id="progressHint">Fill either prompt to log progress.</span></div>
+                    <div class="scenario-list" id="scenarioList"></div>
+                </aside>
+                <section class="workspace">
+                    <div class="scenario-top">
+                        <span class="badge" id="scenarioNumber">Scenario 1</span>
+                        <h2 class="scenario-title" id="scenarioTitle">Title</h2>
+                    </div>
+                    <div class="scenario-card" id="scenarioText"></div>
+                    <div class="prompt-grid">
+                        <div class="prompt-card">
+                            <h3>Prompt 1</h3>
+                            <p class="question" id="question1"></p>
+                            <div class="help-row">
+                                <button class="help-btn" id="help1Btn">I need help</button>
+                                <button class="help-btn secondary" id="choices1Btn">I need more help (choices)</button>
+                            </div>
+                            <div class="clue hidden" id="clue1"></div>
+                            <div class="choices hidden" id="choices1"></div>
+                            <label for="answer1">Your sentence:</label>
+                            <textarea id="answer1" placeholder="Say the emotion out loud while you write it in a full sentence."></textarea>
+                        </div>
+                        <div class="prompt-card">
+                            <h3>Prompt 2</h3>
+                            <p class="question" id="question2"></p>
+                            <div class="help-row">
+                                <button class="help-btn" id="help2Btn">I need help</button>
+                                <button class="help-btn secondary" id="choices2Btn">I need more help (choices)</button>
+                            </div>
+                            <div class="clue hidden" id="clue2"></div>
+                            <div class="choices hidden" id="choices2"></div>
+                            <label for="answer2">Your sentence:</label>
+                            <textarea id="answer2" placeholder="Say the emotion out loud while you write it in a full sentence."></textarea>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button class="btn" id="prevBtn">Previous</button>
+                        <button class="btn primary" id="nextBtn">Next scenario</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script>
+        const scenarios = [
+            {
+                title: "Jordan Arrives Late",
+                text: "Jordan arrived at class a few minutes late. His group had already started the project and didn’t notice him come in. He sat down quietly, hoping he could join later. A few minutes afterward, one student finally waved him over and said they’d saved him a small part of the project.",
+                prompt1: "How might Jordan feel when he first sees the group working without him?",
+                clue1: "“Jordan is feeling ___ because ___.”",
+                choices1: [
+                    "Jordan is feeling left out because no one noticed he arrived.",
+                    "Jordan is feeling sad because he wasn’t included at first.",
+                    "Jordan is feeling unsure because he didn’t know if he could still join."
+                ],
+                prompt2: "How might Jordan feel when someone finally invites him over?",
+                clue2: "“Later, Jordan feels ___ because ___.”",
+                choices2: [
+                    "Jordan feels relieved because someone included him.",
+                    "Jordan feels happier because he finally knows what to do.",
+                    "Jordan feels appreciated because his group saved him a part."
+                ]
+            },
+            {
+                title: "Waiting for a Reply",
+                text: "Maya sent her friend a message in the morning about their homework. Her friend didn’t respond all day, even though Maya saw posts from her online. After school, they ran into each other, and her friend apologized, saying her phone had been glitching.",
+                prompt1: "How might Maya feel during the day when she’s waiting and not getting a reply?",
+                clue1: "“Maya is feeling ___ because ___.”",
+                choices1: [
+                    "Maya is feeling frustrated because she expected a reply.",
+                    "Maya is feeling annoyed because she saw her friend online but not answering.",
+                    "Maya is feeling confused because she didn’t know what was going on."
+                ],
+                prompt2: "How might Maya feel after hearing the explanation?",
+                clue2: "“Later, Maya feels ___ because ___.”",
+                choices2: [
+                    "Maya feels relieved because her friend had a real reason for not responding.",
+                    "Maya feels calmer because she understands what happened.",
+                    "Maya feels appreciated because her friend apologized."
+                ]
+            },
+            {
+                title: "Presentation Whispers",
+                text: "Chris practiced his presentation all week. When he finished, a couple of students whispered and laughed. Later, his teacher told him she thought he did well and that the comments weren’t about him. A classmate also said he liked the topic.",
+                prompt1: "How might Chris feel right after the presentation?",
+                clue1: "“Chris is feeling ___ because ___.”",
+                choices1: [
+                    "Chris is feeling embarrassed because he heard whispering.",
+                    "Chris is feeling upset because he thought people were making fun of him.",
+                    "Chris is feeling nervous because he wasn’t sure how he did."
+                ],
+                prompt2: "How might Chris feel after talking with his teacher and classmate?",
+                clue2: "“Later, Chris feels ___ because ___.”",
+                choices2: [
+                    "Chris feels encouraged because people said supportive things.",
+                    "Chris feels relieved because the whispers weren’t about him.",
+                    "Chris feels proud because someone liked his topic."
+                ]
+            },
+            {
+                title: "Door Holding",
+                text: "Sam held the door for a student carrying a heavy stack of books. The student rushed through without saying anything. Later, Sam saw that same student drop all the books in the hallway. Sam helped pick everything up, and the student thanked him.",
+                prompt1: "How might Sam feel when the student rushes by without saying anything?",
+                clue1: "“Sam is feeling ___ because ___.”",
+                choices1: [
+                    "Sam is feeling disappointed because the person didn’t say thank you.",
+                    "Sam is feeling annoyed because his effort wasn’t recognized.",
+                    "Sam is feeling unsure because he wasn’t sure if he did something wrong."
+                ],
+                prompt2: "How might Sam feel after helping the student pick up the books?",
+                clue2: "“Later, Sam feels ___ because ___.”",
+                choices2: [
+                    "Sam feels helpful because he supported someone who needed it.",
+                    "Sam feels appreciated because the student thanked him.",
+                    "Sam feels calmer because the situation improved."
+                ]
+            },
+            {
+                title: "Contest Results",
+                text: "Riley entered an art contest and didn’t expect to place. When she checked the results, she saw she earned second place. Later, two students complimented her work, and her family was excited for her when she got home.",
+                prompt1: "How might Riley feel before checking the results?",
+                clue1: "“Riley is feeling ___ because ___.”",
+                choices1: [
+                    "Riley is feeling nervous because she didn’t know how she did.",
+                    "Riley is feeling unsure because the contest seemed tough.",
+                    "Riley is feeling calm because she didn’t expect anything big."
+                ],
+                prompt2: "How might Riley feel after seeing she placed and hearing compliments?",
+                clue2: "“Later, Riley feels ___ because ___.”",
+                choices2: [
+                    "Riley feels proud because she earned second place.",
+                    "Riley feels happy because people complimented her art.",
+                    "Riley feels excited because her family celebrated with her."
+                ]
+            },
+            {
+                title: "Science Ramp Job",
+                text: "A group in science class was building a small ramp for a lab experiment. Lily was holding the stopwatch, but her group kept starting without her. After the third try, one teammate finally noticed and asked if she wanted to switch jobs. Lily agreed, and the next trial went smoothly.",
+                prompt1: "How might Lily feel when the group keeps starting without her?",
+                clue1: "“Lily is feeling ___ because ___.”",
+                choices1: [
+                    "Lily is feeling frustrated because no one waited for her.",
+                    "Lily is feeling left out because her role wasn’t respected.",
+                    "Lily is feeling unsure because she wasn’t sure what to do next."
+                ],
+                prompt2: "How might Lily feel when the teammate checks in and offers to switch?",
+                clue2: "“Later, Lily feels ___ because ___.”",
+                choices2: [
+                    "Lily feels relieved because someone noticed the problem.",
+                    "Lily feels appreciated because a classmate offered help.",
+                    "Lily feels calmer because the situation improved."
+                ]
+            },
+            {
+                title: "Saved a Seat",
+                text: "Marcus planned to meet his friend before lunch. He waited by the lockers, but his friend never showed up. When he walked into the cafeteria, he saw his friend waving him over and saving him a seat.",
+                prompt1: "How might Marcus feel while waiting alone?",
+                clue1: "“Marcus is feeling ___ because ___.”",
+                choices1: [
+                    "Marcus is feeling disappointed because he thought his friend forgot.",
+                    "Marcus is feeling lonely because he was waiting by himself.",
+                    "Marcus is feeling confused because he didn’t know what happened."
+                ],
+                prompt2: "How might Marcus feel once he sees his friend waving?",
+                clue2: "“Later, Marcus feels ___ because ___.”",
+                choices2: [
+                    "Marcus feels relieved because the friend remembered him.",
+                    "Marcus feels excited because he has a saved seat.",
+                    "Marcus feels happy because the plan still worked out."
+                ]
+            },
+            {
+                title: "New Art Style",
+                text: "During art class, Naomi tried a new drawing style. A couple of students whispered when they looked at her paper. Later, another classmate came over, complimented her work, and asked about her technique.",
+                prompt1: "How might Naomi feel when she hears whispering?",
+                clue1: "“Naomi is feeling ___ because ___.”",
+                choices1: [
+                    "Naomi is feeling embarrassed because people whispered.",
+                    "Naomi is feeling unsure because she didn’t know what they meant.",
+                    "Naomi is feeling nervous because she tried something new."
+                ],
+                prompt2: "How might Naomi feel after hearing the compliment?",
+                clue2: "“Later, Naomi feels ___ because ___.”",
+                choices2: [
+                    "Naomi feels proud because someone liked her art.",
+                    "Naomi feels encouraged because someone asked about her technique.",
+                    "Naomi feels relieved because the reaction was positive."
+                ]
+            },
+            {
+                title: "Talent Show Tryout",
+                text: "Aiden practiced for days to try out for the school talent show. When he performed, he forgot one of his lines but kept going. Later, two students told him they liked how confident he looked on stage.",
+                prompt1: "How might Aiden feel right after forgetting the line?",
+                clue1: "“Aiden is feeling ___ because ___.”",
+                choices1: [
+                    "Aiden is feeling nervous because he made a small mistake.",
+                    "Aiden is feeling embarrassed because it happened on stage.",
+                    "Aiden is feeling unsure because he didn’t know if people noticed."
+                ],
+                prompt2: "How might he feel after hearing the positive comments?",
+                clue2: "“Later, Aiden feels ___ because ___.”",
+                choices2: [
+                    "Aiden feels encouraged because classmates praised him.",
+                    "Aiden feels relieved because they liked his performance.",
+                    "Aiden feels proud because he kept going even after the mistake."
+                ]
+            },
+            {
+                title: "Relay Recovery",
+                text: "During gym class, the teacher paired students for a relay. Zoe was excited to run, but on the first round she tripped and dropped the baton. Her partner helped her up and told her it was no big deal. On the second round, Zoe ran smoothly and finished strong.",
+                prompt1: "How might Zoe feel after tripping?",
+                clue1: "“Zoe is feeling ___ because ___.”",
+                choices1: [
+                    "Zoe is feeling embarrassed because she fell in front of others.",
+                    "Zoe is feeling upset because she dropped the baton.",
+                    "Zoe is feeling unsure because she didn’t know how the next round would go."
+                ],
+                prompt2: "How might Zoe feel during the second round when she runs well?",
+                clue2: "“Later, Zoe feels ___ because ___.”",
+                choices2: [
+                    "Zoe feels proud because she finished strong.",
+                    "Zoe feels happy because she improved.",
+                    "Zoe feels relieved because the second round went better."
+                ]
+            }
+        ];
+
+        const responses = scenarios.map(() => ({
+            answer1: "",
+            answer2: ""
+        }));
+
+        let activeIndex = 0;
+
+        const scenarioList = document.getElementById("scenarioList");
+        const scenarioNumber = document.getElementById("scenarioNumber");
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioText = document.getElementById("scenarioText");
+        const question1El = document.getElementById("question1");
+        const question2El = document.getElementById("question2");
+        const clue1El = document.getElementById("clue1");
+        const clue2El = document.getElementById("clue2");
+        const choices1El = document.getElementById("choices1");
+        const choices2El = document.getElementById("choices2");
+        const answer1 = document.getElementById("answer1");
+        const answer2 = document.getElementById("answer2");
+        const progressCount = document.getElementById("progressCount");
+        const progressHint = document.getElementById("progressHint");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const help1Btn = document.getElementById("help1Btn");
+        const help2Btn = document.getElementById("help2Btn");
+        const choices1Btn = document.getElementById("choices1Btn");
+        const choices2Btn = document.getElementById("choices2Btn");
+
+        function renderScenarioList() {
+            scenarioList.innerHTML = "";
+            scenarios.forEach((scenario, index) => {
+                const btn = document.createElement("button");
+                btn.className = "scenario-btn" + (index === activeIndex ? " active" : "");
+                const strong = document.createElement("strong");
+                strong.textContent = `${index + 1}. ${scenario.title}`;
+                const subtitle = document.createElement("span");
+                subtitle.textContent = "2 prompts • use clue or choices";
+                const status = document.createElement("span");
+                status.className = "status-pill";
+                if (responses[index].answer1.trim() || responses[index].answer2.trim()) {
+                    status.textContent = "Started";
+                    status.classList.add("done");
+                } else {
+                    status.textContent = "—";
+                }
+                btn.appendChild(strong);
+                btn.appendChild(subtitle);
+                btn.appendChild(status);
+                btn.addEventListener("click", () => loadScenario(index));
+                scenarioList.appendChild(btn);
+            });
+        }
+
+        function loadScenario(index) {
+            activeIndex = index;
+            const scenario = scenarios[index];
+            scenarioNumber.textContent = `Scenario ${index + 1}`;
+            scenarioTitle.textContent = scenario.title;
+            scenarioText.textContent = scenario.text;
+            question1El.textContent = scenario.prompt1;
+            question2El.textContent = scenario.prompt2;
+            clue1El.textContent = scenario.clue1;
+            clue2El.textContent = scenario.clue2;
+            renderChoices(choices1El, scenario.choices1, answer1, scenario.clue1);
+            renderChoices(choices2El, scenario.choices2, answer2, scenario.clue2);
+            answer1.value = responses[index].answer1;
+            answer2.value = responses[index].answer2;
+            renderScenarioList();
+            updateProgress();
+            resetSupports();
+        }
+
+        function renderChoices(container, choices, targetTextarea, clueText) {
+            container.innerHTML = "";
+            choices.forEach(choice => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "choice-btn";
+                btn.textContent = choice;
+                btn.addEventListener("click", () => insertChoice(choice, targetTextarea, clueText));
+                container.appendChild(btn);
+            });
+        }
+
+        function insertChoice(text, target, clueText) {
+            const current = target.value.trim();
+            if (!current) {
+                target.value = text;
+            } else {
+                const replace = confirm("Use this choice to replace what you wrote? Click Cancel to add it instead.");
+                target.value = replace ? text : `${current} ${text}`;
+            }
+            saveAnswers();
+            target.focus();
+        }
+
+        function insertClue(text, target, clueEl) {
+            const current = target.value.trim();
+            target.value = current ? `${target.value} ${text}` : text;
+            clueEl.classList.remove("hidden");
+            saveAnswers();
+            target.focus();
+        }
+
+        function toggleElement(el) {
+            el.classList.toggle("hidden");
+        }
+
+        function resetSupports() {
+            clue1El.classList.add("hidden");
+            clue2El.classList.add("hidden");
+            choices1El.classList.add("hidden");
+            choices2El.classList.add("hidden");
+        }
+
+        function saveAnswers() {
+            responses[activeIndex].answer1 = answer1.value;
+            responses[activeIndex].answer2 = answer2.value;
+            updateProgress();
+            renderScenarioList();
+        }
+
+        function updateProgress() {
+            const started = responses.filter(r => r.answer1.trim() || r.answer2.trim()).length;
+            progressCount.textContent = `${started}/${scenarios.length} started`;
+            const filled = responses.reduce((acc, r) => acc + (r.answer1.trim() ? 1 : 0) + (r.answer2.trim() ? 1 : 0), 0);
+            progressHint.textContent = filled ? `${filled} prompts answered` : "Fill either prompt to log progress.";
+        }
+
+        [answer1, answer2].forEach(field => field.addEventListener("input", saveAnswers));
+
+        prevBtn.addEventListener("click", () => {
+            const newIndex = activeIndex === 0 ? scenarios.length - 1 : activeIndex - 1;
+            loadScenario(newIndex);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            const newIndex = activeIndex === scenarios.length - 1 ? 0 : activeIndex + 1;
+            loadScenario(newIndex);
+        });
+
+        help1Btn.addEventListener("click", () => insertClue(scenarios[activeIndex].clue1, answer1, clue1El));
+        help2Btn.addEventListener("click", () => insertClue(scenarios[activeIndex].clue2, answer2, clue2El));
+        choices1Btn.addEventListener("click", () => toggleElement(choices1El));
+        choices2Btn.addEventListener("click", () => toggleElement(choices2El));
+
+        renderScenarioList();
+        loadScenario(0);
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpful or Hurtful? Response Judge</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --muted: #475569;
+            --bg: #0b1224;
+            --panel: #0f1f3b;
+            --surface: #ffffff;
+            --accent: #22c55e;
+            --accent-2: #f97316;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 10% 10%, rgba(34, 197, 94, 0.14), transparent 32%), radial-gradient(circle at 85% 0%, rgba(249, 115, 22, 0.18), transparent 36%), var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding: 18px;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.95), rgba(249, 115, 22, 0.95));
+            color: #0b1224;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+        }
+
+        header h1 {
+            margin: 0 0 6px;
+            font-size: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        header p {
+            margin: 0;
+            max-width: 960px;
+            font-size: 16px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .shell {
+            background: var(--panel);
+            border-radius: 20px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 14px;
+        }
+
+        .sidebar {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.12);
+        }
+
+        .sidebar h2 {
+            margin: 2px 0 8px;
+            font-size: 18px;
+            color: #047857;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #ecfdf3;
+            border: 1px solid #bbf7d0;
+            font-weight: 700;
+            color: #065f46;
+        }
+
+        .scenario-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .scenario-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .scenario-btn strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .scenario-btn span {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .scenario-btn:hover {
+            transform: translateX(2px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .scenario-btn.active {
+            border-color: #bbf7d0;
+            background: #dcfce7;
+            box-shadow: 0 12px 26px rgba(34, 197, 94, 0.2);
+        }
+
+        .status-pill {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 999px;
+            padding: 4px 8px;
+            background: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.02em;
+        }
+
+        .status-pill.done {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .workspace {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .scenario-top {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #075985;
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .scenario-title {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .scenario-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px;
+            line-height: 1.6;
+        }
+
+        .response-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px;
+            background: #fff7ed;
+        }
+
+        .response-card h3 {
+            margin: 0 0 6px;
+            color: #c2410c;
+            font-size: 17px;
+        }
+
+        .question-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px;
+            background: #f1f5f9;
+            display: grid;
+            gap: 10px;
+        }
+
+        .toggle-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .toggle-btn {
+            flex: 1 1 140px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            padding: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            color: #0f172a;
+            transition: all 0.15s ease;
+            background: #ffffff;
+        }
+
+        .toggle-btn.helpful {
+            border-color: #bbf7d0;
+            background: #dcfce7;
+            color: #0f172a;
+        }
+
+        .toggle-btn.hurtful {
+            border-color: #fed7aa;
+            background: #ffedd5;
+            color: #7c2d12;
+        }
+
+        .toggle-btn.active {
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+        }
+
+        label {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            background: #ffffff;
+        }
+
+        textarea:focus {
+            outline: 2px solid #22c55e;
+        }
+
+        .hint-bar {
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 10px 12px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .hint-header {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hint-btn {
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #e2e8f0;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .hint-btn:hover {
+            filter: brightness(0.98);
+        }
+
+        .hint-text {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .hint-chips {
+            display: none;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .hint-chip {
+            border-radius: 999px;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            color: #0f172a;
+            transition: all 0.15s ease;
+        }
+
+        .hint-chip:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #e2e8f0;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #0b1224;
+            border-color: transparent;
+            box-shadow: 0 10px 22px rgba(34, 197, 94, 0.2);
+        }
+
+        .btn:hover {
+            filter: brightness(0.98);
+        }
+
+        @media (max-width: 980px) {
+            body {
+                padding: 12px;
+            }
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Helpful or Hurtful? Response Judge</h1>
+        <p>Read the scenario, judge if the response is helpful or hurtful, then explain why. Stick to the same rhythm: read, judge, justify.</p>
+    </header>
+    <main>
+        <div class="shell">
+            <div class="layout">
+                <aside class="sidebar">
+                    <h2>Scenarios</h2>
+                    <div class="progress"><span id="progressCount">0/20 logged</span><span id="progressHint">Pick helpful/hurtful to log.</span></div>
+                    <div class="scenario-list" id="scenarioList"></div>
+                </aside>
+                <section class="workspace">
+                    <div class="scenario-top">
+                        <span class="badge" id="scenarioNumber">Scenario 1</span>
+                        <h2 class="scenario-title" id="scenarioTitle">Title</h2>
+                    </div>
+                    <div class="scenario-card" id="scenarioText"></div>
+                    <div class="response-card">
+                        <h3>Response to evaluate</h3>
+                        <p id="responseText" style="margin:4px 0 0;"></p>
+                    </div>
+                    <div class="question-card">
+                        <label>Was this response helpful or hurtful?</label>
+                        <div class="toggle-row">
+                            <button class="toggle-btn helpful" id="helpfulBtn" aria-pressed="false">Helpful</button>
+                            <button class="toggle-btn hurtful" id="hurtfulBtn" aria-pressed="false">Hurtful</button>
+                        </div>
+                        <div class="hint-bar">
+                            <div class="hint-header">
+                                <button class="hint-btn" id="hintBtn">Show hints</button>
+                                <span class="hint-text" id="hintText">Need ideas? Look at tone, accountability, and impact.</span>
+                            </div>
+                            <div class="hint-chips" id="hintChips"></div>
+                        </div>
+                        <label for="whyText">Why?</label>
+                        <textarea id="whyText" placeholder="This response is helpful because…"></textarea>
+                    </div>
+                    <div class="controls">
+                        <button class="btn" id="prevBtn">Previous</button>
+                        <button class="btn primary" id="nextBtn">Next scenario</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script>
+        const scenarios = [
+            {
+                title: "Spilled Lab Materials",
+                scenario: "Chris and Jordan are working together on a science lab. Jordan accidentally knocks over a beaker and spills their materials.",
+                response: "Chris says, “Seriously? Can you stop messing everything up?”"
+            },
+            {
+                title: "Late Text Reply",
+                scenario: "A friend texts Sam during class and seems annoyed when Sam doesn’t reply right away.",
+                response: "Sam says later, “I wasn’t ignoring you. I just couldn’t text back in class. Want to talk about it?”"
+            },
+            {
+                title: "Calculator Returned Damaged",
+                scenario: "A classmate, Riley, borrows Maya’s calculator and returns it with a missing cover.",
+                response: "Maya says, “It’s fine. I’ll just buy a new one since you broke it.”"
+            },
+            {
+                title: "Presentation Assist",
+                scenario: "During a group presentation, Alex forgets a section he was supposed to say. His teammate, Brooke, steps in quickly.",
+                response: "After class, Alex says, “Thanks for jumping in. I froze for a second.”"
+            },
+            {
+                title: "Laughing After Answer",
+                scenario: "Taylor overhears two classmates laughing after she answers a question in English class. She isn’t sure if they were laughing at her.",
+                response: "Taylor says to them, “If you were laughing at me, that wasn’t cool.”"
+            },
+            {
+                title: "Project Disagreement",
+                scenario: "Drew and Avery disagree about how to divide the work for a history project. Avery thinks Drew didn’t do his part.",
+                response: "Drew says, “Look, I can see you’re frustrated. Let’s go over what still needs to be done.”"
+            },
+            {
+                title: "Assumed Avoidance",
+                scenario: "Jamie tells their friend Morgan that they can’t hang out because of family stuff. Morgan assumes Jamie just doesn’t want to spend time together.",
+                response: "Morgan says, “Whatever, Jamie. Just tell me if you don’t want to hang out.”"
+            },
+            {
+                title: "Ignored at Lunch",
+                scenario: "During lunch, a group is talking about weekend plans. No one responds when Carlos shares his idea.",
+                response: "Carlos says, “I’m not sure if you didn’t hear me or weren’t interested, but I was hoping for your thoughts.”"
+            },
+            {
+                title: "Called Out for Rudeness",
+                scenario: "A student, Leah, points out that Ethan’s comment in class came off as rude, even if he didn’t mean it that way.",
+                response: "Ethan says, “You’re too sensitive. I didn’t do anything wrong.”"
+            },
+            {
+                title: "Hallway Bump",
+                scenario: "Quinn accidentally bumps into a classmate, Sky, in the hallway while rushing to class.",
+                response: "Sky says, “Hey, are you okay? That looked like an accident.”"
+            },
+            {
+                title: "Wrong Notebook",
+                scenario: "In a rush, Pat grabs Casey’s notebook by mistake and walks off.",
+                response: "Casey says, “Hey, I think that’s mine. Can we check names and swap back?”"
+            },
+            {
+                title: "Rumor in Group Chat",
+                scenario: "A rumor about Nina shows up in the group chat. She hears Kai repeated it.",
+                response: "Nina messages, “Who told you that? Please don’t spread stuff about me without asking.”"
+            },
+            {
+                title: "Late to Practice",
+                scenario: "Jordan arrives late to rehearsal again, making the group start over.",
+                response: "A teammate says, “You’re always late. We can’t keep counting on you if this keeps happening.”"
+            },
+            {
+                title: "Idea Shot Down",
+                scenario: "During a project brainstorm, Riley’s idea is dismissed quickly by the group.",
+                response: "Riley says, “No worries—can you tell me what you think would work so we can move forward?”"
+            },
+            {
+                title: "Cafeteria Line Cut",
+                scenario: "A student cuts in front of Avery in the lunch line.",
+                response: "Avery says, “Hey, there’s a line. Can you head to the back?”"
+            },
+            {
+                title: "Name Mispronounced",
+                scenario: "A new teacher keeps mispronouncing Priya’s name.",
+                response: "Priya says, “It’s actually Pree-yah. Just wanted to let you know.”"
+            },
+            {
+                title: "Plans Canceled",
+                scenario: "Rae cancels weekend plans with Devon at the last minute.",
+                response: "Devon says, “Wow, guess I’ll find someone who actually wants to hang out.”"
+            },
+            {
+                title: "Lost Instructions",
+                scenario: "During a lab, Tasha doesn’t understand the directions Avery gave and feels lost.",
+                response: "Tasha says, “I’m confused about what you meant. Can you walk me through it once?”"
+            },
+            {
+                title: "Inside Joke",
+                scenario: "During group work, two friends laugh at an inside joke right after Leo shares an idea.",
+                response: "Leo says, “That felt like you were laughing at me. Was that about my idea?”"
+            },
+            {
+                title: "Talking Behind Backs",
+                scenario: "A friend tells Maya that the group was complaining about her without her there.",
+                response: "Maya says, “If there’s an issue with me, can you bring it to me instead of talking about me?”"
+            }
+        ];
+
+        const responses = scenarios.map(() => ({
+            verdict: null,
+            why: ""
+        }));
+
+        let activeIndex = 0;
+
+        const scenarioList = document.getElementById("scenarioList");
+        const scenarioNumber = document.getElementById("scenarioNumber");
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioText = document.getElementById("scenarioText");
+        const responseText = document.getElementById("responseText");
+        const helpfulBtn = document.getElementById("helpfulBtn");
+        const hurtfulBtn = document.getElementById("hurtfulBtn");
+        const whyText = document.getElementById("whyText");
+        const progressCount = document.getElementById("progressCount");
+        const progressHint = document.getElementById("progressHint");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const hintBtn = document.getElementById("hintBtn");
+        const hintText = document.getElementById("hintText");
+        const hintChips = document.getElementById("hintChips");
+
+        const hintOptions = [
+            "Tone was respectful vs blaming",
+            "Takes responsibility or offers to fix",
+            "Blames or insults the other person",
+            "Invites dialogue or shuts it down",
+            "Clarifies intentions instead of assuming",
+            "Validates feelings or dismisses them",
+            "Offers a next step to solve it",
+            "Escalates conflict or cools it down",
+            "Acknowledges mistake/apologizes",
+            "Makes assumptions without asking"
+        ];
+
+        let hintsShown = false;
+
+        function renderScenarioList() {
+            scenarioList.innerHTML = "";
+            scenarios.forEach((scenario, index) => {
+                const btn = document.createElement("button");
+                btn.className = "scenario-btn" + (index === activeIndex ? " active" : "");
+                const strong = document.createElement("strong");
+                strong.textContent = `${index + 1}. ${scenario.title}`;
+                const subtitle = document.createElement("span");
+                subtitle.textContent = "Helpful or hurtful? Then justify.";
+                const status = document.createElement("span");
+                status.className = "status-pill";
+                if (responses[index].verdict) {
+                    status.textContent = "Logged";
+                    status.classList.add("done");
+                } else {
+                    status.textContent = "—";
+                }
+                btn.appendChild(strong);
+                btn.appendChild(subtitle);
+                btn.appendChild(status);
+                btn.addEventListener("click", () => loadScenario(index));
+                scenarioList.appendChild(btn);
+            });
+        }
+
+        function loadScenario(index) {
+            activeIndex = index;
+            const scenario = scenarios[index];
+            scenarioNumber.textContent = `Scenario ${index + 1}`;
+            scenarioTitle.textContent = scenario.title;
+            scenarioText.textContent = scenario.scenario;
+            responseText.textContent = scenario.response;
+            whyText.value = responses[index].why;
+            updateVerdictUI();
+            renderScenarioList();
+            updateProgress();
+            resetHints();
+        }
+
+        function setVerdict(verdict) {
+            responses[activeIndex].verdict = verdict;
+            updateVerdictUI();
+            updateProgress();
+            renderScenarioList();
+        }
+
+        function updateVerdictUI() {
+            const verdict = responses[activeIndex].verdict;
+            helpfulBtn.classList.toggle("active", verdict === "helpful");
+            hurtfulBtn.classList.toggle("active", verdict === "hurtful");
+            helpfulBtn.setAttribute("aria-pressed", verdict === "helpful");
+            hurtfulBtn.setAttribute("aria-pressed", verdict === "hurtful");
+            whyText.placeholder = verdict === "hurtful" ? "This response might make things worse because…" : "This response is helpful because…";
+        }
+
+        function updateProgress() {
+            const logged = responses.filter(r => r.verdict !== null).length;
+            progressCount.textContent = `${logged}/${scenarios.length} logged`;
+            const withReasons = responses.filter(r => r.verdict && r.why.trim()).length;
+            progressHint.textContent = withReasons ? `${withReasons} with explanations` : "Pick helpful/hurtful to log.";
+        }
+
+        function resetHints() {
+            hintsShown = false;
+            hintText.textContent = "Need ideas? Look at tone, accountability, and impact.";
+            hintChips.style.display = "none";
+        }
+
+        function showHints() {
+            if (!hintsShown) {
+                hintChips.innerHTML = "";
+                hintOptions.forEach(text => {
+                    const chip = document.createElement("button");
+                    chip.type = "button";
+                    chip.className = "hint-chip";
+                    chip.textContent = text;
+                    chip.addEventListener("click", () => insertHint(text));
+                    hintChips.appendChild(chip);
+                });
+                hintChips.style.display = "flex";
+                hintText.textContent = "Pick a clue to add to your explanation.";
+                hintsShown = true;
+            } else {
+                hintChips.style.display = hintChips.style.display === "none" ? "flex" : "none";
+            }
+        }
+
+        function insertHint(text) {
+            const current = whyText.value.trim();
+            whyText.value = current ? `${whyText.value} ${text}.` : `${text}.`;
+            responses[activeIndex].why = whyText.value;
+            updateProgress();
+            renderScenarioList();
+            whyText.focus();
+        }
+
+        helpfulBtn.addEventListener("click", () => setVerdict("helpful"));
+        hurtfulBtn.addEventListener("click", () => setVerdict("hurtful"));
+        hintBtn.addEventListener("click", showHints);
+
+        whyText.addEventListener("input", (e) => {
+            responses[activeIndex].why = e.target.value;
+            updateProgress();
+            renderScenarioList();
+        });
+
+        prevBtn.addEventListener("click", () => {
+            const newIndex = activeIndex === 0 ? scenarios.length - 1 : activeIndex - 1;
+            loadScenario(newIndex);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            const newIndex = activeIndex === scenarios.length - 1 ? 0 : activeIndex + 1;
+            loadScenario(newIndex);
+        });
+
+        renderScenarioList();
+        loadScenario(0);
+        updateProgress();
+    </script>
+</body>
+</html>
