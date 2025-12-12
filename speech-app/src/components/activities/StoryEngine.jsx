@@ -97,6 +97,15 @@ export default function StoryEngine({ data }) {
                         transition={{ duration: 0.3 }}
                         className="bg-white rounded-xl shadow-sm border-l-4 border-orange-400 p-8"
                     >
+                        {story.image && (
+                            <div className="mb-6 rounded-xl overflow-hidden border border-slate-200">
+                                <img
+                                    src={story.image}
+                                    alt={story.alt || story.title}
+                                    className="w-full h-auto object-cover max-h-64"
+                                />
+                            </div>
+                        )}
                         <h2 className="text-2xl font-bold text-slate-800 mb-6">{story.title}</h2>
                         <div className="space-y-4 text-lg leading-relaxed text-slate-700 font-medium">
                             {story.text.map((paragraph, idx) => (

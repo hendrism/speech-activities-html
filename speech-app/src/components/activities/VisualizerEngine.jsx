@@ -32,7 +32,8 @@ function DraggableCard({ id, text, isDragging }) {
 }
 
 // --- Drop Zone ---
-function DropZone({ id, title, emoji, items, isOver, children, className }) {
+// --- Drop Zone ---
+function DropZone({ id, title, emoji, image, items, isOver, children, className }) {
     const { setNodeRef } = useDroppable({
         id: id
     });
@@ -47,7 +48,13 @@ function DropZone({ id, title, emoji, items, isOver, children, className }) {
             )}
         >
             <div className="text-center mb-4">
-                <div className="text-3xl mb-1">{emoji}</div>
+                {image ? (
+                    <div className="mb-2 h-24 flex items-center justify-center">
+                        <img src={image} alt={title} className="max-h-full max-w-full rounded-lg object-contain" />
+                    </div>
+                ) : (
+                    <div className="text-3xl mb-1">{emoji}</div>
+                )}
                 <div className="font-bold text-slate-700">{title}</div>
             </div>
 
@@ -207,6 +214,7 @@ export default function VisualizerEngine({ data }) {
                                 id="left"
                                 title={activity.left.label}
                                 emoji={activity.left.emoji}
+                                image={activity.left.image}
                                 className="bg-red-50 border-red-200"
                             >
                                 {placements.left.map(id => {
@@ -231,6 +239,7 @@ export default function VisualizerEngine({ data }) {
                                 id="right"
                                 title={activity.right.label}
                                 emoji={activity.right.emoji}
+                                image={activity.right.image}
                                 className="bg-blue-50 border-blue-200"
                             >
                                 {placements.right.map(id => {

@@ -34,6 +34,9 @@ import { pastTenseData } from './pastTense';
 import { detectiveCluesData } from './detectiveClues';
 import { multipleMeaningsAdvancedData } from './multipleMeaningsAdvanced';
 import { pluralNounsData } from './pluralNouns';
+import { winterCategoryFunctionData } from './winterCategoryFunction';
+import { winterCompareContrastData } from './winterCompareContrast';
+import { winterStoriesData } from './winterStoriesData';
 import QuizEngine from '../components/activities/QuizEngine';
 import BuilderEngine from '../components/activities/BuilderEngine';
 import StoryEngine from '../components/activities/StoryEngine';
@@ -432,13 +435,49 @@ export const activityRegistry = {
         config: {
             questionTemplate: (item) => (
                 <div>
-                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text }} />
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.text || item.question }} />
                 </div>
             ),
             hintTemplate: (item) => item.hint,
             getOptions: (item) => item.choices,
-            getCorrectAnswer: (item) => item.correctAnswer
+            getCorrectAnswer: (item) => item.correctAnswer || item.answer
         }
+    },
+
+    'winter-category-function': {
+        category: 'language',
+        title: 'Winter Category & Function',
+        subtitle: 'Identify category, function, and attributes',
+        component: QuizEngine,
+        data: winterCategoryFunctionData,
+        config: {
+            questionTemplate: (item) => (
+                <div>
+                    <div className="text-xl font-medium text-slate-700 mb-4" dangerouslySetInnerHTML={{ __html: item.question }} />
+                </div>
+            ),
+            hintTemplate: (item) => item.hint,
+            getOptions: (item) => item.choices,
+            getCorrectAnswer: (item) => item.answer
+        }
+    },
+
+    'winter-compare-contrast': {
+        category: 'language',
+        title: 'Winter Compare & Contrast',
+        subtitle: 'Sort facts about winter items',
+        component: VisualizerEngine,
+        data: winterCompareContrastData,
+        config: {}
+    },
+
+    'winter-stories': {
+        category: 'reading',
+        title: 'Winter Stories',
+        subtitle: 'Read and answer comprehension questions',
+        component: StoryEngine,
+        data: winterStoriesData,
+        config: {}
     },
 
     'thanksgiving-clues': {

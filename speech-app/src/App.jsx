@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Hub from './pages/Hub';
 import CategoryPage from './pages/CategoryPage';
+import ActivityView from './pages/ActivityView';
 
 function App() {
   return (
