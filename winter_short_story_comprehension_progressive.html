@@ -1,0 +1,3322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Story Questions - Progressive Hints</title>
+    <style>
+        :root {
+            --accent: #0ea5e9;
+            --accent-2: #1e293b;
+            --muted: #475569;
+            --card: #ffffff;
+            --bg: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 40%, #bae6fd 100%);
+            --radius: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            padding-bottom: 48px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+            padding: 20px;
+        }
+
+        .header-content {
+            max-width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 6px;
+            color: var(--accent-2);
+            font-size: 30px;
+            letter-spacing: 0.4px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ecfeff;
+            color: #0ea5e9;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-size: 12px;
+            border: 2px solid #bae6fd;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+            margin-bottom: 16px;
+        }
+
+        .info-box h3 {
+            margin: 0 0 8px;
+            color: var(--accent-2);
+        }
+
+        .info-box p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .story-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 12px 0 18px;
+        }
+
+        .filter-box {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: var(--radius);
+            padding: 14px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+            margin: 10px 0 16px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .filter-box h4 {
+            margin: 0 0 10px;
+            color: var(--accent-2);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 8px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+
+        .filter-option input {
+            accent-color: var(--accent);
+            width: 18px;
+            height: 18px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.96);
+            border: 2px solid #e2e8f0;
+            color: var(--accent-2);
+            padding: 9px 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+        }
+
+        .pill:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .pill.active {
+            background: var(--accent);
+            color: #f8fafc;
+            border-color: var(--accent);
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+            padding: 20px;
+        }
+
+        .story-visual {
+            text-align: center;
+            margin: 0 0 12px;
+        }
+
+        .story-visual img {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.14);
+        }
+
+        .story-title {
+            margin: 0 0 6px;
+            color: var(--accent-2);
+            font-size: 20px;
+        }
+
+        .story-text {
+            margin: 0 0 14px;
+            color: #0f172a;
+            line-height: 1.7;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 14px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .context-line {
+            margin: 4px 0 8px;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .highlight-word {
+            background: #e0f2fe;
+            color: #0f172a;
+            font-weight: 800;
+            padding: 2px 4px;
+            border-radius: 6px;
+        }
+
+        .mode-toggle {
+            display: inline-flex;
+            gap: 8px;
+            background: #f1f5f9;
+            padding: 6px;
+            border-radius: 12px;
+            margin: 10px 0 14px;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #0f172a;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .mode-btn.active {
+            border-color: var(--accent);
+            background: #e0f2fe;
+            color: #0f172a;
+            box-shadow: 0 6px 14px rgba(14, 165, 233, 0.18);
+        }
+
+        .section-title {
+            margin: 10px 0 6px;
+            color: var(--accent-2);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .question-card {
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .word-card {
+            background: #f8fafc;
+            border: 2px solid #dbeafe;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .question-card h4 {
+            margin: 0 0 6px;
+            color: #0f172a;
+            font-size: 16px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            padding: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 8px;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px #e0f2fe;
+        }
+
+        .helper-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            border: 2px solid #38bdf8;
+            background: white;
+            color: #0369a1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #38bdf8;
+            color: white;
+        }
+
+        .hint-box {
+            display: none;
+            background: #ecfeff;
+            border-left: 4px solid #38bdf8;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        .options {
+            display: none;
+            margin-bottom: 6px;
+        }
+
+        .option {
+            display: block;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .option.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+        }
+
+        .option.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        .option.disabled {
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .retell-note {
+            margin: 0 0 10px;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .retell-output {
+            margin-top: 12px;
+            background: #e0f2fe;
+            border: 2px solid #bae6fd;
+            border-radius: 12px;
+            padding: 12px;
+            color: #0f172a;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Winter Stories with Progressive Hints</h1>
+            <div class="badge">Seasonal Reading Set</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="info-box">
+            <h3>How to use</h3>
+            <p>Read each winter mini-story, then choose a mode: <strong>Literal</strong>, <strong>Inferential</strong>, <strong>Future tense</strong>, <strong>Word meaning</strong>, <strong>Synonyms</strong>, or <strong>Retell</strong>. Type your own idea first. Tap <strong>I need help</strong> for a clue. Tap <strong>I need more help</strong> to reveal 3-4 choices (one is correct).</p>
+        </div>
+
+        <div class="filter-box">
+            <h4>Select question types for this session</h4>
+            <div class="filter-grid" id="modeFilter"></div>
+        </div>
+
+        <div class="story-nav" id="storyNav"></div>
+
+        <div class="card">
+            <h3 class="story-title" id="storyTitle"></h3>
+            <div class="story-visual" id="storyVisual">
+                <img id="storyImage" src="" alt="" />
+            </div>
+            <p class="story-text" id="storyText"></p>
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="literalModeBtn" type="button">Literal</button>
+                <button class="mode-btn" id="inferModeBtn" type="button">Inferential</button>
+                <button class="mode-btn" id="futureModeBtn" type="button">Future tense</button>
+                <button class="mode-btn" id="wordModeBtn" type="button">Word meaning</button>
+                <button class="mode-btn" id="synonymModeBtn" type="button">Synonyms</button>
+                <button class="mode-btn" id="retellModeBtn" type="button">Retell</button>
+            </div>
+            <div id="questions"></div>
+            <div id="definitions"></div>
+        </div>
+    </div>
+
+    <script>
+        const stories = [
+            {
+                title: "The Snowy Shortcut",
+                image: "images/winter_short_story_comprehension_progressive/story_1.png",
+                alt: "A snowy path behind a library with a bench",
+                text: "Lena took a new path home after school because the usual sidewalk was blocked by a large pile of snow. The shortcut led behind the old library, where the wind was stronger and the ground was icy. Halfway through, she saw a small stray cat shivering under a bench. She stopped walking and tried to coax it toward her, unsure what to do next.",
+                literal: [
+                    {
+                        prompt: "Who is the main character?",
+                        hint: "Look for the name at the start.",
+                        choices: [
+                            "Lena",
+                            "Maya",
+                            "Weston",
+                            "Erin"
+                        ]
+                    },
+                    {
+                        prompt: "What was blocked by snow?",
+                        hint: "Think about what she normally walks on.",
+                        choices: [
+                            "The sidewalk",
+                            "The road",
+                            "The store",
+                            "The bus stop"
+                        ]
+                    },
+                    {
+                        prompt: "Where did the shortcut go?",
+                        hint: "It went behind a building.",
+                        choices: [
+                            "Behind the old library",
+                            "Behind a house",
+                            "Behind the school",
+                            "Behind a store"
+                        ]
+                    },
+                    {
+                        prompt: "What animal did Lena see?",
+                        hint: "It was shivering under a bench.",
+                        choices: [
+                            "A cat",
+                            "A dog",
+                            "A squirrel",
+                            "A rabbit"
+                        ]
+                    },
+                    {
+                        prompt: "When did Lena take the shortcut?",
+                        hint: "Look for when she was walking home.",
+                        choices: [
+                            "After school",
+                            "Early in the morning",
+                            "Late at night",
+                            "During lunch"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why might the cat be shivering?",
+                        hint: "Think about the weather.",
+                        choices: [
+                            "It was cold outside",
+                            "It was hungry",
+                            "It was tired from running",
+                            "It liked to shake"
+                        ]
+                    },
+                    {
+                        prompt: "How might Lena feel when she sees the cat?",
+                        hint: "Think about seeing an animal in trouble.",
+                        choices: [
+                            "Worried or caring",
+                            "Angry",
+                            "Silly",
+                            "Confused about the weather"
+                        ]
+                    },
+                    {
+                        prompt: "Why did Lena stop walking?",
+                        hint: "Something made her pause.",
+                        choices: [
+                            "She noticed the cat",
+                            "She wanted to rest",
+                            "Her phone rang",
+                            "Someone called her name"
+                        ]
+                    },
+                    {
+                        prompt: "What problem is Lena unsure about?",
+                        hint: "Think about what she does not know how to handle.",
+                        choices: [
+                            "What to do about the cat",
+                            "Which coat to wear",
+                            "How to get home",
+                            "How to clean the snow"
+                        ]
+                    },
+                    {
+                        prompt: "How might the icy ground affect her plan?",
+                        hint: "Ice makes things harder to walk on.",
+                        choices: [
+                            "She might slip and move slowly",
+                            "She might fly a kite",
+                            "She might find more animals",
+                            "She might walk faster"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will Lena probably do to keep the cat safe?",
+                        hint: "Think about getting the cat somewhere warmer.",
+                        choices: [
+                            "She will look for an adult or a warm spot to help the cat",
+                            "She will leave the cat in the snow all night",
+                            "She will go ice skating with the cat",
+                            "She will ignore the cat and run home fast"
+                        ]
+                    },
+                    {
+                        prompt: "If the sidewalk stays blocked tomorrow, what will Lena most likely do?",
+                        hint: "She already tried a different path today.",
+                        choices: [
+                            "She will use the shortcut behind the library again",
+                            "She will skip school completely",
+                            "She will fly to class",
+                            "She will drive a bus herself"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "Look at the first sentence for the name.",
+                        slot: "character",
+                        choices: [
+                            "Lena",
+                            "Maya",
+                            "Mira",
+                            "Aria"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about why she tried the shortcut.",
+                        slot: "want",
+                        choices: [
+                            "Find a quick way home",
+                            "Buy a snack",
+                            "Build a snow fort",
+                            "Ride the bus"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "Something was in the way and very cold.",
+                        slot: "problem",
+                        choices: [
+                            "Snow blocked the sidewalk and the path was icy",
+                            "She forgot her homework",
+                            "The store was closed",
+                            "Her phone was loud"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "She stopped when she saw the cat.",
+                        slot: "solution",
+                        choices: [
+                            "She stopped and tried to call the cold cat closer",
+                            "She ran past everything",
+                            "She called a taxi",
+                            "She went back to school"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about what happened after she paused.",
+                        slot: "result",
+                        choices: [
+                            "She paused with the cat, still thinking what to do next",
+                            "She forgot about the cat",
+                            "She left the path right away",
+                            "She took a bus home"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "blocked",
+                        clue: "Stopped from moving through.",
+                        context: "The usual sidewalk was <span class=\"highlight-word\">blocked</span> by a large pile of snow.",
+                        choices: [
+                            "stopped",
+                            "open",
+                            "fast"
+                        ]
+                    },
+                    {
+                        word: "shortcut",
+                        clue: "A faster way.",
+                        context: "The <span class=\"highlight-word\">shortcut</span> led behind the old library.",
+                        choices: [
+                            "quick path",
+                            "long road",
+                            "busy place"
+                        ]
+                    },
+                    {
+                        word: "shivering",
+                        clue: "Your body shakes from cold.",
+                        context: "She saw a small stray cat <span class=\"highlight-word\">shivering</span> under a bench.",
+                        choices: [
+                            "shaking",
+                            "sleeping",
+                            "smiling"
+                        ]
+                    },
+                    {
+                        word: "unsure",
+                        clue: "Not certain.",
+                        context: "She stopped walking and tried to coax it toward her, <span class=\"highlight-word\">unsure</span> what to do next.",
+                        choices: [
+                            "not certain",
+                            "very confident",
+                            "loud"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "blocked",
+                        clue: "Something is in the way.",
+                        context: "The usual sidewalk was <span class=\"highlight-word\">blocked</span> by a large pile of snow.",
+                        choices: [
+                            "Not able to pass",
+                            "Easy to move through",
+                            "Moving quickly"
+                        ]
+                    },
+                    {
+                        word: "coax",
+                        clue: "Try to get someone to do something.",
+                        context: "She stopped walking and tried to <span class=\"highlight-word\">coax</span> it toward her.",
+                        choices: [
+                            "Gently urge someone",
+                            "Ignore someone",
+                            "Push someone away"
+                        ]
+                    },
+                    {
+                        word: "shivering",
+                        clue: "Your body is moving because of cold.",
+                        context: "She saw a small stray cat <span class=\"highlight-word\">shivering</span> under a bench.",
+                        choices: [
+                            "Standing still",
+                            "Shaking from cold",
+                            "Breathing fast"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Frozen Window Pattern",
+                image: "images/winter_short_story_comprehension_progressive/story_2.png",
+                alt: "Frost shapes on a bedroom window",
+                text: "Jamal woke up and saw strange patterns on his bedroom window. The frost made shapes that looked like trees and mountains. He pressed his hand to the glass and wondered if the shapes meant the weather was getting colder. His mom called him downstairs to help warm the car before school, but he kept thinking about the designs.",
+                literal: [
+                    {
+                        prompt: "Who saw the frost patterns?",
+                        hint: "Look for the name at the beginning.",
+                        choices: [
+                            "Jamal",
+                            "Eli",
+                            "Rowan",
+                            "Mateo"
+                        ]
+                    },
+                    {
+                        prompt: "What did Jamal see on his window?",
+                        hint: "It looked like trees and mountains.",
+                        choices: [
+                            "Frost patterns",
+                            "Rain drops",
+                            "Stickers",
+                            "Dirt"
+                        ]
+                    },
+                    {
+                        prompt: "Where was Jamal when he saw the shapes?",
+                        hint: "Think of a room in a house.",
+                        choices: [
+                            "His bedroom",
+                            "The kitchen",
+                            "The bus",
+                            "The library"
+                        ]
+                    },
+                    {
+                        prompt: "What did his mom ask him to help with?",
+                        hint: "It had to do with the car.",
+                        choices: [
+                            "Warming the car",
+                            "Washing the dishes",
+                            "Doing homework",
+                            "Feeding the dog"
+                        ]
+                    },
+                    {
+                        prompt: "When did this happen?",
+                        hint: "Think about when he woke up.",
+                        choices: [
+                            "In the morning",
+                            "At lunchtime",
+                            "Late at night",
+                            "After school"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why might the frost make shapes?",
+                        hint: "Cold air can freeze water on glass.",
+                        choices: [
+                            "Ice forms in patterns",
+                            "Someone drew on it",
+                            "It was painted",
+                            "Jamal scratched it"
+                        ]
+                    },
+                    {
+                        prompt: "How might Jamal feel when he sees the shapes?",
+                        hint: "Think about seeing something surprising.",
+                        choices: [
+                            "Curious",
+                            "Angry",
+                            "Bored",
+                            "Scared of noise"
+                        ]
+                    },
+                    {
+                        prompt: "Why does Jamal press his hand to the glass?",
+                        hint: "He is checking the temperature.",
+                        choices: [
+                            "To feel how cold it is",
+                            "To clean the window",
+                            "To block the sun",
+                            "To open it quickly"
+                        ]
+                    },
+                    {
+                        prompt: "What might Jamal be wondering about?",
+                        hint: "Think of weather changing.",
+                        choices: [
+                            "If it is getting colder",
+                            "If lunch is ready",
+                            "If he lost something",
+                            "If he should watch TV"
+                        ]
+                    },
+                    {
+                        prompt: "Why might the car need warming up?",
+                        hint: "Cars can be cold in winter.",
+                        choices: [
+                            "It is cold outside",
+                            "It is too hot",
+                            "It is covered in leaves",
+                            "It has no gas"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will Jamal likely do after helping warm the car?",
+                        hint: "Think about what was still on his mind.",
+                        choices: [
+                            "He will keep thinking about the frost patterns and maybe talk about them",
+                            "He will forget winter exists",
+                            "He will paint the whole window red",
+                            "He will refuse to go to school ever again"
+                        ]
+                    },
+                    {
+                        prompt: "If the frost shows up again tomorrow morning, what might Jamal do?",
+                        hint: "He is curious about the shapes.",
+                        choices: [
+                            "He will check the window for new shapes again",
+                            "He will cover the window so he cannot see it",
+                            "He will close his eyes all morning",
+                            "He will throw snowballs at the window"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "Check the start for the name.",
+                        slot: "character",
+                        choices: [
+                            "Jamal",
+                            "Eli",
+                            "Rowan",
+                            "Mateo"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about the frosty window.",
+                        slot: "want",
+                        choices: [
+                            "Know what the frost shapes meant",
+                            "Go back to sleep",
+                            "Open the window wide",
+                            "Find a lost toy"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "He had a question about the weather.",
+                        slot: "problem",
+                        choices: [
+                            "He did not know why the frost was there",
+                            "He forgot his lunch",
+                            "The window was broken",
+                            "He could not find his shoes"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "He tried to check the cold glass.",
+                        slot: "solution",
+                        choices: [
+                            "He touched the window and kept thinking while going to warm the car",
+                            "He yelled at the frost",
+                            "He wiped the whole window clean",
+                            "He ignored the frost"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about what he did after seeing the shapes.",
+                        slot: "result",
+                        choices: [
+                            "He went to help warm the car and still wondered about the designs",
+                            "He forgot all about the patterns",
+                            "He stayed home from school",
+                            "He broke the glass"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "patterns",
+                        clue: "Repeating designs.",
+                        context: "Jamal woke up and saw strange <span class=\"highlight-word\">patterns</span> on his bedroom window.",
+                        choices: [
+                            "designs",
+                            "sounds",
+                            "smells"
+                        ]
+                    },
+                    {
+                        word: "wondered",
+                        clue: "Had a question.",
+                        context: "He pressed his hand to the glass and <span class=\"highlight-word\">wondered</span> if the shapes meant the weather was getting colder.",
+                        choices: [
+                            "thought",
+                            "yelled",
+                            "ran"
+                        ]
+                    },
+                    {
+                        word: "strange",
+                        clue: "Not usual.",
+                        context: "Jamal woke up and saw <span class=\"highlight-word\">strange</span> patterns on his bedroom window.",
+                        choices: [
+                            "unusual",
+                            "normal",
+                            "boring"
+                        ]
+                    },
+                    {
+                        word: "colder",
+                        clue: "More cold.",
+                        context: "He wondered if the shapes meant the weather was getting <span class=\"highlight-word\">colder</span>.",
+                        choices: [
+                            "chillier",
+                            "brighter",
+                            "louder"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "patterns",
+                        clue: "Designs that show up again and again.",
+                        context: "Jamal woke up and saw strange <span class=\"highlight-word\">patterns</span> on his bedroom window.",
+                        choices: [
+                            "Repeating designs",
+                            "Random sounds",
+                            "Bright lights"
+                        ]
+                    },
+                    {
+                        word: "frost",
+                        clue: "A thin layer on very cold glass or ground.",
+                        context: "The <span class=\"highlight-word\">frost</span> made shapes that looked like trees and mountains.",
+                        choices: [
+                            "Hot air",
+                            "Thin ice",
+                            "Wet snow"
+                        ]
+                    },
+                    {
+                        word: "wondered",
+                        clue: "You have a question in your mind.",
+                        context: "He pressed his hand to the glass and <span class=\"highlight-word\">wondered</span> if the shapes meant the weather was getting colder.",
+                        choices: [
+                            "Thought or questioned",
+                            "Yelled loudly",
+                            "Forgot quickly"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Light in the Woods",
+                image: "images/winter_short_story_comprehension_progressive/story_3.png",
+                alt: "A glowing lantern under snowy trees",
+                text: "During a quiet walk in the woods, Mira noticed a soft blue light shining under the snow near a fallen log. She brushed the snow away and found a tiny lantern someone must have dropped. She wanted to return it, but she was not sure who it belonged to. She picked it up and headed toward the trail sign in case someone came looking.",
+                literal: [
+                    {
+                        prompt: "Who found the lantern?",
+                        hint: "Look for the girl's name.",
+                        choices: [
+                            "Mira",
+                            "Aria",
+                            "Tasha",
+                            "Lena"
+                        ]
+                    },
+                    {
+                        prompt: "What did Mira find under the snow?",
+                        hint: "It gave off light.",
+                        choices: [
+                            "A small lantern",
+                            "A book",
+                            "A hat",
+                            "A map"
+                        ]
+                    },
+                    {
+                        prompt: "Where was Mira walking?",
+                        hint: "Think of a outdoor place with trees.",
+                        choices: [
+                            "In the woods",
+                            "In a classroom",
+                            "In her kitchen",
+                            "In the store"
+                        ]
+                    },
+                    {
+                        prompt: "What covered the lantern at first?",
+                        hint: "It is cold and white.",
+                        choices: [
+                            "Snow",
+                            "Leaves",
+                            "Water",
+                            "Mud"
+                        ]
+                    },
+                    {
+                        prompt: "When did Mira plan to look for the owner?",
+                        hint: "She headed toward something that helps people find their way.",
+                        choices: [
+                            "When she walked to the trail sign",
+                            "When she got home",
+                            "When school ended",
+                            "When she reached the store"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why might someone have dropped the lantern?",
+                        hint: "Think of the woods.",
+                        choices: [
+                            "They lost it while walking",
+                            "They threw it for fun",
+                            "They did not like it",
+                            "It was broken on purpose"
+                        ]
+                    },
+                    {
+                        prompt: "How might Mira feel about finding it?",
+                        hint: "Think of finding something unexpected.",
+                        choices: [
+                            "Surprised",
+                            "Angry",
+                            "Worried about homework",
+                            "Sleepy"
+                        ]
+                    },
+                    {
+                        prompt: "Why does she take the lantern with her?",
+                        hint: "She wants to return it.",
+                        choices: [
+                            "To find the owner",
+                            "To play with it",
+                            "To hide it",
+                            "To sell it"
+                        ]
+                    },
+                    {
+                        prompt: "What problem does she face?",
+                        hint: "She does not know something important.",
+                        choices: [
+                            "She does not know who owns it",
+                            "She does not like the woods",
+                            "She forgot her phone",
+                            "She is too tired to walk"
+                        ]
+                    },
+                    {
+                        prompt: "Why might the light be special?",
+                        hint: "It was glowing under snow.",
+                        choices: [
+                            "It stayed bright even in the cold",
+                            "It was a toy",
+                            "It made loud sounds",
+                            "It changed colors every second"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will Mira probably do when she reaches the trail sign?",
+                        hint: "She wants to give the lantern back.",
+                        choices: [
+                            "She will wait near the sign to see if someone comes looking",
+                            "She will bury the lantern again",
+                            "She will throw the lantern into the air",
+                            "She will forget about the lantern and run home"
+                        ]
+                    },
+                    {
+                        prompt: "If no one comes for the lantern, what might Mira do next?",
+                        hint: "Think about who else could keep it safe.",
+                        choices: [
+                            "She will bring it to a park worker or another adult",
+                            "She will leave it in the snow forever",
+                            "She will smash it on a rock",
+                            "She will toss it in a river"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "Look for the girl who found the light.",
+                        slot: "character",
+                        choices: [
+                            "Mira",
+                            "Aria",
+                            "Tasha",
+                            "Lena"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about the lantern.",
+                        slot: "want",
+                        choices: [
+                            "Return the tiny lantern to its owner",
+                            "Hide the lantern",
+                            "Throw the lantern away",
+                            "Sell the lantern"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "She was not sure about something important.",
+                        slot: "problem",
+                        choices: [
+                            "She did not know who owned it",
+                            "She was late for lunch",
+                            "She lost her shoes",
+                            "She forgot the trail map"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "She moved toward a place with signs.",
+                        slot: "solution",
+                        choices: [
+                            "She picked it up and walked to the trail sign to find the owner",
+                            "She buried it in the snow",
+                            "She left it on the log",
+                            "She threw it in the air"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about what she hoped would happen next.",
+                        slot: "result",
+                        choices: [
+                            "She carried the lantern, hoping someone would come for it",
+                            "She forgot about the lantern",
+                            "She broke the lantern",
+                            "She dropped the lantern back in the snow"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "noticed",
+                        clue: "Saw.",
+                        context: "During a quiet walk in the woods, Mira <span class=\"highlight-word\">noticed</span> a soft blue light shining under the snow.",
+                        choices: [
+                            "saw",
+                            "forgot",
+                            "dropped"
+                        ]
+                    },
+                    {
+                        word: "glowing",
+                        clue: "Giving off light.",
+                        context: "She noticed a soft blue light <span class=\"highlight-word\">glowing</span> under the snow near a fallen log.",
+                        choices: [
+                            "shining",
+                            "dark",
+                            "quiet"
+                        ]
+                    },
+                    {
+                        word: "unsure",
+                        clue: "Not sure.",
+                        context: "She wanted to return it, but she was <span class=\"highlight-word\">unsure</span> who it belonged to.",
+                        choices: [
+                            "not sure",
+                            "ready",
+                            "proud"
+                        ]
+                    },
+                    {
+                        word: "trail",
+                        clue: "Path outdoors.",
+                        context: "She picked it up and headed toward the <span class=\"highlight-word\">trail</span> sign in case someone came looking.",
+                        choices: [
+                            "path",
+                            "room",
+                            "wall"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "lantern",
+                        clue: "A light you can carry.",
+                        context: "She brushed the snow away and found a tiny <span class=\"highlight-word\">lantern</span> someone must have dropped.",
+                        choices: [
+                            "A light you hold",
+                            "A tool for digging",
+                            "A warm coat"
+                        ]
+                    },
+                    {
+                        word: "glowing",
+                        clue: "It gives off a soft light.",
+                        context: "She noticed a soft blue light <span class=\"highlight-word\">glowing</span> under the snow near a fallen log.",
+                        choices: [
+                            "Making soft light",
+                            "Making loud sound",
+                            "Making strong wind"
+                        ]
+                    },
+                    {
+                        word: "trail",
+                        clue: "An outside path people follow.",
+                        context: "She picked it up and headed toward the <span class=\"highlight-word\">trail</span> sign in case someone came looking.",
+                        choices: [
+                            "An outside path",
+                            "A big wall",
+                            "A high mountain"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Skating Lesson",
+                image: "images/winter_short_story_comprehension_progressive/story_4.png",
+                alt: "Two people ice skating at an outdoor rink",
+                text: "Eli agreed to help his younger cousin learn how to ice skate at the outdoor rink. The ice was a little bumpy from last night's snow, and they both slipped a few times. Eli tried to stay patient and showed his cousin how to glide instead of stepping. His cousin held tightly to his coat, afraid of falling again.",
+                literal: [
+                    {
+                        prompt: "Who is helping his cousin skate?",
+                        hint: "Look for the older boy's name.",
+                        choices: [
+                            "Eli",
+                            "Jamal",
+                            "Rowan",
+                            "Weston"
+                        ]
+                    },
+                    {
+                        prompt: "What are they trying to do?",
+                        hint: "Think of the ice.",
+                        choices: [
+                            "Learn to skate",
+                            "Do homework",
+                            "Build a snowman",
+                            "Ride bikes"
+                        ]
+                    },
+                    {
+                        prompt: "Where are they practicing?",
+                        hint: "It is outside.",
+                        choices: [
+                            "At an outdoor rink",
+                            "At school",
+                            "In a gym",
+                            "In the backyard"
+                        ]
+                    },
+                    {
+                        prompt: "What made the ice harder to skate on?",
+                        hint: "Snow fell last night.",
+                        choices: [
+                            "It was bumpy",
+                            "It was colorful",
+                            "It was warm",
+                            "It was dry"
+                        ]
+                    },
+                    {
+                        prompt: "What does the cousin hold onto?",
+                        hint: "He is scared of falling.",
+                        choices: [
+                            "Eli's coat",
+                            "A tree",
+                            "A bench",
+                            "A rope"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why might the cousin be nervous?",
+                        hint: "Think of ice.",
+                        choices: [
+                            "He does not want to fall",
+                            "He wants a snack",
+                            "He is cold",
+                            "He lost his phone"
+                        ]
+                    },
+                    {
+                        prompt: "How is Eli showing patience?",
+                        hint: "He is helping step-by-step.",
+                        choices: [
+                            "Teaching calmly",
+                            "Yelling loudly",
+                            "Skating away",
+                            "Sitting down"
+                        ]
+                    },
+                    {
+                        prompt: "Why do they slip sometimes?",
+                        hint: "Think about the condition of the ice.",
+                        choices: [
+                            "The ice is uneven",
+                            "Their shoes are too big",
+                            "The rink is too warm",
+                            "They are running"
+                        ]
+                    },
+                    {
+                        prompt: "How might the cousin feel when Eli helps him?",
+                        hint: "Think of someone helping you.",
+                        choices: [
+                            "Safe",
+                            "Angry",
+                            "Confused",
+                            "Silly"
+                        ]
+                    },
+                    {
+                        prompt: "Why are they practicing at the rink instead of somewhere else?",
+                        hint: "Ice is needed.",
+                        choices: [
+                            "The rink has ice to skate on",
+                            "It is close to a store",
+                            "It has warm benches",
+                            "It is the only place open"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will Eli keep doing to help his cousin skate?",
+                        hint: "Think about how he was teaching.",
+                        choices: [
+                            "He will keep guiding him to glide smoothly and stay patient",
+                            "He will stop helping and play video games",
+                            "He will make the ice bumpier on purpose",
+                            "He will push his cousin so he falls"
+                        ]
+                    },
+                    {
+                        prompt: "After some practice, what might his cousin be able to do?",
+                        hint: "Think about improving on the ice.",
+                        choices: [
+                            "He will skate with more balance on his own",
+                            "He will forget how to stand",
+                            "He will fly off the rink",
+                            "He will never step on ice again"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "He was the older helper.",
+                        slot: "character",
+                        choices: [
+                            "Eli",
+                            "Jamal",
+                            "Rowan",
+                            "Weston"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about the ice lesson.",
+                        slot: "want",
+                        choices: [
+                            "Help his cousin learn to skate",
+                            "Buy skates at a store",
+                            "Watch a movie",
+                            "Build a snow fort"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "The ice did not make it easy.",
+                        slot: "problem",
+                        choices: [
+                            "The ice was bumpy and his cousin kept slipping",
+                            "They had no helmets",
+                            "They were hungry",
+                            "They had no music"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "He showed how to move feet smoothly.",
+                        slot: "solution",
+                        choices: [
+                            "He stayed patient and showed how to glide",
+                            "He stopped the lesson",
+                            "He left the rink",
+                            "He told his cousin to skate alone"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about the cousin's next step.",
+                        slot: "result",
+                        choices: [
+                            "His cousin held his coat and kept trying to skate",
+                            "His cousin quit right away",
+                            "They went home angry",
+                            "They took off their skates forever"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "agreed",
+                        clue: "Said yes.",
+                        context: "Eli <span class=\"highlight-word\">agreed</span> to help his younger cousin learn how to ice skate.",
+                        choices: [
+                            "said yes",
+                            "argued",
+                            "ignored"
+                        ]
+                    },
+                    {
+                        word: "bumpy",
+                        clue: "Not smooth.",
+                        context: "The ice was a little <span class=\"highlight-word\">bumpy</span> from last night's snow.",
+                        choices: [
+                            "uneven",
+                            "smooth",
+                            "soft"
+                        ]
+                    },
+                    {
+                        word: "patient",
+                        clue: "Calm while waiting.",
+                        context: "Eli tried to stay <span class=\"highlight-word\">patient</span> and showed his cousin how to glide.",
+                        choices: [
+                            "calm",
+                            "rushed",
+                            "angry"
+                        ]
+                    },
+                    {
+                        word: "afraid",
+                        clue: "Scared.",
+                        context: "His cousin held tightly to his coat, <span class=\"highlight-word\">afraid</span> of falling again.",
+                        choices: [
+                            "scared",
+                            "excited",
+                            "bored"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "glide",
+                        clue: "Move smoothly.",
+                        context: "He showed his cousin how to <span class=\"highlight-word\">glide</span> instead of stepping.",
+                        choices: [
+                            "Move smooth and easy",
+                            "Jump in place",
+                            "Stop suddenly"
+                        ]
+                    },
+                    {
+                        word: "bumpy",
+                        clue: "It has small bumps.",
+                        context: "The ice was a little <span class=\"highlight-word\">bumpy</span> from last night's snow.",
+                        choices: [
+                            "Smooth and flat",
+                            "Uneven with bumps",
+                            "Very shiny"
+                        ]
+                    },
+                    {
+                        word: "patient",
+                        clue: "Calm while waiting.",
+                        context: "Eli tried to stay <span class=\"highlight-word\">patient</span> and showed his cousin how to glide.",
+                        choices: [
+                            "Calm and willing to wait",
+                            "Angry right away",
+                            "Talking nonstop"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Missing Mittens",
+                image: "images/winter_short_story_comprehension_progressive/story_5.png",
+                alt: "A student locker with winter mittens missing",
+                text: "Aria opened her locker before recess and realized her mittens were gone. She needed them because the class planned to build snow shelters outside. She checked under her books and in her backpack, but they were not there. Her friend Weston suggested looking in the lost and found before the class went out.",
+                literal: [
+                    {
+                        prompt: "Who lost her mittens?",
+                        hint: "Look for her name.",
+                        choices: [
+                            "Aria",
+                            "Mira",
+                            "Erin",
+                            "Tasha"
+                        ]
+                    },
+                    {
+                        prompt: "What were the students planning to build?",
+                        hint: "They go outside in the snow.",
+                        choices: [
+                            "Snow shelters",
+                            "Snowmen",
+                            "Snowballs",
+                            "Snow forts in a video game"
+                        ]
+                    },
+                    {
+                        prompt: "Where did Aria look first?",
+                        hint: "A place where school things go.",
+                        choices: [
+                            "Her locker",
+                            "The office",
+                            "The gym",
+                            "The bus"
+                        ]
+                    },
+                    {
+                        prompt: "Who gave her an idea?",
+                        hint: "Look for a friend in the story.",
+                        choices: [
+                            "Weston",
+                            "Eli",
+                            "Jamal",
+                            "Rowan"
+                        ]
+                    },
+                    {
+                        prompt: "When did Aria notice the mittens were gone?",
+                        hint: "Think about before recess.",
+                        choices: [
+                            "Before recess",
+                            "After school",
+                            "At breakfast",
+                            "At night"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why does Aria need the mittens?",
+                        hint: "Think about the cold activity.",
+                        choices: [
+                            "To stay warm outside",
+                            "To play video games",
+                            "To clean her locker",
+                            "To write a story"
+                        ]
+                    },
+                    {
+                        prompt: "How might Aria feel when she cannot find them?",
+                        hint: "Think of losing something you need.",
+                        choices: [
+                            "Worried",
+                            "Excited",
+                            "Bored",
+                            "Proud"
+                        ]
+                    },
+                    {
+                        prompt: "Why might the mittens be in the lost and found?",
+                        hint: "Think of things people misplace.",
+                        choices: [
+                            "Someone picked them up",
+                            "She put them there on purpose",
+                            "The teacher hid them",
+                            "They melted"
+                        ]
+                    },
+                    {
+                        prompt: "How is Weston helping her?",
+                        hint: "He gives her an idea.",
+                        choices: [
+                            "Suggesting where to look",
+                            "Taking her mittens",
+                            "Telling her to go home",
+                            "Hiding things"
+                        ]
+                    },
+                    {
+                        prompt: "Why might it be important for Aria to solve the problem quickly?",
+                        hint: "Think about recess coming soon.",
+                        choices: [
+                            "Recess is starting soon",
+                            "She wants to nap",
+                            "She wants to read a book",
+                            "She wants to take the bus"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will Aria likely do before recess starts?",
+                        hint: "Think about Weston's idea.",
+                        choices: [
+                            "She will go to the lost and found to look for her mittens",
+                            "She will decide not to play outside at all",
+                            "She will throw away her coat",
+                            "She will ask to skip recess forever"
+                        ]
+                    },
+                    {
+                        prompt: "If she finds her mittens, what will she do outside?",
+                        hint: "Remember the class plan for recess.",
+                        choices: [
+                            "She will wear them while building the snow shelters",
+                            "She will keep them in her desk and stay indoors",
+                            "She will trade them for candy",
+                            "She will bury them in the snow"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "Look for the student who lost something.",
+                        slot: "character",
+                        choices: [
+                            "Aria",
+                            "Mira",
+                            "Erin",
+                            "Tasha"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about recess plans.",
+                        slot: "want",
+                        choices: [
+                            "Find her mittens for the snow shelter activity",
+                            "Get a new backpack",
+                            "Skip recess",
+                            "Hide in the classroom"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "She could not find something warm.",
+                        slot: "problem",
+                        choices: [
+                            "Her mittens were missing from her locker",
+                            "Her coat was too big",
+                            "The bell was broken",
+                            "The snow melted"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "She searched and listened to a friend's idea.",
+                        slot: "solution",
+                        choices: [
+                            "She checked her locker and backpack and planned to look in the lost and found with Weston",
+                            "She stayed at her desk",
+                            "She asked the teacher to cancel recess",
+                            "She went outside without any mittens"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about the next place she would go.",
+                        slot: "result",
+                        choices: [
+                            "She got ready to go to the lost and found before recess",
+                            "She forgot about the mittens",
+                            "She found them in the gym",
+                            "She went home instead of to recess"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "realized",
+                        clue: "Understood suddenly.",
+                        context: "Aria opened her locker before recess and <span class=\"highlight-word\">realized</span> her mittens were gone.",
+                        choices: [
+                            "understood",
+                            "forgot",
+                            "hid"
+                        ]
+                    },
+                    {
+                        word: "checked",
+                        clue: "Looked at carefully.",
+                        context: "She <span class=\"highlight-word\">checked</span> under her books and in her backpack.",
+                        choices: [
+                            "looked",
+                            "slept",
+                            "broke"
+                        ]
+                    },
+                    {
+                        word: "suggested",
+                        clue: "Offered an idea.",
+                        context: "Her friend Weston <span class=\"highlight-word\">suggested</span> looking in the lost and found.",
+                        choices: [
+                            "recommended",
+                            "refused",
+                            "grabbed"
+                        ]
+                    },
+                    {
+                        word: "missing",
+                        clue: "Lost.",
+                        context: "Aria opened her locker before recess and realized her mittens were <span class=\"highlight-word\">missing</span>.",
+                        choices: [
+                            "lost",
+                            "clean",
+                            "new"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "realized",
+                        clue: "You suddenly know something.",
+                        context: "Aria opened her locker before recess and <span class=\"highlight-word\">realized</span> her mittens were gone.",
+                        choices: [
+                            "Now understand",
+                            "Pretend not to see",
+                            "Lose something"
+                        ]
+                    },
+                    {
+                        word: "shelters",
+                        clue: "Places that protect you.",
+                        context: "She needed them because the class planned to build snow <span class=\"highlight-word\">shelters</span> outside.",
+                        choices: [
+                            "Safe places",
+                            "Fun toys",
+                            "Snow decorations"
+                        ]
+                    },
+                    {
+                        word: "suggested",
+                        clue: "Gave an idea.",
+                        context: "Her friend Weston <span class=\"highlight-word\">suggested</span> looking in the lost and found before the class went out.",
+                        choices: [
+                            "Offered an idea",
+                            "Said no to everything",
+                            "Took something away"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Quiet Bus Ride",
+                image: "images/winter_short_story_comprehension_progressive/story_6.png",
+                alt: "A school bus driving on snowy roads",
+                text: "The school bus moved slowly on the snowy roads. Most students were silent, watching the tall piles of snow pass by. Maya noticed the driver looked tired from concentrating so much. She decided to sit still and avoid talking so the bus stayed calm. She hoped everyone would get home safely.",
+                literal: [
+                    {
+                        prompt: "Who is watching the driver carefully?",
+                        hint: "A girl on the bus.",
+                        choices: [
+                            "Maya",
+                            "Aria",
+                            "Mira",
+                            "Tasha"
+                        ]
+                    },
+                    {
+                        prompt: "What vehicle are they riding in?",
+                        hint: "It carries many students.",
+                        choices: [
+                            "A school bus",
+                            "A car",
+                            "A train",
+                            "A bike"
+                        ]
+                    },
+                    {
+                        prompt: "Where are the students looking?",
+                        hint: "Think of winter weather outside.",
+                        choices: [
+                            "Out the windows",
+                            "At the ceiling",
+                            "At the driver's chair",
+                            "Under the seats"
+                        ]
+                    },
+                    {
+                        prompt: "What is outside the bus?",
+                        hint: "Think of winter.",
+                        choices: [
+                            "Tall piles of snow",
+                            "A swimming pool",
+                            "A playground",
+                            "A park in summer"
+                        ]
+                    },
+                    {
+                        prompt: "When do the students ride the bus?",
+                        hint: "Think of going home or to school.",
+                        choices: [
+                            "During a school day",
+                            "At midnight",
+                            "During a field trip",
+                            "After dinner"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why might the driver look tired?",
+                        hint: "Think of hard winter driving.",
+                        choices: [
+                            "Driving in snow is hard",
+                            "He did not eat lunch",
+                            "He wants to watch TV",
+                            "He is sleepy from reading"
+                        ]
+                    },
+                    {
+                        prompt: "How might Maya feel seeing the driver so focused?",
+                        hint: "Think of wanting to help.",
+                        choices: [
+                            "Respectful and calm",
+                            "Angry",
+                            "Bored",
+                            "Wild and silly"
+                        ]
+                    },
+                    {
+                        prompt: "Why does Maya stay quiet?",
+                        hint: "She wants the ride to stay safe.",
+                        choices: [
+                            "To help keep the bus calm",
+                            "To hide from someone",
+                            "To take a nap",
+                            "To look for her homework"
+                        ]
+                    },
+                    {
+                        prompt: "Why might the bus be moving slowly?",
+                        hint: "Think of the road conditions.",
+                        choices: [
+                            "Snow makes the roads slippery",
+                            "The driver likes slow music",
+                            "The bus is almost broken",
+                            "The bus is too full"
+                        ]
+                    },
+                    {
+                        prompt: "How could loud talking affect the driver?",
+                        hint: "Think about distractions.",
+                        choices: [
+                            "It could distract him",
+                            "It could help him focus",
+                            "It could clean the windows",
+                            "It could warm up the bus"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will Maya keep doing during the snowy bus ride?",
+                        hint: "She wanted the bus to stay calm.",
+                        choices: [
+                            "She will stay quiet and still so the driver can focus",
+                            "She will start shouting songs",
+                            "She will stand up and dance",
+                            "She will tell jokes loudly to everyone"
+                        ]
+                    },
+                    {
+                        prompt: "When the bus reaches the students' stops, what will probably happen?",
+                        hint: "Think about the goal of a careful ride.",
+                        choices: [
+                            "Everyone will get off safely because the ride stayed calm",
+                            "The bus will drive past everyone on purpose",
+                            "No one will be allowed to leave",
+                            "The students will start a snowball fight inside the bus"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "Look for the student watching the driver.",
+                        slot: "character",
+                        choices: [
+                            "Maya",
+                            "Aria",
+                            "Mira",
+                            "Tasha"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about the bus ride.",
+                        slot: "want",
+                        choices: [
+                            "Keep the bus calm and safe on the snowy ride",
+                            "Make the bus go faster",
+                            "Tell jokes to everyone",
+                            "Open all the windows"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "The weather made riding tricky.",
+                        slot: "problem",
+                        choices: [
+                            "The snowy roads made the driver tired and busy",
+                            "The bus had no seats",
+                            "The lights were too bright",
+                            "The heater was too loud"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "She tried to help by what she did with her voice and body.",
+                        slot: "solution",
+                        choices: [
+                            "She sat still and stayed quiet to help",
+                            "She sang loudly",
+                            "She asked to drive the bus",
+                            "She jumped in the aisle"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about the bus mood after she decided to be calm.",
+                        slot: "result",
+                        choices: [
+                            "The bus stayed quiet while she hoped everyone got home safely",
+                            "The bus became wild and loud",
+                            "Everyone got off the bus right away",
+                            "She left the bus in the snow"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "quiet",
+                        clue: "Very still or silent.",
+                        context: "Most students were silent, making the bus feel <span class=\"highlight-word\">quiet</span> during the snowy ride.",
+                        choices: [
+                            "silent",
+                            "noisy",
+                            "crowded"
+                        ]
+                    },
+                    {
+                        word: "noticed",
+                        clue: "Saw.",
+                        context: "Maya <span class=\"highlight-word\">noticed</span> the driver looked tired from concentrating so much.",
+                        choices: [
+                            "saw",
+                            "ignored",
+                            "dropped"
+                        ]
+                    },
+                    {
+                        word: "calm",
+                        clue: "Relaxed and steady.",
+                        context: "She decided to sit still and avoid talking so the bus stayed <span class=\"highlight-word\">calm</span>.",
+                        choices: [
+                            "relaxed",
+                            "upset",
+                            "loud"
+                        ]
+                    },
+                    {
+                        word: "slowly",
+                        clue: "Not fast.",
+                        context: "The school bus moved <span class=\"highlight-word\">slowly</span> on the snowy roads.",
+                        choices: [
+                            "not fast",
+                            "quickly",
+                            "suddenly"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "piles",
+                        clue: "A lot of something stacked up.",
+                        context: "Most students were silent, watching the tall <span class=\"highlight-word\">piles</span> of snow pass by.",
+                        choices: [
+                            "A tall stack",
+                            "A tiny piece",
+                            "A flat space"
+                        ]
+                    },
+                    {
+                        word: "concentrating",
+                        clue: "Focusing your mind.",
+                        context: "Maya noticed the driver looked tired from <span class=\"highlight-word\">concentrating</span> so much.",
+                        choices: [
+                            "Focusing hard",
+                            "Sleeping lightly",
+                            "Talking fast"
+                        ]
+                    },
+                    {
+                        word: "calm",
+                        clue: "Quiet and relaxed.",
+                        context: "She decided to sit still and avoid talking so the bus stayed <span class=\"highlight-word\">calm</span>.",
+                        choices: [
+                            "Relaxed",
+                            "Nervous",
+                            "Wild and loud"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Warm Coat Exchange",
+                image: "images/winter_short_story_comprehension_progressive/story_7.png",
+                alt: "Kids trading winter coats at a community center",
+                text: "At the community center, kids were trading winter items that no longer fit them. Mateo brought a coat that was too small and hoped to find a better one. He spotted a thick red coat on the rack, but another boy reached for it at the same time. They both paused, unsure who should take it.",
+                literal: [
+                    {
+                        prompt: "Who is trying to find a new coat?",
+                        hint: "Look for the boy's name.",
+                        choices: [
+                            "Mateo",
+                            "Eli",
+                            "Rowan",
+                            "Jamal"
+                        ]
+                    },
+                    {
+                        prompt: "What kind of place are they in?",
+                        hint: "It is open to the public.",
+                        choices: [
+                            "A community center",
+                            "A movie theater",
+                            "A bus",
+                            "A diner"
+                        ]
+                    },
+                    {
+                        prompt: "What color is the coat both boys reach for?",
+                        hint: "A bright color.",
+                        choices: [
+                            "Red",
+                            "Green",
+                            "Blue",
+                            "Black"
+                        ]
+                    },
+                    {
+                        prompt: "What are kids doing at the event?",
+                        hint: "They bring clothing that does not fit.",
+                        choices: [
+                            "Trading winter items",
+                            "Buying snacks",
+                            "Playing games",
+                            "Singing songs"
+                        ]
+                    },
+                    {
+                        prompt: "When do Mateo and the other boy pause?",
+                        hint: "They both reach at the same time.",
+                        choices: [
+                            "When they both grab the coat",
+                            "When the lights turn off",
+                            "When the teacher calls them",
+                            "When music starts"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why do they both pause?",
+                        hint: "Think of reaching at the same time.",
+                        choices: [
+                            "They are unsure who should take it",
+                            "They want to argue",
+                            "They do not like the coat",
+                            "The coat is too heavy"
+                        ]
+                    },
+                    {
+                        prompt: "How might Mateo feel about this moment?",
+                        hint: "He wanted the coat.",
+                        choices: [
+                            "Unsure or shy",
+                            "Angry at everyone",
+                            "Sleepy",
+                            "Excited to leave"
+                        ]
+                    },
+                    {
+                        prompt: "Why might a coat trade be helpful?",
+                        hint: "Clothes get too small.",
+                        choices: [
+                            "Kids grow and need new sizes",
+                            "It makes coats taste better",
+                            "It helps with homework",
+                            "It makes kids taller"
+                        ]
+                    },
+                    {
+                        prompt: "Why might the other boy want the same coat?",
+                        hint: "Think about winter needs.",
+                        choices: [
+                            "It fits him well",
+                            "He wants to collect coats",
+                            "He wants to prank someone",
+                            "He wants to sell it"
+                        ]
+                    },
+                    {
+                        prompt: "What could Mateo do next?",
+                        hint: "Think of sharing or talking.",
+                        choices: [
+                            "Talk with the boy to decide",
+                            "Grab the coat fast",
+                            "Walk away angry",
+                            "Hide the coat"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will Mateo and the other boy likely do after they pause?",
+                        hint: "Think about solving the coat choice together.",
+                        choices: [
+                            "They will talk it out and decide who should take the red coat",
+                            "They will both rip the coat apart",
+                            "They will throw the coat outside in the snow",
+                            "They will leave without any coats"
+                        ]
+                    },
+                    {
+                        prompt: "If the red coat does not fit Mateo, what will he probably do?",
+                        hint: "He still needs a warmer coat.",
+                        choices: [
+                            "He will look for another coat that fits at the exchange",
+                            "He will give up on getting any coat",
+                            "He will wear his too-small coat forever",
+                            "He will stop coming to the center"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "He brought a too-small coat.",
+                        slot: "character",
+                        choices: [
+                            "Mateo",
+                            "Eli",
+                            "Rowan",
+                            "Jamal"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about why he came to the exchange.",
+                        slot: "want",
+                        choices: [
+                            "Find a warm coat that fit",
+                            "Buy a hat",
+                            "Get candy",
+                            "Play a video game"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "Someone else wanted the same coat.",
+                        slot: "problem",
+                        choices: [
+                            "Another boy reached for the same red coat",
+                            "The coats were all wet",
+                            "The room was closed",
+                            "No one else was there"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "They paused together.",
+                        slot: "solution",
+                        choices: [
+                            "They both paused to talk and decide who should take it",
+                            "Mateo grabbed the coat and ran",
+                            "They left the coat on the floor",
+                            "Mateo went home angry"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about choosing fairly.",
+                        slot: "result",
+                        choices: [
+                            "They could decide together so someone got the coat",
+                            "No one ever got a coat",
+                            "The coat disappeared",
+                            "They stopped being polite"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "exchange",
+                        clue: "Trade.",
+                        context: "At the community center, kids were trading winter items at the coat <span class=\"highlight-word\">exchange</span>.",
+                        choices: [
+                            "trade",
+                            "break",
+                            "hide"
+                        ]
+                    },
+                    {
+                        word: "paused",
+                        clue: "Stopped briefly.",
+                        context: "They both <span class=\"highlight-word\">paused</span>, unsure who should take it.",
+                        choices: [
+                            "stopped",
+                            "ran",
+                            "shouted"
+                        ]
+                    },
+                    {
+                        word: "thick",
+                        clue: "Heavy or not thin.",
+                        context: "He spotted a <span class=\"highlight-word\">thick</span> red coat on the rack.",
+                        choices: [
+                            "heavy",
+                            "thin",
+                            "tiny"
+                        ]
+                    },
+                    {
+                        word: "unsure",
+                        clue: "Not certain.",
+                        context: "They both paused, <span class=\"highlight-word\">unsure</span> who should take it.",
+                        choices: [
+                            "uncertain",
+                            "confident",
+                            "ready"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "exchange",
+                        clue: "Trade with someone.",
+                        context: "At the community center, kids were at a coat <span class=\"highlight-word\">exchange</span> for winter items.",
+                        choices: [
+                            "Trade items",
+                            "Break items",
+                            "Hide items"
+                        ]
+                    },
+                    {
+                        word: "fit",
+                        clue: "The right size.",
+                        context: "Mateo brought a coat that was too small and hoped to find one that would <span class=\"highlight-word\">fit</span>.",
+                        choices: [
+                            "The size that works",
+                            "Too heavy to lift",
+                            "Only worn for parties"
+                        ]
+                    },
+                    {
+                        word: "paused",
+                        clue: "Stopped for a short time.",
+                        context: "They both <span class=\"highlight-word\">paused</span>, unsure who should take it.",
+                        choices: [
+                            "Stopped briefly",
+                            "Ran fast",
+                            "Dropped something"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Frozen Pond Discovery",
+                image: "images/winter_short_story_comprehension_progressive/story_8.png",
+                alt: "Two kids standing on a frozen pond",
+                text: "When the pond froze over, two friends, Tasha and Erin, walked across the surface near the shallow end. Light snow fell as they moved carefully. They spotted something dark under the ice. At first they thought it was a branch, but then they realized it was an old fishing net someone left behind. They wondered if they should try to pull it out or leave it for an adult.",
+                literal: [
+                    {
+                        prompt: "Who is walking on the frozen pond?",
+                        hint: "Two friends.",
+                        choices: [
+                            "Tasha and Erin",
+                            "Mira and Aria",
+                            "Lena and Eli",
+                            "Rowan and Mateo"
+                        ]
+                    },
+                    {
+                        prompt: "What do they see under the ice?",
+                        hint: "Not a branch after all.",
+                        choices: [
+                            "A fishing net",
+                            "A fish",
+                            "A phone",
+                            "A toy"
+                        ]
+                    },
+                    {
+                        prompt: "Where are they walking?",
+                        hint: "Solid water.",
+                        choices: [
+                            "On a frozen pond",
+                            "On a sidewalk",
+                            "In the cafeteria",
+                            "On a roof"
+                        ]
+                    },
+                    {
+                        prompt: "What is falling during their walk?",
+                        hint: "It is winter.",
+                        choices: [
+                            "Light snow",
+                            "Heavy rain",
+                            "Leaves",
+                            "Dust"
+                        ]
+                    },
+                    {
+                        prompt: "When do they try to figure out what to do?",
+                        hint: "After seeing the object.",
+                        choices: [
+                            "After noticing the net",
+                            "Before walking outside",
+                            "After going home",
+                            "Before eating lunch"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why might the net be under the ice?",
+                        hint: "Think of fishing.",
+                        choices: [
+                            "Someone left it there",
+                            "It grew from the ice",
+                            "It fell from a tree",
+                            "It is a toy"
+                        ]
+                    },
+                    {
+                        prompt: "How might the girls feel when they see it?",
+                        hint: "Something surprising.",
+                        choices: [
+                            "Curious",
+                            "Angry",
+                            "Sleepy",
+                            "Hungry"
+                        ]
+                    },
+                    {
+                        prompt: "Why do they wonder whether to pull it out?",
+                        hint: "Think about safety.",
+                        choices: [
+                            "They do not know if it is safe",
+                            "They want to hurt the ice",
+                            "They want to play a game",
+                            "They want to race"
+                        ]
+                    },
+                    {
+                        prompt: "How might the shallow part help them?",
+                        hint: "Not deep water.",
+                        choices: [
+                            "It may be safer to stand on",
+                            "It makes the ice melt faster",
+                            "It makes them run faster",
+                            "It keeps things hidden"
+                        ]
+                    },
+                    {
+                        prompt: "Why might an adult need to help?",
+                        hint: "Adults handle tricky situations.",
+                        choices: [
+                            "To safely remove the net",
+                            "To take pictures",
+                            "To build a snowman",
+                            "To teach a math lesson"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will Tasha and Erin probably do about the net?",
+                        hint: "They were thinking about safety.",
+                        choices: [
+                            "They will ask an adult to help decide what to do",
+                            "They will jump on the ice without thinking",
+                            "They will forget about the net forever",
+                            "They will push each other toward it"
+                        ]
+                    },
+                    {
+                        prompt: "If an adult says it's safe to move the net, what might they do next?",
+                        hint: "Think about removing it carefully.",
+                        choices: [
+                            "They will carefully pull it out together near the shallow end",
+                            "They will kick the ice until it breaks apart",
+                            "They will leave the net frozen for years",
+                            "They will throw snowballs at the net for fun"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "Two friends on the ice.",
+                        slot: "character",
+                        choices: [
+                            "Tasha and Erin",
+                            "Mira and Aria",
+                            "Lena and Eli",
+                            "Rowan and Mateo"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about their walk on the frozen pond.",
+                        slot: "want",
+                        choices: [
+                            "Explore the frozen pond safely",
+                            "Swim in the pond",
+                            "Ride bikes on the ice",
+                            "Build a house there"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "They saw something under the ice.",
+                        slot: "problem",
+                        choices: [
+                            "They found an old net under the ice and were not sure if it was safe to move",
+                            "The ice was melting fast",
+                            "They dropped their skates",
+                            "It started to rain hard"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "They thought about who should help.",
+                        slot: "solution",
+                        choices: [
+                            "They thought about asking an adult before pulling it out",
+                            "They jumped on the net",
+                            "They ignored the net",
+                            "They ran home right away without thinking"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about their next safe step.",
+                        slot: "result",
+                        choices: [
+                            "They planned to ask an adult for help",
+                            "They left the pond forever",
+                            "They kept the net secret",
+                            "They used the net as a game"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "spotted",
+                        clue: "Saw.",
+                        context: "They <span class=\"highlight-word\">spotted</span> something dark under the ice.",
+                        choices: [
+                            "saw",
+                            "lost",
+                            "forgot"
+                        ]
+                    },
+                    {
+                        word: "shallow",
+                        clue: "Not deep.",
+                        context: "They walked across the surface near the <span class=\"highlight-word\">shallow</span> end.",
+                        choices: [
+                            "not deep",
+                            "dark",
+                            "wide"
+                        ]
+                    },
+                    {
+                        word: "wondered",
+                        clue: "Thought about.",
+                        context: "They <span class=\"highlight-word\">wondered</span> if they should try to pull it out or leave it for an adult.",
+                        choices: [
+                            "thought",
+                            "yelled",
+                            "jumped"
+                        ]
+                    },
+                    {
+                        word: "left behind",
+                        clue: "Forgotten.",
+                        context: "They realized it was an old fishing net someone had <span class=\"highlight-word\">left behind</span>.",
+                        choices: [
+                            "forgotten",
+                            "cleaned",
+                            "fixed"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "shallow",
+                        clue: "Not deep.",
+                        context: "They walked across the surface near the <span class=\"highlight-word\">shallow</span> end.",
+                        choices: [
+                            "Not deep",
+                            "Very deep",
+                            "Hard to see through"
+                        ]
+                    },
+                    {
+                        word: "visible",
+                        clue: "It is not hidden; you can spot it.",
+                        context: "They spotted something dark under the ice, barely <span class=\"highlight-word\">visible</span>.",
+                        choices: [
+                            "Able to be seen",
+                            "Hidden",
+                            "Floating away"
+                        ]
+                    },
+                    {
+                        word: "realized",
+                        clue: "You suddenly understand something.",
+                        context: "At first they thought it was a branch, but then they <span class=\"highlight-word\">realized</span> it was an old fishing net.",
+                        choices: [
+                            "Understood something",
+                            "Forgot something",
+                            "Missed something"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Storm at Lunch",
+                image: "images/winter_short_story_comprehension_progressive/story_9.png",
+                alt: "Students at lunch hearing about a snowstorm",
+                text: "During lunch, the school announced that a sudden snowstorm was coming. Students were told they might have to leave early. Rowan felt excited at first, but then worried because his younger sister needed to be picked up from her school. He checked his phone to see if his parents had texted.",
+                literal: [
+                    {
+                        prompt: "Who is worried about his sister?",
+                        hint: "Look for the boy's name.",
+                        choices: [
+                            "Rowan",
+                            "Eli",
+                            "Jamal",
+                            "Weston"
+                        ]
+                    },
+                    {
+                        prompt: "What did the school announce?",
+                        hint: "Something about weather.",
+                        choices: [
+                            "A sudden snowstorm",
+                            "A new club",
+                            "A field trip",
+                            "A fire drill"
+                        ]
+                    },
+                    {
+                        prompt: "Where is Rowan when he hears the news?",
+                        hint: "Students eat there.",
+                        choices: [
+                            "The cafeteria",
+                            "The bus",
+                            "The gym",
+                            "The office"
+                        ]
+                    },
+                    {
+                        prompt: "What does Rowan check?",
+                        hint: "A device.",
+                        choices: [
+                            "His phone",
+                            "A clock",
+                            "A book",
+                            "A map"
+                        ]
+                    },
+                    {
+                        prompt: "When might students go home?",
+                        hint: "Think about the storm.",
+                        choices: [
+                            "Early",
+                            "Late at night",
+                            "On Saturday",
+                            "During summer"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why might Rowan feel mixed emotions?",
+                        hint: "Storms can be fun and stressful.",
+                        choices: [
+                            "He likes early dismissal but worries about his sister",
+                            "He wants more homework",
+                            "He is bored of lunch",
+                            "He wants a new phone"
+                        ]
+                    },
+                    {
+                        prompt: "Why does he check his phone?",
+                        hint: "Think of family plans.",
+                        choices: [
+                            "To see if his parents texted",
+                            "To play a game",
+                            "To take a picture",
+                            "To change the time"
+                        ]
+                    },
+                    {
+                        prompt: "What problem is Rowan thinking about?",
+                        hint: "His sister.",
+                        choices: [
+                            "Who will pick her up",
+                            "What to eat",
+                            "Which book to read",
+                            "How to draw snow"
+                        ]
+                    },
+                    {
+                        prompt: "How might other students feel?",
+                        hint: "Snow changes plans.",
+                        choices: [
+                            "Excited or nervous",
+                            "Hungry",
+                            "Sleepy",
+                            "Angry at Rowan"
+                        ]
+                    },
+                    {
+                        prompt: "Why does the school tell them early?",
+                        hint: "Safety.",
+                        choices: [
+                            "To keep everyone safe",
+                            "To make lunch shorter",
+                            "To clean the building",
+                            "To start a movie"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "What will the school probably do because of the snowstorm?",
+                        hint: "Think about the early dismissal announcement.",
+                        choices: [
+                            "It will send students home early if needed",
+                            "It will keep everyone overnight for fun",
+                            "It will cancel lunch forever",
+                            "It will make students walk home during the storm"
+                        ]
+                    },
+                    {
+                        prompt: "After checking his phone, what might Rowan do next?",
+                        hint: "He wants his sister to be safe.",
+                        choices: [
+                            "He will contact his parents or wait for their plan about his sister",
+                            "He will throw his phone away",
+                            "He will start a snowball fight in the cafeteria",
+                            "He will forget about his sister completely"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "He worried about his sister.",
+                        slot: "character",
+                        choices: [
+                            "Rowan",
+                            "Eli",
+                            "Jamal",
+                            "Weston"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about his younger sister.",
+                        slot: "want",
+                        choices: [
+                            "Make sure his sister was picked up during the storm",
+                            "Eat lunch faster",
+                            "Join a new club",
+                            "Build a snow fort in the cafeteria"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "Weather changed the school day.",
+                        slot: "problem",
+                        choices: [
+                            "A sudden snowstorm might send students home early",
+                            "The lunch line was long",
+                            "The power went out",
+                            "No one had homework"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "He used his phone.",
+                        slot: "solution",
+                        choices: [
+                            "He checked his phone for a message from his parents",
+                            "He shouted for help",
+                            "He left school without telling anyone",
+                            "He ignored the storm"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about what he waited for.",
+                        slot: "result",
+                        choices: [
+                            "He waited for his parents' plan so his sister would be safe",
+                            "He stopped worrying",
+                            "He forgot he had a sister",
+                            "He missed the bus on purpose"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "announced",
+                        clue: "Told out loud.",
+                        context: "During lunch, the school <span class=\"highlight-word\">announced</span> that a sudden snowstorm was coming.",
+                        choices: [
+                            "told",
+                            "hid",
+                            "erased"
+                        ]
+                    },
+                    {
+                        word: "sudden",
+                        clue: "Happening quickly.",
+                        context: "Students were told a <span class=\"highlight-word\">sudden</span> snowstorm was coming.",
+                        choices: [
+                            "quick",
+                            "slow",
+                            "planned"
+                        ]
+                    },
+                    {
+                        word: "worried",
+                        clue: "Concerned.",
+                        context: "Rowan felt excited at first, but then <span class=\"highlight-word\">worried</span> because his younger sister needed to be picked up.",
+                        choices: [
+                            "concerned",
+                            "happy",
+                            "bored"
+                        ]
+                    },
+                    {
+                        word: "checked",
+                        clue: "Looked at.",
+                        context: "He <span class=\"highlight-word\">checked</span> his phone to see if his parents had texted.",
+                        choices: [
+                            "looked at",
+                            "ignored",
+                            "broke"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "announced",
+                        clue: "Said to everyone.",
+                        context: "During lunch, the school <span class=\"highlight-word\">announced</span> that a sudden snowstorm was coming.",
+                        choices: [
+                            "Told everyone",
+                            "Whispers quietly",
+                            "Said only to one person"
+                        ]
+                    },
+                    {
+                        word: "sudden",
+                        clue: "Happens quickly.",
+                        context: "Students were told a <span class=\"highlight-word\">sudden</span> snowstorm was coming.",
+                        choices: [
+                            "Happens fast",
+                            "Happens slowly",
+                            "Happens only at night"
+                        ]
+                    },
+                    {
+                        word: "concern",
+                        clue: "Something you worry about.",
+                        context: "Rowan's main <span class=\"highlight-word\">concern</span> was his younger sister needing to be picked up.",
+                        choices: [
+                            "A worry",
+                            "A fun surprise",
+                            "A joke"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "The Snow Sculpture Surprise",
+                image: "images/winter_short_story_comprehension_progressive/story_10.png",
+                alt: "Kids building a snow sculpture in a park",
+                text: "In the park, a group of friends worked on a snow sculpture for a winter contest. They planned to make a tall polar bear, but halfway through the snow started crumbling. One friend suggested switching the design to a short penguin instead. Everyone agreed and quickly changed their plan.",
+                literal: [
+                    {
+                        prompt: "Who is making the snow sculpture?",
+                        hint: "More than one person.",
+                        choices: [
+                            "A group of friends",
+                            "One teacher",
+                            "Two strangers",
+                            "One student alone"
+                        ]
+                    },
+                    {
+                        prompt: "What were they making first?",
+                        hint: "A tall animal.",
+                        choices: [
+                            "A polar bear",
+                            "A penguin",
+                            "A dog",
+                            "A snow fox"
+                        ]
+                    },
+                    {
+                        prompt: "What was happening to the sculpture?",
+                        hint: "It was falling apart.",
+                        choices: [
+                            "It was crumbling",
+                            "It was growing",
+                            "It was melting fast",
+                            "It was changing color"
+                        ]
+                    },
+                    {
+                        prompt: "What new shape did they choose?",
+                        hint: "A short animal.",
+                        choices: [
+                            "A penguin",
+                            "A moose",
+                            "A fish",
+                            "A rabbit"
+                        ]
+                    },
+                    {
+                        prompt: "Where are they building it?",
+                        hint: "A public outdoor place.",
+                        choices: [
+                            "The park",
+                            "The classroom",
+                            "The gym",
+                            "A hallway"
+                        ]
+                    }
+                ],
+                inferential: [
+                    {
+                        prompt: "Why might the bear shape be hard to build?",
+                        hint: "Think about size.",
+                        choices: [
+                            "It was too tall",
+                            "It was too hot",
+                            "It was too colorful",
+                            "It was too loud"
+                        ]
+                    },
+                    {
+                        prompt: "How might the group feel about changing plans?",
+                        hint: "Think of teamwork.",
+                        choices: [
+                            "Okay with trying something new",
+                            "Angry and yelling",
+                            "Tired of snow",
+                            "Ready to go home immediately"
+                        ]
+                    },
+                    {
+                        prompt: "Why does the penguin work better?",
+                        hint: "Think of size again.",
+                        choices: [
+                            "It is smaller and easier to shape",
+                            "It makes noise",
+                            "It floats",
+                            "It melts slower"
+                        ]
+                    },
+                    {
+                        prompt: "What does this show about the group?",
+                        hint: "Think about working together.",
+                        choices: [
+                            "They can solve problems",
+                            "They argue all the time",
+                            "They do not like snow",
+                            "They never finish anything"
+                        ]
+                    },
+                    {
+                        prompt: "How might the sculpture look when finished?",
+                        hint: "Think of a penguin made of snow.",
+                        choices: [
+                            "Short and smooth",
+                            "Tall and scary",
+                            "Bright red",
+                            "Covered in leaves"
+                        ]
+                    }
+                ],
+                future: [
+                    {
+                        prompt: "After changing the design, what will the friends do next?",
+                        hint: "Think about the new plan.",
+                        choices: [
+                            "They will build the shorter penguin together",
+                            "They will quit building anything",
+                            "They will forget the contest completely",
+                            "They will turn the snow into soup"
+                        ]
+                    },
+                    {
+                        prompt: "If the penguin turns out sturdy, what will they do for the contest?",
+                        hint: "They still want to take part.",
+                        choices: [
+                            "They will enter the penguin sculpture in the winter contest",
+                            "They will break it before judging",
+                            "They will hide it so no one sees",
+                            "They will pretend they never built it"
+                        ]
+                    }
+                ],
+                retell: [
+                    {
+                        prompt: "Who was the main character?",
+                        hint: "Think of the team working together.",
+                        slot: "character",
+                        choices: [
+                            "A group of friends",
+                            "One teacher",
+                            "Two strangers",
+                            "One student alone"
+                        ]
+                    },
+                    {
+                        prompt: "What did they want?",
+                        hint: "Think about the contest idea.",
+                        slot: "want",
+                        choices: [
+                            "Build a tall polar bear snow sculpture for the contest",
+                            "Have a snowball fight",
+                            "Take a long nap",
+                            "Go to the movies"
+                        ]
+                    },
+                    {
+                        prompt: "What was the problem?",
+                        hint: "Something was happening to the bear shape.",
+                        slot: "problem",
+                        choices: [
+                            "The snow bear started crumbling",
+                            "There was no snow",
+                            "They forgot their tools",
+                            "They had no time to meet"
+                        ]
+                    },
+                    {
+                        prompt: "What did they do to solve the problem?",
+                        hint: "They chose a new idea.",
+                        slot: "solution",
+                        choices: [
+                            "They switched to a short penguin design",
+                            "They stopped building anything",
+                            "They left the park",
+                            "They yelled at each other"
+                        ]
+                    },
+                    {
+                        prompt: "What was the end result?",
+                        hint: "Think about the team's choice after changing the plan.",
+                        slot: "result",
+                        choices: [
+                            "They all agreed and kept building the new penguin",
+                            "They gave up and went home",
+                            "They knocked down the penguin",
+                            "They changed to a new plan every minute"
+                        ]
+                    }
+                ],
+                synonyms: [
+                    {
+                        word: "planned",
+                        clue: "Decided ahead of time.",
+                        context: "They <span class=\"highlight-word\">planned</span> to make a tall polar bear.",
+                        choices: [
+                            "decided",
+                            "forgot",
+                            "ruined"
+                        ]
+                    },
+                    {
+                        word: "crumbling",
+                        clue: "Breaking apart.",
+                        context: "Halfway through the snow started <span class=\"highlight-word\">crumbling</span>.",
+                        choices: [
+                            "breaking",
+                            "growing",
+                            "freezing"
+                        ]
+                    },
+                    {
+                        word: "suggested",
+                        clue: "Offered an idea.",
+                        context: "One friend <span class=\"highlight-word\">suggested</span> switching the design to a short penguin instead.",
+                        choices: [
+                            "proposed",
+                            "demanded",
+                            "refused"
+                        ]
+                    },
+                    {
+                        word: "changed",
+                        clue: "Switched.",
+                        context: "Everyone agreed and quickly <span class=\"highlight-word\">changed</span> their plan.",
+                        choices: [
+                            "switched",
+                            "stayed",
+                            "stopped"
+                        ]
+                    }
+                ],
+                definitions: [
+                    {
+                        word: "sculpture",
+                        clue: "A shape someone makes.",
+                        context: "In the park, a group of friends worked on a snow <span class=\"highlight-word\">sculpture</span> for a winter contest.",
+                        choices: [
+                            "A built shape",
+                            "A snack to eat",
+                            "A big hill"
+                        ]
+                    },
+                    {
+                        word: "crumbling",
+                        clue: "Breaking apart.",
+                        context: "They planned to make a tall polar bear, but halfway through the snow started <span class=\"highlight-word\">crumbling</span>.",
+                        choices: [
+                            "Breaking into pieces",
+                            "Growing stronger",
+                            "Floating up"
+                        ]
+                    },
+                    {
+                        word: "agreed",
+                        clue: "Thought the same thing.",
+                        context: "Everyone <span class=\"highlight-word\">agreed</span> and quickly changed their plan.",
+                        choices: [
+                            "Decided together",
+                            "Argued loudly",
+                            "Did not listen"
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        let current = 0;
+        let questionMode = "literal";
+        const storyNav = document.getElementById("storyNav");
+        const titleEl = document.getElementById("storyTitle");
+        const textEl = document.getElementById("storyText");
+        const questionsEl = document.getElementById("questions");
+        const definitionsEl = document.getElementById("definitions");
+        const imageEl = document.getElementById("storyImage");
+        const visualEl = document.getElementById("storyVisual");
+        const literalModeBtn = document.getElementById("literalModeBtn");
+        const inferModeBtn = document.getElementById("inferModeBtn");
+        const futureModeBtn = document.getElementById("futureModeBtn");
+        const wordModeBtn = document.getElementById("wordModeBtn");
+        const synonymModeBtn = document.getElementById("synonymModeBtn");
+        const retellModeBtn = document.getElementById("retellModeBtn");
+        const modeButtons = {
+            literal: literalModeBtn,
+            inferential: inferModeBtn,
+            future: futureModeBtn,
+            words: wordModeBtn,
+            synonyms: synonymModeBtn,
+            retell: retellModeBtn
+        };
+        const modeFilterEl = document.getElementById("modeFilter");
+        const modeOptions = [
+            { key: "literal", label: "Literal" },
+            { key: "inferential", label: "Inferential" },
+            { key: "future", label: "Future tense" },
+            { key: "words", label: "Word meaning" },
+            { key: "synonyms", label: "Synonyms" },
+            { key: "retell", label: "Retell" }
+        ];
+        let enabledModes = modeOptions.map(opt => opt.key);
+
+        function shuffle(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function buildNav() {
+            storyNav.innerHTML = stories.map((s, i) => `<button class="pill" data-index="${i}">${i + 1}. ${s.title}</button>`).join("");
+            storyNav.querySelectorAll(".pill").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    current = parseInt(btn.dataset.index, 10);
+                    renderStory();
+                    document.querySelector(".card").scrollIntoView({ behavior: "smooth" });
+                });
+            });
+        }
+
+        function buildModeFilters() {
+            modeFilterEl.innerHTML = modeOptions.map(opt => `
+                <label class="filter-option">
+                    <input type="checkbox" data-mode="${opt.key}" checked />
+                    <span>${opt.label}</span>
+                </label>
+            `).join("");
+            modeFilterEl.querySelectorAll("input[type='checkbox']").forEach(box => {
+                box.addEventListener("change", () => {
+                    const checked = Array.from(modeFilterEl.querySelectorAll("input[type='checkbox']:checked")).map(el => el.dataset.mode);
+                    if (checked.length === 0) {
+                        box.checked = true;
+                        return;
+                    }
+                    enabledModes = checked;
+                    enforceAllowedMode();
+                    updateModeButtons();
+                    renderStory();
+                });
+            });
+        }
+
+        function enforceAllowedMode() {
+            if (!enabledModes.includes(questionMode)) {
+                setMode(enabledModes[0]);
+            }
+        }
+
+        function updateModeButtons() {
+            Object.entries(modeButtons).forEach(([key, btn]) => {
+                const allowed = enabledModes.includes(key);
+                btn.disabled = !allowed;
+                btn.style.display = allowed ? "inline-flex" : "none";
+            });
+        }
+
+        function renderStory() {
+            const story = stories[current];
+            titleEl.textContent = story.title;
+            textEl.textContent = story.text;
+            if (story.image) {
+                imageEl.src = story.image;
+                imageEl.alt = story.alt || story.title;
+                visualEl.style.display = "block";
+            } else {
+                visualEl.style.display = "none";
+            }
+            storyNav.querySelectorAll(".pill").forEach((btn, i) => btn.classList.toggle("active", i === current));
+            enforceAllowedMode();
+
+            if (questionMode === "literal" || questionMode === "inferential" || questionMode === "future") {
+                const setKey = questionMode === "literal" ? "literal" : questionMode === "inferential" ? "inferential" : "future";
+                const label = questionMode === "literal" ? "Literal" : questionMode === "inferential" ? "Inferential" : "Future tense";
+                const list = story[setKey] || [];
+                questionsEl.innerHTML = list.map((q, idx) => {
+                    const correctText = q.choices[0];
+                    const shuffledChoices = shuffle(q.choices).map(text => ({ text, correct: text === correctText }));
+                    return `
+                        <div class="question-card" data-q="${idx}">
+                            <h4>${label} Q${idx + 1}. ${q.prompt}</h4>
+                            <textarea placeholder="Type your answer..."></textarea>
+                            <div class="helper-row">
+                                <button class="btn hint-btn" type="button">I need help</button>
+                                <button class="btn more-btn" type="button">I need more help</button>
+                            </div>
+                            <div class="hint-box">Hint: ${q.hint}</div>
+                            <div class="options" data-state="hidden">
+                                ${shuffledChoices.map(choice => `
+                                    <button class="option" data-correct="${choice.correct}">${choice.text}</button>
+                                `).join("")}
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+                definitionsEl.innerHTML = "";
+                attachHandlers(questionsEl);
+                return;
+            }
+
+            if (questionMode === "retell") {
+                const retell = story.retell || [];
+                questionsEl.innerHTML = `
+                    <div class="section-title">Retell builder</div>
+                    <p class="retell-note">Use the Somebody-Wanted-But-So-Then steps to retell the story.</p>
+                    ${retell.map((q, idx) => {
+                        const correctText = q.choices[0];
+                        const shuffledChoices = shuffle(q.choices).map(text => ({ text, correct: text === correctText }));
+                        return `
+                            <div class="question-card retell-card" data-q="${idx}">
+                                <h4>Retell Q${idx + 1}. ${q.prompt}</h4>
+                                <textarea class="retell-input" data-slot="${q.slot}" placeholder="Type your idea..."></textarea>
+                                <div class="helper-row">
+                                    <button class="btn hint-btn" type="button">I need help</button>
+                                    <button class="btn more-btn" type="button">I need more help</button>
+                                </div>
+                                <div class="hint-box">Clue: ${q.hint}</div>
+                                <div class="options" data-state="hidden">
+                                    ${shuffledChoices.map(choice => `
+                                        <button class="option" data-correct="${choice.correct}">${choice.text}</button>
+                                    `).join("")}
+                                </div>
+                            </div>
+                        `;
+                    }).join("")}
+                    <div class="retell-output" id="retellOutput"></div>
+                `;
+                definitionsEl.innerHTML = "";
+                attachHandlers(questionsEl, true);
+                updateRetellOutput();
+                return;
+            }
+
+            questionsEl.innerHTML = "";
+            const vocabList = questionMode === "words" ? story.definitions || [] : story.synonyms || [];
+            const vocabTitle = questionMode === "words" ? "Word meaning practice" : "Synonym practice";
+            const vocabPlaceholder = questionMode === "words" ? "Type the meaning..." : "Type a synonym...";
+            definitionsEl.innerHTML = `
+                <div class="section-title">${vocabTitle}</div>
+                ${vocabList.map((d, idx) => {
+                    const correctText = d.choices[0];
+                    const shuffledChoices = shuffle(d.choices).map(text => ({ text, correct: text === correctText }));
+                    return `
+                        <div class="word-card" data-def="${idx}">
+                            <h4>${d.word}</h4>
+                            <p class="context-line">${d.context}</p>
+                            <textarea placeholder="${vocabPlaceholder}"></textarea>
+                            <div class="helper-row">
+                                <button class="btn hint-btn" type="button">I need help</button>
+                                <button class="btn more-btn" type="button">I need more help</button>
+                            </div>
+                            <div class="hint-box">Clue: ${d.clue}</div>
+                            <div class="options" data-state="hidden">
+                                ${shuffledChoices.map(choice => `
+                                    <button class="option" data-correct="${choice.correct}">${choice.text}</button>
+                                `).join("")}
+                            </div>
+                        </div>
+                    `;
+                }).join("")}
+            `;
+            attachHandlers(definitionsEl);
+            return;
+        }
+
+        function setMode(mode) {
+            const desired = enabledModes.includes(mode) ? mode : enabledModes[0];
+            questionMode = desired;
+            Object.entries(modeButtons).forEach(([key, btn]) => {
+                btn.classList.toggle("active", key === desired);
+            });
+            renderStory();
+        }
+
+        function attachHandlers(scope, isRetell = false) {
+            scope.querySelectorAll(".question-card, .word-card").forEach(card => {
+                const hintBox = card.querySelector(".hint-box");
+                const optionsBox = card.querySelector(".options");
+                const textarea = card.querySelector("textarea");
+                card.querySelector(".hint-btn").addEventListener("click", () => {
+                    hintBox.style.display = hintBox.style.display === "block" ? "none" : "block";
+                });
+                card.querySelector(".more-btn").addEventListener("click", () => {
+                    const showing = optionsBox.style.display === "block";
+                    optionsBox.style.display = showing ? "none" : "block";
+                });
+                if (isRetell && card.classList.contains("retell-card") && textarea) {
+                    textarea.addEventListener("input", updateRetellOutput);
+                }
+                card.querySelectorAll(".option").forEach(opt => {
+                    opt.addEventListener("click", () => {
+                        card.querySelectorAll(".option").forEach(o => o.classList.add("disabled"));
+                        const correct = opt.dataset.correct === "true";
+                        opt.classList.add(correct ? "correct" : "incorrect");
+                        if (!correct) {
+                            card.querySelectorAll(".option").forEach(o => {
+                                if (o.dataset.correct === "true") {
+                                    o.classList.add("correct");
+                                }
+                            });
+                        }
+                        if (isRetell && card.classList.contains("retell-card") && textarea) {
+                            textarea.value = opt.textContent.trim();
+                            updateRetellOutput();
+                        }
+                    });
+                });
+            });
+        }
+
+        function updateRetellOutput() {
+            const outputEl = document.getElementById("retellOutput");
+            if (!outputEl) return;
+            const parts = {
+                character: "",
+                want: "",
+                problem: "",
+                solution: "",
+                result: ""
+            };
+            questionsEl.querySelectorAll(".retell-input").forEach(input => {
+                const slot = input.dataset.slot;
+                if (slot && Object.prototype.hasOwnProperty.call(parts, slot)) {
+                    parts[slot] = input.value.trim();
+                }
+            });
+            const placeholder = "____";
+            const character = parts.character || placeholder;
+            const want = parts.want || placeholder;
+            const problem = parts.problem || placeholder;
+            const solution = parts.solution || placeholder;
+            const result = parts.result || placeholder;
+            outputEl.textContent = `${character} wanted to ${want}, but ${problem}, so ${solution}, then ${result}.`;
+        }
+
+        buildNav();
+        buildModeFilters();
+        updateModeButtons();
+        literalModeBtn.addEventListener("click", () => setMode("literal"));
+        inferModeBtn.addEventListener("click", () => setMode("inferential"));
+        futureModeBtn.addEventListener("click", () => setMode("future"));
+        wordModeBtn.addEventListener("click", () => setMode("words"));
+        synonymModeBtn.addEventListener("click", () => setMode("synonyms"));
+        retellModeBtn.addEventListener("click", () => setMode("retell"));
+        setMode("literal");
+    </script>
+</body>
+</html>

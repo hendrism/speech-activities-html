@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<!--
+Activity: Communication Breakdown Practice
+Description: Learn to repair communication when misunderstandings occur.
+Tags: Communication, Problem Solving, Repair
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Communication Breakdown Repair Lab</title>
+    <style>
+        :root {
+            --ink: #0f172a;
+            --bg: #eef2ff;
+            --surface: #ffffff;
+            --accent: #2563eb;
+            --muted: #475569;
+            --soft: #e0e7ff;
+            --border: #c7d2fe;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4338ca, #2563eb);
+            color: white;
+            padding: 32px 20px 40px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(67, 56, 202, 0.35);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 12px auto 0;
+            max-width: 700px;
+            font-size: 17px;
+            opacity: 0.95;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
+
+        aside {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid var(--border);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        aside h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        .scenario-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .scenario-btn {
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: var(--soft);
+            color: var(--ink);
+            text-align: left;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+
+        .scenario-btn span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .scenario-btn.active {
+            border-color: var(--accent);
+            background: #dbeafe;
+            transform: translateX(4px);
+        }
+
+        .work-area {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 26px;
+            border: 2px solid var(--border);
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .scenario-info {
+            background: #f8fafc;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            padding: 18px 20px;
+        }
+
+        .scenario-info h2 {
+            margin: 8px 0 6px;
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .scenario-info p {
+            margin: 0;
+        }
+
+        .scenario-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .scenario-meta span {
+            background: #e0e7ff;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .step-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 18px 20px;
+            background: #ffffff;
+        }
+
+        .step-card h3 {
+            margin: 0 0 6px;
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .hint {
+            margin: 0 0 12px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .chip-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            border-radius: 999px;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            background: #f5f5ff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.15s ease;
+        }
+
+        .chip.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .move-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .move {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.15s ease, background 0.15s ease;
+        }
+
+        .move input {
+            margin-top: 3px;
+            accent-color: var(--accent);
+        }
+
+        .move.active {
+            background: #eff6ff;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #d1d9e6;
+            padding: 14px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .coach-card {
+            border: 1px dashed var(--border);
+            background: #f8fbff;
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .coach-card button {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 18px;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .coach-example {
+            margin: 12px 0 0;
+            display: none;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .controls button {
+            flex: 1;
+            border: none;
+            border-radius: 14px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #e0e7ff;
+            color: #312e81;
+            transition: background 0.15s ease;
+        }
+
+        .controls button.primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                order: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Communication Breakdown Repair Lab</h1>
+        <p>Work through each mini-scenario one step at a time. Spot what caused the breakdown, pick 1–2 repair moves, and script what you’ll say. Use the coach example if you get stuck, then jot a quick reflection.</p>
+    </header>
+    <main>
+        <div class="layout">
+            <aside>
+                <h2>Choose a scenario</h2>
+                <p style="margin:0;color:var(--muted);font-size:14px;">Start with the first one and move forward, or jump to any situation that matches today’s goal.</p>
+                <div class="scenario-list" id="scenarioList"></div>
+            </aside>
+            <section class="work-area">
+                <div class="scenario-info">
+                    <div class="scenario-meta">
+                        <span id="scenarioContext">Context</span>
+                        <span id="scenarioProgress">Scenario 1 of 8</span>
+                    </div>
+                    <h2 id="scenarioTitle">Title</h2>
+                    <p id="scenarioText"></p>
+                </div>
+                <div class="step-card">
+                    <h3>Step 1: Spot the breakdown</h3>
+                    <p class="hint">Tap the clues that match what went wrong, then explain it in your own words.</p>
+                    <div class="chip-grid" id="breakdownChips"></div>
+                    <textarea id="breakdownNotes" placeholder="Example: The barista misheard me because it was noisy and I trailed off at the end."></textarea>
+                </div>
+                <div class="step-card">
+                    <h3>Step 2: Choose repair moves</h3>
+                    <p class="hint">Select one or two strategies to try right away.</p>
+                    <div class="move-grid" id="moveGrid"></div>
+                </div>
+                <div class="step-card">
+                    <h3>Step 3: Script your repair</h3>
+                    <p class="hint">Write the exact line, gesture, or question you’ll use.</p>
+                    <textarea id="scriptNotes" placeholder="Example: I’ll face the sub, slow down, and say “Can I go to my locker to grab my calculator for today’s worksheet?”"></textarea>
+                </div>
+                <div class="step-card">
+                    <h3>Step 4: Reflect</h3>
+                    <p class="hint" id="reflectionPrompt">What will you remember for next time?</p>
+                    <textarea id="reflectionNotes" placeholder="Example: If someone is new, I should lead with the most important word first."></textarea>
+                </div>
+                <div class="coach-card">
+                    <button id="coachToggle">Show coach example</button>
+                    <div class="coach-example" id="coachExample"></div>
+                </div>
+                <div class="controls">
+                    <button id="prevBtn">Back</button>
+                    <button id="nextBtn" class="primary">Next scenario</button>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+        const scenarios = [
+            {
+                title: "Group Project Mishear",
+                context: "History group • Quiet classroom",
+                description: "You explain your section about “the trenches in France.” A teammate hears “friends” and looks lost while the others stare at you.",
+                breakdownHints: [
+                    "Word sounded like something else",
+                    "Teacher voices in the background",
+                    "Used vocabulary others might not know",
+                    "Spoke quickly"
+                ],
+                repairMoves: [
+                    "Repeat the key word slowly (“trenches”).",
+                    "Give a short definition before repeating.",
+                    "Point to a picture or slide while you explain.",
+                    "Check for understanding: “Did that help?”"
+                ],
+                coach: "“Let me rephrase: the trenches — the deep tunnels soldiers lived in — were muddy and unsafe.”",
+                reflection: "What clue told you someone misunderstood?"
+            },
+            {
+                title: "Coffee Shop Order",
+                context: "Busy café • Loud blender noises",
+                description: "You ask for “a large caramel latte” but the barista says, “A what? I missed that.” People are waiting behind you.",
+                breakdownHints: [
+                    "Background noise",
+                    "Soft volume",
+                    "Long order said quickly",
+                    "Talking while looking down"
+                ],
+                repairMoves: [
+                    "Face the barista and raise your volume one notch.",
+                    "Break the order into two parts (“Large latte… caramel.”).",
+                    "Point to the drink on the menu or show it on your phone.",
+                    "Confirm: “Did you get caramel latte?”"
+                ],
+                coach: "“Sorry, it’s loud. Large latte… caramel, please.” (say it slower with eye contact)",
+                reflection: "How can you stay polite even when the line is moving fast?"
+            },
+            {
+                title: "Substitute Teacher Request",
+                context: "Math class • New teacher",
+                description: "You ask the substitute, “Can I run to my locker real quick?” They say, “I’m sorry, what do you need?”",
+                breakdownHints: [
+                    "Unfamiliar listener",
+                    "Used slang or casual phrasing",
+                    "Quiet voice",
+                    "Important word at the end"
+                ],
+                repairMoves: [
+                    "Use a clear, formal sentence.",
+                    "Start with the key word: “Locker” or “Calculator.”",
+                    "Make eye contact before speaking.",
+                    "Offer to write it down if needed."
+                ],
+                coach: "“Locker question! I forgot my calculator — may I get it so I can finish the worksheet?”",
+                reflection: "What is different about speaking to someone who doesn’t know you?"
+            },
+            {
+                title: "Weekend Plans Texting",
+                context: "Group chat • Typing fast",
+                description: "You text, “I’ll meet you there if my ride works out” and your friend replies, “So are you coming or not?”",
+                breakdownHints: [
+                    "Vague wording",
+                    "Missing time/location detail",
+                    "Friend reading quickly",
+                    "No confirmation"
+                ],
+                repairMoves: [
+                    "Send a clear yes/no with a time.",
+                    "Offer your backup plan if the ride fails.",
+                    "Ask what info they need to plan.",
+                    "Use an emoji or short sentence to show tone."
+                ],
+                coach: "“Yes! I’ll be there at 6:15 — my mom is driving. If anything changes, I’ll text by 5:30.”",
+                reflection: "How does clear texting prevent mix-ups?"
+            },
+            {
+                title: "Shoe Store Mix-up",
+                context: "Retail store • Trying on shoes",
+                description: "You tell the employee, “Can I get those in an eight?” They bring size ten because they thought you meant men’s sizing.",
+                breakdownHints: [
+                    "Didn’t specify men’s or women’s sizing",
+                    "Pointed from far away",
+                    "Store is busy and noisy",
+                    "Employee is new"
+                ],
+                repairMoves: [
+                    "Clarify the style and size (“women’s 8”).",
+                    "Hold the shoe or point clearly before speaking.",
+                    "Use a calm, friendly tone while correcting.",
+                    "Double-check by repeating the size together."
+                ],
+                coach: "“Thanks! I need the women’s eight in this black style, please.”",
+                reflection: "How can you correct someone without sounding upset?"
+            },
+            {
+                title: "Class Discussion Interruption",
+                context: "English class • Whole-group talk",
+                description: "You jump in quickly with your idea. The teacher says, “Hang on, I missed the first part.”",
+                breakdownHints: [
+                    "Started speaking before being called on",
+                    "Began with “Yeah but…” instead of the main idea",
+                    "Volume dropped at the start",
+                    "Classmates still talking"
+                ],
+                repairMoves: [
+                    "Wait for eye contact from the teacher first.",
+                    "Start with your main point, then add details.",
+                    "Project your voice for the first sentence.",
+                    "Say, “To add to what Maya said…” for clarity."
+                ],
+                coach: "“To add to Maya’s idea, I think the main conflict shows…” (said after the teacher nods)",
+                reflection: "What helps your teacher and peers know when you’re ready to speak?"
+            },
+            {
+                title: "Drive-Through Window",
+                context: "Fast food line • Intercom ordering",
+                description: "At the drive-through you rush your order. The worker repeats a different combo back to you.",
+                breakdownHints: [
+                    "Talking too fast for the intercom",
+                    "Not close to the speaker",
+                    "Engine or music is loud",
+                    "List of items in one breath"
+                ],
+                repairMoves: [
+                    "Turn down music and speak closer to the mic.",
+                    "Give items one at a time and wait for confirmation.",
+                    "Repeat the order slowly if it sounds wrong.",
+                    "End with “That’s all” so they know you’re done."
+                ],
+                coach: "“Hi! Can I get a chicken sandwich… (pause) medium fries… and that’s all.”",
+                reflection: "How does pacing help in noisy situations?"
+            },
+            {
+                title: "Meeting a New Friend",
+                context: "Lunch table • New classmate",
+                description: "You tell a story quickly with inside jokes. The new student looks confused and stops responding.",
+                breakdownHints: [
+                    "Used slang the person doesn’t know",
+                    "Story moved too fast",
+                    "No context before the punchline",
+                    "Didn’t notice their facial expression"
+                ],
+                repairMoves: [
+                    "Pause and summarize the important parts.",
+                    "Explain the inside joke before you finish.",
+                    "Invite them in: “Want to hear the short version?”",
+                    "Ask a question to re-engage them."
+                ],
+                coach: "“Sorry, that probably sounded random. We were talking about last Friday’s pep rally — want me to rewind?”",
+                reflection: "How can you tell someone needs more context?"
+            }
+        ];
+
+        const scenarioList = document.getElementById("scenarioList");
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioText = document.getElementById("scenarioText");
+        const scenarioContext = document.getElementById("scenarioContext");
+        const scenarioProgress = document.getElementById("scenarioProgress");
+        const breakdownChips = document.getElementById("breakdownChips");
+        const moveGrid = document.getElementById("moveGrid");
+        const reflectionPrompt = document.getElementById("reflectionPrompt");
+        const coachToggle = document.getElementById("coachToggle");
+        const coachExample = document.getElementById("coachExample");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const breakdownNotes = document.getElementById("breakdownNotes");
+        const scriptNotes = document.getElementById("scriptNotes");
+        const reflectionNotes = document.getElementById("reflectionNotes");
+
+        let currentIndex = 0;
+
+        function buildScenarioButtons() {
+            scenarios.forEach((scenario, index) => {
+                const button = document.createElement("button");
+                button.className = "scenario-btn";
+                button.innerHTML = `${scenario.title}<span>${scenario.context}</span>`;
+                button.addEventListener("click", () => {
+                    currentIndex = index;
+                    renderScenario();
+                });
+                scenarioList.appendChild(button);
+            });
+        }
+
+        function renderChips(items, container) {
+            container.innerHTML = "";
+            items.forEach(item => {
+                const chip = document.createElement("button");
+                chip.type = "button";
+                chip.className = "chip";
+                chip.textContent = item;
+                chip.addEventListener("click", () => {
+                    chip.classList.toggle("active");
+                });
+                container.appendChild(chip);
+            });
+        }
+
+        function renderMoves(moves) {
+            moveGrid.innerHTML = "";
+            moves.forEach(move => {
+                const wrapper = document.createElement("label");
+                wrapper.className = "move";
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.addEventListener("change", () => {
+                    wrapper.classList.toggle("active", checkbox.checked);
+                });
+                const span = document.createElement("span");
+                span.textContent = move;
+                wrapper.appendChild(checkbox);
+                wrapper.appendChild(span);
+                moveGrid.appendChild(wrapper);
+            });
+        }
+
+        function highlightActiveButton() {
+            const buttons = document.querySelectorAll(".scenario-btn");
+            buttons.forEach((btn, idx) => {
+                btn.classList.toggle("active", idx === currentIndex);
+            });
+        }
+
+        function renderScenario() {
+            const data = scenarios[currentIndex];
+            scenarioTitle.textContent = data.title;
+            scenarioText.textContent = data.description;
+            scenarioContext.textContent = data.context;
+            scenarioProgress.textContent = `Scenario ${currentIndex + 1} of ${scenarios.length}`;
+            reflectionPrompt.textContent = data.reflection;
+            renderChips(data.breakdownHints, breakdownChips);
+            renderMoves(data.repairMoves);
+            coachExample.textContent = data.coach;
+            coachExample.style.display = "none";
+            coachToggle.textContent = "Show coach example";
+            breakdownNotes.value = "";
+            scriptNotes.value = "";
+            reflectionNotes.value = "";
+            highlightActiveButton();
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === scenarios.length - 1;
+        }
+
+        coachToggle.addEventListener("click", () => {
+            const visible = coachExample.style.display === "block";
+            coachExample.style.display = visible ? "none" : "block";
+            coachToggle.textContent = visible ? "Show coach example" : "Hide coach example";
+        });
+
+        prevBtn.addEventListener("click", () => {
+            if (currentIndex > 0) {
+                currentIndex -= 1;
+                renderScenario();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (currentIndex < scenarios.length - 1) {
+                currentIndex += 1;
+                renderScenario();
+            }
+        });
+
+        buildScenarioButtons();
+        renderScenario();
+    </script>
+</body>
+</html>

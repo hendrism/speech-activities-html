@@ -1,0 +1,50 @@
+{
+  "id": "lSound",
+  "sound": "/l/",
+  "name": "/l/ Sound (Initial, Medial, Final)",
+  "description": "Words featuring the /l/ sound sorted by initial, medial, and final word positions.",
+  "positions": {
+    "initial": [
+      { "text": "lamp", "pos": "noun" },
+      { "text": "lion", "pos": "noun" },
+      { "text": "ladder", "pos": "noun" },
+      { "text": "lemon", "pos": "noun" },
+      { "text": "leaf", "pos": "noun" },
+      { "text": "laugh", "pos": "verb" },
+      { "text": "listen", "pos": "verb" },
+      { "text": "learn", "pos": "verb" },
+      { "text": "look", "pos": "verb" },
+      { "text": "love", "pos": "verb" },
+      { "text": "little", "pos": "adjective" },
+      { "text": "loud", "pos": "adjective" }
+    ],
+    "medial": [
+      { "text": "pillow", "pos": "noun" },
+      { "text": "balloon", "pos": "noun" },
+      { "text": "salad", "pos": "noun" },
+      { "text": "melon", "pos": "noun" },
+      { "text": "dollar", "pos": "noun" },
+      { "text": "jelly", "pos": "noun" },
+      { "text": "color", "pos": "noun" },
+      { "text": "valley", "pos": "noun" },
+      { "text": "follow", "pos": "verb" },
+      { "text": "balance", "pos": "verb" },
+      { "text": "yellow", "pos": "adjective" },
+      { "text": "silly", "pos": "adjective" }
+    ],
+    "final": [
+      { "text": "ball", "pos": "noun" },
+      { "text": "bell", "pos": "noun" },
+      { "text": "tail", "pos": "noun" },
+      { "text": "shell", "pos": "noun" },
+      { "text": "whale", "pos": "noun" },
+      { "text": "mail", "pos": "noun" },
+      { "text": "pool", "pos": "noun" },
+      { "text": "call", "pos": "verb" },
+      { "text": "pull", "pos": "verb" },
+      { "text": "feel", "pos": "verb" },
+      { "text": "tall", "pos": "adjective" },
+      { "text": "small", "pos": "adjective" }
+    ]
+  }
+}

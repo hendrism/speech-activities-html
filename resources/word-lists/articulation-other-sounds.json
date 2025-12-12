@@ -1,6 +1,6 @@
 {
   "id": "otherSounds",
-  "name": "Other Sounds (/k/, /g/, /sh/, /f/, /l/, /s/)",
+  "name": "Other Sounds (/k/, /g/, /sh/, /f/, /s/)",
   "blends": {
     "k": [
       {
@@ -183,120 +183,6 @@
       },
       {
         "text": "brief",
-        "pos": "adjective"
-      }
-    ],
-    "l": [
-      {
-        "text": "light",
-        "pos": "noun"
-      },
-      {
-        "text": "lion",
-        "pos": "noun"
-      },
-      {
-        "text": "lemon",
-        "pos": "noun"
-      },
-      {
-        "text": "lunch",
-        "pos": "noun"
-      },
-      {
-        "text": "ladder",
-        "pos": "noun"
-      },
-      {
-        "text": "lizard",
-        "pos": "noun"
-      },
-      {
-        "text": "letter",
-        "pos": "noun"
-      },
-      {
-        "text": "salad",
-        "pos": "noun"
-      },
-      {
-        "text": "pillow",
-        "pos": "noun"
-      },
-      {
-        "text": "balloon",
-        "pos": "noun"
-      },
-      {
-        "text": "melon",
-        "pos": "noun"
-      },
-      {
-        "text": "dollar",
-        "pos": "noun"
-      },
-      {
-        "text": "palace",
-        "pos": "noun"
-      },
-      {
-        "text": "jelly",
-        "pos": "noun"
-      },
-      {
-        "text": "look",
-        "pos": "verb"
-      },
-      {
-        "text": "listen",
-        "pos": "verb"
-      },
-      {
-        "text": "color",
-        "pos": "verb"
-      },
-      {
-        "text": "follow",
-        "pos": "verb"
-      },
-      {
-        "text": "laugh",
-        "pos": "verb"
-      },
-      {
-        "text": "learn",
-        "pos": "verb"
-      },
-      {
-        "text": "love",
-        "pos": "verb"
-      },
-      {
-        "text": "lucky",
-        "pos": "adjective"
-      },
-      {
-        "text": "little",
-        "pos": "adjective"
-      },
-      {
-        "text": "silly",
-        "pos": "adjective"
-      },
-      {
-        "text": "yellow",
-        "pos": "adjective"
-      },
-      {
-        "text": "loud",
-        "pos": "adjective"
-      },
-      {
-        "text": "long",
-        "pos": "adjective"
-      },
-      {
-        "text": "lovely",
         "pos": "adjective"
       }
     ],

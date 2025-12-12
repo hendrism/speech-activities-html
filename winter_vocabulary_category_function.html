@@ -255,26 +255,52 @@
 
     <script>
         const entries = [
-            { word: 'Snow', category: 'Winter Things', function: 'Forms on the ground when water freezes in the air', attributes: ['Cold', 'Soft'], image: '' },
-            { word: 'Ice', category: 'Winter Things', function: 'Forms when water freezes into a solid', attributes: ['Hard', 'Slippery'], image: '' },
-            { word: 'Snowflake', category: 'Winter Things', function: 'Falls as a tiny crystal of frozen water', attributes: ['Tiny', 'Detailed'], image: '' },
-            { word: 'Icicle', category: 'Winter Things', function: 'Forms when dripping water freezes into a hanging shape', attributes: ['Pointed', 'Clear'], image: '' },
-            { word: 'Sled', category: 'Outdoor Equipment', function: 'Slides downhill on snow', attributes: ['Smooth bottom', 'Lightweight'], image: '' },
-            { word: 'Ski', category: 'Outdoor Equipment', function: 'Used to glide across snow', attributes: ['Long', 'Narrow'], image: '' },
-            { word: 'Snowball', category: 'Outdoor Item', function: 'Used for play or building', attributes: ['Round', 'Packed'], image: '' },
-            { word: 'Snowman', category: 'Outdoor Item', function: 'Decorative figure built from snow', attributes: ['Stacked', 'Round'], image: '' },
-            { word: 'Shovel', category: 'Tool', function: 'Scoops and moves snow', attributes: ['Long-handled', 'Sturdy'], image: '' },
-            { word: 'Snowplow', category: 'Vehicle', function: 'Clears snow from roads', attributes: ['Large', 'Powerful'], image: '' },
-            { word: 'Coat', category: 'Clothing', function: 'Keeps the body warm', attributes: ['Heavy', 'Insulated'], image: '' },
-            { word: 'Scarf', category: 'Clothing', function: 'Wraps around the neck for warmth', attributes: ['Long', 'Soft'], image: '' },
-            { word: 'Gloves', category: 'Clothing', function: 'Keep hands warm', attributes: ['Fitted', 'Lined'], image: '' },
-            { word: 'Mittens', category: 'Clothing', function: 'Keep hands warm without finger separation', attributes: ['Rounded', 'Cozy'], image: '' },
-            { word: 'Boots', category: 'Clothing', function: 'Protect feet from snow and cold', attributes: ['Waterproof', 'Tall'], image: '' },
-            { word: 'Fireplace', category: 'Household Object', function: 'Provides indoor heat', attributes: ['Hot', 'Glowing'], image: '' },
-            { word: 'Blanket', category: 'Household Object', function: 'Keeps people warm', attributes: ['Soft', 'Thick'], image: '' },
-            { word: 'Thermos', category: 'Container', function: 'Holds and keeps drinks warm', attributes: ['Insulated', 'Portable'], image: '' },
-            { word: 'Hot chocolate', category: 'Food/Drink', function: 'Warm drink for comfort', attributes: ['Sweet', 'Creamy'], image: '' },
-            { word: 'Pine tree', category: 'Plant', function: 'Stays green and holds snow in winter', attributes: ['Needle-covered', 'Evergreen'], image: '' }
+            // Winter Weather (easier-moderate)
+            { word: 'Snow', category: 'Winter Weather', function: 'Covers the ground when water freezes and falls from clouds', attributes: ['White', 'Cold'], image: 'images/winter_items/snow_2.jpg' },
+            { word: 'Ice', category: 'Winter Weather', function: 'Forms when water freezes into a solid', attributes: ['Hard', 'Slippery'], image: 'images/winter_items/ice_1.jpg' },
+            { word: 'Snowflake', category: 'Winter Weather', function: 'A single crystal of frozen water that falls from the sky', attributes: ['Six-sided', 'Unique'], image: 'images/winter_items/snowflake.jpg' },
+            { word: 'Icicle', category: 'Winter Weather', function: 'Forms when dripping water freezes into a pointed shape', attributes: ['Pointed', 'Clear'], image: 'images/winter_items/icicle.jpg' },
+            { word: 'Frost', category: 'Winter Weather', function: 'Forms when water vapor freezes on surfaces', attributes: ['Thin', 'Crystalline'], image: '' },
+            { word: 'Blizzard', category: 'Winter Weather', function: 'A severe snowstorm with strong winds', attributes: ['Dangerous', 'Windy'], image: '' },
+
+            // Winter Clothing (easier)
+            { word: 'Coat', category: 'Winter Clothing', function: 'Covers the body to provide warmth', attributes: ['Insulated', 'Heavy'], image: 'images/winter_items/winter-coat.png' },
+            { word: 'Scarf', category: 'Winter Clothing', function: 'Wraps around the neck to keep it warm', attributes: ['Woven', 'Flexible'], image: 'images/winter_items/scarf.png' },
+            { word: 'Gloves', category: 'Winter Clothing', function: 'Cover hands with separate spaces for each finger', attributes: ['Fitted', 'Warm'], image: 'images/winter_items/gloves.png' },
+            { word: 'Mittens', category: 'Winter Clothing', function: 'Cover hands without separating fingers', attributes: ['Rounded', 'Cozy'], image: 'images/winter_items/mittens.png' },
+            { word: 'Boots', category: 'Winter Clothing', function: 'Protect feet from snow, ice, and cold', attributes: ['Waterproof', 'Tall'], image: 'images/winter_items/boots.png' },
+            { word: 'Hat', category: 'Winter Clothing', function: 'Covers the head to prevent heat loss', attributes: ['Knitted', 'Stretchy'], image: 'images/winter_items/winter-hat.jpg' },
+
+            // Winter Recreation (moderate)
+            { word: 'Sled', category: 'Winter Recreation', function: 'Slides downhill on snow for fun', attributes: ['Smooth-bottomed', 'Steerable'], image: 'images/winter_items/sled.jpg' },
+            { word: 'Skis', category: 'Winter Recreation', function: 'Allow a person to glide across snow', attributes: ['Long', 'Paired'], image: '' },
+            { word: 'Ice skates', category: 'Winter Recreation', function: 'Allow a person to glide on ice', attributes: ['Bladed', 'Strapped'], image: '' },
+            { word: 'Snowboard', category: 'Winter Recreation', function: 'Allows a person to slide downhill on snow with both feet attached', attributes: ['Wide', 'Curved'], image: '' },
+            { word: 'Hockey stick', category: 'Winter Recreation', function: 'Used to hit a puck in ice hockey', attributes: ['Long-handled', 'Angled'], image: '' },
+
+            // Winter Activities/Objects (easier-moderate)
+            { word: 'Snowball', category: 'Winter Activity', function: 'Packed snow thrown for play', attributes: ['Round', 'Compact'], image: 'images/winter_items/snowball.jpg' },
+            { word: 'Snowman', category: 'Winter Activity', function: 'A figure built from stacked balls of snow', attributes: ['Three-tiered', 'Decorated'], image: 'images/winter_items/snowman.jpg' },
+            { word: 'Snow fort', category: 'Winter Activity', function: 'A structure built from snow for play or shelter', attributes: ['Hollow', 'Protective'], image: '' },
+
+            // Winter Tools (moderate)
+            { word: 'Shovel', category: 'Winter Tool', function: 'Scoops and moves snow from pathways', attributes: ['Long-handled', 'Metal-edged'], image: 'images/winter_items/snow-shovel.jpg' },
+            { word: 'Snowplow', category: 'Winter Vehicle', function: 'Pushes large amounts of snow off roads', attributes: ['Large', 'Powerful'], image: '' },
+            { word: 'Ice scraper', category: 'Winter Tool', function: 'Removes ice from car windows', attributes: ['Flat', 'Rigid'], image: '' },
+
+            // Indoor Comfort (easier-moderate)
+            { word: 'Fireplace', category: 'Heating Source', function: 'Burns wood or gas to heat a room', attributes: ['Hot', 'Enclosed'], image: '' },
+            { word: 'Blanket', category: 'Indoor Comfort', function: 'Covers a person to trap body heat', attributes: ['Thick', 'Layered'], image: '' },
+            { word: 'Space heater', category: 'Heating Source', function: 'Generates electric heat for a small area', attributes: ['Portable', 'Electric'], image: '' },
+
+            // Food/Drink (easier)
+            { word: 'Hot chocolate', category: 'Winter Beverage', function: 'A warm drink that provides comfort and heat', attributes: ['Sweet', 'Chocolatey'], image: 'images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
+            { word: 'Soup', category: 'Winter Food', function: 'A hot liquid meal that warms the body', attributes: ['Savory', 'Steaming'], image: '' },
+            { word: 'Thermos', category: 'Winter Container', function: 'Keeps liquids hot or cold for extended time', attributes: ['Insulated', 'Sealable'], image: '' },
+
+            // Nature (moderate-harder)
+            { word: 'Pine tree', category: 'Winter Plant', function: 'Stays green year-round and collects snow on branches', attributes: ['Evergreen', 'Cone-bearing'], image: '' },
+            { word: 'Cardinal', category: 'Winter Bird', function: 'A bird that stays active during winter', attributes: ['Red', 'Seed-eating'], image: '' }
         ];
 
         const categories = Array.from(new Set(entries.map(e => e.category)));
@@ -451,7 +477,16 @@
 
             const imageArea = document.createElement('div');
             imageArea.className = 'image-placeholder';
-            imageArea.innerHTML = `<span>${entry.image ? 'Image will display here.' : 'Image placeholder — add a local path to the "image" field.'}</span>`;
+            if (entry.image) {
+                const img = document.createElement('img');
+                img.src = entry.image;
+                img.alt = entry.word;
+                img.style.maxWidth = '100%';
+                img.style.borderRadius = '10px';
+                imageArea.appendChild(img);
+            } else {
+                imageArea.innerHTML = '<span>Image placeholder — add a local path to the "image" field.</span>';
+            }
             top.appendChild(textWrap);
             top.appendChild(imageArea);
             card.appendChild(top);

@@ -7,16 +7,16 @@ To remove an activity, you need to do TWO things:
 ### Step 1: Remove from Index.html
 
 1. Open `index.html` in your editor
-2. Search (Cmd+F / Ctrl+F) for the activity filename (e.g., `fall-reading-combined copy.html`)
+2. Search (Cmd+F / Ctrl+F) for the activity filename (e.g., `fall_reading_simple.html`)
 3. Delete the entire activity entry, which looks like this:
 
 ```javascript
 {
-    title: 'Fall Reading Combined',
-    file: 'fall-reading-combined copy.html',
+    title: 'Fall Reading - Simple',
+    file: 'fall_reading_simple.html',
     icon: '🍁',
-    description: 'Combined fall reading activities',
-    tags: ['Fall', 'Reading']
+    description: 'Simplified fall stories for beginning readers.',
+    tags: ['Fall Theme', 'Beginning Level', 'Simple']
 },  // ← Don't forget to clean up the comma!
 ```
 
@@ -33,8 +33,8 @@ Now it's safe to delete the actual HTML file from your folder.
 **OR** you can create an "archive" folder:
 ```
 speech-activities-html/
-├── archive/           ← Create this folder
-│   └── old-activities go here
+├── archive/           ← Old/draft activities live here
+│   └── (moved off the main index)
 ├── index.html
 └── other activities...
 ```
@@ -78,35 +78,33 @@ Check the file dates:
 
 ## Quick Reference: Current Duplicates I See
 
-Based on your files, these look like duplicates (all have " copy" suffix):
+Copy-suffixed drafts were moved into `/archive` during the cleanup. Current archive contents:
 
-**Reading/Stories:**
+- Active versions of the ones still in use were renamed without " copy" and are linked in `index.html`.
+
 - `reading_comprehension copy.html`
 - `fall-reading-combined copy.html`
-- `inference_activity copy.html`
-- `fall-reading-comprehension_infer copy.html`
-- `multi_level_reading_comp copy.html`
-- `multi_level_reading_comp 2 copy.html`
-- `story-retelling-worksheet copy.html`
-- `story-elements-form copy.html`
-
-**Language/Vocabulary:**
+- `reading_comprehension_accessible copy.html`
+- `reading_comprehension_simple copy.html`
+- `fall-reading-comprehension copy.html`
+- `fall-reading-combined copy.html`
+- `fall-reading-comprehension_SOAR copy.html`
+- `fall-reading-literal_infer_retell_higher copy.html`
 - `compare_contrast_dragdrop copy.html`
-- `fall_nouns_category_function_expanded copy.html`
-- `context_clues_activity 2 copy.html`
+- `compare_contrast_fixed copy.html`
+- `compare_contrast_template copy.html`
+- `compare_contrast_double_bubble copy.html`
 - `context_clues_activity copy.html`
-- `fall_antonym_practice copy.html`
-
-**Pragmatics/Social:**
-- `relevant_social_q_and_a copy.html`
-- `perspective_pair_inference copy.html`
-- `high_school_social_conflict_reflection copy.html`
-- `communication_breakdown_practice copy.html`
-- `initiate_conversations_predict_response copy.html`
-- `initiate_conversations_predict_response copy.html`
-- `social_story_practice copy.html`
-
-**And many more...**
+- `context_clues_activity 2 copy.html`
+- `context_clues_detective copy.html`
+- `multi_level_reading_comp 2 copy.html`
+- `multi_level_reading_comp_with_questions copy.html`
+- `story-elements-form copy.html`
+- `story_prompts_pages copy.html`
+- `fall-noun-description copy.html`
+- `grade9_inference_context_clues copy.html`
+- `modern_past_tense copy.html`
+- `initiate_conversations_generate_responses copy.html`
 
 Would you like me to:
 1. Create a list of ALL duplicates with recommendations on which to keep?

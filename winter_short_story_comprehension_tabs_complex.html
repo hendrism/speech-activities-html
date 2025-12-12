@@ -202,6 +202,21 @@
             grid-template-columns: 1fr;
             gap: 8px;
         }
+        .retell-note {
+            margin: 0 0 10px;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+        .retell-output {
+            margin-top: 8px;
+            background: #e0f2fe;
+            border: 1px solid #bae6fd;
+            border-radius: 12px;
+            padding: 12px;
+            color: #0f172a;
+            font-weight: 700;
+            line-height: 1.5;
+        }
         .choice-btn {
             border: 1px solid #cbd5e1;
             border-radius: 10px;
@@ -342,13 +357,14 @@
     <div class="page">
         <h1>Snowy Day Reading - Complex Literal & Inferential Tabs</h1>
         <div class="intro">
-            Ten richer winter scenes with tabbed literal, inferential, and irregular past-tense practice questions. Each prompt still uses the clue-first unlock and three randomized answer choices. Images are already paired; use the same local assets from the simpler set.
+            Ten richer winter scenes with tabbed literal, inferential, retell (Somebody-Wanted-But-So-Then), and irregular past-tense practice questions. Each prompt still uses the clue-first unlock and three randomized answer choices. Images are already paired; use the same local assets from the simpler set.
         </div>
         <div id="tabFilter" style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;">
             <label><input type="checkbox" value="conjunctions"> Connecting Ideas</label>
             <label><input type="checkbox" value="literal"> Literal</label>
             <label><input type="checkbox" value="inferential"> Inferential</label>
             <label><input type="checkbox" value="events"> Event Recall</label>
+            <label><input type="checkbox" value="retell"> Retell</label>
             <label><input type="checkbox" value="past"> Irregular Past</label>
         </div>
         <div class="nav-bar" id="story-nav"></div>
@@ -2271,6 +2287,619 @@
             }
         };
 
+        const retellSets = {
+            'story-1': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Think about who was walking to school.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'The students walking to school', isCorrect: true },
+                            { text: 'The bus driver', isCorrect: false },
+                            { text: 'A firefighter', isCorrect: false },
+                            { text: 'A mail carrier', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did they want?',
+                        clue: 'Why were they crossing the snowy yard?',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Get inside the warm school safely', isCorrect: true },
+                            { text: 'Play soccer in the snow', isCorrect: false },
+                            { text: 'Wait outside all day', isCorrect: false },
+                            { text: 'Go to the store', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Look at the ground and the weather.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'The yard was slick with snow and cold wind', isCorrect: true },
+                            { text: 'There was a loud fire drill', isCorrect: false },
+                            { text: 'The doors were locked forever', isCorrect: false },
+                            { text: 'They lost the school map', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did they do to solve the problem?',
+                        clue: 'Notice how they moved.',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'They walked slowly toward the doors', isCorrect: true },
+                            { text: 'They ran and slid on purpose', isCorrect: false },
+                            { text: 'They went to play in the parking lot', isCorrect: false },
+                            { text: 'They waited for a new bus', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'What happened once they were inside?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'They felt calmer in the warm hallway', isCorrect: true },
+                            { text: 'They had to stay outside all day', isCorrect: false },
+                            { text: 'They missed all their classes', isCorrect: false },
+                            { text: 'They got even colder indoors', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-2': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Look for the name at the start.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'Sam', isCorrect: true },
+                            { text: 'Ben', isCorrect: false },
+                            { text: 'Jay', isCorrect: false },
+                            { text: 'Tia', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did he want?',
+                        clue: 'Think about why he put on layers.',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Stay warm for the freezing day', isCorrect: true },
+                            { text: 'Cool off in the snow', isCorrect: false },
+                            { text: 'Avoid going outside', isCorrect: false },
+                            { text: 'Lose his hat on purpose', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'What was the weather like when he stepped out?',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'The air was freezing and a burst of cold hit his face', isCorrect: true },
+                            { text: 'It was too hot and sunny', isCorrect: false },
+                            { text: 'It was raining inside the school', isCorrect: false },
+                            { text: 'His coat was missing', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did he do to solve the problem?',
+                        clue: 'Remember what clothing he used.',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'He wore his coat, hat, and gloves and kept steady steps', isCorrect: true },
+                            { text: 'He took off his coat and ran fast', isCorrect: false },
+                            { text: 'He hid inside the bus', isCorrect: false },
+                            { text: 'He called a taxi', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'How did he feel after getting ready?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'He felt confident and ready to keep walking', isCorrect: true },
+                            { text: 'He felt colder and gave up', isCorrect: false },
+                            { text: 'He forgot his gloves and turned back', isCorrect: false },
+                            { text: 'He fell asleep in the snow', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-3': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Find the name of the student on the bus.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'Ben', isCorrect: true },
+                            { text: 'Sam', isCorrect: false },
+                            { text: 'Maya', isCorrect: false },
+                            { text: 'Ms. Park', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did he want?',
+                        clue: 'Why did he choose his seat?',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Ride the bus and watch the falling snow', isCorrect: true },
+                            { text: 'Drive the bus himself', isCorrect: false },
+                            { text: 'Skip the ride and walk home', isCorrect: false },
+                            { text: 'Stand outside in the cold', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Think about what he felt on the steps.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'A wave of cold air blew in and made him shiver', isCorrect: true },
+                            { text: 'The bus had no seats', isCorrect: false },
+                            { text: 'The windows were broken', isCorrect: false },
+                            { text: 'There was no driver', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did he do to solve the problem?',
+                        clue: 'Look at where he sat and what warmed him.',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'He sat by the window and warmed up as the heater blew', isCorrect: true },
+                            { text: 'He opened all the windows wider', isCorrect: false },
+                            { text: 'He stood on the steps the whole time', isCorrect: false },
+                            { text: 'He put his hands in the snow', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'What happened to his hands as the ride continued?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'His hands warmed and he enjoyed watching the snow', isCorrect: true },
+                            { text: 'His hands stayed frozen and he left the bus', isCorrect: false },
+                            { text: 'He missed the ride completely', isCorrect: false },
+                            { text: 'He fell asleep on the steps', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-4': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Think about the small creature outside the window.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'The small bird on the fence', isCorrect: true },
+                            { text: 'The teacher at the board', isCorrect: false },
+                            { text: 'The bus driver', isCorrect: false },
+                            { text: 'A puppy on the playground', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did it want?',
+                        clue: 'Notice what it was looking for on the ground.',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Find food under the snow', isCorrect: true },
+                            { text: 'Build a huge nest on the bus', isCorrect: false },
+                            { text: 'Take the students pencil', isCorrect: false },
+                            { text: 'Play tag with the class', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Think about the ground and the weather.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'Snow and frozen ground made food hard to find', isCorrect: true },
+                            { text: 'Too many birds were in the classroom', isCorrect: false },
+                            { text: 'The fence was on fire', isCorrect: false },
+                            { text: 'It was raining leaves', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did it do to solve the problem?',
+                        clue: 'How did the bird move and act?',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'It shook off snow and hopped around for food', isCorrect: true },
+                            { text: 'It took a nap on the fence', isCorrect: false },
+                            { text: 'It asked the students for snacks', isCorrect: false },
+                            { text: 'It waited for summer to return', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'Where did it go after looking?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'It flew to a nearby tree', isCorrect: true },
+                            { text: 'It moved into the classroom', isCorrect: false },
+                            { text: 'It stayed on the fence all day', isCorrect: false },
+                            { text: 'It walked onto the bus', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-5': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Find the student making a drink.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'Maya', isCorrect: true },
+                            { text: 'Sam', isCorrect: false },
+                            { text: 'Ben', isCorrect: false },
+                            { text: 'Jay', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did she want?',
+                        clue: 'Why did she make cocoa?',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Warm up and enjoy cocoa at lunch', isCorrect: true },
+                            { text: 'Make iced tea for friends', isCorrect: false },
+                            { text: 'Stay cold on purpose', isCorrect: false },
+                            { text: 'Skip lunch completely', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Think about how her hands felt before the drink.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'Her fingers were cold from walking outside', isCorrect: true },
+                            { text: 'She had no cup to use', isCorrect: false },
+                            { text: 'The cafeteria was too hot', isCorrect: false },
+                            { text: 'There was no water anywhere', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did she do to solve the problem?',
+                        clue: 'Look at what she made and did with it.',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'She made warm cocoa and took a slow sip', isCorrect: true },
+                            { text: 'She put her hands in the snow', isCorrect: false },
+                            { text: 'She waved her hands in the cold air', isCorrect: false },
+                            { text: 'She went outside without a coat', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'How did the cocoa change her mood?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'She felt calm and ready to finish the school day', isCorrect: true },
+                            { text: 'She felt angry about the weather', isCorrect: false },
+                            { text: 'She felt colder than before', isCorrect: false },
+                            { text: 'She decided to skip her work', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-6': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Think about the group outside at recess.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'The class walking in the snow', isCorrect: true },
+                            { text: 'One bus driver', isCorrect: false },
+                            { text: 'A single teacher', isCorrect: false },
+                            { text: 'A soccer team', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did they want?',
+                        clue: 'Why did they head into the yard?',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Explore the snowy yard during recess', isCorrect: true },
+                            { text: 'Stay inside all day', isCorrect: false },
+                            { text: 'Hold a race in the hallway', isCorrect: false },
+                            { text: 'Find a lost phone', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Notice how the weather felt on their faces.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'The snow was deep and the cold air made their cheeks sting', isCorrect: true },
+                            { text: 'The sun was too hot', isCorrect: false },
+                            { text: 'There was no snow anywhere', isCorrect: false },
+                            { text: 'The bell never rang', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did they do to solve the problem?',
+                        clue: 'How did they move together?',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'They followed each other in a line to make a path', isCorrect: true },
+                            { text: 'They sat down and refused to walk', isCorrect: false },
+                            { text: 'They ran in different directions', isCorrect: false },
+                            { text: 'They jumped into a puddle', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'What did they do when the bell rang?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'They went back inside to the warm building', isCorrect: true },
+                            { text: 'They stayed outside all day', isCorrect: false },
+                            { text: 'They missed the bell on purpose', isCorrect: false },
+                            { text: 'They rode the bus home', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-7': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Look for the adult helping near the entrance.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'Mr. Lee', isCorrect: true },
+                            { text: 'Ms. Park', isCorrect: false },
+                            { text: 'Ben', isCorrect: false },
+                            { text: 'Tia', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did he want?',
+                        clue: 'Think about why he carried salt.',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Make the sidewalk safe for students', isCorrect: true },
+                            { text: 'Decorate the sidewalk with glitter', isCorrect: false },
+                            { text: 'Close the school for the day', isCorrect: false },
+                            { text: 'Build a snow fort', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Look at the ground near the entrance.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'Ice covered the sidewalk and made it slippery', isCorrect: true },
+                            { text: 'There was too much sand', isCorrect: false },
+                            { text: 'The sidewalk was missing', isCorrect: false },
+                            { text: 'It was too hot to walk', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did he do to solve the problem?',
+                        clue: 'What did he spread?',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'He spread salt to melt the ice', isCorrect: true },
+                            { text: 'He poured water on the ice', isCorrect: false },
+                            { text: 'He covered it with leaves', isCorrect: false },
+                            { text: 'He blocked the entrance', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'What happened after the ice melted?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'The walkway cleared and students could go inside', isCorrect: true },
+                            { text: 'The ice grew thicker and blocked everyone', isCorrect: false },
+                            { text: 'Everyone had to go home', isCorrect: false },
+                            { text: 'The sidewalk disappeared', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-8': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Find the student walking through the wind.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'Tia', isCorrect: true },
+                            { text: 'Maya', isCorrect: false },
+                            { text: 'Sam', isCorrect: false },
+                            { text: 'Rowan', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did she want?',
+                        clue: 'Why was she in the parking lot?',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Reach the building safely', isCorrect: true },
+                            { text: 'Stay outside all day', isCorrect: false },
+                            { text: 'Fly a kite in the storm', isCorrect: false },
+                            { text: 'Race her friends', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Notice the weather that pushed her hood.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'A strong, cold wind made walking hard', isCorrect: true },
+                            { text: 'The sun was too bright', isCorrect: false },
+                            { text: 'It was raining warm water', isCorrect: false },
+                            { text: 'There were no doors to the school', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did she do to solve the problem?',
+                        clue: 'How did she hold her scarf and step?',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'She held her scarf close and took small steps', isCorrect: true },
+                            { text: 'She dropped her scarf and ran fast', isCorrect: false },
+                            { text: 'She sat down in the lot', isCorrect: false },
+                            { text: 'She opened her coat wide', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'How did she feel inside?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'She reached the building and felt relief in the warm air', isCorrect: true },
+                            { text: 'She stayed cold even indoors', isCorrect: false },
+                            { text: 'She turned around and went home', isCorrect: false },
+                            { text: 'She kept wandering in the wind', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-9': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Look for the student catching snowflakes.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'Jay', isCorrect: true },
+                            { text: 'Ben', isCorrect: false },
+                            { text: 'Tia', isCorrect: false },
+                            { text: 'Maya', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did he want?',
+                        clue: 'Why did he hold out his glove?',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Enjoy catching and looking at snowflakes', isCorrect: true },
+                            { text: 'Hide his glove from friends', isCorrect: false },
+                            { text: 'Stop the bus from leaving', isCorrect: false },
+                            { text: 'Collect rocks', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Think about what happens to snowflakes on a glove.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'The flakes melted quickly into drops', isCorrect: true },
+                            { text: 'There were no snowflakes at all', isCorrect: false },
+                            { text: 'The glove was too heavy', isCorrect: false },
+                            { text: 'The bus drove over his glove', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did he do to solve the problem?',
+                        clue: 'What did he actually do with his glove?',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'He kept catching flakes and watched them melt', isCorrect: true },
+                            { text: 'He put his glove away', isCorrect: false },
+                            { text: 'He shouted at the snow to stop', isCorrect: false },
+                            { text: 'He went inside immediately', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'Notice how he felt before the bus line.',
+                        slot: 'result',
+                        choices: [
+                            { text: 'He felt peaceful and walked to the bus line', isCorrect: true },
+                            { text: 'He felt upset and ran home', isCorrect: false },
+                            { text: 'He was angry about the snow', isCorrect: false },
+                            { text: 'He forgot to leave for the bus', isCorrect: false }
+                        ]
+                    }
+                ]
+            },
+            'story-10': {
+                key: 'retell',
+                label: 'Retell (Somebody-Wanted-But-So-Then)',
+                questions: [
+                    {
+                        prompt: 'Who was the main character?',
+                        clue: 'Find the person who used the heater.',
+                        slot: 'character',
+                        choices: [
+                            { text: 'Ms. Park', isCorrect: true },
+                            { text: 'Mr. Lee', isCorrect: false },
+                            { text: 'Sam', isCorrect: false },
+                            { text: 'Maya', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did she want?',
+                        clue: 'Why did she turn something on?',
+                        slot: 'want',
+                        choices: [
+                            { text: 'Warm the chilly classroom for the students', isCorrect: true },
+                            { text: 'Make the room colder', isCorrect: false },
+                            { text: 'Fill the room with loud noise', isCorrect: false },
+                            { text: 'Send everyone outside', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the problem?',
+                        clue: 'Think about the temperature at the start of the day.',
+                        slot: 'problem',
+                        choices: [
+                            { text: 'The classroom was cold and the windows were foggy', isCorrect: true },
+                            { text: 'The classroom was too hot', isCorrect: false },
+                            { text: 'The lights would not turn on', isCorrect: false },
+                            { text: 'There were no desks', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What did she do to solve the problem?',
+                        clue: 'Look at what she used to change the temperature.',
+                        slot: 'solution',
+                        choices: [
+                            { text: 'She turned on the heater while students rubbed their hands', isCorrect: true },
+                            { text: 'She opened all the windows wider', isCorrect: false },
+                            { text: 'She turned off the lights', isCorrect: false },
+                            { text: 'She moved class to the hallway', isCorrect: false }
+                        ]
+                    },
+                    {
+                        prompt: 'What was the end result?',
+                        clue: 'What happened after the room warmed?',
+                        slot: 'result',
+                        choices: [
+                            { text: 'The room warmed, windows cleared, and everyone started work', isCorrect: true },
+                            { text: 'Everyone had to leave the classroom', isCorrect: false },
+                            { text: 'The heater broke and it stayed cold', isCorrect: false },
+                            { text: 'No one could focus at all', isCorrect: false }
+                        ]
+                    }
+                ]
+            }
+        };
+
         const conjunctionSets = {
             'story-1': {
                 key: 'conjunctions',
@@ -3156,12 +3785,14 @@
 
             const baseSets = (story.questionSets || []).filter(set => set.key !== 'past');
             const eventSet = eventRecallSets[story.id];
+            const retellSet = retellSets[story.id];
             const conjunctionSet = conjunctionSets[story.id];
             const pastSet = irregularPastSets[story.id];
             const selected = selectedTabKeys();
             const candidates = [
                 ...baseSets,
                 eventSet,
+                retellSet,
                 conjunctionSet,
                 pastSet
             ].filter(Boolean);
@@ -3222,6 +3853,21 @@
                 const set = combinedSets.find(q => q.key === activeKey) || combinedSets[0];
                 if (set.key === 'conjunctions') {
                     renderConjunctionTab(set);
+                    return;
+                }
+                if (set.key === 'retell') {
+                    const note = document.createElement('p');
+                    note.className = 'retell-note';
+                    note.textContent = 'Use the Somebody-Wanted-But-So-Then steps. Type your idea first, then tap I need help or I need more help for clues and choices.';
+                    questionsWrap.appendChild(note);
+                    const retellOutput = document.createElement('div');
+                    retellOutput.className = 'retell-output';
+                    const updateOutput = () => updateRetellOutput(questionsWrap, retellOutput);
+                    set.questions.forEach((question, idx) => {
+                        questionsWrap.appendChild(buildQuestionCard(question, idx + 1, set.key, updateOutput));
+                    });
+                    questionsWrap.appendChild(retellOutput);
+                    updateOutput();
                     return;
                 }
                 set.questions.forEach((question, idx) => {
@@ -3339,6 +3985,30 @@
             return { blankSentence, bankOptions };
         }
 
+        function updateRetellOutput(scopeEl, outputEl) {
+            if (!scopeEl || !outputEl) return;
+            const parts = {
+                character: '',
+                want: '',
+                problem: '',
+                solution: '',
+                result: ''
+            };
+            scopeEl.querySelectorAll('textarea[data-slot]').forEach(input => {
+                const slot = input.dataset.slot;
+                if (slot && Object.prototype.hasOwnProperty.call(parts, slot)) {
+                    parts[slot] = input.value.trim();
+                }
+            });
+            const blank = '____';
+            const character = parts.character || blank;
+            const want = parts.want || blank;
+            const problem = parts.problem || blank;
+            const solution = parts.solution || blank;
+            const result = parts.result || blank;
+            outputEl.textContent = `${character} wanted to ${want}, but ${problem}, so ${solution}, then ${result}.`;
+        }
+
         function buildConjunctionCard(question, index, total) {
             const card = document.createElement('div');
             card.className = 'question-card';
@@ -3430,7 +4100,7 @@
             return card;
         }
 
-        function buildQuestionCard(question, number, setKey) {
+        function buildQuestionCard(question, number, setKey, onRetellChange) {
             const card = document.createElement('div');
             card.className = 'question-card';
 
@@ -3454,6 +4124,7 @@
 
             const correctChoice = question.choices.find(c => c.isCorrect);
             const correctText = correctChoice ? correctChoice.text : '';
+            const starter = question.starter || '';
 
             let inputEl;
             let checkBtn;
@@ -3482,6 +4153,27 @@
                 inputRow.appendChild(inputEl);
                 inputRow.appendChild(checkBtn);
                 card.appendChild(inputRow);
+            } else if (setKey === 'retell') {
+                const inputRow = document.createElement('div');
+                inputRow.className = 'input-row';
+                inputEl = document.createElement('textarea');
+                inputEl.className = 'text-input';
+                inputEl.rows = 3;
+                inputEl.placeholder = 'Retell this event in your own words...';
+                if (question.slot) {
+                    inputEl.dataset.slot = question.slot;
+                }
+                inputEl.addEventListener('input', () => {
+                    if (typeof onRetellChange === 'function') {
+                        onRetellChange();
+                    }
+                });
+                checkBtn = document.createElement('button');
+                checkBtn.className = 'btn btn-check';
+                checkBtn.textContent = 'Save my retell';
+                inputRow.appendChild(inputEl);
+                inputRow.appendChild(checkBtn);
+                card.appendChild(inputRow);
             } else if (setKey === 'events') {
                 const inputRow = document.createElement('div');
                 inputRow.className = 'input-row';
@@ -3501,18 +4193,21 @@
             helpRow.className = 'help-row';
             const clueBtn = document.createElement('button');
             clueBtn.className = 'btn btn-clue';
-            clueBtn.textContent = 'Show clue';
+            clueBtn.textContent = setKey === 'retell' ? 'I need help' : 'Show clue';
             const choicesBtn = document.createElement('button');
             choicesBtn.className = 'btn btn-choices';
-            choicesBtn.textContent = 'Show choices';
-            choicesBtn.disabled = true;
+            choicesBtn.textContent = setKey === 'retell' ? 'I need more help' : 'Show choices';
+            choicesBtn.disabled = setKey === 'retell' ? false : true;
             helpRow.appendChild(clueBtn);
             helpRow.appendChild(choicesBtn);
             card.appendChild(helpRow);
 
             const clueBox = document.createElement('div');
             clueBox.className = 'clue';
-            clueBox.textContent = question.clue;
+            const clueText = setKey === 'retell'
+                ? [question.clue, starter ? `Sentence starter: ${starter}` : ''].filter(Boolean).join(' ')
+                : question.clue;
+            clueBox.textContent = clueText || '';
             card.appendChild(clueBox);
 
             const choicesWrap = document.createElement('div');
@@ -3524,8 +4219,13 @@
             card.appendChild(feedback);
 
             clueBtn.addEventListener('click', () => {
+                if (setKey === 'retell') {
+                    applyStarter();
+                }
                 clueBox.style.display = 'block';
-                choicesBtn.disabled = false;
+                if (setKey !== 'retell') {
+                    choicesBtn.disabled = false;
+                }
                 clueBtn.disabled = true;
             });
 
@@ -3541,6 +4241,13 @@
                     btn.className = 'choice-btn';
                     btn.textContent = choice.text;
                     btn.addEventListener('click', () => {
+                        if (setKey === 'retell') {
+                            applyChoice(choice.text);
+                            if (typeof onRetellChange === 'function') {
+                                onRetellChange();
+                            }
+                            return;
+                        }
                         if (inputEl) {
                             inputEl.value = choice.text;
                         }
@@ -3559,7 +4266,9 @@
                 });
 
                 choicesWrap.style.display = 'grid';
-                choicesBtn.disabled = setKey !== 'past' && setKey !== 'events';
+                if (setKey !== 'retell') {
+                    choicesBtn.disabled = setKey !== 'past' && setKey !== 'events';
+                }
             });
 
             function checkAnswer(isCorrect, clickedBtn) {
@@ -3605,6 +4314,33 @@
                 }
             }
 
+            function applyStarter() {
+                if (!starter || !inputEl) return;
+                const prefix = starter.endsWith(' ') ? starter : `${starter} `;
+                const current = inputEl.value.trim();
+                if (!current) {
+                    inputEl.value = prefix;
+                } else if (!current.toLowerCase().startsWith(prefix.toLowerCase().trim())) {
+                    inputEl.value = `${prefix}${current}`;
+                }
+                inputEl.focus();
+            }
+
+            function applyChoice(text) {
+                if (!inputEl) return;
+                const phrase = text || '';
+                const current = inputEl.value.trim();
+                const starterPrefix = starter && !current ? (starter.endsWith(' ') ? starter : `${starter} `) : '';
+                if (!current) {
+                    inputEl.value = `${starterPrefix}${phrase}`;
+                } else if (current.endsWith('.') || current.endsWith('!') || current.endsWith('?')) {
+                    inputEl.value = `${current} ${phrase}`;
+                } else {
+                    inputEl.value = `${current} ${phrase}`;
+                }
+                inputEl.focus();
+            }
+
             function updateSentence(word) {
                 if (!sentenceBox) return;
                 const safeBase = baseSentence ? escapeHTML(baseSentence) : 'Sentence';
@@ -3622,6 +4358,16 @@
                 if (setKey === 'past') {
                     checkBtn.addEventListener('click', () => {
                         updateSentence(inputEl.value);
+                    });
+                } else if (setKey === 'retell') {
+                    checkBtn.addEventListener('click', () => {
+                        const value = (inputEl.value || '').trim();
+                        feedback.textContent = value ? 'Retell saved—read it aloud and see if it matches the event.' : 'Add a few words about what happened in this event.';
+                        feedback.className = 'feedback ' + (value ? 'correct' : 'incorrect');
+                        feedback.style.display = 'block';
+                        if (typeof onRetellChange === 'function') {
+                            onRetellChange();
+                        }
                     });
                 } else if (setKey === 'events') {
                     checkBtn.addEventListener('click', () => {

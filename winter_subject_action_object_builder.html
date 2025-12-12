@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Subject-Action-Object Builder</title>
+    <style>
+        :root {
+            --sky: #38bdf8;
+            --spruce: #0f766e;
+            --ink: #0f172a;
+            --frost: #e2e8f0;
+            --snow: #f8fafc;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #e0f2fe, #f8fafc 65%);
+            color: var(--ink);
+            padding: 18px 12px 48px;
+        }
+        h1 {
+            text-align: center;
+            margin: 0 0 10px;
+            color: var(--spruce);
+        }
+        .intro {
+            max-width: 1080px;
+            margin: 0 auto 14px;
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+            line-height: 1.6;
+        }
+        .nav {
+            max-width: 1080px;
+            margin: 0 auto 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px;
+        }
+        .nav button {
+            border: 1px solid var(--frost);
+            background: white;
+            border-radius: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--ink);
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+        .nav button.active {
+            background: linear-gradient(135deg, #e0f2fe, #fef9c3);
+            border-color: var(--sky);
+            color: #92400e;
+        }
+        .shell {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+        }
+        .top {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 14px;
+            align-items: start;
+        }
+        .image-wrap {
+            background: var(--snow);
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+        .image-wrap img {
+            max-width: 100%;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+        .sentence-box {
+            margin: 10px 0 0;
+            padding: 14px;
+            background: #e0f2fe;
+            border: 2px solid #bae6fd;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.5;
+            color: var(--ink);
+        }
+        .title {
+            margin: 0 0 6px;
+            font-size: 1.05rem;
+            color: var(--spruce);
+        }
+        .inputs {
+            background: var(--snow);
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 12px;
+        }
+        .input-row {
+            margin-bottom: 12px;
+        }
+        label {
+            font-weight: 800;
+            display: block;
+            margin-bottom: 4px;
+            color: #334155;
+        }
+        .big-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            font-size: 20px;
+            font-family: inherit;
+            background: white;
+        }
+        .helpers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .chip {
+            border: 1px solid var(--frost);
+            background: #ecfeff;
+            color: var(--ink);
+            padding: 8px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.15s ease;
+        }
+        .chip:hover {
+            border-color: var(--sky);
+            transform: translateY(-1px);
+        }
+        .hidden { display: none; }
+        .toggle-btn {
+            border: 1px solid var(--frost);
+            background: white;
+            color: var(--ink);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+        .toggle-btn:hover {
+            border-color: var(--sky);
+        }
+        .sentence-box {
+            margin-top: 12px;
+            padding: 14px;
+            background: #e0f2fe;
+            border: 2px solid #bae6fd;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.5;
+            color: var(--ink);
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 16px;
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1);
+            transition: all 0.15s ease;
+        }
+        .btn-primary { background: var(--spruce); color: white; }
+        .btn-secondary { background: #fef9c3; color: #92400e; border: 1px solid #facc15; }
+        .btn:hover { transform: translateY(-1px); }
+        @media (max-width: 900px) {
+            .top { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Winter Subject-Action-Object Builder</h1>
+    <div class="intro">
+        Pick any winter scene image (from both story sets), then build a clear subject-action-object sentence. Fill in WHO, DOING WHAT, and WHERE/WITH WHAT to make a complete thought. Use the quick chips to spark ideas, and read the bold sentence to check for clarity.
+    </div>
+
+    <div class="nav" id="nav"></div>
+
+    <div class="shell">
+        <div class="top">
+            <div class="image-wrap">
+                <p class="title" id="sceneTitle"></p>
+                <img id="sceneImage" src="" alt="">
+                <div class="sentence-box" id="sentenceBox"></div>
+            </div>
+            <div class="inputs">
+                <div class="input-row">
+                    <label for="whoInput">Who?</label>
+                    <input id="whoInput" class="big-input" type="text">
+                    <button class="toggle-btn" type="button" data-target="who">Show ideas</button>
+                    <div class="helpers" data-target="who"></div>
+                </div>
+                <div class="input-row">
+                    <label for="actionInput">Doing what?</label>
+                    <input id="actionInput" class="big-input" type="text">
+                    <button class="toggle-btn" type="button" data-target="action">Show ideas</button>
+                    <div class="helpers" data-target="action"></div>
+                </div>
+                <div class="input-row">
+                    <label for="detailInput">Where/with what?</label>
+                    <input id="detailInput" class="big-input" type="text">
+                    <button class="toggle-btn" type="button" data-target="detail">Show ideas</button>
+                    <div class="helpers" data-target="detail"></div>
+                </div>
+                <div class="controls">
+                    <button class="btn btn-secondary" id="clearBtn" type="button">Clear sentence</button>
+                    <button class="btn btn-primary" id="shuffleBtn" type="button">Shuffle ideas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scenes = [
+            { title: 'Snowy Shortcut', image: 'images/winter_short_story_comprehension_progressive/story_1.png', alt: 'A snowy path behind a library with a bench' },
+            { title: 'Frozen Window Pattern', image: 'images/winter_short_story_comprehension_progressive/story_2.png', alt: 'Frost shapes on a bedroom window' },
+            { title: 'Light in the Woods', image: 'images/winter_short_story_comprehension_progressive/story_3.png', alt: 'A glowing lantern under snowy trees' },
+            { title: 'Skating Lesson', image: 'images/winter_short_story_comprehension_progressive/story_4.png', alt: 'Two people ice skating at an outdoor rink' },
+            { title: 'Missing Mittens', image: 'images/winter_short_story_comprehension_progressive/story_5.png', alt: 'A student locker with winter mittens missing' },
+            { title: 'Quiet Bus Ride', image: 'images/winter_short_story_comprehension_progressive/story_6.png', alt: 'A school bus driving on snowy roads' },
+            { title: 'Warm Coat Exchange', image: 'images/winter_short_story_comprehension_progressive/story_7.png', alt: 'Kids trading winter coats at a community center' },
+            { title: 'Frozen Pond Discovery', image: 'images/winter_short_story_comprehension_progressive/story_8.png', alt: 'Two kids standing on a frozen pond' },
+            { title: 'Storm at Lunch', image: 'images/winter_short_story_comprehension_progressive/story_9.png', alt: 'Students at lunch hearing about a snowstorm' },
+            { title: 'Snow Sculpture', image: 'images/winter_short_story_comprehension_progressive/story_10.png', alt: 'Kids building a snow sculpture in a park' },
+            { title: 'Snowy Arrival', image: 'images/winter_stories/story1_snowy-arrival.png', alt: 'Students entering a school while snow falls' },
+            { title: 'Layering Up', image: 'images/winter_stories/story2.png', alt: 'Child putting on winter clothing' },
+            { title: 'Bus Stop Chill', image: 'images/winter_stories/story3_new.png', alt: 'Student finding a seat on a bus in winter' },
+            { title: 'Bird on the Fence', image: 'images/winter_stories/story4.png', alt: 'Small bird perched on a snowy fence' },
+            { title: 'Warm Cocoa', image: 'images/winter_stories/story5.png', alt: 'Mug of hot cocoa being stirred' },
+            { title: 'Snowy Recess Path', image: 'images/winter_stories/story6.png', alt: 'Students making a walking path in the snow' },
+            { title: 'Melting the Ice', image: 'images/winter_stories/story7.png', alt: 'Salt being spread on an icy sidewalk' },
+            { title: 'Windy Walk', image: 'images/winter_stories/story8.png', alt: 'Student holding a scarf while wind blows' },
+            { title: 'Snowflake Catch', image: 'images/winter_stories/story9.png', alt: 'Hand catching a snowflake on a glove' },
+            { title: 'Warm Classroom', image: 'images/winter_stories/story10.png', alt: 'Heater warming a classroom' },
+            { title: 'Make a Snowman', image: 'images/winter_actions/kidmakesnowman.png', alt: 'Kid making a snowman' },
+            { title: 'Throw a Snowball', image: 'images/winter_actions/throw_snowball.png', alt: 'Person throwing a snowball' },
+            { title: 'Kids Ice Skating', image: 'images/winter_actions/kidsiceskate.png', alt: 'Kids ice skating' },
+            { title: 'Kids Sledding', image: 'images/winter_actions/kidsled.png', alt: 'Kids riding a sled' },
+            { title: 'Drink Hot Chocolate', image: 'images/winter_actions/drink-hotchocolate.png', alt: 'Person drinking hot chocolate' },
+            { title: 'Shovel Snow', image: 'images/winter_actions/manshovel.png', alt: 'Person shoveling snow' },
+            { title: 'Dog Playing in Snow', image: 'images/winter_actions/dogplaysnow.png', alt: 'Dog playing in snow' }
+        ];
+
+        const chipBank = {
+            who: ['The girl', 'The boy', 'The students', 'The friends'],
+            action: ['is helping', 'is watching', 'is carrying', 'is holding'],
+            detail: ['near the bus stop.', 'on the icy path.', 'at the outdoor rink.', 'under the streetlights.']
+        };
+
+        const navEl = document.getElementById('nav');
+        const sceneTitle = document.getElementById('sceneTitle');
+        const sceneImage = document.getElementById('sceneImage');
+        const whoInput = document.getElementById('whoInput');
+        const actionInput = document.getElementById('actionInput');
+        const detailInput = document.getElementById('detailInput');
+        const sentenceBox = document.getElementById('sentenceBox');
+        const clearBtn = document.getElementById('clearBtn');
+        const shuffleBtn = document.getElementById('shuffleBtn');
+
+        let current = 0;
+        const drafts = scenes.map(() => ({ who: '', action: '', detail: '' }));
+
+        function renderNav() {
+            navEl.innerHTML = scenes.map((scene, idx) => `
+                <button data-idx="${idx}" class="${idx === current ? 'active' : ''}">${idx + 1}. ${scene.title}</button>
+            `).join('');
+            navEl.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    current = parseInt(btn.dataset.idx, 10);
+                    renderScene();
+                    navEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        }
+
+        function renderScene() {
+            const scene = scenes[current];
+            const draft = drafts[current];
+            sceneTitle.textContent = scene.title;
+            sceneImage.src = scene.image;
+            sceneImage.alt = scene.alt || scene.title;
+            whoInput.value = draft.who;
+            actionInput.value = draft.action;
+            detailInput.value = draft.detail;
+            updateSentence();
+        }
+
+        function updateSentence() {
+            const draft = drafts[current];
+            drafts[current] = {
+                who: whoInput.value.trim(),
+                action: actionInput.value.trim(),
+                detail: detailInput.value.trim()
+            };
+            const who = drafts[current].who || '____';
+            const action = drafts[current].action || '____';
+            const detail = drafts[current].detail ? ` ${drafts[current].detail}` : ' ____';
+            sentenceBox.textContent = `${who} ${action}${detail}`.trim().replace(/\s+/g, ' ');
+        }
+
+        function populateChips() {
+            document.querySelectorAll('.helpers').forEach(helper => {
+                const target = helper.dataset.target;
+                helper.innerHTML = chipBank[target].map(text => `<button class="chip" data-target="${target}">${text}</button>`).join('');
+                helper.classList.add('hidden');
+                helper.querySelectorAll('.chip').forEach(chip => {
+                    chip.addEventListener('click', () => {
+                        const field = chip.dataset.target;
+                        const value = chip.textContent;
+                        if (field === 'who') {
+                            whoInput.value = value;
+                        } else if (field === 'action') {
+                            actionInput.value = value;
+                        } else {
+                            detailInput.value = value;
+                        }
+                        updateSentence();
+                    });
+                });
+            });
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                const target = btn.dataset.target;
+                const helper = document.querySelector(`.helpers[data-target="${target}"]`);
+                btn.addEventListener('click', () => {
+                    if (!helper) return;
+                    helper.classList.toggle('hidden');
+                    btn.textContent = helper.classList.contains('hidden') ? 'Show ideas' : 'Hide ideas';
+                });
+            });
+        }
+
+        function shuffleIdeas() {
+            whoInput.value = pickRandom(chipBank.who);
+            actionInput.value = pickRandom(chipBank.action);
+            detailInput.value = pickRandom(chipBank.detail);
+            updateSentence();
+        }
+
+        function pickRandom(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        whoInput.addEventListener('input', updateSentence);
+        actionInput.addEventListener('input', updateSentence);
+        detailInput.addEventListener('input', updateSentence);
+        clearBtn.addEventListener('click', () => {
+            whoInput.value = '';
+            actionInput.value = '';
+            detailInput.value = '';
+            updateSentence();
+        });
+        shuffleBtn.addEventListener('click', shuffleIdeas);
+
+        populateChips();
+        renderNav();
+        renderScene();
+    </script>
+</body>
+</html>
