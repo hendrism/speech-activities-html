@@ -305,28 +305,29 @@
 
         let current = 0;
         let highlightOn = false;
+        let checkVisible = false;
         const ratings = passages.map(p => p.words.map(() => null));
 
         const titleEl = document.getElementById("paragraphTitle");
         const textEl = document.getElementById("paragraphText");
-        const tagsEl = document.getElementById("wordTags");
         const checksEl = document.getElementById("wordChecks");
         const progressEl = document.getElementById("progress");
         const ratedCountEl = document.getElementById("ratedCount");
         const highlightBtn = document.getElementById("toggleHighlight");
+        const checkBtn = document.getElementById("toggleCheck");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
+        const checkSection = document.getElementById("checkSection");
 
         function escapeRegExp(str) {
             return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         }
 
         function highlightText(text, words) {
-            if (!highlightOn) return text;
             let result = text;
             words.forEach(word => {
                 const re = new RegExp(`\\b(${escapeRegExp(word)})\\b`, "gi");
-                result = result.replace(re, '<span class="highlight">$1</span>');
+                result = result.replace(re, `<span class="target-word" data-word="${word}">$1</span>`);
             });
             return result;
         }
@@ -349,6 +350,7 @@
                             <button class="status-btn unsure ${state === "unsure" ? "active" : ""}" data-word="${idx}" data-val="unsure">Unsure</button>
                             <button class="status-btn work ${state === "work" ? "active" : ""}" data-word="${idx}" data-val="work">Needs work</button>
                         </div>
+                        <button class="btn secondary locate-btn" data-word="${idx}" type="button" style="width:100%; text-align:center;">Locate in paragraph</button>
                     </div>
                 `;
             }).join("");
@@ -358,6 +360,14 @@
                     const wordIndex = parseInt(btn.dataset.word, 10);
                     const value = btn.dataset.val;
                     setRating(wordIndex, value);
+                });
+            });
+
+            checksEl.querySelectorAll(".locate-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const wordIndex = parseInt(btn.dataset.word, 10);
+                    const word = passages[current].words[wordIndex];
+                    pulseWord(word);
                 });
             });
         }
@@ -374,14 +384,21 @@
             const passage = passages[current];
             titleEl.textContent = passage.title;
             textEl.innerHTML = highlightText(passage.text, passage.words);
-            tagsEl.innerHTML = passage.words.map(w => `<span class="tag">${w}</span>`).join("");
             renderWordChecks();
             updateProgress();
+            document.body.classList.toggle("highlight-on", highlightOn);
+            checkSection.style.display = checkVisible ? "block" : "none";
+            checkBtn.textContent = checkVisible ? "Hide self-check" : "Show self-check";
         }
 
         highlightBtn.addEventListener("click", () => {
             highlightOn = !highlightOn;
             highlightBtn.textContent = highlightOn ? "Hide target highlights" : "Show target highlights";
+            render();
+        });
+
+        checkBtn.addEventListener("click", () => {
+            checkVisible = !checkVisible;
             render();
         });
 
@@ -398,6 +415,15 @@
                 render();
             }
         });
+
+        function pulseWord(word) {
+            const spans = textEl.querySelectorAll(`.target-word[data-word="${word}"]`);
+            spans.forEach(span => {
+                span.classList.remove("pulse");
+                void span.offsetWidth;
+                span.classList.add("pulse");
+            });
+        }
 
         render();
     </script>
