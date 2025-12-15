@@ -1,0 +1,2366 @@
+{
+  "generatedAt": "2025-12-12T20:03:35.809Z",
+  "count": 185,
+  "summaries": [
+    {
+      "file": "Fluency_Therapy_Session_Activity.html",
+      "title": "Fluency Therapy Session Activity",
+      "categories": [
+        "Fluency"
+      ],
+      "description": "Let's work on awareness, technique, and positive thinking together!",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "activity-loader.html",
+      "title": "Activity Loader",
+      "categories": [],
+      "description": "Practice your language skills",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "analogies_activity.html",
+      "title": "Analogies Activity",
+      "categories": [],
+      "description": "Choose one of these answers:",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/compare_contrast_double_bubble copy.html",
+      "title": "Double Bubble Compare & Contrast",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "Move each idea into the correct bubble. Then use the sentence frame to explain how the two items are alike and different.",
+      "components": [
+        "dragDrop",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/compare_contrast_dragdrop copy.html",
+      "title": "Compare & Contrast - Interactive Drag & Drop Worksheet",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "You've successfully completed this compare and contrast activity!",
+      "components": [
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/compare_contrast_fixed copy.html",
+      "title": "Compare & Contrast - Interactive Drag & Drop Worksheet",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "You've successfully completed this compare and contrast activity!",
+      "components": [
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/compare_contrast_template copy.html",
+      "title": "Compare & Contrast - Editable Template Builder",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "Save your activities as a new HTML file to use in therapy sessions:",
+      "components": [
+        "modeToggle",
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/context_clues_activity 2 copy.html",
+      "title": "Context Clues Activity",
+      "categories": [
+        "Context clues"
+      ],
+      "description": null,
+      "components": [
+        "tabs"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/context_clues_activity copy.html",
+      "title": "Context Clues Activity",
+      "categories": [
+        "Context clues"
+      ],
+      "description": null,
+      "components": [
+        "tabs"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/context_clues_detective copy.html",
+      "title": "Context Clues Detective - Word Meaning Discovery",
+      "categories": [
+        "Context clues"
+      ],
+      "description": "Excellent detective work!",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/descriptor-word-bank copy.html",
+      "title": "Descriptor Word Bank",
+      "categories": [],
+      "description": "Use these words to make your stories more descriptive!",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/fall-noun-description copy.html",
+      "title": "Fall Nouns - Category & Function",
+      "categories": [
+        "Fall"
+      ],
+      "description": null,
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/fall-reading-combined copy.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "archive/fall-reading-comprehension copy.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "archive/fall-reading-comprehension_SOAR copy.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "archive/fall-reading-literal_infer_retell_higher copy.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "archive/grade9_inference_context_clues copy.html",
+      "title": "Ninth Grade Inference Practice",
+      "categories": [
+        "Inference",
+        "Context clues"
+      ],
+      "description": "Read each real-life situation. Use context clues to infer what the character is thinking and feeling, describe the problem and solution, and explain the cause-and-effect relationship.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/initiate_conversations_generate_responses copy.html",
+      "title": "Conversation Response Generator",
+      "categories": [
+        "Conversation"
+      ],
+      "description": "For each scenario, read what the other person says. Create at least two different ways you could respond, and predict how they might reply to each option.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/modern_past_tense copy.html",
+      "title": "Past Tense Practice - Interactive Worksheet",
+      "categories": [],
+      "description": "You've mastered this verb!",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/multi_level_reading_comp 2 copy.html",
+      "title": "Multi-Level Reading Comprehension Tool",
+      "categories": [
+        "Reading"
+      ],
+      "description": "Use the sentence starters to help you retell what happened in the story. Write 1-2 sentences for each step.",
+      "components": [
+        "images",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/multi_level_reading_comp_with_questions copy.html",
+      "title": "Multi-Level Reading Comprehension Tool",
+      "categories": [
+        "Reading"
+      ],
+      "description": "Use the sentence starters to help you retell what happened in the story. Write 1-2 sentences for each step.",
+      "components": [
+        "images",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/reading_comprehension copy.html",
+      "title": "Reading Comprehension - Main Ideas & Vocabulary",
+      "categories": [
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "dragDrop",
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "archive/reading_comprehension_accessible copy.html",
+      "title": "Reading Comprehension - Where & When Questions",
+      "categories": [
+        "Reading"
+      ],
+      "description": "Upload and assign icons to answer choices",
+      "components": [
+        "stories",
+        "images",
+        "dragDrop",
+        "multipleChoice"
+      ],
+      "imageCount": 5,
+      "storyCount": 1
+    },
+    {
+      "file": "archive/reading_comprehension_simple copy.html",
+      "title": "Reading Comprehension - Main Ideas & Vocabulary",
+      "categories": [
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "dragDrop",
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "archive/story-elements-form copy.html",
+      "title": "Story Elements Worksheet",
+      "categories": [
+        "Story"
+      ],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "archive/story_prompts_pages copy.html",
+      "title": "Story Prompts - Speech Therapy Activity",
+      "categories": [
+        "Story"
+      ],
+      "description": null,
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "articulation-make-your-own-sentence.html",
+      "title": "Articulation Sentence Creator",
+      "categories": [
+        "Articulation"
+      ],
+      "description": "Select a target sound, choose the word groups you want to practice, then have students craft their own sentences using each highlighted word.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "articulation-paragraph-check-in.html",
+      "title": "Articulation Paragraph Check-In",
+      "categories": [
+        "Articulation"
+      ],
+      "description": "Read one paragraph at a time, toggle target highlights, then self-rate each target word.",
+      "components": [
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "articulation-practice-sequential.html",
+      "title": "Articulation Practice - Sequential Builder",
+      "categories": [
+        "Articulation"
+      ],
+      "description": "No categories available. Please reload the page.",
+      "components": [
+        "prompts",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "articulation-practice.html",
+      "title": "Articulation Practice - Drag & Drop",
+      "categories": [
+        "Articulation"
+      ],
+      "description": "Selected: ${state.selectedBlends.map(b => `/${b}/`).join(', ')} (${getSelectedWords().length} total words)",
+      "components": [
+        "dragDrop",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "articulation-story-builder.html",
+      "title": "Articulation Story Builder",
+      "categories": [
+        "Articulation",
+        "Story"
+      ],
+      "description": "Pick 2-4 target words and create multi-sentence stories using them",
+      "components": [
+        "dragDrop",
+        "prompts",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "articulation-word-practice.html",
+      "title": "Articulation Word Practice",
+      "categories": [
+        "Articulation"
+      ],
+      "description": "Select a speech sound, preview the words grouped by position, then cycle through randomized word cards for focused practice.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "author_theme_mainidea_sentence_builder.html",
+      "title": "Author Purpose, Theme, Main Idea + Sentence Builder",
+      "categories": [],
+      "description": "Read each passage, find the author’s purpose, theme, and main idea, then build one clear complex sentence with conjunctions, prepositions, and adverbs.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "blend_story_sound_reader.html",
+      "title": "Blend Story Reader - One at a Time",
+      "categories": [
+        "Story"
+      ],
+      "description": null,
+      "components": [
+        "dragDrop",
+        "tabs"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "category_function_definition.html",
+      "title": "Category & Function Definition Practice",
+      "categories": [
+        "Definitions"
+      ],
+      "description": "Define each word by dragging the correct category and function",
+      "components": [
+        "dragDrop",
+        "prompts",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "communication_breakdown_causes.html",
+      "title": "Communication Breakdown Spotter",
+      "categories": [],
+      "description": "Read each scenario, decide if a breakdown happened, then tag the cause. Focus on spotting the problem—no repairs here.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "communication_breakdown_practice.html",
+      "title": "Communication Breakdown Repair Lab",
+      "categories": [],
+      "description": "Work through each mini-scenario one step at a time. Spot what caused the breakdown, pick 1–2 repair moves, and script what you’ll say. Use the coach example if you get stuck, then jot a quick reflection.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "compare-contrast-activity.html",
+      "title": "Compare & Contrast Words",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "Describe each word, then tell how they're similar or different!",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "compare_contrast_builder.html",
+      "title": "Compare & Contrast Builder",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "Guide your student from brainstorming details to producing strong comparative sentences.",
+      "components": [
+        "tabs",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "compare_contrast_seasonal_pairs.html",
+      "title": "Seasonal Compare & Contrast",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "Pick a pair, describe each word, then add similarities and differences.",
+      "components": [
+        "images"
+      ],
+      "imageCount": 4,
+      "storyCount": 0
+    },
+    {
+      "file": "compare_contrast_thanksgiving.html",
+      "title": "Thanksgiving Compare & Contrast",
+      "categories": [
+        "Thanksgiving",
+        "Compare/contrast"
+      ],
+      "description": "Drag each idea into the correct bubble, then use the sentence frames to explain how the Thanksgiving items are alike and different.",
+      "components": [
+        "dragDrop",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "complex_sentence_summary_builder.html",
+      "title": "Complex Sentence Summary Builder",
+      "categories": [],
+      "description": "Read each short text, collect key ideas, and build a complex sentence that explains the author’s purpose, theme, or main idea using conjunctions, prepositions, or adverbs.",
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "context-clues-activity-enhanced.html",
+      "title": "Context Clues Activity",
+      "categories": [
+        "Context clues"
+      ],
+      "description": "Context clues help you figure out the meaning of unfamiliar words by looking at the words and sentences around them. There are five main types of context clues:",
+      "components": [
+        "tabs"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "context_clues_easy.html",
+      "title": "Context Clues Activity",
+      "categories": [
+        "Context clues"
+      ],
+      "description": "Use clues to find the meaning",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "context_clues_hard.html",
+      "title": "Context Clues - Hard Level",
+      "categories": [
+        "Context clues"
+      ],
+      "description": "Context clues help you figure out the meaning of unfamiliar words by looking at the words and sentences around them. Read each sentence carefully and use the clues to determine what the highlighted word means!",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "context_clues_medium.html",
+      "title": "Context Clues - Medium Level",
+      "categories": [
+        "Context clues"
+      ],
+      "description": "Context clues help you figure out the meaning of unfamiliar words by looking at the words and sentences around them. Read each sentence carefully and use the clues to determine what the highlighted word means!",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "context_clues_thanksgiving.html",
+      "title": "Context Clues – Thanksgiving",
+      "categories": [
+        "Thanksgiving",
+        "Context clues"
+      ],
+      "description": "Use the context clues in each Thanksgiving sentence to figure out the meaning of the highlighted word. Tap “I need help” for a clue or “I need more help” for a stronger hint. Choose the best definition.",
+      "components": [
+        "multipleChoice",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "conversation_initiation_starters.html",
+      "title": "Conversation Initiation & Perspective-Taking",
+      "categories": [
+        "Conversation"
+      ],
+      "description": "Read each scenario. Come up with two openers and predict how the other person might respond. Use the sentence starters for ideas, keep it realistic and brief.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "conversation_response_practice.html",
+      "title": "Conversation Response Practice - Interactive Activity",
+      "categories": [
+        "Conversation"
+      ],
+      "description": "${currentScenario.text}",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "conversation_response_thanksgiving.html",
+      "title": "Conversation Response Practice – Thanksgiving",
+      "categories": [
+        "Thanksgiving",
+        "Conversation"
+      ],
+      "description": "First way you could reply. Include words and tone.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "conversation_starter_practice.html",
+      "title": "Conversation Starter Practice - Interactive Activity",
+      "categories": [
+        "Conversation"
+      ],
+      "description": "Combine your pieces into a complete Starter #1.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "definition_attribute_builder.html",
+      "title": "Definition Attribute Builder",
+      "categories": [
+        "Definitions"
+      ],
+      "description": "Say what the word is, the group it belongs to, and the key attributes that make it unique.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "direction-find-the-core.html",
+      "title": "Find the Core Highlighter",
+      "categories": [
+        "Directions"
+      ],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "direction-strategy-visual-guide.html",
+      "title": "Direction Strategy Visual Guide",
+      "categories": [
+        "Directions"
+      ],
+      "description": "Use this visual to slow down, spot the most important parts of a direction, and choose the best strategy to ace it the first time.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "direction_strategy_coach.html",
+      "title": "Direction Strategy Coach",
+      "categories": [
+        "Directions"
+      ],
+      "description": "Pull out the important parts of a direction and decide how you’ll follow it accurately.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "double_bubble_compare_contrast_fall_edition.html",
+      "title": "Double Bubble Compare & Contrast – Fall Edition",
+      "categories": [
+        "Fall",
+        "Compare/contrast"
+      ],
+      "description": "Drag each idea into the correct bubble. Then use the sentence frames to explain how the two items are alike and different.",
+      "components": [
+        "dragDrop",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "fall_antonym_practice.html",
+      "title": "Fall Antonym Practice",
+      "categories": [
+        "Fall"
+      ],
+      "description": "Read each fall-themed word and tell the opposite. Use a clue or the answer choices if you get stuck, then type your antonym to practice expressive language.",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "fall_nouns_category_function_expanded.html",
+      "title": "Fall Nouns - Category & Function",
+      "categories": [
+        "Fall"
+      ],
+      "description": null,
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "fall_reading_comprehension_infer.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "fall_reading_simple.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "fall_stories_expanded_and_leveled.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall"
+      ],
+      "description": null,
+      "components": [
+        "prompts",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/communication_breakdown_practice.html",
+      "title": "Communication Breakdown Practice Scenarios",
+      "categories": [],
+      "description": "For each situation, figure out what caused the communication breakdown, pick strategies to fix it, role-play the conversation, and reflect on what felt most effective.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/compare_contrast_double_bubble.html",
+      "title": "Double Bubble Compare & Contrast",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "Move each idea into the correct bubble. Then use the sentence frame to explain how the two items are alike and different.",
+      "components": [
+        "dragDrop",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/compare_contrast_dragdrop.html",
+      "title": "Compare & Contrast - Interactive Drag & Drop Worksheet",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "You've successfully completed this compare and contrast activity!",
+      "components": [
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/compare_contrast_fixed.html",
+      "title": "Compare & Contrast - Interactive Drag & Drop Worksheet",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "You've successfully completed this compare and contrast activity!",
+      "components": [
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/compare_contrast_template.html",
+      "title": "Compare & Contrast - Editable Template Builder",
+      "categories": [
+        "Compare/contrast"
+      ],
+      "description": "Save your activities as a new HTML file to use in therapy sessions:",
+      "components": [
+        "modeToggle",
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/complex_sentence_summary_builder.html",
+      "title": "Complex Sentence Summary Builder",
+      "categories": [],
+      "description": "Read each short text, collect key ideas, and build a complex sentence that explains the author’s purpose, theme, or main idea using conjunctions, prepositions, or adverbs.",
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/context_clues_activity 2.html",
+      "title": "Context Clues Activity",
+      "categories": [
+        "Context clues"
+      ],
+      "description": null,
+      "components": [
+        "tabs"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/context_clues_activity.html",
+      "title": "Context Clues Activity",
+      "categories": [
+        "Context clues"
+      ],
+      "description": null,
+      "components": [
+        "tabs"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/context_clues_detective.html",
+      "title": "Context Clues Detective - Word Meaning Discovery",
+      "categories": [
+        "Context clues"
+      ],
+      "description": "Excellent detective work!",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/descriptor-word-bank.html",
+      "title": "Descriptor Word Bank",
+      "categories": [],
+      "description": "Use these words to make your stories more descriptive!",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/double_bubble_compare_contrast_fall_edition.html",
+      "title": "Double Bubble Compare & Contrast – Fall Edition",
+      "categories": [
+        "Fall",
+        "Compare/contrast"
+      ],
+      "description": "Drag each idea into the correct bubble. Then use the sentence frames to explain how the two items are alike and different.",
+      "components": [
+        "dragDrop",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/fall-noun-description.html",
+      "title": "Fall Nouns - Category & Function",
+      "categories": [
+        "Fall"
+      ],
+      "description": null,
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/fall-reading-combined.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/fall-reading-comprehension.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/fall-reading-comprehension_SOAR.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/fall-reading-comprehension_infer.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/fall-reading-literal_infer_retell_higher.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/fall-reading-simple.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/fall_antonym_practice.html",
+      "title": "Fall Antonym Practice",
+      "categories": [
+        "Fall"
+      ],
+      "description": "Read each fall-themed word and tell the opposite. Use a clue or the answer choices if you get stuck, then type your antonym to practice expressive language.",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/fall_nouns_category_function_expanded.html",
+      "title": "Fall Nouns - Category & Function",
+      "categories": [
+        "Fall"
+      ],
+      "description": null,
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/fall_stories_expanded_and_leveled.html",
+      "title": "Fall Reading Stories",
+      "categories": [
+        "Fall"
+      ],
+      "description": null,
+      "components": [
+        "prompts",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/figurative_language_explorer.html",
+      "title": "Figurative Language Explorer",
+      "categories": [],
+      "description": "Read each sentence, think about the literal meaning, and use the scaffolded questions to uncover the figurative message.",
+      "components": [
+        "multipleChoice",
+        "sliders",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/grade9_inference_context_clues.html",
+      "title": "Ninth Grade Inference Practice",
+      "categories": [
+        "Inference",
+        "Context clues"
+      ],
+      "description": "Read each real-life situation. Use context clues to infer what the character is thinking and feeling, describe the problem and solution, and explain the cause-and-effect relationship.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/high_school_social_conflict_reflection.html",
+      "title": "High School Social Conflict Reflection",
+      "categories": [
+        "Social"
+      ],
+      "description": "Explore real-world challenges high school students face with friends, teachers, and activities. For each situation, communicate your thoughts and feelings, then decide how you want to respond.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/huh_detector.html",
+      "title": "The 'Huh?' Detector: An Interactive Guide",
+      "categories": [],
+      "description": "An Interactive Guide to Spotting Communication Breakdowns",
+      "components": [
+        "tabs"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/huh_detector_infographic.html",
+      "title": "The 'Huh?' Detector Infographic",
+      "categories": [],
+      "description": "Learning to spot confusion is a communication superpower. When your message isn't landing, people send signals—often without realizing it. This guide breaks down the 12 most common signs that someone didn't understand you, giving you the cue to pause, clarify, and connect.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/inference_activity.html",
+      "title": "Making Inferences Activity",
+      "categories": [
+        "Inference"
+      ],
+      "description": "Read each scenario carefully and answer the questions using details from the text",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/initiate_conversations_generate_responses.html",
+      "title": "Conversation Response Generator",
+      "categories": [
+        "Conversation"
+      ],
+      "description": "For each scenario, read what the other person says. Create at least two different ways you could respond, and predict how they might reply to each option.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/initiate_conversations_predict_response.html",
+      "title": "Conversation Practice Scenarios",
+      "categories": [
+        "Conversation"
+      ],
+      "description": "Practice conversation starters and predict responses",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/interactive-descriptor-stories.html",
+      "title": "Add Descriptors to Stories",
+      "categories": [],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/modern_past_tense.html",
+      "title": "Past Tense Practice - Interactive Worksheet",
+      "categories": [],
+      "description": "You've mastered this verb!",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/multi_level_reading_comp 2.html",
+      "title": "Multi-Level Reading Comprehension Tool",
+      "categories": [
+        "Reading"
+      ],
+      "description": "Use the sentence starters to help you retell what happened in the story. Write 1-2 sentences for each step.",
+      "components": [
+        "images",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/multi_level_reading_comp.html",
+      "title": "Multi-Level Reading Comprehension Tool",
+      "categories": [
+        "Reading"
+      ],
+      "description": "Use the sentence starters to help you retell what happened in the story. Write 1-2 sentences for each step.",
+      "components": [
+        "images",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/multi_level_reading_comp_with_questions.html",
+      "title": "Multi-Level Reading Comprehension Tool",
+      "categories": [
+        "Reading"
+      ],
+      "description": "Use the sentence starters to help you retell what happened in the story. Write 1-2 sentences for each step.",
+      "components": [
+        "images",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/multiple_meaning_words.html",
+      "title": "Multiple-Meaning Words - Therapy Activity",
+      "categories": [],
+      "description": "You matched all the meanings correctly!",
+      "components": [
+        "wordMeaning",
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/past tense verbs infographic.html",
+      "title": "A Visual Guide to Past Tense Verbs",
+      "categories": [],
+      "description": "Unlock the secrets of past actions, from the rule-followers to the rule-breakers.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/past-tense-hybrid.html",
+      "title": "Past Tense Practice - Interactive Worksheet",
+      "categories": [],
+      "description": "Practice 15 random sentences with different verbs for maximum learning!",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/past_tense_interactive.html",
+      "title": "Regular and Irregular Past Tense - Interactive Worksheet",
+      "categories": [],
+      "description": "Use these slides to review past tense and practice with multiple choice questions. Click Check all at any time to see your score.",
+      "components": [
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/perspective_pair_inference.html",
+      "title": "Perspective Pair Inference Practice",
+      "categories": [
+        "Inference"
+      ],
+      "description": "Read each social scenario. Use the clues to infer how at least two people might be thinking or feeling. Explain their perspectives in your own words.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/plural_nouns_practice.html",
+      "title": "Plural Nouns Practice - Fill in the Blanks",
+      "categories": [],
+      "description": null,
+      "components": [
+        "images"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/question_response_practice.html",
+      "title": "Complete Sentence Response Practice",
+      "categories": [],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/reading_comprehension.html",
+      "title": "Reading Comprehension - Main Ideas & Vocabulary",
+      "categories": [
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "dragDrop",
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/reading_comprehension_accessible.html",
+      "title": "Reading Comprehension - Where & When Questions",
+      "categories": [
+        "Reading"
+      ],
+      "description": "Upload and assign icons to answer choices",
+      "components": [
+        "stories",
+        "images",
+        "dragDrop",
+        "multipleChoice"
+      ],
+      "imageCount": 5,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/reading_comprehension_simple.html",
+      "title": "Reading Comprehension - Main Ideas & Vocabulary",
+      "categories": [
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "dragDrop",
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/relevant_response_practice_simple.html",
+      "title": "Relevant Response Practice - Simple",
+      "categories": [],
+      "description": null,
+      "components": [
+        "speechControls"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/relevant_social_q_and_a.html",
+      "title": "Relevant Response Practice",
+      "categories": [
+        "Social"
+      ],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/same_different_fillable_worksheets_html.html",
+      "title": "Same and Different Worksheets",
+      "categories": [],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/same_different_with_images.html",
+      "title": "Same and Different Worksheets — Image Version",
+      "categories": [],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/short_stories_predictions.html",
+      "title": "Short Stories & Predictions — Interactive Worksheet",
+      "categories": [],
+      "description": "Read each short paragraph. Make a prediction about what will likely happen next or what a character will probably do. By default, choices are hidden so you can think independently first. You can reveal the 4 choices for any story (or all stories) and check your answer.",
+      "components": [
+        "stories",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/short_stories_pronouns_details.html",
+      "title": "Pronoun Practice & Reading Comprehension",
+      "categories": [],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/social_story_practice.html",
+      "title": "Social Story Reflection Practice",
+      "categories": [
+        "Social",
+        "Story"
+      ],
+      "description": "Read the short story, think about what happened, and answer the questions. Use the clue or answer choices if you need a little boost!",
+      "components": [
+        "stories",
+        "dragDrop",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/stories_inference_compare.html",
+      "title": "Reading Comprehension - Inference & Compare/Contrast",
+      "categories": [
+        "Inference",
+        "Compare/contrast"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "dragDrop",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "files-from-other-directory/story-elements-form.html",
+      "title": "Story Elements Worksheet",
+      "categories": [
+        "Story"
+      ],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/story-prompts-expanded.html",
+      "title": "Story Prompts - Speech Therapy Activity",
+      "categories": [
+        "Story"
+      ],
+      "description": null,
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/story-retelling-worksheet.html",
+      "title": "Story Retelling Worksheet",
+      "categories": [
+        "Story"
+      ],
+      "description": "Use the sentence starters to retell your story in order!",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "files-from-other-directory/story_prompts_pages.html",
+      "title": "Story Prompts - Speech Therapy Activity",
+      "categories": [
+        "Story"
+      ],
+      "description": null,
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "final l blend stories.html",
+      "title": "Final /l/ Consonant Blend Stories",
+      "categories": [],
+      "description": "${maybeHighlight(p)}",
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "final_l_blend_stories_interactive.html",
+      "title": "Final /l/ Consonant Blend Stories",
+      "categories": [],
+      "description": "${maybeHighlight(p)}",
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "fluency_thanksgiving.html",
+      "title": "Thanksgiving Fluency Prompts",
+      "categories": [
+        "Thanksgiving",
+        "Fluency"
+      ],
+      "description": "Pick a question, choose the level, type the answer, and share the practice line.",
+      "components": [
+        "tabs",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "fluency_winter.html",
+      "title": "Winter Fluency Prompts",
+      "categories": [
+        "Winter",
+        "Fluency"
+      ],
+      "description": "Pick a winter question, choose the level, type the answer, and share the practice line.",
+      "components": [
+        "tabs",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "fluency_winter_conversation_starters.html",
+      "title": "Winter Conversation Starters – Fluency",
+      "categories": [
+        "Winter",
+        "Fluency",
+        "Conversation"
+      ],
+      "description": "Pick a starter, use the stem to structure a clear response, tap a follow-up, and set the complexity level. Practice smooth speech while keeping the conversation going.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "four-sentence-challenge.html",
+      "title": "Four-Sentence Challenge",
+      "categories": [],
+      "description": "Build four complete sentences to describe how two words are alike or different. Use each detail type once: category, description, function, and opinion.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "helpful_hurtful_response_judge.html",
+      "title": "Helpful or Hurtful? Response Judge",
+      "categories": [],
+      "description": "Read the scenario, judge if the response is helpful or hurtful, then explain why. Stick to the same rhythm: read, judge, justify.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "high_school_social_conflict_reflection.html",
+      "title": "High School Social Conflict Reflection",
+      "categories": [
+        "Social"
+      ],
+      "description": "Explore real-world challenges with friends, teachers, and activities. Use each scenario to notice your thoughts, feelings, and next steps before you respond.",
+      "components": [
+        "multipleChoice",
+        "prompts",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "high_school_social_solution_repair.html",
+      "title": "High School Social Solutions with Communication Repair",
+      "categories": [
+        "Social"
+      ],
+      "description": "Work through real-world high school situations, plan a respectful solution, and repair the conversation when a communication breakdown happens.",
+      "components": [
+        "tabs",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "high_school_subtle_problem_identifier.html",
+      "title": "High School Subtle Problem Identifier",
+      "categories": [],
+      "description": "Some situations feel funny or harmless on the surface, especially when you love a good shock reaction. In each scenario, pause the impulse to perform and look for what is quietly going wrong: boundaries, feelings, safety, or trust. Use the filters below to scan for those softer warning lights.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "hs_story_retelling.html",
+      "title": "Story Retelling & Story Grammar Practice",
+      "categories": [
+        "Story"
+      ],
+      "description": "Read each story, retell it using transition words, and answer story grammar questions",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "hs_story_retelling_final.html",
+      "title": "Story Retelling & Story Grammar Practice",
+      "categories": [
+        "Story"
+      ],
+      "description": "Read each story, retell it using transition words, and answer story grammar questions",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "hs_story_retelling_focus.html",
+      "title": "High School Story Retelling - Focus Friendly Edition",
+      "categories": [
+        "Story"
+      ],
+      "description": "High-interest stories with built-in supports to help retell, recall, and stay on track.",
+      "components": [
+        "stories",
+        "prompts",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "inappropriate_behavior_solution_practice.html",
+      "title": "Inappropriate Behavior Solution Practice",
+      "categories": [],
+      "description": "Read short scenarios where someone reacts or behaves inappropriately. Slow down, scan why it is a problem, and write a solution that restores safety, respect, or focus.",
+      "components": [
+        "tabs"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "index.html",
+      "title": "Speech Therapy Activities Hub",
+      "categories": [],
+      "description": "Choose an activity to get started",
+      "components": [
+        "dragDrop",
+        "tabs",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "inference_activity.html",
+      "title": "Making Inferences Activity",
+      "categories": [
+        "Inference"
+      ],
+      "description": "Read each scenario carefully and answer the questions using details from the text",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "inference_thanksgiving.html",
+      "title": "Thanksgiving Inferences",
+      "categories": [
+        "Thanksgiving",
+        "Inference"
+      ],
+      "description": "Read each short Thanksgiving scenario, then answer the inference questions using context clues.",
+      "components": [
+        "stories",
+        "dragDrop",
+        "prompts",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "inference_thanksgiving_simple.html",
+      "title": "Thanksgiving Inferences – Easy",
+      "categories": [
+        "Thanksgiving",
+        "Inference"
+      ],
+      "description": "Read the short story. Answer the question. If you need it, press “I need help” for a clue, or “I need more help” to see choices (one is correct).",
+      "components": [
+        "stories",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "initiate_conversations_predict_response.html",
+      "title": "Conversation Practice Scenarios",
+      "categories": [
+        "Conversation"
+      ],
+      "description": "Practice conversation starters and predict responses",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "interactive-descriptor-stories-thanksgiving.html",
+      "title": "Thanksgiving Descriptor Stories",
+      "categories": [
+        "Thanksgiving"
+      ],
+      "description": "Select story words, add descriptors, tap “I need help” for ideas, then see the improved story.",
+      "components": [
+        "stories",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "interactive-descriptor-word-bank.html",
+      "title": "Interactive Descriptor Word Bank",
+      "categories": [],
+      "description": "Click words to add them to your story!",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "interactive_descriptor_stories.html",
+      "title": "Add Descriptors to Stories",
+      "categories": [],
+      "description": null,
+      "components": [
+        "stories",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "labeling_emotions_speech_strategies.html",
+      "title": "Labeling Emotions with Clear Speech Strategies",
+      "categories": [],
+      "description": "Read the scenario, answer two prompts with full sentences, and practice clear articulation. Use the clue and choices if you need support.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "late_fall_winter_reading_progressive.html",
+      "title": "Late Fall & Winter Reading - Progressive Hints",
+      "categories": [
+        "Winter",
+        "Fall",
+        "Reading"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "multipleChoice",
+        "tabs",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "main_idea_key_details.html",
+      "title": "Main Idea & Details Lab",
+      "categories": [],
+      "description": "Read each short passage, study the statement bank, and choose the one sentence that sums up the main idea plus two sentences that prove it with key details.",
+      "components": [
+        "stories",
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "main_idea_short_stories.html",
+      "title": "Main Idea Mini Stories",
+      "categories": [],
+      "description": "Read one short story at a time, decide what everything is mostly about, and choose the best main idea. Use the navigation bar to hop between stories. Choices shuffle each time you reload the page.",
+      "components": [
+        "stories"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "multi_level_reading_comp.html",
+      "title": "Multi-Level Reading Comprehension Tool",
+      "categories": [
+        "Reading"
+      ],
+      "description": "Use the sentence starters to help you retell what happened in the story. Write 1-2 sentences for each step.",
+      "components": [
+        "images",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "multiple_meaning_advanced.html",
+      "title": "Multiple Meaning Words - Advanced",
+      "categories": [],
+      "description": "Define both meanings and use each in a sentence",
+      "components": [
+        "multipleChoice",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "multiple_meaning_words.html",
+      "title": "Multiple-Meaning Words - Therapy Activity",
+      "categories": [],
+      "description": "You matched all the meanings correctly!",
+      "components": [
+        "wordMeaning",
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "past_tense_hybrid.html",
+      "title": "Past Tense Practice - Interactive Worksheet",
+      "categories": [],
+      "description": "Practice 15 random sentences with different verbs for maximum learning!",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "perspective_pair_inference.html",
+      "title": "Perspective Pair Inference Practice",
+      "categories": [
+        "Inference"
+      ],
+      "description": "Read each social scenario. Use the clues to infer how at least two people might be thinking or feeling. Explain their perspectives in your own words.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "plural_nouns_practice.html",
+      "title": "Plural Nouns Practice - Fill in the Blanks",
+      "categories": [],
+      "description": null,
+      "components": [
+        "images"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "prefix_practice_progressive.html",
+      "title": "Prefix Practice",
+      "categories": [],
+      "description": "Progressive help: try on your own first, then tap a hint, and reveal choices only if needed.",
+      "components": [
+        "dragDrop",
+        "multipleChoice",
+        "prompts",
+        "wordBank"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "question_response_practice.html",
+      "title": "Complete Sentence Response Practice",
+      "categories": [],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "relevant_social_q_and_a.html",
+      "title": "Relevant Social Q&amp;A",
+      "categories": [
+        "Social"
+      ],
+      "description": "Select a prompt from the dropdown or jump to a random one to keep the conversation going.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "remember-and-do-challenge.html",
+      "title": "Remember &amp; Do Challenge",
+      "categories": [],
+      "description": null,
+      "components": [
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "sentence_builder_elementary.html",
+      "title": "Sentence Builder - Elementary Level",
+      "categories": [],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "sentence_builder_middle_school.html",
+      "title": "Sentence Builder - Middle School Level",
+      "categories": [],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "share_your_stutter_activity.html",
+      "title": "Share Your Stutter",
+      "categories": [],
+      "description": "Explain your stutter in simple words, then practice saying it out loud.",
+      "components": [
+        "sliders"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "short_stories_pronouns_details.html",
+      "title": "Pronoun Practice & Reading Comprehension",
+      "categories": [],
+      "description": "Tap a possible main idea:",
+      "components": [
+        "stories",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "simple-story-prompts-activity.html",
+      "title": "Simple Story Prompts - Speech Therapy Activity",
+      "categories": [
+        "Story"
+      ],
+      "description": null,
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "social_perspective_progressive.html",
+      "title": "Social Perspective Taking - Progressive Hints",
+      "categories": [
+        "Social"
+      ],
+      "description": null,
+      "components": [
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "social_problem_solving.html",
+      "title": "Social Problem Solving - Interactive Activity",
+      "categories": [
+        "Social"
+      ],
+      "description": "${currentProblem.text}",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "social_response_evaluator.html",
+      "title": "Social Response Evaluator",
+      "categories": [
+        "Social"
+      ],
+      "description": "Decide if each response helps or hurts the situation, then back up your thinking.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "social_story_practice.html",
+      "title": "Social Story Reflection Practice",
+      "categories": [
+        "Social",
+        "Story"
+      ],
+      "description": "Read the short story, think about what happened, and answer the questions. Use the clue or answer choices if you need a little boost!",
+      "components": [
+        "stories",
+        "dragDrop",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "speech-app/dist/index.html",
+      "title": "speech-app",
+      "categories": [],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "speech-app/index.html",
+      "title": "speech-app",
+      "categories": [],
+      "description": null,
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "stories_inference_compare.html",
+      "title": "Reading Comprehension - Inference & Compare/Contrast",
+      "categories": [
+        "Inference",
+        "Compare/contrast"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "dragDrop",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "story_prompts_expanded.html",
+      "title": "Story Prompts - Speech Therapy Activity",
+      "categories": [
+        "Story"
+      ],
+      "description": null,
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "story_retelling_worksheet.html",
+      "title": "Story Retelling Worksheet",
+      "categories": [
+        "Story"
+      ],
+      "description": "Use the sentence starters to retell your story in order!",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "stuttering_fight_flight_activity.html",
+      "title": "Fight-or-Flight & Stuttering",
+      "categories": [],
+      "description": "Learn the simple fight-or-flight steps and map your own stuttering moments to each one.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "synonyms_thanksgiving.html",
+      "title": "Synonyms – Thanksgiving Edition",
+      "categories": [
+        "Thanksgiving",
+        "Synonyms"
+      ],
+      "description": "Read each Thanksgiving sentence and choose a synonym (same-meaning word). Type your own idea first. Tap “I need help” for a clue. Tap “I need more help” to see three choices (one correct).",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "thanksgiving_conversation_fluency_artic.html",
+      "title": "Thanksgiving Conversation: Fluency + Articulation",
+      "categories": [
+        "Thanksgiving",
+        "Fluency",
+        "Conversation"
+      ],
+      "description": "Use these prompts with two roles: Student A practices a preferred fluency strategy; Student B listens for and self-corrects articulation errors during conversation. Switch roles if desired.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "thanksgiving_literal_comprehension_progressive.html",
+      "title": "Thanksgiving Literal Comprehension Stories",
+      "categories": [
+        "Thanksgiving"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "multipleChoice",
+        "prompts",
+        "timer"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "thanksgiving_nonfiction_summary_organizer.html",
+      "title": "Thanksgiving Nonfiction Summary Organizer",
+      "categories": [
+        "Thanksgiving"
+      ],
+      "description": "Read two short informational paragraphs, pull out the main idea and key details, then use the frame to write a clear summary.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "thanksgiving_social_problem_scenarios.html",
+      "title": "Thanksgiving Social Problem Scenarios",
+      "categories": [
+        "Thanksgiving",
+        "Social"
+      ],
+      "description": "Read each scenario. Decide what the social problem or conflict is, even if it is subtle. Use the prompts to explain your reasoning.",
+      "components": [
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "universal-quiz.html",
+      "title": "Language Activity",
+      "categories": [],
+      "description": "Practice your language skills",
+      "components": [
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "vocalic-r-practice.html",
+      "title": "Vocalic /r/ Word Practice",
+      "categories": [],
+      "description": "Customize your word lists and drill vocalic /r/ sounds at the word level.",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "winter_category_function_basic.html",
+      "title": "Winter Category & Function - Basic",
+      "categories": [
+        "Winter"
+      ],
+      "description": null,
+      "components": [
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "winter_compare_contrast_drag.html",
+      "title": "Winter Compare & Contrast Drag-and-Drop",
+      "categories": [
+        "Winter",
+        "Compare/contrast"
+      ],
+      "description": null,
+      "components": [
+        "dragDrop"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "winter_context_clues_progressive.html",
+      "title": "Winter Context Clues - Progressive Help",
+      "categories": [
+        "Winter",
+        "Context clues"
+      ],
+      "description": null,
+      "components": [
+        "dragDrop",
+        "multipleChoice"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "winter_figurative_language_single.html",
+      "title": "Winter Figurative Language - One at a Time",
+      "categories": [
+        "Winter"
+      ],
+      "description": null,
+      "components": [
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "winter_short_story_comprehension_progressive.html",
+      "title": "Winter Story Questions - Progressive Hints",
+      "categories": [
+        "Winter",
+        "Story"
+      ],
+      "description": "Use the Somebody-Wanted-But-So-Then steps to retell the story.",
+      "components": [
+        "stories",
+        "modeToggle",
+        "literalQuestions",
+        "inferentialQuestions",
+        "futureTense",
+        "retell",
+        "wordMeaning",
+        "synonyms",
+        "images",
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 1,
+      "storyCount": 1
+    },
+    {
+      "file": "winter_short_story_comprehension_tabs.html",
+      "title": "Snowy Day Reading - Literal & Inferential Tabs",
+      "categories": [
+        "Winter",
+        "Story"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "multipleChoice",
+        "tabs",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "winter_short_story_comprehension_tabs_complex.html",
+      "title": "Snowy Day Reading - Complex Literal & Inferential Tabs",
+      "categories": [
+        "Winter",
+        "Story"
+      ],
+      "description": null,
+      "components": [
+        "stories",
+        "multipleChoice",
+        "tabs",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 1
+    },
+    {
+      "file": "winter_subject_action_object_builder.html",
+      "title": "Winter Subject-Action-Object Builder",
+      "categories": [
+        "Winter"
+      ],
+      "description": null,
+      "components": [
+        "images"
+      ],
+      "imageCount": 1,
+      "storyCount": 0
+    },
+    {
+      "file": "winter_vocabulary_category_function.html",
+      "title": "Winter Vocabulary - Category, Function, Attributes",
+      "categories": [
+        "Winter",
+        "Vocabulary"
+      ],
+      "description": null,
+      "components": [
+        "multipleChoice",
+        "prompts"
+      ],
+      "imageCount": 0,
+      "storyCount": 0
+    },
+    {
+      "file": "word_definition_activity.html",
+      "title": "Word Definition Activity",
+      "categories": [
+        "Definitions"
+      ],
+      "description": "Match the words to their meanings",
+      "components": [],
+      "imageCount": 0,
+      "storyCount": 0
+    }
+  ]
+}
