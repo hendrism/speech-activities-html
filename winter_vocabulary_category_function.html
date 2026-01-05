@@ -12,6 +12,7 @@
             --pine: #0f766e;
             --cream: #f8fafc;
             --card: #ffffff;
+            --base-font-size: 16px;
         }
         * { box-sizing: border-box; }
         body {
@@ -21,6 +22,7 @@
             color: var(--midnight);
             line-height: 1.6;
             padding: 24px 16px 48px;
+            font-size: calc(var(--base-font-size));
         }
         h1 {
             text-align: center;
@@ -37,18 +39,39 @@
             padding: 14px 16px;
             box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
         }
+        .settings-bar {
+            max-width: 1100px;
+            margin: 0 auto 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            align-items: center;
+            background: #eef2ff;
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 10px 12px;
+        }
+        .setting {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .setting label {
+            font-weight: 700;
+            color: var(--midnight);
+        }
+        .setting input[type="range"] {
+            accent-color: var(--sky);
+            cursor: pointer;
+        }
         .nav-bar {
             max-width: 1100px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 8px;
-            position: sticky;
-            top: 0;
-            background: rgba(241, 245, 249, 0.92);
+            position: static;
             padding: 8px 0 6px;
-            backdrop-filter: blur(4px);
-            z-index: 8;
         }
         .nav-btn {
             border: 1px solid var(--frost);
@@ -111,8 +134,19 @@
             padding: 12px;
             color: #475569;
             font-weight: 700;
+            overflow: hidden;
         }
         .image-placeholder span { display: block; }
+        .image-placeholder img {
+            display: block;
+            max-width: 320px;
+            max-height: 260px;
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 10px;
+            object-fit: contain;
+        }
         .questions {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -250,6 +284,12 @@
     <div class="intro">
         Pick a winter word, then work through category, function, and two attributes. Use the progressive help: tap "Show clue" to unlock a hint, then "Show choices" for four options. Fill in visuals later using the placeholder.
     </div>
+    <div class="settings-bar">
+        <div class="setting">
+            <label for="textSizeControl">Text size</label>
+            <input type="range" id="textSizeControl" min="14" max="20" value="16">
+        </div>
+    </div>
     <div class="nav-bar" id="wordNav"></div>
     <div class="page" id="page"></div>
 
@@ -260,8 +300,8 @@
             { word: 'Ice', category: 'Winter Weather', function: 'Forms when water freezes into a solid', attributes: ['Hard', 'Slippery'], image: 'images/winter_items/ice_1.jpg' },
             { word: 'Snowflake', category: 'Winter Weather', function: 'A single crystal of frozen water that falls from the sky', attributes: ['Six-sided', 'Unique'], image: 'images/winter_items/snowflake.jpg' },
             { word: 'Icicle', category: 'Winter Weather', function: 'Forms when dripping water freezes into a pointed shape', attributes: ['Pointed', 'Clear'], image: 'images/winter_items/icicle.jpg' },
-            { word: 'Frost', category: 'Winter Weather', function: 'Forms when water vapor freezes on surfaces', attributes: ['Thin', 'Crystalline'], image: '' },
-            { word: 'Blizzard', category: 'Winter Weather', function: 'A severe snowstorm with strong winds', attributes: ['Dangerous', 'Windy'], image: '' },
+            { word: 'Frost', category: 'Winter Weather', function: 'Forms when water vapor freezes on surfaces', attributes: ['Thin', 'Crystalline'], image: 'images/winter_items/frost.jpg' },
+            { word: 'Blizzard', category: 'Winter Weather', function: 'A severe snowstorm with strong winds', attributes: ['Dangerous', 'Windy'], image: 'images/winter_items/blizzard.jpg' },
 
             // Winter Clothing (easier)
             { word: 'Coat', category: 'Winter Clothing', function: 'Covers the body to provide warmth', attributes: ['Insulated', 'Heavy'], image: 'images/winter_items/winter-coat.png' },
@@ -273,34 +313,34 @@
 
             // Winter Recreation (moderate)
             { word: 'Sled', category: 'Winter Recreation', function: 'Slides downhill on snow for fun', attributes: ['Smooth-bottomed', 'Steerable'], image: 'images/winter_items/sled.jpg' },
-            { word: 'Skis', category: 'Winter Recreation', function: 'Allow a person to glide across snow', attributes: ['Long', 'Paired'], image: '' },
-            { word: 'Ice skates', category: 'Winter Recreation', function: 'Allow a person to glide on ice', attributes: ['Bladed', 'Strapped'], image: '' },
-            { word: 'Snowboard', category: 'Winter Recreation', function: 'Allows a person to slide downhill on snow with both feet attached', attributes: ['Wide', 'Curved'], image: '' },
-            { word: 'Hockey stick', category: 'Winter Recreation', function: 'Used to hit a puck in ice hockey', attributes: ['Long-handled', 'Angled'], image: '' },
+            { word: 'Skis', category: 'Winter Recreation', function: 'Allow a person to glide across snow', attributes: ['Long', 'Paired'], image: 'images/winter_items/skis.jpg' },
+            { word: 'Ice skates', category: 'Winter Recreation', function: 'Allow a person to glide on ice', attributes: ['Bladed', 'Strapped'], image: 'images/new_winter_items/ice_skates.jpg' },
+            { word: 'Snowboard', category: 'Winter Recreation', function: 'Allows a person to slide downhill on snow with both feet attached', attributes: ['Wide', 'Curved'], image: 'images/new_winter_items/snowboard.jpg' },
+            { word: 'Hockey stick', category: 'Winter Recreation', function: 'Used to hit a puck in ice hockey', attributes: ['Long-handled', 'Angled'], image: 'images/winter_items/hockey_stick.jpg' },
 
             // Winter Activities/Objects (easier-moderate)
             { word: 'Snowball', category: 'Winter Activity', function: 'Packed snow thrown for play', attributes: ['Round', 'Compact'], image: 'images/winter_items/snowball.jpg' },
             { word: 'Snowman', category: 'Winter Activity', function: 'A figure built from stacked balls of snow', attributes: ['Three-tiered', 'Decorated'], image: 'images/winter_items/snowman.jpg' },
-            { word: 'Snow fort', category: 'Winter Activity', function: 'A structure built from snow for play or shelter', attributes: ['Hollow', 'Protective'], image: '' },
+            { word: 'Snow fort', category: 'Winter Activity', function: 'A structure built from snow for play or shelter', attributes: ['Hollow', 'Protective'], image: 'images/winter_items/snow_fort.png' },
 
             // Winter Tools (moderate)
             { word: 'Shovel', category: 'Winter Tool', function: 'Scoops and moves snow from pathways', attributes: ['Long-handled', 'Metal-edged'], image: 'images/winter_items/snow-shovel.jpg' },
-            { word: 'Snowplow', category: 'Winter Vehicle', function: 'Pushes large amounts of snow off roads', attributes: ['Large', 'Powerful'], image: '' },
-            { word: 'Ice scraper', category: 'Winter Tool', function: 'Removes ice from car windows', attributes: ['Flat', 'Rigid'], image: '' },
+            { word: 'Snowplow', category: 'Winter Vehicle', function: 'Pushes large amounts of snow off roads', attributes: ['Large', 'Powerful'], image: 'images/winter_items/snow_plow.jpg' },
+            { word: 'Ice scraper', category: 'Winter Tool', function: 'Removes ice from car windows', attributes: ['Flat', 'Rigid'], image: 'images/winter_items/ice_scraper.png' },
 
             // Indoor Comfort (easier-moderate)
-            { word: 'Fireplace', category: 'Heating Source', function: 'Burns wood or gas to heat a room', attributes: ['Hot', 'Enclosed'], image: '' },
-            { word: 'Blanket', category: 'Indoor Comfort', function: 'Covers a person to trap body heat', attributes: ['Thick', 'Layered'], image: '' },
-            { word: 'Space heater', category: 'Heating Source', function: 'Generates electric heat for a small area', attributes: ['Portable', 'Electric'], image: '' },
+            { word: 'Fireplace', category: 'Heating Source', function: 'Burns wood or gas to heat a room', attributes: ['Hot', 'Enclosed'], image: 'images/winter_items/fireplace.png' },
+            { word: 'Blanket', category: 'Indoor Comfort', function: 'Covers a person to trap body heat', attributes: ['Thick', 'Layered'], image: 'images/winter_items/blanket.png' },
+            { word: 'Space heater', category: 'Heating Source', function: 'Generates electric heat for a small area', attributes: ['Portable', 'Electric'], image: 'images/winter_items/space_heater.png' },
 
             // Food/Drink (easier)
             { word: 'Hot chocolate', category: 'Winter Beverage', function: 'A warm drink that provides comfort and heat', attributes: ['Sweet', 'Chocolatey'], image: 'images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
-            { word: 'Soup', category: 'Winter Food', function: 'A hot liquid meal that warms the body', attributes: ['Savory', 'Steaming'], image: '' },
-            { word: 'Thermos', category: 'Winter Container', function: 'Keeps liquids hot or cold for extended time', attributes: ['Insulated', 'Sealable'], image: '' },
+            { word: 'Soup', category: 'Winter Food', function: 'A hot liquid meal that warms the body', attributes: ['Savory', 'Steaming'], image: 'images/winter_items/soup.jpg' },
+            { word: 'Thermos', category: 'Winter Container', function: 'Keeps liquids hot or cold for extended time', attributes: ['Insulated', 'Sealable'], image: 'images/winter_items/thermos.jpg' },
 
             // Nature (moderate-harder)
-            { word: 'Pine tree', category: 'Winter Plant', function: 'Stays green year-round and collects snow on branches', attributes: ['Evergreen', 'Cone-bearing'], image: '' },
-            { word: 'Cardinal', category: 'Winter Bird', function: 'A bird that stays active during winter', attributes: ['Red', 'Seed-eating'], image: '' }
+            { word: 'Pine tree', category: 'Winter Plant', function: 'Stays green year-round and collects snow on branches', attributes: ['Evergreen', 'Cone-bearing'], image: 'images/winter_items/pine_tree.png' },
+            { word: 'Cardinal', category: 'Winter Bird', function: 'A bird that stays active during winter', attributes: ['Red', 'Seed-eating'], image: 'images/winter_items/cardinal.jpg' }
         ];
 
         const categories = Array.from(new Set(entries.map(e => e.category)));
@@ -309,6 +349,7 @@
 
         const navEl = document.getElementById('wordNav');
         const pageEl = document.getElementById('page');
+        const textSizeControl = document.getElementById('textSizeControl');
 
         function shuffle(array) {
             const copy = array.slice();
@@ -509,7 +550,7 @@
             combineTitle.textContent = 'Combine your answers into a definition:';
             const combineArea = document.createElement('textarea');
             combineArea.className = 'combine-area';
-            combineArea.placeholder = 'Example: Snow is a winter thing. It forms on the ground when water freezes in the air. It is cold and soft.';
+            combineArea.placeholder = '';
             const combineBtn = document.createElement('button');
             combineBtn.className = 'combine-btn';
             combineBtn.textContent = 'Use my answers';
@@ -538,6 +579,11 @@
         }
 
         renderEntry(entries[0].word);
+
+        // View controls
+        textSizeControl.addEventListener('input', () => {
+            document.documentElement.style.setProperty('--base-font-size', `${textSizeControl.value}px`);
+        });
     </script>
 </body>
 </html>

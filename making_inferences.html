@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making and Justifying Inferences</title>
+    <style>
+        :root {
+            --w: 900px;
+            --accent: #2563eb;
+            --secondary: #3b82f6;
+            --bg: #f8fafc;
+            --ink: #0f172a;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
+            --highlight: #fde047;
+            --highlight-border: #eab308;
+            --hint-bg: #fff7ed;
+            --hint-border: #fed7aa;
+            --hint-text: #9a3412;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        header {
+            background: var(--card);
+            border-bottom: 3px solid var(--accent);
+            padding: 16px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 32px;
+        }
+
+        .header-content {
+            max-width: var(--w);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .main-container {
+            max-width: var(--w);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Top Navigation */
+        .story-nav {
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .nav-header {
+            background: #f1f5f9;
+            padding: 8px 16px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        .story-list {
+            list-style: none;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 8px;
+            gap: 8px;
+            scrollbar-width: thin;
+        }
+
+        .story-btn {
+            text-align: center;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--ink);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-width: max-content;
+        }
+
+        .story-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: #f8fafc;
+        }
+
+        .story-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Activity Area */
+        .activity-card {
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .story-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .story-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .story-difficulty {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .story-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #334155;
+            background: #fdfdfd;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .highlight-span {
+            border-radius: 4px;
+            transition: background-color 0.5s ease;
+        }
+
+        .highlight-active {
+            background-color: var(--highlight);
+            box-shadow: 0 0 0 2px var(--highlight-border);
+            color: #000;
+        }
+
+        .question-container {
+            margin-top: 24px;
+            animation: fadeIn 0.4s ease;
+            background: #f8fafc;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .question-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        /* Progressive Steps */
+        .input-area {
+            margin-bottom: 24px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid var(--border);
+            color: #475569;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Hint Box */
+        .hint-box {
+            background: var(--hint-bg);
+            border: 1px solid var(--hint-border);
+            color: var(--hint-text);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hint-icon {
+            font-size: 1.2rem;
+        }
+
+        .choices-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .choice-btn {
+            text-align: left;
+            padding: 16px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--secondary);
+            background: #f5f3ff;
+        }
+
+        .choice-btn.correct {
+            border-color: var(--success);
+            background: var(--success-bg);
+            color: #064e3b;
+            pointer-events: none;
+        }
+
+        .choice-btn.incorrect {
+            border-color: var(--error);
+            background: var(--error-bg);
+            color: #7f1d1d;
+        }
+
+        .feedback-area {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .feedback-correct {
+            background: var(--success-bg);
+            color: #064e3b;
+        }
+
+        .feedback-incorrect {
+            background: var(--error-bg);
+            color: #7f1d1d;
+        }
+
+        .next-btn {
+            display: block;
+            margin-left: auto;
+            margin-top: 24px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .next-btn:hover {
+            background: var(--secondary);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1>Making and Justifying Inferences</h1>
+            <a href="index.html" class="btn btn-outline"
+                style="text-decoration: none; padding: 8px 16px; font-size: 0.9rem;">Back to Hub</a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <nav class="story-nav">
+            <div class="nav-header">Progress</div>
+            <ul class="story-list" id="storyList">
+                <!-- Navigation generated by JS -->
+            </ul>
+        </nav>
+
+        <main class="activity-card">
+            <div id="contentArea">
+                <div class="story-header" id="storyHeader">
+                    <!-- Title and difficulty inserted here -->
+                </div>
+                <div class="story-text" id="storyText">
+                    <!-- Story content with spans inserted here -->
+                </div>
+
+                <!-- Step 1: Inference Question (Progressive) -->
+                <div id="step1" class="question-container">
+                    <div class="question-text" id="q1Text">Question 1: ...</div>
+
+                    <div class="input-area">
+                        <label style="display:block; margin-bottom: 8px; color: #64748b; font-size: 0.9rem;">Type your
+                            thoughts here first (Optional):</label>
+                        <textarea id="userAnswer" placeholder="I think..."></textarea>
+                    </div>
+
+                    <div class="controls">
+                        <button class="btn btn-outline" id="hintBtn">💡 Need a Hint?</button>
+                        <button class="btn btn-primary" id="choicesBtn">📋 Show Choices</button>
+                    </div>
+
+                    <div id="hintArea" class="hint-box hidden">
+                        <span class="hint-icon">💡</span>
+                        <div>
+                            <strong>Hint:</strong>
+                            <span id="hintText">...</span>
+                        </div>
+                    </div>
+
+                    <div class="choices-grid hidden" id="q1Choices"></div>
+                    <div id="q1Feedback" class="feedback-area hidden"></div>
+                </div>
+
+                <!-- Step 2: Justification Question -->
+                <div id="step2" class="question-container hidden">
+                    <div class="question-text" id="q2Text">Question 2: ...</div>
+                    <!-- Direct choices for Q2 since it's evidence selection -->
+                    <div class="choices-grid" id="q2Choices"></div>
+                    <div id="q2Feedback" class="feedback-area hidden"></div>
+                </div>
+
+                <div id="finishControl" class="hidden">
+                    <button class="next-btn" id="nextBtn">Next Story ➜</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const stories = [
+            {
+                id: 1,
+                title: "Jonah's Quiz",
+                difficulty: "Easier",
+                html: "When the teacher handed back the quizzes, <span id='s1_1'>Jonah flipped his paper face down on his desk. He didn’t look at it right away.</span> While other students compared scores, Jonah traced the edge of his notebook with his finger. When his friend leaned over and asked how he did, Jonah said, “It’s whatever.” He shoved the paper into his backpack as soon as the bell rang.",
+                q1: {
+                    text: "Question 1: What can you infer about Jonah?",
+                    hint: "Pay attention to Jonah's body language and how he treats the paper.",
+                    choices: [
+                        { text: "He is proud of his score", correct: false },
+                        { text: "He is disappointed with how he did", correct: true },
+                        { text: "He forgot to study", correct: false },
+                        { text: "He didn’t finish the quiz", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "Other students compared scores", correct: false },
+                        { text: "Jonah flipped his paper face down and avoided looking at it", correct: true, highlights: ['s1_1'] },
+                        { text: "The bell rang quickly", correct: false },
+                        { text: "Jonah traced his notebook", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 2,
+                title: "Avery's Routine",
+                difficulty: "Easier",
+                html: "Avery checked the door twice before leaving the house. Halfway down the sidewalk, <span id='s2_1'>she stopped and went back inside.</span> A moment later, she came out holding her phone. She walked faster than before and keep patting her pocket as she went. When she reached the bus stop, she finally relaxed her shoulders.",
+                q1: {
+                    text: "Question 1: What can you infer about Avery?",
+                    hint: "Why would she go back inside after checking the door?",
+                    choices: [
+                        { text: "She is late for school", correct: false },
+                        { text: "She was worried she forgot something important", correct: true },
+                        { text: "She doesn’t like walking", correct: false },
+                        { text: "She enjoys routines", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "She walked to the bus stop", correct: false },
+                        { text: "She went back inside after leaving the house", correct: true, highlights: ['s2_1'] },
+                        { text: "She held her phone", correct: false },
+                        { text: "She relaxed at the bus stop", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 3,
+                title: "Caleb at the Movies",
+                difficulty: "Moderate",
+                html: "During the movie, <span id='s3_1'>Caleb kept checking the time on his phone.</span> He shifted in his seat and tapped his foot against the floor. When the lights came on, he stood up immediately. His friends were still talking about their favorite scenes, but <span id='s3_2'>Caleb was already heading toward the exit.</span> He said he had somewhere else to be.",
+                q1: {
+                    text: "Question 1: What can you infer about Caleb?",
+                    hint: "Look at Caleb's actions while the movie was playing.",
+                    choices: [
+                        { text: "He didn’t enjoy the movie very much", correct: true },
+                        { text: "He loves movie theaters", correct: false },
+                        { text: "He wanted snacks", correct: false },
+                        { text: "He was confused by the plot", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "The lights came on", correct: false },
+                        { text: "Caleb checked his phone and rushed to leave", correct: true, highlights: ['s3_1', 's3_2'] },
+                        { text: "His friends talked about the movie", correct: false },
+                        { text: "He tapped his foot", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 4,
+                title: "Mia's Text",
+                difficulty: "Moderate",
+                html: "<span id='s4_1'>Mia reread the message she had typed and erased it again.</span> She stared at her phone, then set it down on her desk. A few minutes later, she picked it back up and checked for notifications. There were none. Mia sighed and leaned back in her chair.",
+                q1: {
+                    text: "Question 1: What can you infer about Mia?",
+                    hint: "Notice how she hesitates with her message.",
+                    choices: [
+                        { text: "She is bored", correct: false },
+                        { text: "She is feeling unsure or anxious about sending a message", correct: true },
+                        { text: "She forgot her phone password", correct: false },
+                        { text: "She doesn’t like texting", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "She leaned back in her chair", correct: false },
+                        { text: "She erased the message multiple times", correct: true, highlights: ['s4_1'] },
+                        { text: "There were no notifications", correct: false },
+                        { text: "She stared at her desk", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 5,
+                title: "Luis Quietly",
+                difficulty: "Moderate",
+                html: "<span id='s5_1'>When the substitute teacher called his name incorrectly, Luis didn’t say anything. A few students whispered and laughed.</span> Luis kept his head down and focused on copying notes. For the rest of class, he didn’t raise his hand. When the bell rang, he left quickly.",
+                q1: {
+                    text: "Question 1: What can you infer about why Luis stayed quiet?",
+                    hint: "Think about how he reacted to the other students laughing.",
+                    choices: [
+                        { text: "He didn’t know the answers", correct: false },
+                        { text: "He felt uncomfortable or embarrassed", correct: true },
+                        { text: "He didn’t like the substitute teacher", correct: false },
+                        { text: "He was tired", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "Students laughed after his name was mispronounced", correct: true, highlights: ['s5_1'] },
+                        { text: "He copied notes", correct: false },
+                        { text: "The bell rang", correct: false },
+                        { text: "He left the classroom", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 6,
+                title: "Samantha's Fundraiser",
+                difficulty: "Harder",
+                html: "Samantha volunteered to help plan the fundraiser. <span id='s6_1'>She arrived early and stayed late, making sure everything was set up.</span> At the end, <span id='s6_2'>the organizer thanked the group but didn’t mention Samantha.</span> She clapped along anyway. When the next fundraiser was announced, Samantha didn’t sign up.",
+                q1: {
+                    text: "Question 1: What can you infer about Samantha’s decision?",
+                    hint: "How was Samantha treated despite her hard work?",
+                    choices: [
+                        { text: "She didn’t like the fundraiser", correct: false },
+                        { text: "She felt discouraged or unappreciated", correct: true },
+                        { text: "She was too busy next time", correct: false },
+                        { text: "She forgot to sign up", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "She arrived early", correct: false },
+                        { text: "Her name was not mentioned during thanks", correct: true, highlights: ['s6_2'] },
+                        { text: "She clapped", correct: false },
+                        { text: "Another fundraiser was announced", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 7,
+                title: "Ryan's Laugh",
+                difficulty: "Harder",
+                html: "Every time his friends joked about his height, Ryan laughed with them. <span id='s7_1'>Later that night, he practiced comebacks in his room.</span> The next day, the jokes happened again. Ryan laughed, but he crossed his arms and looked away. He changed the subject as soon as he could.",
+                q1: {
+                    text: "Question 1: What can you infer about Ryan’s true feelings?",
+                    hint: "Does his reaction in public match what he does in private?",
+                    choices: [
+                        { text: "He enjoys the jokes", correct: false },
+                        { text: "He feels uncomfortable but hides it", correct: true },
+                        { text: "He wants to be taller", correct: false },
+                        { text: "He likes attention", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "He laughed with his friends", correct: false },
+                        { text: "He practiced comebacks alone later", correct: true, highlights: ['s7_1'] },
+                        { text: "He crossed his arms", correct: false },
+                        { text: "He changed the subject", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 8,
+                title: "Jordan's Practice",
+                difficulty: "Harder",
+                html: "During practice, the coach gave detailed feedback to several players. <span id='s8_1'>When it was Jordan’s turn, the coach just said, “Keep working.”</span> Jordan stayed after practice to run drills by himself. As he left, he watched the others talking and laughing with the coach. He tightened his grip on his bag and walked away.",
+                q1: {
+                    text: "Question 1: What can you infer about Jordan?",
+                    hint: "Compare the feedback Jordan got vs. the other players.",
+                    choices: [
+                        { text: "He doesn’t like his teammates", correct: false },
+                        { text: "He feels overlooked or frustrated", correct: true },
+                        { text: "He doesn’t want feedback", correct: false },
+                        { text: "He enjoys practicing alone", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "He stayed after practice", correct: false },
+                        { text: "Others received detailed feedback while he did not", correct: true, highlights: ['s8_1'] },
+                        { text: "He carried his bag", correct: false },
+                        { text: "He watched others talk", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 9,
+                title: "Lucas's Chat",
+                difficulty: "Very Challenging",
+                html: "At first, Lucas replied right away in the group chat. When messages went unanswered, he sent another joke or meme. <span id='s9_1'>Over time, he stopped doing that. He still read the messages, but he didn’t respond.</span> When someone asked if he was okay, Lucas said he was just busy.",
+                q1: {
+                    text: "Question 1: What can you infer about why Lucas changed his behavior?",
+                    hint: "Look at the pattern of his messages and the group's response.",
+                    choices: [
+                        { text: "He dislikes texting", correct: false },
+                        { text: "He feels discouraged or ignored", correct: true },
+                        { text: "He is busier than before", correct: false },
+                        { text: "He forgot about the chat", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "He said he was busy", correct: false },
+                        { text: "He stopped sending follow-up messages over time", correct: true, highlights: ['s9_1'] },
+                        { text: "He sent memes earlier", correct: false },
+                        { text: "Someone asked about him", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 10,
+                title: "Nina's Plans",
+                difficulty: "Very Challenging",
+                html: "People often described Nina as “easygoing.” She usually went along with group plans. When she suggested doing something different one day, the group went quiet. <span id='s10_1'>Someone laughed and said, “That’s not like you.” Nina smiled and didn’t bring it up again.</span>",
+                q1: {
+                    text: "Question 1: What can you infer about Nina’s role in the group?",
+                    hint: "What happens when Nina tries to be different from her usual self?",
+                    choices: [
+                        { text: "She doesn’t care about plans", correct: false },
+                        { text: "She avoids expressing her preferences to fit in", correct: true },
+                        { text: "She prefers quiet activities", correct: false },
+                        { text: "She dislikes her friends", correct: false }
+                    ]
+                },
+                q2: {
+                    text: "Question 2: What detail best supports that inference?",
+                    choices: [
+                        { text: "The group went quiet", correct: false },
+                        { text: "Nina smiled after the comment", correct: false },
+                        { text: "Someone said, “That’s not like you” and she didn’t repeat her idea", correct: true, highlights: ['s10_1'] },
+                        { text: "Nina suggested something different", correct: false }
+                    ]
+                }
+            }
+        ];
+
+        let currentIndex = 0;
+        const navList = document.getElementById('storyList');
+        const storyHeader = document.getElementById('storyHeader');
+        const storyText = document.getElementById('storyText');
+
+        // Q1 Elements
+        const q1Text = document.getElementById('q1Text');
+        const userAnswer = document.getElementById('userAnswer');
+        const hintBtn = document.getElementById('hintBtn');
+        const hintArea = document.getElementById('hintArea');
+        const hintText = document.getElementById('hintText');
+        const choicesBtn = document.getElementById('choicesBtn');
+        const q1Choices = document.getElementById('q1Choices');
+        const q1Feedback = document.getElementById('q1Feedback');
+
+        // Q2 Elements
+        const step2 = document.getElementById('step2');
+        const q2Text = document.getElementById('q2Text');
+        const q2Choices = document.getElementById('q2Choices');
+        const q2Feedback = document.getElementById('q2Feedback');
+        const finishControl = document.getElementById('finishControl');
+        const nextBtn = document.getElementById('nextBtn');
+        const completedStories = new Set();
+
+        function init() {
+            renderNav();
+            loadStory(0);
+
+            // Event Listeners
+            hintBtn.onclick = () => {
+                hintArea.classList.remove('hidden');
+                hintBtn.style.display = 'none';
+            };
+
+            choicesBtn.onclick = () => {
+                q1Choices.classList.remove('hidden');
+                choicesBtn.style.display = 'none';
+                // If hint wasn't shown, hide button so UI is cleaner
+                hintBtn.style.display = 'none';
+            };
+
+            nextBtn.onclick = () => {
+                if (currentIndex < stories.length - 1) {
+                    loadStory(currentIndex + 1);
+                }
+            }
+        }
+
+        function renderNav() {
+            navList.innerHTML = '';
+            stories.forEach((story, index) => {
+                const li = document.createElement('li');
+                const btn = document.createElement('button');
+                btn.className = `story-btn ${index === currentIndex ? 'active' : ''}`;
+                btn.innerHTML = `Story ${index + 1} ${completedStories.has(index) ? '✅' : '○'}`;
+                btn.onclick = () => loadStory(index);
+                li.appendChild(btn);
+                navList.appendChild(li);
+            });
+        }
+
+        function loadStory(index) {
+            currentIndex = index;
+            const story = stories[index];
+
+            // Header
+            storyHeader.innerHTML = `
+                <div class="story-title">Story ${index + 1}: ${story.title}</div>
+                <div class="story-difficulty">${story.difficulty}</div>
+            `;
+
+            // Text
+            storyText.innerHTML = story.html;
+
+            // Step 1 Setup
+            q1Text.textContent = story.q1.text;
+            userAnswer.value = ''; // Clear input
+            hintText.textContent = story.q1.hint;
+
+            // Hide everything initially
+            hintArea.classList.add('hidden');
+            q1Choices.classList.add('hidden');
+            q1Feedback.className = 'feedback-area hidden';
+            q1Feedback.textContent = '';
+
+            // Reset buttons
+            hintBtn.style.display = 'inline-block';
+            choicesBtn.style.display = 'inline-block';
+
+            // Render Q1 Choices
+            renderChoices(q1Choices, story.q1.choices, (choice, btn) => handleQ1Choice(choice, btn, story));
+
+            // Reset Step 2
+            step2.classList.add('hidden');
+            finishControl.classList.add('hidden');
+            q2Choices.innerHTML = '';
+            q2Feedback.className = 'feedback-area hidden';
+            q2Feedback.textContent = '';
+
+            renderNav();
+        }
+
+        function renderChoices(container, choices, callback) {
+            container.innerHTML = '';
+            choices.forEach((choice, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn';
+                btn.innerHTML = `<span>${String.fromCharCode(65 + idx)}.</span> ${choice.text}`;
+                btn.onclick = () => callback(choice, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function handleQ1Choice(choice, btn, story) {
+            const allBtns = q1Choices.querySelectorAll('.choice-btn');
+
+            if (choice.correct) {
+                // Lock Q1
+                allBtns.forEach(b => b.style.pointerEvents = 'none');
+                btn.classList.add('correct');
+
+                q1Feedback.textContent = 'Correct! Now, verify your answer below.';
+                q1Feedback.className = 'feedback-area feedback-correct';
+                q1Feedback.classList.remove('hidden');
+
+                // Show Step 2
+                step2.classList.remove('hidden');
+
+                // Render Q2
+                q2Text.textContent = story.q2.text;
+                renderChoices(q2Choices, story.q2.choices, (c, b) => handleQ2Choice(c, b, story));
+
+                // Scroll to Q2
+                setTimeout(() => step2.scrollIntoView({ behavior: 'smooth' }), 100);
+
+            } else {
+                btn.classList.add('incorrect');
+                q1Feedback.textContent = 'Not quite. Review the hint and try again.';
+                q1Feedback.className = 'feedback-area feedback-incorrect';
+                q1Feedback.classList.remove('hidden');
+            }
+        }
+
+        function handleQ2Choice(choice, btn, story) {
+            const allBtns = q2Choices.querySelectorAll('.choice-btn');
+
+            if (choice.correct) {
+                // Lock Q2
+                allBtns.forEach(b => b.style.pointerEvents = 'none');
+                btn.classList.add('correct');
+
+                q2Feedback.textContent = 'Excellent! You found the supporting evidence.';
+                q2Feedback.className = 'feedback-area feedback-correct';
+                q2Feedback.classList.remove('hidden');
+
+                // Highlight Effect
+                if (choice.highlights) {
+                    choice.highlights.forEach(id => {
+                        const span = document.getElementById(id);
+                        if (span) span.classList.add('highlight-active');
+                    });
+                }
+
+                // Show Finish/Next
+                finishControl.classList.remove('hidden');
+                if (currentIndex < stories.length - 1) {
+                    nextBtn.style.display = 'block';
+                } else {
+                    nextBtn.style.display = 'none';
+                    q2Feedback.textContent += ' All stories completed!';
+                }
+
+                completedStories.add(currentIndex);
+                renderNav();
+
+            } else {
+                btn.classList.add('incorrect');
+                q2Feedback.textContent = 'That detail doesn\'t best support the inference. Look closely at what matters most.';
+                q2Feedback.className = 'feedback-area feedback-incorrect';
+                q2Feedback.classList.remove('hidden');
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
