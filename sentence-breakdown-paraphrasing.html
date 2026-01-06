@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Breakdown & Paraphrasing</title>
+    <style>
+        :root {
+            /* Core Colors */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #ec4899;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
+
+            /* Text Sizing Variables */
+            --base-size: 16px;
+            --story-size: 1.125rem;
+            /* 18px */
+            --header-size: 1.5rem;
+        }
+
+        /* Text Size Classes */
+        body.text-large {
+            --base-size: 20px;
+            --story-size: 1.5rem;
+            --header-size: 1.8rem;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 60px;
+            font-size: var(--base-size);
+            line-height: 1.5;
+            transition: font-size 0.3s ease;
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-scroller {
+            background: var(--bg);
+            padding: 0.75rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow wrapping */
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-item {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            margin: 0;
+            /* Use gap instead */
+        }
+
+        .nav-item:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        /* --- Content Areas --- */
+        .story-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 1rem;
+        }
+
+        .story-title {
+            font-size: var(--header-size);
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .story-text {
+            font-size: var(--story-size);
+            line-height: 1.6;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            white-space: pre-wrap;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* --- Progressive Help --- */
+        .help-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .help-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover,
+        .btn-outline.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .help-content {
+            display: none;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .help-content.show {
+            display: block;
+        }
+
+        .hint-box {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            color: #92400e;
+        }
+
+        .choices-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+        }
+
+        .choices-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .choice-btn {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--primary);
+            background: #f8fafc;
+        }
+
+        .choice-btn.correct {
+            background: var(--success-bg);
+            border-color: var(--success);
+            color: #064e3b;
+        }
+
+        .choice-btn.incorrect {
+            background: var(--error-bg);
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        /* --- Editing Mode --- */
+        body.edit-mode .editable-field {
+            border: 2px dashed #9ca3af;
+            padding: 2px;
+            border-radius: 4px;
+            cursor: text;
+        }
+
+        body.edit-mode .editable-field:hover {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: var(--primary);
+        }
+
+        .edit-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        body.edit-mode .edit-controls {
+            display: flex;
+        }
+
+        .floating-btn {
+            padding: 1rem;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .save-btn {
+            background: var(--success);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-controls">
+            <a href="index.html" class="btn btn-outline btn-sm">← Hub</a>
+            <h1 style="font-size: 1.2rem; margin: 0; font-weight: 700;">Sentence Breakdown</h1>
+        </div>
+        <div class="header-controls">
+            <button class="btn btn-outline btn-sm" id="textSizeBtn" title="Toggle Text Size">Aa</button>
+            <button class="btn btn-outline btn-sm" id="editModeBtn" title="Edit Content">✏️ Edit</button>
+        </div>
+    </header>
+
+    <!-- Top Navigation Scroller -->
+    <nav class="nav-scroller" id="navScroller"></nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Story / Activity Card -->
+        <div class="card" id="activityCard">
+            <div class="story-header" style="flex-direction: column; gap: 0;">
+                <h2 class="story-title editable-field" id="displayTitle">Item Title</h2>
+            </div>
+
+            <div class="story-text editable-field" id="displaySentence">
+                Sentence goes here...
+            </div>
+
+            <!-- Student Inputs Section (Replacing Parts List) -->
+            <div class="input-section" style="margin-bottom: 2rem;">
+                <label style="display:block; font-weight:700; color:var(--text-muted); margin-bottom:0.5rem;">1. What do
+                    we know? (Organize your ideas)</label>
+                <textarea id="weKnowInput" class="editable-field"
+                    style="width:100%; height:80px; padding:1rem; border:2px solid var(--border); border-radius:0.5rem; font-family:inherit; font-size:1rem; margin-bottom:1.5rem; resize: vertical;"
+                    placeholder="Type the key parts of the sentence here..."></textarea>
+
+                <label style="display:block; font-weight:700; color:var(--text-muted); margin-bottom:0.5rem;">2.
+                    Rephrase the sentence</label>
+                <textarea id="rephraseInput" class="editable-field"
+                    style="width:100%; height:80px; padding:1rem; border:2px solid var(--border); border-radius:0.5rem; font-family:inherit; font-size:1rem; resize: vertical;"
+                    placeholder="Say it in your own words..."></textarea>
+            </div>
+
+            <!-- Independent Progressive Help -->
+            <div class="help-section">
+                <div class="help-controls">
+                    <button class="btn btn-outline" id="toggleHintBtn">💡 Hint</button>
+                    <button class="btn btn-outline" id="toggleChoicesBtn">📋 Choices</button>
+                </div>
+
+                <!-- Step 1: Hint -->
+                <div class="help-content hint-box" id="hintBox">
+                    <strong>Hint:</strong> <span class="editable-field" id="displayHint">Hint text goes here...</span>
+                </div>
+
+                <!-- Step 2: Choices -->
+                <div class="help-content choices-box" id="choicesBox">
+                    <div class="choices-grid" id="choicesGrid">
+                        <!-- Choices injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Mode Floating Controls -->
+    <div class="edit-controls">
+        <button class="floating-btn save-btn" id="saveChangesBtn" title="Download Updated File">💾</button>
+    </div>
+
+    <script>
+        const activityData = {
+            items: [
+                {
+                    id: 1,
+                    title: "Sentence 1",
+                    sentence: "Although Maya studied for the test, she still felt nervous when she walked into class.",
+                    parts: [],
+                    hint: "Studying didn’t stop her from being nervous.",
+                    choices: [
+                        { text: "Maya didn’t study and felt nervous.", correct: false },
+                        { text: "Maya studied, but she was still nervous at school.", correct: true },
+                        { text: "Maya was nervous, so she didn’t go to class.", correct: false },
+                        { text: "Maya felt nervous and forgot to study.", correct: false }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Sentence 2",
+                    sentence: "Because he forgot to charge his Chromebook, Liam couldn’t finish his assignment in class.",
+                    parts: [],
+                    hint: "One problem caused another problem.",
+                    choices: [
+                        { text: "Liam finished his work early.", correct: false },
+                        { text: "Liam couldn’t work because his Chromebook was dead.", correct: true },
+                        { text: "Liam didn’t bring his Chromebook to school.", correct: false },
+                        { text: "Liam chose not to do the assignment.", correct: false }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Sentence 3",
+                    sentence: "After the bell rang, the students who were still talking had to hurry to their next class.",
+                    parts: [],
+                    hint: "They were slow and had to rush.",
+                    choices: [
+                        { text: "All students ran to class before the bell.", correct: false },
+                        { text: "The talking students had to rush after the bell.", correct: true },
+                        { text: "The bell rang late.", correct: false },
+                        { text: "Nobody was talking in the hallway.", correct: false }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: "Sentence 4",
+                    sentence: "Even though the directions were confusing, Jordan tried his best to follow them.",
+                    parts: [],
+                    hint: "The directions were hard, but he didn’t give up.",
+                    choices: [
+                        { text: "Jordan quit because it was confusing.", correct: false },
+                        { text: "Jordan tried even though it was hard to understand.", correct: true },
+                        { text: "Jordan understood the directions easily.", correct: false },
+                        { text: "Jordan didn’t read the directions.", correct: false }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: "Sentence 5",
+                    sentence: "When the teacher collected the papers, Ava realized that she had forgotten to write her name.",
+                    parts: [],
+                    hint: "She noticed her mistake too late.",
+                    choices: [
+                        { text: "Ava wrote her name first.", correct: false },
+                        { text: "Ava forgot her paper at home.", correct: false },
+                        { text: "Ava noticed she forgot her name when papers were turned in.", correct: true },
+                        { text: "The teacher lost Ava’s paper.", correct: false }
+                    ]
+                },
+                {
+                    id: 6,
+                    title: "Sentence 6",
+                    sentence: "Since it was already late, the group decided to finish the project the next day.",
+                    parts: [],
+                    hint: "They stopped because of the time.",
+                    choices: [
+                        { text: "They stayed up all night.", correct: false },
+                        { text: "They quit the project forever.", correct: false },
+                        { text: "They stopped and planned to continue tomorrow.", correct: true },
+                        { text: "They finished early.", correct: false }
+                    ]
+                },
+                {
+                    id: 7,
+                    title: "Sentence 7",
+                    sentence: "While Noah was explaining his answer, he noticed that some students were already raising their hands.",
+                    parts: [],
+                    hint: "People wanted to answer while he was speaking.",
+                    choices: [
+                        { text: "Nobody else wanted to answer.", correct: false },
+                        { text: "Students were not listening.", correct: false },
+                        { text: "Other students wanted to speak while Noah was talking.", correct: true },
+                        { text: "Noah forgot his answer.", correct: false }
+                    ]
+                },
+                {
+                    id: 8,
+                    title: "Sentence 8",
+                    sentence: "If you don’t save your work, you might lose it when the computer shuts down.",
+                    parts: [],
+                    hint: "Saving keeps your work safe.",
+                    choices: [
+                        { text: "The computer never shuts down.", correct: false },
+                        { text: "Saving isn’t important.", correct: false },
+                        { text: "Your work could be lost if you don’t save it.", correct: true },
+                        { text: "The computer saves everything automatically.", correct: false }
+                    ]
+                },
+                {
+                    id: 9,
+                    title: "Sentence 9",
+                    sentence: "The movie, which everyone had been talking about, turned out to be kind of boring.",
+                    parts: [],
+                    hint: "It wasn't as good as people said.",
+                    choices: [
+                        { text: "Everyone hated the movie before seeing it.", correct: false },
+                        { text: "The movie was exciting.", correct: false },
+                        { text: "People talked about it, but it wasn’t very good.", correct: true },
+                        { text: "Nobody saw the movie.", correct: false }
+                    ]
+                },
+                {
+                    id: 10,
+                    title: "Sentence 10",
+                    sentence: "After she finished her work early, Priya helped the student who was sitting next to her.",
+                    parts: [],
+                    hint: "She had extra time to help.",
+                    choices: [
+                        { text: "Priya needed help.", correct: false },
+                        { text: "Priya helped someone after finishing her work.", correct: true },
+                        { text: "Priya copied someone else’s work.", correct: false },
+                        { text: "Priya didn’t finish.", correct: false }
+                    ]
+                },
+                {
+                    id: 11,
+                    title: "Sentence 11",
+                    sentence: "Even if you don’t like the book, you still need to finish reading it.",
+                    parts: [],
+                    hint: "You have to finish it anyway.",
+                    choices: [
+                        { text: "You can stop if you don’t like it.", correct: false },
+                        { text: "You should only read books you like.", correct: false },
+                        { text: "You must finish it even if you don’t enjoy it.", correct: true },
+                        { text: "You should switch books.", correct: false }
+                    ]
+                },
+                {
+                    id: 12,
+                    title: "Sentence 12",
+                    sentence: "Before the game started, the coach reminded the team to stay focused.",
+                    parts: [],
+                    hint: "The pep talk came before the game.",
+                    choices: [
+                        { text: "The coach talked after the game.", correct: false },
+                        { text: "The team wasn’t focused.", correct: false },
+                        { text: "The coach gave advice before the game.", correct: true },
+                        { text: "The game was canceled.", correct: false }
+                    ]
+                },
+                {
+                    id: 13,
+                    title: "Sentence 13",
+                    sentence: "Because the bus was late, several students arrived after the first class had already begun.",
+                    parts: [],
+                    hint: "The bus made them late.",
+                    choices: [
+                        { text: "Everyone arrived early.", correct: false },
+                        { text: "Students missed school on purpose.", correct: false },
+                        { text: "The late bus made students late to class.", correct: true },
+                        { text: "The class was canceled.", correct: false }
+                    ]
+                },
+                {
+                    id: 14,
+                    title: "Sentence 14",
+                    sentence: "Although she didn’t know the answer at first, Tessa figured it out after thinking for a while.",
+                    parts: [],
+                    hint: "Thinking helped her solve it.",
+                    choices: [
+                        { text: "Tessa never got the answer.", correct: false },
+                        { text: "Tessa guessed right away.", correct: false },
+                        { text: "Tessa solved it after thinking.", correct: true },
+                        { text: "Tessa copied someone.", correct: false }
+                    ]
+                },
+                {
+                    id: 15,
+                    title: "Sentence 15",
+                    sentence: "When the lights suddenly went out, everyone in the room stopped talking.",
+                    parts: [],
+                    hint: "Darkness made them quiet.",
+                    choices: [
+                        { text: "Everyone kept talking.", correct: false },
+                        { text: "The lights got brighter.", correct: false },
+                        { text: "The room went quiet when the lights went out.", correct: true },
+                        { text: "Nobody noticed.", correct: false }
+                    ]
+                },
+                {
+                    id: 16,
+                    title: "Sentence 16",
+                    sentence: "If Marcus finishes his chores, he will be allowed to play video games.",
+                    parts: [],
+                    hint: "Work first, then play.",
+                    choices: [
+                        { text: "Marcus plays games instead of chores.", correct: false },
+                        { text: "Marcus can play if he finishes his chores.", correct: true },
+                        { text: "Marcus never does chores.", correct: false },
+                        { text: "Marcus already played.", correct: false }
+                    ]
+                },
+                {
+                    id: 17,
+                    title: "Sentence 17",
+                    sentence: "The teacher, who noticed the mistake, asked the class to fix it together.",
+                    parts: [],
+                    hint: "They fixed it as a group.",
+                    choices: [
+                        { text: "The teacher ignored the mistake.", correct: false },
+                        { text: "The class fixed their own work alone.", correct: false },
+                        { text: "The teacher had everyone fix the mistake together.", correct: true },
+                        { text: "The mistake was not important.", correct: false }
+                    ]
+                },
+                {
+                    id: 18,
+                    title: "Sentence 18",
+                    sentence: "Even though the instructions were on the board, some students still asked what to do.",
+                    parts: [],
+                    hint: "They asked for help despite the board.",
+                    choices: [
+                        { text: "Nobody read the board.", correct: false },
+                        { text: "Everyone understood.", correct: false },
+                        { text: "Some students were confused even though the directions were there.", correct: true },
+                        { text: "The board was empty.", correct: false }
+                    ]
+                },
+                {
+                    id: 19,
+                    title: "Sentence 19",
+                    sentence: "After he missed the first question, Diego paid closer attention to the rest of the quiz.",
+                    parts: [],
+                    hint: "A mistake made him focus.",
+                    choices: [
+                        { text: "Diego stopped trying.", correct: false },
+                        { text: "Diego did worse after.", correct: false },
+                        { text: "Diego focused more after missing the first one.", correct: true },
+                        { text: "Diego skipped the quiz.", correct: false }
+                    ]
+                },
+                {
+                    id: 20,
+                    title: "Sentence 20",
+                    sentence: "Since the library was closed, the group decided to meet somewhere else.",
+                    parts: [],
+                    hint: "They needed a new spot.",
+                    choices: [
+                        { text: "They waited for it to open.", correct: false },
+                        { text: "They went home.", correct: false },
+                        { text: "They picked a different place to meet.", correct: true },
+                        { text: "They canceled everything.", correct: false }
+                    ]
+                },
+                {
+                    id: 21,
+                    title: "Challenge 1",
+                    sentence: "Although the class had already started, Marcus, who had stayed late to talk to a teacher, hurried to his seat before anyone noticed.",
+                    parts: [],
+                    hint: "He was late, but tried to get to his seat quickly and quietly.",
+                    choices: [
+                        { text: "Marcus skipped class.", correct: false },
+                        { text: "Marcus was early and talked to the teacher.", correct: false },
+                        { text: "Marcus was late because he talked to a teacher and rushed to his seat.", correct: true },
+                        { text: "Everyone noticed Marcus.", correct: false }
+                    ]
+                },
+                {
+                    id: 22,
+                    title: "Challenge 2",
+                    sentence: "Because the directions, which were written in small print, were hard to read, several students asked for help before starting the assignment.",
+                    parts: [],
+                    hint: "The directions caused a problem.",
+                    choices: [
+                        { text: "Students ignored the directions.", correct: false },
+                        { text: "The directions were easy to read.", correct: false },
+                        { text: "Students asked for help because the directions were hard to read.", correct: true },
+                        { text: "Nobody needed help.", correct: false }
+                    ]
+                },
+                {
+                    id: 23,
+                    title: "Challenge 3",
+                    sentence: "After she realized that she had been using the wrong formula, which explained her strange answer, Lena went back and fixed her work.",
+                    parts: [],
+                    hint: "She found her mistake and corrected it.",
+                    choices: [
+                        { text: "Lena kept her wrong answer.", correct: false },
+                        { text: "Lena didn’t understand the formula.", correct: false },
+                        { text: "Lena noticed her mistake and fixed it.", correct: true },
+                        { text: "Lena guessed.", correct: false }
+                    ]
+                },
+                {
+                    id: 24,
+                    title: "Challenge 4",
+                    sentence: "Even though Jamal wanted to keep playing, he turned off the game after his mom reminded him that it was getting late.",
+                    parts: [],
+                    hint: "He stopped playing even though he didn’t want to.",
+                    choices: [
+                        { text: "Jamal ignored his mom.", correct: false },
+                        { text: "Jamal played all night.", correct: false },
+                        { text: "Jamal stopped playing because it was late.", correct: true },
+                        { text: "Jamal never wanted to play.", correct: false }
+                    ]
+                },
+                {
+                    id: 25,
+                    title: "Challenge 5",
+                    sentence: "When the group finished their poster, which had taken longer than they expected, they quickly hung it up before the bell rang.",
+                    parts: [],
+                    hint: "They were rushing at the end.",
+                    choices: [
+                        { text: "They didn’t finish the poster.", correct: false },
+                        { text: "They hung it up slowly.", correct: false },
+                        { text: "They finished late and rushed to hang it up before the bell.", correct: true },
+                        { text: "The bell rang early.", correct: false }
+                    ]
+                }
+            ]
+        };
+
+        // --- State ---
+        let currentIndex = 0;
+        let isLargeText = false;
+        let isEditMode = false;
+
+        // --- DOM Elements ---
+        const navScroller = document.getElementById('navScroller');
+        const displayTitle = document.getElementById('displayTitle');
+        const displaySentence = document.getElementById('displaySentence');
+
+        // NEW: Inputs (Replacing Parts List)
+        const weKnowInput = document.getElementById('weKnowInput');
+        const rephraseInput = document.getElementById('rephraseInput');
+
+        const displayHint = document.getElementById('displayHint');
+        const choicesGrid = document.getElementById('choicesGrid');
+
+        const hintBox = document.getElementById('hintBox');
+        const choicesBox = document.getElementById('choicesBox');
+
+        const toggleHintBtn = document.getElementById('toggleHintBtn');
+        const toggleChoicesBtn = document.getElementById('toggleChoicesBtn');
+
+        // --- Initialization ---
+        function init() {
+            renderNav();
+            loadItem(0);
+            setupEventListeners();
+        }
+
+        // --- Rendering ---
+        function renderNav() {
+            navScroller.innerHTML = '';
+            activityData.items.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = `nav-item ${index === currentIndex ? 'active' : ''}`;
+                btn.textContent = item.title;
+                btn.onclick = () => loadItem(index);
+                navScroller.appendChild(btn);
+            });
+        }
+
+        function loadItem(index) {
+            currentIndex = index;
+            const item = activityData.items[index];
+
+            // Render Content
+            displayTitle.textContent = item.title;
+            displaySentence.textContent = item.sentence;
+            displayHint.textContent = item.hint || "No hint available.";
+
+            // Clear inputs for new item
+            weKnowInput.value = '';
+            rephraseInput.value = '';
+
+            // Render Choices
+            choicesGrid.innerHTML = '';
+            item.choices.forEach((choice, choiceIndex) => {
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn editable-field';
+                btn.textContent = choice.text;
+                // Click logic (Answer Checking)
+                btn.onclick = (e) => {
+                    if (isEditMode) return; // Don't trigger answer logic in edit mode
+                    if (choice.correct) {
+                        btn.classList.add('correct');
+                        btn.textContent += ' ✅';
+                    } else {
+                        btn.classList.add('incorrect');
+                        btn.textContent += ' ❌';
+                    }
+                };
+                choicesGrid.appendChild(btn);
+            });
+
+            // Reset Toggles
+            hintBox.classList.remove('show');
+            choicesBox.classList.remove('show');
+            toggleHintBtn.classList.remove('active');
+            toggleChoicesBtn.classList.remove('active');
+
+            // Update Nav State
+            renderNav();
+        }
+
+        function setupEventListeners() {
+            // Text Size Toggle
+            document.getElementById('textSizeBtn').onclick = () => {
+                isLargeText = !isLargeText;
+                document.body.classList.toggle('text-large', isLargeText);
+            };
+
+            // Progressive Help Toggles
+            toggleHintBtn.onclick = () => {
+                hintBox.classList.toggle('show');
+                toggleHintBtn.classList.toggle('active');
+            };
+
+            toggleChoicesBtn.onclick = () => {
+                choicesBox.classList.toggle('show');
+                toggleChoicesBtn.classList.toggle('active');
+            };
+
+            // Edit Mode Toggle
+            document.getElementById('editModeBtn').onclick = toggleEditMode;
+
+            // Save Changes
+            document.getElementById('saveChangesBtn').onclick = downloadUpdatedFile;
+        }
+
+        // --- Edit Mode Logic ---
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            document.body.classList.toggle('edit-mode', isEditMode);
+
+            const editableElements = document.querySelectorAll('.editable-field');
+            editableElements.forEach(el => {
+                el.contentEditable = isEditMode;
+            });
+
+            if (isEditMode) {
+                alert("✏️ Edit Mode Active\n\n- Click any text box to edit.\n- Click the 'Floppy Disk' icon at the bottom right to download your changes.");
+            }
+        }
+
+        function downloadUpdatedFile() {
+            const currentItem = activityData.items[currentIndex];
+            currentItem.title = displayTitle.innerText;
+            currentItem.sentence = displaySentence.innerText;
+            currentItem.hint = displayHint.innerText;
+
+            // Note: We don't save student input values (textareas) because they are transient.
+            // We only save changes to the *activity content* (title, sentence, hint, choices).
+
+            // Capture Choices
+            const choiceBtns = choicesGrid.querySelectorAll('.choice-btn');
+            choiceBtns.forEach((btn, idx) => {
+                if (currentItem.choices[idx]) {
+                    // Clean text (remove status icons)
+                    let cleanText = btn.innerText.replace(' ✅', '').replace(' ❌', '');
+                    currentItem.choices[idx].text = cleanText;
+                }
+            });
+
+            const clone = document.documentElement.cloneNode(true);
+
+            clone.querySelector('body').classList.remove('edit-mode');
+            const editables = clone.querySelectorAll('[contenteditable]');
+            editables.forEach(el => el.removeAttribute('contenteditable'));
+
+            // Clear input values in the clone so the saved file is clean
+            clone.querySelector('#weKnowInput').textContent = '';
+            clone.querySelector('#rephraseInput').textContent = '';
+
+            const scriptContent = clone.querySelector('script').textContent;
+            const newScriptContent = scriptContent.replace(
+                /const activityData = \{[\s\S]*?\};/,
+                `const activityData = ${JSON.stringify(activityData, null, 4)};`
+            );
+            clone.querySelector('script').textContent = newScriptContent;
+
+            const htmlContent = "<!DOCTYPE html>\n" + clone.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            const currentFilename = window.location.pathname.split('/').pop() || 'sentence-breakdown-paraphrasing.html';
+            const safeFilename = decodeURIComponent(currentFilename);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = safeFilename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

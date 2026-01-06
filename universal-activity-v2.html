@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Activity Template v2</title>
+    <style>
+        :root {
+            /* Core Colors */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #ec4899;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
+
+            /* Text Sizing Variables */
+            --base-size: 16px;
+            --story-size: 1.125rem;
+            /* 18px */
+            --header-size: 1.5rem;
+        }
+
+        /* Text Size Classes */
+        body.text-large {
+            --base-size: 20px;
+            --story-size: 1.5rem;
+            --header-size: 1.8rem;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 60px;
+            font-size: var(--base-size);
+            line-height: 1.5;
+            transition: font-size 0.3s ease;
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-scroller {
+            background: var(--bg);
+            padding: 0.75rem 1rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-bottom: 1px solid var(--border);
+            /* Hide scrollbar but keep functionality */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .nav-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-item {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        /* --- Content Areas --- */
+        .story-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 1rem;
+        }
+
+        .story-title {
+            font-size: var(--header-size);
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .story-text {
+            font-size: var(--story-size);
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            white-space: pre-wrap;
+            /* Preserve spacing */
+        }
+
+        /* --- Progressive Help --- */
+        .help-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .help-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover,
+        .btn-outline.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .help-content {
+            display: none;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .help-content.show {
+            display: block;
+        }
+
+        .hint-box {
+            background: #fffbeb;
+            /* Amber-50 */
+            border: 1px solid #fcd34d;
+            color: #92400e;
+        }
+
+        .choices-box {
+            background: #f0f9ff;
+            /* Sky-50 */
+            border: 1px solid #bae6fd;
+        }
+
+        .choices-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .choice-btn {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--primary);
+            background: #f8fafc;
+        }
+
+        .choice-btn.correct {
+            background: var(--success-bg);
+            border-color: var(--success);
+            color: #064e3b;
+        }
+
+        .choice-btn.incorrect {
+            background: var(--error-bg);
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        /* --- Editing Mode --- */
+        body.edit-mode .editable-field {
+            border: 2px dashed #9ca3af;
+            padding: 2px;
+            border-radius: 4px;
+            cursor: text;
+        }
+
+        body.edit-mode .editable-field:hover {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: var(--primary);
+        }
+
+        .edit-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        body.edit-mode .edit-controls {
+            display: flex;
+        }
+
+        .floating-btn {
+            padding: 1rem;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .save-btn {
+            background: var(--success);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-controls">
+            <a href="index.html" class="btn btn-outline btn-sm">← Hub</a>
+            <h1 style="font-size: 1.2rem; margin: 0; font-weight: 700;">Universal Activity</h1>
+        </div>
+        <div class="header-controls">
+            <button class="btn btn-outline btn-sm" id="textSizeBtn" title="Toggle Text Size">Aa</button>
+            <button class="btn btn-outline btn-sm" id="editModeBtn" title="Edit Content">✏️ Edit</button>
+        </div>
+    </header>
+
+    <!-- Top Navigation Scroller -->
+    <nav class="nav-scroller" id="navScroller">
+        <!-- Injected via JS -->
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Story / Activity Card -->
+        <div class="card" id="activityCard">
+            <div class="story-header">
+                <h2 class="story-title editable-field" id="displayTitle">Story Title</h2>
+            </div>
+
+            <div class="story-text editable-field" id="displayText">
+                Story content will appear here...
+            </div>
+
+            <!-- Independent Progressive Help -->
+            <div class="help-section">
+                <div class="help-controls">
+                    <button class="btn btn-outline" id="toggleHintBtn">💡 Hint</button>
+                    <button class="btn btn-outline" id="toggleChoicesBtn">📋 Choices</button>
+                </div>
+
+                <!-- Step 1: Hint -->
+                <div class="help-content hint-box" id="hintBox">
+                    <strong>Hint:</strong> <span class="editable-field" id="displayHint">Hint text goes here...</span>
+                </div>
+
+                <!-- Step 2: Choices -->
+                <div class="help-content choices-box" id="choicesBox">
+                    <div class="choices-grid" id="choicesGrid">
+                        <!-- Choices injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Mode Floating Controls -->
+    <div class="edit-controls">
+        <button class="floating-btn save-btn" id="saveChangesBtn" title="Download Changes">💾</button>
+    </div>
+
+    <script>
+        // --- Data Structure ---
+        // This is the source of truth. In a real app, this might come from a separate JSON file.
+        // For the single-file template, we keep it here for portability.
+        const activityData = {
+            items: [
+                {
+                    id: 1,
+                    title: "The Missing Mitten",
+                    text: "Sam put on his coat and boots. He reached into his pocket to find his mittens, but he only felt one. He looked on the floor, under the bench, and even inside his boots. \"Oh no!\" Sam cried.",
+                    hint: "Where did he look for the mitten?",
+                    choices: [
+                        { text: "In his hat", correct: false },
+                        { text: "Under the bench", correct: true },
+                        { text: "In the fridge", correct: false },
+                        { text: "On the roof", correct: false }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Rainy Day Fun",
+                    text: "It was pouring rain outside. Maya wanted to ride her bike, but her mom said no. Maya sighed and went to the closet. She pulled out a big box of puzzles and games. Soon, she was smiling and laughing.",
+                    hint: "What did Maya do instead of biking?",
+                    choices: [
+                        { text: "She went to sleep", correct: false },
+                        { text: "She played puzzles and games", correct: true },
+                        { text: "She cried all day", correct: false },
+                        { text: "She rode her bike anyway", correct: false }
+                    ]
+                }
+            ]
+        };
+
+        // --- State ---
+        let currentIndex = 0;
+        let isLargeText = false;
+        let isEditMode = false;
+
+        // --- DOM Elements ---
+        const navScroller = document.getElementById('navScroller');
+        const displayTitle = document.getElementById('displayTitle');
+        const displayText = document.getElementById('displayText');
+        const displayHint = document.getElementById('displayHint');
+        const choicesGrid = document.getElementById('choicesGrid');
+
+        const hintBox = document.getElementById('hintBox');
+        const choicesBox = document.getElementById('choicesBox');
+
+        const toggleHintBtn = document.getElementById('toggleHintBtn');
+        const toggleChoicesBtn = document.getElementById('toggleChoicesBtn');
+
+        // --- Initialization ---
+        function init() {
+            renderNav();
+            loadItem(0);
+            setupEventListeners();
+        }
+
+        // --- Rendering ---
+        function renderNav() {
+            navScroller.innerHTML = '';
+            activityData.items.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = `nav-item ${index === currentIndex ? 'active' : ''}`;
+                btn.textContent = `Item ${index + 1}`;
+                btn.onclick = () => loadItem(index);
+                navScroller.appendChild(btn);
+            });
+        }
+
+        function loadItem(index) {
+            // Save potential edits from current item before switching? 
+            // Ideally yes, but for simplicity in v1 we'll just reload. 
+            // (User should save edits before switching in this simple model).
+
+            currentIndex = index;
+            const item = activityData.items[index];
+
+            // Render Content
+            displayTitle.textContent = item.title;
+            displayText.textContent = item.text;
+            displayHint.textContent = item.hint;
+
+            // Render Choices
+            choicesGrid.innerHTML = '';
+            item.choices.forEach((choice, choiceIndex) => {
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn editable-field';
+                btn.textContent = choice.text;
+                // Click logic (Answer Checking)
+                btn.onclick = (e) => {
+                    if (isEditMode) return; // Don't trigger answer logic in edit mode
+                    if (choice.correct) {
+                        btn.classList.add('correct');
+                        btn.textContent += ' ✅';
+                    } else {
+                        btn.classList.add('incorrect');
+                        btn.textContent += ' ❌';
+                    }
+                };
+                choicesGrid.appendChild(btn);
+            });
+
+            // Reset Toggles
+            hintBox.classList.remove('show');
+            choicesBox.classList.remove('show');
+            toggleHintBtn.classList.remove('active');
+            toggleChoicesBtn.classList.remove('active');
+
+            // Update Nav State
+            renderNav();
+        }
+
+        function setupEventListeners() {
+            // Text Size Toggle
+            document.getElementById('textSizeBtn').onclick = () => {
+                isLargeText = !isLargeText;
+                document.body.classList.toggle('text-large', isLargeText);
+            };
+
+            // Progressive Help Toggles
+            toggleHintBtn.onclick = () => {
+                hintBox.classList.toggle('show');
+                toggleHintBtn.classList.toggle('active');
+            };
+
+            toggleChoicesBtn.onclick = () => {
+                choicesBox.classList.toggle('show');
+                toggleChoicesBtn.classList.toggle('active');
+            };
+
+            // Edit Mode Toggle
+            document.getElementById('editModeBtn').onclick = toggleEditMode;
+
+            // Save Changes
+            document.getElementById('saveChangesBtn').onclick = downloadUpdatedFile;
+        }
+
+        // --- Edit Mode Logic ---
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            document.body.classList.toggle('edit-mode', isEditMode);
+
+            const editableElements = document.querySelectorAll('.editable-field');
+            editableElements.forEach(el => {
+                el.contentEditable = isEditMode;
+            });
+
+            if (isEditMode) {
+                alert("✏️ Edit Mode Active\n\n- Click any text box to edit.\n- Click the 'Floppy Disk' icon at the bottom right to download your changes.");
+            }
+        }
+
+        function downloadUpdatedFile() {
+            // 1. Capture current edits into the data object
+            // (In a full app we'd map DOM back to JSON, but for this file-based approach 
+            // we can just grab the current HTML state!)
+
+            // Actually, to keep the data model clean, let's update the current item in memory first
+            const currentItem = activityData.items[currentIndex];
+            currentItem.title = displayTitle.innerText;
+            currentItem.text = displayText.innerText;
+            currentItem.hint = displayHint.innerText;
+
+            // Choices are trickier because of DOM structure, but basic text update:
+            const choiceBtns = choicesGrid.querySelectorAll('.choice-btn');
+            choiceBtns.forEach((btn, idx) => {
+                if (currentItem.choices[idx]) {
+                    // Remove check/cross marks if present before saving
+                    let cleanText = btn.innerText.replace(' ✅', '').replace(' ❌', '');
+                    currentItem.choices[idx].text = cleanText;
+                }
+            });
+
+            // 2. Clone the document
+            const clone = document.documentElement.cloneNode(true);
+
+            // 3. Clean up the clone for export
+            // Remove 'edit-mode' class
+            clone.querySelector('body').classList.remove('edit-mode');
+
+            // Remove contentEditable attributes
+            const editables = clone.querySelectorAll('[contenteditable]');
+            editables.forEach(el => el.removeAttribute('contenteditable'));
+
+            // Update the JSON data script with the new values
+            // This is the magic part: we rewrite the 'const activityData = ...' line
+            const scriptContent = clone.querySelector('script').textContent;
+            const newScriptContent = scriptContent.replace(
+                /const activityData = \{[\s\S]*?\};/,
+                `const activityData = ${JSON.stringify(activityData, null, 4)};`
+            );
+            clone.querySelector('script').textContent = newScriptContent;
+
+            // 4. Create Download
+            const htmlContent = "<!DOCTYPE html>\n" + clone.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'universal-activity-v2-edited.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+
+</html>
