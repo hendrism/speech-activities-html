@@ -1,0 +1,69 @@
+.scaffolding-hub {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hub-header {
+    background: white;
+    padding: 20px 40px;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.hub-header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #1e293b;
+}
+
+.hub-header p {
+    margin: 5px 0 20px;
+    color: #64748b;
+}
+
+.hub-nav {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.nav-tab {
+    padding: 10px 20px;
+    border: none;
+    background: #f1f5f9;
+    color: #64748b;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-tab:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.nav-tab.active {
+    background: #3b82f6;
+    color: white;
+}
+
+.hub-content {
+    flex: 1;
+    background: #f8fafc;
+    padding: 20px;
+}
+
+@media print {
+    .hub-header {
+        display: none;
+    }
+
+    .hub-content {
+        padding: 0;
+        background: white;
+    }
+}

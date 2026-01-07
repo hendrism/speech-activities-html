@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Hub from './pages/Hub';
 import CategoryPage from './pages/CategoryPage';
 import ActivityView from './pages/ActivityView';
+import ScaffoldingHub from './features/scaffolding/ScaffoldingHub';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Route path="/" element={<Hub />} />
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/activity/:id" element={<ActivityView />} />
+          <Route path="/scaffolding" element={<ScaffoldingHub />} />
         </Routes>
       </div>
     </BrowserRouter>

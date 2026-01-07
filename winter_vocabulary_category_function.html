@@ -1,589 +1,816 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Winter Vocabulary - Category, Function, Attributes</title>
+    <title>Winter Vocabulary Builder</title>
     <style>
         :root {
-            --midnight: #0f172a;
-            --frost: #e2e8f0;
-            --sky: #38bdf8;
-            --pine: #0f766e;
-            --cream: #f8fafc;
-            --card: #ffffff;
-            --base-font-size: 16px;
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #6366f1;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --radius: 16px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
-        * { box-sizing: border-box; }
+
         body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
             margin: 0;
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: radial-gradient(circle at 18% 20%, #f1f5f9, #e0f2fe 60%, #f8fafc);
-            color: var(--midnight);
-            line-height: 1.6;
-            padding: 24px 16px 48px;
-            font-size: calc(var(--base-font-size));
-        }
-        h1 {
-            text-align: center;
-            margin: 0 0 10px;
-            color: var(--pine);
-            letter-spacing: 0.3px;
-        }
-        .intro {
-            max-width: 1100px;
-            margin: 0 auto 16px;
-            background: white;
-            border: 1px solid var(--frost);
-            border-radius: 14px;
-            padding: 14px 16px;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-        }
-        .settings-bar {
-            max-width: 1100px;
-            margin: 0 auto 12px;
+            height: 100vh;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px 14px;
-            align-items: center;
-            background: #eef2ff;
-            border: 1px solid var(--frost);
-            border-radius: 12px;
-            padding: 10px 12px;
+            overflow: hidden;
         }
-        .setting {
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+        }
+
+        .sidebar-title {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .sidebar-subtitle {
+            margin: 4px 0 0;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .nav-list {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-main);
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
         }
-        .setting label {
-            font-weight: 700;
-            color: var(--midnight);
+
+        .nav-item:hover {
+            background: #f1f5f9;
         }
-        .setting input[type="range"] {
-            accent-color: var(--sky);
-            cursor: pointer;
+
+        .nav-item.active {
+            background: #e0f2fe;
+            color: var(--primary-dark);
+            border-color: #bae6fd;
+            font-weight: 600;
         }
-        .nav-bar {
-            max-width: 1100px;
+
+        .nav-item .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+
+        .nav-item.completed .status-dot {
+            background: var(--success);
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 32px;
+            gap: 24px;
+        }
+
+        .activity-container {
+            max-width: 1000px;
             margin: 0 auto;
+            width: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 8px;
-            position: static;
-            padding: 8px 0 6px;
-        }
-        .nav-btn {
-            border: 1px solid var(--frost);
-            background: white;
-            border-radius: 12px;
-            padding: 10px 12px;
-            cursor: pointer;
-            font-weight: 700;
-            color: var(--midnight);
-            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.07);
-            transition: all 0.2s ease;
-        }
-        .nav-btn:hover { border-color: var(--sky); transform: translateY(-1px); }
-        .nav-btn.active {
-            background: linear-gradient(135deg, #e0f2fe, #f0fdf4);
-            border-color: var(--sky);
-            color: var(--pine);
-        }
-        .page {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .card {
-            background: var(--card);
-            border: 1px solid var(--frost);
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
-            margin-top: 14px;
-        }
-        .top {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 14px;
+            grid-template-columns: 350px 1fr;
+            gap: 24px;
             align-items: start;
         }
-        .word-title {
-            margin: 0 0 6px;
-            color: var(--pine);
+
+        /* Image Card */
+        .visual-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            text-align: center;
+            position: sticky;
+            top: 0;
         }
-        .tag {
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: #e0f2fe;
-            color: #0f172a;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 6px;
+
+        .word-display {
+            font-size: 2rem;
+            margin: 0 0 16px;
+            color: var(--primary-dark);
+            font-weight: 800;
         }
-        .image-placeholder {
-            border: 2px dashed #cbd5e1;
+
+        .main-image {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
             border-radius: 12px;
-            min-height: 180px;
-            background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 10px, #eef2ff 10px, #eef2ff 20px);
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #f1f5f9;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 12px;
-            color: #475569;
-            font-weight: 700;
-            overflow: hidden;
+            color: var(--text-muted);
+            border: 2px dashed #cbd5e1;
+            padding: 20px;
         }
-        .image-placeholder span { display: block; }
-        .image-placeholder img {
-            display: block;
-            max-width: 320px;
-            max-height: 260px;
-            width: auto;
-            height: auto;
-            margin: 0 auto;
-            border-radius: 10px;
-            object-fit: contain;
-        }
-        .questions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            margin-top: 10px;
-        }
-        .question-card {
-            border: 1px solid var(--frost);
-            border-radius: 12px;
-            padding: 12px;
-            background: #f8fafc;
-        }
-        .question-label {
-            font-weight: 700;
-            color: var(--midnight);
-        }
-        .question-text { margin: 6px 0 10px; font-weight: 600; }
-        .help-row {
+
+        /* Workspace */
+        .workspace {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 20px;
         }
-        .btn {
-            border: none;
-            border-radius: 10px;
-            padding: 9px 12px;
+
+        .step-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .step-card.active {
+            opacity: 1;
+            border-color: var(--primary);
+            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.1);
+        }
+
+        .step-header {
+            padding: 16px 24px;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             cursor: pointer;
+        }
+
+        .step-card.active .step-header {
+            background: linear-gradient(to right, #f0f9ff, #ffffff);
+        }
+
+        .step-title {
             font-weight: 700;
-            transition: all 0.2s ease;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .btn-clue { background: var(--sky); color: white; }
-        .btn-choices { background: #fbbf24; color: #92400e; }
-        .btn:disabled { background: #cbd5e1; color: #475569; cursor: not-allowed; }
-        .clue {
-            display: none;
-            margin: 8px 0;
-            padding: 10px;
-            border-radius: 10px;
-            background: #ecfeff;
-            border: 1px solid #bae6fd;
-            color: #0f172a;
+
+        .step-number {
+            background: #e2e8f0;
+            color: #475569;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
         }
-        .choices-wrap {
-            display: none;
-            margin-top: 6px;
-            grid-template-columns: 1fr;
-            gap: 8px;
-        }
-        .choice-btn {
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 10px 12px;
-            background: white;
-            cursor: pointer;
-            font-weight: 700;
-            text-align: left;
-            transition: all 0.2s ease;
-        }
-        .choice-btn:hover { border-color: var(--sky); transform: translateY(-1px); }
-        .choice-btn.correct {
-            background: #dcfce7;
-            border-color: #22c55e;
-            color: #166534;
-        }
-        .choice-btn.incorrect {
-            background: #fee2e2;
-            border-color: #ef4444;
-            color: #7f1d1d;
-        }
-        .answer-input {
-            width: 100%;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 12px;
-            font-size: 1rem;
-            font-family: inherit;
-            margin: 8px 0 12px;
-            min-height: 72px;
-            resize: vertical;
-        }
-        .answer-input:focus {
-            outline: none;
-            border-color: var(--sky);
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
-        }
-        .feedback {
-            display: none;
-            border-radius: 10px;
-            padding: 10px;
-            font-weight: 700;
-            margin-top: 8px;
-        }
-        .feedback.correct { background: #dcfce7; color: #166534; }
-        .feedback.incorrect { background: #fee2e2; color: #7f1d1d; }
-        .combine-card {
-            margin-top: 14px;
-            border: 1px solid var(--frost);
-            border-radius: 12px;
-            padding: 12px;
-            background: #fdfdfb;
-        }
-        .combine-title {
-            margin: 0 0 8px;
-            font-size: 1rem;
-            color: var(--pine);
-        }
-        .combine-area {
-            width: 100%;
-            min-height: 90px;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 1rem;
-            font-family: inherit;
-            box-sizing: border-box;
-        }
-        .combine-btn {
-            border: none;
-            border-radius: 10px;
-            padding: 10px 12px;
-            cursor: pointer;
-            font-weight: 700;
-            background: var(--sky);
+
+        .step-card.active .step-number {
+            background: var(--primary);
             color: white;
+        }
+
+        .step-card.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-content {
+            padding: 24px;
+            display: none;
+        }
+
+        .step-card.active .step-content {
+            display: block;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .text-input {
+            padding: 14px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            width: 100%;
+            transition: border-color 0.2s;
+            background: #fff;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .tools {
+            display: flex;
+            gap: 10px;
             margin-top: 8px;
         }
-        @media (max-width: 820px) {
-            .top { grid-template-columns: 1fr; }
-            .nav-bar { position: static; }
+
+        .tool-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .tool-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #f0f9ff;
+        }
+
+        .tool-btn.active {
+            background: #e0f2fe;
+            color: var(--primary-dark);
+            border-color: #bae6fd;
+        }
+
+        .choices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .choice-chip {
+            padding: 10px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .choice-chip:hover {
+            border-color: var(--primary);
+            background: #f0f9ff;
+        }
+
+        .choice-chip.selected {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #22c55e;
+        }
+
+        .sentence-preview {
+            margin-top: 20px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .sentence-preview strong {
+            color: var(--text-main);
+            font-style: normal;
+        }
+
+        .review-section {
+            background: var(--surface);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .final-sentence {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--primary-dark);
+            font-weight: 600;
+            background: #e0f2fe;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .primary-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .primary-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .activity-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                padding: 16px;
+            }
+
+            .visual-card {
+                position: static;
+            }
         }
     </style>
 </head>
+
 <body>
-    <h1>Winter Vocabulary - Category, Function, Attributes</h1>
-    <div class="intro">
-        Pick a winter word, then work through category, function, and two attributes. Use the progressive help: tap "Show clue" to unlock a hint, then "Show choices" for four options. Fill in visuals later using the placeholder.
-    </div>
-    <div class="settings-bar">
-        <div class="setting">
-            <label for="textSizeControl">Text size</label>
-            <input type="range" id="textSizeControl" min="14" max="20" value="16">
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-title">Winter Vocab</h1>
+            <p class="sidebar-subtitle">Category & Attributes</p>
+        </div>
+        <div class="nav-list" id="navList">
+            <!-- Nav items generated here -->
         </div>
     </div>
-    <div class="nav-bar" id="wordNav"></div>
-    <div class="page" id="page"></div>
+
+    <main class="main" id="mainContent">
+        <!-- Content injected here -->
+    </main>
 
     <script>
-        const entries = [
-            // Winter Weather (easier-moderate)
-            { word: 'Snow', category: 'Winter Weather', function: 'Covers the ground when water freezes and falls from clouds', attributes: ['White', 'Cold'], image: 'images/winter_items/snow_2.jpg' },
-            { word: 'Ice', category: 'Winter Weather', function: 'Forms when water freezes into a solid', attributes: ['Hard', 'Slippery'], image: 'images/winter_items/ice_1.jpg' },
-            { word: 'Snowflake', category: 'Winter Weather', function: 'A single crystal of frozen water that falls from the sky', attributes: ['Six-sided', 'Unique'], image: 'images/winter_items/snowflake.jpg' },
-            { word: 'Icicle', category: 'Winter Weather', function: 'Forms when dripping water freezes into a pointed shape', attributes: ['Pointed', 'Clear'], image: 'images/winter_items/icicle.jpg' },
-            { word: 'Frost', category: 'Winter Weather', function: 'Forms when water vapor freezes on surfaces', attributes: ['Thin', 'Crystalline'], image: 'images/winter_items/frost.jpg' },
-            { word: 'Blizzard', category: 'Winter Weather', function: 'A severe snowstorm with strong winds', attributes: ['Dangerous', 'Windy'], image: 'images/winter_items/blizzard.jpg' },
+        // Utilities
+        function genChoices(correct, pool) {
+            const others = pool.filter(x => x !== correct).sort(() => Math.random() - 0.5).slice(0, 3);
+            const all = [correct, ...others].sort(() => Math.random() - 0.5);
+            return all;
+        }
 
-            // Winter Clothing (easier)
-            { word: 'Coat', category: 'Winter Clothing', function: 'Covers the body to provide warmth', attributes: ['Insulated', 'Heavy'], image: 'images/winter_items/winter-coat.png' },
-            { word: 'Scarf', category: 'Winter Clothing', function: 'Wraps around the neck to keep it warm', attributes: ['Woven', 'Flexible'], image: 'images/winter_items/scarf.png' },
-            { word: 'Gloves', category: 'Winter Clothing', function: 'Cover hands with separate spaces for each finger', attributes: ['Fitted', 'Warm'], image: 'images/winter_items/gloves.png' },
-            { word: 'Mittens', category: 'Winter Clothing', function: 'Cover hands without separating fingers', attributes: ['Rounded', 'Cozy'], image: 'images/winter_items/mittens.png' },
-            { word: 'Boots', category: 'Winter Clothing', function: 'Protect feet from snow, ice, and cold', attributes: ['Waterproof', 'Tall'], image: 'images/winter_items/boots.png' },
-            { word: 'Hat', category: 'Winter Clothing', function: 'Covers the head to prevent heat loss', attributes: ['Knitted', 'Stretchy'], image: 'images/winter_items/winter-hat.jpg' },
+        function getCommonCategories() {
+            return ['Winter Weather', 'Winter Clothing', 'Winter Sport', 'Winter Tool', 'Winter Food', 'Household Item', 'Vehicle', 'Plant', 'Animal', 'Decoration'];
+        }
 
-            // Winter Recreation (moderate)
-            { word: 'Sled', category: 'Winter Recreation', function: 'Slides downhill on snow for fun', attributes: ['Smooth-bottomed', 'Steerable'], image: 'images/winter_items/sled.jpg' },
-            { word: 'Skis', category: 'Winter Recreation', function: 'Allow a person to glide across snow', attributes: ['Long', 'Paired'], image: 'images/winter_items/skis.jpg' },
-            { word: 'Ice skates', category: 'Winter Recreation', function: 'Allow a person to glide on ice', attributes: ['Bladed', 'Strapped'], image: 'images/new_winter_items/ice_skates.jpg' },
-            { word: 'Snowboard', category: 'Winter Recreation', function: 'Allows a person to slide downhill on snow with both feet attached', attributes: ['Wide', 'Curved'], image: 'images/new_winter_items/snowboard.jpg' },
-            { word: 'Hockey stick', category: 'Winter Recreation', function: 'Used to hit a puck in ice hockey', attributes: ['Long-handled', 'Angled'], image: 'images/winter_items/hockey_stick.jpg' },
+        function getCommonFunctions() {
+            return ['keeps you warm', 'falls from the sky', 'covers the ground', 'slides on snow', 'protects hands', 'clears snow', 'heats the room', 'protects feet'];
+        }
 
-            // Winter Activities/Objects (easier-moderate)
-            { word: 'Snowball', category: 'Winter Activity', function: 'Packed snow thrown for play', attributes: ['Round', 'Compact'], image: 'images/winter_items/snowball.jpg' },
-            { word: 'Snowman', category: 'Winter Activity', function: 'A figure built from stacked balls of snow', attributes: ['Three-tiered', 'Decorated'], image: 'images/winter_items/snowman.jpg' },
-            { word: 'Snow fort', category: 'Winter Activity', function: 'A structure built from snow for play or shelter', attributes: ['Hollow', 'Protective'], image: 'images/winter_items/snow_fort.png' },
+        function getCommonAttributes() {
+            return ['white', 'cold', 'hot', 'soft', 'hard', 'long', 'heavy', 'light', 'waterproof', 'sweet', 'round', 'wooden', 'metal', 'plastic'];
+        }
 
-            // Winter Tools (moderate)
-            { word: 'Shovel', category: 'Winter Tool', function: 'Scoops and moves snow from pathways', attributes: ['Long-handled', 'Metal-edged'], image: 'images/winter_items/snow-shovel.jpg' },
-            { word: 'Snowplow', category: 'Winter Vehicle', function: 'Pushes large amounts of snow off roads', attributes: ['Large', 'Powerful'], image: 'images/winter_items/snow_plow.jpg' },
-            { word: 'Ice scraper', category: 'Winter Tool', function: 'Removes ice from car windows', attributes: ['Flat', 'Rigid'], image: 'images/winter_items/ice_scraper.png' },
+        // Base Data
+        const itemsData = [
+            { id: 'snow', word: 'Snow', cat: 'Winter Weather', func: 'covers the ground', attrs: ['White', 'Cold'], qAttrs: ['What color is it?', 'How does it feel?'], img: 'images/winter_items/snow_2.jpg' },
+            { id: 'ice', word: 'Ice', cat: 'Winter Weather', func: 'forms when water freezes', attrs: ['Hard', 'Slippery'], qAttrs: ['How does it feel?', 'Is it slippery or sticky?'], img: 'images/winter_items/ice_1.jpg' },
+            { id: 'snowflake', word: 'Snowflake', cat: 'Winter Weather', func: 'falls from the sky', attrs: ['Six-sided', 'Unique'], qAttrs: ['What is its shape?', 'Is it unique or identical?'], img: 'images/winter_items/snowflake.jpg' },
+            { id: 'icicle', word: 'Icicle', cat: 'Winter Weather', func: 'hangs from roofs', attrs: ['Pointed', 'Clear'], qAttrs: ['What is its shape?', 'What color is it?'], img: 'images/winter_items/icicle.jpg' },
+            { id: 'frost', word: 'Frost', cat: 'Winter Weather', func: 'forms on windows', attrs: ['Thin', 'Crystalline'], qAttrs: ['Is it thick or thin?', 'Describe the texture.'], img: 'images/winter_items/frost.jpg' },
+            { id: 'blizzard', word: 'Blizzard', cat: 'Winter Weather', func: 'blows snow with wind', attrs: ['Dangerous', 'Windy'], qAttrs: ['Is it safe or dangerous?', 'What is the weather like?'], img: 'images/winter_items/blizzard.jpg' },
 
-            // Indoor Comfort (easier-moderate)
-            { word: 'Fireplace', category: 'Heating Source', function: 'Burns wood or gas to heat a room', attributes: ['Hot', 'Enclosed'], image: 'images/winter_items/fireplace.png' },
-            { word: 'Blanket', category: 'Indoor Comfort', function: 'Covers a person to trap body heat', attributes: ['Thick', 'Layered'], image: 'images/winter_items/blanket.png' },
-            { word: 'Space heater', category: 'Heating Source', function: 'Generates electric heat for a small area', attributes: ['Portable', 'Electric'], image: 'images/winter_items/space_heater.png' },
+            { id: 'coat', word: 'Coat', cat: 'Winter Clothing', func: 'keeps you warm', attrs: ['Insulated', 'Heavy'], qAttrs: ['Is it thin or insulated?', 'Is it light or heavy?'], img: 'images/winter_items/winter-coat.png' },
+            { id: 'scarf', word: 'Scarf', cat: 'Winter Clothing', func: 'protects your neck', attrs: ['Woven', 'Soft'], qAttrs: ['What material is it?', 'How does it feel?'], img: 'images/winter_items/scarf.png' },
+            { id: 'gloves', word: 'Gloves', cat: 'Winter Clothing', func: 'cover your hands', attrs: ['Fitted', 'Warm'], qAttrs: ['How do they fit?', 'Do they keep you warm?'], img: 'images/winter_items/gloves.png' },
+            { id: 'mittens', word: 'Mittens', cat: 'Winter Clothing', func: 'keep hands cozy', attrs: ['Rounded', 'No-fingers'], qAttrs: ['What is the shape?', 'Do they have separate fingers?'], img: 'images/winter_items/mittens.png' },
+            { id: 'boots', word: 'Boots', cat: 'Winter Clothing', func: 'protect feet from snow', attrs: ['Waterproof', 'Tall'], qAttrs: ['Can water get in?', 'Are they short or tall?'], img: 'images/winter_items/boots.png' },
+            { id: 'hat', word: 'Hat', cat: 'Winter Clothing', func: 'keeps head warm', attrs: ['Knitted', 'Stretchy'], qAttrs: ['What is it made of?', 'Is it stiff or stretchy?'], img: 'images/winter_items/winter-hat.jpg' },
 
-            // Food/Drink (easier)
-            { word: 'Hot chocolate', category: 'Winter Beverage', function: 'A warm drink that provides comfort and heat', attributes: ['Sweet', 'Chocolatey'], image: 'images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
-            { word: 'Soup', category: 'Winter Food', function: 'A hot liquid meal that warms the body', attributes: ['Savory', 'Steaming'], image: 'images/winter_items/soup.jpg' },
-            { word: 'Thermos', category: 'Winter Container', function: 'Keeps liquids hot or cold for extended time', attributes: ['Insulated', 'Sealable'], image: 'images/winter_items/thermos.jpg' },
+            { id: 'sled', word: 'Sled', cat: 'Winter Recreation', func: 'slides downhill', attrs: ['Smooth', 'Fast'], qAttrs: ['How is the bottom?', 'Does it go slow or fast?'], img: 'images/winter_items/sled.jpg' },
+            { id: 'skis', word: 'Skis', cat: 'Winter Recreation', func: 'glide over snow', attrs: ['Long', 'Paired'], qAttrs: ['Are they short or long?', 'Do you use one or two?'], img: 'images/winter_items/skis.jpg' },
+            { id: 'iceskates', word: 'Ice Skates', cat: 'Winter Recreation', func: 'glide on ice', attrs: ['Bladed', 'Sharp'], qAttrs: ['What is on the bottom?', 'Is the blade dull or sharp?'], img: 'images/new_winter_items/ice_skates.jpg' },
+            { id: 'snowboard', word: 'Snowboard', cat: 'Winter Recreation', func: 'slides sideways on snow', attrs: ['Wide', 'Curved'], qAttrs: ['Is it narrow or wide?', 'Is the edge straight or curved?'], img: 'images/new_winter_items/snowboard.jpg' },
+            { id: 'hockeystick', word: 'Hockey Stick', cat: 'Winter Recreation', func: 'hits a puck', attrs: ['Long-handled', 'Angled'], qAttrs: ['Describe the handle.', 'Is it straight or angled?'], img: 'images/winter_items/hockey_stick.jpg' },
 
-            // Nature (moderate-harder)
-            { word: 'Pine tree', category: 'Winter Plant', function: 'Stays green year-round and collects snow on branches', attributes: ['Evergreen', 'Cone-bearing'], image: 'images/winter_items/pine_tree.png' },
-            { word: 'Cardinal', category: 'Winter Bird', function: 'A bird that stays active during winter', attributes: ['Red', 'Seed-eating'], image: 'images/winter_items/cardinal.jpg' }
+            { id: 'snowball', word: 'Snowball', cat: 'Winter Activity', func: 'is thrown for fun', attrs: ['Round', 'Compact'], qAttrs: ['What shape is it?', 'Is it loose or compact?'], img: 'images/winter_items/snowball.jpg' },
+            { id: 'snowman', word: 'Snowman', cat: 'Winter Activity', func: 'is built from three balls', attrs: ['Three-tiered', 'Cold'], qAttrs: ['How is it built?', 'How does it feel?'], img: 'images/winter_items/snowman.jpg' },
+            { id: 'snowfort', word: 'Snow Fort', cat: 'Winter Activity', func: 'provides shelter', attrs: ['Hollow', 'Protective'], qAttrs: ['Is it solid or hollow?', 'What does it do?'], img: 'images/winter_items/snow_fort.png' },
+
+            { id: 'shovel', word: 'Shovel', cat: 'Winter Tool', func: 'scoops snow', attrs: ['Long-handled', 'Metal-edged'], qAttrs: ['Describe the handle.', 'Describe the edge.'], img: 'images/winter_items/snow-shovel.jpg' },
+            { id: 'snowplow', word: 'Snowplow', cat: 'Winter Vehicle', func: 'pushes snow off roads', attrs: ['Large', 'Heavy-duty'], qAttrs: ['Is it small or large?', 'Is it weak or heavy-duty?'], img: 'images/winter_items/snow_plow.jpg' },
+            { id: 'icescraper', word: 'Ice Scraper', cat: 'Winter Tool', func: 'clears car windows', attrs: ['Flat', 'Rigid'], qAttrs: ['Is it round or flat?', 'Is it floppy or rigid?'], img: 'images/winter_items/ice_scraper.png' },
+
+            { id: 'fireplace', word: 'Fireplace', cat: 'Indoor Comfort', func: 'warms the house', attrs: ['Hot', 'Brick'], qAttrs: ['Is it cold or hot?', 'What is it often made of?'], img: 'images/winter_items/fireplace.png' },
+            { id: 'blanket', word: 'Blanket', cat: 'Indoor Comfort', func: 'keeps you cozy', attrs: ['Soft', 'Thick'], qAttrs: ['How does it feel?', 'Is it thin or thick?'], img: 'images/winter_items/blanket.png' },
+            { id: 'heater', word: 'Space Heater', cat: 'Indoor Comfort', func: 'blows hot air', attrs: ['Portable', 'Electric'], qAttrs: ['Can you move it easily?', 'How is it powered?'], img: 'images/winter_items/space_heater.png' },
+
+            { id: 'hotcocoa', word: 'Hot Chocolate', cat: 'Winter Beverage', func: 'warms you up', attrs: ['Sweet', 'Chocolatey'], qAttrs: ['How does it taste?', 'What is the flavor?'], img: 'images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
+            { id: 'soup', word: 'Soup', cat: 'Winter Food', func: 'fills your belly', attrs: ['Savory', 'Hot'], qAttrs: ['Is it sweet or savory?', 'Is it cold or hot?'], img: 'images/winter_items/soup.jpg' },
+            { id: 'thermos', word: 'Thermos', cat: 'Winter Container', func: 'keeps drinks hot', attrs: ['Insulated', 'Metal'], qAttrs: ['Why does it work?', 'What is it made of?'], img: 'images/winter_items/thermos.jpg' },
+
+            { id: 'pinetree', word: 'Pine Tree', cat: 'Winter Plant', func: 'stays green all year', attrs: ['Evergreen', 'Prickly'], qAttrs: ['What kind of tree is it?', 'Do the needles feel soft or prickly?'], img: 'images/winter_items/pine_tree.png' },
+            { id: 'cardinal', word: 'Cardinal', cat: 'Winter Bird', func: 'flies in winter', attrs: ['Red', 'Feathered'], qAttrs: ['What color is it?', 'What covers its body?'], img: 'images/winter_items/cardinal.jpg' }
         ];
 
-        const categories = Array.from(new Set(entries.map(e => e.category)));
-        const functionPool = entries.map(e => e.function);
-        const attributePool = Array.from(new Set(entries.flatMap(e => e.attributes)));
-
-        const navEl = document.getElementById('wordNav');
-        const pageEl = document.getElementById('page');
-        const textSizeControl = document.getElementById('textSizeControl');
-
-        function shuffle(array) {
-            const copy = array.slice();
-            for (let i = copy.length - 1; i > 0; i -= 1) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [copy[i], copy[j]] = [copy[j], copy[i]];
-            }
-            return copy;
-        }
-
-        function pickAlternates(pool, correct) {
-            const filtered = pool.filter(item => item !== correct);
-            return shuffle(filtered).slice(0, 3);
-        }
-
-        function buildQuestionConfigs(entry) {
-            return [
-                {
-                    label: 'Category',
-                    prompt: `Which category fits "${entry.word}"?`,
-                    answer: entry.category,
-                    clue: 'Think about the broad winter group this word belongs to (item, clothing, tool, or material).',
-                    choices: [entry.category, ...pickAlternates(categories, entry.category)]
-                },
-                {
-                    label: 'Function',
-                    prompt: `What does "${entry.word}" do?`,
-                    answer: entry.function,
-                    clue: 'Consider how it is used or what action it does in winter.',
-                    choices: [entry.function, ...pickAlternates(functionPool, entry.function)]
-                },
-                {
-                    label: 'Attribute 1',
-                    prompt: `Which attribute describes "${entry.word}"?`,
-                    answer: entry.attributes[0],
-                    clue: 'Pick a describing word that fits how it looks or feels.',
-                    choices: [entry.attributes[0], ...pickAlternates(attributePool, entry.attributes[0])]
-                },
-                {
-                    label: 'Attribute 2',
-                    prompt: `Name another attribute for "${entry.word}".`,
-                    answer: entry.attributes[1],
-                    clue: 'Choose a second describing word that still fits this item.',
-                    choices: [entry.attributes[1], ...pickAlternates(attributePool, entry.attributes[1])]
-                }
-            ];
-        }
-
-        function createQuestionCard(question, index) {
-            const card = document.createElement('div');
-            card.className = 'question-card';
-
-            const label = document.createElement('div');
-            label.className = 'question-label';
-            label.textContent = `${index + 1}. ${question.label}`;
-            card.appendChild(label);
-
-            const questionText = document.createElement('div');
-            questionText.className = 'question-text';
-            questionText.textContent = question.prompt;
-            card.appendChild(questionText);
-
-            const answerBox = document.createElement('textarea');
-            answerBox.className = 'answer-input';
-            answerBox.placeholder = 'Type your answer here before using clues...';
-            card.appendChild(answerBox);
-
-            const helpRow = document.createElement('div');
-            helpRow.className = 'help-row';
-
-            const clueBtn = document.createElement('button');
-            clueBtn.className = 'btn btn-clue';
-            clueBtn.textContent = 'Show clue';
-
-            const choicesBtn = document.createElement('button');
-            choicesBtn.className = 'btn btn-choices';
-            choicesBtn.textContent = 'Show choices';
-            choicesBtn.disabled = true;
-
-            helpRow.appendChild(clueBtn);
-            helpRow.appendChild(choicesBtn);
-            card.appendChild(helpRow);
-
-            const clueBox = document.createElement('div');
-            clueBox.className = 'clue';
-            clueBox.textContent = question.clue;
-            card.appendChild(clueBox);
-
-            const choicesWrap = document.createElement('div');
-            choicesWrap.className = 'choices-wrap';
-            card.appendChild(choicesWrap);
-
-            const feedback = document.createElement('div');
-            feedback.className = 'feedback';
-            card.appendChild(feedback);
-
-            clueBtn.addEventListener('click', () => {
-                clueBox.style.display = 'block';
-                choicesBtn.disabled = false;
-                clueBtn.disabled = true;
-            });
-
-            choicesBtn.addEventListener('click', () => {
-                choicesWrap.innerHTML = '';
-                choicesWrap.style.display = 'grid';
-                feedback.style.display = 'none';
-                feedback.textContent = '';
-                feedback.className = 'feedback';
-
-                const options = shuffle(question.choices);
-                options.forEach(choice => {
-                    const btn = document.createElement('button');
-                    btn.className = 'choice-btn';
-                    btn.textContent = choice;
-                    btn.addEventListener('click', () => {
-                        const isCorrect = choice === question.answer;
-                        feedback.textContent = isCorrect ? 'Correct!' : 'Try again.';
-                        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
-                        feedback.style.display = 'block';
-                        btn.classList.add(isCorrect ? 'correct' : 'incorrect');
-                        if (isCorrect) {
-                            choicesWrap.querySelectorAll('button').forEach(b => b.disabled = true);
-                            answerBox.value = choice;
-                            answerBox.focus();
-                        }
-                    });
-                    choicesWrap.appendChild(btn);
-                });
-                choicesBtn.disabled = true;
-            });
-
+        // Process entries to add choices
+        const entries = itemsData.map(item => {
             return {
-                card,
-                getValue: () => answerBox.value.trim(),
-                setValue: val => { answerBox.value = val; }
+                id: item.id,
+                word: item.word,
+                image: item.img,
+                category: {
+                    answer: item.cat,
+                    choices: genChoices(item.cat, getCommonCategories())
+                },
+                function: {
+                    answer: item.func,
+                    choices: genChoices(item.func, getCommonFunctions())
+                },
+                attributes: [
+                    {
+                        question: item.qAttrs[0],
+                        answer: item.attrs[0],
+                        choices: genChoices(item.attrs[0], getCommonAttributes())
+                    },
+                    {
+                        question: item.qAttrs[1],
+                        answer: item.attrs[1],
+                        choices: genChoices(item.attrs[1], getCommonAttributes())
+                    }
+                ]
             };
-        }
-
-        function renderNav(activeId) {
-            navEl.innerHTML = '';
-            entries.forEach((entry, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'nav-btn' + (entry.word === activeId ? ' active' : '');
-                btn.textContent = `${idx + 1}. ${entry.word}`;
-                btn.addEventListener('click', () => renderEntry(entry.word));
-                navEl.appendChild(btn);
-            });
-        }
-
-        function renderEntry(word) {
-            const entry = entries.find(item => item.word === word) || entries[0];
-            renderNav(entry.word);
-            pageEl.innerHTML = '';
-
-            const card = document.createElement('div');
-            card.className = 'card';
-
-            const top = document.createElement('div');
-            top.className = 'top';
-
-            const textWrap = document.createElement('div');
-            const title = document.createElement('h2');
-            title.className = 'word-title';
-            title.textContent = entry.word;
-            textWrap.appendChild(title);
-
-            const imageArea = document.createElement('div');
-            imageArea.className = 'image-placeholder';
-            if (entry.image) {
-                const img = document.createElement('img');
-                img.src = entry.image;
-                img.alt = entry.word;
-                img.style.maxWidth = '100%';
-                img.style.borderRadius = '10px';
-                imageArea.appendChild(img);
-            } else {
-                imageArea.innerHTML = '<span>Image placeholder — add a local path to the "image" field.</span>';
-            }
-            top.appendChild(textWrap);
-            top.appendChild(imageArea);
-            card.appendChild(top);
-
-            const questionsWrap = document.createElement('div');
-            questionsWrap.className = 'questions';
-            const configs = buildQuestionConfigs(entry);
-            const cardRefs = configs.map((config, idx) => {
-                const built = createQuestionCard(config, idx);
-                questionsWrap.appendChild(built.card);
-                return built;
-            });
-
-            card.appendChild(questionsWrap);
-
-            const combineCard = document.createElement('div');
-            combineCard.className = 'combine-card';
-            const combineTitle = document.createElement('div');
-            combineTitle.className = 'combine-title';
-            combineTitle.textContent = 'Combine your answers into a definition:';
-            const combineArea = document.createElement('textarea');
-            combineArea.className = 'combine-area';
-            combineArea.placeholder = '';
-            const combineBtn = document.createElement('button');
-            combineBtn.className = 'combine-btn';
-            combineBtn.textContent = 'Use my answers';
-            combineBtn.addEventListener('click', () => {
-                const [cat, func, attr1, attr2] = cardRefs.map(ref => ref.getValue());
-                const parts = [];
-                if (entry.word) {
-                    parts.push(`${entry.word} is ${cat || '_____'}.`);
-                }
-                if (func) {
-                    parts.push(`It ${func.endsWith('.') ? func.slice(0, -1) : func}.`);
-                }
-                const attrs = [attr1, attr2].filter(Boolean);
-                if (attrs.length) {
-                    parts.push(`It is ${attrs.join(' and ')}.`);
-                }
-                combineArea.value = parts.join(' ');
-                combineArea.focus();
-            });
-
-            combineCard.appendChild(combineTitle);
-            combineCard.appendChild(combineArea);
-            combineCard.appendChild(combineBtn);
-            card.appendChild(combineCard);
-            pageEl.appendChild(card);
-        }
-
-        renderEntry(entries[0].word);
-
-        // View controls
-        textSizeControl.addEventListener('input', () => {
-            document.documentElement.style.setProperty('--base-font-size', `${textSizeControl.value}px`);
         });
+
+        let currentEntry = entries[0];
+        let userAnswers = {};
+
+        // DOM Elements
+        const navList = document.getElementById('navList');
+        const mainContent = document.getElementById('mainContent');
+
+        function init() {
+            renderNav();
+            loadEntry(entries[0].id);
+        }
+
+        function renderNav() {
+            navList.innerHTML = '';
+            entries.forEach(entry => {
+                const item = document.createElement('div');
+                item.className = `nav-item ${entry.id === currentEntry.id ? 'active' : ''}`;
+                item.onclick = () => loadEntry(entry.id);
+                item.innerHTML = `
+                    <span>${entry.word}</span>
+                    <div class="status-dot"></div>
+                `;
+                navList.appendChild(item);
+            });
+        }
+
+        function loadEntry(id) {
+            currentEntry = entries.find(e => e.id === id);
+            userAnswers = {
+                category: '',
+                function: '',
+                attr1: '',
+                attr2: ''
+            };
+            renderNav();
+            renderActivity();
+        }
+
+        function renderActivity() {
+            // Check if image is placeholder
+            let imgHtml = '';
+            if (currentEntry.image) {
+                imgHtml = `<img src="${currentEntry.image}" class="main-image" alt="${currentEntry.word}">`;
+            } else {
+                imgHtml = `<div class="image-placeholder">No Image Available</div>`;
+            }
+
+            mainContent.innerHTML = `
+                <div class="activity-container">
+                    <div class="visual-card">
+                        <div class="word-display">${currentEntry.word}</div>
+                        ${imgHtml}
+                    </div>
+                    
+                    <div class="workspace">
+                        <!-- Step 1: Category -->
+                        <div class="step-card active" id="step1">
+                            <div class="step-header" onclick="toggleStep('step1')">
+                                <div class="step-title">
+                                    <div class="step-number">1</div>
+                                    Category
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <div class="question-text">What category does ${currentEntry.word} belong to?</div>
+                                <div class="input-group">
+                                    <input type="text" class="text-input" id="catInput" 
+                                        placeholder="Type to add category..." oninput="updatePreview('cat', this.value)">
+                                    <div class="tools">
+                                        <button class="tool-btn" id="catBtn" onclick="toggleChoices('cat')">Show Ideas</button>
+                                    </div>
+                                    <div class="choices-grid hidden" id="catChoices"></div>
+                                    <div class="sentence-preview">
+                                        Sentence: <strong>${currentEntry.word} is a type of <span id="catPreview">________</span>.</strong>
+                                    </div>
+                                    <div style="text-align: right; margin-top: 10px;">
+                                        <button class="primary-btn" onclick="nextStep('step1', 'step2')">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Function -->
+                        <div class="step-card" id="step2">
+                            <div class="step-header" onclick="toggleStep('step2')">
+                                <div class="step-title">
+                                    <div class="step-number">2</div>
+                                    Function vs. Feature
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <div class="question-text">What does ${currentEntry.word} do?</div>
+                                <div class="input-group">
+                                    <input type="text" class="text-input" id="funcInput" 
+                                        placeholder="Type to add function..." oninput="updatePreview('func', this.value)">
+                                    <div class="tools">
+                                        <button class="tool-btn" id="funcBtn" onclick="toggleChoices('func')">Show Ideas</button>
+                                    </div>
+                                    <div class="choices-grid hidden" id="funcChoices"></div>
+                                    <div class="sentence-preview">
+                                        Sentence: <strong>It <span id="funcPreview">________</span>.</strong>
+                                    </div>
+                                    <div style="text-align: right; margin-top: 10px;">
+                                        <button class="primary-btn" onclick="nextStep('step2', 'step3')">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Attributes -->
+                        <div class="step-card" id="step3">
+                            <div class="step-header" onclick="toggleStep('step3')">
+                                <div class="step-title">
+                                    <div class="step-number">3</div>
+                                    Attributes (Details)
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <!-- Attr 1 -->
+                                <div style="margin-bottom: 24px;">
+                                    <div class="question-text">${currentEntry.attributes[0].question}</div>
+                                    <div class="input-group">
+                                        <input type="text" class="text-input" id="attr1Input" 
+                                            placeholder="Type to add attribute..." oninput="updatePreview('attr', this.value)">
+                                        <div class="tools">
+                                            <button class="tool-btn" id="attr1Btn" onclick="toggleChoices('attr1')">Show Ideas</button>
+                                        </div>
+                                        <div class="choices-grid hidden" id="attr1Choices"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Attr 2 -->
+                                <div>
+                                    <div class="question-text">${currentEntry.attributes[1].question}</div>
+                                    <div class="input-group">
+                                        <input type="text" class="text-input" id="attr2Input" 
+                                            placeholder="Type to add attribute..." oninput="updatePreview('attr', this.value)">
+                                        <div class="tools">
+                                            <button class="tool-btn" id="attr2Btn" onclick="toggleChoices('attr2')">Show Ideas</button>
+                                        </div>
+                                        <div class="choices-grid hidden" id="attr2Choices"></div>
+                                    </div>
+                                </div>
+
+                                <div class="sentence-preview" style="margin-top: 20px;">
+                                    Sentence: <strong>It is <span id="attr1Preview">________</span> and <span id="attr2Preview">________</span>.</strong>
+                                </div>
+                                <div style="text-align: right; margin-top: 10px;">
+                                    <button class="primary-btn" onclick="finalize()">Create Definition</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review -->
+                        <div class="review-section hidden" id="reviewSection">
+                            <h3 style="margin-top:0">Final Definition</h3>
+                            <div class="final-sentence" id="finalText"></div>
+                            <button class="primary-btn" onclick="reset()">Do Another Word</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Logic Functions
+        function toggleStep(id) {
+            document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function nextStep(currentId, nextId) {
+            document.getElementById(currentId).classList.add('completed');
+            toggleStep(nextId);
+        }
+
+        function toggleChoices(type) {
+            const grid = document.getElementById(`${type}Choices`);
+            const btn = document.getElementById(`${type}Btn`);
+
+            if (grid.classList.contains('hidden')) {
+                grid.classList.remove('hidden');
+                btn.textContent = 'Hide Ideas';
+                btn.classList.add('active');
+
+                // If empty, generate
+                if (grid.children.length === 0) {
+                    generateChoicesUI(type, grid);
+                }
+            } else {
+                grid.classList.add('hidden');
+                btn.textContent = 'Show Ideas';
+                btn.classList.remove('active');
+            }
+        }
+
+        function generateChoicesUI(type, container) {
+            let choices = [];
+            if (type === 'cat') choices = currentEntry.category.choices;
+            if (type === 'func') choices = currentEntry.function.choices;
+            if (type === 'attr1') choices = currentEntry.attributes[0].choices;
+            if (type === 'attr2') choices = currentEntry.attributes[1].choices;
+
+            container.innerHTML = choices.map(c =>
+                `<div class="choice-chip" onclick="selectChoice('${type}', '${c}')">${c}</div>`
+            ).join('');
+        }
+
+        function selectChoice(type, value) {
+            if (type === 'cat') {
+                document.getElementById('catInput').value = value;
+                updatePreview('cat', value);
+                toggleChoices('cat'); // auto-hide on select
+            }
+            if (type === 'func') {
+                document.getElementById('funcInput').value = value;
+                updatePreview('func', value);
+                toggleChoices('func');
+            }
+            if (type === 'attr1') {
+                document.getElementById('attr1Input').value = value;
+                updatePreview('attr');
+                toggleChoices('attr1');
+            }
+            if (type === 'attr2') {
+                document.getElementById('attr2Input').value = value;
+                updatePreview('attr');
+                toggleChoices('attr2');
+            }
+        }
+
+        function updatePreview(type, val) {
+            if (type === 'cat') {
+                document.getElementById('catPreview').textContent = val || '________';
+                userAnswers.category = val;
+            }
+            if (type === 'func') {
+                document.getElementById('funcPreview').textContent = val || '________';
+                userAnswers.function = val;
+            }
+            if (type === 'attr') {
+                const a1 = document.getElementById('attr1Input').value;
+                const a2 = document.getElementById('attr2Input').value;
+                document.getElementById('attr1Preview').textContent = a1 || '________';
+                document.getElementById('attr2Preview').textContent = a2 || '________';
+                userAnswers.attr1 = a1;
+                userAnswers.attr2 = a2;
+            }
+        }
+
+        function finalize() {
+            document.getElementById('step3').classList.add('completed');
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('reviewSection').classList.remove('hidden');
+
+            const cat = userAnswers.category.trim();
+            const func = userAnswers.function.trim();
+            const a1 = userAnswers.attr1.trim();
+            const a2 = userAnswers.attr2.trim();
+
+            // Construct sentences
+            let s1 = `${currentEntry.word} is a type of <span class="highlight">${cat}</span>.`;
+            // Simple vowel check
+            if (['a', 'e', 'i', 'o', 'u'].includes(cat[0]?.toLowerCase())) {
+                s1 = `${currentEntry.word} is an <span class="highlight">${cat}</span>.`;
+            } else {
+                s1 = `${currentEntry.word} is a <span class="highlight">${cat}</span>.`;
+            }
+            // Just use generic phrasing if it's broad
+            if (cat.toLowerCase().includes('winter') || cat.toLowerCase().includes('clothing')) {
+                s1 = `${currentEntry.word} is a type of <span class="highlight">${cat}</span>.`;
+            }
+
+            let s2 = `It <span class="highlight">${func}</span>.`;
+            if (func.toLowerCase().startsWith('used')) {
+                s2 = `It is <span class="highlight">${func}</span>.`;
+            }
+
+            let s3 = `It is <span class="highlight">${a1}</span> and <span class="highlight">${a2}</span>.`;
+
+            document.getElementById('finalText').innerHTML = `${s1} ${s2} ${s3}`;
+        }
+
+        function reset() {
+            loadEntry(currentEntry.id);
+        }
+
+        // Init
+        init();
+
     </script>
 </body>
+
 </html>

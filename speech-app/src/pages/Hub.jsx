@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, MessageCircle, Brain, PenTool, ArrowRight } from 'lucide-react';
+import { BookOpen, Users, MessageCircle, Brain, PenTool, ArrowRight, Tools } from 'lucide-react';
 import { motion as Motion } from 'framer-motion';
 
 const categories = [
@@ -47,6 +47,16 @@ const categories = [
         color: 'bg-rose-500',
         lightColor: 'bg-rose-50',
         textColor: 'text-rose-600'
+    },
+    {
+        id: 'scaffolding',
+        title: 'Scaffolding Tools',
+        description: 'Graphic organizers for story grammar, sequencing, and more',
+        icon: Tools,
+        color: 'bg-teal-500',
+        lightColor: 'bg-teal-50',
+        textColor: 'text-teal-600',
+        isDirectLink: true
     }
 ];
 
@@ -72,7 +82,7 @@ export default function Hub() {
                             transition={{ type: "spring", stiffness: 300 }}
                         >
                             <Link
-                                to={`/category/${category.id}`}
+                                to={category.isDirectLink ? '/scaffolding' : `/category/${category.id}`}
                                 className="group block bg-white rounded-xl border border-slate-200 p-8 hover:shadow-lg hover:border-blue-200 transition-all duration-200 h-full"
                             >
                                 <div className="flex items-start justify-between mb-6">
