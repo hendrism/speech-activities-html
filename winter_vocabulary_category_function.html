@@ -452,44 +452,44 @@
 
         // Base Data
         const itemsData = [
-            { id: 'snow', word: 'Snow', cat: 'Winter Weather', func: 'covers the ground', attrs: ['White', 'Cold'], qAttrs: ['What color is it?', 'How does it feel?'], img: 'images/winter_items/snow_2.jpg' },
-            { id: 'ice', word: 'Ice', cat: 'Winter Weather', func: 'forms when water freezes', attrs: ['Hard', 'Slippery'], qAttrs: ['How does it feel?', 'Is it slippery or sticky?'], img: 'images/winter_items/ice_1.jpg' },
-            { id: 'snowflake', word: 'Snowflake', cat: 'Winter Weather', func: 'falls from the sky', attrs: ['Six-sided', 'Unique'], qAttrs: ['What is its shape?', 'Is it unique or identical?'], img: 'images/winter_items/snowflake.jpg' },
-            { id: 'icicle', word: 'Icicle', cat: 'Winter Weather', func: 'hangs from roofs', attrs: ['Pointed', 'Clear'], qAttrs: ['What is its shape?', 'What color is it?'], img: 'images/winter_items/icicle.jpg' },
-            { id: 'frost', word: 'Frost', cat: 'Winter Weather', func: 'forms on windows', attrs: ['Thin', 'Crystalline'], qAttrs: ['Is it thick or thin?', 'Describe the texture.'], img: 'images/winter_items/frost.jpg' },
-            { id: 'blizzard', word: 'Blizzard', cat: 'Winter Weather', func: 'blows snow with wind', attrs: ['Dangerous', 'Windy'], qAttrs: ['Is it safe or dangerous?', 'What is the weather like?'], img: 'images/winter_items/blizzard.jpg' },
+            { id: 'snow', word: 'Snow', isPlural: false, cat: 'Winter Weather', func: 'covers the ground', attrs: ['White', 'Cold'], qAttrs: ['What color is it?', 'How does it feel?'], img: 'images/winter_items/snow_2.jpg' },
+            { id: 'ice', word: 'Ice', isPlural: false, cat: 'Winter Weather', func: 'forms when water freezes', attrs: ['Hard', 'Slippery'], qAttrs: ['How does it feel?', 'Is it slippery or sticky?'], img: 'images/winter_items/ice_1.jpg' },
+            { id: 'snowflake', word: 'Snowflake', isPlural: false, cat: 'Winter Weather', func: 'falls from the sky', attrs: ['Six-sided', 'Unique'], qAttrs: ['What is its shape?', 'Is it unique or identical?'], img: 'images/winter_items/snowflake.jpg' },
+            { id: 'icicle', word: 'Icicle', isPlural: false, cat: 'Winter Weather', func: 'hangs from roofs', attrs: ['Pointed', 'Clear'], qAttrs: ['What is its shape?', 'What color is it?'], img: 'images/winter_items/icicle.jpg' },
+            { id: 'frost', word: 'Frost', isPlural: false, cat: 'Winter Weather', func: 'forms on windows', attrs: ['Thin', 'Crystalline'], qAttrs: ['Is it thick or thin?', 'Describe the texture.'], img: 'images/winter_items/frost.jpg' },
+            { id: 'blizzard', word: 'Blizzard', isPlural: false, cat: 'Winter Weather', func: 'blows snow with wind', attrs: ['Dangerous', 'Windy'], qAttrs: ['Is it safe or dangerous?', 'What is the weather like?'], img: 'images/winter_items/blizzard.jpg' },
 
-            { id: 'coat', word: 'Coat', cat: 'Winter Clothing', func: 'keeps you warm', attrs: ['Insulated', 'Heavy'], qAttrs: ['Is it thin or insulated?', 'Is it light or heavy?'], img: 'images/winter_items/winter-coat.png' },
-            { id: 'scarf', word: 'Scarf', cat: 'Winter Clothing', func: 'protects your neck', attrs: ['Woven', 'Soft'], qAttrs: ['What material is it?', 'How does it feel?'], img: 'images/winter_items/scarf.png' },
-            { id: 'gloves', word: 'Gloves', cat: 'Winter Clothing', func: 'cover your hands', attrs: ['Fitted', 'Warm'], qAttrs: ['How do they fit?', 'Do they keep you warm?'], img: 'images/winter_items/gloves.png' },
-            { id: 'mittens', word: 'Mittens', cat: 'Winter Clothing', func: 'keep hands cozy', attrs: ['Rounded', 'No-fingers'], qAttrs: ['What is the shape?', 'Do they have separate fingers?'], img: 'images/winter_items/mittens.png' },
-            { id: 'boots', word: 'Boots', cat: 'Winter Clothing', func: 'protect feet from snow', attrs: ['Waterproof', 'Tall'], qAttrs: ['Can water get in?', 'Are they short or tall?'], img: 'images/winter_items/boots.png' },
-            { id: 'hat', word: 'Hat', cat: 'Winter Clothing', func: 'keeps head warm', attrs: ['Knitted', 'Stretchy'], qAttrs: ['What is it made of?', 'Is it stiff or stretchy?'], img: 'images/winter_items/winter-hat.jpg' },
+            { id: 'coat', word: 'Coat', isPlural: false, cat: 'Winter Clothing', func: 'keeps you warm', attrs: ['Insulated', 'Heavy'], qAttrs: ['Is it thin or insulated?', 'Is it light or heavy?'], img: 'images/winter_items/winter-coat.png' },
+            { id: 'scarf', word: 'Scarf', isPlural: false, cat: 'Winter Clothing', func: 'protects your neck', attrs: ['Woven', 'Soft'], qAttrs: ['What material is it?', 'How does it feel?'], img: 'images/winter_items/scarf.png' },
+            { id: 'gloves', word: 'Gloves', isPlural: true, cat: 'Winter Clothing', func: 'cover your hands', attrs: ['Fitted', 'Warm'], qAttrs: ['How do they fit?', 'Do they keep you warm?'], img: 'images/winter_items/gloves.png' },
+            { id: 'mittens', word: 'Mittens', isPlural: true, cat: 'Winter Clothing', func: 'keep hands cozy', attrs: ['Rounded', 'No-fingers'], qAttrs: ['What is the shape?', 'Do they have separate fingers?'], img: 'images/winter_items/mittens.png' },
+            { id: 'boots', word: 'Boots', isPlural: true, cat: 'Winter Clothing', func: 'protect feet from snow', attrs: ['Waterproof', 'Tall'], qAttrs: ['Can water get in?', 'Are they short or tall?'], img: 'images/winter_items/boots.png' },
+            { id: 'hat', word: 'Hat', isPlural: false, cat: 'Winter Clothing', func: 'keeps head warm', attrs: ['Knitted', 'Stretchy'], qAttrs: ['What is it made of?', 'Is it stiff or stretchy?'], img: 'images/winter_items/winter-hat.jpg' },
 
-            { id: 'sled', word: 'Sled', cat: 'Winter Recreation', func: 'slides downhill', attrs: ['Smooth', 'Fast'], qAttrs: ['How is the bottom?', 'Does it go slow or fast?'], img: 'images/winter_items/sled.jpg' },
-            { id: 'skis', word: 'Skis', cat: 'Winter Recreation', func: 'glide over snow', attrs: ['Long', 'Paired'], qAttrs: ['Are they short or long?', 'Do you use one or two?'], img: 'images/winter_items/skis.jpg' },
-            { id: 'iceskates', word: 'Ice Skates', cat: 'Winter Recreation', func: 'glide on ice', attrs: ['Bladed', 'Sharp'], qAttrs: ['What is on the bottom?', 'Is the blade dull or sharp?'], img: 'images/new_winter_items/ice_skates.jpg' },
-            { id: 'snowboard', word: 'Snowboard', cat: 'Winter Recreation', func: 'slides sideways on snow', attrs: ['Wide', 'Curved'], qAttrs: ['Is it narrow or wide?', 'Is the edge straight or curved?'], img: 'images/new_winter_items/snowboard.jpg' },
-            { id: 'hockeystick', word: 'Hockey Stick', cat: 'Winter Recreation', func: 'hits a puck', attrs: ['Long-handled', 'Angled'], qAttrs: ['Describe the handle.', 'Is it straight or angled?'], img: 'images/winter_items/hockey_stick.jpg' },
+            { id: 'sled', word: 'Sled', isPlural: false, cat: 'Winter Recreation', func: 'slides downhill', attrs: ['Smooth', 'Fast'], qAttrs: ['How is the bottom?', 'Does it go slow or fast?'], img: 'images/winter_items/sled.jpg' },
+            { id: 'skis', word: 'Skis', isPlural: true, cat: 'Winter Recreation', func: 'glide over snow', attrs: ['Long', 'Paired'], qAttrs: ['Are they short or long?', 'Do you use one or two?'], img: 'images/winter_items/skis.jpg' },
+            { id: 'iceskates', word: 'Ice Skates', isPlural: true, cat: 'Winter Recreation', func: 'glide on ice', attrs: ['Bladed', 'Sharp'], qAttrs: ['What is on the bottom?', 'Is the blade dull or sharp?'], img: 'images/new_winter_items/ice_skates.jpg' },
+            { id: 'snowboard', word: 'Snowboard', isPlural: false, cat: 'Winter Recreation', func: 'slides sideways on snow', attrs: ['Wide', 'Curved'], qAttrs: ['Is it narrow or wide?', 'Is the edge straight or curved?'], img: 'images/new_winter_items/snowboard.jpg' },
+            { id: 'hockeystick', word: 'Hockey Stick', isPlural: false, cat: 'Winter Recreation', func: 'hits a puck', attrs: ['Long-handled', 'Angled'], qAttrs: ['Describe the handle.', 'Is it straight or angled?'], img: 'images/winter_items/hockey_stick.jpg' },
 
-            { id: 'snowball', word: 'Snowball', cat: 'Winter Activity', func: 'is thrown for fun', attrs: ['Round', 'Compact'], qAttrs: ['What shape is it?', 'Is it loose or compact?'], img: 'images/winter_items/snowball.jpg' },
-            { id: 'snowman', word: 'Snowman', cat: 'Winter Activity', func: 'is built from three balls', attrs: ['Three-tiered', 'Cold'], qAttrs: ['How is it built?', 'How does it feel?'], img: 'images/winter_items/snowman.jpg' },
-            { id: 'snowfort', word: 'Snow Fort', cat: 'Winter Activity', func: 'provides shelter', attrs: ['Hollow', 'Protective'], qAttrs: ['Is it solid or hollow?', 'What does it do?'], img: 'images/winter_items/snow_fort.png' },
+            { id: 'snowball', word: 'Snowball', isPlural: false, cat: 'Winter Activity', func: 'is thrown for fun', attrs: ['Round', 'Compact'], qAttrs: ['What shape is it?', 'Is it loose or compact?'], img: 'images/winter_items/snowball.jpg' },
+            { id: 'snowman', word: 'Snowman', isPlural: false, cat: 'Winter Activity', func: 'is built from three balls', attrs: ['Three-tiered', 'Cold'], qAttrs: ['How is it built?', 'How does it feel?'], img: 'images/winter_items/snowman.jpg' },
+            { id: 'snowfort', word: 'Snow Fort', isPlural: false, cat: 'Winter Activity', func: 'provides shelter', attrs: ['Hollow', 'Protective'], qAttrs: ['Is it solid or hollow?', 'What does it do?'], img: 'images/winter_items/snow_fort.png' },
 
-            { id: 'shovel', word: 'Shovel', cat: 'Winter Tool', func: 'scoops snow', attrs: ['Long-handled', 'Metal-edged'], qAttrs: ['Describe the handle.', 'Describe the edge.'], img: 'images/winter_items/snow-shovel.jpg' },
-            { id: 'snowplow', word: 'Snowplow', cat: 'Winter Vehicle', func: 'pushes snow off roads', attrs: ['Large', 'Heavy-duty'], qAttrs: ['Is it small or large?', 'Is it weak or heavy-duty?'], img: 'images/winter_items/snow_plow.jpg' },
-            { id: 'icescraper', word: 'Ice Scraper', cat: 'Winter Tool', func: 'clears car windows', attrs: ['Flat', 'Rigid'], qAttrs: ['Is it round or flat?', 'Is it floppy or rigid?'], img: 'images/winter_items/ice_scraper.png' },
+            { id: 'shovel', word: 'Shovel', isPlural: false, cat: 'Winter Tool', func: 'scoops snow', attrs: ['Long-handled', 'Metal-edged'], qAttrs: ['Describe the handle.', 'Describe the edge.'], img: 'images/winter_items/snow-shovel.jpg' },
+            { id: 'snowplow', word: 'Snowplow', isPlural: false, cat: 'Winter Vehicle', func: 'pushes snow off roads', attrs: ['Large', 'Heavy-duty'], qAttrs: ['Is it small or large?', 'Is it weak or heavy-duty?'], img: 'images/winter_items/snow_plow.jpg' },
+            { id: 'icescraper', word: 'Ice Scraper', isPlural: false, cat: 'Winter Tool', func: 'clears car windows', attrs: ['Flat', 'Rigid'], qAttrs: ['Is it round or flat?', 'Is it floppy or rigid?'], img: 'images/winter_items/ice_scraper.png' },
 
-            { id: 'fireplace', word: 'Fireplace', cat: 'Indoor Comfort', func: 'warms the house', attrs: ['Hot', 'Brick'], qAttrs: ['Is it cold or hot?', 'What is it often made of?'], img: 'images/winter_items/fireplace.png' },
-            { id: 'blanket', word: 'Blanket', cat: 'Indoor Comfort', func: 'keeps you cozy', attrs: ['Soft', 'Thick'], qAttrs: ['How does it feel?', 'Is it thin or thick?'], img: 'images/winter_items/blanket.png' },
-            { id: 'heater', word: 'Space Heater', cat: 'Indoor Comfort', func: 'blows hot air', attrs: ['Portable', 'Electric'], qAttrs: ['Can you move it easily?', 'How is it powered?'], img: 'images/winter_items/space_heater.png' },
+            { id: 'fireplace', word: 'Fireplace', isPlural: false, cat: 'Indoor Comfort', func: 'warms the house', attrs: ['Hot', 'Brick'], qAttrs: ['Is it cold or hot?', 'What is it often made of?'], img: 'images/winter_items/fireplace.png' },
+            { id: 'blanket', word: 'Blanket', isPlural: false, cat: 'Indoor Comfort', func: 'keeps you cozy', attrs: ['Soft', 'Thick'], qAttrs: ['How does it feel?', 'Is it thin or thick?'], img: 'images/winter_items/blanket.png' },
+            { id: 'heater', word: 'Space Heater', isPlural: false, cat: 'Indoor Comfort', func: 'blows hot air', attrs: ['Portable', 'Electric'], qAttrs: ['Can you move it easily?', 'How is it powered?'], img: 'images/winter_items/space_heater.png' },
 
-            { id: 'hotcocoa', word: 'Hot Chocolate', cat: 'Winter Beverage', func: 'warms you up', attrs: ['Sweet', 'Chocolatey'], qAttrs: ['How does it taste?', 'What is the flavor?'], img: 'images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
-            { id: 'soup', word: 'Soup', cat: 'Winter Food', func: 'fills your belly', attrs: ['Savory', 'Hot'], qAttrs: ['Is it sweet or savory?', 'Is it cold or hot?'], img: 'images/winter_items/soup.jpg' },
-            { id: 'thermos', word: 'Thermos', cat: 'Winter Container', func: 'keeps drinks hot', attrs: ['Insulated', 'Metal'], qAttrs: ['Why does it work?', 'What is it made of?'], img: 'images/winter_items/thermos.jpg' },
+            { id: 'hotcocoa', word: 'Hot Chocolate', isPlural: false, cat: 'Winter Beverage', func: 'warms you up', attrs: ['Sweet', 'Chocolatey'], qAttrs: ['How does it taste?', 'What is the flavor?'], img: 'images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
+            { id: 'soup', word: 'Soup', isPlural: false, cat: 'Winter Food', func: 'fills your belly', attrs: ['Savory', 'Hot'], qAttrs: ['Is it sweet or savory?', 'Is it cold or hot?'], img: 'images/winter_items/soup.jpg' },
+            { id: 'thermos', word: 'Thermos', isPlural: false, cat: 'Winter Container', func: 'keeps drinks hot', attrs: ['Insulated', 'Metal'], qAttrs: ['Why does it work?', 'What is it made of?'], img: 'images/winter_items/thermos.jpg' },
 
-            { id: 'pinetree', word: 'Pine Tree', cat: 'Winter Plant', func: 'stays green all year', attrs: ['Evergreen', 'Prickly'], qAttrs: ['What kind of tree is it?', 'Do the needles feel soft or prickly?'], img: 'images/winter_items/pine_tree.png' },
-            { id: 'cardinal', word: 'Cardinal', cat: 'Winter Bird', func: 'flies in winter', attrs: ['Red', 'Feathered'], qAttrs: ['What color is it?', 'What covers its body?'], img: 'images/winter_items/cardinal.jpg' }
+            { id: 'pinetree', word: 'Pine Tree', isPlural: false, cat: 'Winter Plant', func: 'stays green all year', attrs: ['Evergreen', 'Prickly'], qAttrs: ['What kind of tree is it?', 'Do the needles feel soft or prickly?'], img: 'images/winter_items/pine_tree.png' },
+            { id: 'cardinal', word: 'Cardinal', isPlural: false, cat: 'Winter Bird', func: 'flies in winter', attrs: ['Red', 'Feathered'], qAttrs: ['What color is it?', 'What covers its body?'], img: 'images/winter_items/cardinal.jpg' }
         ];
 
         // Process entries to add choices
@@ -498,6 +498,7 @@
                 id: item.id,
                 word: item.word,
                 image: item.img,
+                isPlural: item.isPlural,
                 category: {
                     answer: item.cat,
                     choices: genChoices(item.cat, getCommonCategories())
@@ -568,6 +569,23 @@
                 imgHtml = `<div class="image-placeholder">No Image Available</div>`;
             }
 
+            // Grammar helpers
+            const verbDo = currentEntry.isPlural ? 'do' : 'does';
+            const verbBe = currentEntry.isPlural ? 'are' : 'is';
+            const pronoun = currentEntry.isPlural ? 'They' : 'It';
+            const pronounObj = currentEntry.isPlural ? 'them' : 'it'; // not used yet but handy
+
+            // Step 1 Sentence
+            const catSentence = currentEntry.isPlural
+                ? `${currentEntry.word} are a type of <span id="catPreview">________</span>.`
+                : `${currentEntry.word} is a type of <span id="catPreview">________</span>.`;
+
+            // Step 2 Sentence
+            const funcSentence = `${pronoun} <span id="funcPreview">________</span>.`;
+
+            // Step 3 Sentence
+            const attrSentence = `${pronoun} ${verbBe} <span id="attr1Preview">________</span> and <span id="attr2Preview">________</span>.`;
+
             mainContent.innerHTML = `
                 <div class="activity-container">
                     <div class="visual-card">
@@ -585,7 +603,7 @@
                                 </div>
                             </div>
                             <div class="step-content">
-                                <div class="question-text">What category does ${currentEntry.word} belong to?</div>
+                                <div class="question-text">What category ${verbDo} ${currentEntry.word} belong to?</div>
                                 <div class="input-group">
                                     <input type="text" class="text-input" id="catInput" 
                                         placeholder="Type to add category..." oninput="updatePreview('cat', this.value)">
@@ -594,7 +612,7 @@
                                     </div>
                                     <div class="choices-grid hidden" id="catChoices"></div>
                                     <div class="sentence-preview">
-                                        Sentence: <strong>${currentEntry.word} is a type of <span id="catPreview">________</span>.</strong>
+                                        Sentence: <strong>${catSentence}</strong>
                                     </div>
                                     <div style="text-align: right; margin-top: 10px;">
                                         <button class="primary-btn" onclick="nextStep('step1', 'step2')">Next</button>
@@ -612,7 +630,7 @@
                                 </div>
                             </div>
                             <div class="step-content">
-                                <div class="question-text">What does ${currentEntry.word} do?</div>
+                                <div class="question-text">What ${verbDo} ${currentEntry.word} do?</div>
                                 <div class="input-group">
                                     <input type="text" class="text-input" id="funcInput" 
                                         placeholder="Type to add function..." oninput="updatePreview('func', this.value)">
@@ -621,7 +639,7 @@
                                     </div>
                                     <div class="choices-grid hidden" id="funcChoices"></div>
                                     <div class="sentence-preview">
-                                        Sentence: <strong>It <span id="funcPreview">________</span>.</strong>
+                                        Sentence: <strong>${funcSentence}</strong>
                                     </div>
                                     <div style="text-align: right; margin-top: 10px;">
                                         <button class="primary-btn" onclick="nextStep('step2', 'step3')">Next</button>
@@ -639,12 +657,15 @@
                                 </div>
                             </div>
                             <div class="step-content">
+                                <p style="margin-bottom:20px; color:var(--text-muted);">Describe two features (think about color, size, shape, feel, etc).</p>
+                                
                                 <!-- Attr 1 -->
                                 <div style="margin-bottom: 24px;">
-                                    <div class="question-text">${currentEntry.attributes[0].question}</div>
+                                    <div class="question-text">Detail 1:</div>
                                     <div class="input-group">
+                                        <div style="font-size:0.9rem; color:#64748b; font-style:italic; margin-bottom:5px;">Hint: ${currentEntry.attributes[0].question}</div>
                                         <input type="text" class="text-input" id="attr1Input" 
-                                            placeholder="Type to add attribute..." oninput="updatePreview('attr', this.value)">
+                                            placeholder="Type a detail..." oninput="updatePreview('attr', this.value)">
                                         <div class="tools">
                                             <button class="tool-btn" id="attr1Btn" onclick="toggleChoices('attr1')">Show Ideas</button>
                                         </div>
@@ -654,10 +675,11 @@
 
                                 <!-- Attr 2 -->
                                 <div>
-                                    <div class="question-text">${currentEntry.attributes[1].question}</div>
+                                    <div class="question-text">Detail 2:</div>
                                     <div class="input-group">
+                                        <div style="font-size:0.9rem; color:#64748b; font-style:italic; margin-bottom:5px;">Hint: ${currentEntry.attributes[1].question}</div>
                                         <input type="text" class="text-input" id="attr2Input" 
-                                            placeholder="Type to add attribute..." oninput="updatePreview('attr', this.value)">
+                                            placeholder="Type a detail..." oninput="updatePreview('attr', this.value)">
                                         <div class="tools">
                                             <button class="tool-btn" id="attr2Btn" onclick="toggleChoices('attr2')">Show Ideas</button>
                                         </div>
@@ -666,7 +688,7 @@
                                 </div>
 
                                 <div class="sentence-preview" style="margin-top: 20px;">
-                                    Sentence: <strong>It is <span id="attr1Preview">________</span> and <span id="attr2Preview">________</span>.</strong>
+                                    Sentence: <strong>${attrSentence}</strong>
                                 </div>
                                 <div style="text-align: right; margin-top: 10px;">
                                     <button class="primary-btn" onclick="finalize()">Create Definition</button>

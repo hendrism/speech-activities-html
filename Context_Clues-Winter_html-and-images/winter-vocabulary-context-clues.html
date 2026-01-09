@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winter Vocabulary - Context Clues</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --accent: #8b5cf6;
+      --blue: #0ea5e9;
+      --green: #10b981;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --bg: #f8fafc;
+      --ink: #0f172a;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: white;
+      border-bottom: 3px solid var(--accent);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
+      border-radius: 12px;
+    }
+
+    .bar {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .progress {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .passage-card {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+    }
+
+    .target-word {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .passage-text {
+      background: #faf5ff;
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .passage-text p {
+      margin-bottom: 8px;
+    }
+
+    .question-section {
+      margin-bottom: 24px;
+    }
+
+    .question-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      transition: border-color 0.2s;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .sentence-frame {
+      background: #fef3c7;
+      border-left: 4px solid var(--orange);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+
+    .sentence-frame-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .frame-line {
+      font-size: 15px;
+      margin-bottom: 12px;
+      line-height: 2;
+    }
+
+    .frame-input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #fbbf24;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      background: white;
+      margin-bottom: 12px;
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    .frame-input:focus {
+      outline: none;
+      border-color: var(--orange);
+      background: #fffbeb;
+    }
+
+    .frame-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+
+    .inline-sentence {
+      font-size: 15px;
+      line-height: 2.5;
+      color: #78350f;
+      font-weight: 500;
+    }
+
+    .inline-input {
+      padding: 6px 12px;
+      border: 2px solid #fbbf24;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 15px;
+      background: white;
+      min-width: 200px;
+      transition: border-color 0.2s;
+    }
+
+    .inline-input:focus {
+      outline: none;
+      border-color: var(--orange);
+      background: #fffbeb;
+    }
+
+    @media (max-width: 768px) {
+      .inline-input {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+      }
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #7c3aed;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--ink);
+      border: 2px solid #e2e8f0;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .bar {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .navigation {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <h1>❄️ Winter Vocabulary - Context Clues</h1>
+      <div class="progress" id="progress">Passage 1 of 10</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="passage-card" id="passage-container">
+      <!-- Content will be loaded here by JavaScript -->
+    </div>
+
+    <div class="navigation">
+      <button class="btn btn-secondary" id="prev-btn" onclick="previousPassage()">
+        ← Previous
+      </button>
+      <button class="btn btn-primary" id="next-btn" onclick="nextPassage()">
+        Next →
+      </button>
+    </div>
+  </main>
+
+  <script>
+    const passages = [
+      {
+        word: "orderly",
+        text: [
+          "Ben walked into his room after playing in the snow.",
+          "His boots were by the door.",
+          "His hat was on the floor.",
+          "His gloves were on the bed.",
+          "Ben picked things up and put them where they belonged.",
+          "Ben wanted his room to be orderly."
+        ],
+        questions: [
+          "What is on the floor and bed?",
+          "What does Ben start to do?"
+        ],
+        frameParts: [
+          "The word orderly probably means: ____________________",
+          "I know this because the room had ____________________ and Ben ____________________."
+        ]
+      },
+      {
+        word: "exhausted",
+        text: [
+          "Maya played in the snow.",
+          "She made a snowman.",
+          "Then she had a snowball fight.",
+          "Then she walked home in her boots.",
+          "She sat on the couch and did not move.",
+          "Maya was exhausted."
+        ],
+        questions: [
+          "What did Maya do outside?",
+          "What did she do when she got home?"
+        ],
+        frameParts: [
+          "The word exhausted probably means: ____________________",
+          "I know this because Maya ____________________ and then she ____________________."
+        ]
+      },
+      {
+        word: "tiny",
+        text: [
+          "Dad opened the door on a cold day.",
+          "A snowflake landed on his glove.",
+          "It was very small.",
+          "It was smaller than a bead.",
+          "The snowflake was tiny."
+        ],
+        questions: [
+          "Where did the snowflake land?",
+          "How big is it?"
+        ],
+        frameParts: [
+          "The word tiny probably means: ____________________",
+          "I know this because the snowflake was ____________________ and ____________________."
+        ]
+      },
+      {
+        word: "frustrated",
+        text: [
+          "Leo put on his winter coat.",
+          "He tried to zip it up.",
+          "The zipper got stuck.",
+          "He pulled and pulled.",
+          "It still did not move.",
+          "Leo felt frustrated."
+        ],
+        questions: [
+          "What is Leo trying to do?",
+          "Does it work?"
+        ],
+        frameParts: [
+          "The word frustrated probably means: ____________________",
+          "I know this because Leo tried to ____________________ and it ____________________."
+        ]
+      },
+      {
+        word: "generous",
+        text: [
+          "Ava had a cup of hot chocolate.",
+          "Her friend did not have one.",
+          "Ava shared her drink.",
+          "She gave her friend half.",
+          "Ava was generous."
+        ],
+        questions: [
+          "What did Ava have?",
+          "What did she do with it?"
+        ],
+        frameParts: [
+          "The word generous probably means: ____________________",
+          "I know this because Ava ____________________ and ____________________."
+        ]
+      },
+      {
+        word: "nervous",
+        text: [
+          "Sam stood at the top of the big sled hill.",
+          "The hill was high.",
+          "His hands were tight on the sled.",
+          "He did not move right away.",
+          "Sam felt nervous."
+        ],
+        questions: [
+          "Where is Sam standing?",
+          "What is his body doing?"
+        ],
+        frameParts: [
+          "The word nervous probably means: ____________________",
+          "I know this because Sam ____________________ and ____________________."
+        ]
+      },
+      {
+        word: "careful",
+        text: [
+          "Lena carried a mug of hot soup.",
+          "The floor was wet from snow.",
+          "She walked very slowly.",
+          "She held the mug with two hands.",
+          "Lena was being careful."
+        ],
+        questions: [
+          "What is Lena carrying?",
+          "How is she walking?"
+        ],
+        frameParts: [
+          "The word careful probably means: ____________________",
+          "I know this because Lena ____________________ and ____________________."
+        ]
+      },
+      {
+        word: "proud",
+        text: [
+          "Eli built a big snowman.",
+          "He rolled the snow by himself.",
+          "He put on the hat and scarf.",
+          "His dad said, \"That looks great!\"",
+          "Eli felt proud."
+        ],
+        questions: [
+          "What did Eli build?",
+          "What did his dad say?"
+        ],
+        frameParts: [
+          "The word proud probably means: ____________________",
+          "I know this because Eli ____________________ and his dad ____________________."
+        ]
+      },
+      {
+        word: "confused",
+        text: [
+          "The teacher said to put on boots, coats, and hats.",
+          "The class lined up to go outside.",
+          "Everyone got ready.",
+          "Jake only put on his hat and stood there.",
+          "He looked around at the other kids.",
+          "Jake was confused."
+        ],
+        questions: [
+          "What were the students supposed to put on?",
+          "What did Jake do instead?"
+        ],
+        frameParts: [
+          "The word confused probably means: ____________________",
+          "I know this because the teacher ____________________ and Jake ____________________."
+        ]
+      },
+      {
+        word: "relieved",
+        text: [
+          "Nina could not find her gloves.",
+          "Her hands were cold.",
+          "She looked in her bag and on the floor.",
+          "Then she saw the gloves in her coat pocket.",
+          "Nina smiled.",
+          "She felt relieved."
+        ],
+        questions: [
+          "What did Nina lose?",
+          "Where did she find it?"
+        ],
+        frameParts: [
+          "The word relieved probably means: ____________________",
+          "I know this because Nina ____________________ and then she ____________________."
+        ]
+      }
+    ];
+
+    let currentPassage = 0;
+
+    function loadPassage(index) {
+      const passage = passages[index];
+      const container = document.getElementById('passage-container');
+      
+      // Parse the second frame part to create inline inputs
+      const framePart2 = passage.frameParts[1];
+      const parts = framePart2.split('____________________');
+      let inlineSentence = '';
+      
+      for (let i = 0; i < parts.length; i++) {
+        inlineSentence += parts[i];
+        if (i < parts.length - 1) {
+          inlineSentence += `<input type="text" class="inline-input" placeholder="...">`;
+        }
+      }
+      
+      container.innerHTML = `
+        <div class="target-word">Target Word: ${passage.word}</div>
+        
+        <div class="passage-text">
+          ${passage.text.map(line => `<p>${line}</p>`).join('')}
+        </div>
+        
+        <div class="question-section">
+          <div class="question-label">1. ${passage.questions[0]}</div>
+          <input type="text" placeholder="Type your answer here...">
+        </div>
+        
+        <div class="question-section">
+          <div class="question-label">2. ${passage.questions[1]}</div>
+          <input type="text" placeholder="Type your answer here...">
+        </div>
+        
+        <div class="sentence-frame">
+          <div class="sentence-frame-title">📝 Sentence Frame</div>
+          <div class="frame-label">${passage.frameParts[0].replace(': ____________________', ':')}</div>
+          <textarea class="frame-input" placeholder="Type your definition here..."></textarea>
+          
+          <div class="inline-sentence">${inlineSentence}</div>
+        </div>
+      `;
+      
+      updateProgress();
+      updateNavButtons();
+    }
+
+    function updateProgress() {
+      document.getElementById('progress').textContent = `Passage ${currentPassage + 1} of ${passages.length}`;
+    }
+
+    function updateNavButtons() {
+      document.getElementById('prev-btn').disabled = currentPassage === 0;
+      document.getElementById('next-btn').disabled = currentPassage === passages.length - 1;
+    }
+
+    function previousPassage() {
+      if (currentPassage > 0) {
+        currentPassage--;
+        loadPassage(currentPassage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextPassage() {
+      if (currentPassage < passages.length - 1) {
+        currentPassage++;
+        loadPassage(currentPassage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Load the first passage on page load
+    loadPassage(0);
+  </script>
+</body>
+</html>
