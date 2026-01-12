@@ -452,11 +452,11 @@
 
         // Base Data
         const itemsData = [
-            { id: 'snow', word: 'Snow', isPlural: false, cat: 'Winter Weather', func: 'covers the ground', attrs: ['White', 'Cold'], qAttrs: ['What color is it?', 'How does it feel?'], img: 'images/winter_items/snow_2.jpg' },
-            { id: 'ice', word: 'Ice', isPlural: false, cat: 'Winter Weather', func: 'forms when water freezes', attrs: ['Hard', 'Slippery'], qAttrs: ['How does it feel?', 'Is it slippery or sticky?'], img: 'images/winter_items/ice_1.jpg' },
+            { id: 'snow', word: 'Snow', isPlural: false, isMass: true, cat: 'Winter Weather', func: 'covers the ground', attrs: ['White', 'Cold'], qAttrs: ['What color is it?', 'How does it feel?'], img: 'images/winter_items/snow_2.jpg' },
+            { id: 'ice', word: 'Ice', isPlural: false, isMass: true, cat: 'Winter Weather', func: 'forms when water freezes', attrs: ['Hard', 'Slippery'], qAttrs: ['How does it feel?', 'Is it slippery or sticky?'], img: 'images/winter_items/ice_1.jpg' },
             { id: 'snowflake', word: 'Snowflake', isPlural: false, cat: 'Winter Weather', func: 'falls from the sky', attrs: ['Six-sided', 'Unique'], qAttrs: ['What is its shape?', 'Is it unique or identical?'], img: 'images/winter_items/snowflake.jpg' },
             { id: 'icicle', word: 'Icicle', isPlural: false, cat: 'Winter Weather', func: 'hangs from roofs', attrs: ['Pointed', 'Clear'], qAttrs: ['What is its shape?', 'What color is it?'], img: 'images/winter_items/icicle.jpg' },
-            { id: 'frost', word: 'Frost', isPlural: false, cat: 'Winter Weather', func: 'forms on windows', attrs: ['Thin', 'Crystalline'], qAttrs: ['Is it thick or thin?', 'Describe the texture.'], img: 'images/winter_items/frost.jpg' },
+            { id: 'frost', word: 'Frost', isPlural: false, isMass: true, cat: 'Winter Weather', func: 'forms on windows', attrs: ['Thin', 'Crystalline'], qAttrs: ['Is it thick or thin?', 'Describe the texture.'], img: 'images/winter_items/frost.jpg' },
             { id: 'blizzard', word: 'Blizzard', isPlural: false, cat: 'Winter Weather', func: 'blows snow with wind', attrs: ['Dangerous', 'Windy'], qAttrs: ['Is it safe or dangerous?', 'What is the weather like?'], img: 'images/winter_items/blizzard.jpg' },
 
             { id: 'coat', word: 'Coat', isPlural: false, cat: 'Winter Clothing', func: 'keeps you warm', attrs: ['Insulated', 'Heavy'], qAttrs: ['Is it thin or insulated?', 'Is it light or heavy?'], img: 'images/winter_items/winter-coat.png' },
@@ -464,7 +464,7 @@
             { id: 'gloves', word: 'Gloves', isPlural: true, cat: 'Winter Clothing', func: 'cover your hands', attrs: ['Fitted', 'Warm'], qAttrs: ['How do they fit?', 'Do they keep you warm?'], img: 'images/winter_items/gloves.png' },
             { id: 'mittens', word: 'Mittens', isPlural: true, cat: 'Winter Clothing', func: 'keep hands cozy', attrs: ['Rounded', 'No-fingers'], qAttrs: ['What is the shape?', 'Do they have separate fingers?'], img: 'images/winter_items/mittens.png' },
             { id: 'boots', word: 'Boots', isPlural: true, cat: 'Winter Clothing', func: 'protect feet from snow', attrs: ['Waterproof', 'Tall'], qAttrs: ['Can water get in?', 'Are they short or tall?'], img: 'images/winter_items/boots.png' },
-            { id: 'hat', word: 'Hat', isPlural: false, cat: 'Winter Clothing', func: 'keeps head warm', attrs: ['Knitted', 'Stretchy'], qAttrs: ['What is it made of?', 'Is it stiff or stretchy?'], img: 'images/winter_items/winter-hat.jpg' },
+            { id: 'hat', word: 'Hat', isPlural: false, cat: 'Winter Clothing', func: 'keeps head warm', attrs: ['Knitted', 'Stretchy'], qAttrs: ['What is the shape?', 'Is it stiff or stretchy?'], img: 'images/winter_items/winter-hat.jpg' },
 
             { id: 'sled', word: 'Sled', isPlural: false, cat: 'Winter Recreation', func: 'slides downhill', attrs: ['Smooth', 'Fast'], qAttrs: ['How is the bottom?', 'Does it go slow or fast?'], img: 'images/winter_items/sled.jpg' },
             { id: 'skis', word: 'Skis', isPlural: true, cat: 'Winter Recreation', func: 'glide over snow', attrs: ['Long', 'Paired'], qAttrs: ['Are they short or long?', 'Do you use one or two?'], img: 'images/winter_items/skis.jpg' },
@@ -484,8 +484,8 @@
             { id: 'blanket', word: 'Blanket', isPlural: false, cat: 'Indoor Comfort', func: 'keeps you cozy', attrs: ['Soft', 'Thick'], qAttrs: ['How does it feel?', 'Is it thin or thick?'], img: 'images/winter_items/blanket.png' },
             { id: 'heater', word: 'Space Heater', isPlural: false, cat: 'Indoor Comfort', func: 'blows hot air', attrs: ['Portable', 'Electric'], qAttrs: ['Can you move it easily?', 'How is it powered?'], img: 'images/winter_items/space_heater.png' },
 
-            { id: 'hotcocoa', word: 'Hot Chocolate', isPlural: false, cat: 'Winter Beverage', func: 'warms you up', attrs: ['Sweet', 'Chocolatey'], qAttrs: ['How does it taste?', 'What is the flavor?'], img: 'images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
-            { id: 'soup', word: 'Soup', isPlural: false, cat: 'Winter Food', func: 'fills your belly', attrs: ['Savory', 'Hot'], qAttrs: ['Is it sweet or savory?', 'Is it cold or hot?'], img: 'images/winter_items/soup.jpg' },
+            { id: 'hotcocoa', word: 'Hot Chocolate', isPlural: false, isMass: true, cat: 'Winter Beverage', func: 'warms you up', attrs: ['Sweet', 'Chocolatey'], qAttrs: ['How does it taste?', 'What is the flavor?'], img: 'images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
+            { id: 'soup', word: 'Soup', isPlural: false, isMass: true, cat: 'Winter Food', func: 'fills your belly', attrs: ['Savory', 'Hot'], qAttrs: ['Is it sweet or savory?', 'Is it cold or hot?'], img: 'images/winter_items/soup.jpg' },
             { id: 'thermos', word: 'Thermos', isPlural: false, cat: 'Winter Container', func: 'keeps drinks hot', attrs: ['Insulated', 'Metal'], qAttrs: ['Why does it work?', 'What is it made of?'], img: 'images/winter_items/thermos.jpg' },
 
             { id: 'pinetree', word: 'Pine Tree', isPlural: false, cat: 'Winter Plant', func: 'stays green all year', attrs: ['Evergreen', 'Prickly'], qAttrs: ['What kind of tree is it?', 'Do the needles feel soft or prickly?'], img: 'images/winter_items/pine_tree.png' },
@@ -499,6 +499,7 @@
                 word: item.word,
                 image: item.img,
                 isPlural: item.isPlural,
+                isMass: item.isMass || false,
                 category: {
                     answer: item.cat,
                     choices: genChoices(item.cat, getCommonCategories())
@@ -523,7 +524,16 @@
         });
 
         let currentEntry = entries[0];
-        let userAnswers = {};
+        let userAnswers = {
+            category: '',
+            function: '',
+            attr1: '',
+            attr2: '',
+            attr1Type: 'looks',
+            attr2Type: 'looks',
+            activeStep: 'step1',
+            completedSteps: []
+        };
 
         // DOM Elements
         const navList = document.getElementById('navList');
@@ -548,43 +558,97 @@
             });
         }
 
+        // --- Helpers ---
+        function getArticle(word) {
+            const vowels = ['a', 'e', 'i', 'o', 'u'];
+            return vowels.includes(word[0].toLowerCase()) ? 'an' : 'a';
+        }
+
+        function cap(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        const attrTypes = {
+            looks: { label: 'Looks Like', hint: 'Think about color, shape, size...', prefix: 'It is', pluralPrefix: 'They are' },
+            feels: { label: 'Feel/Smell', hint: 'Think about texture, temperature, smell...', prefix: 'It feels', pluralPrefix: 'They feel' },
+            parts: { label: 'Parts', hint: 'What parts does it have? (wheels, handle...)', prefix: 'It has', pluralPrefix: 'They have' },
+            place: { label: 'Place', hint: 'Where do you find it?', prefix: 'It is found', pluralPrefix: 'They are found' },
+            unique: { label: 'Unique', hint: 'What makes it special?', prefix: 'It', pluralPrefix: 'They' }
+        };
+
+        function updateAttrType(slot, type) {
+            userAnswers[`${slot}Type`] = type;
+            userAnswers.activeStep = 'step3';
+            renderActivity();
+            setTimeout(() => {
+                const input = document.getElementById(`${slot}Input`);
+                if (input) input.focus();
+            }, 50);
+        }
+
         function loadEntry(id) {
             currentEntry = entries.find(e => e.id === id);
             userAnswers = {
                 category: '',
                 function: '',
                 attr1: '',
-                attr2: ''
+                attr2: '',
+                attr1Type: 'looks',
+                attr2Type: 'looks',
+                activeStep: 'step1',
+                completedSteps: []
             };
             renderNav();
             renderActivity();
         }
 
         function renderActivity() {
-            // Check if image is placeholder
-            let imgHtml = '';
-            if (currentEntry.image) {
-                imgHtml = `<img src="${currentEntry.image}" class="main-image" alt="${currentEntry.word}">`;
-            } else {
-                imgHtml = `<div class="image-placeholder">No Image Available</div>`;
-            }
+            // Image
+            let imgHtml = currentEntry.image
+                ? `<img src="${currentEntry.image}" class="main-image" alt="${currentEntry.word}">`
+                : `<div class="image-placeholder">No Image Available</div>`;
 
             // Grammar helpers
             const verbDo = currentEntry.isPlural ? 'do' : 'does';
             const verbBe = currentEntry.isPlural ? 'are' : 'is';
             const pronoun = currentEntry.isPlural ? 'They' : 'It';
-            const pronounObj = currentEntry.isPlural ? 'them' : 'it'; // not used yet but handy
 
-            // Step 1 Sentence
-            const catSentence = currentEntry.isPlural
-                ? `${currentEntry.word} are a type of <span id="catPreview">________</span>.`
-                : `${currentEntry.word} is a type of <span id="catPreview">________</span>.`;
+            // Name for sentences
+            // Logic: Plural -> 'Gloves', Mass -> 'Snow', Singular -> 'A coat'
+            let subjectName;
+            if (currentEntry.isPlural || currentEntry.isMass) {
+                subjectName = currentEntry.word;
+            } else {
+                subjectName = `${getArticle(currentEntry.word)} ${currentEntry.word.toLowerCase()}`;
+            }
+            const SubjectName = cap(subjectName);
 
-            // Step 2 Sentence
-            const funcSentence = `${pronoun} <span id="funcPreview">________</span>.`;
+            // Sentences
+            const cat = userAnswers.category || '________';
+            const func = userAnswers.function || '________';
 
-            // Step 3 Sentence
-            const attrSentence = `${pronoun} ${verbBe} <span id="attr1Preview">________</span> and <span id="attr2Preview">________</span>.`;
+            let catSentence;
+            if (currentEntry.isPlural) {
+                catSentence = `${currentEntry.word} are a type of <span id="catPreview">${cat}</span>.`;
+            } else if (currentEntry.isMass) {
+                catSentence = `${SubjectName} is a type of <span id="catPreview">${cat}</span>.`;
+            } else {
+                catSentence = `${SubjectName} is a type of <span id="catPreview">${cat}</span>.`;
+            }
+
+            const funcSentence = `${pronoun} <span id="funcPreview">${func}</span>.`;
+
+            const t1 = attrTypes[userAnswers.attr1Type || 'looks'];
+            const t2 = attrTypes[userAnswers.attr2Type || 'looks'];
+            const prefix1 = currentEntry.isPlural ? t1.pluralPrefix : t1.prefix;
+            const prefix2 = currentEntry.isPlural ? t2.pluralPrefix : t2.prefix;
+
+            const attrSentence1 = `${prefix1} <span id="attr1Preview">${userAnswers.attr1 || '________'}</span>`;
+            const attrSentence2 = `${prefix2} <span id="attr2Preview">${userAnswers.attr2 || '________'}</span>`;
+
+            // State helpers
+            const isActive = (id) => userAnswers.activeStep === id ? 'active' : '';
+            const isCompleted = (id) => userAnswers.completedSteps.includes(id) ? 'completed' : '';
 
             mainContent.innerHTML = `
                 <div class="activity-container">
@@ -595,7 +659,7 @@
                     
                     <div class="workspace">
                         <!-- Step 1: Category -->
-                        <div class="step-card active" id="step1">
+                        <div class="step-card ${isActive('step1')} ${isCompleted('step1')}" id="step1">
                             <div class="step-header" onclick="toggleStep('step1')">
                                 <div class="step-title">
                                     <div class="step-number">1</div>
@@ -603,9 +667,9 @@
                                 </div>
                             </div>
                             <div class="step-content">
-                                <div class="question-text">What category ${verbDo} ${currentEntry.word} belong to?</div>
+                                <div class="question-text">What category ${verbDo} ${subjectName} belong to?</div>
                                 <div class="input-group">
-                                    <input type="text" class="text-input" id="catInput" 
+                                    <input type="text" class="text-input" id="catInput" value="${userAnswers.category}"
                                         placeholder="Type to add category..." oninput="updatePreview('cat', this.value)">
                                     <div class="tools">
                                         <button class="tool-btn" id="catBtn" onclick="toggleChoices('cat')">Show Ideas</button>
@@ -622,24 +686,24 @@
                         </div>
 
                         <!-- Step 2: Function -->
-                        <div class="step-card" id="step2">
+                        <div class="step-card ${isActive('step2')} ${isCompleted('step2')}" id="step2">
                             <div class="step-header" onclick="toggleStep('step2')">
                                 <div class="step-title">
                                     <div class="step-number">2</div>
-                                    Function vs. Feature
+                                    Function / Action
                                 </div>
                             </div>
                             <div class="step-content">
-                                <div class="question-text">What ${verbDo} ${currentEntry.word} do?</div>
+                                <div class="question-text">What ${verbDo} ${subjectName} do?</div>
                                 <div class="input-group">
-                                    <input type="text" class="text-input" id="funcInput" 
+                                    <input type="text" class="text-input" id="funcInput" value="${userAnswers.function}"
                                         placeholder="Type to add function..." oninput="updatePreview('func', this.value)">
                                     <div class="tools">
                                         <button class="tool-btn" id="funcBtn" onclick="toggleChoices('func')">Show Ideas</button>
                                     </div>
                                     <div class="choices-grid hidden" id="funcChoices"></div>
                                     <div class="sentence-preview">
-                                        Sentence: <strong>${funcSentence}</strong>
+                                        Sentence: <strong>It <span id="funcPreview">${func}</span>.</strong>
                                     </div>
                                     <div style="text-align: right; margin-top: 10px;">
                                         <button class="primary-btn" onclick="nextStep('step2', 'step3')">Next</button>
@@ -649,25 +713,36 @@
                         </div>
 
                         <!-- Step 3: Attributes -->
-                        <div class="step-card" id="step3">
+                        <div class="step-card ${isActive('step3')} ${isCompleted('step3')}" id="step3">
                             <div class="step-header" onclick="toggleStep('step3')">
                                 <div class="step-title">
                                     <div class="step-number">3</div>
-                                    Attributes (Details)
+                                    Describe It!
                                 </div>
                             </div>
                             <div class="step-content">
-                                <p style="margin-bottom:20px; color:var(--text-muted);">Describe two features (think about color, size, shape, feel, etc).</p>
+                                <p style="margin-bottom:20px; color:var(--text-muted);">Choose how you want to describe it:</p>
                                 
                                 <!-- Attr 1 -->
                                 <div style="margin-bottom: 24px;">
-                                    <div class="question-text">Detail 1:</div>
+                                    <div style="display:flex; gap:10px; margin-bottom:10px; overflow-x:auto; padding-bottom:5px;">
+                                        ${Object.keys(attrTypes).map(key => `
+                                            <button class="tool-btn ${userAnswers.attr1Type === key ? 'active' : ''}" 
+                                                style="${userAnswers.attr1Type === key ? 'background:#e0f2fe; border-color:#0ea5e9; color:#0284c7;' : ''}"
+                                                onclick="updateAttrType('attr1', '${key}')">
+                                                ${attrTypes[key].label}
+                                            </button>
+                                        `).join('')}
+                                    </div>
                                     <div class="input-group">
-                                        <div style="font-size:0.9rem; color:#64748b; font-style:italic; margin-bottom:5px;">Hint: ${currentEntry.attributes[0].question}</div>
-                                        <input type="text" class="text-input" id="attr1Input" 
-                                            placeholder="Type a detail..." oninput="updatePreview('attr', this.value)">
-                                        <div class="tools">
-                                            <button class="tool-btn" id="attr1Btn" onclick="toggleChoices('attr1')">Show Ideas</button>
+                                        <div style="font-size:0.9rem; color:#64748b; font-style:italic; margin-bottom:5px;">Hint: ${t1.hint}</div>
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <span style="font-weight:600; color:#475569; min-width:60px;">${prefix1}</span>
+                                            <input type="text" class="text-input" id="attr1Input" value="${userAnswers.attr1}"
+                                                placeholder="..." oninput="updatePreview('attr1', this.value)">
+                                            <div class="tools" style="margin-top:0;">
+                                                <button class="tool-btn" id="attr1Btn" onclick="toggleChoices('attr1')">Ideas</button>
+                                            </div>
                                         </div>
                                         <div class="choices-grid hidden" id="attr1Choices"></div>
                                     </div>
@@ -675,20 +750,35 @@
 
                                 <!-- Attr 2 -->
                                 <div>
-                                    <div class="question-text">Detail 2:</div>
+                                    <div style="display:flex; gap:10px; margin-bottom:10px; overflow-x:auto; padding-bottom:5px;">
+                                        ${Object.keys(attrTypes).map(key => `
+                                            <button class="tool-btn ${userAnswers.attr2Type === key ? 'active' : ''}" 
+                                                style="${userAnswers.attr2Type === key ? 'background:#e0f2fe; border-color:#0ea5e9; color:#0284c7;' : ''}"
+                                                onclick="updateAttrType('attr2', '${key}')">
+                                                ${attrTypes[key].label}
+                                            </button>
+                                        `).join('')}
+                                    </div>
                                     <div class="input-group">
-                                        <div style="font-size:0.9rem; color:#64748b; font-style:italic; margin-bottom:5px;">Hint: ${currentEntry.attributes[1].question}</div>
-                                        <input type="text" class="text-input" id="attr2Input" 
-                                            placeholder="Type a detail..." oninput="updatePreview('attr', this.value)">
-                                        <div class="tools">
-                                            <button class="tool-btn" id="attr2Btn" onclick="toggleChoices('attr2')">Show Ideas</button>
+                                        <div style="font-size:0.9rem; color:#64748b; font-style:italic; margin-bottom:5px;">Hint: ${t2.hint}</div>
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <span style="font-weight:600; color:#475569; min-width:60px;">${prefix2}</span>
+                                            <input type="text" class="text-input" id="attr2Input" value="${userAnswers.attr2}"
+                                                placeholder="..." oninput="updatePreview('attr2', this.value)">
+                                            <div class="tools" style="margin-top:0;">
+                                                <button class="tool-btn" id="attr2Btn" onclick="toggleChoices('attr2')">Ideas</button>
+                                            </div>
                                         </div>
                                         <div class="choices-grid hidden" id="attr2Choices"></div>
                                     </div>
                                 </div>
 
                                 <div class="sentence-preview" style="margin-top: 20px;">
-                                    Sentence: <strong>${attrSentence}</strong>
+                                    Sentences: 
+                                    <div style="margin-left:10px;">
+                                        1. <strong>${attrSentence1}.</strong><br>
+                                        2. <strong>${attrSentence2}.</strong>
+                                    </div>
                                 </div>
                                 <div style="text-align: right; margin-top: 10px;">
                                     <button class="primary-btn" onclick="finalize()">Create Definition</button>
@@ -697,25 +787,115 @@
                         </div>
 
                         <!-- Review -->
-                        <div class="review-section hidden" id="reviewSection">
+                        <div class="review-section ${userAnswers.activeStep === 'review' ? '' : 'hidden'}" id="reviewSection">
                             <h3 style="margin-top:0">Final Definition</h3>
                             <div class="final-sentence" id="finalText"></div>
-                            <button class="primary-btn" onclick="reset()">Do Another Word</button>
+                            <div style="margin-top: 20px;">
+                                <button class="primary-btn" onclick="reset()">Do Another Word</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
+
+            if (userAnswers.activeStep === 'review') {
+                finalize(true);
+            }
+        }
+
+        function finalize(skipStateUpdate = false) {
+            if (!skipStateUpdate) {
+                userAnswers.activeStep = 'review';
+                if (!userAnswers.completedSteps.includes('step3')) userAnswers.completedSteps.push('step3');
+                renderActivity();
+            }
+
+            const cat = userAnswers.category.trim();
+            const func = userAnswers.function.trim();
+            const a1 = userAnswers.attr1.trim();
+            const a2 = userAnswers.attr2.trim();
+
+            const isPlural = currentEntry.isPlural;
+            const pronoun = isPlural ? 'They' : 'It';
+
+            let subjectName;
+            if (currentEntry.isPlural || currentEntry.isMass) {
+                subjectName = currentEntry.word;
+            } else {
+                subjectName = `${getArticle(currentEntry.word)} ${currentEntry.word.toLowerCase()}`;
+            }
+            const SubjectName = cap(subjectName);
+
+            // 1. Category
+            let s1 = '';
+            if (isPlural) {
+                s1 = `${currentEntry.word} are a type of <span class="highlight">${cat}</span>.`;
+            } else if (currentEntry.isMass) {
+                if (cat.toLowerCase().includes('winter') || cat.toLowerCase().includes('clothing')) {
+                    s1 = `${SubjectName} is a type of <span class="highlight">${cat}</span>.`;
+                } else {
+                    // For mass nouns we might say "Snow is a type of weather"
+                    // The article applies to the CATEGORY not the subject.
+                    const article = getArticle(cat);
+                    s1 = `${SubjectName} is ${article} <span class="highlight">${cat}</span>.`;
+                }
+            } else {
+                if (cat.toLowerCase().includes('winter') || cat.toLowerCase().includes('clothing')) {
+                    s1 = `${SubjectName} is a type of <span class="highlight">${cat}</span>.`;
+                } else {
+                    const article = getArticle(cat);
+                    s1 = `${SubjectName} is ${article} <span class="highlight">${cat}</span>.`;
+                }
+            }
+
+            // 2. Function
+            let s2 = '';
+            if (func.toLowerCase().startsWith('used') || func.toLowerCase().startsWith('made')) {
+                const verbBe = isPlural ? 'are' : 'is';
+                s2 = `${pronoun} ${verbBe} <span class="highlight">${func}</span>.`;
+            } else {
+                s2 = `${pronoun} <span class="highlight">${func}</span>.`;
+            }
+
+            // 3. Attributes
+            // get user selected types or default
+            const type1 = userAnswers.attr1Type || 'looks';
+            const type2 = userAnswers.attr2Type || 'looks';
+            const t1 = attrTypes[type1];
+            const t2 = attrTypes[type2];
+
+            const p1 = isPlural ? t1.pluralPrefix : t1.prefix;
+            const p2 = isPlural ? t2.pluralPrefix : t2.prefix;
+
+            const s3 = `${p1} <span class="highlight">${a1}</span>. ${p2} <span class="highlight">${a2}</span>.`;
+
+            const finalTextEl = document.getElementById('finalText');
+            if (finalTextEl) finalTextEl.innerHTML = `${s1} ${s2} ${s3}`;
         }
 
         // Logic Functions
         function toggleStep(id) {
-            document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+            userAnswers.activeStep = id;
+            renderActivity();
         }
 
         function nextStep(currentId, nextId) {
-            document.getElementById(currentId).classList.add('completed');
-            toggleStep(nextId);
+            if (!userAnswers.completedSteps.includes(currentId)) {
+                userAnswers.completedSteps.push(currentId);
+            }
+            userAnswers.activeStep = nextId;
+            renderActivity();
+
+            setTimeout(() => {
+                let targetId = '';
+                if (nextId === 'step2') targetId = 'funcInput';
+                if (nextId === 'step3') targetId = 'attr1Input';
+
+                if (targetId) {
+                    const el = document.getElementById(targetId);
+                    if (el) el.focus();
+                }
+            }, 50);
         }
 
         function toggleChoices(type) {
@@ -724,17 +904,19 @@
 
             if (grid.classList.contains('hidden')) {
                 grid.classList.remove('hidden');
-                btn.textContent = 'Hide Ideas';
-                btn.classList.add('active');
-
-                // If empty, generate
+                if (btn) {
+                    btn.textContent = 'Hide Ideas';
+                    btn.classList.add('active');
+                }
                 if (grid.children.length === 0) {
                     generateChoicesUI(type, grid);
                 }
             } else {
                 grid.classList.add('hidden');
-                btn.textContent = 'Show Ideas';
-                btn.classList.remove('active');
+                if (btn) {
+                    btn.textContent = 'Show Ideas';
+                    btn.classList.remove('active');
+                }
             }
         }
 
@@ -751,82 +933,39 @@
         }
 
         function selectChoice(type, value) {
-            if (type === 'cat') {
-                document.getElementById('catInput').value = value;
-                updatePreview('cat', value);
-                toggleChoices('cat'); // auto-hide on select
+            let inputId = `${type}Input`;
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.value = value;
+                updatePreview(type, value);
             }
-            if (type === 'func') {
-                document.getElementById('funcInput').value = value;
-                updatePreview('func', value);
-                toggleChoices('func');
-            }
-            if (type === 'attr1') {
-                document.getElementById('attr1Input').value = value;
-                updatePreview('attr');
-                toggleChoices('attr1');
-            }
-            if (type === 'attr2') {
-                document.getElementById('attr2Input').value = value;
-                updatePreview('attr');
-                toggleChoices('attr2');
-            }
+            toggleChoices(type);
         }
 
         function updatePreview(type, val) {
+            let key = type;
+            if (type === 'cat') key = 'category';
+            if (type === 'func') key = 'function';
+            userAnswers[key] = val;
+
             if (type === 'cat') {
-                document.getElementById('catPreview').textContent = val || '________';
-                userAnswers.category = val;
+                const el = document.getElementById('catPreview');
+                if (el) el.textContent = val || '________';
             }
             if (type === 'func') {
-                document.getElementById('funcPreview').textContent = val || '________';
-                userAnswers.function = val;
+                const el = document.getElementById('funcPreview');
+                if (el) el.textContent = val || '________';
             }
-            if (type === 'attr') {
-                const a1 = document.getElementById('attr1Input').value;
-                const a2 = document.getElementById('attr2Input').value;
-                document.getElementById('attr1Preview').textContent = a1 || '________';
-                document.getElementById('attr2Preview').textContent = a2 || '________';
-                userAnswers.attr1 = a1;
-                userAnswers.attr2 = a2;
+            if (type.startsWith('attr')) {
+                const el = document.getElementById(`${type}Preview`);
+                if (el) el.textContent = val || '________';
             }
-        }
-
-        function finalize() {
-            document.getElementById('step3').classList.add('completed');
-            document.getElementById('step3').classList.remove('active');
-            document.getElementById('reviewSection').classList.remove('hidden');
-
-            const cat = userAnswers.category.trim();
-            const func = userAnswers.function.trim();
-            const a1 = userAnswers.attr1.trim();
-            const a2 = userAnswers.attr2.trim();
-
-            // Construct sentences
-            let s1 = `${currentEntry.word} is a type of <span class="highlight">${cat}</span>.`;
-            // Simple vowel check
-            if (['a', 'e', 'i', 'o', 'u'].includes(cat[0]?.toLowerCase())) {
-                s1 = `${currentEntry.word} is an <span class="highlight">${cat}</span>.`;
-            } else {
-                s1 = `${currentEntry.word} is a <span class="highlight">${cat}</span>.`;
-            }
-            // Just use generic phrasing if it's broad
-            if (cat.toLowerCase().includes('winter') || cat.toLowerCase().includes('clothing')) {
-                s1 = `${currentEntry.word} is a type of <span class="highlight">${cat}</span>.`;
-            }
-
-            let s2 = `It <span class="highlight">${func}</span>.`;
-            if (func.toLowerCase().startsWith('used')) {
-                s2 = `It is <span class="highlight">${func}</span>.`;
-            }
-
-            let s3 = `It is <span class="highlight">${a1}</span> and <span class="highlight">${a2}</span>.`;
-
-            document.getElementById('finalText').innerHTML = `${s1} ${s2} ${s3}`;
         }
 
         function reset() {
-            loadEntry(currentEntry.id);
+            const idx = entries.indexOf(currentEntry);
+            const nextIdx = (idx + 1) % entries.length;
+            loadEntry(entries[nextIdx].id);
         }
 
         // Init

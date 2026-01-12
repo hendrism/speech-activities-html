@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Both Perspectives</title>
+    <style>
+        :root {
+            /* Core Colors */
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-bg: #eef2ff;
+
+            --secondary: #db2777;
+            /* Pink/Magenta for "Other" perspective */
+            --secondary-light: #f472b6;
+            --secondary-bg: #fce7f3;
+
+            --neutral: #059669;
+            /* Green for Bigger Picture */
+            --neutral-bg: #d1fae5;
+
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+
+            /* Spacing */
+            --radius: 1rem;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 80px;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-title {
+            color: var(--primary);
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-scroller {
+            background: white;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-item {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Scenario Card */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .scenario-header {
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .scenario-label {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .scenario-title {
+            font-size: 1.75rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .scenario-text {
+            font-size: 1.125rem;
+            color: var(--text-main);
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Sections */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .section-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .part-a-header {
+            background: var(--primary-bg);
+            color: var(--primary);
+        }
+
+        .part-b-header {
+            background: var(--secondary-bg);
+            color: var(--secondary);
+        }
+
+        .part-c-header {
+            background: var(--neutral-bg);
+            color: var(--neutral);
+        }
+
+        .question-group {
+            margin-bottom: 2rem;
+        }
+
+        .question-label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        /* Inputs */
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            box-sizing: border-box;
+        }
+
+        /* Feeling Tags */
+        .feelings-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feeling-tag {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 500;
+            background: white;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .feeling-tag:hover {
+            border-color: var(--primary-light);
+            background: var(--bg);
+        }
+
+        .feeling-tag.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Yes/No Toggle */
+        .toggle-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .toggle-btn.yes.selected {
+            background: var(--neutral);
+            color: white;
+            border-color: var(--neutral);
+        }
+
+        .toggle-btn.no.selected {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            color: var(--text-main);
+        }
+
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* Print styles */
+        @media print {
+
+            .nav-scroller,
+            .main-header,
+            .nav-controls {
+                display: none;
+            }
+
+            .card {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+
+            body {
+                background: white;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-title">
+            <span>🧠</span> Understanding Both Perspectives
+        </div>
+        <div>
+            <a href="index.html" class="btn btn-outline" style="padding: 0.5rem 1rem; text-decoration: none;">Exit to
+                Hub</a>
+        </div>
+    </header>
+
+    <nav class="nav-scroller" id="navScroller">
+        <!-- Generated via JS -->
+    </nav>
+
+    <main class="container" id="mainContent">
+        <!-- Content Generated via JS -->
+    </main>
+
+    <script>
+        // --- Data ---
+        const scenarios = [
+            {
+                id: 1,
+                title: "The Pencil",
+                text: "You are sitting in class working on an assignment. You put your own pencil on your desk and look away for a moment to check something on your Chromebook.\n\nA few minutes later, the person sitting next to you says, \"Hey, did you take my pencil? I can't find it.\"\n\nThey sound a little annoyed.\n\nYou still have your own pencil on your desk. You know you did not take their pencil.",
+                feelings: ["Confused", "Annoyed", "Nervous", "Embarrassed"]
+            },
+            {
+                id: 2,
+                title: "The Group Project",
+                text: "You are working in a group of three on a short class assignment. Each person is supposed to do one part.\n\nThe next day, one of your group members says, \"I thought you were going to finish your part last night. Now we're kind of behind.\"\n\nThey sound frustrated, but not angry.\n\nYou remember doing your part, but you realize you did not turn it in or share it with the group.",
+                feelings: ["Guilty", "Defensive", "Surprised", "Frustrated"]
+            },
+            {
+                id: 3,
+                title: "The Unanswered Text",
+                text: "A friend texts you after school and asks a question about homework.\n\nYou see the text, but you are busy and forget to respond.\n\nThe next day at school, the friend says, \"I guess you didn't see my message.\"\n\nTheir tone sounds a little cold or disappointed.\n\nYou realize you did see it, but you forgot to reply.",
+                feelings: ["Bad", "Annoyed", "Apologetic", "Dismissive"]
+            },
+            {
+                id: 4,
+                title: "The Seat Change",
+                text: "You usually sit next to the same person in one of your classes.\n\nOne day, you come in and see that they are sitting somewhere else and talking to someone different.\n\nThey wave at you, but they do not move back to their usual seat.\n\nYou sit in your normal seat anyway.",
+                feelings: ["Rejected", "Indifferent", "Confused", "Sad"]
+            },
+            {
+                id: 5,
+                title: "The “Never Mind”",
+                text: "You are talking to someone in class and they start to say: \"Hey, I wanted to tell you—\"\n\nThen they stop and say, \"Actually, never mind.\"\n\nThey turn back to their work.\n\nThey do not sound angry, just distracted.",
+                feelings: ["Curious", "Worried", "Relieved", "Annoyed"]
+            }
+        ];
+
+        let currentIndex = 0;
+
+        // --- render functions ---
+
+        function init() {
+            renderNav();
+            renderScenario(0);
+        }
+
+        function renderNav() {
+            const nav = document.getElementById('navScroller');
+            nav.innerHTML = '';
+            scenarios.forEach((s, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `nav-item ${idx === currentIndex ? 'active' : ''}`;
+                btn.textContent = `${idx + 1}. ${s.title}`;
+                btn.onclick = () => {
+                    currentIndex = idx;
+                    renderNav(); // Update active state
+                    renderScenario(idx);
+                };
+                nav.appendChild(btn);
+            });
+        }
+
+        function renderScenario(index) {
+            const data = scenarios[index];
+            const container = document.getElementById('mainContent');
+
+            // Note: In a real app we might want to preserve state/inputs when switching.
+            // For now, we allow the browser to handle transient state or reset on switch.
+            // (If persistence is needed in a static file, we'd store values in a JS object).
+
+            container.innerHTML = `
+                <div class="card fade-in">
+                    <div class="scenario-header">
+                        <div class="scenario-label">Scenario ${index + 1}</div>
+                        <h2 class="scenario-title">${data.title}</h2>
+                        <div class="scenario-text" style="white-space: pre-wrap;">${data.text}</div>
+                    </div>
+
+                    <!-- Part A: Your Perspective -->
+                    <div class="section-container">
+                        <div class="section-header part-a-header">
+                            <span>👤</span>
+                            <h3>Part A: Your Perspective</h3>
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">1. What might you be thinking in this moment?</label>
+                            <textarea placeholder="I might be thinking..."></textarea>
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">2. How might you be feeling?</label>
+                            <div class="feelings-grid" id="feelingsGrid">
+                                ${data.feelings.map(f => `<button class="feeling-tag" onclick="toggleFeeling(this)">${f}</button>`).join('')}
+                                <button class="feeling-tag" onclick="toggleOther(this)">Other...</button>
+                            </div>
+                            <input type="text" id="otherFeelingInput" style="display:none;" placeholder="Type other feeling here...">
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">3. What would you want to say or do right away?</label>
+                            <textarea placeholder="I would say/do..."></textarea>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 2px dashed var(--border); margin: 2rem 0;">
+
+                    <!-- Part B: The Other Person's Perspective -->
+                    <div class="section-container">
+                        <div class="section-header part-b-header">
+                            <span>👥</span>
+                            <h3>Part B: The Other Person's Perspective</h3>
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">4. What might the other person be thinking?</label>
+                            <textarea placeholder="They might be thinking..."></textarea>
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">5. Why might they feel annoyed, frustrated, or disappointed?</label>
+                            <textarea placeholder="They might feel this way because..."></textarea>
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">6. What are two other reasons their reaction might be happening (besides "you doing something wrong")?</label>
+                            <div style="display:flex; flex-direction:column; gap: 0.5rem;">
+                                <input type="text" placeholder="Reason 1...">
+                                <input type="text" placeholder="Reason 2...">
+                            </div>
+                        </div>
+                    </div>
+                     
+                    <hr style="border: 0; border-top: 2px dashed var(--border); margin: 2rem 0;">
+
+                    <!-- Part C: Bigger Picture -->
+                    <div class="section-container">
+                        <div class="section-header part-c-header">
+                            <span>🌍</span>
+                            <h3>Part C: Bigger Picture</h3>
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">7. Is this a small problem or a big problem? Why?</label>
+                            <textarea placeholder="It is a ... problem because..."></textarea>
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">8. Does this automatically mean they are trying to be mean to you?</label>
+                            <div class="toggle-group" style="margin-bottom: 1rem;">
+                                <div class="toggle-btn yes" onclick="selectMean(this, true)">Yes</div>
+                                <div class="toggle-btn no" onclick="selectMean(this, false)">No</div>
+                            </div>
+                            <label class="question-label" style="font-size: 0.9rem;">Why?</label>
+                            <input type="text" placeholder="Explain your answer...">
+                        </div>
+
+                        <div class="question-group">
+                            <label class="question-label">9. What is one calm and reasonable response you could say?</label>
+                            <textarea placeholder="I could say..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="nav-controls">
+                        <button class="btn btn-outline" onclick="prevScenario()" ${index === 0 ? 'disabled' : ''}>Previous Scenario</button>
+                        <button class="btn btn-primary" onclick="nextScenario()">${index === scenarios.length - 1 ? 'Finish' : 'Next Scenario'}</button>
+                    </div>
+
+                </div>
+            `;
+
+            // Scroll to top
+            // window.scrollTo(0, 0);
+        }
+
+        function prevScenario() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderNav();
+                renderScenario(currentIndex);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function nextScenario() {
+            if (currentIndex < scenarios.length - 1) {
+                currentIndex++;
+                renderNav();
+                renderScenario(currentIndex);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                alert("You have completed all scenarios! Great job thinking about both perspectives.");
+            }
+        }
+
+        // --- Interaction Handlers ---
+
+        window.toggleFeeling = function (btn) {
+            btn.classList.toggle('selected');
+        }
+
+        window.toggleOther = function (btn) {
+            btn.classList.toggle('selected');
+            const input = document.getElementById('otherFeelingInput');
+            input.style.display = btn.classList.contains('selected') ? 'block' : 'none';
+            if (input.style.display === 'block') input.focus();
+        }
+
+        window.selectMean = function (btn, isYes) {
+            // clear siblings
+            const group = btn.parentElement;
+            group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        // --- Start ---
+        init();
+
+    </script>
+</body>
+
+</html>

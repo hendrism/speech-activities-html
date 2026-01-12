@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding the Message Glitch</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #e0e7ff;
+            --surface: #ffffff;
+            --background: #f8fafc;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --success: #10b981;
+
+            --speaker: #f43f5e;
+            --listener: #3b82f6;
+            --env: #10b981;
+            --msg: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: var(--border);
+        }
+
+        .guide-toggle {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .guide-toggle:hover {
+            background: #c7d2fe;
+        }
+
+        /* --- Reference Guide --- */
+        .reference-panel {
+            background: #1e293b;
+            color: white;
+            padding: 1.5rem;
+            flex-shrink: 0;
+            display: none;
+            overflow-y: auto;
+            max-height: 40vh;
+        }
+
+        .reference-panel.visible {
+            display: block;
+        }
+
+        .glitch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .glitch-def-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid white;
+        }
+
+        .glitch-def-card h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .glitch-def-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        /* --- Scroller --- */
+        .scroller {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            overflow-x: auto;
+            flex-shrink: 0;
+            scrollbar-width: none;
+        }
+
+        .scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-dot {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: var(--background);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #94a3b8;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .nav-dot.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .nav-dot.completed {
+            border-color: var(--success);
+            color: var(--success);
+            background: #d1fae5;
+        }
+
+        /* --- Main --- */
+        main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scenario-tag {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .scenario-text {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: #334155;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* --- Input Grid --- */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .analysis-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .input-card {
+            background: var(--background);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-card:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .input-card label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Type Colors */
+        .type-speaker label {
+            color: var(--speaker);
+        }
+
+        .type-listener label {
+            color: var(--listener);
+        }
+
+        .type-env label {
+            color: var(--env);
+        }
+
+        .type-msg label {
+            color: var(--msg);
+        }
+
+        .input-card.filled {
+            background: white;
+            border-color: #cbd5e1;
+        }
+
+        /* --- Helpers --- */
+        .hint-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+            margin-top: 1.5rem;
+        }
+
+        .hint-content {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            color: #92400e;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .hint-content.visible {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="back-btn">← Hub</a>
+            <h1 style="font-size:1.25rem; margin:0;">Finding the Message Glitch</h1>
+        </div>
+        <button class="guide-toggle" onclick="document.querySelector('.reference-panel').classList.toggle('visible')">
+            ℹ️ Glitch Guide
+        </button>
+    </header>
+
+    <div class="reference-panel visible"> <!-- Default visible for context -->
+        <h2 style="margin-top:0; font-size:1.1rem; margin-bottom:1rem;">Types of Message Glitches</h2>
+        <div class="glitch-grid">
+            <div class="glitch-def-card" style="border-color: var(--speaker)">
+                <h3>🧍 Speaker Glitch</h3>
+                <p>Delivery issues: Too fast, too quiet, not facing you, confusing words.</p>
+            </div>
+            <div class="glitch-def-card" style="border-color: var(--listener)">
+                <h3>👂 Listener Glitch</h3>
+                <p>Attention issues: Distracted, missed a word, assumed interpretation.</p>
+            </div>
+            <div class="glitch-def-card" style="border-color: var(--env)">
+                <h3>🌪 Environment Glitch</h3>
+                <p>Room issues: Noisy, too far away, bad connection, interruptions.</p>
+            </div>
+            <div class="glitch-def-card" style="border-color: var(--msg)">
+                <h3>🧩 Message Glitch</h3>
+                <p>Content issues: Vague words ("that", "it"), missing details, confusing directions.</p>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:1rem;">
+            <button class="guide-toggle" style="background:rgba(255,255,255,0.2); color:white;"
+                onclick="document.querySelector('.reference-panel').classList.remove('visible')">Hide Guide</button>
+        </div>
+    </div>
+
+    <div class="scroller" id="navScroller">
+        <!-- Dots injected here -->
+    </div>
+
+    <main id="mainContent">
+        <!-- Activity Card Injected Here -->
+    </main>
+
+    <script>
+        const scenarios = [
+            {
+                id: 1,
+                title: "Scenario 1: Wrong Assignment",
+                text: "The teacher explains the assignment while writing on the board. You start working, but later realize you're doing the wrong assignment.",
+                hint: "Think about: Noise, not seeing the teacher's face, or missing part of the directions."
+            },
+            {
+                id: 2,
+                title: "Scenario 2: \"What?\"",
+                text: "A classmate says something to you in the hallway. You hear them talking, but you don't understand what they said.",
+                hint: "Think about: Hallway noise, fast speech, or missing the beginning of the sentence."
+            },
+            {
+                id: 3,
+                title: "Scenario 3: \"Can I use that?\"",
+                text: "Someone says, \"Can I use that for a second?\" You're not sure what \"that\" means.",
+                hint: "Think about: Vague words and missing details."
+            },
+            {
+                id: 4,
+                title: "Scenario 4: Group Work Confusion",
+                text: "Your group starts working, but you realize they are doing something different than what you thought the assignment was.",
+                hint: "Think about: Missed information or unclear directions from the group."
+            },
+            {
+                id: 5,
+                title: "Scenario 5: Turn It In",
+                text: "The teacher says, \"Turn it in at the end of class.\" You thought they said, \"Turn it in online.\"",
+                hint: "Think about: Similar-sounding words, noise, or missing one key word."
+            },
+            {
+                id: 6,
+                title: "Scenario 6: Partner Directions",
+                text: "Your partner explains what to do, but you're still not sure what the plan is.",
+                hint: "Think about: Unclear explanations or missing steps."
+            },
+            {
+                id: 7,
+                title: "Scenario 7: Teacher Calls on You",
+                text: "The teacher asks you a question, but you're not sure what they're asking.",
+                hint: "Think about: Fast speech, long questions, or confusing wording."
+            },
+            {
+                id: 8,
+                title: "Scenario 8: Wrong Page",
+                text: "The teacher says what page to turn to. You turn to the wrong page.",
+                hint: "Think about: Numbers sounding similar, noise, or missing part of the number."
+            },
+            {
+                id: 9,
+                title: "Scenario 9: The Mumble",
+                text: "Your friend answers your question, but they are looking at the floor and mumbling.",
+                hint: "Think about: Eye contact, volume (too quiet), or clarity."
+            },
+            {
+                id: 10,
+                title: "Scenario 10: Cafeteria Chaos",
+                text: "You try to tell your friend a story in the cafeteria, but it's so loud you each have to yell to be heard.",
+                hint: "Think about: Background noise, other people talking, or distance."
+            },
+            {
+                id: 11,
+                title: "Scenario 11: Broken Speaker",
+                text: "The morning announcements come on, but the loudspeaker crackles and cuts out clearly in the middle of a sentence.",
+                hint: "Think about: Technology glitches, missing words, or static."
+            },
+            {
+                id: 12,
+                title: "Scenario 12: Too Many Steps",
+                text: "The gym teacher says: 'Run to the line, do 5 jumping jacks, run back, tag your partner, and sit down.' You forget what comes after jumping jacks.",
+                hint: "Think about: Too much information (overload), memory, or speaking too fast."
+            },
+            {
+                id: 13,
+                title: "Scenario 13: \"Whatever\"",
+                text: "You ask your friend where they want to sit. They roll their eyes and say 'Wherever.' You sit down, but they look annoyed.",
+                hint: "Think about: Tone of voice, sarcasm, or hidden meaning (body language)."
+            },
+            {
+                id: 14,
+                title: "Scenario 14: The Whisper",
+                text: "You are in the library. Your friend whispers a secret to you, but you only catch the very last word.",
+                hint: "Think about: Volume (too quiet) or environment restrictions."
+            },
+            {
+                id: 15,
+                title: "Scenario 15: Unknown Slang",
+                text: "A new student says, 'That game was totally mid.' You smile, but you really don't know if that means it was good or bad.",
+                hint: "Think about: Vocabulary, slang, or words with specific cultural meanings."
+            }
+        ];
+
+        let currentIndex = 0;
+        let userData = {}; // { 0: { speaker: '', listener: '', env: '', msg: '' } }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNav();
+            loadScenario(0);
+        });
+
+        function renderNav() {
+            const nav = document.getElementById('navScroller');
+            nav.innerHTML = scenarios.map((s, idx) => `
+                <div class="nav-dot ${idx === currentIndex ? 'active' : ''} ${isComplete(idx) ? 'completed' : ''}" 
+                     onclick="loadScenario(${idx})">
+                    ${idx + 1}
+                </div>
+            `).join('');
+        }
+
+        function isComplete(idx) {
+            const d = userData[idx];
+            if (!d) return false;
+            // Check if at least 2 fields are filled (Requirement from worksheet)
+            let count = 0;
+            if (d.speaker?.trim()) count++;
+            if (d.listener?.trim()) count++;
+            if (d.env?.trim()) count++;
+            if (d.msg?.trim()) count++;
+            return count >= 2;
+        }
+
+        function loadScenario(index) {
+            currentIndex = index;
+            renderNav();
+
+            const item = scenarios[index];
+            const data = userData[index] || { speaker: '', listener: '', env: '', msg: '' };
+
+            const main = document.getElementById('mainContent');
+            main.innerHTML = `
+                <div class="card">
+                    <span class="scenario-tag">Scenario ${index + 1} of ${scenarios.length}</span>
+                    <h2 class="editable" contenteditable="true">${item.title}</h2>
+                    <div class="scenario-text editable" contenteditable="true">${item.text}</div>
+
+                    <div style="background:#f1f5f9; padding:1rem; border-radius:0.5rem; margin-bottom:1.5rem; font-size:0.9rem; color:#475569;">
+                        <strong>Goal:</strong> Find at least <strong>TWO</strong> glitches that could explain what went wrong.
+                    </div>
+
+                    <div class="analysis-grid">
+                        <div class="input-card type-speaker ${data.speaker ? 'filled' : ''}">
+                            <label>🧍 Speaker Glitch</label>
+                            <textarea placeholder="Was it how they said it?" oninput="saveInput(${index}, 'speaker', this.value)">${data.speaker}</textarea>
+                        </div>
+                        <div class="input-card type-listener ${data.listener ? 'filled' : ''}">
+                            <label>👂 Listener Glitch</label>
+                            <textarea placeholder="Was it how you listened?" oninput="saveInput(${index}, 'listener', this.value)">${data.listener}</textarea>
+                        </div>
+                        <div class="input-card type-env ${data.env ? 'filled' : ''}">
+                            <label>🌪 Environment Glitch</label>
+                            <textarea placeholder="Was it the room/noise?" oninput="saveInput(${index}, 'env', this.value)">${data.env}</textarea>
+                        </div>
+                        <div class="input-card type-msg ${data.msg ? 'filled' : ''}">
+                            <label>🧩 Message Glitch</label>
+                            <textarea placeholder="Was it the words themselves?" oninput="saveInput(${index}, 'msg', this.value)">${data.msg}</textarea>
+                        </div>
+                    </div>
+
+                    <button class="hint-btn" onclick="document.getElementById('hintContent').classList.toggle('visible')">💡 Show Hint</button>
+                    <div id="hintContent" class="hint-content">
+                        ${item.hint}
+                    </div>
+
+                    <div class="nav-controls">
+                        <button class="btn btn-outline" onclick="prev()" ${index === 0 ? 'disabled' : ''}>Previous</button>
+                        <button class="btn" onclick="next()" ${index === scenarios.length - 1 ? 'disabled' : ''}>Next Scenario</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function saveInput(idx, field, val) {
+            if (!userData[idx]) userData[idx] = {};
+            userData[idx][field] = val;
+
+            // Visual feedback for filled state
+            // Re-render nav to show completion status
+            renderNav();
+        }
+
+        function next() {
+            if (currentIndex < scenarios.length - 1) loadScenario(currentIndex + 1);
+        }
+
+        function prev() {
+            if (currentIndex > 0) loadScenario(currentIndex - 1);
+        }
+
+    </script>
+</body>
+
+</html>
