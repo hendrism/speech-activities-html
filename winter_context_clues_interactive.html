@@ -778,21 +778,35 @@
         function revealAnswer() {
             // Get user inputs
             const inputs = document.querySelectorAll('.inline-input');
+            const meaningInput = document.querySelector('.frame-input-large');
             const entry = entries.find(e => e.id === currentEntryId);
-            const messageParts = entry.frameHelp[1].split('[blank]');
 
-            let studentSentence = "";
+            // Part 1: Definition Guess
+            const part1Label = entry.frameHelp[0];
+            const part1Value = meaningInput.value.trim() || "______";
+
+            // Part 2: Context Clues
+            const messageParts = entry.frameHelp[1].split('[blank]');
+            let part2Sentence = "";
 
             // Reconstruct sentence interleaving static text and user input
             messageParts.forEach((part, index) => {
-                studentSentence += part;
+                part2Sentence += part;
                 if (index < inputs.length) {
                     const val = inputs[index].value.trim() || "______";
-                    studentSentence += `<strong style="color: var(--primary-dark); border-bottom: 2px solid var(--primary-dark);">${val}</strong>`;
+                    part2Sentence += `<strong style="color: var(--primary-dark); border-bottom: 2px solid var(--primary-dark);">${val}</strong>`;
                 }
             });
 
-            document.getElementById('studentSentenceOutput').innerHTML = studentSentence;
+            // Combine into full response
+            const fullResponse = `
+                <div style="margin-bottom: 8px;">
+                    ${part1Label} <strong style="color: var(--primary-dark); border-bottom: 2px solid var(--primary-dark);">${part1Value}</strong>
+                </div>
+                <div>${part2Sentence}</div>
+            `;
+
+            document.getElementById('studentSentenceOutput').innerHTML = fullResponse;
 
             document.getElementById('revealSection').classList.add('visible');
             document.querySelector('.visual-caption').textContent = entry.word;
