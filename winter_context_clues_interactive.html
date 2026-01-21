@@ -274,15 +274,21 @@
         }
 
         .inline-input {
-            padding: 8px 12px;
+            padding: 12px;
             border: 2px solid #fbbf24;
-            border-radius: 6px;
+            border-radius: 8px;
             font-family: inherit;
             font-size: 1.2rem;
             background: white;
-            min-width: 250px;
+            min-width: 100%;
+            /* Full width for multi-line feel */
+            min-height: 60px;
+            /* Give it some height */
             transition: border-color 0.2s;
-            display: inline-block;
+            display: block;
+            /* Stack them for better multi-line layout */
+            margin: 10px 0;
+            resize: vertical;
         }
 
         .inline-input:focus {
@@ -313,6 +319,31 @@
             color: var(--text-main);
             margin-bottom: 10px;
             margin-top: 10px;
+        }
+
+        .student-response-box {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 1.1rem;
+            color: #475569;
+        }
+
+        .student-response-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .student-response-text {
+            color: #334155;
+            line-height: 1.6;
         }
 
         .btn {
@@ -385,9 +416,7 @@
             }
 
             .inline-input {
-                display: block;
                 width: 100%;
-                margin: 8px 0;
             }
         }
     </style>
@@ -679,10 +708,10 @@
             const framePart1 = entry.frameHelp[0];
             const framePart2 = entry.frameHelp[1]; // Contains [blank] markers
 
-            // Replace [blank] with input fields
+            // Replace [blank] with textarea fields
             const sentenceWithInputs = framePart2.split('[blank]').map((part, i, arr) => {
                 if (i === arr.length - 1) return part;
-                return `${part}<input type="text" class="inline-input" placeholder="...">`;
+                return `${part}<textarea class="inline-input" placeholder="Type answer..."></textarea>`;
             }).join('');
 
             mainContent.innerHTML = `
@@ -709,7 +738,7 @@
                                 <textarea class="text-input" placeholder="Type answer..."></textarea>
                             </div>
                             
-                            <!-- Sentence Frames (Original Style) -->
+                            <!-- Sentence Frames -->
                             <div class="sentence-frame">
                                 <div class="sentence-frame-title">📝 Sentence Frame</div>
                                 
@@ -732,6 +761,11 @@
                                 Context Clue: ${entry.evidence}
                             </div>
                             
+                            <div class="student-response-box">
+                                <span class="student-response-label">Your Sentence:</span>
+                                <div class="student-response-text" id="studentSentenceOutput"></div>
+                            </div>
+
                             <div style="margin-top: 20px;">
                                 <button class="btn" onclick="nextEntry()">Next Passage &rarr;</button>
                             </div>
@@ -742,8 +776,26 @@
         }
 
         function revealAnswer() {
+            // Get user inputs
+            const inputs = document.querySelectorAll('.inline-input');
+            const entry = entries.find(e => e.id === currentEntryId);
+            const messageParts = entry.frameHelp[1].split('[blank]');
+
+            let studentSentence = "";
+
+            // Reconstruct sentence interleaving static text and user input
+            messageParts.forEach((part, index) => {
+                studentSentence += part;
+                if (index < inputs.length) {
+                    const val = inputs[index].value.trim() || "______";
+                    studentSentence += `<strong style="color: var(--primary-dark); border-bottom: 2px solid var(--primary-dark);">${val}</strong>`;
+                }
+            });
+
+            document.getElementById('studentSentenceOutput').innerHTML = studentSentence;
+
             document.getElementById('revealSection').classList.add('visible');
-            document.querySelector('.visual-caption').textContent = entries.find(e => e.id === currentEntryId).word;
+            document.querySelector('.visual-caption').textContent = entry.word;
             document.querySelector('.visual-caption').style.color = '#10b981'; // Green
         }
 

@@ -268,7 +268,7 @@ window.wordDefinitions = [
     }
 ];
 
-window.contextClues = [
+window.contextCluesEasy = [
     {
         text: "My best <span class='target-word'>friend</span>, someone who likes me and I like them back, invited me to her birthday party.",
         type: "Definition",
@@ -276,6 +276,9 @@ window.contextClues = [
         hint: "Look for the part that explains what a friend is. It's right after the word.",
         choices: ["a person you like and who likes you", "a book you read", "a game you play", "a place you visit"]
     },
+    // ... (rest of the easy items are same, I will use a trick to keep them or I have to copy them all?  
+    // Wait, replace_file_content replaces the BLOCK. I must allow the tool to just change the variable name if I can, but I cannot modify just one line easily if I want to append.
+    // I will output the whole block as I have the file content.)
     {
         text: "Mom told us to <span class='target-word'>whisper</span>, to talk very quietly, because the baby was sleeping.",
         type: "Definition",
@@ -443,5 +446,92 @@ window.contextClues = [
         word: "proud",
         hint: "How do you feel when you win something and people clap for you?",
         choices: ["feeling good about yourself", "feeling bad about yourself", "feeling sick", "feeling cold"]
+    }
+];
+
+window.contextCluesMedium = [
+    {
+        text: "The student was <span class='target-word'>reluctant</span> to join the game, hesitating and standing by the wall instead of playing.",
+        type: "Inference",
+        word: "reluctant",
+        hint: "He hesitated and didn't join in immediately. How was he feeling?",
+        choices: ["unwilling or hesitant", "excited and eager", "angry and mad", "happy and joyful"]
+    },
+    {
+        text: "The farmer had an <span class='target-word'>abundant</span> harvest, with more corn and wheat than his barn could hold.",
+        type: "Inference",
+        word: "abundant",
+        hint: "If he had more than the barn could hold, he had a vast amount.",
+        choices: ["plentiful; a large amount", "tiny; very little", "rotten; bad quality", "expensive; costing a lot"]
+    },
+    {
+        text: "She was a <span class='target-word'>diligent</span> worker, always finishing her tasks on time and checking her work carefully.",
+        type: "Inference",
+        word: "diligent",
+        hint: "She works hard, finishes on time, and checks carefully.",
+        choices: ["hardworking and careful", "lazy and slow", "messy and careless", "funny and silly"]
+    },
+    {
+        text: "The old house was <span class='target-word'>vacant</span>; nobody had lived there for many years.",
+        type: "Definition",
+        word: "vacant",
+        hint: "If nobody lives there, the house is...",
+        choices: ["empty", "full", "noisy", "new"]
+    },
+    {
+        text: "The detective looked for a <span class='target-word'>clue</span>, a piece of evidence, to solve definitions.",
+        type: "Definition",
+        word: "clue",
+        hint: "The definition is right there: 'a piece of evidence'.",
+        choices: ["a hint or evidence", "a sweet candy", "a loud noise", "a funny joke"]
+    },
+    {
+        text: "The weather was <span class='target-word'>frigid</span>, significantly colder than a normal winter day.",
+        type: "Synonym",
+        word: "frigid",
+        hint: "It's described as 'significantly colder'.",
+        choices: ["very cold", "very hot", "mild", "rainy"]
+    },
+    {
+        text: "He felt <span class='target-word'>fatigued</span> after running the marathon, unlike the energy he had at the start.",
+        type: "Antonym",
+        word: "fatigued",
+        hint: "It's the opposite of having energy.",
+        choices: ["very tired", "very energetic", "very hungry", "very happy"]
+    },
+    {
+        text: "The principal <span class='target-word'>commended</span> the students for their behavior, praising them during the assembly.",
+        type: "Synonym",
+        word: "commended",
+        hint: "What did the principal do? 'Praising them'.",
+        choices: ["praised", "scolded", "ignored", "taught"]
+    },
+    {
+        text: "Please <span class='target-word'>discard</span> your trash, throw it away in the bin, before leaving.",
+        type: "Definition",
+        word: "discard",
+        hint: "The sentence tells you what to do: 'throw it away'.",
+        choices: ["throw away", "keep safe", "eat quickly", "color nicely"]
+    },
+    {
+        text: "The answer was <span class='target-word'>apparent</span> to everyone; it was obvious and easy to see.",
+        type: "Synonym",
+        word: "apparent",
+        hint: "The sentence says it was 'obvious'.",
+        choices: ["obvious", "hidden", "confusing", "wrong"]
+    },
+    {
+        text: "The noises in the library were <span class='target-word'>disruptive</span>, breaking the silence and bothering readers.",
+        type: "Inference",
+        word: "disruptive",
+        hint: "They broke the silence and bothered people.",
+        choices: ["causing trouble/interruption", "helping people read", "very quiet", "soothing music"]
+    },
+    {
+        text: "Her assist was <span class='target-word'>vital</span>, meaning it was absolutely necessary for the team to win.",
+        type: "Definition",
+        word: "vital",
+        hint: "The sentence defines it as 'absolutely necessary'.",
+        choices: ["very important/necessary", "useless", "optional", "silly"]
     }
 ];

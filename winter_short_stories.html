@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Short Stories Collection</title>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #6366f1;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --radius: 16px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+        }
+
+        .sidebar-title {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .sidebar-subtitle {
+            margin: 4px 0 16px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .level-toggle {
+            background: #e2e8f0;
+            border-radius: 20px;
+            padding: 4px;
+            display: flex;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            margin-bottom: 10px;
+        }
+
+        .level-toggle-option {
+            flex: 1;
+            text-align: center;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+
+        .level-toggle-option.active {
+            color: var(--primary-dark);
+        }
+
+        .level-toggle-slider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: calc(33.33% - 4px);
+            height: calc(100% - 8px);
+            background: white;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .level-toggle[data-level="simplified"] .level-toggle-slider {
+            transform: translateX(100%);
+        }
+
+        .level-toggle[data-level="basic"] .level-toggle-slider {
+            transform: translateX(200%);
+        }
+
+        .nav-list {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-main);
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+        }
+
+        .nav-item.active {
+            background: #e0f2fe;
+            color: var(--primary-dark);
+            border-color: #bae6fd;
+            font-weight: 600;
+        }
+
+        .nav-item .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+
+        .nav-item.completed .status-dot {
+            background: var(--success);
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 32px;
+            gap: 24px;
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .story-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .story-title {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .story-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 40px 0 20px;
+            color: var(--secondary);
+            font-weight: 700;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .question-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .input-area {
+            margin-bottom: 16px;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 45px;
+            transition: border-color 0.2s;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .action-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #f1f5f9;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .action-btn.active {
+            background: #e0f2fe;
+            color: var(--primary-dark);
+            border-color: #bae6fd;
+        }
+
+        .collapsible-content {
+            display: none;
+            margin-top: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .collapsible-content.visible {
+            display: block;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option-btn {
+            text-align: left;
+            padding: 12px 16px;
+            background: #fff;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #f0f9ff;
+        }
+
+        .option-btn.correct {
+            border-color: var(--success);
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .option-btn.incorrect {
+            border-color: var(--error);
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .hint-box {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 8px;
+            padding: 12px;
+            color: #92400e;
+            font-style: italic;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-title">Winter Stories</h1>
+            <p class="sidebar-subtitle">Reading Comprehension</p>
+
+            <div class="level-toggle" id="levelToggle" data-level="standard" onclick="toggleLevel(event)">
+                <div class="level-toggle-slider"></div>
+                <div class="level-toggle-option active" id="opt-standard" data-val="standard">Standard</div>
+                <div class="level-toggle-option" id="opt-simplified" data-val="simplified">Simplified</div>
+                <div class="level-toggle-option" id="opt-basic" data-val="basic">Basic</div>
+            </div>
+
+            <a href="index.html"
+                style="display: block; margin-top: 10px; font-size: 0.9rem; color: var(--primary); text-decoration: none;">←
+                Back to Hub</a>
+        </div>
+        <div class="nav-list" id="navList">
+            <!-- Nav items generated here -->
+        </div>
+    </div>
+
+    <main class="main" id="mainContent">
+        <!-- Content injected here -->
+    </main>
+
+    <script>
+        const storiesStandard = [
+
+            {
+                id: 1,
+                title: "Story 1: The Ice Fishing Mystery",
+                text: `Marcus had been waiting all winter to go ice fishing with his grandfather on Lake Superior. When the day finally arrived, they drilled their hole and waited. Hours passed. Other fishermen nearby were catching perch and walleye. But Marcus and Grandpa hadn't felt a single nibble.
+
+Marcus remembered what his science teacher had said about fish staying near warmer water in winter. He suggested they move closer to where a small creek fed into the lake. Grandpa raised his eyebrows but agreed.
+
+Within ten minutes at the new spot, Marcus felt a strong tug. He pulled up a beautiful northern pike, its spotted body gleaming in the sunlight. They caught three more fish before heading home. Marcus couldn't stop talking about how science had saved their fishing trip.`,
+                literal: [
+                    {
+                        q: "Where did Marcus and his grandfather go fishing?",
+                        hint: "Look at the first sentence to find the name of the body of water.",
+                        options: ["Lake Michigan", "Lake Superior", "A small creek", "The ocean"],
+                        answer: 1
+                    },
+                    {
+                        q: "What kind of fish did Marcus catch?",
+                        hint: "The story describes this fish as having a spotted body.",
+                        options: ["Perch", "Walleye", "Northern pike", "Trout"],
+                        answer: 2
+                    },
+                    {
+                        q: "How many fish did Marcus and Grandpa catch at the new spot?",
+                        hint: "The story says they caught one fish first, then a specific number more.",
+                        options: ["Two fish", "Three fish", "Four fish", "Five fish"],
+                        answer: 2
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why did Marcus suggest moving closer to the creek?",
+                        hint: "Think about what Marcus remembered from school about fish behavior in winter.",
+                        options: ["The creek had more fish in it", "Fish stay near warmer water in winter", "The ice was thinner near the creek", "His grandfather told him to move"],
+                        answer: 1
+                    },
+                    {
+                        q: "How did Marcus feel at the end of the fishing trip?",
+                        hint: "Pay attention to what Marcus did on the way home.",
+                        options: ["Disappointed and quiet", "Tired and ready for bed", "Excited and proud", "Worried about his science homework"],
+                        answer: 2
+                    },
+                    {
+                        q: "What lesson did Marcus learn from this experience?",
+                        hint: "Think about what helped Marcus solve the problem.",
+                        options: ["Fishing is boring", "Always listen to your grandfather", "School knowledge can be useful in real life", "Fish don't bite in winter"],
+                        answer: 2
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Story 2: The Stubborn Sled",
+                text: `Yuki found the old wooden toboggan in her grandmother's garage. It was beautiful—curved front, painted with faded red stripes. She dragged it to the hill behind her house and pushed off.
+
+The toboggan barely moved. It scraped along the crusty snow, slower than walking. Yuki felt her excitement deflate.
+
+Her neighbor, Mr. Chen, was shoveling his driveway. "Old wood dries out. Needs wax," he said. He brought her a candle. "Rub this on the bottom."
+
+Yuki spent twenty minutes coating the toboggan's underside. She climbed the hill one more time and pushed off. The toboggan flew down the slope so fast that Yuki shrieked with joy. At the bottom, she was already planning to bring her friends tomorrow.`,
+                literal: [
+                    {
+                        q: "Where did Yuki find the toboggan?",
+                        hint: "The first sentence tells you exactly where it was stored.",
+                        options: ["In Mr. Chen's garage", "In her grandmother's garage", "At the bottom of the hill", "In her own garage"],
+                        answer: 1
+                    },
+                    {
+                        q: "What did Mr. Chen give Yuki to fix the sled?",
+                        hint: "Look for what Mr. Chen brought to help with the wax.",
+                        options: ["A bottle of oil", "A spray can", "A candle", "A bucket of water"],
+                        answer: 2
+                    },
+                    {
+                        q: "How long did Yuki spend waxing the toboggan?",
+                        hint: "The story gives you an exact amount of time.",
+                        options: ["Ten minutes", "Twenty minutes", "Thirty minutes", "An hour"],
+                        answer: 1
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why wasn't the toboggan working at first?",
+                        hint: "Think about what Mr. Chen said about old wood.",
+                        options: ["It was too heavy", "The snow was wrong", "The wood was too dry", "It was broken"],
+                        answer: 2
+                    },
+                    {
+                        q: "How did Yuki feel after the toboggan worked?",
+                        hint: "Pay attention to the sounds she made and what she planned to do next.",
+                        options: ["Nervous and scared", "Excited and happy", "Tired and ready to quit", "Confused about what happened"],
+                        answer: 1
+                    },
+                    {
+                        q: "What can we learn from this story?",
+                        hint: "Think about what made the difference between failure and success.",
+                        options: ["New things are always better than old things", "Sometimes problems have simple solutions", "You should never use old equipment", "Sledding is dangerous"],
+                        answer: 1
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Story 3: The Chickadee Rescue",
+                text: `Amara saw the small bird huddled on her back porch during the coldest week of January. The black-capped chickadee wasn't moving much. its feathers looked puffed up—a sign it was trying to stay warm.
+
+She remembered the wildlife presentation at school. The ranger had said never to bring wild birds inside. But she had to do something. Amara filled a shallow dish with warm water and scattered sunflower seeds nearby. She watched from the window.
+
+The chickadee didn't move toward the food. An hour passed. Then two. Just before dinner, three other chickadees arrived. They clustered around the food, chirping. The cold bird finally hopped over and ate a few seeds.
+
+By the next morning, the little bird was gone. Amara felt disappointed. But her dad pointed to the feeder. "Look." Six chickadees were eating there, healthy and active. "might your bird is one of those," he said. "Sometimes we help without knowing if it worked. But we still try."`,
+                literal: [
+                    {
+                        q: "What kind of bird did Amara find?",
+                        hint: "The story names the specific type of bird in the first paragraph.",
+                        options: ["Robin", "Blue jay", "Black-capped chickadee", "Cardinal"],
+                        answer: 2
+                    },
+                    {
+                        q: "What food did Amara put out for the bird?",
+                        hint: "Look for what Amara scattered near the water dish.",
+                        options: ["Bread crumbs", "Sunflower seeds", "Crackers", "Berries"],
+                        answer: 1
+                    },
+                    {
+                        q: "How many chickadees were at the feeder the next morning?",
+                        hint: "Amara's dad told her to look and count them.",
+                        options: ["Three chickadees", "Four chickadees", "Five chickadees", "Six chickadees"],
+                        answer: 3
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why didn't Amara bring the bird inside?",
+                        hint: "Think about what the ranger said at the wildlife presentation.",
+                        options: ["She was scared of birds", "Her parents wouldn't let her", "It could stress the bird more", "She didn't have a cage"],
+                        answer: 2
+                    },
+                    {
+                        q: "Why did the cold bird finally eat?",
+                        hint: "Think about what happened right before the bird moved.",
+                        options: ["The food warmed up", "Other birds showed it was safe", "Amara scared it toward the food", "It got hungrier"],
+                        answer: 1
+                    },
+                    {
+                        q: "What is the main message of this story?",
+                        hint: "Remember what Amara's dad said at the end.",
+                        options: ["Wild birds are dangerous", "Helping is worthwhile even when we can't see the results", "Birds don't need human help", "Only experts should help animals"],
+                        answer: 1
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Story 4: The Snow Sculpture Competition",
+                text: `Jordan's town held an annual snow sculpture contest in the park. This year, she wanted to create something amazing—a life-sized horse.
+
+She started after school on Monday. By Wednesday, something looked wrong. The proportions were off. The legs were too thin. the neck too thick. She tried to fix it by adding more snow. But that made it worse. The head fell off twice.
+
+Friday was judging day. Jordan looked at her lumpy, lopsided horse. She felt embarrassed.
+
+At the ceremony, the mayor announced, "And first place goes to... the abstract horse sculpture by Jordan Matthews!"
+
+Jordan's mouth fell open. Abstract? The judge explained that her sculpture had "dynamic movement and emotional expression." Jordan hadn't created what she planned. But she'd created something interesting anyway. Sometimes mistakes turn into something better than you imagined.`,
+                literal: [
+                    {
+                        q: "What animal did Jordan try to sculpt?",
+                        hint: "The story mentions this animal several times.",
+                        options: ["A dog", "A horse", "A dragon", "A bird"],
+                        answer: 1
+                    },
+                    {
+                        q: "What day was the judging?",
+                        hint: "Look for which day of the week the ceremony happened.",
+                        options: ["Monday", "Wednesday", "Friday", "Sunday"],
+                        answer: 2
+                    },
+                    {
+                        q: "What place did Jordan win?",
+                        hint: "Pay attention to what the mayor announced.",
+                        options: ["Third place", "Second place", "First place", "Fourth place"],
+                        answer: 2
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "How did Jordan feel before the judging?",
+                        hint: "Think about how she looked at her sculpture on Friday.",
+                        options: ["Proud and confident", "Embarrassed and disappointed", "Excited and hopeful", "Mad and frustrated"],
+                        answer: 1
+                    },
+                    {
+                        q: "Why did Jordan win first place?",
+                        hint: "Think about what the judge said made it special.",
+                        options: ["It looked exactly like a horse", "It was the biggest sculpture", "The mistakes made it look interesting", "She worked the longest on it"],
+                        answer: 2
+                    },
+                    {
+                        q: "What lesson did Jordan learn?",
+                        hint: "Consider the last sentence of the story.",
+                        options: ["Never try to make animals from snow", "Always follow the plan exactly", "Mistakes can lead to unexpected success", "Winning doesn't matter"],
+                        answer: 2
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Story 5: The Frozen Geocache",
+                text: `Tyler loved geocaching—using GPS coordinates to find hidden containers. His latest target was near the frozen waterfall in the state park. He'd been planning this hike for two weeks.
+
+When he arrived with his dad, they discovered a problem. The geocache was hidden behind the waterfall. But the entire area was covered in thick, dangerous ice. Tyler couldn't safely reach the hiding spot.
+
+His dad suggested they leave. But Tyler had brought a long hiking pole. Standing at a safe distance, he extended the pole and carefully felt around the icy rocks. After several tries, he hooked something and slow pulled out a small, frozen container.
+
+Inside was a soggy logbook and a few plastic toys. Tyler signed the log, left one of his own trading items. took a small compass as his prize. The log showed he was the first person to find it in three months. On the walk back, Tyler felt proud. He hadn't given up. he'd solved the problem safely.`,
+                literal: [
+                    {
+                        q: "Where was the geocache hidden?",
+                        hint: "The story tells you the location in the first paragraph.",
+                        options: ["Near a frozen waterfall", "On top of a mountain", "Under a bridge", "In a cave"],
+                        answer: 0
+                    },
+                    {
+                        q: "What tool did Tyler use to reach the geocache?",
+                        hint: "Look for what Tyler had brought with him.",
+                        options: ["A rope", "A ladder", "A hiking pole", "A shovel"],
+                        answer: 2
+                    },
+                    {
+                        q: "What prize did Tyler take from the geocache?",
+                        hint: "The story names the specific item he chose.",
+                        options: ["A plastic toy", "A small compass", "A coin", "A keychain"],
+                        answer: 1
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why couldn't Tyler reach the geocache at first?",
+                        hint: "Think about what covered the area where it was hidden.",
+                        options: ["It was too high up", "Dangerous ice blocked the way", "He forgot his GPS", "It was underwater"],
+                        answer: 1
+                    },
+                    {
+                        q: "How long had it been since someone found this geocache?",
+                        hint: "Tyler checked the logbook to see when others had visited.",
+                        options: ["One week", "One month", "Three months", "One year"],
+                        answer: 2
+                    },
+                    {
+                        q: "What character trait helped Tyler succeed?",
+                        hint: "Think about what Tyler did in its place of just leaving.",
+                        options: ["He was very strong", "He was persistent and creative", "He was lucky", "He was fast"],
+                        answer: 1
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "Story 6: The Aurora Forecast",
+                text: `Mei had been obsessed with seeing the northern lights ever since her family moved to northern Minnesota. She checked aurora forecasts every night. Finally, in late January, the forecast showed a strong geomagnetic storm—a perfect chance to see them.
+
+She convinced her parents to drive out to the dark countryside after dinner. They parked in an empty field and waited. The sky was clear and full of stars. But there were no northern lights. They waited thirty minutes. Then an hour. Mei kept refreshing the aurora app, which still showed high activity.
+
+"Sometimes they don't show up," her mom said gently. "We should head home."
+
+Mei slumped in the backseat, staring out the window as they drove. Then she saw it—a faint green glow on the horizon. "Stop!" she yelled. They all climbed out and watched as ribbons of green and pale purple started dancing across the sky. The lights weren't as bright as in the photos online. But they were real. they were beautiful.
+
+Sometimes the best things are worth the wait and the disappointment along the way.`,
+                literal: [
+                    {
+                        q: "Where did Mei's family move to?",
+                        hint: "The first sentence tells you the state.",
+                        options: ["Northern Michigan", "Northern Minnesota", "Northern Wisconsin", "Northern Montana"],
+                        answer: 1
+                    },
+                    {
+                        q: "Where did they go to look for the northern lights?",
+                        hint: "Look for where they parked their car.",
+                        options: ["In their backyard", "At a park", "In an empty field", "On a mountain"],
+                        answer: 2
+                    },
+                    {
+                        q: "What colors were the northern lights?",
+                        hint: "The story describes the ribbons in the sky.",
+                        options: ["Red and orange", "Blue and white", "Green and pale purple", "Yellow and pink"],
+                        answer: 2
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why did they drive to the countryside?",
+                        hint: "Think about what would help them see the lights better.",
+                        options: ["To get away from city lights", "To be closer to Minnesota", "To find higher ground", "Because the app told them to"],
+                        answer: 0
+                    },
+                    {
+                        q: "How did Mei feel when they first started driving home?",
+                        hint: "Pay attention to her body language in the backseat.",
+                        options: ["Excited and happy", "Mad at her parents", "Disappointed and sad", "Tired and sleepy"],
+                        answer: 2
+                    },
+                    {
+                        q: "What is the main message of this story?",
+                        hint: "Look at the very last sentence.",
+                        options: ["Technology doesn't work well", "Northern lights are boring", "Good things are worth waiting for", "Always listen to weather forecasts"],
+                        answer: 2
+                    }
+                ]
+            },
+            {
+                id: 7,
+                title: "Story 7: The Bird Count",
+                text: `Every winter, Jackson's environmental club participated in the Christmas Bird Count. Volunteers across the country spent one day counting every bird they saw. Jackson was responsible for counting birds in a three-block area of his neighborhood.
+
+He walked his route slow, binoculars ready, marking every bird in his notebook. Blue jays, crows, house sparrows, cardinals. By noon, he'd counted forty-three birds. But then he found out a problem—he might have counted the same blue jay multiple times as it flew from yard to yard. His data could be completely wrong.
+
+Jackson felt his chest tighten. Should he start over? He chose to call his club leader, Ms. Rivera. She told him that scientists expected some counting errors—that's why they had hundreds of volunteers. "Your best estimate is still valuable data," she said. "Just make a note about the possible duplicate."
+
+Jackson added a note to his form and kept counting. By the end of the day, he'd recorded seventeen species. When the club met the next week, their combined data showed a healthy bird population in their town. Jackson learned that in science, doing your best is sometimes more important than being perfect.`,
+                literal: [
+                    {
+                        q: "What was Jackson counting?",
+                        hint: "The title and first paragraph tell you what the activity was about.",
+                        options: ["Trees", "Birds", "Snowflakes", "Houses"],
+                        answer: 1
+                    },
+                    {
+                        q: "How many birds had Jackson counted by noon?",
+                        hint: "The story gives you an exact number before he found out the problem.",
+                        options: ["Seventeen", "Twenty-three", "Forty-three", "Fifty-three"],
+                        answer: 2
+                    },
+                    {
+                        q: "Who did Jackson call for help?",
+                        hint: "Look for the name of his club leader.",
+                        options: ["Ms. Rivera", "Ms. Johnson", "Mr. Chen", "His dad"],
+                        answer: 0
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why was Jackson worried about his count?",
+                        hint: "Think about what might happen when birds fly around.",
+                        options: ["He didn't see enough birds", "He lost his binoculars", "He might have counted the same birds twice", "He forgot to write them down"],
+                        answer: 2
+                    },
+                    {
+                        q: "Why did Ms. Rivera say Jackson's count was still valuable?",
+                        hint: "Think about how many volunteers were doing this same task.",
+                        options: ["Jackson was the best counter", "Small errors don't matter with lots of volunteers", "His mistakes would cancel out", "The birds didn't matter anyway"],
+                        answer: 1
+                    },
+                    {
+                        q: "What is the main lesson of this story?",
+                        hint: "Look at the last sentence.",
+                        options: ["Bird counting is too difficult", "Always count things twice", "Doing your best is valuable even if not perfect", "Scientists make lots of mistakes"],
+                        answer: 2
+                    }
+                ]
+            },
+            {
+                id: 8,
+                title: "Story 8: The Icicle Garden",
+                text: `Zara's art class was assigned to create "environmental art"—art made from natural materials. She wanted to do something with winter. But she didn't know what. Everyone else seemed to have great ideas: pinecone sculptures, snow paintings, frost rubbings.
+
+One morning, she saw dozens of icicles hanging from her garage roof—not the same lengths, not the same thicknesses. She carefully collected them in a bucket and arranged them in her backyard like a crystal garden, pushing the thick ends into the snow so they stood upright.
+
+The creation looked magical—like a forest of glass trees catching the morning light. She took photos from not the same angles. But that afternoon, the temperature rose above freezing. When she came home from school, her icicle garden had shrunk. By evening, it was completely melted.
+
+Zara felt crushed. But when she showed her photos to the art teacher the next day, Ms. Lin smiled. "This is even better than a permanent sculpture," she said. "Environmental art is often temporary. You captured something beautiful that only existed for one day." Sometimes the most beautiful things are the ones that don't stay forever.`,
+                literal: [
+                    {
+                        q: "What was Zara's assignment?",
+                        hint: "The first sentence describes the type of art they had to create.",
+                        options: ["Paint a picture", "Make environmental art", "Write a poem", "Build a snowman"],
+                        answer: 1
+                    },
+                    {
+                        q: "What materials did Zara use for her art?",
+                        hint: "Look for what she collected from her garage roof.",
+                        options: ["Pinecones", "Snow", "Icicles", "Frost"],
+                        answer: 2
+                    },
+                    {
+                        q: "What happened to Zara's art by evening?",
+                        hint: "The story tells you what the temperature did and what happened as a result.",
+                        options: ["It froze solid", "It got bigger", "It completely melted", "Someone knocked it over"],
+                        answer: 2
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why did Zara's icicle garden melt?",
+                        hint: "Think about what happens to ice when it gets warm.",
+                        options: ["Someone touched it", "The temperature rose above freezing", "It was in the sun too long", "She didn't make it correctly"],
+                        answer: 1
+                    },
+                    {
+                        q: "How did Zara feel when she first saw her art had melted?",
+                        hint: "The story uses a specific word to describe her emotion.",
+                        options: ["Mad", "Relieved", "Crushed (very sad)", "Confused"],
+                        answer: 2
+                    },
+                    {
+                        q: "What did Zara learn from this experience?",
+                        hint: "Think about what her teacher said and the last sentence.",
+                        options: ["Never use ice for art projects", "Beautiful things can be temporary and still valuable", "Always check the weather forecast", "Photos are better than real art"],
+                        answer: 1
+                    }
+                ]
+            },
+            {
+                id: 9,
+                title: "Story 9: The Snow Day Campaign",
+                text: `Liam checked his phone every ten minutes on Wednesday evening. The weather forecast showed twelve to fifteen inches of snow arriving overnight. But would it be enough for a snow day?
+
+By Thursday morning, fourteen inches had fallen. it was still snowing. But the superintendent posted on social media: "School is open. Buses may run late." Liam groaned.
+
+At breakfast, Liam had an idea. He knew that school closures depended partly on whether buses could run safely. He opened the district's safety reporting app and started documenting his street—unplowed, cars stuck, visibility near zero. He wasn't the only one. Within an hour, dozens of parents and students had posted similar evidence.
+
+At 7:15 AM, the district reversed its decision. School was canceled. Liam's phone buzzed with texts from friends thanking him for the idea. He spent the morning building an elaborate snow fort with his little sister.
+
+That afternoon, his mom showed him a news article. The superintendent said community input had helped them make a safer decision. Liam learned that speaking up—especially with evidence—could actually change things.`,
+                literal: [
+                    {
+                        q: "How much snow was predicted?",
+                        hint: "Look at what the forecast showed on Wednesday evening.",
+                        options: ["Eight to ten inches", "Ten to twelve inches", "Twelve to fifteen inches", "Fifteen to eighteen inches"],
+                        answer: 2
+                    },
+                    {
+                        q: "What did Liam use to report the road conditions?",
+                        hint: "The story mentions a specific tool provided by the district.",
+                        options: ["Email", "A phone call", "The district's safety reporting app", "Social media"],
+                        answer: 2
+                    },
+                    {
+                        q: "What time was school canceled?",
+                        hint: "The story gives you the exact time the district changed its decision.",
+                        options: ["6:15 AM", "7:15 AM", "8:15 AM", "9:15 AM"],
+                        answer: 1
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why did the superintendent initially keep school open?",
+                        hint: "Think about what information might have been missing early in the morning.",
+                        options: ["They didn't believe the forecast", "They didn't know how bad the roads were", "They wanted students to come to school", "The buses were already running"],
+                        answer: 1
+                    },
+                    {
+                        q: "What made the superintendent change the decision?",
+                        hint: "Think about what Liam and others provided through the app.",
+                        options: ["More snow fell", "Parents complained", "Evidence from the community showing unsafe conditions", "The news reported it"],
+                        answer: 2
+                    },
+                    {
+                        q: "What lesson did Liam learn?",
+                        hint: "Look at the last sentence of the story.",
+                        options: ["Snow days are always fun", "Superintendents make bad decisions", "Speaking up with evidence can make a difference", "Technology doesn't work well"],
+                        answer: 2
+                    }
+                ]
+            },
+            {
+                id: 10,
+                title: "Story 10: The Maple Syrup Experiment",
+                text: `Ivy's uncle had a small maple syrup operation in Vermont. During winter break, he taught her how to tap maple trees. They hammered small spouts into the tree trunks and hung buckets underneath to collect the clear, watery sap.
+
+Ivy was disappointed. "This doesn't look like syrup," she said.
+
+Her uncle laughed. "That's because it's not. Yet." He explained that it took forty gallons of sap to make one gallon of syrup. They had to boil it for hours to evaporate the water.
+
+They collected sap for three days, then started boiling in the sugar house. Ivy expected it to be quick. But after two hours, the liquid still looked like slightly cloudy water. After four hours, it started to turn golden. She stayed up past midnight, watching it slow thicken.
+
+When they finally finished, they had less than a quart of syrup. Ivy felt let down—all that work for such a small amount. But the next morning, her uncle made pancakes and poured the syrup over them. The taste was incredible—rich, complex, nothing like store-bought syrup.
+
+Ivy understood something important. The best things often required patience and effort that seemed ridiculous until you experienced the result.`,
+                literal: [
+                    {
+                        q: "Where did Ivy's uncle live?",
+                        hint: "The first sentence names the state.",
+                        options: ["Vermont", "Maine", "New Hampshire", "Massachusetts"],
+                        answer: 0
+                    },
+                    {
+                        q: "How many gallons of sap does it take to make one gallon of syrup?",
+                        hint: "Ivy's uncle explained the exact ratio.",
+                        options: ["Ten gallons", "Twenty gallons", "Thirty gallons", "Forty gallons"],
+                        answer: 3
+                    },
+                    {
+                        q: "How long did they collect sap before boiling?",
+                        hint: "The story tells you how many days they spent collecting.",
+                        options: ["One day", "Two days", "Three days", "One week"],
+                        answer: 2
+                    }
+                ],
+                inferential: [
+                    {
+                        q: "Why was Ivy disappointed when she first saw the sap?",
+                        hint: "Think about what she expected compared to what she saw.",
+                        options: ["It was the wrong color", "It looked like water, not syrup", "There wasn't enough of it", "It tasted bad"],
+                        answer: 1
+                    },
+                    {
+                        q: "How did Ivy feel when they finished boiling and only had a quart?",
+                        hint: "Look for the word that describes her emotion before tasting it.",
+                        options: ["Excited", "Mad", "Let down (disappointed)", "Proud"],
+                        answer: 2
+                    },
+                    {
+                        q: "What did Ivy learn from making maple syrup?",
+                        hint: "Read the very last sentence carefully.",
+                        options: ["Maple syrup is too hard to make", "Store-bought syrup is better", "The best things require patience and hard work", "Vermont is the best place to live"],
+                        answer: 2
+                    }
+                ]
+            }
+        ];
+
+        const storiesSimplified = [
+            {
+                id: 1,
+                title: "Story 1: The Ice Fishing Trip",
+                text: "Marcus went ice fishing with his grandpa at the lake. They waited for hours, but no fish came. Other people nearby were catching lots of fish. Marcus remembered something from school. His teacher said fish stay near warm water in winter. Marcus told his grandpa they should move closer to the creek. At the new spot, Marcus caught four fish! He was so happy that school helped him solve the problem.",
+                literal: [
+                    { q: "Who did Marcus go fishing with?", hint: "Look at the first sentence.", options: ["His dad", "His grandpa", "His teacher", "His friend"], answer: 1 },
+                    { q: "How many fish did Marcus catch?", hint: "The story tells you the exact number.", options: ["Two fish", "Three fish", "Four fish", "Five fish"], answer: 2 },
+                    { q: "Where did Marcus and his grandpa move to catch fish?", hint: "Look for where Marcus said the warm water would be.", options: ["Near the creek", "In the middle of the lake", "By the dock", "Near the ice house"], answer: 0 }
+                ],
+                inferential: [
+                    { q: "Why weren't Marcus and his grandpa catching fish at first?", hint: "Think about where the fish wanted to be.", options: ["They had the wrong bait", "They weren't in the warm water area", "It was too cold outside", "The fish were sleeping"], answer: 1 },
+                    { q: "How did Marcus feel at the end?", hint: "Think about what he learned worked.", options: ["Sad and tired", "Happy and proud", "Angry and cold", "Bored and sleepy"], answer: 1 },
+                    { q: "What helped Marcus catch fish?", hint: "Think about what he remembered.", options: ["Luck", "Better bait", "What he learned in school", "His grandpa's idea"], answer: 2 }
+                ]
+            },
+            {
+                id: 2,
+                title: "Story 2: The Old Sled",
+                text: "Yuki found an old wooden sled in her grandma's garage. She took it to the hill and tried to slide down. The sled didn't move. It just scraped on the snow. Her neighbor Mr. Chen saw her. He said the wood was too dry and needed wax. He gave her a candle to rub on the bottom. After Yuki waxed the sled, it flew down the hill super fast!",
+                literal: [
+                    { q: "Where did Yuki find the sled?", hint: "The first sentence tells you where it was.", options: ["In her garage", "In her grandma's garage", "At the store", "On the hill"], answer: 1 },
+                    { q: "Who helped Yuki fix the sled?", hint: "Look for the neighbor's name.", options: ["Her grandma", "Her dad", "Mr. Chen", "Her friend"], answer: 2 },
+                    { q: "What did Mr. Chen give Yuki?", hint: "She needed to rub this on the sled.", options: ["Oil", "A candle", "Soap", "Ice"], answer: 1 }
+                ],
+                inferential: [
+                    { q: "Why didn't the sled work at first?", hint: "Think about what Mr. Chen said about old wood.", options: ["It was broken", "The wood was too dry", "It was too heavy", "The snow was wrong"], answer: 1 },
+                    { q: "How did Yuki probably feel when the sled finally worked?", hint: "Think about how you would feel going fast down a hill.", options: ["Scared and worried", "Excited and happy", "Sad and upset", "Tired and bored"], answer: 1 },
+                    { q: "What solved Yuki's problem?", hint: "What did she do to make the sled work?", options: ["She bought a new sled", "She asked for help and followed advice", "She tried a different hill", "She waited for better snow"], answer: 1 }
+                ]
+            },
+            {
+                id: 3,
+                title: "Story 3: The Cold Bird",
+                text: "Amara saw a small bird on her porch. It wasn't moving much. Its feathers were puffed up to stay warm. Amara wanted to help, but she remembered that wild birds shouldn't come inside. She put out food and water instead. The bird didn't eat for a long time. Then three other birds came. When the cold bird saw the other birds eating, it finally ate too. The next day, Amara saw healthy birds at her feeder. Maybe her bird was one of them.",
+                literal: [
+                    { q: "Where did Amara see the bird?", hint: "Look at the first sentence.", options: ["In a tree", "On her porch", "In the yard", "On the roof"], answer: 1 },
+                    { q: "What did Amara put out for the bird?", hint: "The story lists two things she gave.", options: ["Seeds and milk", "Bread and juice", "Food and water", "Worms and berries"], answer: 2 },
+                    { q: "How many other birds came to help?", hint: "Count the birds that arrived later.", options: ["Two birds", "Three birds", "Four birds", "Five birds"], answer: 1 }
+                ],
+                inferential: [
+                    { q: "Why didn't Amara bring the bird inside?", hint: "Think about what she remembered about wild birds.", options: ["She was scared of it", "It could harm the bird", "Her parents said no", "It was too big"], answer: 1 },
+                    { q: "Why did the cold bird finally eat?", hint: "What happened right before it ate?", options: ["The food got warmer", "It got hungrier", "Other birds showed it was safe", "Amara called to it"], answer: 2 },
+                    { q: "What is the main idea of this story?", hint: "Think about why Amara still helped even though she wasn't sure it worked.", options: ["Birds are hard to help", "It's good to try to help even when you're not sure it will work", "Wild birds don't need help", "Always bring birds inside"], answer: 1 }
+                ]
+            },
+            {
+                id: 4,
+                title: "Story 4: The Snow Horse",
+                text: "Jordan wanted to make a snow horse for the contest. She worked hard for three days. But something went wrong. The legs were too skinny and the neck was too fat. The head kept falling off. Jordan felt bad about her lumpy horse. On contest day, the judges surprised her. She won first place! The judge said her horse looked like special art with lots of feeling. Jordan's mistakes made something interesting.",
+                literal: [
+                    { q: "What animal did Jordan make from snow?", hint: "It's in the title and the story.", options: ["A dog", "A horse", "A cat", "A bird"], answer: 1 },
+                    { q: "How many days did Jordan work on her sculpture?", hint: "Look for how long she spent making it.", options: ["One day", "Two days", "Three days", "Four days"], answer: 2 },
+                    { q: "What place did Jordan win?", hint: "The judges announced her prize.", options: ["Fourth place", "Third place", "Second place", "First place"], answer: 3 }
+                ],
+                inferential: [
+                    { q: "How did Jordan feel before the judging?", hint: "Think about how she looked at her lumpy horse.", options: ["Proud and happy", "Embarrassed and sad", "Excited and ready", "Angry and mean"], answer: 1 },
+                    { q: "Why did Jordan win?", hint: "What did the judge say was special about it?", options: ["It looked perfect", "It was the biggest", "The mistakes made it look interesting", "She worked the longest"], answer: 2 },
+                    { q: "What did Jordan learn?", hint: "Think about what happened with her mistakes.", options: ["Never make snow sculptures", "Mistakes can turn into something good", "Always make things perfect", "Judges are always wrong"], answer: 1 }
+                ]
+            },
+            {
+                id: 5,
+                title: "Story 5: The Hidden Container",
+                text: "Tyler liked to find hidden containers using a GPS. Today he was looking for one near a frozen waterfall. When he got there, ice covered everything. It was too dangerous to climb on the ice. Tyler's dad said they should leave. But Tyler had a long pole. He stood far back and used the pole to reach the hiding spot. He found the container! Inside was a notebook and some small toys. Tyler was the first person to find it in three months.",
+                literal: [
+                    { q: "What was Tyler looking for?", hint: "The first sentence tells you what he likes to find.", options: ["Treasure", "A hidden container", "Animals", "Plants"], answer: 1 },
+                    { q: "What tool did Tyler use?", hint: "Look for what he brought with him.", options: ["A rope", "A shovel", "A long pole", "A ladder"], answer: 2 },
+                    { q: "What did Tyler find inside the container?", hint: "The story lists two things.", options: ["Money and candy", "A notebook and small toys", "Food and water", "Pictures and books"], answer: 1 }
+                ],
+                inferential: [
+                    { q: "Why couldn't Tyler reach the container at first?", hint: "Think about what was covering the area.", options: ["It was too high", "Dangerous ice was in the way", "He forgot his GPS", "It was too dark"], answer: 1 },
+                    { q: "How did Tyler solve the problem?", hint: "What did he use to stay safe but still reach the spot?", options: ["He climbed carefully", "He used a pole from far away", "He waited for spring", "His dad got it for him"], answer: 1 },
+                    { q: "What does this story teach us about Tyler?", hint: "Think about what he did when his dad wanted to leave.", options: ["He gives up easily", "He doesn't listen", "He finds smart solutions", "He takes too many risks"], answer: 2 }
+                ]
+            },
+            {
+                id: 6,
+                title: "Story 6: Waiting for Lights",
+                text: "Mei wanted to see the northern lights in the sky. She looked at the weather app every night. Finally it said the lights would come! Her family drove to a dark field. They waited and waited. No lights came. After an hour, her mom said it was time to go home. Mei felt so sad. But as they drove away, Mei saw a green glow! They stopped the car. Beautiful green and purple lights danced in the sky.",
+                literal: [
+                    { q: "What did Mei want to see?", hint: "The first sentence tells you what she was hoping for.", options: ["Stars", "The moon", "The northern lights", "Shooting stars"], answer: 2 },
+                    { q: "Where did Mei's family go to look?", hint: "They drove somewhere dark.", options: ["To the park", "To a dark field", "To the beach", "To the mountains"], answer: 1 },
+                    { q: "What colors were the lights?", hint: "The last sentence describes them.", options: ["Red and orange", "Blue and yellow", "Green and purple", "Pink and white"], answer: 2 }
+                ],
+                inferential: [
+                    { q: "Why did they go to a dark field?", hint: "Think about what helps you see lights in the sky better.", options: ["To be away from city lights", "To be closer to the lights", "Because the app said to", "To get fresh air"], answer: 0 },
+                    { q: "How did Mei feel when they started to drive home?", hint: "Think about not getting what you waited for.", options: ["Happy and excited", "Angry at her parents", "Disappointed and sad", "Sleepy and bored"], answer: 2 },
+                    { q: "What does this story teach?", hint: "Look at what happened even after they almost gave up.", options: ["Apps are always wrong", "Don't wait for things", "Good things can happen even after disappointment", "Always stay home"], answer: 2 }
+                ]
+            },
+            {
+                id: 7,
+                title: "Story 7: Counting Birds",
+                text: "Jackson's club was counting birds for science. He walked around his neighborhood with binoculars. He wrote down every bird he saw. By lunch, he had counted 43 birds. Then Jackson got worried. What if he counted the same blue jay flying from yard to yard? His numbers might be wrong! He called his teacher, Ms. Rivera. She said it was okay. Scientists know that volunteers make small mistakes. His best try was still helpful.",
+                literal: [
+                    { q: "What was Jackson counting?", hint: "It's in the title and first sentence.", options: ["Trees", "Squirrels", "Birds", "Houses"], answer: 2 },
+                    { q: "How many birds had Jackson counted by lunch?", hint: "The story gives you the exact number.", options: ["23 birds", "33 birds", "43 birds", "53 birds"], answer: 2 },
+                    { q: "Who did Jackson call for help?", hint: "Look for his teacher's name.", options: ["Ms. Smith", "Ms. Rivera", "Mr. Chen", "His mom"], answer: 1 }
+                ],
+                inferential: [
+                    { q: "Why was Jackson worried?", hint: "Think about what might happen when birds fly around.", options: ["He didn't see enough birds", "He lost his binoculars", "He might have counted the same bird twice", "He was tired"], answer: 2 },
+                    { q: "What did Ms. Rivera tell Jackson?", hint: "Think about why small mistakes are okay.", options: ["Start over from the beginning", "His best try was good enough", "He should quit", "Count only big birds"], answer: 1 },
+                    { q: "What is the lesson of this story?", hint: "Think about what Ms. Rivera said about doing your best.", options: ["Counting is too hard", "Perfect work is required", "Doing your best is good even with mistakes", "Science is boring"], answer: 2 }
+                ]
+            },
+            {
+                id: 8,
+                title: "Story 8: The Ice Garden",
+                text: "Zara had to make art from nature for school. She didn't know what to do. Then she saw icicles on her garage. She collected them and stuck them in the snow like a garden. It looked like glass trees! She took pictures. But that afternoon it got warm. When Zara came home, her ice garden was gone. It had melted. She felt terrible. The next day, her teacher saw the pictures. \"This is great!\" she said. \"The best art doesn't have to last forever.\"",
+                literal: [
+                    { q: "What did Zara use to make her art?", hint: "She found them hanging on her garage.", options: ["Sticks", "Icicles", "Rocks", "Leaves"], answer: 1 },
+                    { q: "What happened to Zara's art?", hint: "Think about what happens to ice when it gets warm.", options: ["It froze harder", "It got bigger", "It melted", "It blew away"], answer: 2 },
+                    { q: "What did Zara take of her ice garden?", hint: "This is how she could show her teacher what she made.", options: ["Videos", "Drawings", "Pictures", "Notes"], answer: 2 }
+                ],
+                inferential: [
+                    { q: "Why did Zara's garden melt?", hint: "What does warm weather do to ice?", options: ["She didn't make it right", "The temperature got warm", "Someone knocked it down", "It was old"], answer: 1 },
+                    { q: "How did Zara feel when it melted?", hint: "The story says she felt a strong negative emotion.", options: ["Happy", "Proud", "Terrible (very sad)", "Silly"], answer: 2 },
+                    { q: "What did Zara learn?", hint: "Think about what her teacher said about art lasting forever.", options: ["Never use ice for art", "Beautiful things don't have to last forever", "Only permanent art is good", "Always check the weather"], answer: 1 }
+                ]
+            },
+            {
+                id: 9,
+                title: "Story 9: The Snow Day",
+                text: "Liam watched the weather. Twelve inches of snow was coming! But the next morning, the school said it was still open. Liam had an idea. He used the school's app to report his street. It wasn't plowed. Cars were stuck. Many other people reported the same thing. An hour later, the school changed its mind. Snow day! Liam built a snow fort with his sister. That night, the news said the school made a safer choice because people spoke up.",
+                literal: [
+                    { q: "How much snow was predicted?", hint: "The story tells you in the first sentences.", options: ["Eight inches", "Ten inches", "Twelve inches", "Fifteen inches"], answer: 2 },
+                    { q: "What did Liam use to report the road?", hint: "Look for what tool he used.", options: ["Email", "A phone call", "The school's app", "A letter"], answer: 2 },
+                    { q: "What did Liam build during the snow day?", hint: "He made this with his sister.", options: ["A snowman", "A snow fort", "An igloo", "A snow slide"], answer: 1 }
+                ],
+                inferential: [
+                    { q: "Why did Liam report his street?", hint: "Think about what he wanted the school to know.", options: ["To complain", "To show it wasn't safe for buses", "To get attention", "Because he was bored"], answer: 1 },
+                    { q: "Why did the school change its decision?", hint: "What did many people do after Liam?", options: ["More snow fell", "Many people showed it wasn't safe", "The principal was tired", "Parents called"], answer: 1 },
+                    { q: "What did Liam learn?", hint: "Think about what happened when he spoke up.", options: ["Schools always make mistakes", "Snow days are easy to get", "Speaking up can make a difference", "Apps don't work"], answer: 2 }
+                ]
+            },
+            {
+                id: 10,
+                title: "Story 10: Making Syrup",
+                text: "Ivy visited her uncle's farm. He showed her how to get sap from maple trees. They hung buckets on the trees. The sap looked like water. Ivy was confused. Her uncle laughed. \"We have to boil it for hours,\" he said. \"It takes 40 gallons of sap to make one gallon of syrup.\" They boiled it all night. In the morning, they only had a tiny bit of syrup. Ivy felt disappointed. But when she tasted it on pancakes, it was amazing! Now Ivy understood. The best things take time and hard work.",
+                literal: [
+                    { q: "Where did Ivy visit?", hint: "The first sentence tells you whose place she went to.", options: ["Her aunt's house", "Her uncle's farm", "Her grandma's house", "Her friend's farm"], answer: 1 },
+                    { q: "What did they collect from the trees?", hint: "This is what they boiled to make syrup.", options: ["Water", "Sap", "Juice", "Leaves"], answer: 1 },
+                    { q: "How many gallons of sap make one gallon of syrup?", hint: "Her uncle told her the exact number.", options: ["10 gallons", "20 gallons", "30 gallons", "40 gallons"], answer: 3 }
+                ],
+                inferential: [
+                    { q: "Why was Ivy confused at first?", hint: "Think about what she expected sap to look like.", options: ["She didn't know about trees", "The sap looked like water, not syrup", "Her uncle was confusing", "She wanted to go home"], answer: 1 },
+                    { q: "Why did Ivy feel disappointed after boiling?", hint: "Compare how much work they did to how much syrup they got.", options: ["It tasted bad", "They got very little syrup for all that work", "It was the wrong color", "Her uncle was mad"], answer: 1 },
+                    { q: "What did Ivy learn?", hint: "Look at the last sentence.", options: ["Making syrup is too hard", "Store syrup is better", "Good things take time and hard work", "Don't help on farms"], answer: 2 }
+                ]
+            }
+        ];
+
+        const storiesBasic = [
+            {
+                id: 1,
+                title: "Story 1: Fishing on Ice",
+                text: "Marcus went fishing with Grandpa. They sat on the ice. They waited. No fish came. Marcus had an idea. He said, \"Let's move over there.\" They moved to a new spot. Then they caught four fish! Marcus was happy.",
+                literal: [
+                    { q: "Who did Marcus fish with?", hint: "Look at the first sentence.", options: ["Grandpa", "Dad", "Mom", "A friend"], answer: 0 },
+                    { q: "What did they catch?", hint: "They fish for these.", options: ["Frogs", "Fish", "Shoes", "Crabs"], answer: 1 },
+                    { q: "How many fish did they catch?", hint: "Count them: 1, 2, 3, 4.", options: ["One", "Two", "Three", "Four"], answer: 3 }
+                ],
+                inferential: [
+                    { q: "Why did they move?", hint: "They were not catching anything.", options: ["To find fish", "To seek sun", "To go home", "To sleep"], answer: 0 },
+                    { q: "How did Marcus feel?", hint: "He caught fish!", options: ["Sad", "Happy", "Mad", "Tired"], answer: 1 },
+                    { q: "Was Marcus's idea good?", hint: "Did it work?", options: ["Yes", "No", "Maybe", "I don't know"], answer: 0 }
+                ]
+            },
+            {
+                id: 2,
+                title: "Story 2: The Sled",
+                text: "Yuki had an old sled. It did not slide well. It was too slow. Mr. Chen helped her. He gave her a candle. \"Rub wax on the wood,\" he said. Yuki did it. Now the sled is fast! Yuki loves her sled.",
+                literal: [
+                    { q: "What did Yuki have?", hint: "She rides it on snow.", options: ["A bike", "A sled", "A car", "A boat"], answer: 1 },
+                    { q: "Who helped Yuki?", hint: "It was her neighbor.", options: ["Mom", "Grandma", "Mr. Chen", "Dad"], answer: 2 },
+                    { q: "What did she put on the sled?", hint: "It makes it slippery.", options: ["Water", "Sand", "Wax (candle)", "Glue"], answer: 2 }
+                ],
+                inferential: [
+                    { q: "Why was the sled slow?", hint: "The wood was...?", options: ["Too dry", "Too wet", "Too new", "Broken"], answer: 0 },
+                    { q: "Is the sled fast now?", hint: "Read the end of the story.", options: ["No", "Yes", "A little", "It stopped"], answer: 1 },
+                    { q: "Is Yuki happy?", hint: "She loves her sled.", options: ["Yes", "No", "She is sad", "She is mad"], answer: 0 }
+                ]
+            },
+            {
+                id: 3,
+                title: "Story 3: A Hungry Bird",
+                text: "Amara saw a cold bird. It was hungry. She put seeds outside. The bird did not eat. Then other birds came. The cold bird saw them. It ate some seeds too. The next day, the bird was gone. Amara hopes it is warm.",
+                literal: [
+                    { q: "What did Amara see?", hint: "It has feathers.", options: ["A cat", "A dog", "A bird", "A fish"], answer: 2 },
+                    { q: "What did she give the bird?", hint: "Birds eat these.", options: ["Pizza", "Seeds", "Candy", "Apples"], answer: 1 },
+                    { q: "Did the bird eat?", hint: "Check the middle of the story.", options: ["Yes", "No", "Maybe", "Later"], answer: 0 }
+                ],
+                inferential: [
+                    { q: "Why did Amara help?", hint: "The bird was...?", options: ["Cold and hungry", "Happy", "Playing", "Flying"], answer: 0 },
+                    { q: "Where did the bird go?", hint: "The story doesn't say, but it is not there.", options: ["Away", "Inside", "In the box", "Under the rug"], answer: 0 },
+                    { q: "Is Amara a kind girl?", hint: "She helped the bird.", options: ["Yes", "No", "Maybe", "I don't know"], answer: 0 }
+                ]
+            },
+            {
+                id: 4,
+                title: "Story 4: Snow Art",
+                text: "Jordan made a horse out of snow. It looked funny. Its legs were thin. Jordan was sad. But she won a prize! The judge liked it. He said it was interesting. Jordan was happy.",
+                literal: [
+                    { q: "What did Jordan make?", hint: "A snow...?", options: ["Dog", "Cat", "Horse", "Bear"], answer: 2 },
+                    { q: "Did she win?", hint: "She got a prize.", options: ["Yes", "No", "Maybe", "Later"], answer: 0 },
+                    { q: "Was the horse perfect?", hint: "It looked funny.", options: ["Yes", "No", "It was real", "It melted"], answer: 1 }
+                ],
+                inferential: [
+                    { q: "Why was Jordan sad at first?", hint: "Her horse looked...?", options: ["Funny / Lumpy", "Great", "Big", "Small"], answer: 0 },
+                    { q: "Why did she win?", hint: "The judge...?", options: ["Liked it", "Hated it", "Left", "Slept"], answer: 0 },
+                    { q: "How did she feel at the end?", hint: "She won!", options: ["Happy", "Sad", "Mad", "Tired"], answer: 0 }
+                ]
+            },
+            {
+                id: 5,
+                title: "Story 5: The Lost Box",
+                text: "Tyler looked for a hidden box. It was near the ice. The ice was dangerous. Tyler could not walk there. He used a long stick. He reached the box with the stick. He found a toy inside! Tyler was smart.",
+                literal: [
+                    { q: "What did Tyler look for?", hint: "A hidden...?", options: ["Shoe", "Box", "Hat", "Rock"], answer: 1 },
+                    { q: "What was near the box?", hint: "It is cold and slippery.", options: ["Fire", "Ice", "Grass", "Sand"], answer: 1 },
+                    { q: "What did he use to get it?", hint: "A long...?", options: ["Stick", "Rope", "Hand", "Foot"], answer: 0 }
+                ],
+                inferential: [
+                    { q: "Why didn't Tyler walk on the ice?", hint: "It was...?", options: ["Safe", "Dangerous", "Warm", "Dry"], answer: 1 },
+                    { q: "Did he get the box?", hint: "Yes or No.", options: ["Yes", "No", "Maybe", "Later"], answer: 0 },
+                    { q: "Was Tyler safe?", hint: "He didn't walk on the ice.", options: ["Yes", "No", "Maybe", "A little"], answer: 0 }
+                ]
+            },
+            {
+                id: 6,
+                title: "Story 6: Lights in the Sky",
+                text: "Mei wanted to see lights in the sky. She went outside in the dark. She waited. No lights came. She was sad. Then she saw green colors! The lights were dancing. They were beautiful.",
+                literal: [
+                    { q: "What did Mei want to see?", hint: "Lights in the...?", options: ["House", "Sky", "Car", "Box"], answer: 1 },
+                    { q: "Did she wait?", hint: "Yes or no.", options: ["Yes", "No", "Maybe", "Later"], answer: 0 },
+                    { q: "What color were the lights?", hint: "Like grass.", options: ["Red", "Green", "Blue", "Black"], answer: 1 }
+                ],
+                inferential: [
+                    { q: "Was it dark outside?", hint: "She saw lights in the sky.", options: ["Yes", "No", "It was sunny", "It was morning"], answer: 0 },
+                    { q: "Why was she sad at first?", hint: "She did not see...?", options: ["Lights", "Mom", "Dad", "Cars"], answer: 0 },
+                    { q: "Did she like the lights?", hint: "They were beautiful.", options: ["Yes", "No", "Maybe", "No"], answer: 0 }
+                ]
+            },
+            {
+                id: 7,
+                title: "Story 7: Counting Birds",
+                text: "Jackson counted birds. He saw many birds. Did he count one bird twice? Maybe. He asked his teacher. She said, \"It is okay. You did a good job.\" Jackson felt better.",
+                literal: [
+                    { q: "What did Jackson count?", hint: "They fly.", options: ["Cars", "Birds", "Dogs", "Trees"], answer: 1 },
+                    { q: "Who did he ask?", hint: "At school.", options: ["Mom", "Teacher", "Dad", "Friend"], answer: 1 },
+                    { q: "Did he do a good job?", hint: "Teacher said so.", options: ["Yes", "No", "Maybe", "Bad"], answer: 0 }
+                ],
+                inferential: [
+                    { q: "Why was Jackson worried?", hint: "He made a...?", options: ["Mistake", "Cake", "Hat", "Toy"], answer: 0 },
+                    { q: "Was the teacher mad?", hint: "She said it is okay.", options: ["Yes", "No", "Maybe", "A little"], answer: 1 },
+                    { q: "Is Jackson helpful?", hint: "He counted birds.", options: ["Yes", "No", "Maybe", "No"], answer: 0 }
+                ]
+            },
+            {
+                id: 8,
+                title: "Story 8: Ice Art",
+                text: "Zara made art with ice. It looked like glass trees. It was pretty. Then the sun came out. The ice melted. Where was the art? It was gone. Zara was sad. But she had a picture.",
+                literal: [
+                    { q: "What did Zara use?", hint: "Frozen water.", options: ["Sand", "Ice", "Wood", "Paper"], answer: 1 },
+                    { q: "What made the ice melt?", hint: "It is hot.", options: ["The Moon", "The Sun", "Wind", "Rain"], answer: 1 },
+                    { q: "What does she have left?", hint: "She took it with a camera.", options: ["A picture", "The ice", "A rock", "A stick"], answer: 0 }
+                ],
+                inferential: [
+                    { q: "Why did the art melt?", hint: "It got...?", options: ["Cold", "Warm", "Dark", "Wet"], answer: 1 },
+                    { q: "Is the art gone forever?", hint: "The ice is water now.", options: ["Yes", "No", "Maybe", "Later"], answer: 0 },
+                    { q: "Is the picture good?", hint: "It shows the pretty art.", options: ["Yes", "No", "Maybe", "No"], answer: 0 }
+                ]
+            },
+            {
+                id: 9,
+                title: "Story 9: Snow Day",
+                text: "Lots of snow fell. But school was open. Liam saw the road. It was bad. He used an app to show the school. \"Look at the snow,\" he said. The school saw it. They closed school. Hooray!",
+                literal: [
+                    { q: "What fell from the sky?", hint: "White and cold.", options: ["Rain", "Snow", "Candy", "Toys"], answer: 1 },
+                    { q: "Was school open first?", hint: "Yes or no.", options: ["Yes", "No", "Maybe", "Closed"], answer: 0 },
+                    { q: "What did Liam use?", hint: "On a phone.", options: ["App", "Book", "Pen", "Paper"], answer: 0 }
+                ],
+                inferential: [
+                    { q: "Why was the road bad?", hint: "Too much...?", options: ["Snow", "Rain", "Dirt", "Cars"], answer: 0 },
+                    { q: "Why did school close?", hint: "It was not...?", options: ["Safe", "Fun", "Cold", "Hot"], answer: 0 },
+                    { q: "Is Liam happy?", hint: "Hooray!", options: ["Yes", "No", "Sad", "Mad"], answer: 0 }
+                ]
+            },
+            {
+                id: 10,
+                title: "Story 10: Sweet Syrup",
+                text: "Ivy made maple syrup. She boiled tree water. She waited a long time. She only got a little syrup. She was sad. Then she tasted it. Yummy! It was sweet. She was happy now.",
+                literal: [
+                    { q: "What did Ivy make?", hint: "Sweet and sticky.", options: ["Soup", "Syrup", "Juice", "Milk"], answer: 1 },
+                    { q: "What did she boil?", hint: "Water from a...?", options: ["Tree", "River", "Lake", "Cup"], answer: 0 },
+                    { q: "How did it taste?", hint: "Yummy!", options: ["Bad", "Good", "Sour", "Salty"], answer: 1 }
+                ],
+                inferential: [
+                    { q: "Was it hard work?", hint: "She waited a long time.", options: ["Yes", "No", "Maybe", "Easy"], answer: 0 },
+                    { q: "Why was she sad first?", hint: "Only a...?", options: ["Little syrup", "Lot of syrup", "Bad syrup", "No syrup"], answer: 0 },
+                    { q: "Does she like it now?", hint: "It is sweet.", options: ["Yes", "No", "Maybe", "No"], answer: 0 }
+                ]
+            }
+        ];
+
+        let currentLevel = 'standard';
+        let currentStory = storiesStandard[0];
+        const navList = document.getElementById('navList');
+        const mainContent = document.getElementById('mainContent');
+
+        function init() {
+            renderNav();
+            loadStory(1);
+        }
+
+        function getStories() {
+            if (currentLevel === 'basic') return storiesBasic;
+            return currentLevel === 'standard' ? storiesStandard : storiesSimplified;
+        }
+
+        function toggleLevel(e) {
+            let newLevel = currentLevel;
+
+            // Check if a specific option was clicked
+            if (e && e.target && e.target.hasAttribute('data-val')) {
+                newLevel = e.target.getAttribute('data-val');
+            } else {
+                // Cycle through levels if container clicked
+                if (currentLevel === 'standard') newLevel = 'simplified';
+                else if (currentLevel === 'simplified') newLevel = 'basic';
+                else newLevel = 'standard';
+            }
+
+            if (newLevel === currentLevel) return;
+
+            currentLevel = newLevel;
+            document.getElementById('levelToggle').setAttribute('data-level', currentLevel);
+
+            // Update active state text
+            document.querySelectorAll('.level-toggle-option').forEach(opt => {
+                opt.classList.remove('active');
+                if (opt.id === `opt-${currentLevel}`) opt.classList.add('active');
+            });
+
+            // Reload current story ID with new level content
+            // Ensure ID exists in new set (it should, 1-10)
+            loadStory(currentStory.id);
+        }
+
+        function renderNav() {
+            const stories = getStories();
+            navList.innerHTML = '';
+            stories.forEach(story => {
+                const item = document.createElement('div');
+                item.className = `nav-item ${story.id === currentStory.id ? 'active' : ''}`;
+                item.onclick = () => loadStory(story.id);
+                item.innerHTML = `
+                    <span>Story ${story.id}</span>
+                `;
+                navList.appendChild(item);
+            });
+        }
+
+        function loadStory(id) {
+            const stories = getStories();
+            currentStory = stories.find(s => s.id === id);
+            renderNav();
+            renderContent();
+            // Scroll to top
+            document.querySelector('.main').scrollTop = 0;
+        }
+
+        function renderContent() {
+            // Render Questions
+            const renderQuestion = (q, index, type) => {
+                const uniqueId = `${type}_${index}`;
+                return `
+                <div class="question-card">
+                    <div class="question-text">${index + 1}. ${q.q}</div>
+                    
+                    <div class="input-area">
+                        <textarea class="text-input" placeholder="Type your answer here..."></textarea>
+                    </div>
+
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="toggleSection('${uniqueId}_hint', this)">
+                            <span>💡</span> I need help
+                        </button>
+                        <button class="action-btn" onclick="toggleSection('${uniqueId}_choices', this)">
+                             <span>📋</span> Choices
+                        </button>
+                    </div>
+
+                    <div id="${uniqueId}_hint" class="collapsible-content">
+                        <div class="hint-box">
+                            <span>💡</span> ${q.hint}
+                        </div>
+                    </div>
+
+                    <div id="${uniqueId}_choices" class="collapsible-content">
+                        <div class="options-grid">
+                            ${q.options.map((opt, i) => `
+                                <button class="option-btn" onclick="checkAnswer(this, ${i}, ${q.answer})">
+                                    ${['A', 'B', 'C', 'D'][i]}) ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `};
+
+            const literalHtml = currentStory.literal.map((q, i) => renderQuestion(q, i, 'literal')).join('');
+            const inferentialHtml = currentStory.inferential.map((q, i) => renderQuestion(q, i, 'inferential')).join('');
+
+            mainContent.innerHTML = `
+                <div class="content-container">
+                    <div class="story-card">
+                        <h1 class="story-title">${currentStory.title}</h1>
+                        <div class="story-text">
+                            ${currentStory.text.split('\n\n').map(p => `<p>${p}</p>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="section-title">Literal Questions</div>
+                    ${literalHtml}
+
+                    <div class="section-title">Inferential Questions</div>
+                    ${inferentialHtml}
+                    
+                    <div style="height: 50px;"></div>
+                </div>
+            `;
+        }
+
+        function toggleSection(id, btn) {
+            const el = document.getElementById(id);
+            el.classList.toggle('visible');
+            btn.classList.toggle('active');
+        }
+
+        function checkAnswer(btn, selectedIndex, correctIndex) {
+            // Reset siblings
+            const parent = btn.parentElement; // This is the options-grid
+            const buttons = parent.querySelectorAll('.option-btn');
+            buttons.forEach(b => {
+                b.classList.remove('correct', 'incorrect');
+                b.disabled = false;
+            });
+
+            if (selectedIndex === correctIndex) {
+                btn.classList.add('correct');
+                // Optional: Disable others to lock in
+            } else {
+                btn.classList.add('incorrect');
+            }
+        }
+
+        // Initialize
+        init();
+
+    </script>
+</body>
+
+</html>

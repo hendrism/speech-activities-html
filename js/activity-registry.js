@@ -22,7 +22,12 @@ window.activityRegistry = {
         title: '🔍 Context Clues',
         subtitle: 'Use clues to find the meaning',
         type: 'quiz',
-        data: window.contextClues,
+        data: window.contextCluesEasy, // Default to Easy
+        levels: {
+            'Easy': window.contextCluesEasy,
+            'Medium': window.contextCluesMedium,
+            'All': null // Merged at runtime
+        },
         engineConfig: {
             progressive: true, // Enable progressive help mode
             questionTemplate: (item) => `

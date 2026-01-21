@@ -205,9 +205,9 @@
         // Get activity ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const activityId = urlParams.get('id');
+        let currentActivityConfig = null;
+        let currentEngine = null;
 
-        // Wait for scripts to load if needed, but since they are blocking scripts, they should be ready.
-        // However, let's wrap in DOMContentLoaded just in case.
         document.addEventListener('DOMContentLoaded', () => {
             const config = window.activityRegistry ? window.activityRegistry[activityId] : null;
 
@@ -215,19 +215,80 @@
                 document.getElementById('activityTitle').textContent = 'Activity Not Found';
                 document.getElementById('activitySubtitle').textContent = 'Please check the URL or go back to the hub.';
             } else {
+                currentActivityConfig = config;
                 document.getElementById('activityTitle').textContent = config.title;
                 document.getElementById('activitySubtitle').textContent = config.subtitle;
 
-                if (config.type === 'quiz') {
-                    const engine = new window.QuizEngine({
-                        data: config.data,
-                        containerId: 'activity-container',
-                        // Pass the specific configuration for this activity type
-                        config: config.engineConfig
-                    });
+                // Render Level Selectors if available
+                if (config.levels) {
+                    renderLevelSelector(config);
                 }
+
+                initActivity(config.data);
             }
         });
+
+        function renderLevelSelector(config) {
+            const container = document.getElementById('nav-container');
+            // Insert level controls BEFORE the question nav
+            const levelDiv = document.createElement('div');
+            levelDiv.className = 'level-selector';
+            levelDiv.style.marginBottom = '20px';
+            levelDiv.style.textAlign = 'center';
+
+            Object.keys(config.levels).forEach(levelName => {
+                const btn = document.createElement('button');
+                btn.textContent = levelName;
+                btn.className = 'nav-btn'; // Re-use nav-btn style
+                if (levelName === 'Easy') btn.classList.add('active'); // Default active
+
+                btn.onclick = () => {
+                    // Update active state
+                    levelDiv.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // Load data
+                    loadLevel(levelName, config);
+                };
+                levelDiv.appendChild(btn);
+            });
+
+            // Prepend to nav container or header? 
+            // Let's put it at the top of main content or below header.
+            // There is already a #nav-container for question numbers.
+            // Let's create a specific container for levels if not exists, or insert before nav.
+            // Actually, inserting into nav-container might mix with question numbers.
+            // Let's insert it before nav-container.
+            const mainNav = document.getElementById('nav-container');
+            mainNav.parentNode.insertBefore(levelDiv, mainNav);
+        }
+
+        function loadLevel(levelName, config) {
+            let data = [];
+            if (levelName === 'All') {
+                // Combine all arrays (excluding null/All itself)
+                Object.entries(config.levels).forEach(([key, val]) => {
+                    if (val) data = data.concat(val);
+                });
+            } else {
+                data = config.levels[levelName];
+            }
+
+            initActivity(data);
+        }
+
+        function initActivity(data) {
+            if (currentActivityConfig.type === 'quiz') {
+                // Clear container
+                document.getElementById('activity-container').innerHTML = '';
+
+                currentEngine = new window.QuizEngine({
+                    data: data,
+                    containerId: 'activity-container',
+                    config: currentActivityConfig.engineConfig
+                });
+            }
+        }
     </script>
 </body>
 

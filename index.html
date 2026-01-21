@@ -7,285 +7,299 @@
     <title>Speech Therapy Activities Hub</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --bg: #f3f4f6;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
         .header {
             text-align: center;
-            color: white;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            padding: 20px 0;
         }
 
         .header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 2.2em;
+            margin: 0 0 10px;
+            color: #111827;
         }
 
         .header p {
-            font-size: 1.3em;
-            opacity: 0.9;
+            color: var(--text-muted);
+            font-size: 1.1em;
+            margin: 0;
+        }
+
+        /* Controls: Search & Chips */
+        .controls-area {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            background: rgba(243, 244, 246, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 10px 0 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .search-box {
-            max-width: 800px;
-            margin: 0 auto 30px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 16px;
         }
 
         .search-input {
             width: 100%;
-            padding: 15px;
-            font-size: 18px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-family: inherit;
+            padding: 16px 20px;
+            font-size: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+            box-sizing: border-box;
         }
 
         .search-input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
         }
 
-        .filter-tabs {
+        .topic-chips {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 30px;
         }
 
-        .filter-btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
+        .chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
             background: white;
-            color: #333;
+            border: 1px solid #e5e7eb;
+            color: var(--text-muted);
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .filter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        .chip:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
         }
 
-        .filter-btn.active {
-            background: #4CAF50;
+        .chip.active {
+            background: #3b82f6;
             color: white;
+            border-color: #3b82f6;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .category-section {
-            margin-bottom: 40px;
-        }
-
-        .category-header {
+        /* Accordion Layout */
+        .accordion-item {
             background: white;
-            padding: 20px;
-            border-radius: 15px 15px 0 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .category-title {
-            font-size: 2em;
-            color: #333;
-            margin: 0;
-        }
-
-        .category-description {
-            color: #666;
-            font-size: 1.1em;
-            margin-top: 5px;
-        }
-
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 12px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 0 0 15px 15px;
-        }
-
-        .activity-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid transparent;
             transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             cursor: pointer;
-            text-decoration: none;
-            color: inherit;
+            user-select: none;
+            background: white;
+        }
+
+        .accordion-header:hover {
+            background: #f9fafb;
+        }
+
+        .category-info {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .activity-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        .category-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111827;
         }
 
-        .activity-icon {
-            font-size: 2em;
+        .category-count {
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .chevron {
+            transition: transform 0.2s;
+            color: #9ca3af;
+        }
+
+        .accordion-item.open .chevron {
+            transform: rotate(180deg);
+        }
+
+        .accordion-body {
+            display: none;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .accordion-item.open .accordion-body {
+            display: block;
+            animation: slideDown 0.2s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* List Items */
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 24px;
+            border-bottom: 1px solid #f3f4f6;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.2s;
+            gap: 16px;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-item:hover {
+            background: #f8fafc;
+        }
+
+        .item-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+            border-radius: 8px;
             flex-shrink: 0;
         }
 
-        .activity-content {
+        .item-content {
             flex: 1;
             min-width: 0;
         }
 
-        .activity-title {
-            font-size: 1em;
+        .item-title {
             font-weight: 600;
-            color: #333;
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-
-        .activity-description {
-            color: #666;
-            font-size: 0.85em;
-            margin-bottom: 8px;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .activity-tags {
+            color: #374151;
+            margin-bottom: 2px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
+            align-items: center;
+            gap: 8px;
         }
 
-        .tag {
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 0.7em;
-            font-weight: 600;
+        .item-desc {
+            font-size: 0.9rem;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .mini-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: #e2e8f0;
+            color: #475569;
             white-space: nowrap;
         }
 
-        .expandable-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            flex-direction: column;
+        .mini-tag.new {
+            background: #dcfce7;
+            color: #166534;
         }
 
-        .expandable-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            width: 100%;
+        .mini-tag.winter {
+            background: #dbeafe;
+            color: #1e40af;
         }
 
-        .expandable-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        .mini-tag.fall {
+            background: #ffedd5;
+            color: #9a3412;
         }
 
-        .expand-icon {
-            font-size: 1.2em;
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
+        .hidden {
+            display: none !important;
         }
 
-        .expandable-card.expanded .expand-icon {
-            transform: rotate(90deg);
-        }
-
-        .levels-container {
-            display: none;
-            width: 100%;
-            margin-top: 8px;
-            padding-top: 12px;
-            border-top: 2px solid #f0f0f0;
-            gap: 8px;
-            flex-direction: column;
-        }
-
-        .levels-container.show {
-            display: flex;
-        }
-
-        .level-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            background: #f9fafb;
-            border-radius: 8px;
-            transition: all 0.2s;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .level-item:hover {
-            background: #f0f4ff;
-            transform: translateX(8px);
-        }
-
-        .level-badge {
-            background: #667eea;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.75em;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .level-info {
-            flex: 1;
-        }
-
-        .level-title {
-            font-weight: 600;
-            font-size: 0.9em;
-            color: #333;
-        }
-
-        .level-description {
-            font-size: 0.8em;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
+        @media (max-width: 640px) {
+            .activity-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
 
-            .activities-grid {
-                grid-template-columns: 1fr;
+            .item-tags {
+                flex-wrap: wrap;
+                margin-top: 4px;
             }
 
-            .filter-tabs {
-                gap: 5px;
-            }
-
-            .filter-btn {
-                padding: 10px 18px;
-                font-size: 14px;
+            .item-desc {
+                white-space: normal;
             }
         }
     </style>
@@ -297,23 +311,21 @@
         <p>Choose an activity to get started</p>
     </div>
 
-    <div class="search-box">
-        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search activities...">
-    </div>
+    <div class="controls-area">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput"
+                    placeholder="Search activities (e.g., 'Winter', 'Context Clues')...">
+            </div>
 
-    <div class="filter-tabs">
-        <button class="filter-btn active" data-filter="all">All Activities</button>
-        <button class="filter-btn" data-filter="articulation">👄 Articulation</button>
-        <button class="filter-btn" data-filter="fluency">🎯 Fluency</button>
-        <button class="filter-btn" data-filter="grammar">🔤 Grammar</button>
-        <button class="filter-btn" data-filter="vocabulary">🧠 Vocabulary</button>
-        <button class="filter-btn" data-filter="syntax">✍️ Sentence Building</button>
-        <button class="filter-btn" data-filter="reading">📖 Reading</button>
-        <button class="filter-btn" data-filter="inference">🔎 Inference</button>
-        <button class="filter-btn" data-filter="writing">📝 Writing</button>
-        <button class="filter-btn" data-filter="pragmatics">💬 Pragmatics</button>
-        <button class="filter-btn" data-filter="social">🤝 Social Problem Solving</button>
-        <button class="filter-btn" data-filter="executive">🧭 Executive Function</button>
+            <div class="topic-chips" id="topicChips">
+                <button class="chip active" data-filter="all">All</button>
+                <button class="chip" data-filter="new">✨ New</button>
+                <button class="chip" data-filter="winter">❄️ Winter</button>
+                <button class="chip" data-filter="thanksgiving">🦃 Thanksgiving</button>
+                <button class="chip" data-filter="fall">🍂 Fall</button>
+            </div>
+        </div>
     </div>
 
     <div class="container" id="activitiesContainer"></div>
@@ -481,6 +493,13 @@
                         icon: '📦',
                         description: 'Form regular and irregular plural nouns with scaffolds.',
                         tags: ['Plurals', 'Grammar', 'Nouns']
+                    },
+                    {
+                        title: 'Plural Noun Fill-In Stories',
+                        file: 'plural_noun_stories.html',
+                        icon: '📝',
+                        description: 'Fill in the blanks with correct plural nouns (choices + hints).',
+                        tags: ['Plurals', 'Grammar', 'Stories']
                     }
                 ]
             },
@@ -778,6 +797,13 @@
                         icon: '🌨️',
                         description: 'More detailed winter scenes with literal and inferential tabs, images, and progressive hints.',
                         tags: ['Seasonal', 'Literal', 'Inferential', 'Progressive Hints']
+                    },
+                    {
+                        title: 'Winter Short Stories Collection',
+                        file: 'winter_short_stories.html',
+                        icon: '❄️',
+                        description: 'Ten winter short stories with literal and inferential questions.',
+                        tags: ['Winter', 'Reading', 'Literal', 'Inferential']
                     },
                     {
                         title: 'Blend Story Reader',
@@ -1118,116 +1144,150 @@
             const container = document.getElementById('activitiesContainer');
             container.innerHTML = '';
 
-            const searchLower = search.toLowerCase();
+            const searchLower = search.trim().toLowerCase();
+            const activeTopic = filter;
 
-            activities.forEach(categoryGroup => {
-                // Filter items
-                const filteredItems = categoryGroup.items.filter(item => {
-                    const matchesFilter = filter === 'all' || categoryGroup.category === filter;
-                    const matchesSearch = search === '' ||
-                        item.title.toLowerCase().includes(searchLower) ||
-                        item.description.toLowerCase().includes(searchLower) ||
-                        item.tags.some(tag => tag.toLowerCase().includes(searchLower));
-                    return matchesFilter && matchesSearch;
-                });
+            let hasResults = false;
 
-                if (filteredItems.length === 0) return;
+            activities.forEach(category => {
+                // Flatten items (handle expandables/levels by adding them to the list)
+                let processItems = [];
+                category.items.forEach(item => {
+                    if (item.levels) {
+                        item.levels.forEach(level => {
+                            let mixedTags = [...(item.tags || [])];
+                            if (level.badge) mixedTags.push(level.badge);
 
-                const section = document.createElement('div');
-                section.className = 'category-section';
-
-                const header = document.createElement('div');
-                header.className = 'category-header';
-                header.innerHTML = `<h2 class="category-title">${categoryGroup.title}</h2>`;
-
-                const grid = document.createElement('div');
-                grid.className = 'activities-grid';
-
-                filteredItems.forEach(item => {
-                    if (item.expandable && item.levels) {
-                        // Create expandable card
-                        const card = document.createElement('div');
-                        card.className = 'expandable-card';
-
-                        const tags = item.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('');
-
-                        card.innerHTML = `
-                            <div class="expandable-header">
-                                <span class="expand-icon">▶</span>
-                                <div class="activity-icon">${item.icon}</div>
-                                <div class="activity-content">
-                                    <div class="activity-title">${item.title}</div>
-                                    <div class="activity-description">${item.description}</div>
-                                    <div class="activity-tags">${tags}</div>
-                                </div>
-                            </div>
-                            <div class="levels-container">
-                                ${item.levels.map(level => `
-                                    <a href="${level.file}" target="_blank" class="level-item">
-                                        <span class="level-badge">${level.badge}</span>
-                                        <div class="level-info">
-                                            <div class="level-title">${level.title}</div>
-                                            <div class="level-description">${level.description}</div>
-                                        </div>
-                                    </a>
-                                `).join('')}
-                            </div>
-                        `;
-
-                        card.querySelector('.expandable-header').addEventListener('click', function (e) {
-                            e.stopPropagation();
-                            card.classList.toggle('expanded');
-                            card.querySelector('.levels-container').classList.toggle('show');
+                            processItems.push({
+                                ...level,
+                                icon: item.icon,
+                                tags: mixedTags,
+                                title: `${item.title}: ${level.title}`
+                            });
                         });
-
-                        grid.appendChild(card);
                     } else {
-                        // Create regular card
-                        const card = document.createElement('a');
-                        card.className = 'activity-card';
-                        card.href = item.file;
-                        card.target = '_blank';
-
-                        const tags = item.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('');
-
-                        card.innerHTML = `
-                            <div class="activity-icon">${item.icon}</div>
-                            <div class="activity-content">
-                                <div class="activity-title">${item.title}</div>
-                                <div class="activity-description">${item.description}</div>
-                                <div class="activity-tags">${tags}</div>
-                            </div>
-                        `;
-
-                        grid.appendChild(card);
+                        processItems.push(item);
                     }
                 });
 
-                section.appendChild(header);
-                section.appendChild(grid);
-                container.appendChild(section);
+                // Filter items
+                const filteredItems = processItems.filter(item => {
+                    // Match Search
+                    const matchesSearch = (item.title || '').toLowerCase().includes(searchLower) ||
+                        (item.description || '').toLowerCase().includes(searchLower) ||
+                        (item.tags && item.tags.some(t => t.toLowerCase().includes(searchLower)));
+
+                    if (searchLower && !matchesSearch) return false;
+
+                    // Match Topic Filter
+                    if (activeTopic === 'all') return true;
+                    if (activeTopic === 'new' && item.tags && item.tags.some(t => t.toLowerCase().includes('new'))) return true;
+                    if (activeTopic !== 'all' && activeTopic !== 'new') {
+                        // General Topic Match
+                        return item.tags && item.tags.some(t => t.toLowerCase().includes(activeTopic));
+                    }
+
+                    return false;
+                });
+
+                if (filteredItems.length > 0) {
+                    hasResults = true;
+
+                    // Create Accordion Group
+                    const group = document.createElement('div');
+                    group.className = 'accordion-item';
+
+                    // Auto-open logic
+                    const shouldOpen = (searchLower.length > 0 || activeTopic !== 'all' || category.category === 'new-system');
+                    if (shouldOpen) group.classList.add('open');
+
+                    // Header
+                    const header = document.createElement('div');
+                    header.className = 'accordion-header';
+                    header.innerHTML = `
+                        <div class="category-info">
+                            <span class="chevron">▼</span>
+                            <span class="category-name">${category.title}</span>
+                            <span class="category-count">${filteredItems.length}</span>
+                        </div>
+                    `;
+                    header.onclick = () => group.classList.toggle('open');
+
+                    // Body
+                    const body = document.createElement('div');
+                    body.className = 'accordion-body';
+
+                    filteredItems.forEach(item => {
+                        const el = document.createElement('a');
+                        el.className = 'activity-item';
+                        el.href = item.file || '#';
+                        if (item.file) el.target = '_blank';
+
+                        // Tags
+                        const tagsHtml = (item.tags || []).slice(0, 3).map(tag => {
+                            const t = tag.toLowerCase();
+                            let className = 'mini-tag';
+                            if (t.includes('new')) className += ' new';
+                            else if (t.includes('winter')) className += ' winter';
+                            else if (t.includes('fall')) className += ' fall';
+                            return `<span class="${className}">${tag}</span>`;
+                        }).join('');
+
+                        el.innerHTML = `
+                            <div class="item-icon">${item.icon || '📄'}</div>
+                            <div class="item-content">
+                                <div class="item-title">${item.title}</div>
+                                <div class="item-desc">${item.description}</div>
+                            </div>
+                            <div class="item-tags">${tagsHtml}</div>
+                        `;
+
+                        body.appendChild(el);
+                    });
+
+                    group.appendChild(header);
+                    group.appendChild(body);
+                    container.appendChild(group);
+                }
             });
 
-            if (container.innerHTML === '') {
-                container.innerHTML = '<div style="text-align: center; color: white; font-size: 1.5em; padding: 50px;">No activities found</div>';
+            if (!hasResults) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #6b7280;">
+                        <div style="font-size: 3em; margin-bottom: 10px;">🔍</div>
+                        <p>No matches for this filter.</p>
+                        <button onclick="clearFilters()" style="margin-top: 10px; color: var(--primary); background:none; border:none; cursor:pointer; text-decoration:underline;">Clear Filters</button>
+                    </div>
+                `;
             }
         }
 
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const filter = this.dataset.filter;
-                const search = document.getElementById('searchInput').value;
-                renderActivities(filter, search);
-            });
+        function toggleTopic(topic) {
+            const buttons = document.querySelectorAll('.chip');
+            buttons.forEach(b => b.classList.remove('active'));
+
+            const activeBtn = document.querySelector(`.chip[data-filter="${topic}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const search = document.getElementById('searchInput').value;
+            renderActivities(topic, search);
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            toggleTopic('all');
+        }
+
+        // Event Listeners
+        document.getElementById('topicChips').addEventListener('click', (e) => {
+            if (e.target.classList.contains('chip')) {
+                toggleTopic(e.target.dataset.filter);
+            }
         });
 
-        // Search
-        document.getElementById('searchInput').addEventListener('input', function () {
-            const filter = document.querySelector('.filter-btn.active').dataset.filter;
-            renderActivities(filter, this.value);
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const activeTopic = document.querySelector('.chip.active').dataset.filter;
+            renderActivities(activeTopic, e.target.value);
         });
 
         // Initial render
