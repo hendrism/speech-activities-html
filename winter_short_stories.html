@@ -185,6 +185,21 @@
             font-weight: 800;
         }
 
+        .story-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .story-image {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: var(--radius);
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
         .story-text {
             font-size: 1.15rem;
             line-height: 1.8;
@@ -375,6 +390,47 @@
                 padding: 16px;
             }
         }
+
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 2px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+            background: #f1f5f9;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-dark);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 
@@ -455,6 +511,26 @@ Within ten minutes at the new spot, Marcus felt a strong tug. He pulled up a bea
                         options: ["Fishing is boring", "Always listen to your grandfather", "School knowledge can be useful in real life", "Fish don't bite in winter"],
                         answer: 2
                     }
+                ],
+                verbTense: [
+                    {
+                        q: "What did Marcus do before moving to the new spot?",
+                        hint: "This is past tense (what happened).",
+                        options: ["He remembered his science lesson", "He will catch a fish", "He is drilling a hole", "He sleeps"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will Marcus likely do next winter?",
+                        hint: "This is future tense (what will happen).",
+                        options: ["He stopped fishing", "He will go ice fishing again", "He was fishing", "He fished"],
+                        answer: 1
+                    },
+                    {
+                        q: "What were the other fishermen doing while Marcus waited?",
+                        hint: "This is past continuous tense (was/were doing).",
+                        options: ["They will catch fish", "They were catching perch and walleye", "They catch fish", "They are catching fish"],
+                        answer: 1
+                    }
                 ]
             },
             {
@@ -506,6 +582,26 @@ Yuki spent twenty minutes coating the toboggan's underside. She climbed the hill
                         options: ["New things are always better than old things", "Sometimes problems have simple solutions", "You should never use old equipment", "Sledding is dangerous"],
                         answer: 1
                     }
+                ],
+                verbTense: [
+                    {
+                        q: "What did Mr. Chen give to Yuki?",
+                        hint: "This is past tense.",
+                        options: ["He gave her a candle", "He will give her wax", "He is giving her a shovel", "He gives advice"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will Yuki do tomorrow?",
+                        hint: "This is future tense.",
+                        options: ["She stayed inside", "She will bring her friends", "She was sledding", "She sleds"],
+                        answer: 1
+                    },
+                    {
+                        q: "What was the toboggan doing before the wax?",
+                        hint: "This is past continuous tense.",
+                        options: ["It is flying", "It will move fast", "It was scraping along the snow", "It moves slow"],
+                        answer: 2
+                    }
                 ]
             },
             {
@@ -555,6 +651,26 @@ By the next morning, the little bird was gone. Amara felt disappointed. But her 
                         q: "What is the main message of this story?",
                         hint: "Remember what Amara's dad said at the end.",
                         options: ["Wild birds are dangerous", "Helping is worthwhile even when we can't see the results", "Birds don't need human help", "Only experts should help animals"],
+                        answer: 1
+                    }
+                ],
+                verbTense: [
+                    {
+                        q: "What did Amara do for the bird?",
+                        hint: "This is past tense.",
+                        options: ["She put out food and water", "She will call the ranger", "She is watching the bird", "She chases it"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will the bird likely do now that it is warm?",
+                        hint: "This is future tense.",
+                        options: ["It stayed frozen", "It will fly away and find food", "It was hopping", "It hops"],
+                        answer: 1
+                    },
+                    {
+                        q: "What were the chickadees doing at the feeder?",
+                        hint: "This is past continuous tense.",
+                        options: ["They are sleeping", "They were eating healthy and active", "They will eat", "They eat"],
                         answer: 1
                     }
                 ]
@@ -610,6 +726,26 @@ Jordan's mouth fell open. Abstract? The judge explained that her sculpture had "
                         options: ["Never try to make animals from snow", "Always follow the plan exactly", "Mistakes can lead to unexpected success", "Winning doesn't matter"],
                         answer: 2
                     }
+                ],
+                verbTense: [
+                    {
+                        q: "What happened to the sculpture's head?",
+                        hint: "This is past tense.",
+                        options: ["It fell off twice", "It will stay on", "It is falling", "It falls"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will Jordan probably do next year?",
+                        hint: "This is future tense.",
+                        options: ["She quit art", "She will enter the contest again", "She was sculpting", "She sculpts"],
+                        answer: 1
+                    },
+                    {
+                        q: "What was the judge doing?",
+                        hint: "This is past continuous tense.",
+                        options: ["He is judging", "He will give a prize", "He was explainng why she won", "He judges"],
+                        answer: 2
+                    }
                 ]
             },
             {
@@ -659,6 +795,26 @@ Inside was a soggy logbook and a few plastic toys. Tyler signed the log, left on
                         q: "What character trait helped Tyler succeed?",
                         hint: "Think about what Tyler did in its place of just leaving.",
                         options: ["He was very strong", "He was persistent and creative", "He was lucky", "He was fast"],
+                        answer: 1
+                    }
+                ],
+                verbTense: [
+                    {
+                        q: "What did Tyler use to reach the container?",
+                        hint: "This is past tense.",
+                        options: ["He used a hiking pole", "He will use a ladder", "He is using a rope", "He uses a stick"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will Tyler likely do with the compass?",
+                        hint: "This is future tense.",
+                        options: ["He lost it", "He will use it on his next hike", "He was playing with it", "He breaks it"],
+                        answer: 1
+                    },
+                    {
+                        q: "What were they discovering near the waterfall?",
+                        hint: "This is past continuous tense.",
+                        options: ["They will see ice", "They were discovering dangerous ice", "They are looking", "They find ice"],
                         answer: 1
                     }
                 ]
@@ -714,6 +870,26 @@ Sometimes the best things are worth the wait and the disappointment along the wa
                         options: ["Technology doesn't work well", "Northern lights are boring", "Good things are worth waiting for", "Always listen to weather forecasts"],
                         answer: 2
                     }
+                ],
+                verbTense: [
+                    {
+                        q: "What happened when they first arrived at the field?",
+                        hint: "This is past tense.",
+                        options: ["They saw nothing", "They will see lights", "They are waiting", "They see stars"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will Mei do the next time there is a storm forecast?",
+                        hint: "This is future tense.",
+                        options: ["She stayed home", "She will go look again", "She was sleeping", "She ignores it"],
+                        answer: 1
+                    },
+                    {
+                        q: "What were the lights doing?",
+                        hint: "This is past continuous tense.",
+                        options: ["They will shine", "They were dancing across the sky", "They are glowing", "They dance"],
+                        answer: 1
+                    }
                 ]
             },
             {
@@ -765,6 +941,26 @@ Jackson added a note to his form and kept counting. By the end of the day, he'd 
                         options: ["Bird counting is too difficult", "Always count things twice", "Doing your best is valuable even if not perfect", "Scientists make lots of mistakes"],
                         answer: 2
                     }
+                ],
+                verbTense: [
+                    {
+                        q: "What did Jackson do when he was worried?",
+                        hint: "This is past tense.",
+                        options: ["He called Ms. Rivera", "He will quit", "He is counting", "He stops"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will the scientists do with the data?",
+                        hint: "This is future tense.",
+                        options: ["They threw it away", "They will track the bird population", "They were analyzing it", "They study birds"],
+                        answer: 1
+                    },
+                    {
+                        q: "What was Jackson doing all morning?",
+                        hint: "This is past continuous tense.",
+                        options: ["He will walk", "He was walking and counting birds", "He is sleeping", "He counts"],
+                        answer: 1
+                    }
                 ]
             },
             {
@@ -814,6 +1010,26 @@ Zara felt crushed. But when she showed her photos to the art teacher the next da
                         q: "What did Zara learn from this experience?",
                         hint: "Think about what her teacher said and the last sentence.",
                         options: ["Never use ice for art projects", "Beautiful things can be temporary and still valuable", "Always check the weather forecast", "Photos are better than real art"],
+                        answer: 1
+                    }
+                ],
+                verbTense: [
+                    {
+                        q: "What happened to the icicle garden?",
+                        hint: "This is past tense.",
+                        options: ["It melted", "It will grow", "It is freezing", "It breaks"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will Zara remember about her art?",
+                        hint: "This is future tense.",
+                        options: ["She forgot it", "She will remember it was beautiful", "She was crying", "She remembers"],
+                        answer: 1
+                    },
+                    {
+                        q: "What were the icicles doing in the light?",
+                        hint: "This is past continuous tense.",
+                        options: ["They will melt", "They were catching the morning light", "They are falling", "They shine"],
                         answer: 1
                     }
                 ]
@@ -868,6 +1084,26 @@ That afternoon, his mom showed him a news article. The superintendent said commu
                         hint: "Look at the last sentence of the story.",
                         options: ["Snow days are always fun", "Superintendents make bad decisions", "Speaking up with evidence can make a difference", "Technology doesn't work well"],
                         answer: 2
+                    }
+                ],
+                verbTense: [
+                    {
+                        q: "What did Liam do with the app?",
+                        hint: "This is past tense.",
+                        options: ["He reported the road conditions", "He will play games", "He is texting", "He calls school"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will the school do next time?",
+                        hint: "This is future tense.",
+                        options: ["They ignored it", "They will listen to community input", "They were closing", "They open"],
+                        answer: 1
+                    },
+                    {
+                        q: "What was happening early Thursday morning?",
+                        hint: "This is past continuous tense.",
+                        options: ["Snow was falling", "Sun will shine", "Birds are singing", "Wind blows"],
+                        answer: 0
                     }
                 ]
             },
@@ -924,6 +1160,26 @@ Ivy understood something important. The best things often required patience and 
                         options: ["Maple syrup is too hard to make", "Store-bought syrup is better", "The best things require patience and hard work", "Vermont is the best place to live"],
                         answer: 2
                     }
+                ],
+                verbTense: [
+                    {
+                        q: "What did Ivy and her uncle do all night?",
+                        hint: "This is past tense.",
+                        options: ["They boiled sap", "They will sleep", "They are eating", "They play"],
+                        answer: 0
+                    },
+                    {
+                        q: "What will Ivy think of store-bought syrup now?",
+                        hint: "This is future tense.",
+                        options: ["She liked it", "It won't taste as good", "She is buying it", "She eats it"],
+                        answer: 1
+                    },
+                    {
+                        q: "What was the sap doing while boiling?",
+                        hint: "This is past continuous tense.",
+                        options: ["It will freeze", "It was thickening and turning golden", "It is evaporating", "It spills"],
+                        answer: 1
+                    }
                 ]
             }
         ];
@@ -942,6 +1198,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why weren't Marcus and his grandpa catching fish at first?", hint: "Think about where the fish wanted to be.", options: ["They had the wrong bait", "They weren't in the warm water area", "It was too cold outside", "The fish were sleeping"], answer: 1 },
                     { q: "How did Marcus feel at the end?", hint: "Think about what he learned worked.", options: ["Sad and tired", "Happy and proud", "Angry and cold", "Bored and sleepy"], answer: 1 },
                     { q: "What helped Marcus catch fish?", hint: "Think about what he remembered.", options: ["Luck", "Better bait", "What he learned in school", "His grandpa's idea"], answer: 2 }
+                ],
+                verbTense: [
+                    { q: "What did Marcus catch?", hint: "Past tense.", options: ["A cold", "Fish", "The flu", "A boot"], answer: 1 },
+                    { q: "What will he do next winter?", hint: "Future tense.", options: ["Stop fishing", "Go fishing again", "Swim", "Sleep"], answer: 1 },
+                    { q: "Who is fishing with him?", hint: "Present tense.", options: ["Dad", "Grandpa", "Mom", "Sister"], answer: 1 }
                 ]
             },
             {
@@ -957,6 +1218,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why didn't the sled work at first?", hint: "Think about what Mr. Chen said about old wood.", options: ["It was broken", "The wood was too dry", "It was too heavy", "The snow was wrong"], answer: 1 },
                     { q: "How did Yuki probably feel when the sled finally worked?", hint: "Think about how you would feel going fast down a hill.", options: ["Scared and worried", "Excited and happy", "Sad and upset", "Tired and bored"], answer: 1 },
                     { q: "What solved Yuki's problem?", hint: "What did she do to make the sled work?", options: ["She bought a new sled", "She asked for help and followed advice", "She tried a different hill", "She waited for better snow"], answer: 1 }
+                ],
+                verbTense: [
+                    { q: "What did Mr. Chen give?", hint: "Past tense.", options: ["A candle", "Oil", "Water", "Sand"], answer: 0 },
+                    { q: "Will the sled go fast tomorrow?", hint: "Future tense.", options: ["No", "Yes", "Maybe", "Slow"], answer: 1 },
+                    { q: "What is Yuki doing?", hint: "Present tense.", options: ["Sledding", "Sleeping", "Eating", "Reading"], answer: 0 }
                 ]
             },
             {
@@ -972,6 +1238,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why didn't Amara bring the bird inside?", hint: "Think about what she remembered about wild birds.", options: ["She was scared of it", "It could harm the bird", "Her parents said no", "It was too big"], answer: 1 },
                     { q: "Why did the cold bird finally eat?", hint: "What happened right before it ate?", options: ["The food got warmer", "It got hungrier", "Other birds showed it was safe", "Amara called to it"], answer: 2 },
                     { q: "What is the main idea of this story?", hint: "Think about why Amara still helped even though she wasn't sure it worked.", options: ["Birds are hard to help", "It's good to try to help even when you're not sure it will work", "Wild birds don't need help", "Always bring birds inside"], answer: 1 }
+                ],
+                verbTense: [
+                    { q: "What did Amara put out?", hint: "Past tense.", options: ["Food", "Toys", "Books", "Shoes"], answer: 0 },
+                    { q: "Will the bird fly away?", hint: "Future tense.", options: ["No", "Yes", "Never", "Stays"], answer: 1 },
+                    { q: "What are the birds doing?", hint: "Present tense.", options: ["Eating", "Sleeping", "Running", "Talking"], answer: 0 }
                 ]
             },
             {
@@ -987,6 +1258,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "How did Jordan feel before the judging?", hint: "Think about how she looked at her lumpy horse.", options: ["Proud and happy", "Embarrassed and sad", "Excited and ready", "Angry and mean"], answer: 1 },
                     { q: "Why did Jordan win?", hint: "What did the judge say was special about it?", options: ["It looked perfect", "It was the biggest", "The mistakes made it look interesting", "She worked the longest"], answer: 2 },
                     { q: "What did Jordan learn?", hint: "Think about what happened with her mistakes.", options: ["Never make snow sculptures", "Mistakes can turn into something good", "Always make things perfect", "Judges are always wrong"], answer: 1 }
+                ],
+                verbTense: [
+                    { q: "What fell off the sculpture?", hint: "Past tense.", options: ["The head", "The leg", "The tail", "The ear"], answer: 0 },
+                    { q: "Will she win again?", hint: "Future tense.", options: ["Maybe", "No", "Yes", "Never"], answer: 0 },
+                    { q: "Who is judging?", hint: "Present tense.", options: ["Mom", "Dad", "The judge", "Teacher"], answer: 2 }
                 ]
             },
             {
@@ -1002,6 +1278,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why couldn't Tyler reach the container at first?", hint: "Think about what was covering the area.", options: ["It was too high", "Dangerous ice was in the way", "He forgot his GPS", "It was too dark"], answer: 1 },
                     { q: "How did Tyler solve the problem?", hint: "What did he use to stay safe but still reach the spot?", options: ["He climbed carefully", "He used a pole from far away", "He waited for spring", "His dad got it for him"], answer: 1 },
                     { q: "What does this story teach us about Tyler?", hint: "Think about what he did when his dad wanted to leave.", options: ["He gives up easily", "He doesn't listen", "He finds smart solutions", "He takes too many risks"], answer: 2 }
+                ],
+                verbTense: [
+                    { q: "What did Tyler use?", hint: "Past tense.", options: ["A pole", "A rock", "A bat", "A hand"], answer: 0 },
+                    { q: "Will he use the compass?", hint: "Future tense.", options: ["No", "Yes", "Lost it", "Sold it"], answer: 1 },
+                    { q: "Is the ice dangerous?", hint: "Present tense.", options: ["Yes", "No", "Maybe", "Safe"], answer: 0 }
                 ]
             },
             {
@@ -1017,6 +1298,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why did they go to a dark field?", hint: "Think about what helps you see lights in the sky better.", options: ["To be away from city lights", "To be closer to the lights", "Because the app said to", "To get fresh air"], answer: 0 },
                     { q: "How did Mei feel when they started to drive home?", hint: "Think about not getting what you waited for.", options: ["Happy and excited", "Angry at her parents", "Disappointed and sad", "Sleepy and bored"], answer: 2 },
                     { q: "What does this story teach?", hint: "Look at what happened even after they almost gave up.", options: ["Apps are always wrong", "Don't wait for things", "Good things can happen even after disappointment", "Always stay home"], answer: 2 }
+                ],
+                verbTense: [
+                    { q: "What did they see?", hint: "Past tense.", options: ["Lights", "Cars", "People", "Nothing"], answer: 0 },
+                    { q: "Will they go again?", hint: "Future tense.", options: ["No", "Yes", "Never", "Probably"], answer: 1 },
+                    { q: "Are the lights dancing?", hint: "Present tense.", options: ["Yes", "No", "Sleeping", "Sitting"], answer: 0 }
                 ]
             },
             {
@@ -1032,6 +1318,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why was Jackson worried?", hint: "Think about what might happen when birds fly around.", options: ["He didn't see enough birds", "He lost his binoculars", "He might have counted the same bird twice", "He was tired"], answer: 2 },
                     { q: "What did Ms. Rivera tell Jackson?", hint: "Think about why small mistakes are okay.", options: ["Start over from the beginning", "His best try was good enough", "He should quit", "Count only big birds"], answer: 1 },
                     { q: "What is the lesson of this story?", hint: "Think about what Ms. Rivera said about doing your best.", options: ["Counting is too hard", "Perfect work is required", "Doing your best is good even with mistakes", "Science is boring"], answer: 2 }
+                ],
+                verbTense: [
+                    { q: "Who did he call?", hint: "Past tense.", options: ["Teacher", "Mom", "Dad", "Friend"], answer: 0 },
+                    { q: "Will he count more birds?", hint: "Future tense.", options: ["No", "Yes", "Never", "Stop"], answer: 1 },
+                    { q: "Is he writing?", hint: "Present tense.", options: ["Yes", "No", "Singing", "Dancing"], answer: 0 }
                 ]
             },
             {
@@ -1047,6 +1338,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why did Zara's garden melt?", hint: "What does warm weather do to ice?", options: ["She didn't make it right", "The temperature got warm", "Someone knocked it down", "It was old"], answer: 1 },
                     { q: "How did Zara feel when it melted?", hint: "The story says she felt a strong negative emotion.", options: ["Happy", "Proud", "Terrible (very sad)", "Silly"], answer: 2 },
                     { q: "What did Zara learn?", hint: "Think about what her teacher said about art lasting forever.", options: ["Never use ice for art", "Beautiful things don't have to last forever", "Only permanent art is good", "Always check the weather"], answer: 1 }
+                ],
+                verbTense: [
+                    { q: "What melted?", hint: "Past tense.", options: ["The ice", "The snow", "The car", "The house"], answer: 0 },
+                    { q: "Will she make more art?", hint: "Future tense.", options: ["No", "Yes", "Never", "Stop"], answer: 1 },
+                    { q: "Is the sun shining?", hint: "Present tense.", options: ["Yes", "No", "Dark", "Rain"], answer: 0 }
                 ]
             },
             {
@@ -1062,6 +1358,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why did Liam report his street?", hint: "Think about what he wanted the school to know.", options: ["To complain", "To show it wasn't safe for buses", "To get attention", "Because he was bored"], answer: 1 },
                     { q: "Why did the school change its decision?", hint: "What did many people do after Liam?", options: ["More snow fell", "Many people showed it wasn't safe", "The principal was tired", "Parents called"], answer: 1 },
                     { q: "What did Liam learn?", hint: "Think about what happened when he spoke up.", options: ["Schools always make mistakes", "Snow days are easy to get", "Speaking up can make a difference", "Apps don't work"], answer: 2 }
+                ],
+                verbTense: [
+                    { q: "What did Liam report?", hint: "Past tense.", options: ["Snow", "Rain", "Sun", "Wind"], answer: 0 },
+                    { q: "Will school close?", hint: "Future tense.", options: ["No", "Yes", "Open", "Start"], answer: 1 },
+                    { q: "Is it snowing?", hint: "Present tense.", options: ["Yes", "No", "Sunny", "Hot"], answer: 0 }
                 ]
             },
             {
@@ -1077,6 +1378,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why was Ivy confused at first?", hint: "Think about what she expected sap to look like.", options: ["She didn't know about trees", "The sap looked like water, not syrup", "Her uncle was confusing", "She wanted to go home"], answer: 1 },
                     { q: "Why did Ivy feel disappointed after boiling?", hint: "Compare how much work they did to how much syrup they got.", options: ["It tasted bad", "They got very little syrup for all that work", "It was the wrong color", "Her uncle was mad"], answer: 1 },
                     { q: "What did Ivy learn?", hint: "Look at the last sentence.", options: ["Making syrup is too hard", "Store syrup is better", "Good things take time and hard work", "Don't help on farms"], answer: 2 }
+                ],
+                verbTense: [
+                    { q: "What did they boil?", hint: "Past tense.", options: ["Sap", "Water", "Milk", "Soup"], answer: 0 },
+                    { q: "Will it taste good?", hint: "Future tense.", options: ["No", "Yes", "Bad", "Sour"], answer: 1 },
+                    { q: "Is it hot?", hint: "Present tense.", options: ["Yes", "No", "Cold", "Warm"], answer: 0 }
                 ]
             }
         ];
@@ -1095,6 +1401,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why did they move?", hint: "They were not catching anything.", options: ["To find fish", "To seek sun", "To go home", "To sleep"], answer: 0 },
                     { q: "How did Marcus feel?", hint: "He caught fish!", options: ["Sad", "Happy", "Mad", "Tired"], answer: 1 },
                     { q: "Was Marcus's idea good?", hint: "Did it work?", options: ["Yes", "No", "Maybe", "I don't know"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What did Marcus catch?", hint: "Past tense.", options: ["A cold", "Fish", "The flu", "A boot"], answer: 1 },
+                    { q: "What will he do next winter?", hint: "Future tense.", options: ["Stop fishing", "Go fishing again", "Swim", "Sleep"], answer: 1 },
+                    { q: "Who is fishing with him?", hint: "Present tense.", options: ["Dad", "Grandpa", "Mom", "Sister"], answer: 1 }
                 ]
             },
             {
@@ -1110,6 +1421,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why was the sled slow?", hint: "The wood was...?", options: ["Too dry", "Too wet", "Too new", "Broken"], answer: 0 },
                     { q: "Is the sled fast now?", hint: "Read the end of the story.", options: ["No", "Yes", "A little", "It stopped"], answer: 1 },
                     { q: "Is Yuki happy?", hint: "She loves her sled.", options: ["Yes", "No", "She is sad", "She is mad"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What did Mr. Chen give?", hint: "Past tense.", options: ["A candle", "Oil", "Water", "Sand"], answer: 0 },
+                    { q: "Will the sled go fast tomorrow?", hint: "Future tense.", options: ["No", "Yes", "Maybe", "Slow"], answer: 1 },
+                    { q: "What is Yuki doing?", hint: "Present tense.", options: ["Sledding", "Sleeping", "Eating", "Reading"], answer: 0 }
                 ]
             },
             {
@@ -1125,6 +1441,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why did Amara help?", hint: "The bird was...?", options: ["Cold and hungry", "Happy", "Playing", "Flying"], answer: 0 },
                     { q: "Where did the bird go?", hint: "The story doesn't say, but it is not there.", options: ["Away", "Inside", "In the box", "Under the rug"], answer: 0 },
                     { q: "Is Amara a kind girl?", hint: "She helped the bird.", options: ["Yes", "No", "Maybe", "I don't know"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What did Amara put out?", hint: "Past tense.", options: ["Food", "Toys", "Books", "Shoes"], answer: 0 },
+                    { q: "Will the bird fly away?", hint: "Future tense.", options: ["No", "Yes", "Never", "Stays"], answer: 1 },
+                    { q: "What are the birds doing?", hint: "Present tense.", options: ["Eating", "Sleeping", "Running", "Talking"], answer: 0 }
                 ]
             },
             {
@@ -1140,6 +1461,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why was Jordan sad at first?", hint: "Her horse looked...?", options: ["Funny / Lumpy", "Great", "Big", "Small"], answer: 0 },
                     { q: "Why did she win?", hint: "The judge...?", options: ["Liked it", "Hated it", "Left", "Slept"], answer: 0 },
                     { q: "How did she feel at the end?", hint: "She won!", options: ["Happy", "Sad", "Mad", "Tired"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What fell off the sculpture?", hint: "Past tense.", options: ["The head", "The leg", "The tail", "The ear"], answer: 0 },
+                    { q: "Will she win again?", hint: "Future tense.", options: ["Maybe", "No", "Yes", "Never"], answer: 0 },
+                    { q: "Who is judging?", hint: "Present tense.", options: ["Mom", "Dad", "The judge", "Teacher"], answer: 2 }
                 ]
             },
             {
@@ -1155,6 +1481,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why didn't Tyler walk on the ice?", hint: "It was...?", options: ["Safe", "Dangerous", "Warm", "Dry"], answer: 1 },
                     { q: "Did he get the box?", hint: "Yes or No.", options: ["Yes", "No", "Maybe", "Later"], answer: 0 },
                     { q: "Was Tyler safe?", hint: "He didn't walk on the ice.", options: ["Yes", "No", "Maybe", "A little"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What did Tyler use?", hint: "Past tense.", options: ["A pole", "A rock", "A bat", "A hand"], answer: 0 },
+                    { q: "Will he use the compass?", hint: "Future tense.", options: ["No", "Yes", "Lost it", "Sold it"], answer: 1 },
+                    { q: "Is the ice dangerous?", hint: "Present tense.", options: ["Yes", "No", "Maybe", "Safe"], answer: 0 }
                 ]
             },
             {
@@ -1170,6 +1501,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Was it dark outside?", hint: "She saw lights in the sky.", options: ["Yes", "No", "It was sunny", "It was morning"], answer: 0 },
                     { q: "Why was she sad at first?", hint: "She did not see...?", options: ["Lights", "Mom", "Dad", "Cars"], answer: 0 },
                     { q: "Did she like the lights?", hint: "They were beautiful.", options: ["Yes", "No", "Maybe", "No"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What did they see?", hint: "Past tense.", options: ["Lights", "Cars", "People", "Nothing"], answer: 0 },
+                    { q: "Will they go again?", hint: "Future tense.", options: ["No", "Yes", "Never", "Probably"], answer: 1 },
+                    { q: "Are the lights dancing?", hint: "Present tense.", options: ["Yes", "No", "Sleeping", "Sitting"], answer: 0 }
                 ]
             },
             {
@@ -1185,6 +1521,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why was Jackson worried?", hint: "He made a...?", options: ["Mistake", "Cake", "Hat", "Toy"], answer: 0 },
                     { q: "Was the teacher mad?", hint: "She said it is okay.", options: ["Yes", "No", "Maybe", "A little"], answer: 1 },
                     { q: "Is Jackson helpful?", hint: "He counted birds.", options: ["Yes", "No", "Maybe", "No"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "Who did he call?", hint: "Past tense.", options: ["Teacher", "Mom", "Dad", "Friend"], answer: 0 },
+                    { q: "Will he count more birds?", hint: "Future tense.", options: ["No", "Yes", "Never", "Stop"], answer: 1 },
+                    { q: "Is he writing?", hint: "Present tense.", options: ["Yes", "No", "Singing", "Dancing"], answer: 0 }
                 ]
             },
             {
@@ -1200,6 +1541,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why did the art melt?", hint: "It got...?", options: ["Cold", "Warm", "Dark", "Wet"], answer: 1 },
                     { q: "Is the art gone forever?", hint: "The ice is water now.", options: ["Yes", "No", "Maybe", "Later"], answer: 0 },
                     { q: "Is the picture good?", hint: "It shows the pretty art.", options: ["Yes", "No", "Maybe", "No"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What melted?", hint: "Past tense.", options: ["The ice", "The snow", "The car", "The house"], answer: 0 },
+                    { q: "Will she make more art?", hint: "Future tense.", options: ["No", "Yes", "Never", "Stop"], answer: 1 },
+                    { q: "Is the sun shining?", hint: "Present tense.", options: ["Yes", "No", "Dark", "Rain"], answer: 0 }
                 ]
             },
             {
@@ -1215,6 +1561,11 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Why was the road bad?", hint: "Too much...?", options: ["Snow", "Rain", "Dirt", "Cars"], answer: 0 },
                     { q: "Why did school close?", hint: "It was not...?", options: ["Safe", "Fun", "Cold", "Hot"], answer: 0 },
                     { q: "Is Liam happy?", hint: "Hooray!", options: ["Yes", "No", "Sad", "Mad"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What did Liam report?", hint: "Past tense.", options: ["Snow", "Rain", "Sun", "Wind"], answer: 0 },
+                    { q: "Will school close?", hint: "Future tense.", options: ["No", "Yes", "Open", "Start"], answer: 1 },
+                    { q: "Is it snowing?", hint: "Present tense.", options: ["Yes", "No", "Sunny", "Hot"], answer: 0 }
                 ]
             },
             {
@@ -1230,9 +1581,27 @@ Ivy understood something important. The best things often required patience and 
                     { q: "Was it hard work?", hint: "She waited a long time.", options: ["Yes", "No", "Maybe", "Easy"], answer: 0 },
                     { q: "Why was she sad first?", hint: "Only a...?", options: ["Little syrup", "Lot of syrup", "Bad syrup", "No syrup"], answer: 0 },
                     { q: "Does she like it now?", hint: "It is sweet.", options: ["Yes", "No", "Maybe", "No"], answer: 0 }
+                ],
+                verbTense: [
+                    { q: "What did they boil?", hint: "Past tense.", options: ["Sap", "Water", "Milk", "Soup"], answer: 0 },
+                    { q: "Will it taste good?", hint: "Future tense.", options: ["No", "Yes", "Bad", "Sour"], answer: 1 },
+                    { q: "Is it hot?", hint: "Present tense.", options: ["Yes", "No", "Cold", "Warm"], answer: 0 }
                 ]
             }
         ];
+
+        const storyImages = {
+            1: "Winter-story-images/story1-icefishing.png",
+            2: "Winter-story-images/story2-sled.png",
+            3: "Winter-story-images/story3-bird.png",
+            4: "Winter-story-images/story4-horse.png",
+            5: "Winter-story-images/story5-geocaching.png",
+            6: "Winter-story-images/story6-northernlights.png",
+            7: "Winter-story-images/story7-birdcounting.png",
+            8: "Winter-story-images/story8-icicles.png",
+            9: "Winter-story-images/story9-snowday.png",
+            10: "Winter-story-images/story10-maplesyrup.png"
+        };
 
         let currentLevel = 'standard';
         let currentStory = storiesStandard[0];
@@ -1342,25 +1711,55 @@ Ivy understood something important. The best things often required patience and 
 
             const literalHtml = currentStory.literal.map((q, i) => renderQuestion(q, i, 'literal')).join('');
             const inferentialHtml = currentStory.inferential.map((q, i) => renderQuestion(q, i, 'inferential')).join('');
+            const verbHtml = (currentStory.verbTense || []).map((q, i) => renderQuestion(q, i, 'verb')).join('');
+
+            const imagePath = storyImages[currentStory.id];
 
             mainContent.innerHTML = `
                 <div class="content-container">
                     <div class="story-card">
                         <h1 class="story-title">${currentStory.title}</h1>
+                        ${imagePath ? `
+                        <div class="story-image-container">
+                            <img src="${imagePath}" alt="Story Illustration" class="story-image">
+                        </div>` : ''}
                         <div class="story-text">
                             ${currentStory.text.split('\n\n').map(p => `<p>${p}</p>`).join('')}
                         </div>
                     </div>
 
-                    <div class="section-title">Literal Questions</div>
-                    ${literalHtml}
+                    <div class="tabs-container">
+                        <button class="tab-btn active" onclick="switchTab('literal', this)">Literal Questions</button>
+                        <button class="tab-btn" onclick="switchTab('inferential', this)">Inferential Questions</button>
+                        <button class="tab-btn" onclick="switchTab('verb', this)">Verb Tenses</button>
+                    </div>
 
-                    <div class="section-title">Inferential Questions</div>
-                    ${inferentialHtml}
+                    <div id="tab-literal" class="tab-content active">
+                        <div class="section-title">Literal Questions</div>
+                        ${literalHtml}
+                    </div>
+
+                    <div id="tab-inferential" class="tab-content">
+                        <div class="section-title">Inferential Questions</div>
+                        ${inferentialHtml}
+                    </div>
+                    
+                    <div id="tab-verb" class="tab-content">
+                        <div class="section-title">Verb Tense Questions</div>
+                        ${verbHtml}
+                    </div>
                     
                     <div style="height: 50px;"></div>
                 </div>
             `;
+        }
+
+        function switchTab(tabName, btn) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            btn.classList.add('active');
         }
 
         function toggleSection(id, btn) {
