@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Builder: Scaffolded Sentences</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-dark: #3730a3;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        body {
+            font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .level-indicator {
+            background: var(--surface);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Main Card */
+        .activity-card {
+            background: var(--surface);
+            width: 100%;
+            max-width: 900px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @media (min-width: 768px) {
+            .activity-card {
+                grid-template-columns: 1.2fr 1.8fr;
+                /* Image constrained, content expands */
+            }
+        }
+
+        /* Image Section */
+        .image-area {
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            position: relative;
+            padding: 20px;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            /* Changed to contain to ensure full image visibility */
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        .story-image:hover {
+            transform: scale(1.02);
+        }
+
+        .placeholder-text {
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Layout */
+        .app-container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            background: #f1f5f9;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-item:hover {
+            background: #f8fafc;
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background: #eef2ff;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .item-status-icon {
+            font-size: 1.25rem;
+            /* Larger emoji */
+        }
+
+        /* Content Section */
+        .content-area {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex: 1;
+            /* Take remaining space */
+        }
+
+        /* Word Choices */
+        .choices-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .choice-card {
+            background: var(--background);
+            border: 2px solid transparent;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .choice-card:hover {
+            background: #eef2ff;
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .choice-card.selected {
+            background: #eef2ff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .word-title {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .word-def {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Sentence Builder */
+        .sentence-section {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .sentence-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .sentence-frame {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-main);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            line-height: 2.2;
+        }
+
+        .blank-input {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: white;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-main);
+            padding: 0.75rem;
+            min-width: 300px;
+            width: 100%;
+            transition: all 0.2s;
+            resize: vertical;
+            min-height: 80px;
+            /* Multi-line height */
+            line-height: 1.6;
+        }
+
+        .blank-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* Multiple Choice Styles */
+        .mc-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .mc-option {
+            background: white;
+            border: 2px solid var(--border);
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-weight: 500;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mc-option:hover {
+            border-color: var(--primary-light);
+            background: #f8fafc;
+        }
+
+        .mc-option.correct {
+            border-color: var(--secondary);
+            background: #ecfdf5;
+            color: #064e3b;
+        }
+
+        .mc-option.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+            color: #991b1b;
+            opacity: 0.7;
+        }
+
+        .mc-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mc-option.correct .mc-indicator {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .mc-option.incorrect .mc-indicator {
+            background: #ef4444;
+            border-color: #ef4444;
+        }
+
+        .blank-input.filled-static {
+            border-bottom: none;
+            background: transparent;
+            color: var(--primary-dark);
+            padding: 0;
+            min-width: auto;
+        }
+
+        .blank-input.full-model {
+            color: var(--text-muted);
+            font-style: italic;
+            border-bottom: 2px dashed var(--border);
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .help-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .help-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: #fffbeb;
+        }
+
+        .help-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        /* Navigation */
+        .nav-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f1f5f9;
+        }
+
+        .nav-btn.primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .nav-btn.primary:hover:not(:disabled) {
+            background: var(--primary-dark);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        /* Helper Badge */
+        .scaffold-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-left: auto;
+            text-transform: uppercase;
+        }
+
+        .badge-l3 {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-l2 {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Adjusted based on meaning change usually help is warning color? or just standard. Let's stick to neutral progression */
+        /* Actually let's do: L3=Green(Go), L2=Yellow(Yield/Help), L1=Red(Stop/Full Stop Help) metaphor? Or just colors. */
+        .badge-l2 {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-l1 {
+            background: #e0f2fe;
+            color: #075985;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="app-title">
+            <span>✨</span> Vocabulary Builder
+        </div>
+        <div class="level-indicator">
+            Item <span id="current-item-num">1</span> of 12
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">Word Pairs</div>
+            <ul class="sidebar-list" id="sidebar-list">
+                <!-- Items generated via JS -->
+            </ul>
+        </div>
+
+        <!-- Main Card -->
+        <div class="activity-card" id="activity-container">
+            <!-- Rendered via JS -->
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <button class="nav-btn" id="prev-btn" onclick="prevItem()">
+            ← Previous
+        </button>
+        <button class="nav-btn primary" id="next-btn" onclick="nextItem()">
+            Next Item →
+        </button>
+    </div>
+
+    <script>
+        // Data Source
+        const activityData = [
+            {
+                id: 1,
+                image: "vocab_scaffold_activity/boyfrustrated.png",
+                subject: "He",
+                words: [
+                    { word: "Frustrated", def: "annoyed because something is not working" },
+                    { word: "Proud", def: "happy because you did something well" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["He feels", "", "because", ""] },
+                    l2: { frame: "He feels frustrated because", prompt: "" },
+                    l1: {
+                        starter: "He feels frustrated because...",
+                        options: [
+                            { text: "the game is not working.", correct: true },
+                            { text: "he is hungry.", correct: false },
+                            { text: "he won the game.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 2,
+                image: "vocab_scaffold_activity/girlsad.png",
+                subject: "She",
+                words: [
+                    { word: "Disappointed", def: "sad because something did not happen as you hoped" },
+                    { word: "Excited", def: "very happy and looking forward to something" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["She feels", "", "because", ""] },
+                    l2: { frame: "She feels disappointed because", prompt: "" },
+                    l1: {
+                        starter: "She feels disappointed because...",
+                        options: [
+                            { text: "her cake is not what she expected.", correct: true },
+                            { text: "she got a present.", correct: false },
+                            { text: "it is sunny outside.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 3,
+                image: "vocab_scaffold_activity/boyrelieved.png",
+                subject: "He",
+                words: [
+                    { word: "Relieved", def: "happy because something stressful is over" },
+                    { word: "Nervous", def: "worried about something that might happen" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["He feels", "", "because", ""] },
+                    l2: { frame: "He feels relieved because", prompt: "" },
+                    l1: {
+                        starter: "He feels relieved because...",
+                        options: [
+                            { text: "the test is over.", correct: true },
+                            { text: "he is late for school.", correct: false },
+                            { text: "he has a lot of homework.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 4,
+                image: "vocab_scaffold_activity/girlconfused.png",
+                subject: "She",
+                words: [
+                    { word: "Confused", def: "not understanding something" },
+                    { word: "Confident", def: "feeling sure you can do something" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["She feels", "", "because", ""] },
+                    l2: { frame: "She feels confused because", prompt: "" },
+                    l1: {
+                        starter: "She feels confused because...",
+                        options: [
+                            { text: "she does not understand the work.", correct: true },
+                            { text: "she knows the answer.", correct: false },
+                            { text: "she is eating lunch.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 5,
+                image: "vocab_scaffold_activity/boyembarrassed.png",
+                subject: "He",
+                words: [
+                    { word: "Embarrassed", def: "feeling awkward or ashamed" },
+                    { word: "Proud", def: "happy about something you did" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["He feels", "", "because", ""] },
+                    l2: { frame: "He feels embarrassed because", prompt: "" },
+                    l1: {
+                        starter: "He feels embarrassed because...",
+                        options: [
+                            { text: "people are looking at him.", correct: true },
+                            { text: "he is proud of his work.", correct: false },
+                            { text: "he is alone.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 6,
+                image: "vocab_scaffold_activity/girlbored.png",
+                subject: "She",
+                words: [
+                    { word: "Bored", def: "not interested and feeling tired of something" },
+                    { word: "Interested", def: "wanting to pay attention to something" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["She feels", "", "because", ""] },
+                    l2: { frame: "She feels bored because", prompt: "" },
+                    l1: {
+                        starter: "She feels bored because...",
+                        options: [
+                            { text: "the book is not interesting to her.", correct: true },
+                            { text: "the book is exciting.", correct: false },
+                            { text: "she is playing outside.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 7,
+                image: "vocab_scaffold_activity/boyworried.png",
+                subject: "He",
+                words: [
+                    { word: "Worried", def: "thinking something bad might happen" },
+                    { word: "Calm", def: "feeling relaxed and not nervous" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["He feels", "", "because", ""] },
+                    l2: { frame: "He feels worried because", prompt: "" },
+                    l1: {
+                        starter: "He feels worried because...",
+                        options: [
+                            { text: "the storm is coming.", correct: true },
+                            { text: "the sun is shining.", correct: false },
+                            { text: "he is watching a movie.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 8,
+                image: "vocab_scaffold_activity/girlannoyed.png",
+                subject: "She",
+                words: [
+                    { word: "Annoyed", def: "bothered or slightly angry" },
+                    { word: "Happy", def: "feeling good and cheerful" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["She feels", "", "because", ""] },
+                    l2: { frame: "She feels annoyed because", prompt: "" },
+                    l1: {
+                        starter: "She feels annoyed because...",
+                        options: [
+                            { text: "the noise is too loud.", correct: true },
+                            { text: "the music is nice.", correct: false },
+                            { text: "she is sleeping.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 9,
+                image: "vocab_scaffold_activity/boysurprised.png",
+                subject: "He",
+                words: [
+                    { word: "Surprised", def: "something happened you did not expect" },
+                    { word: "Nervous", def: "worried about what might happen" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["He feels", "", "because", ""] },
+                    l2: { frame: "He feels surprised because", prompt: "" },
+                    l1: {
+                        starter: "He feels surprised because...",
+                        options: [
+                            { text: "he did not expect what was in the box.", correct: true },
+                            { text: "he knew what was inside.", correct: false },
+                            { text: "the box was empty.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 10,
+                image: "vocab_scaffold_activity/girltired.png",
+                subject: "She",
+                words: [
+                    { word: "Tired", def: "needing rest" },
+                    { word: "Relaxed", def: "calm and comfortable" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["She feels", "", "because", ""] },
+                    l2: { frame: "She feels tired because", prompt: "" },
+                    l1: {
+                        starter: "She feels tired because...",
+                        options: [
+                            { text: "she had a long day.", correct: true },
+                            { text: "she just woke up.", correct: false },
+                            { text: "she is full of energy.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 11,
+                image: "vocab_scaffold_activity/boyunsure.png",
+                subject: "He",
+                words: [
+                    { word: "Confident", def: "feeling ready and sure" },
+                    { word: "Unsure", def: "not certain what to do" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["He feels", "", "because", ""] },
+                    l2: { frame: "He feels unsure because", prompt: "" },
+                    l1: {
+                        starter: "He feels unsure because...",
+                        options: [
+                            { text: "he does not know if he should jump.", correct: true },
+                            { text: "he is ready to jump.", correct: false },
+                            { text: "he is swimming.", correct: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 12,
+                image: "vocab_scaffold_activity/girlproud.png",
+                subject: "She",
+                words: [
+                    { word: "Proud", def: "happy about something you did" },
+                    { word: "Relieved", def: "happy something hard is over" }
+                ],
+                scaffolds: {
+                    l3: { frame: ["She feels", "", "because", ""] },
+                    l2: { frame: "She feels proud because", prompt: "" },
+                    l1: {
+                        starter: "She feels proud because...",
+                        options: [
+                            { text: "she finished her project.", correct: true },
+                            { text: "she made a mistake.", correct: false },
+                            { text: "she lost her project.", correct: false }
+                        ]
+                    }
+                }
+            }
+        ];
+
+        // State
+        let currentIndex = 0;
+        let currentLevel = 3; // Starts at 3 (Independent) -> 2 (Some Help) -> 1 (Max Help)
+
+        // DOM Elements
+        const container = document.getElementById('activity-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const countSpan = document.getElementById('current-item-num');
+        const sidebarList = document.getElementById('sidebar-list');
+
+        function init() {
+            renderSidebar();
+            renderItem();
+        }
+
+        function renderSidebar() {
+            sidebarList.innerHTML = '';
+            activityData.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = `sidebar-item ${index === currentIndex ? 'active' : ''}`;
+                li.onclick = () => {
+                    currentIndex = index;
+                    // Reset level if needed, or keep? Usually navigating jumps resets context.
+                    // Let's reset level for clarity as per user nav flow logic usually.
+                    currentLevel = 3;
+                    renderItem();
+                    updateSidebar();
+                };
+
+                // Show emoji based on image or generic? Let's use generic or parse keywords.
+                // Using simple numbers or text snippets.
+                const wordPair = item.words.map(w => w.word).join(" / ");
+
+                li.innerHTML = `
+                    <span>${index + 1}. ${wordPair}</span>
+                    <span class="item-status-icon">📝</span>
+                `;
+                sidebarList.appendChild(li);
+            });
+        }
+
+        function updateSidebar() {
+            const items = document.querySelectorAll('.sidebar-item');
+            items.forEach((item, index) => {
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // Shuffle utility
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function renderItem() {
+            const item = activityData[currentIndex];
+            countSpan.textContent = currentIndex + 1;
+
+            // Manage Buttons
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === activityData.length - 1;
+
+            updateSidebar(); // Sync sidebar selection
+
+            // Generate HTML
+            let sentenceHTML = '';
+            let levelBadge = '';
+
+            // Logic for different Levels
+            if (currentLevel === 3) {
+                // Independent
+                sentenceHTML = `
+                    <div class="sentence-frame" style="align-items: flex-start;">
+                        <span style="margin-top: 10px;">${item.subject} feels</span>
+                        <textarea class="blank-input" placeholder="emotion" aria-label="emotion word"></textarea>
+                        <span style="margin-top: 10px;">because</span>
+                        <textarea class="blank-input" style="flex: 1;" placeholder="reason..." aria-label="reason"></textarea>
+                        <span style="margin-top: 10px;">.</span>
+                    </div>
+                `;
+                levelBadge = '<span class="scaffold-badge badge-l3">Level 3: Independent</span>';
+            } else if (currentLevel === 2) {
+                // Some Help
+                const frameText = item.scaffolds.l2.frame;
+                sentenceHTML = `
+                    <div class="sentence-frame" style="align-items: flex-start;">
+                        <span style="margin-top: 10px;">${frameText}</span>
+                        <textarea class="blank-input" style="flex: 1;" placeholder="finish the thought..." aria-label="reason"></textarea>
+                        <span style="margin-top: 10px;">.</span>
+                    </div>
+                `;
+                levelBadge = '<span class="scaffold-badge badge-l2">Level 2: Guided</span>';
+            } else {
+                // Max Help - Multiple Choice
+                // Create a temporary copy for display
+                const opts = [...item.scaffolds.l1.options];
+                // Shuffle for randomness
+                shuffleArray(opts);
+
+                const optionsHTML = opts.map((opt, i) => `
+                    <div class="mc-option" onclick="checkAnswer(this, ${opt.correct})">
+                        <div class="mc-indicator"></div>
+                        <span>${opt.text}</span>
+                    </div>
+                `).join('');
+
+                sentenceHTML = `
+                    <div class="sentence-frame">
+                        <span style="width:100%; display:block; margin-bottom:0.5rem;">${item.scaffolds.l1.starter}</span>
+                        <div class="mc-container">
+                            ${optionsHTML}
+                        </div>
+                    </div>
+                `;
+                levelBadge = '<span class="scaffold-badge badge-l1">Level 1: Multiple Choice</span>';
+            }
+
+            const helpButtonState = currentLevel > 1
+                ? `<button class="help-btn" onclick="increaseSupport()">
+                     <span>💡</span> ${currentLevel === 3 ? "I need help" : "I need more help"}
+                   </button>`
+                : `<button class="help-btn" disabled>
+                     <span>✨</span> Maximum Support Active
+                   </button>`;
+
+            container.innerHTML = `
+                <div class="image-area">
+                    <img src="${item.image}" alt="Scenario illustration" class="story-image" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Coming+Soon'">
+                </div>
+                <div class="content-area fade-in">
+                    <div style="display:flex; align-items:center; margin-bottom:1rem;">
+                        <h2 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; letter-spacing:1px;">Vocabulary Choices</h2>
+                        ${levelBadge}
+                    </div>
+                    
+                    <div class="choices-container">
+                        ${shuffleArray([...item.words]).map(w => `
+                            <div class="choice-card" onclick="selectWord(this)">
+                                <span class="word-title">${w.word}</span>
+                                <span class="word-def">${w.def}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="sentence-section">
+                        <span class="sentence-label">Complete the Sentence</span>
+                        ${sentenceHTML}
+                    </div>
+
+                    <div class="controls">
+                        ${helpButtonState}
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkAnswer(el, isCorrect) {
+            // Reset others in this specific container
+            el.parentElement.querySelectorAll('.mc-option').forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+
+            if (isCorrect) {
+                el.classList.add('correct');
+            } else {
+                el.classList.add('incorrect');
+            }
+        }
+
+        function selectWord(card) {
+            // Visual selection only
+            document.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+        }
+
+        function increaseSupport() {
+            if (currentLevel > 1) {
+                currentLevel--;
+                renderItem();
+            }
+        }
+
+        function nextItem() {
+            if (currentIndex < activityData.length - 1) {
+                currentIndex++;
+                currentLevel = 3; // Reset to Independent
+                renderItem();
+            }
+        }
+
+        function prevItem() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                currentLevel = 3; // Ops choice: Reset or keep? Reset implies fresh start per item.
+                renderItem();
+            }
+        }
+
+        // Init
+        init();
+
+    </script>
+</body>
+
+</html>

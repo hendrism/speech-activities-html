@@ -289,6 +289,22 @@
             }
         }
 
+        .story-blank {
+            display: inline-block;
+            min-width: 60px;
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary-dark);
+            font-weight: 700;
+            padding: 0 4px;
+            transition: all 0.2s;
+        }
+
+        .story-blank.filled {
+            background-color: #e0f2fe;
+            border-bottom-color: transparent;
+            border-radius: 4px;
+        }
+
         @media (max-width: 900px) {
             .sidebar {
                 display: none;
@@ -605,6 +621,30 @@
         }
 
         function renderContent() {
+            // 1. Prepare Story HTML with Spans
+            // We need to replace the placeholders "________ (word)" with spans
+            let storyHtml = currentStory.text;
+
+            // We'll iterate through items to replace them in order.
+            // Assumption: The order of items in 'items' array matches the order of appearance in text.
+            // The text format is "________ (word)". Regex: /________ \(([^)]+)\)/g
+            // But to ensure we match specific items to specific blanks, we iterate.
+
+            // Ideally, we split by the placeholder regex.
+            let parts = storyHtml.split(/________ \([^)]+\)/);
+            // parts will be [ "Start text ", " middle text ", " end text." ]
+            // interspersed with the blanks.
+
+            let finalStoryHtml = '';
+            parts.forEach((part, index) => {
+                finalStoryHtml += part;
+                if (index < currentStory.items.length) {
+                    // Add the blank span
+                    finalStoryHtml += `<span id="story-blank-${index}" class="story-blank">________</span>`;
+                }
+            });
+
+            // 2. Generate Exercises interactions
             const exercisesHtml = currentStory.items.map((item, index) => {
                 const uniqueId = `item_${index}`;
                 return `
@@ -612,7 +652,10 @@
                     <div class="question-text">${index + 1}. ${item.label}</div>
                     
                     <div class="input-area">
-                        <textarea class="text-input" placeholder="Type the plural form here..."></textarea>
+                        <textarea class="text-input" 
+                            placeholder="Type the plural form here..." 
+                            oninput="updateStoryText(${index}, this.value)"
+                        ></textarea>
                     </div>
 
                     <div class="action-bar">
@@ -633,7 +676,7 @@
                     <div id="${uniqueId}_choices" class="collapsible-content">
                         <div class="options-grid">
                             ${item.options.map((opt, i) => `
-                                <button class="option-btn" onclick="checkAnswer(this, ${i}, ${item.answer})">
+                                <button class="option-btn" onclick="checkAnswer(this, ${i}, ${item.answer}, ${index}, '${opt}')">
                                     ${['A', 'B', 'C', 'D'][i]}) ${opt}
                                 </button>
                             `).join('')}
@@ -648,7 +691,7 @@
                     <div class="story-card">
                         <h1 class="story-title">${currentStory.title}</h1>
                         <div class="story-text">
-                            ${currentStory.text.split('\n').map(p => `<p>${p}</p>`).join('')}
+                            ${finalStoryHtml}
                         </div>
                     </div>
 
@@ -660,13 +703,26 @@
             `;
         }
 
+        function updateStoryText(index, value) {
+            const span = document.getElementById(`story-blank-${index}`);
+            if (span) {
+                if (value.trim() === '') {
+                    span.textContent = '________';
+                    span.classList.remove('filled');
+                } else {
+                    span.textContent = value;
+                    span.classList.add('filled');
+                }
+            }
+        }
+
         function toggleSection(id, btn) {
             const el = document.getElementById(id);
             el.classList.toggle('visible');
             btn.classList.toggle('active');
         }
 
-        function checkAnswer(btn, selectedIndex, correctIndex) {
+        function checkAnswer(btn, selectedIndex, correctIndex, itemIndex, textValue) {
             // Reset siblings
             const parent = btn.parentElement;
             const buttons = parent.querySelectorAll('.option-btn');
@@ -677,6 +733,13 @@
 
             if (selectedIndex === correctIndex) {
                 btn.classList.add('correct');
+                // Also auto-fill the text box and story?
+                // Yes, that's often helpful.
+                const textArea = document.querySelectorAll('.text-input')[itemIndex];
+                if (textArea) {
+                    textArea.value = textValue;
+                    updateStoryText(itemIndex, textValue);
+                }
             } else {
                 btn.classList.add('incorrect');
             }
