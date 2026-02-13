@@ -831,14 +831,9 @@
             if (isPlural) {
                 s1 = `${currentEntry.word} are a type of <span class="highlight">${cat}</span>.`;
             } else if (currentEntry.isMass) {
-                if (cat.toLowerCase().includes('winter') || cat.toLowerCase().includes('clothing')) {
-                    s1 = `${SubjectName} is a type of <span class="highlight">${cat}</span>.`;
-                } else {
-                    // For mass nouns we might say "Snow is a type of weather"
-                    // The article applies to the CATEGORY not the subject.
-                    const article = getArticle(cat);
-                    s1 = `${SubjectName} is ${article} <span class="highlight">${cat}</span>.`;
-                }
+                // Always use "is a type of" for mass nouns to align with preview and ensure grammar
+                // e.g. "Snow is a type of weather" instead of "Snow is a weather"
+                s1 = `${SubjectName} is a type of <span class="highlight">${cat}</span>.`;
             } else {
                 if (cat.toLowerCase().includes('winter') || cat.toLowerCase().includes('clothing')) {
                     s1 = `${SubjectName} is a type of <span class="highlight">${cat}</span>.`;
