@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifying Antonyms</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-dark: #3730a3;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        body {
+            font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .level-indicator {
+            background: var(--surface);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Layout */
+        .app-container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            max-height: calc(100vh - 150px);
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            background: #f1f5f9;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-item:hover {
+            background: #f8fafc;
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background: #eef2ff;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-item.correct {
+            color: var(--secondary);
+        }
+
+        .sidebar-item.correct::after {
+            content: "✓";
+            font-weight: bold;
+        }
+
+        /* Main Card */
+        .activity-card {
+            background: var(--surface);
+            width: 100%;
+            max-width: 900px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease-out;
+            flex: 1;
+        }
+
+        .card-header {
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .vocab-word {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .sentence-display {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Interactive Areas */
+        .support-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .support-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: #eef2ff;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Content Boxes */
+        .content-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            display: none;
+            /* Hidden by default */
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .content-box.visible {
+            display: block;
+        }
+
+        .hint-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .hint-label {
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Choices Grid */
+        .choices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .choices-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .choice-btn {
+            background: white;
+            border: 2px solid var(--border);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--primary-light);
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .choice-btn.correct {
+            border-color: var(--secondary);
+            background: #ecfdf5;
+            color: #064e3b;
+        }
+
+        .choice-btn.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+            color: #991b1b;
+            animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        /* Navigation */
+        .nav-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4px, 0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="app-title">
+            <span>↔️</span> Identifying Antonyms
+        </div>
+        <div class="level-indicator">
+            Item <span id="current-item-num">1</span> of 25
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">Vocabulary Words</div>
+            <ul class="sidebar-list" id="sidebar-list">
+                <!-- Items generated via JS -->
+            </ul>
+        </div>
+
+        <!-- Main Card -->
+        <div class="activity-card" id="activity-card">
+            <div class="card-header">
+                <h2 class="vocab-word" id="vocab-word">Word</h2>
+                <div class="sentence-display" id="sentence-display">
+                    Sentence goes here.
+                </div>
+            </div>
+
+            <div class="support-area">
+                <div class="support-controls">
+                    <button class="btn btn-outline" id="btn-hint" onclick="toggleHint()">
+                        💡 I need help
+                    </button>
+                    <button class="btn btn-outline" id="btn-choices" onclick="toggleChoices()">
+                        🔍 I need more help
+                    </button>
+                </div>
+
+                <!-- Hint Box -->
+                <div class="content-box" id="hint-box">
+                    <span class="hint-label">Hint</span>
+                    <p class="hint-text" id="hint-text">Hint text goes here.</p>
+                </div>
+
+                <!-- Choices Box -->
+                <div class="content-box" id="choices-box">
+                    <span class="hint-label">Select the Antonym</span>
+                    <div class="choices-grid" id="choices-grid">
+                        <!-- Buttons generated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-area"
+                style="margin-top: auto; color: var(--secondary); font-weight: bold; display: none;">
+                🎉 Correct! Great job finding the opposite!
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <button class="nav-btn" id="prev-btn" onclick="prevItem()">← Previous</button>
+        <button class="nav-btn" id="next-btn" onclick="nextItem()">Next Item →</button>
+    </div>
+
+    <script>
+        // Data Source
+        const activityData = [
+            {
+                id: 1,
+                word: "Ancient",
+                sentence: "The ancient tree in the park has been standing for hundreds of years.",
+                hint: "The tree has been there a very long time — what's the opposite of that?",
+                choices: ["old", "modern", "historic", "metallic"],
+                correct: "modern"
+            },
+            {
+                id: 2,
+                word: "Generous",
+                sentence: "Maya was generous and shared her snacks with everyone at lunch.",
+                hint: "Maya shared everything — what would someone do who is the opposite of that?",
+                choices: ["kind", "selfish", "helpful", "clumsy"],
+                correct: "selfish"
+            },
+            {
+                id: 3,
+                word: "Narrow",
+                sentence: "The narrow path through the woods was barely wide enough for two people.",
+                hint: "The path was very narrow. What's the opposite — what would make it easier to walk through?",
+                choices: ["wide", "thin", "bumpy", "small"],
+                correct: "wide"
+            },
+            {
+                id: 4,
+                word: "Polite",
+                sentence: "Jamal was polite and said \"thank you\" after the teacher handed him his paper.",
+                hint: "Jamal had great manners. What word means the opposite of having good manners?",
+                choices: ["friendly", "rude", "cheerful", "salty"],
+                correct: "rude"
+            },
+            {
+                id: 5,
+                word: "Difficult",
+                sentence: "The math problem looked difficult at first, but she decided to try it anyway.",
+                hint: "The problem seemed very hard. What's the opposite of difficult?",
+                choices: ["easy", "tricky", "fragile", "hard"],
+                correct: "easy"
+            },
+            {
+                id: 6,
+                word: "Silent",
+                sentence: "The house was completely silent after everyone went to bed.",
+                hint: "The house was completely silent. What would it be like if it were the opposite?",
+                choices: ["noisy", "calm", "wooden", "quiet"],
+                correct: "noisy"
+            },
+            {
+                id: 7,
+                word: "Careful",
+                sentence: "Be careful when you carry that glass bowl so it doesn't slip.",
+                hint: "Being careful means taking your time and paying attention. What's the opposite kind of behavior?",
+                choices: ["reckless", "gentle", "cautious", "damp"],
+                correct: "reckless"
+            },
+            {
+                id: 8,
+                word: "Shallow",
+                sentence: "The water near the shore was shallow enough for us to see the sand.",
+                hint: "The water was very shallow near the shore. What's the opposite — water you couldn't see the bottom of?",
+                choices: ["clear", "deep", "narrow", "striped"],
+                correct: "deep"
+            },
+            {
+                id: 9,
+                word: "Brave",
+                sentence: "The brave firefighter ran into the building to help the family inside.",
+                hint: "The firefighter showed a lot of courage. What feeling would be the opposite of brave?",
+                choices: ["bold", "scared", "strong", "fluffy"],
+                correct: "scared"
+            },
+            {
+                id: 10,
+                word: "Smooth",
+                sentence: "The table felt smooth after Dad sanded it down.",
+                hint: "The table felt very smooth. What's the opposite — what might it have felt like before Dad sanded it?",
+                choices: ["flat", "rough", "soft", "hollow"],
+                correct: "rough"
+            },
+            {
+                id: 11,
+                word: "Crowded",
+                sentence: "The cafeteria was crowded on pizza day.",
+                hint: "The cafeteria was packed with students. What would it look like if it were the opposite of crowded?",
+                choices: ["empty", "busy", "loud", "curved"],
+                correct: "empty"
+            },
+            {
+                id: 12,
+                word: "Simple",
+                sentence: "The instructions were simple and easy to follow.",
+                hint: "These instructions were very simple and easy. What's the opposite of simple?",
+                choices: ["plain", "complex", "clear", "distant"],
+                correct: "complex"
+            },
+            {
+                id: 13,
+                word: "Lazy",
+                sentence: "He felt lazy on Saturday morning and stayed in his pajamas.",
+                hint: "He didn't want to do anything all morning. What's the opposite of feeling lazy?",
+                choices: ["bored", "hardworking", "tired", "sparkly"],
+                correct: "hardworking"
+            },
+            {
+                id: 14,
+                word: "Strong",
+                sentence: "The rope was strong enough to hold the heavy box.",
+                hint: "The rope was very strong. What's the opposite — a rope that might snap or break?",
+                choices: ["weak", "sturdy", "healthy", "frozen"],
+                correct: "weak"
+            },
+            {
+                id: 15,
+                word: "Bright",
+                sentence: "The bright sun made it hard to see without sunglasses.",
+                hint: "The sun was extremely bright that day. What's the opposite of bright light?",
+                choices: ["shiny", "dull", "colorful", "circular"],
+                correct: "dull"
+            },
+            {
+                id: 16,
+                word: "Healthy",
+                sentence: "She eats healthy foods and tries to exercise every day.",
+                hint: "She takes great care of her body. What's the opposite of being healthy?",
+                choices: ["fit", "sick", "active", "rectangular"],
+                correct: "sick"
+            },
+            {
+                id: 17,
+                word: "Early",
+                sentence: "We arrived early so we could get good seats.",
+                hint: "They arrived before the event started. What's the opposite of arriving early?",
+                choices: ["late", "quick", "speedy", "tropical"],
+                correct: "late"
+            },
+            {
+                id: 18,
+                word: "Cheap",
+                sentence: "The toy was cheap, but it broke after one day.",
+                hint: "This toy didn't cost much money at all. What's the opposite of cheap?",
+                choices: ["expensive", "low", "affordable", "crunchy"],
+                correct: "expensive"
+            },
+            {
+                id: 19,
+                word: "Honest",
+                sentence: "He was honest about breaking the window and told the truth.",
+                hint: "He told the truth even when it was hard. What's the opposite of being honest?",
+                choices: ["truthful", "dishonest", "fair", "wobbly"],
+                correct: "dishonest"
+            },
+            {
+                id: 20,
+                word: "Soft",
+                sentence: "The kitten's fur felt soft when I picked her up.",
+                hint: "The fur felt very soft. What's the opposite of soft — what might a rock or floor feel like?",
+                choices: ["hard", "smooth", "warm", "tangled"],
+                correct: "hard"
+            },
+            {
+                id: 21,
+                word: "Fast",
+                sentence: "The dog ran so fast that we could barely keep up.",
+                hint: "The dog was running incredibly fast. What's the opposite of fast?",
+                choices: ["sudden", "slow", "quick", "squiggly"],
+                correct: "slow"
+            },
+            {
+                id: 22,
+                word: "Clean",
+                sentence: "Please wash your hands before dinner so they are clean.",
+                hint: "Washing makes your hands clean. What's the opposite of clean hands?",
+                choices: ["dirty", "tidy", "neat", "transparent"],
+                correct: "dirty"
+            },
+            {
+                id: 23,
+                word: "Kind",
+                sentence: "It was kind of her to help the new student find his classroom.",
+                hint: "She did something really kind for someone else. What's the opposite of being kind to someone?",
+                choices: ["mean", "polite", "caring", "magnetic"],
+                correct: "mean"
+            },
+            {
+                id: 24,
+                word: "Reckless",
+                sentence: "Driving too fast on an icy road is reckless.",
+                hint: "Driving recklessly means ignoring danger. What's the opposite — someone who pays close attention to safety?",
+                choices: ["bold", "careful", "brave", "hollow"],
+                correct: "careful"
+            },
+            {
+                id: 25,
+                word: "Fresh",
+                sentence: "The bread tasted fresh because it had just come out of the oven.",
+                hint: "The bread was fresh out of the oven. What's the opposite of fresh — bread that's been sitting out for days?",
+                choices: ["stale", "new", "clean", "bumpy"],
+                correct: "stale"
+            }
+        ];
+
+        let currentIndex = 0;
+        let completedItems = new Set();
+
+        // Initialization
+        function init() {
+            renderSidebar();
+            loadItem(0);
+        }
+
+        // Sidebar
+        function renderSidebar() {
+            const list = document.getElementById('sidebar-list');
+            list.innerHTML = activityData.map((item, index) => `
+                <li class="sidebar-item ${index === currentIndex ? 'active' : ''} ${completedItems.has(index) ? 'correct' : ''}" 
+                    onclick="loadItem(${index})">
+                    ${index + 1}. ${item.word}
+                </li>
+            `).join('');
+        }
+
+        function updateSidebar() {
+            const items = document.querySelectorAll('.sidebar-item');
+            items.forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === currentIndex) item.classList.add('active');
+
+                if (completedItems.has(index)) {
+                    item.classList.add('correct');
+                } else {
+                    item.classList.remove('correct');
+                }
+            });
+        }
+
+        // Main Content
+        function loadItem(index) {
+            currentIndex = index;
+            const data = activityData[index];
+
+            // Update UI Text
+            document.getElementById('current-item-num').innerText = index + 1;
+            document.getElementById('vocab-word').innerText = data.word;
+            document.getElementById('sentence-display').innerText = data.sentence;
+            document.getElementById('hint-text').innerText = data.hint;
+
+            // Reset UI State
+            document.getElementById('hint-box').classList.remove('visible');
+            document.getElementById('choices-box').classList.remove('visible');
+            document.getElementById('feedback-area').style.display = 'none';
+
+            // Buttons Text
+            document.getElementById('btn-hint').innerHTML = '💡 I need help';
+            document.getElementById('btn-choices').innerHTML = '🔍 I need more help';
+
+            // Render Choices
+            const choicesGrid = document.getElementById('choices-grid');
+            choicesGrid.innerHTML = data.choices.map(choice => `
+                <button class="choice-btn" onclick="checkAnswer(this, '${choice}')">${choice}</button>
+            `).join('');
+
+            // Navigation State
+            document.getElementById('prev-btn').disabled = currentIndex === 0;
+            document.getElementById('next-btn').disabled = currentIndex === activityData.length - 1;
+
+            updateSidebar();
+        }
+
+        // Interaction Logic
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            const btn = document.getElementById('btn-hint');
+            if (box.classList.contains('visible')) {
+                box.classList.remove('visible');
+                btn.innerHTML = '💡 I need help (Show)';
+            } else {
+                box.classList.add('visible');
+                btn.innerHTML = '💡 Hide help';
+            }
+        }
+
+        function toggleChoices() {
+            const box = document.getElementById('choices-box');
+            const btn = document.getElementById('btn-choices');
+            if (box.classList.contains('visible')) {
+                box.classList.remove('visible');
+                btn.innerHTML = '🔍 I need more help (Show)';
+            } else {
+                box.classList.add('visible');
+                btn.innerHTML = '🔍 Hide choices';
+            }
+        }
+
+        function checkAnswer(btnElement, selectedChoice) {
+            const currentData = activityData[currentIndex];
+
+            // Remove previous classes
+            const allBtns = document.querySelectorAll('.choice-btn');
+            allBtns.forEach(b => b.classList.remove('incorrect'));
+
+            if (selectedChoice === currentData.correct) {
+                // Correct
+                btnElement.classList.add('correct');
+                document.getElementById('feedback-area').style.display = 'block';
+                completedItems.add(currentIndex);
+                updateSidebar();
+
+                // Disable all buttons
+                allBtns.forEach(b => b.disabled = true);
+            } else {
+                // Incorrect
+                btnElement.classList.add('incorrect');
+                // Don't show correct answer, just let them try again
+            }
+        }
+
+        // Navigation Helper
+        function nextItem() {
+            if (currentIndex < activityData.length - 1) {
+                loadItem(currentIndex + 1);
+            }
+        }
+
+        function prevItem() {
+            if (currentIndex > 0) {
+                loadItem(currentIndex - 1);
+            }
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+
+</html>
