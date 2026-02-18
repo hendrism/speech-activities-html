@@ -188,10 +188,43 @@
         }
 
         /* Interactive Areas */
+        .instruction-banner {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #bae6fd;
+        }
+
         .support-area {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+        }
+
+        .student-input-area {
+            margin-bottom: 1rem;
+        }
+
+        .student-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 80px;
+            background: #fff;
+        }
+
+        .student-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
         }
 
         .support-controls {
@@ -429,11 +462,22 @@
 
         <!-- Main Card -->
         <div class="activity-card" id="activity-card">
+
+            <div class="instruction-banner">
+                🎯 Goal: Find the antonym (opposite) of the bolded word.
+            </div>
+
             <div class="card-header">
                 <h2 class="vocab-word" id="vocab-word">Word</h2>
                 <div class="sentence-display" id="sentence-display">
                     Sentence goes here.
                 </div>
+            </div>
+
+            <div class="student-input-area">
+                <label class="hint-label" style="color: var(--text-muted);">Student Thinking / Notes:</label>
+                <textarea class="student-input" id="student-input"
+                    placeholder="Type what the student says or thinks here before checking options..."></textarea>
             </div>
 
             <div class="support-area">
@@ -720,13 +764,20 @@
             // Update UI Text
             document.getElementById('current-item-num').innerText = index + 1;
             document.getElementById('vocab-word').innerText = data.word;
-            document.getElementById('sentence-display').innerText = data.sentence;
+
+            // Bold the word in the sentence
+            // Using case-insensitive replacement
+            const regex = new RegExp(`\\b${data.word}\\b`, 'gi');
+            const boldedSentence = data.sentence.replace(regex, match => `<strong>${match}</strong>`);
+
+            document.getElementById('sentence-display').innerHTML = boldedSentence;
             document.getElementById('hint-text').innerText = data.hint;
 
             // Reset UI State
             document.getElementById('hint-box').classList.remove('visible');
             document.getElementById('choices-box').classList.remove('visible');
             document.getElementById('feedback-area').style.display = 'none';
+            document.getElementById('student-input').value = ''; // Clear text box
 
             // Buttons Text
             document.getElementById('btn-hint').innerHTML = '💡 I need help';
