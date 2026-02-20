@@ -4,26 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Context Clues Activity</title>
+    <title>Word Definition Activity</title>
     <script>
-        window.activityType = 'contextClues';
+        // Configuration for the Universal Quiz
+        window.activityType = 'definitions';
     </script>
 </head>
 
 <body>
+    <!-- Load the Universal Quiz Template -->
+    <!-- 
+         Since we are in a flat file system, we can't easily "include" HTML.
+         However, we can use an iframe OR just copy the template code here but keep it minimal.
+         
+         ACTUALLY, the best way for a static site refactor without a build step is to:
+         1. Make this file a redirect? No, that's jarring.
+         2. Make this file load the content dynamically.
+         
+         Let's use the "Loader" pattern.
+         We will fetch the universal-quiz.html content? No, CORS issues with file://.
+         
+         BETTER APPROACH:
+         We will just put the "Universal Quiz" HTML structure HERE, but it's identical in both files.
+         Wait, that defeats the purpose of a "Template".
+         
+         The user wants "Developer Efficiency".
+         If I copy-paste the template into both files, I have 2 copies to maintain.
+         
+         Solution: `universal-quiz.html` IS the app.
+         These files (`word_definition_activity.html`) should just be redirects or wrappers.
+         
+         "window.location.replace('universal-quiz.html?type=definitions')"
+         
+         Let's try the iframe approach for seamless integration if they want to keep the URL.
+         OR just use the JS module to render everything into the body.
+    -->
+
     <div id="app-root"></div>
 
     <script type="module">
-        import { contextClues } from './js/language-data.js';
+        // We can import the logic and render it.
+        // This means `universal-quiz.html` isn't strictly needed as a file if we have the JS.
+        // BUT having a standalone HTML file is good for testing.
+
+        // Let's re-use the logic we wrote in universal-quiz.html but imported here.
+        // I will duplicate the minimal HTML structure here and import the engine.
+
+        import { wordDefinitions } from './js/language-data.js';
         import { QuizEngine } from './js/quiz-engine.js';
 
         document.body.innerHTML = `
-            <link rel="stylesheet" href="css/styles.css">
+            <link rel="stylesheet" href="../../css/styles.css">
             <div class="app-container">
                 <header class="main-header">
                     <div class="header-content">
-                        <h1>🔍 Context Clues Activity</h1>
-                        <p>Use clues to find the meaning</p>
+                        <h1>🎯 Word Definition Activity</h1>
+                        <p>Match the words to their meanings</p>
                     </div>
                 </header>
                 <main class="content-area">
@@ -32,6 +68,7 @@
             </div>
         `;
 
+        // Add specific styles for the quiz
         const style = document.createElement('style');
         style.textContent = `
             .quiz-card { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 20px; }
@@ -49,14 +86,15 @@
         document.head.appendChild(style);
 
         const engine = new QuizEngine({
-            data: contextClues,
+            data: wordDefinitions,
             containerId: 'activity-container',
             onRender: (item, progress, engine) => {
                 const card = document.createElement('div');
                 card.className = 'quiz-card';
 
-                const choices = engine.shuffleArray(item.choices);
-                const correctAnswer = item.choices[0]; // Assuming first choice is correct based on data structure
+                // Shuffle choices
+                const choices = engine.shuffleArray(item.categoryChoices);
+                const correctAnswer = item.category;
 
                 const optionsHtml = choices.map(choice =>
         \`<button class="option-btn" onclick="window.checkAnswer(this, '\${choice.replace(/'/g, "\\\\'")}', '\${correctAnswer.replace(/'/g, "\\\\'")}')">\${choice}</button>\`
@@ -70,13 +108,10 @@
                         </div>
                     </div>
                     <div class="question-text">
-                        \${item.text}
-                    </div>
-                    <div class="question-text" style="font-size: 1em; color: #666;">
-                        What does <strong>\${item.word}</strong> mean?
+                        What is the definition of <span class="target-word">\${item.word}</span>?
                     </div>
                     <div class="hint-box" id="hint-box">
-                        <strong>💡 Hint:</strong> \${item.hint}
+                        <strong>💡 Hint:</strong> \${item.categoryHint}
                     </div>
                     <div class="options-grid">
                         \${optionsHtml}
