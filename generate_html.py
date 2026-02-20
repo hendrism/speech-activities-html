@@ -373,9 +373,9 @@ def generate_html(stories):
 </body>
 </html>
 """
-    with open('reading_comprehension.html', 'w', encoding='utf-8') as f:
+    with open('late_winter_early_spring_reading.html', 'w', encoding='utf-8') as f:
         f.write(html)
-    print("Generated reading_comprehension.html successfully!")
+    print("Generated late_winter_early_spring_reading.html successfully!")
 
 if __name__ == "__main__":
     stories = parse_stories('/Users/Sean-Work/Desktop/speech-activities-html/speech_text.txt')
