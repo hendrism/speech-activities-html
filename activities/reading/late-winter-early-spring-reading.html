@@ -3090,9 +3090,233 @@
     }
 ];
         
+        // ── Figurative Language Questions (complex stories only) ──────────────
+        const figurativeQuestions = {
+            'story-1': [
+                {
+                    prompt: '"Her stomach sank — it felt like losing a friend."',
+                    clue: 'Think about how your stomach feels when something sad happens suddenly.',
+                    choices: [
+                        { text: 'Mia felt hungry and wanted lunch', isCorrect: false },
+                        { text: 'Mia felt very sad when she saw the snowman was gone', isCorrect: true },
+                        { text: 'Mia\'s stomach hurt from something she ate', isCorrect: false },
+                        { text: 'Mia was surprised but not really upset', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"A flower was starting to grow" — but earlier the story says the dirt was "cold." How can something grow in cold dirt?',
+                    clue: 'Think about what time of year it is and what is just beginning to happen to the ground.',
+                    choices: [
+                        { text: 'The flower was fake and did not need warm dirt', isCorrect: false },
+                        { text: 'The ground was just starting to warm up enough for things to grow', isCorrect: true },
+                        { text: 'Flowers only grow in cold weather', isCorrect: false },
+                        { text: 'Someone planted the flower there earlier that day', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-2': [
+                {
+                    prompt: '"He shot outside like a rocket."',
+                    clue: 'Think about how fast a rocket moves.',
+                    choices: [
+                        { text: 'Max flew through the air when he jumped out', isCorrect: false },
+                        { text: 'Max made a loud noise running out the door', isCorrect: false },
+                        { text: 'Max ran outside very fast', isCorrect: true },
+                        { text: 'Max crashed into something on his way out', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"All four paws were caked in dark mud."',
+                    clue: 'Think about what caked means — like a thick layer stuck on something.',
+                    choices: [
+                        { text: 'Max had mud lightly sprinkled on his paws', isCorrect: false },
+                        { text: 'Max had a thick heavy layer of mud covering his paws', isCorrect: true },
+                        { text: 'Max\'s paws were stained permanently brown', isCorrect: false },
+                        { text: 'Max had mud only between his toes', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-3': [
+                {
+                    prompt: '"Winter was finally loosening its grip."',
+                    clue: 'If something loosens its grip, what is happening to it?',
+                    choices: [
+                        { text: 'Winter was getting stronger and colder', isCorrect: false },
+                        { text: 'The wind was making it feel colder', isCorrect: false },
+                        { text: 'Winter was slowly coming to an end', isCorrect: true },
+                        { text: 'The ground was too frozen to change yet', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"She spotted it — a plump little bird with a rust-red chest."',
+                    clue: 'Rust is a color. What color is rust, and what does it tell you about the robin?',
+                    choices: [
+                        { text: 'The robin had a chest covered in actual rust', isCorrect: false },
+                        { text: 'The robin\'s chest was a dark reddish-brown color', isCorrect: true },
+                        { text: 'The robin looked old and worn out', isCorrect: false },
+                        { text: 'The robin had a shiny metallic chest', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-4': [
+                {
+                    prompt: '"Thin patches of snow clinging to the shady corners."',
+                    clue: 'When something clings, it holds on tight. Why would snow still be there?',
+                    choices: [
+                        { text: 'Someone had packed it tightly into the corners', isCorrect: false },
+                        { text: 'The snow was only surviving in spots too cold to melt', isCorrect: true },
+                        { text: 'The snow was completely frozen solid', isCorrect: false },
+                        { text: 'The wind had pushed it all into the corners', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"He watched the wet clump splatter against the bark."',
+                    clue: 'What does splatter tell you about how the snowball hit the tree?',
+                    choices: [
+                        { text: 'The snowball bounced off the tree cleanly', isCorrect: false },
+                        { text: 'The snowball stuck to the tree in one piece', isCorrect: false },
+                        { text: 'The snowball broke apart and spread out on impact', isCorrect: true },
+                        { text: 'The snowball made a loud cracking sound', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-5': [
+                {
+                    prompt: '"The ground pulled at her boots with every step."',
+                    clue: 'Can mud actually pull? What does thick mud feel like to walk through?',
+                    choices: [
+                        { text: 'The mud was alive and grabbing her boots', isCorrect: false },
+                        { text: 'The mud was so thick her boots kept getting stuck', isCorrect: true },
+                        { text: 'Her boots were too small and kept catching on roots', isCorrect: false },
+                        { text: 'The path was too slippery to move forward', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"She squished the rest of the way home."',
+                    clue: 'Think about what squished means and what her boots probably sounded and felt like.',
+                    choices: [
+                        { text: 'Lily was so tired she could barely walk', isCorrect: false },
+                        { text: 'Lily walked the rest of the way with wet muddy boots making a squishing sound', isCorrect: true },
+                        { text: 'Lily was moving very slowly because she was upset', isCorrect: false },
+                        { text: 'Lily was skipping home because she thought it was funny', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-6': [
+                {
+                    prompt: '"It had seemed worth testing at the time."',
+                    clue: 'Is Anna being serious, or looking back at a bad decision with some humor?',
+                    choices: [
+                        { text: 'Anna thinks stepping on the ice was a smart idea', isCorrect: false },
+                        { text: 'She knew it was risky and is okay with how it turned out', isCorrect: true },
+                        { text: 'Anna is very upset with herself', isCorrect: false },
+                        { text: 'She would do the exact same thing again', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"The puddle had frozen overnight into a thin cloudy sheet of ice."',
+                    clue: 'What does cloudy mean when describing ice? Is it the same as cloudy weather?',
+                    choices: [
+                        { text: 'The ice had clouds frozen inside it', isCorrect: false },
+                        { text: 'The ice was not clear — it was dull and hard to see through', isCorrect: true },
+                        { text: 'The ice was very dark and dirty looking', isCorrect: false },
+                        { text: 'The ice was thick and white like a snow bank', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-7': [
+                {
+                    prompt: '"It was one of those days that felt like a promise."',
+                    clue: 'What does a promise make you expect? What might a warm winter day be hinting at?',
+                    choices: [
+                        { text: 'Someone had promised Tom it would be warm that day', isCorrect: false },
+                        { text: 'The warm day made Tom think spring was coming', isCorrect: true },
+                        { text: 'Tom had promised himself to go outside', isCorrect: false },
+                        { text: 'February weather is usually reliable', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"The air smelled like something green trying to wake up."',
+                    clue: 'Can green things actually wake up? What happens to plants in spring?',
+                    choices: [
+                        { text: 'Someone nearby was cooking vegetables outside', isCorrect: false },
+                        { text: 'Tom could smell fresh cut grass from a neighbor\'s yard', isCorrect: false },
+                        { text: 'Plants were starting to come back to life as the ground warmed up', isCorrect: true },
+                        { text: 'The air smelled like rain was coming', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-8': [
+                {
+                    prompt: '"Her seedlings would already have a head start."',
+                    clue: 'In a race, what does a head start mean?',
+                    choices: [
+                        { text: 'The seedlings would grow taller than anyone else\'s', isCorrect: false },
+                        { text: 'The seedlings would need less water because they started early', isCorrect: false },
+                        { text: 'The plants would already be growing before she could plant outside', isCorrect: true },
+                        { text: 'Her plants would be ready sooner than store-bought ones', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"She dug through the shelves in the garage."',
+                    clue: 'Did Maria use a shovel to dig? What does dig mean here?',
+                    choices: [
+                        { text: 'Maria used a garden tool to search through the garage', isCorrect: false },
+                        { text: 'Maria searched carefully through a messy pile of things on the shelves', isCorrect: true },
+                        { text: 'Maria knocked everything off the shelves looking for the seeds', isCorrect: false },
+                        { text: 'Maria found the seeds right away without any trouble', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-9': [
+                {
+                    prompt: '"He felt the ice give slightly, like it was sighing."',
+                    clue: 'People sigh when they are giving in to something. What might the ice be doing?',
+                    choices: [
+                        { text: 'The ice was making noise because it was very old', isCorrect: false },
+                        { text: 'The ice was slowly starting to bend and weaken under his weight', isCorrect: true },
+                        { text: 'Sam heard the wind moving across the pond', isCorrect: false },
+                        { text: 'The ice was about to crack loudly and break apart', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"The ice had taken on a gray glassy look."',
+                    clue: 'What does glassy mean when describing ice? Think about what glass looks like.',
+                    choices: [
+                        { text: 'The ice had broken into pieces like shattered glass', isCorrect: false },
+                        { text: 'The ice looked smooth and clear like a pane of glass', isCorrect: true },
+                        { text: 'The ice looked dirty and dark gray', isCorrect: false },
+                        { text: 'The ice had a rough bumpy surface', isCorrect: false }
+                    ]
+                }
+            ],
+            'story-10': [
+                {
+                    prompt: '"Winter was not gone, but it was leaving."',
+                    clue: 'Can a season actually leave? What does it mean when we say winter is leaving?',
+                    choices: [
+                        { text: 'Winter was ending early because of the warm rain', isCorrect: false },
+                        { text: 'The temperature was dropping and winter was getting stronger', isCorrect: false },
+                        { text: 'The cold weather was slowly being replaced by warmer temperatures', isCorrect: true },
+                        { text: 'Maya was moving somewhere warmer for the rest of winter', isCorrect: false }
+                    ]
+                },
+                {
+                    prompt: '"The snow was collapsing in on itself."',
+                    clue: 'Think about what collapse means — like a building falling in on itself.',
+                    choices: [
+                        { text: 'Someone was jumping on the snow to flatten it', isCorrect: false },
+                        { text: 'The snow was blowing away piece by piece', isCorrect: false },
+                        { text: 'The snow was melting and losing its shape', isCorrect: true },
+                        { text: 'The rain was pushing the snow flat into the ground', isCorrect: false }
+                    ]
+                }
+            ]
+        };
+
         let currentStoryId = stories[0].id;
         let currentComplexity = 'simple'; // simple or complex
-        let currentQuestionType = 'literal'; // literal or inferential
+        let currentQuestionType = 'literal'; // literal, inferential, or figurative
 
         function init() {
             renderNav();
@@ -3106,6 +3330,9 @@
                     document.querySelectorAll('#complexity-tabs .top-tab-btn').forEach(b => b.classList.remove('active'));
                     e.target.classList.add('active');
                     currentComplexity = e.target.dataset.level;
+                    if (currentComplexity === 'simple' && currentQuestionType === 'figurative') {
+                        currentQuestionType = 'literal';
+                    }
                     renderStory();
                 });
             });
@@ -3152,13 +3379,22 @@
                     <div class="question-tabs">
                         <button class="tab-btn ${currentQuestionType === 'literal' ? 'active' : ''}" onclick="setQuestionType('literal')">Literal</button>
                         <button class="tab-btn ${currentQuestionType === 'inferential' ? 'active' : ''}" onclick="setQuestionType('inferential')">Inferential</button>
+                        <button class="tab-btn ${currentQuestionType === 'figurative' ? 'active' : ''}" onclick="setQuestionType('figurative')">Figurative Language</button>
                     </div>
-                    
+
                     <div class="questions" id="questions-container">
-                        ${renderQuestions(versionData.questions[currentQuestionType])}
+                        ${renderQuestions(getQuestions(story, versionData))}
                     </div>
                 </div>
             `;
+        }
+
+        function getQuestions(story, versionData) {
+            if (currentQuestionType === 'figurative') {
+                if (currentComplexity === 'simple') return null; // no figurative for simple
+                return figurativeQuestions[story.id] || null;
+            }
+            return versionData.questions[currentQuestionType];
         }
 
         window.setQuestionType = function(type) {
@@ -3167,7 +3403,12 @@
         };
 
         function renderQuestions(questions) {
-            if (!questions || !questions.length) return '<p>No questions available.</p>';
+            if (!questions || !questions.length) {
+                if (currentQuestionType === 'figurative' && currentComplexity === 'simple') {
+                    return '<p style="color:#475569; padding: 12px;">Figurative language questions are available with <strong>Regular Stories</strong>. Switch using the tab above.</p>';
+                }
+                return '<p style="color:#475569; padding: 12px;">No questions available.</p>';
+            }
             
             return questions.map((q, idx) => `
                 <div class="question-card">
