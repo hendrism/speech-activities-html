@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifying Plural Nouns</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-dark: #3730a3;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        body {
+            font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .level-indicator {
+            background: var(--surface);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Layout */
+        .app-container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            max-height: calc(100vh - 150px);
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            background: #f1f5f9;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-item:hover {
+            background: #f8fafc;
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background: #eef2ff;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-item.correct {
+            color: var(--secondary);
+        }
+
+        .sidebar-item.correct::after {
+            content: "✓";
+            font-weight: bold;
+        }
+        
+        .item-context {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        /* Main Card */
+        .activity-card {
+            background: var(--surface);
+            width: 100%;
+            max-width: 900px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease-out;
+            flex: 1;
+        }
+
+        .card-header {
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .vocab-word {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .context-display {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Interactive Areas */
+        .instruction-banner {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #bae6fd;
+        }
+
+        .support-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .student-input-area {
+            margin-bottom: 1rem;
+        }
+
+        .student-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 80px;
+            background: #fff;
+        }
+
+        .student-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .support-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: #eef2ff;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Content Boxes */
+        .content-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            display: none;
+            /* Hidden by default */
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .content-box.visible {
+            display: block;
+        }
+
+        .hint-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .hint-label {
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Choices Grid */
+        .choices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .choices-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .choice-btn {
+            background: white;
+            border: 2px solid var(--border);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--primary-light);
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .choice-btn.correct {
+            border-color: var(--secondary);
+            background: #ecfdf5;
+            color: #064e3b;
+        }
+
+        .choice-btn.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+            color: #991b1b;
+            animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        /* Navigation */
+        .nav-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4px, 0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="app-title">
+            <span>📝</span> Identifying Plural Nouns
+        </div>
+        <div class="level-indicator">
+            Item <span id="current-item-num">1</span> of <span id="total-items">61</span>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">Vocabulary Words</div>
+            <ul class="sidebar-list" id="sidebar-list">
+                <!-- Items generated via JS -->
+            </ul>
+        </div>
+
+        <!-- Main Card -->
+        <div class="activity-card" id="activity-card">
+
+            <div class="instruction-banner">
+                🎯 Goal: Find the correct plural form of the bolded noun.
+            </div>
+
+            <div class="card-header">
+                <h2 class="vocab-word" id="vocab-word">Word</h2>
+                <div class="context-display" id="context-display">
+                    Context goes here.
+                </div>
+            </div>
+
+            <div class="student-input-area">
+                <label class="hint-label" style="color: var(--text-muted);">Student Thinking / Notes:</label>
+                <textarea class="student-input" id="student-input"
+                    placeholder="Type what the student says or thinks here before checking options..."></textarea>
+            </div>
+
+            <div class="support-area">
+                <div class="support-controls">
+                    <button class="btn btn-outline" id="btn-hint" onclick="toggleHint()">
+                        💡 I need help
+                    </button>
+                    <button class="btn btn-outline" id="btn-choices" onclick="toggleChoices()">
+                        🔍 I need more help
+                    </button>
+                </div>
+
+                <!-- Hint Box -->
+                <div class="content-box" id="hint-box">
+                    <span class="hint-label">Hint</span>
+                    <p class="hint-text" id="hint-text">Hint text goes here.</p>
+                </div>
+
+                <!-- Choices Box -->
+                <div class="content-box" id="choices-box">
+                    <span class="hint-label">Select the Plural Form</span>
+                    <div class="choices-grid" id="choices-grid">
+                        <!-- Buttons generated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-area"
+                style="margin-top: auto; color: var(--secondary); font-weight: bold; display: none; text-align: center;">
+                🎉 Correct! Great job finding the plural noun!
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <button class="nav-btn" id="prev-btn" onclick="prevItem()">← Previous</button>
+        <button class="nav-btn" id="next-btn" onclick="nextItem()">Next Item →</button>
+    </div>
+
+    <script src="data.js" id="data-script"></script>
+    <script>
+        // We will load activityData from the variable defined below.
+        const activityData = [
+  {
+    "id": 1,
+    "word": "child",
+    "context": "1 — Autumn Walk",
+    "hint": "This word changes completely — think of a group of kids.",
+    "choices": [
+      "childs",
+      "children",
+      "childen"
+    ],
+    "correct": "children"
+  },
+  {
+    "id": 2,
+    "word": "foot",
+    "context": "1 — Autumn Walk",
+    "hint": "The vowel in the middle changes, just like tooth.",
+    "choices": [
+      "foots",
+      "feets",
+      "feet"
+    ],
+    "correct": "feet"
+  },
+  {
+    "id": 3,
+    "word": "leaf",
+    "context": "1 — Autumn Walk",
+    "hint": "Words ending in -f often change the f to v before adding -es.",
+    "choices": [
+      "leafs",
+      "leaves",
+      "leafes"
+    ],
+    "correct": "leaves"
+  },
+  {
+    "id": 4,
+    "word": "bush",
+    "context": "1 — Autumn Walk",
+    "hint": "Words ending in -sh add -es.",
+    "choices": [
+      "bushs",
+      "bushies",
+      "bushes"
+    ],
+    "correct": "bushes"
+  },
+  {
+    "id": 5,
+    "word": "goose",
+    "context": "1 — Autumn Walk",
+    "hint": "The vowel sound in the middle changes, just like tooth/teeth.",
+    "choices": [
+      "gooses",
+      "geese",
+      "goosies"
+    ],
+    "correct": "geese"
+  },
+  {
+    "id": 6,
+    "word": "fox",
+    "context": "1 — Autumn Walk",
+    "hint": "Words ending in -x add -es.",
+    "choices": [
+      "foxs",
+      "foxies",
+      "foxes"
+    ],
+    "correct": "foxes"
+  },
+  {
+    "id": 7,
+    "word": "mouse",
+    "context": "1 — Autumn Walk",
+    "hint": "This one changes completely.",
+    "choices": [
+      "mouses",
+      "mices",
+      "mice"
+    ],
+    "correct": "mice"
+  },
+  {
+    "id": 8,
+    "word": "tooth",
+    "context": "1 — Autumn Walk",
+    "hint": "The vowel in the middle changes.",
+    "choices": [
+      "tooths",
+      "teeths",
+      "teeth"
+    ],
+    "correct": "teeth"
+  },
+  {
+    "id": 9,
+    "word": "berry",
+    "context": "1 — Autumn Walk",
+    "hint": "Consonant + y? Change the y to i and add -es.",
+    "choices": [
+      "berrys",
+      "berres",
+      "berries"
+    ],
+    "correct": "berries"
+  },
+  {
+    "id": 10,
+    "word": "shelf",
+    "context": "1 — Autumn Walk",
+    "hint": "Same rule as leaf — swap the f for v.",
+    "choices": [
+      "shelfs",
+      "shelfes",
+      "shelves"
+    ],
+    "correct": "shelves"
+  },
+  {
+    "id": 11,
+    "word": "wolf",
+    "context": "1 — Autumn Walk",
+    "hint": "Same -f to -ves rule as leaf and shelf.",
+    "choices": [
+      "wolfs",
+      "wolfes",
+      "wolves"
+    ],
+    "correct": "wolves"
+  },
+  {
+    "id": 12,
+    "word": "fish",
+    "context": "1 — Autumn Walk",
+    "hint": "Trick question — some animal nouns don't change at all.",
+    "choices": [
+      "fishes",
+      "fishies",
+      "fish"
+    ],
+    "correct": "fish"
+  },
+  {
+    "id": 13,
+    "word": "towel",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "towels",
+      "toweles",
+      "towelies"
+    ],
+    "correct": "towels"
+  },
+  {
+    "id": 14,
+    "word": "chair",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "chairses",
+      "chairies",
+      "chairs"
+    ],
+    "correct": "chairs"
+  },
+  {
+    "id": 15,
+    "word": "sandal",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "sandales",
+      "sandals",
+      "sandalis"
+    ],
+    "correct": "sandals"
+  },
+  {
+    "id": 16,
+    "word": "seagull",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "seagulls",
+      "seagulles",
+      "seagullies"
+    ],
+    "correct": "seagulls"
+  },
+  {
+    "id": 17,
+    "word": "sandwich",
+    "context": "2 — Beach Day",
+    "hint": "Words ending in -ch add -es.",
+    "choices": [
+      "sandwichs",
+      "sandwichies",
+      "sandwiches"
+    ],
+    "correct": "sandwiches"
+  },
+  {
+    "id": 18,
+    "word": "crab",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "crabs",
+      "crabes",
+      "crabies"
+    ],
+    "correct": "crabs"
+  },
+  {
+    "id": 19,
+    "word": "umbrella",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "umbrellaes",
+      "umbrellas",
+      "umbrellies"
+    ],
+    "correct": "umbrellas"
+  },
+  {
+    "id": 20,
+    "word": "shell",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "shells",
+      "shelles",
+      "shellies"
+    ],
+    "correct": "shells"
+  },
+  {
+    "id": 21,
+    "word": "pebble",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "pebbles",
+      "pebblies",
+      "pebbeles"
+    ],
+    "correct": "pebbles"
+  },
+  {
+    "id": 22,
+    "word": "backpack",
+    "context": "2 — Beach Day",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "backpackes",
+      "backpackies",
+      "backpacks"
+    ],
+    "correct": "backpacks"
+  },
+  {
+    "id": 23,
+    "word": "display",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "displayes",
+      "displayies",
+      "displays"
+    ],
+    "correct": "displays"
+  },
+  {
+    "id": 24,
+    "word": "student",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "students",
+      "studentes",
+      "studenties"
+    ],
+    "correct": "students"
+  },
+  {
+    "id": 25,
+    "word": "week",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "weeks",
+      "weekes",
+      "weekies"
+    ],
+    "correct": "weeks"
+  },
+  {
+    "id": 26,
+    "word": "person",
+    "context": "3 — Science Fair",
+    "hint": "This one changes completely — think of a crowd.",
+    "choices": [
+      "persons",
+      "people",
+      "personnes"
+    ],
+    "correct": "people"
+  },
+  {
+    "id": 27,
+    "word": "formation",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "formations",
+      "formationnes",
+      "formationies"
+    ],
+    "correct": "formations"
+  },
+  {
+    "id": 28,
+    "word": "jar",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "jars",
+      "jares",
+      "jaries"
+    ],
+    "correct": "jars"
+  },
+  {
+    "id": 29,
+    "word": "volcano",
+    "context": "3 — Science Fair",
+    "hint": "Words ending in -o often add -es.",
+    "choices": [
+      "volcanos",
+      "volcanoes",
+      "volcanies"
+    ],
+    "correct": "volcanoes"
+  },
+  {
+    "id": 30,
+    "word": "woman",
+    "context": "3 — Science Fair",
+    "hint": "The vowel in the middle changes, similar to foot/feet.",
+    "choices": [
+      "womans",
+      "womens",
+      "women"
+    ],
+    "correct": "women"
+  },
+  {
+    "id": 31,
+    "word": "aisle",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "aisles",
+      "aislees",
+      "aislies"
+    ],
+    "correct": "aisles"
+  },
+  {
+    "id": 32,
+    "word": "note",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "notees",
+      "notes",
+      "noties"
+    ],
+    "correct": "notes"
+  },
+  {
+    "id": 33,
+    "word": "cactus",
+    "context": "3 — Science Fair",
+    "hint": "Words ending in -us often change to -i.",
+    "choices": [
+      "cactuses",
+      "cactuss",
+      "cacti"
+    ],
+    "correct": "cacti"
+  },
+  {
+    "id": 34,
+    "word": "plant",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "plants",
+      "plantes",
+      "planties"
+    ],
+    "correct": "plants"
+  },
+  {
+    "id": 35,
+    "word": "trophy",
+    "context": "3 — Science Fair",
+    "hint": "Consonant + y? Change the y to i and add -es.",
+    "choices": [
+      "trophys",
+      "trophes",
+      "trophies"
+    ],
+    "correct": "trophies"
+  },
+  {
+    "id": 36,
+    "word": "team",
+    "context": "3 — Science Fair",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "teames",
+      "teams",
+      "teamies"
+    ],
+    "correct": "teams"
+  },
+  {
+    "id": 37,
+    "word": "dish",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Words ending in -sh add -es.",
+    "choices": [
+      "dishs",
+      "dishies",
+      "dishes"
+    ],
+    "correct": "dishes"
+  },
+  {
+    "id": 38,
+    "word": "box",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Words ending in -x add -es.",
+    "choices": [
+      "boxs",
+      "boxes",
+      "boxies"
+    ],
+    "correct": "boxes"
+  },
+  {
+    "id": 39,
+    "word": "can",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "cans",
+      "canes",
+      "canies"
+    ],
+    "correct": "cans"
+  },
+  {
+    "id": 40,
+    "word": "potato",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Words ending in -o often add -es.",
+    "choices": [
+      "potatos",
+      "potatoies",
+      "potatoes"
+    ],
+    "correct": "potatoes"
+  },
+  {
+    "id": 41,
+    "word": "loaf",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Same -f to -ves rule as leaf and shelf.",
+    "choices": [
+      "loafs",
+      "loafes",
+      "loaves"
+    ],
+    "correct": "loaves"
+  },
+  {
+    "id": 42,
+    "word": "bean",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "beans",
+      "beanes",
+      "beanies"
+    ],
+    "correct": "beans"
+  },
+  {
+    "id": 43,
+    "word": "olive",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "olivees",
+      "olivies",
+      "olives"
+    ],
+    "correct": "olives"
+  },
+  {
+    "id": 44,
+    "word": "pot",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "potes",
+      "poties",
+      "pots"
+    ],
+    "correct": "pots"
+  },
+  {
+    "id": 45,
+    "word": "knife",
+    "context": "4 — Thanksgiving Kitchen",
+    "hint": "Same -fe to -ves rule as loaf/leaves.",
+    "choices": [
+      "knifes",
+      "knifes",
+      "knives"
+    ],
+    "correct": "knives"
+  },
+  {
+    "id": 46,
+    "word": "bus",
+    "context": "5 — Zoo Trip",
+    "hint": "Words ending in -s add -es.",
+    "choices": [
+      "buss",
+      "bussies",
+      "buses"
+    ],
+    "correct": "buses"
+  },
+  {
+    "id": 47,
+    "word": "permission slip",
+    "context": "5 — Zoo Trip",
+    "hint": "For compound nouns, the main noun gets the plural ending.",
+    "choices": [
+      "permissions slips",
+      "permission slips",
+      "permission slipes"
+    ],
+    "correct": "permission slips"
+  },
+  {
+    "id": 48,
+    "word": "lunch box",
+    "context": "5 — Zoo Trip",
+    "hint": "For compound nouns with -x at the end, add -es to the last word.",
+    "choices": [
+      "lunchs boxes",
+      "lunch boxs",
+      "lunch boxes"
+    ],
+    "correct": "lunch boxes"
+  },
+  {
+    "id": 49,
+    "word": "giraffe",
+    "context": "5 — Zoo Trip",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "giraffies",
+      "giraffie",
+      "giraffes"
+    ],
+    "correct": "giraffes"
+  },
+  {
+    "id": 50,
+    "word": "neck",
+    "context": "5 — Zoo Trip",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "neckes",
+      "neckies",
+      "necks"
+    ],
+    "correct": "necks"
+  },
+  {
+    "id": 51,
+    "word": "ox",
+    "context": "5 — Zoo Trip",
+    "hint": "This one changes completely — it's irregular.",
+    "choices": [
+      "oxes",
+      "oxs",
+      "oxen"
+    ],
+    "correct": "oxen"
+  },
+  {
+    "id": 52,
+    "word": "fly",
+    "context": "5 — Zoo Trip",
+    "hint": "Consonant + y? Change the y to i and add -es.",
+    "choices": [
+      "flys",
+      "flies",
+      "flyes"
+    ],
+    "correct": "flies"
+  },
+  {
+    "id": 53,
+    "word": "terrarium",
+    "context": "5 — Zoo Trip",
+    "hint": "Words ending in -ium can add -s or change to -ia; here just add -s.",
+    "choices": [
+      "terraria",
+      "terrariums",
+      "terrariums"
+    ],
+    "correct": "terrariums"
+  },
+  {
+    "id": 54,
+    "word": "lizard",
+    "context": "5 — Zoo Trip",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "lizardes",
+      "lizardies",
+      "lizards"
+    ],
+    "correct": "lizards"
+  },
+  {
+    "id": 55,
+    "word": "gecko",
+    "context": "5 — Zoo Trip",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "geckoes",
+      "geckies",
+      "geckos"
+    ],
+    "correct": "geckos"
+  },
+  {
+    "id": 56,
+    "word": "python",
+    "context": "5 — Zoo Trip",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "pythones",
+      "pythonies",
+      "pythons"
+    ],
+    "correct": "pythons"
+  },
+  {
+    "id": 57,
+    "word": "face",
+    "context": "5 — Zoo Trip",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "facees",
+      "facies",
+      "faces"
+    ],
+    "correct": "faces"
+  },
+  {
+    "id": 58,
+    "word": "deer",
+    "context": "5 — Zoo Trip",
+    "hint": "Trick question — some animal nouns don't change at all.",
+    "choices": [
+      "deers",
+      "deeries",
+      "deer"
+    ],
+    "correct": "deer"
+  },
+  {
+    "id": 59,
+    "word": "calf",
+    "context": "5 — Zoo Trip",
+    "hint": "Same -f to -ves rule as leaf, shelf, loaf.",
+    "choices": [
+      "calfs",
+      "calfes",
+      "calves"
+    ],
+    "correct": "calves"
+  },
+  {
+    "id": 60,
+    "word": "hand",
+    "context": "5 — Zoo Trip",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "hands",
+      "handes",
+      "handies"
+    ],
+    "correct": "hands"
+  },
+  {
+    "id": 61,
+    "word": "trip",
+    "context": "5 — Zoo Trip",
+    "hint": "Most nouns just add -s.",
+    "choices": [
+      "tripes",
+      "tripies",
+      "trips"
+    ],
+    "correct": "trips"
+  }
+];
+
+        document.getElementById('total-items').innerText = activityData.length;
+
+        let currentIndex = 0;
+        let completedItems = new Set();
+
+        // Initialization
+        function init() {
+            renderSidebar();
+            loadItem(0);
+        }
+
+        // Sidebar
+        function renderSidebar() {
+            const list = document.getElementById('sidebar-list');
+            list.innerHTML = activityData.map((item, index) => `
+                <li class="sidebar-item ${index === currentIndex ? 'active' : ''} ${completedItems.has(index) ? 'correct' : ''}" 
+                    onclick="loadItem(${index})">
+                    <div>
+                        ${index + 1}. <strong>${item.word}</strong>
+                        <div class="item-context">${item.context}</div>
+                    </div>
+                </li>
+            `).join('');
+        }
+
+        function updateSidebar() {
+            const items = document.querySelectorAll('.sidebar-item');
+            items.forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === currentIndex) item.classList.add('active');
+
+                if (completedItems.has(index)) {
+                    item.classList.add('correct');
+                } else {
+                    item.classList.remove('correct');
+                }
+            });
+            // Auto scroll sidebar
+            const activeItem = document.querySelector('.sidebar-item.active');
+            if (activeItem) {
+                const container = document.querySelector('.sidebar-list');
+                const offsetTop = activeItem.offsetTop;
+                if (offsetTop > container.clientHeight || offsetTop < container.scrollTop) {
+                    container.scrollTop = offsetTop - 50;
+                }
+            }
+        }
+
+        // Main Content
+        function loadItem(index) {
+            currentIndex = index;
+            const data = activityData[index];
+
+            // Update UI Text
+            document.getElementById('current-item-num').innerText = index + 1;
+            document.getElementById('vocab-word').innerText = data.word;
+
+            document.getElementById('context-display').innerHTML = `Paragraph Context: <strong>${data.context}</strong>`;
+            document.getElementById('hint-text').innerText = data.hint;
+
+            // Reset UI State
+            document.getElementById('hint-box').classList.remove('visible');
+            document.getElementById('choices-box').classList.remove('visible');
+            document.getElementById('feedback-area').style.display = 'none';
+            document.getElementById('student-input').value = ''; // Clear text box
+
+            // Buttons Text
+            document.getElementById('btn-hint').innerHTML = '💡 I need help';
+            document.getElementById('btn-choices').innerHTML = '🔍 I need more help';
+
+            // Render Choices
+            const choicesGrid = document.getElementById('choices-grid');
+            choicesGrid.innerHTML = data.choices.map(choice => `
+                <button class="choice-btn" onclick="checkAnswer(this, '${choice}')">${choice}</button>
+            `).join('');
+
+            // Navigation State
+            document.getElementById('prev-btn').disabled = currentIndex === 0;
+            document.getElementById('next-btn').disabled = currentIndex === activityData.length - 1;
+
+            updateSidebar();
+        }
+
+        // Interaction Logic
+        function toggleHint() {
+            const hintBox = document.getElementById('hint-box');
+            const btn = document.getElementById('btn-hint');
+
+            if (hintBox.classList.contains('visible')) {
+                hintBox.classList.remove('visible');
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-outline');
+                btn.innerHTML = '💡 I need help';
+            } else {
+                hintBox.classList.add('visible');
+                btn.classList.add('btn-primary');
+                btn.classList.remove('btn-outline');
+                btn.innerHTML = '💡 Hide hint';
+            }
+        }
+
+        function toggleChoices() {
+            const choicesBox = document.getElementById('choices-box');
+            const btn = document.getElementById('btn-choices');
+
+            if (choicesBox.classList.contains('visible')) {
+                choicesBox.classList.remove('visible');
+                btn.classList.remove('btn-secondary');
+                btn.classList.add('btn-outline');
+                btn.innerHTML = '🔍 I need more help';
+            } else {
+                choicesBox.classList.add('visible');
+                btn.classList.add('btn-secondary');
+                btn.classList.remove('btn-outline');
+                btn.innerHTML = '🔍 Hide choices';
+            }
+            
+            // Auto scroll to choices
+            if(choicesBox.classList.contains('visible')) {
+                setTimeout(() => {
+                    choicesBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        function checkAnswer(btn, selectedChoice) {
+            const data = activityData[currentIndex];
+            const isCorrect = selectedChoice.toLowerCase() === data.correct.toLowerCase();
+
+            // Reset all buttons
+            document.querySelectorAll('.choice-btn').forEach(b => {
+                b.classList.remove('correct', 'incorrect');
+                b.disabled = true; // Disable all after guess
+            });
+
+            if (isCorrect) {
+                btn.classList.add('correct');
+                document.getElementById('feedback-area').style.display = 'block';
+                completedItems.add(currentIndex);
+
+                // Re-enable navigation without disabled styling
+                document.querySelectorAll('.choice-btn').forEach(b => {
+                    if (b !== btn) b.style.opacity = '0.5';
+                });
+
+                updateSidebar();
+            } else {
+                btn.classList.add('incorrect');
+
+                // Let them try again after showing error
+                setTimeout(() => {
+                    btn.classList.remove('incorrect');
+                    document.querySelectorAll('.choice-btn').forEach(b => {
+                        b.disabled = false;
+                        b.style.opacity = '1';
+                    });
+                }, 1500);
+            }
+        }
+
+        function nextItem() {
+            if (currentIndex < activityData.length - 1) {
+                loadItem(currentIndex + 1);
+            }
+        }
+
+        function prevItem() {
+            if (currentIndex > 0) {
+                loadItem(currentIndex - 1);
+            }
+        }
+
+        // Start
+        window.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+
+</html>
