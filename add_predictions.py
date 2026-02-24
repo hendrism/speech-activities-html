@@ -228,16 +228,9 @@ def parse_predictions(text):
                 })
                 i += 1
             
-            # format the clue like existing JSON
-            correct_choice_letter = chr(65 + [c["isCorrect"] for c in choices].index(True))
-            clue = f"{hint} " + " ".join(f"{chr(65+j)}) {c['text']} {'✓ ' if c['isCorrect'] else ''}".strip() for j, c in enumerate(choices))
-            
-            # actually look at existing JSON clue format
-            # "clue": "What did she decide to do instead of being sad? A) She found her scarf in the puddle B) She forgot why she was sad C) Thinking about spring made her feel hopeful ✓ D) She was ready to build a new snowman"
-
             stories[current_story].append({
                 "prompt": q_text,
-                "clue": clue,
+                "clue": hint,
                 "choices": choices
             })
             continue
@@ -289,10 +282,8 @@ def main():
                 story["versions"]["complex"]["questions"]["prediction"] = pred_qs
                 
     new_json_str = json.dumps(data, indent=4)
-    # The original indentation is custom, but json.dumps uses 4 spaces. It should be fine.
-    # To fix formatting slightly:
     
-    new_html = html_content[:start_idx] + new_json_str + html_content[end_idx:]
+    new_html = html_content[:start_idx] + new_json_str + html_content[end_idx+1:]
     
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(new_html)
