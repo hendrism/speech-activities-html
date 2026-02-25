@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifying Synonyms</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-dark: #3730a3;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        body {
+            font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .level-indicator {
+            background: var(--surface);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Layout */
+        .app-container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            max-height: calc(100vh - 150px);
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            background: #f1f5f9;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-item:hover {
+            background: #f8fafc;
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background: #eef2ff;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-item.correct {
+            color: var(--secondary);
+        }
+
+        .sidebar-item.correct::after {
+            content: "✓";
+            font-weight: bold;
+        }
+
+        /* Main Card */
+        .activity-card {
+            background: var(--surface);
+            width: 100%;
+            max-width: 900px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease-out;
+            flex: 1;
+        }
+
+        .card-header {
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .vocab-word {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .sentence-display {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Interactive Areas */
+        .instruction-banner {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #bae6fd;
+        }
+
+        .support-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .student-input-area {
+            margin-bottom: 1rem;
+        }
+
+        .student-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 80px;
+            background: #fff;
+        }
+
+        .student-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .support-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: #eef2ff;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Content Boxes */
+        .content-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            display: none;
+            /* Hidden by default */
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .content-box.visible {
+            display: block;
+        }
+
+        .hint-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .hint-label {
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Choices Grid */
+        .choices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .choices-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .choice-btn {
+            background: white;
+            border: 2px solid var(--border);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--primary-light);
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .choice-btn.correct {
+            border-color: var(--secondary);
+            background: #ecfdf5;
+            color: #064e3b;
+        }
+
+        .choice-btn.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+            color: #991b1b;
+            animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        /* Navigation */
+        .nav-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4px, 0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="app-title">
+            <span>🔗</span> Identifying Synonyms
+        </div>
+        <div class="level-indicator">
+            Item <span id="current-item-num">1</span> of 25
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">Vocabulary Words</div>
+            <ul class="sidebar-list" id="sidebar-list">
+                <!-- Items generated via JS -->
+            </ul>
+        </div>
+
+        <!-- Main Card -->
+        <div class="activity-card" id="activity-card">
+
+            <div class="instruction-banner">
+                🎯 Goal: Find the synonym (word with the same meaning) of the bolded word.
+            </div>
+
+            <div class="card-header">
+                <h2 class="vocab-word" id="vocab-word">Word</h2>
+                <div class="sentence-display" id="sentence-display">
+                    Sentence goes here.
+                </div>
+            </div>
+
+            <div class="student-input-area">
+                <label class="hint-label" style="color: var(--text-muted);">Student Thinking / Notes:</label>
+                <textarea class="student-input" id="student-input"
+                    placeholder="Type what the student says or thinks here before checking options..."></textarea>
+            </div>
+
+            <div class="support-area">
+                <div class="support-controls">
+                    <button class="btn btn-outline" id="btn-hint" onclick="toggleHint()">
+                        💡 I need help
+                    </button>
+                    <button class="btn btn-outline" id="btn-choices" onclick="toggleChoices()">
+                        🔍 I need more help
+                    </button>
+                </div>
+
+                <!-- Hint Box -->
+                <div class="content-box" id="hint-box">
+                    <span class="hint-label">Hint</span>
+                    <p class="hint-text" id="hint-text">Hint text goes here.</p>
+                </div>
+
+                <!-- Choices Box -->
+                <div class="content-box" id="choices-box">
+                    <span class="hint-label">Select the Synonym</span>
+                    <div class="choices-grid" id="choices-grid">
+                        <!-- Buttons generated via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-area"
+                style="margin-top: auto; color: var(--secondary); font-weight: bold; display: none;">
+                🎉 Correct! Great job finding the synonym!
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <button class="nav-btn" id="prev-btn" onclick="prevItem()">← Previous</button>
+        <button class="nav-btn" id="next-btn" onclick="nextItem()">Next Item →</button>
+    </div>
+
+    <script>
+        // Data Source
+        const activityData = [
+            {
+                id: 1,
+                word: "Huge",
+                sentence: "The huge elephant walked slowly through the tall grass.",
+                hint: "The elephant was very big. What's another word for huge?",
+                choices: ["tiny", "giant", "loud", "fast"],
+                correct: "giant"
+            },
+            {
+                id: 2,
+                word: "Quick",
+                sentence: "The quick fox jumped over the sleeping dog.",
+                hint: "The fox moved very fast. What's another word for quick?",
+                choices: ["slow", "lazy", "speedy", "heavy"],
+                correct: "speedy"
+            },
+            {
+                id: 3,
+                word: "Speak",
+                sentence: "The teacher asked the student to speak louder.",
+                hint: "To use your voice to say words. What's another word for speak?",
+                choices: ["listen", "talk", "run", "jump"],
+                correct: "talk"
+            },
+            {
+                id: 4,
+                word: "Glad",
+                sentence: "She was glad when her best friend came to visit.",
+                hint: "She felt really good about her friend visiting. What's another word for glad?",
+                choices: ["sad", "angry", "happy", "tired"],
+                correct: "happy"
+            },
+            {
+                id: 5,
+                word: "Tidy",
+                sentence: "He kept his bedroom very tidy and put all his toys away.",
+                hint: "Everything was in its right place. What's another word for tidy?",
+                choices: ["messy", "dirty", "neat", "dark"],
+                correct: "neat"
+            },
+            {
+                id: 6,
+                word: "Begin",
+                sentence: "The movie will begin in five minutes.",
+                hint: "The movie is about to start. What's another word for begin?",
+                choices: ["end", "stop", "start", "pause"],
+                correct: "start"
+            },
+            {
+                id: 7,
+                word: "Quiet",
+                sentence: "The library was so quiet you could hear a pin drop.",
+                hint: "There was hardly any noise. What's another word for quiet?",
+                choices: ["loud", "silent", "busy", "crowded"],
+                correct: "silent"
+            },
+            {
+                id: 8,
+                word: "Simple",
+                sentence: "The instructions for the game were very simple.",
+                hint: "The instructions were not hard to understand. What's another word for simple?",
+                choices: ["hard", "easy", "confusing", "long"],
+                correct: "easy"
+            },
+            {
+                id: 9,
+                word: "Sick",
+                sentence: "He stayed home from school because he was sick.",
+                hint: "He wasn't feeling well. What's another word for sick?",
+                choices: ["healthy", "ill", "strong", "brave"],
+                correct: "ill"
+            },
+            {
+                id: 10,
+                word: "Smart",
+                sentence: "The smart student figured out the puzzle quickly.",
+                hint: "The student was very brainy. What's another word for smart?",
+                choices: ["silly", "clever", "lazy", "clumsy"],
+                correct: "clever"
+            },
+            {
+                id: 11,
+                word: "True",
+                sentence: "The story he told us was completely true.",
+                hint: "It was a fact and not a lie. What's another word for true?",
+                choices: ["false", "wrong", "correct", "fake"],
+                correct: "correct"
+            },
+            {
+                id: 12,
+                word: "Sleepy",
+                sentence: "The puppy was sleepy after playing all day.",
+                hint: "The puppy needed a nap. What's another word for sleepy?",
+                choices: ["awake", "energetic", "tired", "hungry"],
+                correct: "tired"
+            },
+            {
+                id: 13,
+                word: "Cold",
+                sentence: "It was a very cold morning in December.",
+                hint: "The temperature was very low. What's another word for cold?",
+                choices: ["hot", "warm", "chilly", "sunny"],
+                correct: "chilly"
+            },
+            {
+                id: 14,
+                word: "Shout",
+                sentence: "Please do not shout in the hallway.",
+                hint: "To use a very loud voice. What's another word for shout?",
+                choices: ["whisper", "yell", "sing", "cry"],
+                correct: "yell"
+            },
+            {
+                id: 15,
+                word: "Leap",
+                sentence: "The frog can leap from one lily pad to another.",
+                hint: "To push yourself off the ground. What's another word for leap?",
+                choices: ["walk", "crawl", "jump", "swim"],
+                correct: "jump"
+            },
+            {
+                id: 16,
+                word: "Beautiful",
+                sentence: "The sunset over the ocean was beautiful.",
+                hint: "It was wonderful to look at. What's another word for beautiful?",
+                choices: ["ugly", "pretty", "plain", "scary"],
+                correct: "pretty"
+            },
+            {
+                id: 17,
+                word: "Angry",
+                sentence: "The man was angry when he lost his keys.",
+                hint: "He was very upset. What's another word for angry?",
+                choices: ["calm", "mad", "glad", "bored"],
+                correct: "mad"
+            },
+            {
+                id: 18,
+                word: "End",
+                sentence: "At the end of the book, everyone lived happily ever after.",
+                hint: "The final part of the story. What's another word for end?",
+                choices: ["start", "beginning", "middle", "finish"],
+                correct: "finish"
+            },
+            {
+                id: 19,
+                word: "Scary",
+                sentence: "The haunted house was too scary for the little kids.",
+                hint: "It made them feel afraid. What's another word for scary?",
+                choices: ["funny", "frightening", "boring", "silly"],
+                correct: "frightening"
+            },
+            {
+                id: 20,
+                word: "Rich",
+                sentence: "The king was very rich and lived in a huge castle.",
+                hint: "He had a lot of money and treasure. What's another word for rich?",
+                choices: ["poor", "wealthy", "sick", "kind"],
+                correct: "wealthy"
+            },
+            {
+                id: 21,
+                word: "Funny",
+                sentence: "The clown at the circus was very funny.",
+                hint: "He made everyone laugh. What's another word for funny?",
+                choices: ["serious", "hilarious", "sad", "boring"],
+                correct: "hilarious"
+            },
+            {
+                id: 22,
+                word: "Hot",
+                sentence: "The soup was too hot to eat right away.",
+                hint: "It was boiling and needed to cool down. What's another word for hot?",
+                choices: ["cold", "freezing", "scorching", "icy"],
+                correct: "scorching"
+            },
+            {
+                id: 23,
+                word: "Safe",
+                sentence: "She felt safe when her parents were around.",
+                hint: "She felt protected from danger. What's another word for safe?",
+                choices: ["dangerous", "secure", "scared", "lost"],
+                correct: "secure"
+            },
+            {
+                id: 24,
+                word: "Below",
+                sentence: "The fish swam below the surface of the water.",
+                hint: "The fish was underneath the top of the water. What's another word for below?",
+                choices: ["above", "under", "beside", "over"],
+                correct: "under"
+            },
+            {
+                id: 25,
+                word: "Center",
+                sentence: "The teacher placed the block in the center of the circle.",
+                hint: "It was right in the very middle of the circle. What's another word for center?",
+                choices: ["edge", "middle", "top", "bottom"],
+                correct: "middle"
+            }
+        ];
+
+        let currentIndex = 0;
+        let completedItems = new Set();
+
+        // Initialization
+        function init() {
+            renderSidebar();
+            loadItem(0);
+        }
+
+        // Sidebar
+        function renderSidebar() {
+            const list = document.getElementById('sidebar-list');
+            list.innerHTML = activityData.map((item, index) => `
+                <li class="sidebar-item ${index === currentIndex ? 'active' : ''} ${completedItems.has(index) ? 'correct' : ''}" 
+                    onclick="loadItem(${index})">
+                    ${index + 1}. ${item.word}
+                </li>
+            `).join('');
+        }
+
+        function updateSidebar() {
+            const items = document.querySelectorAll('.sidebar-item');
+            items.forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === currentIndex) item.classList.add('active');
+
+                if (completedItems.has(index)) {
+                    item.classList.add('correct');
+                } else {
+                    item.classList.remove('correct');
+                }
+            });
+        }
+
+        // Main Content
+        function loadItem(index) {
+            currentIndex = index;
+            const data = activityData[index];
+
+            // Update UI Text
+            document.getElementById('current-item-num').innerText = index + 1;
+            document.getElementById('vocab-word').innerText = data.word;
+
+            // Bold the word in the sentence
+            // Using case-insensitive replacement
+            const regex = new RegExp(`\\b${data.word}\\b`, 'gi');
+            const boldedSentence = data.sentence.replace(regex, match => `<strong>${match}</strong>`);
+
+            document.getElementById('sentence-display').innerHTML = boldedSentence;
+            document.getElementById('hint-text').innerText = data.hint;
+
+            // Reset UI State
+            document.getElementById('hint-box').classList.remove('visible');
+            document.getElementById('choices-box').classList.remove('visible');
+            document.getElementById('feedback-area').style.display = 'none';
+            document.getElementById('student-input').value = ''; // Clear text box
+
+            // Buttons Text
+            document.getElementById('btn-hint').innerHTML = '💡 I need help';
+            document.getElementById('btn-choices').innerHTML = '🔍 I need more help';
+
+            // Render Choices
+            const choicesGrid = document.getElementById('choices-grid');
+            choicesGrid.innerHTML = data.choices.map(choice => `
+                <button class="choice-btn" onclick="checkAnswer(this, '${choice}')">${choice}</button>
+            `).join('');
+
+            // Navigation State
+            document.getElementById('prev-btn').disabled = currentIndex === 0;
+            document.getElementById('next-btn').disabled = currentIndex === activityData.length - 1;
+
+            updateSidebar();
+        }
+
+        // Interaction Logic
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            const btn = document.getElementById('btn-hint');
+            if (box.classList.contains('visible')) {
+                box.classList.remove('visible');
+                btn.innerHTML = '💡 I need help (Show)';
+            } else {
+                box.classList.add('visible');
+                btn.innerHTML = '💡 Hide help';
+            }
+        }
+
+        function toggleChoices() {
+            const box = document.getElementById('choices-box');
+            const btn = document.getElementById('btn-choices');
+            if (box.classList.contains('visible')) {
+                box.classList.remove('visible');
+                btn.innerHTML = '🔍 I need more help (Show)';
+            } else {
+                box.classList.add('visible');
+                btn.innerHTML = '🔍 Hide choices';
+            }
+        }
+
+        function checkAnswer(btnElement, selectedChoice) {
+            const currentData = activityData[currentIndex];
+
+            // Remove previous classes
+            const allBtns = document.querySelectorAll('.choice-btn');
+            allBtns.forEach(b => b.classList.remove('incorrect'));
+
+            if (selectedChoice === currentData.correct) {
+                // Correct
+                btnElement.classList.add('correct');
+                document.getElementById('feedback-area').style.display = 'block';
+                completedItems.add(currentIndex);
+                updateSidebar();
+
+                // Disable all buttons
+                allBtns.forEach(b => b.disabled = true);
+            } else {
+                // Incorrect
+                btnElement.classList.add('incorrect');
+                // Don't show correct answer, just let them try again
+            }
+        }
+
+        // Navigation Helper
+        function nextItem() {
+            if (currentIndex < activityData.length - 1) {
+                loadItem(currentIndex + 1);
+            }
+        }
+
+        function prevItem() {
+            if (currentIndex > 0) {
+                loadItem(currentIndex - 1);
+            }
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+
+</html>
