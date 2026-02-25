@@ -18,10 +18,11 @@
             --border: #e5e7eb;
             --success: #10b981;
             --success-bg: #d1fae5;
-            
+
             /* Text Sizing Variables */
             --base-size: 16px;
-            --story-size: 1.125rem; /* 18px */
+            --story-size: 1.125rem;
+            /* 18px */
             --header-size: 1.5rem;
         }
 
@@ -137,7 +138,7 @@
             color: var(--primary);
             text-transform: capitalize;
         }
-        
+
         /* --- Image Placeholder --- */
         .image-container {
             width: 100%;
@@ -152,7 +153,7 @@
             margin-bottom: 1.5rem;
             color: #64748b;
         }
-        
+
         .image-container svg {
             width: 48px;
             height: 48px;
@@ -205,7 +206,7 @@
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
-        
+
         .textarea-group {
             display: flex;
             flex-direction: column;
@@ -258,20 +259,28 @@
     <!-- Pagination Controls -->
     <div class="pagination-container">
         <button class="btn btn-outline" id="prevBtn">← Previous</button>
-        <span class="pagination-info" id="pageInfo">Item 1 of 10</span>
+        <select id="itemSelect" class="pagination-info"
+            style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: 1rem; cursor: pointer; background: var(--card-bg); color: var(--text-main); font-family: inherit;">
+            <!-- Options populated by JS -->
+        </select>
         <button class="btn btn-outline" id="nextBtn">Next →</button>
     </div>
 
     <!-- Main Content -->
     <main class="container">
-        
+
         <div class="card" id="activityCard">
             <div class="story-header">
                 <h2 class="story-title" id="displayTitle">Item Title</h2>
             </div>
-            
+
             <div class="image-container">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                <img id="itemImage" src="" alt=""
+                    style="max-width: 100%; max-height: 100%; object-fit: contain; display: none; border-radius: 0.5rem;">
+                <svg id="imagePlaceholderSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                </svg>
                 <div id="imagePlaceholderText">Image Placeholder</div>
             </div>
 
@@ -295,14 +304,17 @@
                 </div>
                 <div class="input-group">
                     <label class="input-label" for="attr2Input">Attribute 2</label>
-                    <input type="text" id="attr2Input" class="text-input" placeholder="e.g., what it feels like or is made of">
+                    <input type="text" id="attr2Input" class="text-input"
+                        placeholder="e.g., what it feels like or is made of">
                 </div>
             </div>
 
             <!-- Combined Sentence Output -->
             <div class="textarea-group">
-                <label class="input-label" for="sentenceInput" style="font-size: 1.1rem; color: var(--primary);">Combine these into a sentence or two:</label>
-                <textarea id="sentenceInput" class="sentence-input" placeholder="Write your sentence here..." spellcheck="false"></textarea>
+                <label class="input-label" for="sentenceInput" style="font-size: 1.1rem; color: var(--primary);">Combine
+                    these into a sentence or two:</label>
+                <textarea id="sentenceInput" class="sentence-input" placeholder="Write your sentence here..."
+                    spellcheck="false"></textarea>
             </div>
         </div>
     </main>
@@ -314,51 +326,61 @@
                 {
                     id: 1,
                     title: "Rain boots",
+                    image: "describing_spring_objects_images/rainboots.png",
                     text: "Rain boots are a type of shoe. People wear rain boots to keep their feet dry in puddles and rain. They are usually made of rubber, and they feel smooth and waterproof. Many rain boots are bright colors, like yellow or red, so they are easy to see on a rainy day."
                 },
                 {
                     id: 2,
                     title: "Umbrella",
+                    image: "describing_spring_objects_images/umbrella.png",
                     text: "An umbrella is a kind of tool people use in the rain. It helps keep water off your body and clothes. It has a long handle, and the top is wide and round. Most umbrellas are made of thin fabric stretched over metal rods."
                 },
                 {
                     id: 3,
                     title: "Flower",
+                    image: "describing_spring_objects_images/flower.png",
                     text: "A flower is a type of plant. It grows outside and helps the plant make seeds. Flowers can be bright colors, like pink, yellow, or purple. They often have a soft, thin petals and a sweet smell."
                 },
                 {
                     id: 4,
                     title: "Kite",
+                    image: "describing_spring_objects_images/kite.png",
                     text: "A kite is a type of toy. People fly a kite to have fun outside on windy days. It is made of light paper or fabric, and it has a long string. Kites are usually colorful and can be different shapes, like diamonds."
                 },
                 {
                     id: 5,
                     title: "Bird nest",
+                    image: "describing_spring_objects_images/birdnest.png",
                     text: "A bird nest is a kind of home. Birds use it to keep their eggs and babies safe. Nests are made of small sticks and grass, and they feel rough and dry. They are often round and sit high in trees."
                 },
                 {
                     id: 6,
                     title: "Baseball glove",
+                    image: "describing_spring_objects_images/baseballglove.png",
                     text: "A baseball glove is made of thick leather and feels soft inside. Players wear it on their hand when they play baseball. It helps them catch the ball safely. This glove is a piece of sports equipment, and many players keep their glove for years."
                 },
                 {
                     id: 7,
                     title: "Picnic blanket",
+                    image: "describing_spring_objects_images/picnicbasket.png",
                     text: "Families often bring a picnic blanket to the park. It is a type of blanket people use to sit on the ground outside. Picnic blankets are usually large and soft, so people can sit comfortably. Some have bright patterns, like stripes or flowers."
                 },
                 {
                     id: 8,
                     title: "Butterfly",
+                    image: "describing_spring_objects_images/butterfly.png",
                     text: "A butterfly has thin wings that can be many bright colors. It is an insect that flies from flower to flower. Butterflies use their long mouth to drink nectar from flowers. You can often see them on warm spring days."
                 },
                 {
                     id: 9,
                     title: "Water bottle",
+                    image: "describing_spring_objects_images/waterbottle.png",
                     text: "This clear container can hold cold water for a long time. People carry it to stay hydrated during the day. A water bottle is a type of container, and it often has a lid that screws on tightly. Some are made of plastic, and others are made of metal."
                 },
                 {
                     id: 10,
                     title: "Swing",
+                    image: "describing_spring_objects_images/swing.png",
                     text: "At the playground, children wait for their turn on the swing. A swing is a kind of playground equipment people use to move back and forth in the air. It has a flat seat and is held up by strong chains or ropes. Swings can go high or low, depending on how hard someone pumps their legs."
                 }
             ]
@@ -367,19 +389,21 @@
         // --- State ---
         let currentIndex = 0;
         let isLargeText = false;
-        
+
         // Object to store user input between item loads
         const userData = {};
 
         // --- DOM Elements ---
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const pageInfo = document.getElementById('pageInfo');
-        
+        const itemSelect = document.getElementById('itemSelect');
+
         const displayTitle = document.getElementById('displayTitle');
         const displayText = document.getElementById('displayText');
+        const itemImage = document.getElementById('itemImage');
+        const imagePlaceholderSvg = document.getElementById('imagePlaceholderSvg');
         const imagePlaceholderText = document.getElementById('imagePlaceholderText');
-        
+
         const categoryInput = document.getElementById('categoryInput');
         const functionInput = document.getElementById('functionInput');
         const attr1Input = document.getElementById('attr1Input');
@@ -388,8 +412,13 @@
 
         // --- Initialization ---
         function init() {
-            // Initialize user data storage
-            activityData.items.forEach(item => {
+            // Initialize dropdown
+            activityData.items.forEach((item, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `Item ${index + 1}: ${item.title}`;
+                itemSelect.appendChild(option);
+
                 userData[item.id] = {
                     category: '',
                     func: '',
@@ -398,7 +427,7 @@
                     sentence: ''
                 };
             });
-            
+
             loadItem(0);
             setupEventListeners();
         }
@@ -427,8 +456,25 @@
             // Render Content
             displayTitle.textContent = `${index + 1}. ${item.title}`;
             displayText.textContent = item.text;
-            imagePlaceholderText.textContent = `[Image Placeholder: ${item.title}]`;
-            
+
+            const imgContainer = document.querySelector('.image-container');
+            if (item.image) {
+                itemImage.src = item.image;
+                itemImage.alt = item.title;
+                itemImage.style.display = 'block';
+                imagePlaceholderSvg.style.display = 'none';
+                imagePlaceholderText.style.display = 'none';
+                imgContainer.style.border = 'none';
+                imgContainer.style.backgroundColor = 'transparent';
+            } else {
+                itemImage.style.display = 'none';
+                imagePlaceholderSvg.style.display = 'block';
+                imagePlaceholderText.style.display = 'block';
+                imagePlaceholderText.textContent = `[Image Placeholder: ${item.title}]`;
+                imgContainer.style.border = '2px dashed #cbd5e1';
+                imgContainer.style.backgroundColor = '#e2e8f0';
+            }
+
             // Restore user data if any
             const data = userData[item.id];
             categoryInput.value = data.category;
@@ -438,13 +484,13 @@
             sentenceInput.value = data.sentence;
 
             // Render Pagination
-            pageInfo.textContent = `Item ${index + 1} of ${activityData.items.length}`;
-            
+            itemSelect.value = index;
+
             // Update button states
             prevBtn.disabled = (currentIndex === 0);
             prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
             prevBtn.style.cursor = prevBtn.disabled ? "not-allowed" : "pointer";
-            
+
             nextBtn.disabled = (currentIndex === activityData.items.length - 1);
             nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
             nextBtn.style.cursor = nextBtn.disabled ? "not-allowed" : "pointer";
@@ -465,7 +511,11 @@
             nextBtn.onclick = () => {
                 if (currentIndex < activityData.items.length - 1) loadItem(currentIndex + 1);
             };
-            
+
+            itemSelect.addEventListener('change', (e) => {
+                loadItem(parseInt(e.target.value, 10));
+            });
+
             // Auto-save typing for resilience
             [categoryInput, functionInput, attr1Input, attr2Input, sentenceInput].forEach(input => {
                 input.addEventListener('input', saveCurrentInput);
