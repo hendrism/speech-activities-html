@@ -1,0 +1,928 @@
+--- PROMPTS ---
+- What was in the puddle where the snowman used to be?
+- How did Mia feel when she first saw the puddle?
+- What did Mia decide to look for at the end of the story?
+- Why do you think Mia smiled at the end of the story?
+- What does it mean that the snowman melted?
+- Why do you think Mia wanted to find a flower instead of building a new snowman?
+- Mia found a flower starting to grow at the end of the story. What do you think she will do next time she goes outside?
+- Do you think Mia will feel sad the next time it snows?
+- What did Mia find where the snowman used to be?
+- What did Mia notice near the fence?
+- What did Mia do with her scarf at the end of the story?
+- The story says Mia's stomach sank. What does that tell you about how she felt?
+- Why did Mia smile when she saw the tiny green flower?
+- What does the story suggest about how Mia felt about winter ending?
+- Mia found a flower starting to grow at the end of the story. What do you think she will do next time she goes outside?
+- Do you think Mia will feel sad the next time it snows?
+- \
+- \
+- Where did Max get muddy?
+- What did Max's owner do to clean him up?
+- How did Max feel about the bath?
+- Why didn't Max's owner let him inside right away?
+- Why was the yard so muddy?
+- How do you think Max felt when he first ran outside?
+- Max was already looking at the muddy yard at the end of the story. What do you think he will do the next time the door opens?
+- Do you think Max's owner will do anything differently the next time Max goes outside?
+- Why was the yard so muddy?
+- Where did Max's owner get the tub?
+- How did Max act during his bath?
+- Why did Max's owner shake her head and point back at the yard?
+- Why do you think Max ran outside like a rocket?
+- At the end, Max was already eyeing the muddy yard again. What does that tell you about Max?
+- Max was already looking at the muddy yard at the end of the story. What do you think he will do the next time the door opens?
+- Do you think Max's owner will do anything differently the next time Max goes outside?
+- \
+- \
+- \
+- What was the robin looking for?
+- Where was the girl when she saw the robin?
+- How did the girl feel when she saw the robin?
+- Why was the girl excited to see the robin?
+- Why was the ground wet?
+- What does it tell you that robins come back when the ground is wet and warm?
+- Dani wrote the date in her notebook when she saw the robin. What do you think she will do as more signs of spring appear?
+- What do you think Dani will do next February?
+- What was the robin doing in the yard?
+- What did Dani do after she saw the robin?
+- What did the yard look like that morning?
+- Why does Dani write down the date every year when she sees the first robin?
+- The story says winter was loosening its grip. What does that mean?
+- Why do robins come back when the ground starts to thaw?
+- Dani wrote the date in her notebook when she saw the robin. What do you think she will do as more signs of spring appear?
+- What do you think Dani will do next February?
+- \
+- \
+- \
+- What did Jake make with the snow?
+- What did Jake throw the snowball at?
+- What was wrong with the snow?
+- Why did Jake think the snow would be gone soon?
+- Why do you think Jake smiled after throwing the snowball?
+- How do you think Jake felt about winter ending?
+- Jake stood listening to the snow melting off the roof at the end of the story. What do you think he will do when the snow is completely gone?
+- Next winter, do you think Jake will make a snowball the first time it snows?
+- When did Jake check the yard?
+- What kind of snow was it?
+- What did Jake throw the snowball at?
+- Why were the snow patches only in the shady corners of the yard?
+- Why did Jake stand quietly at the end of the story?
+- What does the dripping sound of snow melting off the roof tell you?
+- Jake stood listening to the snow melting off the roof at the end of the story. What do you think he will do when the snow is completely gone?
+- Next winter, do you think Jake will make a snowball the first time it snows?
+- \
+- \
+- \
+- Where did Lily's boot get stuck?
+- What happened when she pulled her boot out?
+- How did Lily react when her sock got muddy?
+- Why was the path so muddy?
+- Why do you think Lily's boot came off when she pulled?
+- What does it tell you about Lily that she laughed and kept walking?
+- Lily took the shortcut even though she knew it would be muddy. What do you think she will do next time she walks home?
+- What do you think Lily will tell her family when she gets home?
+- Why did Lily's boot get stuck?
+- What did Lily's boot look like after it got stuck?
+- How did Lily get her boot out?
+- Why did Lily take the shortcut even though she knew it would be muddy?
+- What does it mean that the mud made a sucking sound when she pulled the boot free?
+- Why do you think Lily burst out laughing instead of getting upset?
+- Lily took the shortcut even though she knew it would be muddy. What do you think she will do next time she walks home?
+- What do you think Lily will tell her family when she gets home?
+- \
+- \
+- What did Anna find on her way to school?
+- What happened when Anna stepped on the ice?
+- What did Anna do after her shoe got wet?
+- Why was there ice on top of the puddle?
+- Why do you think Anna stepped on the ice?
+- What does it mean that Anna would not step on ice again?
+- Anna said it seemed worth testing at the time. Do you think she will test the ice again if she sees another frozen puddle?
+- Anna's shoe was soaked when she got to school. What do you think her day at school was like?
+- What did the ice look like on top of the puddle?
+- How did Anna first test the ice?
+- What happened right after the ice cracked?
+- Why did the puddle have ice on top but liquid water underneath?
+- Anna says it seemed worth testing at the time. What does that tell you?
+- Why do you think Anna kept walking to school instead of going home?
+- Anna said it seemed worth testing at the time. Do you think she will test the ice again if she sees another frozen puddle?
+- Anna's shoe was soaked when she got to school. What do you think her day at school was like?
+- \
+- \
+- What did Tom leave behind when he went outside?
+- Where did Tom sit outside?
+- What did Tom watch dripping off the roof?
+- Why did Tom go outside without his coat?
+- What does the snow dripping off the roof tell you about the weather?
+- Why did Tom not want to go back inside?
+- Tom did not want to go back inside at the end of the story. What do you think he will do on the next warm day?
+- The story ends in late February. What do you think Tom will do when spring fully arrives?
+- What time of day did Tom go outside?
+- What was dripping from the edge of the roof?
+- What bird did Tom hear in the tree?
+- The story says the day felt like a promise. What does that mean?
+- Why did the air smell like wet dirt and something green trying to wake up?
+- What does the last line mean \u2014 it was not quite spring but not really winter anymore either?
+- Tom did not want to go back inside at the end of the story. What do you think he will do on the next warm day?
+- The story ends in late February. What do you think Tom will do when spring fully arrives?
+- \
+- \
+- Where did Maria find the seed packet?
+- Why did Maria not plant the seeds outside?
+- Where did Maria put the cups of seeds?
+- Why did Maria use cups with soil instead of planting outside?
+- Why did Maria put the cups by the window?
+- What does it tell you about Maria that she started seeds inside instead of waiting?
+- Maria lined her seedlings up on the windowsill at the end of the story. What do you think she will do every day until the ground is ready to plant?
+- What do you think Maria will do next winter when she is waiting for spring again?
+- What kind of seeds did Maria find?
+- How many cups did Maria fill with soil?
+- How many seeds did Maria put in each cup?
+- Why was the ground still too cold to plant in?
+- Why did Maria's mom raise an eyebrow when she saw the cups?
+- What does Maria mean when she says the seedlings would have a head start?
+- Maria lined her seedlings up on the windowsill at the end of the story. What do you think she will do every day until the ground is ready to plant?
+- What do you think Maria will do next winter when she is waiting for spring again?
+- \
+- \
+- What had Sam done on the pond all winter?
+- What did the sign at the pond say?
+- What did Sam do after reading the sign?
+- Why was the ice thin and cracked?
+- Why do you think Sam looked at the pond for a long time before leaving?
+- What does it tell you about Sam that he followed the sign and went home?
+- Sam walked away from the pond at the end of the story. What do you think he will do when the pond freezes again next winter?
+- The sign at the pond said the ice was unsafe. What do you think will happen to the pond over the next few weeks?
+- How often had Sam skated at the pond during winter?
+- What did the ice look like when Sam arrived in February?
+- What did Sam feel when he pressed his boot against the ice?
+- Why did the ice turn gray instead of staying white?
+- Why do you think Sam stayed at the pond for a few extra minutes even after deciding not to skate?
+- What does the last line \u2014 the season was over \u2014 tell you about how Sam felt?
+- Sam walked away from the pond at the end of the story. What do you think he will do when the pond freezes again next winter?
+- The sign at the pond said the ice was unsafe. What do you think will happen to the pond over the next few weeks?
+- \
+- \
+- \
+- What was different about this rain?
+- What happened to the snow in the yard?
+- Where was Maya when she watched the rain?
+- Why did Maya smile while watching the rain?
+- Why did the puddles grow so big?
+- What does warm rain in late February tell you about the weather?
+- Maya noticed tiny buds on the oak tree at the end of the story. What do you think she will do the next time she looks at the tree?
+- The story ends with winter leaving but not fully gone. What do you think the yard will look like in two or three weeks?
+- How was this rain different from January rain?
+- What did Maya notice on the tips of the oak tree's branches?
+- What was Maya doing when she leaned on the porch railing?
+- The story says the snow was collapsing in on itself. What does that image tell you about how the snow was melting?
+- Why do you think Maya pulled her sleeves over her hands instead of going inside to get a coat?
+- What does the last line \u2014 winter was not gone but it was leaving \u2014 mean?
+- Maya noticed tiny buds on the oak tree at the end of the story. What do you think she will do the next time she looks at the tree?
+- The story ends with winter leaving but not fully gone. What do you think the yard will look like in two or three weeks?
+- \
+- \
+- \
+
+--- CHOICES ---
+[ ] A hat and mittens
+[*] A carrot and a blue scarf
+[ ] A flower and some mud
+[ ] A bucket and a stick
+[ ] Excited
+[ ] Angry
+[*] Sad
+[ ] Surprised
+[ ] A new scarf
+[ ] Another snowball
+[ ] A bird
+[*] The first flower of spring
+[ ] She found her scarf in the puddle
+[ ] She forgot why she was sad
+[*] Thinking about spring made her feel hopeful
+[ ] She was ready to build a new snowman
+[ ] Mia did not water her snowman
+[*] The weather is getting warmer and spring might be coming
+[ ] It rained too hard the night before
+[ ] The snowman was built in the wrong spot
+[ ] She was tired of snowmen
+[*] She was ready to look forward to spring instead of holding onto winter
+[ ] Flowers are easier to make than snowmen
+[ ] She did not have enough snow left
+[ ] She will build a new snowman with the leftover snow
+[ ] She will go back inside and forget about the flower
+[*] She will go outside to check on the flower and look for more signs of spring
+[ ] She will bring the flower inside so it does not freeze
+[ ] Yes, because she will worry about losing another snowman
+[*] No, because she learned that something new always comes after winter
+[ ] Yes, because she never wants to build another snowman
+[ ] No, because she does not like snow anymore
+[ ] A hat, a scarf, and a stick
+[*] A puddle, a carrot, and a soggy scarf
+[ ] A carrot, a puddle, and a flower
+[ ] Just a big muddy puddle
+[ ] A bird looking for worms
+[ ] A patch of ice that hadn't melted
+[*] A flower starting to grow
+[ ] Her carrot from the snowman
+[ ] She left it in the mud
+[ ] She threw it away
+[*] She picked it up
+[ ] She hung it on the fence
+[ ] She was hungry and wanted breakfast
+[*] She felt a sudden sadness when she saw the snowman was gone
+[ ] She was confused about what happened to the snowman
+[ ] She was excited to see the puddle
+[ ] She recognized it as her favorite kind of flower
+[ ] She thought the flower looked funny coming out of the cold dirt
+[*] Seeing something new growing made her feel hopeful about spring
+[ ] She wanted to pick it and bring it inside
+[ ] She was happy winter was over from the beginning
+[ ] She never cared about the snowman in the first place
+[*] She started sad but found a reason to feel okay about things changing
+[ ] She decided she would never build another snowman
+[ ] She will build a new snowman with the leftover snow
+[ ] She will go back inside and forget about the flower
+[*] She will go outside to check on the flower and look for more signs of spring
+[ ] She will bring the flower inside so it does not freeze
+[ ] Yes, because she will worry about losing another snowman
+[*] No, because she learned that something new always comes after winter
+[ ] Yes, because she never wants to build another snowman
+[ ] No, because she does not like snow anymore
+[ ] Very long
+[*] Not straight, bent to one side
+[ ] Broken in half
+[ ] Pointing downward
+[ ] Torn and dirty
+[ ] Frozen solid
+[*] Wet and heavy from soaking up water
+[ ] Faded and old looking
+[ ] At the park
+[*] In the yard
+[ ] In the house
+[ ] At the lake
+[ ] She put him outside again
+[ ] She gave him food
+[*] She gave him a bath
+[ ] She dried his paws with a towel
+[ ] He loved it
+[ ] He fell asleep
+[*] He did not like it
+[ ] He did not care
+[ ] She was busy cooking dinner
+[ ] Max was too loud
+[*] She did not want mud tracked into the house
+[ ] Max was not allowed inside until later
+[ ] It had been raining for days
+[ ] Someone left the hose on
+[*] The snow was melting
+[ ] Max had been digging holes
+[ ] Scared because it was cold
+[*] Happy to finally be free outside
+[ ] Confused about where he was
+[ ] Tired and ready to come back in
+[ ] He will stay inside because he learned his lesson
+[*] He will run straight back into the mud
+[ ] He will wait by the door but not go out
+[ ] He will look for a dry spot to play in
+[ ] She will never let Max outside again
+[ ] She will watch him more carefully from the window
+[*] She will keep the tub ready so she is prepared to wash him again
+[ ] She will put boots on Max before he goes out
+[ ] It had been raining for days
+[ ] Max had been digging holes all morning
+[*] The snow was melting
+[ ] Someone left the hose running overnight
+[ ] The basement
+[ ] The bathroom
+[*] The garage
+[ ] The hallway closet
+[ ] He barked at the water
+[*] He whined the whole time
+[ ] He stood perfectly still
+[ ] He tried to run away
+[ ] She wanted Max to keep playing outside
+[ ] She was worried he would slip on the floor
+[*] She did not want muddy paw prints all through the house
+[ ] Max was not allowed inside until dinnertime
+[ ] He heard another dog barking outside
+[ ] He was chasing a squirrel
+[*] After being stuck inside all winter he was ready to run
+[ ] He was trying to get away from his owner
+[ ] Max was looking for a dry spot to lie down
+[*] Max wanted to go back in the mud even though he just got clean
+[ ] Max was watching for other animals in the yard
+[ ] Max forgot he had just taken a bath
+[ ] He will stay inside because he learned his lesson
+[*] He will run straight back into the mud
+[ ] He will wait by the door but not go out
+[ ] He will look for a dry spot to play in
+[ ] She will never let Max outside again
+[ ] She will watch him more carefully from the window
+[*] She will keep the tub ready so she is prepared to wash him again
+[ ] She will put boots on Max before he goes out
+[ ] Sick and resting inside
+[*] Stuck inside with no room to run or play
+[ ] Sleeping most of the day
+[ ] Bored but comfortable inside
+[ ] Lightly dusted with mud
+[ ] Dripping with wet mud
+[*] Covered in a thick layer of mud that stuck on
+[ ] Stained a dark color permanently
+[ ] Very cold
+[*] Slightly warm, not hot or cold
+[ ] Soapy and bubbly
+[ ] Very hot
+[ ] Seeds
+[ ] Berries
+[*] Worms
+[ ] Bugs on the tree
+[ ] On the porch
+[ ] In the yard
+[*] At her window
+[ ] At school
+[ ] Confused
+[ ] Scared
+[ ] Bored
+[*] Excited
+[ ] She wanted to catch the bird
+[ ] She had never seen a bird before
+[*] Seeing the robin meant spring was coming
+[ ] The robin was her pet
+[ ] It had been raining all week
+[ ] Someone watered the yard
+[*] The snow was melting
+[ ] There was a puddle from the sprinklers
+[ ] Robins like to play in mud
+[*] Worms come closer to the surface when the ground warms up, making them easier to find
+[ ] Robins are afraid of snow
+[ ] The robin was lost and looking for its nest
+[ ] She will stop writing once she has seen the first robin
+[*] She will keep writing down other signs of spring as she notices them
+[ ] She will share her notebook with her teacher for a grade
+[ ] She will throw the notebook away once winter is fully over
+[ ] She will forget about the robin because it happens every year
+[*] She will watch the backyard again and wait for the first robin
+[ ] She will try to find the robin somewhere else this time
+[ ] She will stop keeping track because she already knows spring is coming
+[ ] Building a nest in the mud
+[ ] Looking for seeds near the fence
+[*] Jabbing its beak into the ground to find worms
+[ ] Drinking water from a puddle
+[ ] She ran outside to get a closer look
+[ ] She called her mom to come see
+[*] She wrote the date in her notebook
+[ ] She took a picture with her phone
+[ ] Covered in deep snow with icy trees
+[*] Frost on the grass and patches of snow in the corners
+[ ] Muddy with puddles everywhere and no snow left
+[ ] Green and sunny with flowers starting to bloom
+[ ] She was doing a school science project about birds
+[*] The date is special because the robin signals that winter is ending
+[ ] She wanted to remember what the bird looked like
+[ ] Her teacher asked her to track the weather each day
+[ ] Winter was getting stronger and colder
+[ ] Winter storms were becoming more dangerous
+[*] Winter was slowly coming to an end
+[ ] The wind was starting to pick up again
+[ ] They follow the wind patterns north each year
+[ ] They prefer muddy ground to build their nests
+[*] Worms move closer to the surface when the ground warms up, making them easier to find
+[ ] They come back to the same yard where they were born Stories 4\u201310: Full Materials The following stories continue the late winter / early spring theme with the same format: dual versions, literal and inferential questions with hints and multiple choice, vocabulary, and image prompts.
+[ ] She will stop writing once she has seen the first robin
+[*] She will keep writing down other signs of spring as she notices them
+[ ] She will share her notebook with her teacher for a grade
+[ ] She will throw the notebook away once winter is fully over
+[ ] She will forget about the robin because it happens every year
+[*] She will watch the backyard again and wait for the first robin
+[ ] She will try to find the robin somewhere else this time
+[ ] She will stop keeping track because she already knows spring is coming
+[ ] Very heavy and deep
+[ ] Dirty and gray colored
+[*] Refusing to melt like the rest of the snow
+[ ] Packed tightly by the wind
+[ ] Very small and lightweight
+[*] Round and full bodied
+[ ] Tall and long legged
+[ ] Fluffy from its winter feathers
+[ ] Get covered in rain
+[ ] Dry out and crack
+[*] Soften as ice and frost melt away
+[ ] Get muddy from too much water
+[ ] A snowman
+[*] A snowball
+[ ] A snow fort
+[ ] A pile of snow
+[ ] A fence
+[ ] A bush
+[*] A tree
+[ ] A wall
+[ ] It was too dry and hard
+[ ] It was yellow
+[*] It was soft and fell apart
+[ ] It was frozen solid
+[ ] The forecast said it would snow again
+[*] The snow was wet and melting, a sign warmer weather was coming
+[ ] His mom told him the snow was leaving
+[ ] He had seen all the snow melt before
+[ ] He was happy he did not miss the tree
+[*] He was enjoying one last winter moment before it ended
+[ ] He was excited to go back inside
+[ ] He was proud of how far he threw it
+[ ] He was glad winter was over
+[ ] He did not care either way
+[*] He was a little sad to see winter go
+[ ] He was angry that the snow was melting
+[ ] He will stay inside until summer arrives
+[*] He will find something new to enjoy now that winter is over
+[ ] He will try to find more snow somewhere else
+[ ] He will be too sad about winter to enjoy spring
+[ ] No, because he is tired of snowballs after this winter
+[ ] No, he will wait until the end of winter again
+[*] Yes, he will make one right away because he loves the snow
+[ ] Yes, but only if his friends are there too
+[ ] After school
+[*] Before breakfast
+[ ] After dinner
+[ ] Before bed
+[ ] Dry and fluffy like January snow
+[ ] Icy and hard to pick up
+[*] Wet and heavy, not like January snow
+[ ] Light and powdery
+[ ] A fence post
+[ ] A pine tree
+[*] The old oak tree
+[ ] The side of the house
+[ ] The wind pushed all the snow to the corners
+[ ] It had only snowed in those spots
+[*] The sun melted the snow everywhere except the shady areas
+[ ] Someone shoveled the snow into the corners
+[ ] He was trying to hear birds singing
+[ ] He was waiting for his mom to call him inside
+[*] He was taking in a last quiet winter moment before it was gone
+[ ] He was listening for other kids playing outside
+[ ] It started raining while Jake was outside
+[*] The snow was melting because the temperature was rising
+[ ] Someone turned on the heat too high in the house
+[ ] The roof was leaking from all the heavy snow
+[ ] He will stay inside until summer arrives
+[*] He will find something new to enjoy now that winter is over
+[ ] He will try to find more snow somewhere else
+[ ] He will be too sad about winter to enjoy spring
+[ ] No, because he is tired of snowballs after this winter
+[ ] No, he will wait until the end of winter again
+[*] Yes, he will make one right away because he loves the snow
+[ ] Yes, but only if his friends are there too
+[ ] Completely gone
+[*] Only a small amount remaining
+[ ] More than enough to play in
+[ ] Hidden under a layer of ice
+[ ] Picked it up loosely in one hand
+[*] Pressed and squeezed it tightly together
+[ ] Scooped it into a cup shape
+[ ] Mixed it with water to make it stick
+[ ] Bounce off cleanly in one piece
+[ ] Stick to the bark without breaking
+[*] Break apart and spread out in all directions
+[ ] Slide slowly down the trunk
+[ ] In a puddle
+[*] In the mud
+[ ] In the snow
+[ ] In the grass
+[ ] Her boot ripped
+[ ] She fell down
+[*] Her boot came off
+[ ] Her laces broke
+[ ] She sat down and waited
+[ ] She cried
+[*] She laughed
+[ ] She called her mom
+[ ] It had been raining all day
+[*] The snow was melting and making the ground wet
+[ ] Someone had watered the path
+[ ] The path was always muddy in winter
+[ ] Her boot was too old and worn out
+[*] The mud held the boot tight while her foot kept moving
+[ ] Her boot was too big for her foot
+[ ] She pulled in the wrong direction
+[ ] She did not notice her sock was wet
+[*] She thought getting muddy was funny and did not let it ruin her day
+[ ] She was happy to have an excuse to be late
+[ ] She was laughing at someone else
+[ ] She will take the long way home to avoid the mud
+[*] She will take the shortcut again because it did not really bother her
+[ ] She will ask her mom to pick her up from school
+[ ] She will wear different shoes next time
+[ ] She will be too embarrassed to tell anyone
+[ ] She will be upset and complain about the muddy path
+[*] She will laugh and tell the story because she thought it was funny
+[ ] She will ask her parents to fix the muddy path
+[ ] Her boot laces were tied too tight
+[*] She stepped in a deep patch of mud
+[ ] She slipped on a patch of ice
+[ ] Her boot caught on a root
+[ ] It was lying on its side in the mud
+[*] It was standing upright in the mud by itself
+[ ] It had sunk all the way under the mud
+[ ] It was floating in a puddle
+[ ] She wiggled it back and forth slowly
+[ ] She used a stick to pry it out
+[*] She yanked it free with a loud sucking sound
+[ ] She waited for the mud to dry a little first
+[ ] She forgot it would be muddy this time of year
+[*] She wanted to get home faster and took the chance
+[ ] Her mom told her to take that path
+[ ] The regular path was blocked by snow
+[ ] There were bugs living in the mud making noise
+[*] The mud was so thick and wet it created suction around the boot
+[ ] Lily was making the sound herself as she pulled
+[ ] The ground was hollow underneath the mud
+[ ] She was relieved her boot was not ruined
+[*] The whole situation was so silly looking she could not help but laugh
+[ ] She was laughing because she was cold and nervous
+[ ] She thought someone was watching and wanted to seem cool
+[ ] She will take the long way home to avoid the mud
+[*] She will take the shortcut again because it did not really bother her
+[ ] She will ask her mom to pick her up from school
+[ ] She will wear different shoes next time
+[ ] She will be too embarrassed to tell anyone
+[ ] She will be upset and complain about the muddy path
+[*] She will laugh and tell the story because she thought it was funny
+[ ] She will ask her parents to fix the muddy path
+[ ] Frozen just below the surface
+[ ] Completely dry and cracked
+[*] So wet and soft it could barely hold its shape
+[ ] Covered in a thin layer of ice
+[ ] She ran home as fast as she could
+[ ] She walked carefully trying not to slip
+[*] She walked with wet boots making a soft sound each step
+[ ] She hopped on one foot to keep her sock dry
+[ ] A snowball
+[*] A frozen puddle
+[ ] A patch of snow
+[ ] A crack in the sidewalk
+[ ] She slipped and fell
+[ ] The ice held and she slid across
+[*] The ice cracked and her shoe got wet
+[ ] The puddle splashed on her coat
+[ ] She sat down on the curb
+[*] She shook her foot and kept walking
+[ ] She went back home to change
+[ ] She called her mom for help
+[ ] Someone poured water on the puddle overnight
+[*] It was still cold enough at night to freeze the water
+[ ] The puddle was in the shade all day
+[ ] The ice had been there since December
+[ ] She did not see the puddle in time
+[*] She was curious and wanted to see what would happen
+[ ] She was trying to slide across it
+[ ] She had no other way around it
+[ ] She decided she did not like winter anymore
+[*] She learned from her mistake and would be more careful next time
+[ ] She was going to take a different route to school
+[ ] She was upset and wanted to go home
+[ ] No, she will walk around every puddle from now on
+[ ] No, she learned her lesson and will never touch ice again
+[*] Maybe \u2014 she might be curious again even though she knows what could happen
+[ ] Yes, she will test it again because she thinks it will hold next time
+[ ] She dried off quickly and forgot about it
+[*] Her shoe stayed wet and uncomfortable for most of the day
+[ ] Her teacher sent her home to change
+[ ] She took her shoe off and it dried by lunch
+[ ] Clear and shiny like glass
+[ ] Thick and white like a snowball
+[*] Thin and cloudy
+[ ] Dark and rough like gravel
+[ ] She jumped on it with both feet
+[ ] She tapped it with a stick
+[*] She pressed the toe of her sneaker against the edge
+[ ] She poked it with her finger
+[ ] Anna slipped and the puddle splashed her coat
+[*] Cold water rushed over her shoe and Anna gasped and jumped back
+[ ] Anna fell in and got her whole leg wet
+[ ] The ice held for a moment and then slowly sank
+[*] The puddle was too deep to freeze all the way through in one night
+[ ] Someone poured warm water into the puddle that morning
+[ ] The puddle was in a sunny spot that kept the bottom warm
+[ ] Ice always floats so the water underneath stays liquid forever
+[ ] She thinks it was a smart decision and would do it again
+[*] She is being a little wry \u2014 she knew it was risky but did it anyway and accepts what happened
+[ ] She is very upset and wishes she had never touched the puddle
+[ ] She thinks the ice should have been stronger and is blaming the weather
+[ ] She did not realize her shoe was wet
+[ ] She was too embarrassed to turn around
+[*] A wet shoe was not worth being late or missing school over
+[ ] Her house was too far away to go back
+[ ] No, she will walk around every puddle from now on
+[ ] No, she learned her lesson and will never touch ice again
+[*] Maybe \u2014 she might be curious again even though she knows what could happen
+[ ] Yes, she will test it again because she thinks it will hold next time
+[ ] She dried off quickly and forgot about it
+[*] Her shoe stayed wet and uncomfortable for most of the day
+[ ] Her teacher sent her home to change
+[ ] She took her shoe off and it dried by lunch
+[ ] Warm and steamy
+[*] Flowing and unfrozen
+[ ] Dark and murky
+[ ] Shallow and clear
+[ ] A little damp on the outside
+[ ] Wet only on the bottom
+[*] Completely wet all the way through
+[ ] Wet but drying quickly in the cold air
+[ ] His hat
+[*] His coat
+[ ] His boots
+[ ] His gloves
+[ ] On the grass
+[ ] On a bench
+[*] On the steps
+[ ] On a chair
+[ ] Rain
+[ ] Ice
+[*] Snow
+[ ] Water from the gutter
+[ ] He forgot it inside
+[ ] He was only going out for a second
+[*] It was warm enough that he did not need one
+[ ] His coat was wet from the day before
+[ ] It was windy and blowing the snow off
+[*] It was warm enough to melt the snow
+[ ] Someone was on the roof clearing it off
+[ ] It had started to rain
+[ ] He was waiting for a friend to arrive
+[ ] He had nothing to do inside
+[*] The warmth felt so good after a long cold winter
+[ ] His favorite show was not on yet
+[ ] He will plan an outdoor activity with friends
+[*] He will go back to his spot on the steps and enjoy the warmth again
+[ ] He will stay inside now that he has had his fresh air
+[ ] He will go for a long walk instead of sitting on the steps
+[*] He will spend as much time outside as possible now that it is warm
+[ ] He will go back to staying inside since winter is finally over
+[ ] He will look for snow since he misses winter
+[ ] He will start a garden now that the ground is warm
+[ ] Before breakfast
+[*] After lunch
+[ ] After school
+[ ] Before dinner
+[ ] Rain from the gutters
+[ ] Ice from a frozen pipe
+[*] Water from melting snow
+[ ] Water from a sprinkler on the roof
+[ ] A robin
+[ ] A sparrow
+[*] A chickadee
+[ ] A blue jay
+[ ] Tom had promised himself he would go outside that day
+[*] The warm day felt like a sign that spring was on its way
+[ ] Someone had promised Tom it would be a nice day
+[ ] The weather forecast had promised sunshine all week
+[ ] Someone nearby was gardening
+[ ] The rain had washed away the snow and left fresh dirt
+[*] The ground was warming up and plants were starting to grow again
+[ ] Tom was sitting next to a garden bed
+[ ] Tom did not know what month it was
+[ ] The weather was confused and kept changing
+[*] The season was in a transition \u2014 caught between winter ending and spring beginning
+[ ] It was technically still winter but Tom did not believe it
+[ ] He will plan an outdoor activity with friends
+[*] He will go back to his spot on the steps and enjoy the warmth again
+[ ] He will stay inside now that he has had his fresh air
+[ ] He will go for a long walk instead of sitting on the steps
+[*] He will spend as much time outside as possible now that it is warm
+[ ] He will go back to staying inside since winter is finally over
+[ ] He will look for snow since he misses winter
+[ ] He will start a garden now that the ground is warm
+[ ] Very fast and splashing loudly
+[ ] Slowly and occasionally
+[*] At a slow even pace without stopping
+[ ] In loud heavy drops
+[ ] He was doing something very important
+[*] He had no focus on any one specific thing
+[ ] He was trying to decide what to do
+[ ] He was doing something he does every day
+[ ] In the kitchen cabinet
+[ ] In her room
+[*] In the garage
+[ ] In the backyard
+[ ] She did not have a shovel
+[*] The ground was still too cold
+[ ] It was raining outside
+[ ] She was not allowed in the yard
+[ ] In the basement
+[ ] On the kitchen table
+[*] By the sunny window
+[ ] On the back porch
+[ ] She did not know how to plant in the ground
+[*] She wanted to start growing indoors since it was still too cold outside
+[ ] Her mom told her to use cups
+[ ] The seed packet said to use cups
+[ ] So she would not forget to water them
+[ ] Because the window was the warmest spot in the house
+[*] So the seeds could get sunlight
+[ ] So she could see them from outside
+[ ] She was impatient and not very smart about gardening
+[*] She was creative and determined to find a way to start spring early
+[ ] She did not understand how plants grow
+[ ] She was bored and just wanted something to do
+[ ] She will leave them alone and hope for the best
+[*] She will check on them, water them, and watch for signs of growth
+[ ] She will move them outside as soon as she sees a sprout
+[ ] She will forget about them once the excitement wears off
+[ ] She will wait patiently until the ground is warm enough to plant outside
+[*] She will start her seeds indoors early again
+[ ] She will ask her mom to handle the gardening next time
+[ ] She will try a different hobby while she waits for spring
+[ ] Tomato seeds
+[*] Sunflower seeds
+[ ] Vegetable seeds
+[ ] Rose seeds
+[ ] Four
+[ ] Eight
+[*] Six
+[ ] Ten
+[ ] One
+[*] Two
+[ ] Three
+[ ] As many as she could fit
+[ ] It had snowed the night before and covered everything
+[*] The ground freezes deep and takes longer to warm up than the air
+[ ] Maria's yard was always shady and never warmed up in winter
+[ ] The seeds needed warm rain to grow and it had not rained yet
+[ ] She was angry that Maria had gone into the garage
+[ ] She thought the cups were in the way and wanted them moved
+[*] She was surprised and maybe a little skeptical of Maria's indoor garden plan
+[ ] She did not know where Maria had gotten the soil
+[ ] The seeds would grow faster than normal because of the window
+[*] By starting inside early the plants would already be growing by the time she could plant outside
+[ ] Maria wanted to finish her project before her classmates did theirs
+[ ] The seeds would be ready to eat sooner than store-bought ones
+[ ] She will leave them alone and hope for the best
+[*] She will check on them, water them, and watch for signs of growth
+[ ] She will move them outside as soon as she sees a sprout
+[ ] She will forget about them once the excitement wears off
+[ ] She will wait patiently until the ground is warm enough to plant outside
+[*] She will start her seeds indoors early again
+[ ] She will ask her mom to handle the gardening next time
+[ ] She will try a different hobby while she waits for spring
+[ ] Faded and hard to read
+[ ] Torn along the edges
+[*] Wrinkled and creased from being stored
+[ ] Damp from sitting in the garage
+[ ] Excited and impressed by the idea
+[ ] Confused about what she was looking at
+[*] Doubtful the plan would actually work
+[ ] Angry that Maria had made a mess
+[ ] Walked across it
+[*] Skated on it
+[ ] Played hockey on it
+[ ] Sledded on the edge of it
+[ ] No Swimming
+[ ] Stay Back
+[*] Do Not Walk on Ice
+[ ] Pond Closed
+[ ] He called his friends to come look
+[ ] He tested the ice with his foot
+[*] He turned around and walked home
+[ ] He waited to see if anyone else would go on
+[ ] Too many people had skated on it that winter
+[ ] The ice was old and had never been very thick
+[*] The warming temperatures were melting the ice
+[ ] Someone had broken the ice with a stick
+[ ] He was trying to decide if the ice was safe enough
+[*] He was sad to see his favorite winter activity coming to an end
+[ ] He was looking for something he had dropped on the ice
+[ ] He was waiting for a friend to arrive
+[ ] He was afraid of the water
+[*] He was responsible and made a safe choice even though it was hard
+[ ] He did not really want to skate that day anyway
+[ ] He planned to come back later when no one was watching
+[ ] He will find a different hobby and not go back to the pond
+[*] He will be the first one out there skating when the ice is solid again
+[ ] He will be too sad about this year to enjoy skating next winter
+[ ] He will only skate if his friends go with him
+[ ] The ice will get thicker and safer as February continues
+[ ] The pond will freeze completely solid again before spring
+[*] The ice will keep melting until the pond is fully open water again
+[ ] The pond will stay partly frozen until summer
+[ ] Every day after school
+[*] Almost every weekend since December
+[ ] A few times in January
+[ ] Whenever his friends invited him
+[ ] White and smooth like earlier in the season
+[ ] Blue and thick with a few scratches from skates
+[*] Gray and glassy with thin cracks running from the edges
+[ ] Completely melted with only puddles left
+[ ] The ice was rock solid and did not move at all
+[ ] The ice cracked loudly under his boot
+[*] The ice gave slightly like it was sighing
+[ ] His boot slipped and he almost fell in
+[ ] The ice had gotten dirty from skaters all winter
+[*] Melting and weakening ice often becomes gray and glassy as it loses its structure
+[ ] The sky was gray and reflecting onto the ice
+[ ] The pond water underneath was dark and showing through
+[ ] He was hoping the ice would look safer if he waited
+[ ] He wanted to make sure no one else tried to skate
+[*] He was not ready to let go of something that had meant a lot to him all winter
+[ ] He was waiting to see if his friends would show up
+[ ] Sam was relieved and ready for spring
+[ ] Sam was stating a simple fact without any emotion
+[*] Sam felt a quiet sadness about winter skating coming to an end
+[ ] Sam was angry that the ice had melted too soon
+[ ] He will find a different hobby and not go back to the pond
+[*] He will be the first one out there skating when the ice is solid again
+[ ] He will be too sad about this year to enjoy skating next winter
+[ ] He will only skate if his friends go with him
+[ ] The ice will get thicker and safer as February continues
+[ ] The pond will freeze completely solid again before spring
+[*] The ice will keep melting until the pond is fully open water again
+[ ] The pond will stay partly frozen until summer
+[ ] Perfectly smooth with no cracks
+[*] Thick and hard enough to hold weight
+[ ] Clear enough to see through
+[ ] Frozen all the way to the bottom
+[ ] Broken into sharp pieces
+[ ] Covered in a dull white frost
+[*] Smooth and clear with a slight shine
+[ ] Dark and hard to see
+[ ] The sky was casting shadows on the water
+[*] The water was showing a mirror image of the sky
+[ ] The clouds were making the water look gray
+[ ] The water was turning dark from the cold
+[ ] It was raining harder than usual
+[*] It was warm rain instead of cold
+[ ] It was mixed with snow
+[ ] It lasted longer than usual
+[ ] The snow got deeper
+[ ] The snow turned to ice
+[*] The snow started to melt fast
+[ ] The snow blew away in the wind
+[ ] At the window inside
+[ ] In the backyard
+[*] On the porch
+[ ] Under a tree
+[ ] She liked getting wet in the rain
+[*] She knew the warm rain meant spring was almost here
+[ ] She was happy she did not have to go to school
+[ ] She saw a rainbow starting to form
+[ ] The gutters were clogged and overflowing
+[ ] The rain was coming down too fast for the drains to handle
+[*] Both the rain and the rapidly melting snow were adding water to the ground
+[ ] The yard had a lot of low spots that collected water
+[ ] A big storm was coming from the south
+[*] The temperature was rising and winter was losing its grip
+[ ] February is always warmer than January
+[ ] The rain came from a warm cloud that formed over the ocean
+[ ] She will forget about the buds now that the rain has stopped
+[*] She will check the tree again to see if the buds have grown or opened
+[ ] She will pick the buds off the tree to look at them up close
+[ ] She will stop paying attention to the tree once spring arrives
+[ ] The yard will be covered in snow again after one more cold spell
+[ ] The yard will look the same as it did during the warm rain
+[*] The snow will be gone, the ground will be muddy, and the buds will be opening
+[ ] The yard will be fully green with flowers already blooming
+[ ] It was raining much harder than in January
+[*] It was warm rain unlike the cold stinging kind in January
+[ ] The rain in January had been mixed with snow
+[ ] This rain came with thunder unlike January rain
+[ ] Small birds sitting in a row
+[ ] Drops of rain hanging from the twigs
+[*] Tiny swollen buds
+[ ] The first green leaves of the season
+[ ] She was trying to see if the rain was stopping
+[ ] She was waiting for someone to arrive
+[*] She was quietly taking in the signs of winter ending
+[ ] She was checking if the porch steps were icy
+[ ] The snow was blowing away in chunks from the wind
+[*] The snow was melting from the bottom and losing its shape as it fell apart
+[ ] The rain was so heavy it was pushing the snow down flat
+[ ] The snow had gotten old and dry and was crumbling
+[ ] All her coats were wet from earlier
+[ ] She did not realize how cold she was until it was too late
+[*] She did not want to go inside and miss the moment she was watching
+[ ] She was planning to go inside in just a minute
+[ ] The weather forecast said winter would return next week
+[ ] Maya was not sure if it was winter or spring anymore
+[*] The signs of change were clear even if winter had not fully ended yet
+[ ] Maya was hoping winter would stay a little longer
+[ ] She will forget about the buds now that the rain has stopped
+[*] She will check the tree again to see if the buds have grown or opened
+[ ] She will pick the buds off the tree to look at them up close
+[ ] She will stop paying attention to the tree once spring arrives
+[ ] The yard will be covered in snow again after one more cold spell
+[ ] The yard will look the same as it did during the warm rain
+[*] The snow will be gone, the ground will be muddy, and the buds will be opening
+[ ] The yard will be fully green with flowers already blooming
+[ ] Covered in a thin layer of ice
+[*] Shining with a wet sparkle from the rain
+[ ] Starting to grow new leaves
+[ ] Dark and heavy from the water
+[ ] Dried out and shriveled
+[ ] Bright green and fully open
+[*] Puffed up and round, getting ready to open
+[ ] Frozen and stuck to the branch
+[ ] Very loud and overwhelming
+[ ] Stopping and starting with the rain
+[*] Going on without stopping the whole time
+[ ] Coming from one specific spot in the yard
