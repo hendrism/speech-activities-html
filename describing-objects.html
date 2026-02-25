@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Describing Objects Activity</title>
+    <style>
+        :root {
+            /* Core Colors */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #ec4899;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            
+            /* Text Sizing Variables */
+            --base-size: 16px;
+            --story-size: 1.125rem; /* 18px */
+            --header-size: 1.5rem;
+        }
+
+        /* Text Size Classes */
+        body.text-large {
+            --base-size: 20px;
+            --story-size: 1.5rem;
+            --header-size: 1.8rem;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 60px;
+            font-size: var(--base-size);
+            line-height: 1.5;
+            transition: font-size 0.3s ease;
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- Pagination Controls --- */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pagination-info {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        /* --- Content Areas --- */
+        .story-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .story-title {
+            font-size: var(--header-size);
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary);
+            text-transform: capitalize;
+        }
+        
+        /* --- Image Placeholder --- */
+        .image-container {
+            width: 100%;
+            height: 250px;
+            background-color: #e2e8f0;
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: #64748b;
+        }
+        
+        .image-container svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+            fill: currentColor;
+        }
+
+        .story-text {
+            font-size: var(--story-size);
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* --- Input Fields --- */
+        .input-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-label {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .text-input {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .textarea-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+        }
+
+        .sentence-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: var(--story-size);
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        .sentence-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .input-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-controls">
+            <a href="index.html" class="btn btn-outline btn-sm">← Hub</a>
+            <h1 style="font-size: 1.2rem; margin: 0; font-weight: 700;">Describing Objects</h1>
+        </div>
+        <div class="header-controls">
+            <button class="btn btn-outline btn-sm" id="textSizeBtn" title="Toggle Text Size">Aa</button>
+        </div>
+    </header>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-container">
+        <button class="btn btn-outline" id="prevBtn">← Previous</button>
+        <span class="pagination-info" id="pageInfo">Item 1 of 10</span>
+        <button class="btn btn-outline" id="nextBtn">Next →</button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <div class="card" id="activityCard">
+            <div class="story-header">
+                <h2 class="story-title" id="displayTitle">Item Title</h2>
+            </div>
+            
+            <div class="image-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                <div id="imagePlaceholderText">Image Placeholder</div>
+            </div>
+
+            <div class="story-text" id="displayText">
+                Description goes here...
+            </div>
+
+            <!-- Input Fields for Characteristics -->
+            <div class="input-section">
+                <div class="input-group">
+                    <label class="input-label" for="categoryInput">Category</label>
+                    <input type="text" id="categoryInput" class="text-input" placeholder="e.g., shoe, tool, toy">
+                </div>
+                <div class="input-group">
+                    <label class="input-label" for="functionInput">Function</label>
+                    <input type="text" id="functionInput" class="text-input" placeholder="What do you use it for?">
+                </div>
+                <div class="input-group">
+                    <label class="input-label" for="attr1Input">Attribute 1</label>
+                    <input type="text" id="attr1Input" class="text-input" placeholder="e.g., color, size, shape">
+                </div>
+                <div class="input-group">
+                    <label class="input-label" for="attr2Input">Attribute 2</label>
+                    <input type="text" id="attr2Input" class="text-input" placeholder="e.g., what it feels like or is made of">
+                </div>
+            </div>
+
+            <!-- Combined Sentence Output -->
+            <div class="textarea-group">
+                <label class="input-label" for="sentenceInput" style="font-size: 1.1rem; color: var(--primary);">Combine these into a sentence or two:</label>
+                <textarea id="sentenceInput" class="sentence-input" placeholder="Write your sentence here..." spellcheck="false"></textarea>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- Data Structure ---
+        const activityData = {
+            items: [
+                {
+                    id: 1,
+                    title: "Rain boots",
+                    text: "Rain boots are a type of shoe. People wear rain boots to keep their feet dry in puddles and rain. They are usually made of rubber, and they feel smooth and waterproof. Many rain boots are bright colors, like yellow or red, so they are easy to see on a rainy day."
+                },
+                {
+                    id: 2,
+                    title: "Umbrella",
+                    text: "An umbrella is a kind of tool people use in the rain. It helps keep water off your body and clothes. It has a long handle, and the top is wide and round. Most umbrellas are made of thin fabric stretched over metal rods."
+                },
+                {
+                    id: 3,
+                    title: "Flower",
+                    text: "A flower is a type of plant. It grows outside and helps the plant make seeds. Flowers can be bright colors, like pink, yellow, or purple. They often have a soft, thin petals and a sweet smell."
+                },
+                {
+                    id: 4,
+                    title: "Kite",
+                    text: "A kite is a type of toy. People fly a kite to have fun outside on windy days. It is made of light paper or fabric, and it has a long string. Kites are usually colorful and can be different shapes, like diamonds."
+                },
+                {
+                    id: 5,
+                    title: "Bird nest",
+                    text: "A bird nest is a kind of home. Birds use it to keep their eggs and babies safe. Nests are made of small sticks and grass, and they feel rough and dry. They are often round and sit high in trees."
+                },
+                {
+                    id: 6,
+                    title: "Baseball glove",
+                    text: "A baseball glove is made of thick leather and feels soft inside. Players wear it on their hand when they play baseball. It helps them catch the ball safely. This glove is a piece of sports equipment, and many players keep their glove for years."
+                },
+                {
+                    id: 7,
+                    title: "Picnic blanket",
+                    text: "Families often bring a picnic blanket to the park. It is a type of blanket people use to sit on the ground outside. Picnic blankets are usually large and soft, so people can sit comfortably. Some have bright patterns, like stripes or flowers."
+                },
+                {
+                    id: 8,
+                    title: "Butterfly",
+                    text: "A butterfly has thin wings that can be many bright colors. It is an insect that flies from flower to flower. Butterflies use their long mouth to drink nectar from flowers. You can often see them on warm spring days."
+                },
+                {
+                    id: 9,
+                    title: "Water bottle",
+                    text: "This clear container can hold cold water for a long time. People carry it to stay hydrated during the day. A water bottle is a type of container, and it often has a lid that screws on tightly. Some are made of plastic, and others are made of metal."
+                },
+                {
+                    id: 10,
+                    title: "Swing",
+                    text: "At the playground, children wait for their turn on the swing. A swing is a kind of playground equipment people use to move back and forth in the air. It has a flat seat and is held up by strong chains or ropes. Swings can go high or low, depending on how hard someone pumps their legs."
+                }
+            ]
+        };
+
+        // --- State ---
+        let currentIndex = 0;
+        let isLargeText = false;
+        
+        // Object to store user input between item loads
+        const userData = {};
+
+        // --- DOM Elements ---
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageInfo = document.getElementById('pageInfo');
+        
+        const displayTitle = document.getElementById('displayTitle');
+        const displayText = document.getElementById('displayText');
+        const imagePlaceholderText = document.getElementById('imagePlaceholderText');
+        
+        const categoryInput = document.getElementById('categoryInput');
+        const functionInput = document.getElementById('functionInput');
+        const attr1Input = document.getElementById('attr1Input');
+        const attr2Input = document.getElementById('attr2Input');
+        const sentenceInput = document.getElementById('sentenceInput');
+
+        // --- Initialization ---
+        function init() {
+            // Initialize user data storage
+            activityData.items.forEach(item => {
+                userData[item.id] = {
+                    category: '',
+                    func: '',
+                    attr1: '',
+                    attr2: '',
+                    sentence: ''
+                };
+            });
+            
+            loadItem(0);
+            setupEventListeners();
+        }
+
+        // --- Logic ---
+        function saveCurrentInput() {
+            const item = activityData.items[currentIndex];
+            userData[item.id] = {
+                category: categoryInput.value,
+                func: functionInput.value,
+                attr1: attr1Input.value,
+                attr2: attr2Input.value,
+                sentence: sentenceInput.value
+            };
+        }
+
+        function loadItem(index) {
+            // Save current before switching
+            if (activityData.items[currentIndex]) {
+                saveCurrentInput();
+            }
+
+            currentIndex = index;
+            const item = activityData.items[index];
+
+            // Render Content
+            displayTitle.textContent = `${index + 1}. ${item.title}`;
+            displayText.textContent = item.text;
+            imagePlaceholderText.textContent = `[Image Placeholder: ${item.title}]`;
+            
+            // Restore user data if any
+            const data = userData[item.id];
+            categoryInput.value = data.category;
+            functionInput.value = data.func;
+            attr1Input.value = data.attr1;
+            attr2Input.value = data.attr2;
+            sentenceInput.value = data.sentence;
+
+            // Render Pagination
+            pageInfo.textContent = `Item ${index + 1} of ${activityData.items.length}`;
+            
+            // Update button states
+            prevBtn.disabled = (currentIndex === 0);
+            prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
+            prevBtn.style.cursor = prevBtn.disabled ? "not-allowed" : "pointer";
+            
+            nextBtn.disabled = (currentIndex === activityData.items.length - 1);
+            nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
+            nextBtn.style.cursor = nextBtn.disabled ? "not-allowed" : "pointer";
+        }
+
+        function setupEventListeners() {
+            // Text Size Toggle
+            document.getElementById('textSizeBtn').onclick = () => {
+                isLargeText = !isLargeText;
+                document.body.classList.toggle('text-large', isLargeText);
+            };
+
+            // Pagination
+            prevBtn.onclick = () => {
+                if (currentIndex > 0) loadItem(currentIndex - 1);
+            };
+
+            nextBtn.onclick = () => {
+                if (currentIndex < activityData.items.length - 1) loadItem(currentIndex + 1);
+            };
+            
+            // Auto-save typing for resilience
+            [categoryInput, functionInput, attr1Input, attr2Input, sentenceInput].forEach(input => {
+                input.addEventListener('input', saveCurrentInput);
+            });
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+
+</html>
