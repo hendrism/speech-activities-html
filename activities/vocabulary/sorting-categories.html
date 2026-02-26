@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Categories</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-dark: #3730a3;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        body {
+            font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+        }
+
+        .level-indicator {
+            background: var(--surface);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Layout */
+        .app-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            max-height: calc(100vh - 150px);
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            background: #f1f5f9;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-item:hover {
+            background: #f8fafc;
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background: #eef2ff;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+
+        /* Main Card */
+        .activity-card {
+            background: var(--surface);
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease-out;
+            flex: 1;
+            min-height: 600px;
+        }
+
+        .instruction-banner {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #bae6fd;
+        }
+
+        .set-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Drag & Drop Areas */
+        .drop-zones-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .drop-zone {
+            flex: 1;
+            background: #f8fafc;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-md);
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s;
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .drop-zone-header {
+            background: white;
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: 700;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--border);
+            border-top-left-radius: var(--radius-md);
+            border-top-right-radius: var(--radius-md);
+            font-size: 1.2rem;
+        }
+
+        .drop-zone-content {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-content: flex-start;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .source-pool {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            min-height: 180px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            align-content: center;
+            transition: all 0.2s;
+        }
+
+        .source-pool.drag-over {
+            border-color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .draggable-item {
+            width: var(--item-size, 130px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: grab;
+            transition: transform 0.2s, width 0.2s;
+        }
+
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+
+        .draggable-item:hover {
+            transform: scale(1.05);
+        }
+
+        .item-image {
+            width: var(--img-size, 100px);
+            height: var(--img-size, 100px);
+            object-fit: contain;
+            background: white;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            padding: 0.25rem;
+            box-shadow: var(--shadow-sm);
+            pointer-events: none;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        .item-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--text-main);
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="app-title">
+            <span>🗂️</span> Sorting Categories
+        </div>
+        <div class="level-indicator">
+            Set <span id="current-item-num">1</span> of 10
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">Category Sets</div>
+            <ul class="sidebar-list" id="sidebar-list">
+                <!-- Generated via JS -->
+            </ul>
+        </div>
+
+        <!-- Main Card -->
+        <div class="activity-card" id="activity-card">
+
+            <div class="instruction-banner">
+                🎯 Sort the items by dragging them into the correct category box.
+            </div>
+
+            <h2 class="set-title" id="set-title">Set Title</h2>
+
+            <div class="drop-zones-container" id="drop-zones-container">
+                <!-- Drop zones generated via JS based on categories count -->
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                <h3 style="color: var(--text-muted); font-size: 1rem; margin: 0;">Items to Sort:</h3>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <label for="size-slider"
+                        style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Image Size:</label>
+                    <input type="range" id="size-slider" min="80" max="250" value="100"
+                        oninput="updateImageSize(this.value)">
+                </div>
+            </div>
+            <div class="source-pool" id="source-pool" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <!-- Draggable items generated via JS -->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <button class="nav-btn" id="prev-btn" onclick="prevItem()">← Previous Set</button>
+        <button class="nav-btn" id="next-btn" onclick="nextItem()">Next Set →</button>
+    </div>
+
+    <script>
+        const activityData = [
+            {
+                id: 1,
+                title: "Set 1",
+                categories: ["Spring Clothes", "Winter Clothes"],
+                items: [
+                    { name: "Rain boots", img: "set1_00_rain-boots.png" },
+                    { name: "Shorts", img: "set1_01_shorts.png" },
+                    { name: "Winter coat", img: "set1_02_jacket.png" },
+                    { name: "Scarf", img: "set1_03_scarf.png" },
+                    { name: "T-shirt", img: "set1_04_t-shirt.png" },
+                    { name: "Snow boots", img: "set1_05_winter-boots.png" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Set 2",
+                categories: ["Insects", "Birds"],
+                items: [
+                    { name: "Butterfly", img: "set2_00_butterfly.png" },
+                    { name: "Robin", img: "set2_01_robin.png" },
+                    { name: "Bee", img: "set2_02_bumblebee.png" },
+                    { name: "Sparrow", img: "set2_03_sparrow.png" },
+                    { name: "Ant", img: "set2_04_ant.png" },
+                    { name: "Blue jay", img: "set2_05_blue-jay.png" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Set 3",
+                categories: ["Things That Grow", "Do Not Grow"],
+                items: [
+                    { name: "Flower", img: "set3_00_rose.png" },
+                    { name: "Tree", img: "set3_01_tree.png" },
+                    { name: "Rock", img: "set3_02_rock.png" },
+                    { name: "Grass", img: "set3_03_grass.png" },
+                    { name: "Bench", img: "set3_04_bench.png" },
+                    { name: "Cloud", img: "set3_05_cloud.png" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Set 4",
+                categories: ["Rainy Day", "Sunny Day"],
+                items: [
+                    { name: "Umbrella", img: "set4_00_umbrella.png" },
+                    { name: "Sunglasses", img: "set4_01_sunglasses.png" },
+                    { name: "Puddle", img: "set4_02_puddle.png" },
+                    { name: "Beach ball", img: "set4_03_beach-ball.png" },
+                    { name: "Raincoat", img: "set4_04_raincoat.png" },
+                    { name: "Kite", img: "set4_05_kite.png" }
+                ]
+            },
+            {
+                id: 5,
+                title: "Set 5",
+                categories: ["Baby Animals", "Adult Animals"],
+                items: [
+                    { name: "Chick", img: "set5_00_chick.png" },
+                    { name: "Puppy", img: "set5_01_puppy.png" },
+                    { name: "Duck", img: "set5_02_duckling.png" },
+                    { name: "Lamb", img: "set5_03_lamb.png" },
+                    { name: "Hen", img: "set5_04_chicken.png" },
+                    { name: "Dog", img: "set5_05_beagle.png" }
+                ]
+            },
+            {
+                id: 6,
+                title: "Set 6",
+                categories: ["Insects", "Birds", "Mammals"],
+                items: [
+                    { name: "Bee", img: "set6_00_bee.png" },
+                    { name: "Robin", img: "set6_01_robin.png" },
+                    { name: "Squirrel", img: "set6_02_squirrel.png" },
+                    { name: "Butterfly", img: "set6_03_butterfly.png" },
+                    { name: "Crow", img: "set6_04_crow.png" },
+                    { name: "Rabbit", img: "set6_05_rabbit.png" }
+                ]
+            },
+            {
+                id: 7,
+                title: "Set 7",
+                categories: ["Wear", "Play", "Eat"],
+                items: [
+                    { name: "Sandals", img: "set7_00_sandals.png" },
+                    { name: "Apple", img: "set7_01_apple.png" },
+                    { name: "Jump rope", img: "set7_02_jump-rope.png" },
+                    { name: "Jacket", img: "set7_03_windbreaker.png" },
+                    { name: "Ice cream", img: "set7_04_ice-cream-cone.png" },
+                    { name: "Soccer ball", img: "set7_05_soccer-ball.png" }
+                ]
+            },
+            {
+                id: 8,
+                title: "Set 8",
+                categories: ["Farm", "Zoo", "Pets"],
+                items: [
+                    { name: "Cow", img: "set8_00_cow.png" },
+                    { name: "Lion", img: "set8_01_lion.png" },
+                    { name: "Dog", img: "set8_02_golden-retriever.png" },
+                    { name: "Pig", img: "set8_03_pig.png" },
+                    { name: "Elephant", img: "set8_04_elephant.png" },
+                    { name: "Cat", img: "set8_05_cat.png" }
+                ]
+            },
+            {
+                id: 9,
+                title: "Set 9",
+                categories: ["Weather", "Plants", "Animals"],
+                items: [
+                    { name: "Rain", img: "set9_00_rain-cloud.png" },
+                    { name: "Flower", img: "set9_01_rose.png" },
+                    { name: "Frog", img: "set9_02_frog.png" },
+                    { name: "Sun", img: "set9_03_sun.png" },
+                    { name: "Tree", img: "set9_04_tree.png" },
+                    { name: "Bird", img: "set9_05_bluebird.png" }
+                ]
+            },
+            {
+                id: 10,
+                title: "Set 10",
+                categories: ["Sky", "Ground", "Water"],
+                items: [
+                    { name: "Cloud", img: "set10_00_cloud.png" },
+                    { name: "Grass", img: "set10_01_grass.png" },
+                    { name: "Fish", img: "set10_02_fish.png" },
+                    { name: "Airplane", img: "set10_03_airplane.png" },
+                    { name: "Rock", img: "set10_04_rock.png" },
+                    { name: "Duck", img: "set10_05_duck.png" }
+                ]
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function init() {
+            renderSidebar();
+            loadItem(0);
+        }
+
+        function renderSidebar() {
+            const list = document.getElementById('sidebar-list');
+            list.innerHTML = activityData.map((item, index) => `
+                <li class="sidebar-item ${index === currentIndex ? 'active' : ''}" 
+                    onclick="loadItem(${index})">
+                    ${item.categories.join(' / ')}
+                </li>
+            `).join('');
+        }
+
+        function updateSidebar() {
+            const items = document.querySelectorAll('.sidebar-item');
+            items.forEach((item, index) => {
+                if (index === currentIndex) item.classList.add('active');
+                else item.classList.remove('active');
+            });
+        }
+
+        // Shuffle an array in place
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function loadItem(index) {
+            currentIndex = index;
+            const data = activityData[index];
+
+            document.getElementById('current-item-num').innerText = index + 1;
+            document.getElementById('set-title').innerText = `Set ${index + 1}: ${data.categories.join(' / ')}`;
+
+            // Build Drop Zones
+            const dropZonesContainer = document.getElementById('drop-zones-container');
+            dropZonesContainer.innerHTML = data.categories.map(cat => `
+                <div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+                    <div class="drop-zone-header">${cat}</div>
+                    <div class="drop-zone-content"></div>
+                </div>
+            `).join('');
+
+            // Build Items (shuffled)
+            const sourcePool = document.getElementById('source-pool');
+            let shuffledItems = shuffle([...data.items]);
+
+            sourcePool.innerHTML = shuffledItems.map((item, i) => `
+                <div class="draggable-item" draggable="true" ondragstart="drag(event)" id="drag-item-${i}">
+                    <img src="../../category_images/${item.img}" alt="${item.name}" class="item-image" draggable="false">
+                    <span class="item-label">${item.name}</span>
+                </div>
+            `).join('');
+
+            // Nav State
+            document.getElementById('prev-btn').disabled = currentIndex === 0;
+            document.getElementById('next-btn').disabled = currentIndex === activityData.length - 1;
+
+            updateSidebar();
+        }
+
+        function updateImageSize(value) {
+            const root = document.documentElement;
+            root.style.setProperty('--img-size', `${value}px`);
+            root.style.setProperty('--item-size', `${parseInt(value) + 30}px`);
+        }
+
+        function prevItem() {
+            if (currentIndex > 0) loadItem(currentIndex - 1);
+        }
+
+        function nextItem() {
+            if (currentIndex < activityData.length - 1) loadItem(currentIndex + 1);
+        }
+
+        // Drag & Drop Implementation
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function dragEnter(ev) {
+            ev.preventDefault();
+            // Highlight drop zone
+            let target = ev.target;
+            while (target && !target.classList.contains('drop-zone') && !target.classList.contains('source-pool')) {
+                target = target.parentElement;
+            }
+            if (target) target.classList.add('drag-over');
+        }
+
+        function dragLeave(ev) {
+            let target = ev.target;
+            while (target && !target.classList.contains('drop-zone') && !target.classList.contains('source-pool')) {
+                target = target.parentElement;
+            }
+            if (target) target.classList.remove('drag-over');
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            const element = document.getElementById(data);
+
+            let dropTarget = ev.target;
+            // Find the closest drop zone or source pool to append the element to its content container
+            while (dropTarget && !dropTarget.classList.contains('drop-zone') && !dropTarget.classList.contains('source-pool')) {
+                dropTarget = dropTarget.parentElement;
+            }
+
+            if (dropTarget) {
+                dropTarget.classList.remove('drag-over');
+                if (dropTarget.classList.contains('drop-zone')) {
+                    const contentArea = dropTarget.querySelector('.drop-zone-content');
+                    if (contentArea) contentArea.appendChild(element);
+                } else if (dropTarget.classList.contains('source-pool')) {
+                    dropTarget.appendChild(element);
+                }
+            }
+        }
+
+        // Initialize App
+        init();
+
+    </script>
+</body>
+
+</html>

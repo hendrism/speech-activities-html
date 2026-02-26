@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Negation</title>
+    <style>
+        :root {
+            /* Core Colors from your design system */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
+
+            /* Text Sizing Variables */
+            --base-size: 16px;
+            --story-size: 1.5rem;
+            --header-size: 1.5rem;
+        }
+
+        body.text-large {
+            --base-size: 20px;
+            --story-size: 2rem;
+            --header-size: 1.8rem;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 60px;
+            font-size: var(--base-size);
+            line-height: 1.5;
+            transition: font-size 0.3s ease;
+        }
+
+        /* Header & Navigation */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* Pagination Controls */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pagination-info {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Content Areas */
+        .sentence-display {
+            font-size: var(--story-size);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #e0e7ff;
+            border-radius: 0.5rem;
+            border: 2px solid #c7d2fe;
+        }
+
+        /* Image Choices */
+        .choices-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .choice-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .image-button {
+            width: 100%;
+            height: 300px;
+            background-color: var(--bg);
+            border: 4px solid var(--border);
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 1rem;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-button:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-button img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 0.5rem;
+        }
+
+        .image-button.correct {
+            border-color: var(--success);
+            background-color: var(--success-bg);
+        }
+
+        .image-button.incorrect {
+            border-color: var(--error);
+            background-color: var(--error-bg);
+            opacity: 0.7;
+        }
+
+        .image-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+            background: var(--border);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* Feedback Display */
+        .feedback-message {
+            font-size: 1.25rem;
+            font-weight: bold;
+            min-height: 2rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feedback-message.show {
+            opacity: 1;
+        }
+
+        .feedback-message.success {
+            color: var(--success);
+            background-color: var(--success-bg);
+        }
+
+        .feedback-message.error {
+            color: var(--error);
+            background-color: var(--error-bg);
+        }
+
+        @media (max-width: 600px) {
+            .choices-container {
+                flex-direction: column;
+            }
+
+            .image-button {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-controls">
+            <a href="../../index.html" class="btn btn-outline btn-sm">← Hub</a>
+            <h1 style="font-size: 1.2rem; margin: 0; font-weight: 700;">Understanding Negation</h1>
+        </div>
+        <div class="header-controls">
+            <button class="btn btn-outline btn-sm" id="textSizeBtn" title="Toggle Text Size">Aa</button>
+        </div>
+    </header>
+
+    <div class="pagination-container">
+        <button class="btn btn-outline" id="prevBtn">← Previous</button>
+        <select id="itemSelect" class="pagination-info"
+            style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: 1rem; cursor: pointer; background: var(--card-bg); color: var(--text-main); font-family: inherit;">
+        </select>
+        <button class="btn btn-outline" id="nextBtn">Next →</button>
+    </div>
+
+    <main class="container">
+        <div class="card" id="activityCard">
+            <div class="sentence-display" id="sentenceText">
+                Sentence goes here.
+            </div>
+
+            <div class="choices-container">
+                <div class="choice-item">
+                    <button class="image-button" id="btnA" aria-label="Choice A">
+                        <img id="imgA" src="" alt="Choice A Image">
+                    </button>
+                    <div class="image-label">A</div>
+                </div>
+
+                <div class="choice-item">
+                    <button class="image-button" id="btnB" aria-label="Choice B">
+                        <img id="imgB" src="" alt="Choice B Image">
+                    </button>
+                    <div class="image-label">B</div>
+                </div>
+            </div>
+
+            <div id="feedbackText" class="feedback-message"></div>
+        </div>
+    </main>
+
+    <script>
+        // Data Structure
+        const basePath = "../../negation_images_separated/";
+        const activityData = [
+            {
+                id: 1,
+                sentence: "The boy is not eating.",
+                images: [
+                    { src: basePath + "pizza1.png", correct: false },
+                    { src: basePath + "pizza2.png", correct: true }
+                ]
+            },
+            {
+                id: 2,
+                sentence: "The girl is not sitting.",
+                images: [
+                    { src: basePath + "sitting1.png", correct: false },
+                    { src: basePath + "sitting2.png", correct: true }
+                ]
+            },
+            {
+                id: 3,
+                sentence: "The dog is not sleeping.",
+                images: [
+                    { src: basePath + "dogsleep1.png", correct: false },
+                    { src: basePath + "dogsleep2.png", correct: true }
+                ]
+            },
+            {
+                id: 4,
+                sentence: "The man is not wearing a hat.",
+                images: [
+                    { src: basePath + "hat1.png", correct: false },
+                    { src: basePath + "hat2.png", correct: true }
+                ]
+            },
+            {
+                id: 5,
+                sentence: "The cup is not empty.",
+                images: [
+                    { src: basePath + "cupempty1.png", correct: false },
+                    { src: basePath + "cupempty2.png", correct: true }
+                ]
+            },
+            {
+                id: 6,
+                sentence: "The boy is not running.",
+                images: [
+                    { src: basePath + "boy_run1.png", correct: false },
+                    { src: basePath + "boy_run2.png", correct: true }
+                ]
+            },
+            {
+                id: 7,
+                sentence: "The boy is not holding a book.",
+                images: [
+                    { src: basePath + "book1.png", correct: false },
+                    { src: basePath + "book2.png", correct: true }
+                ]
+            },
+            {
+                id: 8,
+                sentence: "The cat is not under the table.",
+                images: [
+                    { src: basePath + "cat_table1.png", correct: false },
+                    { src: basePath + "cat_table2.png", correct: true }
+                ]
+            },
+            {
+                id: 9,
+                sentence: "The boy is not drinking.",
+                images: [
+                    { src: basePath + "boy_drink1.png", correct: false },
+                    { src: basePath + "boy_drink2.png", correct: true }
+                ]
+            },
+            {
+                id: 10,
+                sentence: "The light is not on.",
+                images: [
+                    { src: basePath + "light1.png", correct: false },
+                    { src: basePath + "light2.png", correct: true }
+                ]
+            },
+            {
+                id: 11,
+                sentence: "The girl is not jumping.",
+                images: [
+                    { src: basePath + "girl_jump1.png", correct: false },
+                    { src: basePath + "girl_jump2.png", correct: true }
+                ]
+            },
+            {
+                id: 12,
+                sentence: "The door is not open.",
+                images: [
+                    { src: basePath + "door_open1.png", correct: false },
+                    { src: basePath + "door_open2.png", correct: true }
+                ]
+            },
+            {
+                id: 13,
+                sentence: "The dog is not eating.",
+                images: [
+                    { src: basePath + "dog_eat1.png", correct: false },
+                    { src: basePath + "dog_eat2.png", correct: true }
+                ]
+            },
+            {
+                id: 14,
+                sentence: "The boy is not wearing shoes.",
+                images: [
+                    { src: basePath + "boy_shoes1.png", correct: false },
+                    { src: basePath + "boy_shoes2.png", correct: true }
+                ]
+            },
+            {
+                id: 15,
+                sentence: "The girl is not brushing her teeth.",
+                images: [
+                    { src: basePath + "girl_teeth1.png", correct: false },
+                    { src: basePath + "girl_teeth2.png", correct: true }
+                ]
+            }
+        ];
+
+        let currentIndex = 0;
+        let isLargeText = false;
+        let currentChoices = [];
+
+        // DOM Elements
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const itemSelect = document.getElementById('itemSelect');
+        const sentenceText = document.getElementById('sentenceText');
+        const btnA = document.getElementById('btnA');
+        const btnB = document.getElementById('btnB');
+        const imgA = document.getElementById('imgA');
+        const imgB = document.getElementById('imgB');
+        const feedbackText = document.getElementById('feedbackText');
+
+        function init() {
+            // Populate select dropdown
+            activityData.forEach((item, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `${index + 1}. ${item.sentence}`;
+                itemSelect.appendChild(option);
+            });
+
+            setupEventListeners();
+            loadItem(0);
+        }
+
+        // Shuffle an array (Fisher-Yates)
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function loadItem(index) {
+            currentIndex = index;
+            const item = activityData[index];
+
+            // Render text
+            sentenceText.textContent = item.sentence;
+
+            // Randomize images
+            currentChoices = shuffle([...item.images]);
+
+            imgA.src = currentChoices[0].src;
+            imgB.src = currentChoices[1].src;
+
+            // Store metadata on buttons for click handling
+            btnA.dataset.correct = currentChoices[0].correct;
+            btnB.dataset.correct = currentChoices[1].correct;
+
+            // Reset UI states
+            btnA.className = 'image-button';
+            btnB.className = 'image-button';
+            btnA.disabled = false;
+            btnB.disabled = false;
+
+            feedbackText.className = 'feedback-message';
+            feedbackText.textContent = '';
+
+            // Render Pagination
+            itemSelect.value = index;
+            prevBtn.disabled = (currentIndex === 0);
+            prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
+            prevBtn.style.cursor = prevBtn.disabled ? "not-allowed" : "pointer";
+
+            nextBtn.disabled = (currentIndex === activityData.length - 1);
+            nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
+            nextBtn.style.cursor = nextBtn.disabled ? "not-allowed" : "pointer";
+        }
+
+        function handleChoiceClick(e) {
+            const btn = e.currentTarget;
+            const isCorrect = btn.dataset.correct === 'true';
+
+            // Reset all buttons first
+            btnA.className = 'image-button';
+            btnB.className = 'image-button';
+
+            if (isCorrect) {
+                // Correct answer
+                btn.classList.add('correct');
+                feedbackText.textContent = 'Correct! Great job.';
+                feedbackText.className = 'feedback-message success show';
+
+                // Optional: disable clicking after correct
+                // btnA.disabled = true;
+                // btnB.disabled = true;
+            } else {
+                // Incorrect answer
+                btn.classList.add('incorrect');
+                feedbackText.textContent = 'Not quite. Try again!';
+                feedbackText.className = 'feedback-message error show';
+            }
+        }
+
+        function setupEventListeners() {
+            // Text Size Toggle
+            document.getElementById('textSizeBtn').onclick = () => {
+                isLargeText = !isLargeText;
+                document.body.classList.toggle('text-large', isLargeText);
+            };
+
+            // Pagination
+            prevBtn.onclick = () => {
+                if (currentIndex > 0) loadItem(currentIndex - 1);
+            };
+
+            nextBtn.onclick = () => {
+                if (currentIndex < activityData.length - 1) loadItem(currentIndex + 1);
+            };
+
+            itemSelect.addEventListener('change', (e) => {
+                loadItem(parseInt(e.target.value, 10));
+            });
+
+            // Choice Handling
+            btnA.addEventListener('click', handleChoiceClick);
+            btnB.addEventListener('click', handleChoiceClick);
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+
+</html>
