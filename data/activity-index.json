@@ -1,0 +1,860 @@
+{
+  "_meta": {
+    "description": "Index of all HTML activity files with type classification",
+    "generatedAt": "2026-02-27T20:10:51.930Z",
+    "types": {
+      "content-driven": "Data was extracted to /data/*.json — single source of truth",
+      "json-loader": "Activity loads from an external JSON file at runtime",
+      "tool": "Interactive engine — user generates content at runtime, nothing to extract"
+    }
+  },
+  "activities": [
+    {
+      "id": "communication-breakdown-causes",
+      "category": "social",
+      "title": "Communication Breakdown Spotter",
+      "sourceFile": "activities/social/communication-breakdown-causes.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "communication-breakdown-practice",
+      "category": "social",
+      "title": "Communication Breakdown Repair Lab",
+      "sourceFile": "activities/social/communication-breakdown-practice.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "conversation-initiation-starters",
+      "category": "social",
+      "title": "Conversation Initiation & Perspective-Taking",
+      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "conversation-response-practice",
+      "category": "social",
+      "title": "Conversation Response Practice - Interactive Activity",
+      "sourceFile": "activities/social/conversation-response-practice.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "conversation-response-thanksgiving",
+      "category": "social",
+      "title": "Conversation Response Practice – Thanksgiving",
+      "sourceFile": "activities/social/conversation-response-thanksgiving.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "conversation-starter-practice",
+      "category": "social",
+      "title": "Conversation Starter Practice - Interactive Activity",
+      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "helpful-hurtful-response-judge",
+      "category": "social",
+      "title": "Helpful or Hurtful? Response Judge",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "helpful-hurtful-scenarios",
+      "category": "social",
+      "title": "Helpful vs Hurtful Responses — Speech Therapy",
+      "sourceFile": "activities/social/helpful-hurtful-scenarios.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "high-school-social-conflict-reflection",
+      "category": "social",
+      "title": "High School Social Conflict Reflection",
+      "sourceFile": "activities/social/high-school-social-conflict-reflection.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "high-school-social-solution-repair",
+      "category": "social",
+      "title": "High School Social Solutions with Communication Repair",
+      "sourceFile": "activities/social/high-school-social-solution-repair.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "high-school-subtle-problem-identifier",
+      "category": "social",
+      "title": "High School Subtle Problem Identifier",
+      "sourceFile": "activities/social/high-school-subtle-problem-identifier.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "inappropriate-behavior-solution-practice",
+      "category": "social",
+      "title": "Inappropriate Behavior Solution Practice",
+      "sourceFile": "activities/social/inappropriate-behavior-solution-practice.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "initiate-conversations-predict-response",
+      "category": "social",
+      "title": "Conversation Practice Scenarios",
+      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "labeling-emotions-speech-strategies",
+      "category": "social",
+      "title": "Labeling Emotions with Clear Speech Strategies",
+      "sourceFile": "activities/social/labeling-emotions-speech-strategies.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "question-response-practice",
+      "category": "social",
+      "title": "Complete Sentence Response Practice",
+      "sourceFile": "activities/social/question-response-practice.html",
+      "type": "tool"
+    },
+    {
+      "id": "relevant-social-q-and-a",
+      "category": "social",
+      "title": "Relevant Social Q&amp;A",
+      "sourceFile": "activities/social/relevant-social-q-and-a.html",
+      "type": "tool"
+    },
+    {
+      "id": "social-problem-solving-identify-problem",
+      "category": "social",
+      "title": "Social Problem Solving: Identify the Problem",
+      "sourceFile": "activities/social/social-problem-solving-identify-problem.html",
+      "type": "tool"
+    },
+    {
+      "id": "social-problem-solving",
+      "category": "social",
+      "title": "Social Problem Solving - Interactive Activity",
+      "sourceFile": "activities/social/social-problem-solving.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "social-response-evaluator",
+      "category": "social",
+      "title": "Social Response Evaluator",
+      "sourceFile": "activities/social/social-response-evaluator.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "social-story-practice",
+      "category": "social",
+      "title": "Social Story Reflection Practice",
+      "sourceFile": "activities/social/social-story-practice.html",
+      "type": "tool"
+    },
+    {
+      "id": "social-thinking-starting-conversations",
+      "category": "social",
+      "title": "Starting Conversations - Social Thinking",
+      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "thanksgiving-social-problem-scenarios",
+      "category": "social",
+      "title": "Thanksgiving Social Problem Scenarios",
+      "sourceFile": "activities/social/thanksgiving-social-problem-scenarios.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "understanding-both-perspectives",
+      "category": "social",
+      "title": "Understanding Both Perspectives",
+      "sourceFile": "activities/social/understanding-both-perspectives.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "fluency-spring",
+      "category": "fluency",
+      "title": "Spring Fluency Prompts",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "fluency-thanksgiving",
+      "category": "fluency",
+      "title": "Thanksgiving Fluency Prompts",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "fluency-therapy-session-activity",
+      "category": "fluency",
+      "title": "Fluency Therapy Session Activity",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "fluency-winter-conversation-starters",
+      "category": "fluency",
+      "title": "Winter Conversation Starters – Fluency",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "fluency-winter",
+      "category": "fluency",
+      "title": "Winter Fluency Prompts",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "share-your-stutter-activity",
+      "category": "fluency",
+      "title": "Share Your Stutter",
+      "sourceFile": "activities/fluency/share-your-stutter-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "stuttering-fight-flight-activity",
+      "category": "fluency",
+      "title": "Fight-or-Flight & Stuttering",
+      "sourceFile": "activities/fluency/stuttering-fight-flight-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "thanksgiving-conversation-fluency-artic",
+      "category": "fluency",
+      "title": "Thanksgiving Conversation: Fluency + Articulation",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "complex-sentence-summary-builder",
+      "category": "grammar",
+      "title": "Complex Sentence Summary Builder",
+      "sourceFile": "activities/grammar/complex-sentence-summary-builder.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "direction-find-the-core",
+      "category": "grammar",
+      "title": "Find the Core Highlighter",
+      "sourceFile": "activities/grammar/direction-find-the-core.html",
+      "type": "tool"
+    },
+    {
+      "id": "direction-strategy-coach",
+      "category": "grammar",
+      "title": "Direction Strategy Coach",
+      "sourceFile": "activities/grammar/direction-strategy-coach.html",
+      "type": "tool"
+    },
+    {
+      "id": "direction-strategy-visual-guide",
+      "category": "grammar",
+      "title": "Direction Strategy Visual Guide",
+      "sourceFile": "activities/grammar/direction-strategy-visual-guide.html",
+      "type": "tool"
+    },
+    {
+      "id": "four-sentence-challenge",
+      "category": "grammar",
+      "title": "Four-Sentence Challenge",
+      "sourceFile": "activities/grammar/four-sentence-challenge.html",
+      "type": "tool"
+    },
+    {
+      "id": "identifying-plural-nouns",
+      "category": "grammar",
+      "title": "Identifying Plural Nouns",
+      "sourceFile": "activities/grammar/identifying-plural-nouns.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "past-tense-hybrid",
+      "category": "grammar",
+      "title": "Past Tense Practice - Interactive Worksheet",
+      "sourceFile": "activities/grammar/past-tense-hybrid.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "plural-noun-stories",
+      "category": "grammar",
+      "title": "Plural Noun Fill-In Stories",
+      "sourceFile": "activities/grammar/plural-noun-stories.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "plural-nouns-practice",
+      "category": "grammar",
+      "title": "Plural Nouns Practice - Fill in the Blanks",
+      "sourceFile": "activities/grammar/plural-nouns-practice.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "remember-and-do-challenge",
+      "category": "grammar",
+      "title": "Remember &amp; Do Challenge",
+      "sourceFile": "activities/grammar/remember-and-do-challenge.html",
+      "type": "tool"
+    },
+    {
+      "id": "sentence-breakdown-paraphrasing",
+      "category": "grammar",
+      "title": "Sentence Breakdown & Paraphrasing",
+      "sourceFile": "activities/grammar/sentence-breakdown-paraphrasing.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "sentence-builder-elementary",
+      "category": "grammar",
+      "title": "Sentence Builder - Elementary Level",
+      "sourceFile": "activities/grammar/sentence-builder-elementary.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "sentence-builder-middle-school",
+      "category": "grammar",
+      "title": "Sentence Builder - Middle School Level",
+      "sourceFile": "activities/grammar/sentence-builder-middle-school.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "understanding-negation",
+      "category": "grammar",
+      "title": "Understanding Negation",
+      "sourceFile": "activities/grammar/understanding-negation.html",
+      "type": "tool"
+    },
+    {
+      "id": "winter-subject-action-object-builder",
+      "category": "grammar",
+      "title": "Winter Subject-Action-Object Builder",
+      "sourceFile": "activities/grammar/winter-subject-action-object-builder.html",
+      "type": "tool"
+    },
+    {
+      "id": "author-purpose-msg",
+      "category": "reading",
+      "title": "What Is the Author Trying to Do?",
+      "sourceFile": "activities/reading/author-purpose-msg.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "author-theme-mainidea-sentence-builder",
+      "category": "reading",
+      "title": "Author Purpose, Theme, Main Idea + Sentence Builder",
+      "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "compare-contrast-activity",
+      "category": "reading",
+      "title": "Compare & Contrast Words",
+      "sourceFile": "activities/reading/compare-contrast-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "compare-contrast-builder",
+      "category": "reading",
+      "title": "Compare & Contrast Builder",
+      "sourceFile": "activities/reading/compare-contrast-builder.html",
+      "type": "tool"
+    },
+    {
+      "id": "compare-contrast-seasonal-pairs",
+      "category": "reading",
+      "title": "Seasonal Compare & Contrast",
+      "sourceFile": "activities/reading/compare-contrast-seasonal-pairs.html",
+      "type": "tool"
+    },
+    {
+      "id": "compare-contrast-thanksgiving",
+      "category": "reading",
+      "title": "Thanksgiving Compare & Contrast",
+      "sourceFile": "activities/reading/compare-contrast-thanksgiving.html",
+      "type": "tool"
+    },
+    {
+      "id": "double-bubble-compare-contrast-fall-edition",
+      "category": "reading",
+      "title": "Double Bubble Compare & Contrast – Fall Edition",
+      "sourceFile": "activities/reading/double-bubble-compare-contrast-fall-edition.html",
+      "type": "tool"
+    },
+    {
+      "id": "fall-reading-comprehension-infer",
+      "category": "reading",
+      "title": "Fall Reading Stories",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "fall-reading-simple",
+      "category": "reading",
+      "title": "Fall Reading Stories",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "fall-stories-expanded-and-leveled",
+      "category": "reading",
+      "title": "Fall Reading Stories",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "finding-message-glitch",
+      "category": "reading",
+      "title": "Finding the Message Glitch",
+      "sourceFile": "activities/reading/finding-message-glitch.html",
+      "type": "tool"
+    },
+    {
+      "id": "hs-story-retelling-final",
+      "category": "reading",
+      "title": "Story Retelling & Story Grammar Practice",
+      "sourceFile": "activities/reading/hs-story-retelling-final.html",
+      "type": "tool"
+    },
+    {
+      "id": "hs-story-retelling-focus",
+      "category": "reading",
+      "title": "High School Story Retelling - Focus Friendly Edition",
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "hs-story-retelling",
+      "category": "reading",
+      "title": "Story Retelling & Story Grammar Practice",
+      "sourceFile": "activities/reading/hs-story-retelling.html",
+      "type": "tool"
+    },
+    {
+      "id": "inference-activity",
+      "category": "reading",
+      "title": "Making Inferences Activity",
+      "sourceFile": "activities/reading/inference-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "inference-thanksgiving-simple",
+      "category": "reading",
+      "title": "Thanksgiving Inferences – Easy",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "inference-thanksgiving",
+      "category": "reading",
+      "title": "Thanksgiving Inferences",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "late-fall-winter-reading-progressive",
+      "category": "reading",
+      "title": "Late Fall & Winter Reading - Progressive Hints",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "late-winter-early-spring-reading",
+      "category": "reading",
+      "title": "Reading Comprehension Activity",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "main-idea-key-details",
+      "category": "reading",
+      "title": "Main Idea & Details Lab",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "main-idea-short-stories",
+      "category": "reading",
+      "title": "Main Idea Mini Stories",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "making-inferences",
+      "category": "reading",
+      "title": "Making and Justifying Inferences",
+      "sourceFile": "activities/reading/making-inferences.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "multi-level-reading-comp",
+      "category": "reading",
+      "title": "Multi-Level Reading Comprehension Tool",
+      "sourceFile": "activities/reading/multi-level-reading-comp.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "perspective-pair-inference",
+      "category": "reading",
+      "title": "Perspective Pair Inference Practice",
+      "sourceFile": "activities/reading/perspective-pair-inference.html",
+      "type": "tool"
+    },
+    {
+      "id": "short-stories-pronouns-details",
+      "category": "reading",
+      "title": "Pronoun Practice & Reading Comprehension",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "simple-story-prompts-activity",
+      "category": "reading",
+      "title": "Simple Story Prompts - Speech Therapy Activity",
+      "sourceFile": "activities/reading/simple-story-prompts-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "social-perspective-progressive",
+      "category": "reading",
+      "title": "Social Perspective Taking - Progressive Hints",
+      "sourceFile": "activities/reading/social-perspective-progressive.html",
+      "type": "tool"
+    },
+    {
+      "id": "stories-inference-compare",
+      "category": "reading",
+      "title": "Reading Comprehension - Inference & Compare/Contrast",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "story-prompts-expanded",
+      "category": "reading",
+      "title": "Story Prompts - Speech Therapy Activity",
+      "sourceFile": "activities/reading/story-prompts-expanded.html",
+      "type": "tool"
+    },
+    {
+      "id": "story-retelling-worksheet",
+      "category": "reading",
+      "title": "Story Retelling Worksheet",
+      "sourceFile": "activities/reading/story-retelling-worksheet.html",
+      "type": "tool"
+    },
+    {
+      "id": "thanksgiving-literal-comprehension-progressive",
+      "category": "reading",
+      "title": "Thanksgiving Literal Comprehension Stories",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "thanksgiving-nonfiction-summary-organizer",
+      "category": "reading",
+      "title": "Thanksgiving Nonfiction Summary Organizer",
+      "sourceFile": "activities/reading/thanksgiving-nonfiction-summary-organizer.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "winter-compare-contrast-drag",
+      "category": "reading",
+      "title": "Winter Compare & Contrast Drag-and-Drop",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "winter-short-stories",
+      "category": "reading",
+      "title": "Winter Short Stories Collection",
+      "sourceFile": "activities/reading/winter-short-stories.html",
+      "type": "tool"
+    },
+    {
+      "id": "winter-short-story-comprehension-progressive",
+      "category": "reading",
+      "title": "Winter Story Questions - Progressive Hints",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "winter-short-story-comprehension-tabs-complex",
+      "category": "reading",
+      "title": "Snowy Day Reading - Complex Literal & Inferential Tabs",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "winter-short-story-comprehension-tabs",
+      "category": "reading",
+      "title": "Snowy Day Reading - Literal & Inferential Tabs",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "analogies-activity",
+      "category": "vocabulary",
+      "title": "Analogies Activity",
+      "sourceFile": "activities/vocabulary/analogies-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "category-function-definition",
+      "category": "vocabulary",
+      "title": "Category & Function Definition Practice",
+      "sourceFile": "activities/vocabulary/category-function-definition.html",
+      "type": "tool"
+    },
+    {
+      "id": "context-clues-activity-enhanced",
+      "category": "vocabulary",
+      "title": "Context Clues Activity",
+      "sourceFile": "activities/vocabulary/context-clues-activity-enhanced.html",
+      "type": "tool"
+    },
+    {
+      "id": "context-clues-easy",
+      "category": "vocabulary",
+      "title": "Context Clues Activity",
+      "sourceFile": "activities/vocabulary/context-clues-easy.html",
+      "type": "tool"
+    },
+    {
+      "id": "context-clues-hard",
+      "category": "vocabulary",
+      "title": "Context Clues - Hard Level",
+      "sourceFile": "activities/vocabulary/context-clues-hard.html",
+      "type": "tool"
+    },
+    {
+      "id": "context-clues-medium",
+      "category": "vocabulary",
+      "title": "Context Clues - Medium Level",
+      "sourceFile": "activities/vocabulary/context-clues-medium.html",
+      "type": "tool"
+    },
+    {
+      "id": "context-clues-thanksgiving",
+      "category": "vocabulary",
+      "title": "Context Clues – Thanksgiving",
+      "sourceFile": "activities/vocabulary/context-clues-thanksgiving.html",
+      "type": "tool"
+    },
+    {
+      "id": "definition-attribute-builder",
+      "category": "vocabulary",
+      "title": "Definition Attribute Builder",
+      "sourceFile": "activities/vocabulary/definition-attribute-builder.html",
+      "type": "tool"
+    },
+    {
+      "id": "fall-antonym-practice",
+      "category": "vocabulary",
+      "title": "Fall Antonym Practice",
+      "sourceFile": "activities/vocabulary/fall-antonym-practice.html",
+      "type": "tool"
+    },
+    {
+      "id": "fall-nouns-category-function-expanded",
+      "category": "vocabulary",
+      "title": "Fall Nouns - Category & Function",
+      "sourceFile": "activities/vocabulary/fall-nouns-category-function-expanded.html",
+      "type": "tool"
+    },
+    {
+      "id": "identifying-antonyms",
+      "category": "vocabulary",
+      "title": "Identifying Antonyms",
+      "sourceFile": "activities/vocabulary/identifying-antonyms.html",
+      "type": "tool"
+    },
+    {
+      "id": "identifying-synonyms",
+      "category": "vocabulary",
+      "title": "Identifying Synonyms",
+      "sourceFile": "activities/vocabulary/identifying-synonyms.html",
+      "type": "tool"
+    },
+    {
+      "id": "interactive-descriptor-stories-thanksgiving",
+      "category": "vocabulary",
+      "title": "Thanksgiving Descriptor Stories",
+      "sourceFile": "activities/vocabulary/interactive-descriptor-stories-thanksgiving.html",
+      "type": "tool"
+    },
+    {
+      "id": "interactive-descriptor-stories",
+      "category": "vocabulary",
+      "title": "Add Descriptors to Stories",
+      "sourceFile": "activities/vocabulary/interactive-descriptor-stories.html",
+      "type": "tool"
+    },
+    {
+      "id": "interactive-descriptor-word-bank",
+      "category": "vocabulary",
+      "title": "Interactive Descriptor Word Bank",
+      "sourceFile": "activities/vocabulary/interactive-descriptor-word-bank.html",
+      "type": "tool"
+    },
+    {
+      "id": "multiple-meaning-advanced",
+      "category": "vocabulary",
+      "title": "Multiple Meaning Words - Advanced",
+      "sourceFile": "activities/vocabulary/multiple-meaning-advanced.html",
+      "type": "tool"
+    },
+    {
+      "id": "multiple-meaning-words",
+      "category": "vocabulary",
+      "title": "Multiple-Meaning Words - Therapy Activity",
+      "sourceFile": "activities/vocabulary/multiple-meaning-words.html",
+      "type": "tool"
+    },
+    {
+      "id": "prefix-practice-progressive",
+      "category": "vocabulary",
+      "title": "Prefix Practice",
+      "sourceFile": "activities/vocabulary/prefix-practice-progressive.html",
+      "type": "tool"
+    },
+    {
+      "id": "sorting-categories",
+      "category": "vocabulary",
+      "title": "Sorting Categories",
+      "sourceFile": "activities/vocabulary/sorting-categories.html",
+      "type": "tool"
+    },
+    {
+      "id": "synonyms-thanksgiving",
+      "category": "vocabulary",
+      "title": "Synonyms – Thanksgiving Edition",
+      "sourceFile": "activities/vocabulary/synonyms-thanksgiving.html",
+      "type": "tool"
+    },
+    {
+      "id": "vocabulary-scaffold-activity",
+      "category": "vocabulary",
+      "title": "Vocabulary Builder: Scaffolded Sentences",
+      "sourceFile": "activities/vocabulary/vocabulary-scaffold-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "winter-category-function-basic",
+      "category": "vocabulary",
+      "title": "Winter Category & Function - Basic",
+      "sourceFile": "activities/vocabulary/winter-category-function-basic.html",
+      "type": "tool"
+    },
+    {
+      "id": "winter-context-clues-interactive",
+      "category": "vocabulary",
+      "title": "Winter Context Clues Challenge",
+      "sourceFile": "activities/vocabulary/winter-context-clues-interactive.html",
+      "type": "tool"
+    },
+    {
+      "id": "winter-context-clues-progressive",
+      "category": "vocabulary",
+      "title": "Winter Context Clues - Progressive Help",
+      "sourceFile": "activities/vocabulary/winter-context-clues-progressive.html",
+      "type": "tool"
+    },
+    {
+      "id": "winter-figurative-language-single",
+      "category": "vocabulary",
+      "title": "Winter Figurative Language - One at a Time",
+      "sourceFile": "activities/vocabulary/winter-figurative-language-single.html",
+      "type": "tool"
+    },
+    {
+      "id": "winter-vocabulary-category-function",
+      "category": "vocabulary",
+      "title": "Winter Vocabulary Builder",
+      "sourceFile": "activities/vocabulary/winter-vocabulary-category-function.html",
+      "type": "tool"
+    },
+    {
+      "id": "winter-vocabulary-context-clues",
+      "category": "vocabulary",
+      "title": "Winter Vocabulary - Context Clues",
+      "sourceFile": "activities/vocabulary/winter-vocabulary-context-clues.html",
+      "type": "tool"
+    },
+    {
+      "id": "word-definition-activity",
+      "category": "vocabulary",
+      "title": "Word Definition Activity",
+      "sourceFile": "activities/vocabulary/word-definition-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "articulation-make-your-own-sentence",
+      "category": "articulation",
+      "title": "Articulation Sentence Creator",
+      "sourceFile": "activities/articulation/articulation-make-your-own-sentence.html",
+      "type": "tool"
+    },
+    {
+      "id": "articulation-paragraph-check-in",
+      "category": "articulation",
+      "title": "Articulation Paragraph Check-In",
+      "sourceFile": "activities/articulation/articulation-paragraph-check-in.html",
+      "type": "tool"
+    },
+    {
+      "id": "articulation-practice-sequential",
+      "category": "articulation",
+      "title": "Articulation Practice - Sequential Builder",
+      "sourceFile": "activities/articulation/articulation-practice-sequential.html",
+      "type": "tool"
+    },
+    {
+      "id": "articulation-practice",
+      "category": "articulation",
+      "title": "Articulation Practice - Drag & Drop",
+      "sourceFile": "activities/articulation/articulation-practice.html",
+      "type": "tool"
+    },
+    {
+      "id": "articulation-story-builder",
+      "category": "articulation",
+      "title": "Articulation Story Builder",
+      "sourceFile": "activities/articulation/articulation-story-builder.html",
+      "type": "tool"
+    },
+    {
+      "id": "articulation-word-practice",
+      "category": "articulation",
+      "title": "Articulation Word Practice",
+      "sourceFile": "activities/articulation/articulation-word-practice.html",
+      "type": "tool"
+    },
+    {
+      "id": "blend-story-sound-reader",
+      "category": "articulation",
+      "title": "Blend Story Reader - One at a Time",
+      "sourceFile": "activities/articulation/blend-story-sound-reader.html",
+      "type": "tool"
+    },
+    {
+      "id": "final-l-blend-stories-interactive",
+      "category": "articulation",
+      "title": "Final /l/ Consonant Blend Stories",
+      "sourceFile": "activities/articulation/final-l-blend-stories-interactive.html",
+      "type": "tool"
+    },
+    {
+      "id": "final-l-blend-stories",
+      "category": "articulation",
+      "title": "Final /l/ Consonant Blend Stories",
+      "sourceFile": "activities/articulation/final-l-blend-stories.html",
+      "type": "tool"
+    },
+    {
+      "id": "vocalic-r-practice",
+      "category": "articulation",
+      "title": "Vocalic /r/ Word Practice",
+      "sourceFile": "activities/articulation/vocalic-r-practice.html",
+      "type": "tool"
+    }
+  ]
+}

@@ -1,0 +1,1697 @@
+{
+  "_meta": {
+    "description": "Vocabulary content: word definitions and context clues by level",
+    "version": "1.0",
+    "extractedAt": "2026-02-27T19:14:01.800Z",
+    "futureSQLiteTable": "vocabulary_items",
+    "replaces": [
+      "js/language-data.js (window.wordDefinitions, window.contextCluesEasy, window.contextCluesMedium)"
+    ]
+  },
+  "wordDefinitions": [
+    {
+      "id": "word-def-001",
+      "word": "BICYCLE",
+      "item": "bicycle",
+      "imageUrl": "images/objects/bicycle.jpg",
+      "category": "vehicle",
+      "categoryHint": "It's something people use for transportation",
+      "categoryChoices": [
+        "vehicle",
+        "toy",
+        "machine",
+        "furniture"
+      ],
+      "attributes": [
+        {
+          "value": "has two wheels",
+          "hint": "Think about how many wheels it has",
+          "choices": [
+            "has two wheels",
+            "runs on electricity",
+            "has four doors",
+            "is made of wood"
+          ]
+        },
+        {
+          "value": "is powered by pedaling",
+          "hint": "Think about how you make it move",
+          "choices": [
+            "is powered by pedaling",
+            "floats on water",
+            "has a motor",
+            "needs batteries"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-002",
+      "word": "DICTIONARY",
+      "item": "dictionary",
+      "imageUrl": "images/objects/dictionary.jpg",
+      "category": "book",
+      "categoryHint": "It's something you can read that has many pages",
+      "categoryChoices": [
+        "book",
+        "tool",
+        "game",
+        "furniture"
+      ],
+      "attributes": [
+        {
+          "value": "contains word definitions",
+          "hint": "Think about what information is inside it",
+          "choices": [
+            "contains word definitions",
+            "tells fictional stories",
+            "has colorful pictures only",
+            "lists phone numbers"
+          ]
+        },
+        {
+          "value": "is organized alphabetically",
+          "hint": "Think about how the words are arranged",
+          "choices": [
+            "is organized alphabetically",
+            "has numbered chapters",
+            "is sorted by color",
+            "lists items by size"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-003",
+      "word": "MICROSCOPE",
+      "item": "microscope",
+      "imageUrl": "",
+      "category": "scientific instrument",
+      "categoryHint": "It's equipment used by scientists in labs",
+      "categoryChoices": [
+        "scientific instrument",
+        "toy",
+        "book",
+        "furniture"
+      ],
+      "attributes": [
+        {
+          "value": "magnifies tiny objects",
+          "hint": "Think about what it does to things you can barely see",
+          "choices": [
+            "magnifies tiny objects",
+            "measures temperature",
+            "tells time",
+            "plays music"
+          ]
+        },
+        {
+          "value": "is used to study cells and bacteria",
+          "hint": "Think about what scientists look at with it",
+          "choices": [
+            "is used to study cells and bacteria",
+            "measures distances",
+            "weighs objects",
+            "mixes chemicals"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-004",
+      "word": "BACKPACK",
+      "item": "backpack",
+      "imageUrl": "",
+      "category": "bag",
+      "categoryHint": "It's something used to carry things",
+      "categoryChoices": [
+        "bag",
+        "furniture",
+        "clothing",
+        "vehicle"
+      ],
+      "attributes": [
+        {
+          "value": "is worn on the shoulders",
+          "hint": "Think about what part of your body it goes on",
+          "choices": [
+            "is worn on the shoulders",
+            "is worn on the feet",
+            "is held in one hand",
+            "wraps around the waist"
+          ]
+        },
+        {
+          "value": "is used to carry books and supplies",
+          "hint": "Think about what students put inside it",
+          "choices": [
+            "is used to carry books and supplies",
+            "holds hot food",
+            "stores frozen items",
+            "contains liquids only"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-005",
+      "word": "CALCULATOR",
+      "item": "calculator",
+      "imageUrl": "",
+      "category": "electronic device",
+      "categoryHint": "It's a tool that uses electricity or batteries",
+      "categoryChoices": [
+        "electronic device",
+        "book",
+        "furniture",
+        "clothing"
+      ],
+      "attributes": [
+        {
+          "value": "performs mathematical calculations",
+          "hint": "Think about what subject in school it helps with",
+          "choices": [
+            "performs mathematical calculations",
+            "takes photographs",
+            "plays video games",
+            "makes phone calls"
+          ]
+        },
+        {
+          "value": "has number buttons and a display screen",
+          "hint": "Think about what you see when you look at it",
+          "choices": [
+            "has number buttons and a display screen",
+            "has a keyboard and mouse",
+            "has strings and frets",
+            "has pages and a spine"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-006",
+      "word": "LIBRARY",
+      "item": "library",
+      "imageUrl": "",
+      "category": "building",
+      "categoryHint": "It's a type of place or structure people visit",
+      "categoryChoices": [
+        "building",
+        "vehicle",
+        "book",
+        "tool"
+      ],
+      "attributes": [
+        {
+          "value": "contains collections of books",
+          "hint": "Think about what you find inside it",
+          "choices": [
+            "contains collections of books",
+            "serves food to customers",
+            "has hospital beds",
+            "has movie screens"
+          ]
+        },
+        {
+          "value": "allows people to borrow materials",
+          "hint": "Think about what people do when they visit",
+          "choices": [
+            "allows people to borrow materials",
+            "sells groceries",
+            "offers haircuts",
+            "repairs cars"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-007",
+      "word": "THERMOMETER",
+      "item": "thermometer",
+      "imageUrl": "",
+      "category": "measuring instrument",
+      "categoryHint": "It's a tool used to measure something",
+      "categoryChoices": [
+        "measuring instrument",
+        "toy",
+        "furniture",
+        "clothing"
+      ],
+      "attributes": [
+        {
+          "value": "measures temperature",
+          "hint": "Think about what it tells you about the weather or your body",
+          "choices": [
+            "measures temperature",
+            "measures distance",
+            "tells time",
+            "weighs objects"
+          ]
+        },
+        {
+          "value": "contains liquid or uses electronic sensors",
+          "hint": "Think about how it works inside",
+          "choices": [
+            "contains liquid or uses electronic sensors",
+            "has strings that vibrate",
+            "uses wind power",
+            "has gears and springs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-008",
+      "word": "SCISSORS",
+      "item": "scissors",
+      "imageUrl": "",
+      "category": "cutting tool",
+      "categoryHint": "It's something used to do a specific task with materials",
+      "categoryChoices": [
+        "cutting tool",
+        "toy",
+        "measuring device",
+        "furniture"
+      ],
+      "attributes": [
+        {
+          "value": "has two sharp blades",
+          "hint": "Think about the parts that do the cutting",
+          "choices": [
+            "has two sharp blades",
+            "has a pointed tip only",
+            "has a flat surface",
+            "has wheels"
+          ]
+        },
+        {
+          "value": "is used to cut paper and fabric",
+          "hint": "Think about what materials it can cut",
+          "choices": [
+            "is used to cut paper and fabric",
+            "is used to measure length",
+            "is used to hammer nails",
+            "is used to paint pictures"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-009",
+      "word": "TELESCOPE",
+      "item": "telescope",
+      "imageUrl": "",
+      "category": "optical instrument",
+      "categoryHint": "It's a device that helps you see things",
+      "categoryChoices": [
+        "optical instrument",
+        "furniture",
+        "toy",
+        "book"
+      ],
+      "attributes": [
+        {
+          "value": "magnifies distant objects",
+          "hint": "Think about what it does to things that are far away",
+          "choices": [
+            "magnifies distant objects",
+            "makes things smaller",
+            "changes colors",
+            "plays sounds"
+          ]
+        },
+        {
+          "value": "is used to observe stars and planets",
+          "hint": "Think about what people look at in the night sky",
+          "choices": [
+            "is used to observe stars and planets",
+            "is used to watch television",
+            "is used to read books",
+            "is used to listen to music"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-010",
+      "word": "COMPASS",
+      "item": "compass",
+      "imageUrl": "",
+      "category": "navigation tool",
+      "categoryHint": "It's something that helps you find your way",
+      "categoryChoices": [
+        "navigation tool",
+        "toy",
+        "book",
+        "clothing"
+      ],
+      "attributes": [
+        {
+          "value": "shows cardinal directions",
+          "hint": "Think about what it tells you (north, south, etc.)",
+          "choices": [
+            "shows cardinal directions",
+            "tells the time",
+            "measures temperature",
+            "counts steps"
+          ]
+        },
+        {
+          "value": "uses a magnetic needle",
+          "hint": "Think about the part that moves and points",
+          "choices": [
+            "uses a magnetic needle",
+            "has digital numbers",
+            "uses solar power",
+            "has a liquid crystal display"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-011",
+      "word": "HOSPITAL",
+      "item": "hospital",
+      "imageUrl": "",
+      "category": "medical facility",
+      "categoryHint": "It's a place where people receive healthcare",
+      "categoryChoices": [
+        "medical facility",
+        "school",
+        "store",
+        "park"
+      ],
+      "attributes": [
+        {
+          "value": "treats sick and injured people",
+          "hint": "Think about who goes there and why",
+          "choices": [
+            "treats sick and injured people",
+            "sells clothing",
+            "teaches students",
+            "shows movies"
+          ]
+        },
+        {
+          "value": "has doctors and nurses",
+          "hint": "Think about the professionals who work there",
+          "choices": [
+            "has doctors and nurses",
+            "has cashiers and stockers",
+            "has actors and directors",
+            "has mechanics and engineers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-012",
+      "word": "ELEVATOR",
+      "item": "elevator",
+      "imageUrl": "",
+      "category": "transportation device",
+      "categoryHint": "It's something that moves people from place to place",
+      "categoryChoices": [
+        "transportation device",
+        "furniture",
+        "appliance",
+        "toy"
+      ],
+      "attributes": [
+        {
+          "value": "moves vertically between floors",
+          "hint": "Think about the direction it travels",
+          "choices": [
+            "moves vertically between floors",
+            "travels on roads",
+            "floats on water",
+            "flies through air"
+          ]
+        },
+        {
+          "value": "is enclosed in a shaft",
+          "hint": "Think about where it operates inside a building",
+          "choices": [
+            "is enclosed in a shaft",
+            "is open to the outdoors",
+            "sits on the ground",
+            "hangs from cables outside"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-013",
+      "word": "REFRIGERATOR",
+      "item": "refrigerator",
+      "imageUrl": "",
+      "category": "appliance",
+      "categoryHint": "It's a machine used in homes for a specific purpose",
+      "categoryChoices": [
+        "appliance",
+        "furniture",
+        "tool",
+        "vehicle"
+      ],
+      "attributes": [
+        {
+          "value": "keeps food cold",
+          "hint": "Think about what it does to food",
+          "choices": [
+            "keeps food cold",
+            "cooks food",
+            "cleans dishes",
+            "dries clothes"
+          ]
+        },
+        {
+          "value": "uses electricity to maintain low temperature",
+          "hint": "Think about its power source and what temperature it maintains",
+          "choices": [
+            "uses electricity to maintain low temperature",
+            "burns wood for heat",
+            "uses solar panels",
+            "runs on gasoline"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-014",
+      "word": "PARACHUTE",
+      "item": "parachute",
+      "imageUrl": "",
+      "category": "safety device",
+      "categoryHint": "It's equipment designed to protect people",
+      "categoryChoices": [
+        "safety device",
+        "toy",
+        "clothing",
+        "furniture"
+      ],
+      "attributes": [
+        {
+          "value": "slows down a fall from high altitude",
+          "hint": "Think about what happens when someone jumps from a plane",
+          "choices": [
+            "slows down a fall from high altitude",
+            "speeds up movement",
+            "measures distance",
+            "provides warmth"
+          ]
+        },
+        {
+          "value": "is made of fabric that opens like an umbrella",
+          "hint": "Think about what it's made of and its shape when deployed",
+          "choices": [
+            "is made of fabric that opens like an umbrella",
+            "is made of metal and rigid",
+            "is inflatable rubber",
+            "is woven rope"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-015",
+      "word": "STETHOSCOPE",
+      "item": "stethoscope",
+      "imageUrl": "",
+      "category": "medical instrument",
+      "categoryHint": "It's a tool used by healthcare professionals",
+      "categoryChoices": [
+        "medical instrument",
+        "toy",
+        "appliance",
+        "furniture"
+      ],
+      "attributes": [
+        {
+          "value": "listens to internal body sounds",
+          "hint": "Think about what doctors use it to hear",
+          "choices": [
+            "listens to internal body sounds",
+            "measures blood pressure",
+            "takes temperature",
+            "examines eyes"
+          ]
+        },
+        {
+          "value": "is worn around the neck",
+          "hint": "Think about how doctors carry it",
+          "choices": [
+            "is worn around the neck",
+            "is carried in a pocket",
+            "is attached to the wall",
+            "is held in both hands"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-016",
+      "word": "AQUARIUM",
+      "item": "aquarium",
+      "imageUrl": "",
+      "category": "container",
+      "categoryHint": "It's something that holds or stores things",
+      "categoryChoices": [
+        "container",
+        "vehicle",
+        "tool",
+        "appliance"
+      ],
+      "attributes": [
+        {
+          "value": "holds water and aquatic animals",
+          "hint": "Think about what lives inside it",
+          "choices": [
+            "holds water and aquatic animals",
+            "stores dry food",
+            "contains plants only",
+            "holds hot liquids"
+          ]
+        },
+        {
+          "value": "is made of transparent material like glass",
+          "hint": "Think about what it's made of so you can see inside",
+          "choices": [
+            "is made of transparent material like glass",
+            "is made of solid wood",
+            "is made of fabric",
+            "is made of metal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-017",
+      "word": "ESCALATOR",
+      "item": "escalator",
+      "imageUrl": "",
+      "category": "moving staircase",
+      "categoryHint": "It's a type of stairs with a special feature",
+      "categoryChoices": [
+        "moving staircase",
+        "furniture",
+        "vehicle",
+        "appliance"
+      ],
+      "attributes": [
+        {
+          "value": "transports people between levels",
+          "hint": "Think about what it does for people in a mall or airport",
+          "choices": [
+            "transports people between levels",
+            "stores clothing",
+            "cooks food",
+            "cleans floors"
+          ]
+        },
+        {
+          "value": "has motorized steps that continuously circulate",
+          "hint": "Think about how the steps move in a loop",
+          "choices": [
+            "has motorized steps that continuously circulate",
+            "has stationary steps",
+            "has wooden planks",
+            "has rope handles only"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-018",
+      "word": "VOLCANO",
+      "item": "volcano",
+      "imageUrl": "",
+      "category": "geological formation",
+      "categoryHint": "It's a natural feature of the Earth's surface",
+      "categoryChoices": [
+        "geological formation",
+        "building",
+        "tool",
+        "vehicle"
+      ],
+      "attributes": [
+        {
+          "value": "erupts with lava and ash",
+          "hint": "Think about what comes out of it when it's active",
+          "choices": [
+            "erupts with lava and ash",
+            "produces rain",
+            "grows flowers",
+            "releases oxygen"
+          ]
+        },
+        {
+          "value": "is formed by tectonic activity",
+          "hint": "Think about what forces under the Earth create it",
+          "choices": [
+            "is formed by tectonic activity",
+            "is built by humans",
+            "is created by wind",
+            "is made by animals"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-019",
+      "word": "ORCHESTRA",
+      "item": "orchestra",
+      "imageUrl": "",
+      "category": "musical ensemble",
+      "categoryHint": "It's a group of people who perform together",
+      "categoryChoices": [
+        "musical ensemble",
+        "building",
+        "instrument",
+        "vehicle"
+      ],
+      "attributes": [
+        {
+          "value": "consists of many musicians playing instruments",
+          "hint": "Think about the people and what they're doing",
+          "choices": [
+            "consists of many musicians playing instruments",
+            "has one singer only",
+            "includes dancers only",
+            "contains actors performing plays"
+          ]
+        },
+        {
+          "value": "is led by a conductor",
+          "hint": "Think about the person who directs the group",
+          "choices": [
+            "is led by a conductor",
+            "is managed by a coach",
+            "is guided by a pilot",
+            "is controlled by a captain"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-def-020",
+      "word": "WHEELCHAIR",
+      "item": "wheelchair",
+      "imageUrl": "",
+      "category": "mobility device",
+      "categoryHint": "It's equipment that helps people move around",
+      "categoryChoices": [
+        "mobility device",
+        "furniture",
+        "toy",
+        "appliance"
+      ],
+      "attributes": [
+        {
+          "value": "has wheels for movement",
+          "hint": "Think about how it moves from place to place",
+          "choices": [
+            "has wheels for movement",
+            "has wings for flying",
+            "has propellers",
+            "has tracks like a tank"
+          ]
+        },
+        {
+          "value": "assists people who cannot walk",
+          "hint": "Think about who uses it and why",
+          "choices": [
+            "assists people who cannot walk",
+            "helps people swim",
+            "allows people to fly",
+            "enables people to lift heavy objects"
+          ]
+        }
+      ]
+    }
+  ],
+  "contextClues": [
+    {
+      "id": "cc-easy-001",
+      "level": "easy",
+      "clueType": "Definition",
+      "word": "friend",
+      "text": "My best {friend}, someone who likes me and I like them back, invited me to her birthday party.",
+      "hint": "Look for the part that explains what a friend is. It's right after the word.",
+      "choices": [
+        {
+          "text": "a person you like and who likes you",
+          "isCorrect": true
+        },
+        {
+          "text": "a book you read",
+          "isCorrect": false
+        },
+        {
+          "text": "a game you play",
+          "isCorrect": false
+        },
+        {
+          "text": "a place you visit",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-002",
+      "level": "easy",
+      "clueType": "Definition",
+      "word": "whisper",
+      "text": "Mom told us to {whisper}, to talk very quietly, because the baby was sleeping.",
+      "hint": "The sentence tells you how to whisper. What does it mean to talk this way?",
+      "choices": [
+        {
+          "text": "to talk very quietly",
+          "isCorrect": true
+        },
+        {
+          "text": "to talk very loudly",
+          "isCorrect": false
+        },
+        {
+          "text": "to run very fast",
+          "isCorrect": false
+        },
+        {
+          "text": "to walk very slowly",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-003",
+      "level": "easy",
+      "clueType": "Definition",
+      "word": "puddle",
+      "text": "I jumped over the {puddle}, a small pool of water on the ground, so my shoes wouldn't get wet.",
+      "hint": "Look for what a puddle is described as - it comes right after the word.",
+      "choices": [
+        {
+          "text": "a small pool of water",
+          "isCorrect": true
+        },
+        {
+          "text": "a big rock",
+          "isCorrect": false
+        },
+        {
+          "text": "a tall tree",
+          "isCorrect": false
+        },
+        {
+          "text": "a soft pillow",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-004",
+      "level": "easy",
+      "clueType": "Definition",
+      "word": "giggle",
+      "text": "The joke made me {giggle}, which means to laugh in a silly, quiet way.",
+      "hint": "The sentence explains what giggling means. Look after the word 'means'.",
+      "choices": [
+        {
+          "text": "to laugh quietly",
+          "isCorrect": true
+        },
+        {
+          "text": "to cry loudly",
+          "isCorrect": false
+        },
+        {
+          "text": "to run quickly",
+          "isCorrect": false
+        },
+        {
+          "text": "to sleep deeply",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-005",
+      "level": "easy",
+      "clueType": "Definition",
+      "word": "snack",
+      "text": "I ate a {snack}, a small amount of food between meals, because I was a little hungry.",
+      "hint": "Find the part that tells you when and how much food a snack is.",
+      "choices": [
+        {
+          "text": "a small amount of food",
+          "isCorrect": true
+        },
+        {
+          "text": "a big dinner",
+          "isCorrect": false
+        },
+        {
+          "text": "a warm drink",
+          "isCorrect": false
+        },
+        {
+          "text": "a cold dessert",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-006",
+      "level": "easy",
+      "clueType": "Synonym",
+      "word": "tiny",
+      "text": "The puppy was {tiny}; it was so small it fit in my hand!",
+      "hint": "Look for another word in the sentence that means the same as tiny.",
+      "choices": [
+        {
+          "text": "very small",
+          "isCorrect": true
+        },
+        {
+          "text": "very large",
+          "isCorrect": false
+        },
+        {
+          "text": "very loud",
+          "isCorrect": false
+        },
+        {
+          "text": "very quiet",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-007",
+      "level": "easy",
+      "clueType": "Synonym",
+      "word": "glad",
+      "text": "I was {glad} to see my friend; I felt so happy when she arrived.",
+      "hint": "Find a word that means the same thing as glad.",
+      "choices": [
+        {
+          "text": "happy",
+          "isCorrect": true
+        },
+        {
+          "text": "angry",
+          "isCorrect": false
+        },
+        {
+          "text": "tired",
+          "isCorrect": false
+        },
+        {
+          "text": "hungry",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-008",
+      "level": "easy",
+      "clueType": "Synonym",
+      "word": "sleepy",
+      "text": "The baby was {sleepy} and tired after playing all day.",
+      "hint": "What word in the sentence means the same as sleepy?",
+      "choices": [
+        {
+          "text": "tired",
+          "isCorrect": true
+        },
+        {
+          "text": "awake",
+          "isCorrect": false
+        },
+        {
+          "text": "excited",
+          "isCorrect": false
+        },
+        {
+          "text": "scared",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-009",
+      "level": "easy",
+      "clueType": "Synonym",
+      "word": "delicious",
+      "text": "The ice cream was {delicious}; it tasted really good and I wanted more.",
+      "hint": "Look for words that tell you how the ice cream tasted.",
+      "choices": [
+        {
+          "text": "tasted really good",
+          "isCorrect": true
+        },
+        {
+          "text": "tasted really bad",
+          "isCorrect": false
+        },
+        {
+          "text": "looked very big",
+          "isCorrect": false
+        },
+        {
+          "text": "felt very cold",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-010",
+      "level": "easy",
+      "clueType": "Synonym",
+      "word": "easy",
+      "text": "The test was {easy}; it was so simple that I finished quickly.",
+      "hint": "Find another word that describes something that's not hard.",
+      "choices": [
+        {
+          "text": "simple",
+          "isCorrect": true
+        },
+        {
+          "text": "difficult",
+          "isCorrect": false
+        },
+        {
+          "text": "long",
+          "isCorrect": false
+        },
+        {
+          "text": "short",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-011",
+      "level": "easy",
+      "clueType": "Antonym",
+      "word": "soft",
+      "text": "The pillow was {soft}, not hard like a rock.",
+      "hint": "The sentence tells you what soft is NOT. Think of the opposite.",
+      "choices": [
+        {
+          "text": "not hard",
+          "isCorrect": true
+        },
+        {
+          "text": "not small",
+          "isCorrect": false
+        },
+        {
+          "text": "not fast",
+          "isCorrect": false
+        },
+        {
+          "text": "not cold",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-012",
+      "level": "easy",
+      "clueType": "Antonym",
+      "word": "heavy",
+      "text": "My backpack was {heavy}, not light, and it hurt my shoulders.",
+      "hint": "Look for the word 'not' - it shows you the opposite of heavy.",
+      "choices": [
+        {
+          "text": "not light",
+          "isCorrect": true
+        },
+        {
+          "text": "not dark",
+          "isCorrect": false
+        },
+        {
+          "text": "not big",
+          "isCorrect": false
+        },
+        {
+          "text": "not wet",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-013",
+      "level": "easy",
+      "clueType": "Antonym",
+      "word": "slow",
+      "text": "The turtle was {slow}, not fast like the rabbit.",
+      "hint": "What is the opposite of slow? The sentence tells you.",
+      "choices": [
+        {
+          "text": "not fast",
+          "isCorrect": true
+        },
+        {
+          "text": "not big",
+          "isCorrect": false
+        },
+        {
+          "text": "not small",
+          "isCorrect": false
+        },
+        {
+          "text": "not green",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-014",
+      "level": "easy",
+      "clueType": "Antonym",
+      "word": "dark",
+      "text": "The room was {dark}, not bright, so we turned on the lights.",
+      "hint": "Find what dark is NOT to understand what it IS.",
+      "choices": [
+        {
+          "text": "not bright",
+          "isCorrect": true
+        },
+        {
+          "text": "not clean",
+          "isCorrect": false
+        },
+        {
+          "text": "not messy",
+          "isCorrect": false
+        },
+        {
+          "text": "not quiet",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-015",
+      "level": "easy",
+      "clueType": "Antonym",
+      "word": "dirty",
+      "text": "My hands were {dirty}, not clean, after playing in the mud.",
+      "hint": "The opposite of dirty is mentioned in the sentence.",
+      "choices": [
+        {
+          "text": "not clean",
+          "isCorrect": true
+        },
+        {
+          "text": "not dry",
+          "isCorrect": false
+        },
+        {
+          "text": "not warm",
+          "isCorrect": false
+        },
+        {
+          "text": "not soft",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-016",
+      "level": "easy",
+      "clueType": "Example",
+      "word": "insects",
+      "text": "We saw many {insects}, like bees, ants, and butterflies, in the garden.",
+      "hint": "Look at the examples given. What are bees, ants, and butterflies?",
+      "choices": [
+        {
+          "text": "small bugs",
+          "isCorrect": true
+        },
+        {
+          "text": "big animals",
+          "isCorrect": false
+        },
+        {
+          "text": "pretty flowers",
+          "isCorrect": false
+        },
+        {
+          "text": "tall trees",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-017",
+      "level": "easy",
+      "clueType": "Example",
+      "word": "fruit",
+      "text": "I like to eat {fruit}, such as apples, bananas, and grapes, for a healthy snack.",
+      "hint": "The examples tell you what fruit is. What do apples, bananas, and grapes have in common?",
+      "choices": [
+        {
+          "text": "healthy foods from plants",
+          "isCorrect": true
+        },
+        {
+          "text": "types of candy",
+          "isCorrect": false
+        },
+        {
+          "text": "different drinks",
+          "isCorrect": false
+        },
+        {
+          "text": "kinds of bread",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-018",
+      "level": "easy",
+      "clueType": "Example",
+      "word": "animals",
+      "text": "The farm had many {animals}, including cows, pigs, and chickens.",
+      "hint": "Think about what cows, pigs, and chickens all are.",
+      "choices": [
+        {
+          "text": "living creatures",
+          "isCorrect": true
+        },
+        {
+          "text": "farm buildings",
+          "isCorrect": false
+        },
+        {
+          "text": "types of food",
+          "isCorrect": false
+        },
+        {
+          "text": "kinds of plants",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-019",
+      "level": "easy",
+      "clueType": "Example",
+      "word": "games",
+      "text": "We played different {games}, like tag, hide and seek, and hopscotch, at recess.",
+      "hint": "What do tag, hide and seek, and hopscotch have in common?",
+      "choices": [
+        {
+          "text": "fun activities to play",
+          "isCorrect": true
+        },
+        {
+          "text": "things to eat",
+          "isCorrect": false
+        },
+        {
+          "text": "books to read",
+          "isCorrect": false
+        },
+        {
+          "text": "places to visit",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-020",
+      "level": "easy",
+      "clueType": "Example",
+      "word": "vegetables",
+      "text": "Mom bought {vegetables}, such as carrots, broccoli, and tomatoes, at the store.",
+      "hint": "Look at the examples. What kind of foods are carrots, broccoli, and tomatoes?",
+      "choices": [
+        {
+          "text": "healthy plant foods",
+          "isCorrect": true
+        },
+        {
+          "text": "sweet desserts",
+          "isCorrect": false
+        },
+        {
+          "text": "cold drinks",
+          "isCorrect": false
+        },
+        {
+          "text": "hot soups",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-021",
+      "level": "easy",
+      "clueType": "Inference",
+      "word": "hungry",
+      "text": "She was {hungry} because she hadn't eaten all day and her stomach was growling loudly.",
+      "hint": "Think about how you feel when you haven't eaten and your stomach growls.",
+      "choices": [
+        {
+          "text": "wanting to eat food",
+          "isCorrect": true
+        },
+        {
+          "text": "wanting to sleep",
+          "isCorrect": false
+        },
+        {
+          "text": "wanting to play",
+          "isCorrect": false
+        },
+        {
+          "text": "wanting to read",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-022",
+      "level": "easy",
+      "clueType": "Inference",
+      "word": "excited",
+      "text": "The boy was {excited} about his birthday party and couldn't stop smiling and jumping around.",
+      "hint": "When someone smiles a lot and jumps around, how are they feeling?",
+      "choices": [
+        {
+          "text": "very happy and eager",
+          "isCorrect": true
+        },
+        {
+          "text": "very sad and upset",
+          "isCorrect": false
+        },
+        {
+          "text": "very tired and sleepy",
+          "isCorrect": false
+        },
+        {
+          "text": "very angry and mad",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-023",
+      "level": "easy",
+      "clueType": "Inference",
+      "word": "thirsty",
+      "text": "After playing outside in the hot sun all day, I was really {thirsty} and drank three glasses of water.",
+      "hint": "What do you need when you've been in the sun and you drink lots of water?",
+      "choices": [
+        {
+          "text": "needing a drink",
+          "isCorrect": true
+        },
+        {
+          "text": "needing food",
+          "isCorrect": false
+        },
+        {
+          "text": "needing sleep",
+          "isCorrect": false
+        },
+        {
+          "text": "needing a bath",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-024",
+      "level": "easy",
+      "clueType": "Inference",
+      "word": "afraid",
+      "text": "The kitten was {afraid} of the loud thunder and hid under the bed shaking.",
+      "hint": "When someone hides and shakes because of loud noises, what are they feeling?",
+      "choices": [
+        {
+          "text": "scared or frightened",
+          "isCorrect": true
+        },
+        {
+          "text": "happy or joyful",
+          "isCorrect": false
+        },
+        {
+          "text": "hungry or starving",
+          "isCorrect": false
+        },
+        {
+          "text": "tired or sleepy",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-easy-025",
+      "level": "easy",
+      "clueType": "Inference",
+      "word": "proud",
+      "text": "She felt {proud} when she won first place in the race and smiled as everyone clapped for her.",
+      "hint": "How do you feel when you win something and people clap for you?",
+      "choices": [
+        {
+          "text": "feeling good about yourself",
+          "isCorrect": true
+        },
+        {
+          "text": "feeling bad about yourself",
+          "isCorrect": false
+        },
+        {
+          "text": "feeling sick",
+          "isCorrect": false
+        },
+        {
+          "text": "feeling cold",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-001",
+      "level": "medium",
+      "clueType": "Inference",
+      "word": "reluctant",
+      "text": "The student was {reluctant} to join the game, hesitating and standing by the wall instead of playing.",
+      "hint": "He hesitated and didn't join in immediately. How was he feeling?",
+      "choices": [
+        {
+          "text": "unwilling or hesitant",
+          "isCorrect": true
+        },
+        {
+          "text": "excited and eager",
+          "isCorrect": false
+        },
+        {
+          "text": "angry and mad",
+          "isCorrect": false
+        },
+        {
+          "text": "happy and joyful",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-002",
+      "level": "medium",
+      "clueType": "Inference",
+      "word": "abundant",
+      "text": "The farmer had an {abundant} harvest, with more corn and wheat than his barn could hold.",
+      "hint": "If he had more than the barn could hold, he had a vast amount.",
+      "choices": [
+        {
+          "text": "plentiful; a large amount",
+          "isCorrect": true
+        },
+        {
+          "text": "tiny; very little",
+          "isCorrect": false
+        },
+        {
+          "text": "rotten; bad quality",
+          "isCorrect": false
+        },
+        {
+          "text": "expensive; costing a lot",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-003",
+      "level": "medium",
+      "clueType": "Inference",
+      "word": "diligent",
+      "text": "She was a {diligent} worker, always finishing her tasks on time and checking her work carefully.",
+      "hint": "She works hard, finishes on time, and checks carefully.",
+      "choices": [
+        {
+          "text": "hardworking and careful",
+          "isCorrect": true
+        },
+        {
+          "text": "lazy and slow",
+          "isCorrect": false
+        },
+        {
+          "text": "messy and careless",
+          "isCorrect": false
+        },
+        {
+          "text": "funny and silly",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-004",
+      "level": "medium",
+      "clueType": "Definition",
+      "word": "vacant",
+      "text": "The old house was {vacant}; nobody had lived there for many years.",
+      "hint": "If nobody lives there, the house is...",
+      "choices": [
+        {
+          "text": "empty",
+          "isCorrect": true
+        },
+        {
+          "text": "full",
+          "isCorrect": false
+        },
+        {
+          "text": "noisy",
+          "isCorrect": false
+        },
+        {
+          "text": "new",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-005",
+      "level": "medium",
+      "clueType": "Definition",
+      "word": "clue",
+      "text": "The detective looked for a {clue}, a piece of evidence, to solve definitions.",
+      "hint": "The definition is right there: 'a piece of evidence'.",
+      "choices": [
+        {
+          "text": "a hint or evidence",
+          "isCorrect": true
+        },
+        {
+          "text": "a sweet candy",
+          "isCorrect": false
+        },
+        {
+          "text": "a loud noise",
+          "isCorrect": false
+        },
+        {
+          "text": "a funny joke",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-006",
+      "level": "medium",
+      "clueType": "Synonym",
+      "word": "frigid",
+      "text": "The weather was {frigid}, significantly colder than a normal winter day.",
+      "hint": "It's described as 'significantly colder'.",
+      "choices": [
+        {
+          "text": "very cold",
+          "isCorrect": true
+        },
+        {
+          "text": "very hot",
+          "isCorrect": false
+        },
+        {
+          "text": "mild",
+          "isCorrect": false
+        },
+        {
+          "text": "rainy",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-007",
+      "level": "medium",
+      "clueType": "Antonym",
+      "word": "fatigued",
+      "text": "He felt {fatigued} after running the marathon, unlike the energy he had at the start.",
+      "hint": "It's the opposite of having energy.",
+      "choices": [
+        {
+          "text": "very tired",
+          "isCorrect": true
+        },
+        {
+          "text": "very energetic",
+          "isCorrect": false
+        },
+        {
+          "text": "very hungry",
+          "isCorrect": false
+        },
+        {
+          "text": "very happy",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-008",
+      "level": "medium",
+      "clueType": "Synonym",
+      "word": "commended",
+      "text": "The principal {commended} the students for their behavior, praising them during the assembly.",
+      "hint": "What did the principal do? 'Praising them'.",
+      "choices": [
+        {
+          "text": "praised",
+          "isCorrect": true
+        },
+        {
+          "text": "scolded",
+          "isCorrect": false
+        },
+        {
+          "text": "ignored",
+          "isCorrect": false
+        },
+        {
+          "text": "taught",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-009",
+      "level": "medium",
+      "clueType": "Definition",
+      "word": "discard",
+      "text": "Please {discard} your trash, throw it away in the bin, before leaving.",
+      "hint": "The sentence tells you what to do: 'throw it away'.",
+      "choices": [
+        {
+          "text": "throw away",
+          "isCorrect": true
+        },
+        {
+          "text": "keep safe",
+          "isCorrect": false
+        },
+        {
+          "text": "eat quickly",
+          "isCorrect": false
+        },
+        {
+          "text": "color nicely",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-010",
+      "level": "medium",
+      "clueType": "Synonym",
+      "word": "apparent",
+      "text": "The answer was {apparent} to everyone; it was obvious and easy to see.",
+      "hint": "The sentence says it was 'obvious'.",
+      "choices": [
+        {
+          "text": "obvious",
+          "isCorrect": true
+        },
+        {
+          "text": "hidden",
+          "isCorrect": false
+        },
+        {
+          "text": "confusing",
+          "isCorrect": false
+        },
+        {
+          "text": "wrong",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-011",
+      "level": "medium",
+      "clueType": "Inference",
+      "word": "disruptive",
+      "text": "The noises in the library were {disruptive}, breaking the silence and bothering readers.",
+      "hint": "They broke the silence and bothered people.",
+      "choices": [
+        {
+          "text": "causing trouble/interruption",
+          "isCorrect": true
+        },
+        {
+          "text": "helping people read",
+          "isCorrect": false
+        },
+        {
+          "text": "very quiet",
+          "isCorrect": false
+        },
+        {
+          "text": "soothing music",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "cc-medium-012",
+      "level": "medium",
+      "clueType": "Definition",
+      "word": "vital",
+      "text": "Her assist was {vital}, meaning it was absolutely necessary for the team to win.",
+      "hint": "The sentence defines it as 'absolutely necessary'.",
+      "choices": [
+        {
+          "text": "very important/necessary",
+          "isCorrect": true
+        },
+        {
+          "text": "useless",
+          "isCorrect": false
+        },
+        {
+          "text": "optional",
+          "isCorrect": false
+        },
+        {
+          "text": "silly",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}
