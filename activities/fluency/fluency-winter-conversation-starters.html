@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winter Conversation Starters – Fluency</title>
+    <script src="../../data/fluency.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --ink: #0f172a;
@@ -316,143 +318,9 @@
         </div>
     </main>
     <script>
-        const starters = [
-            {
-                title: "Ideal Snow Day",
-                starter: "What’s your ideal plan for a snow day if school gets canceled?",
-                stem: "If I had a snow day, I would start by…, then I would…, and finally I would…",
-                followups: [
-                    "Would you spend it mostly alone or with people?",
-                    "Has your favorite snow-day activity changed since you were younger?"
-                ]
-            },
-            {
-                title: "Cold vs. Mild Days",
-                starter: "Do you prefer really cold winter days or mild gray ones? Why?",
-                stem: "I prefer ___ days because ___.",
-                followups: [
-                    "Which type of weather makes you more productive?",
-                    "Which one is harder to deal with at school?"
-                ]
-            },
-            {
-                title: "Winter Habits",
-                starter: "What winter tradition or habit do you enjoy, even if it’s small?",
-                stem: "One winter habit I like is ___ because ___.",
-                followups: [
-                    "Is it something you do alone or with others?",
-                    "Do you think you’ll keep that habit as an adult?"
-                ]
-            },
-            {
-                title: "Seasonal Food/Drinks",
-                starter: "Is there a winter food or drink you look forward to every year?",
-                stem: "Each winter, I like ___ because ___.",
-                followups: [
-                    "Who makes it or where do you get it?",
-                    "Does the taste remind you of anything?"
-                ]
-            },
-            {
-                title: "Annoying Winter Tasks",
-                starter: "What winter chore or task do you wish you didn’t have to do?",
-                stem: "I really dislike ___ because ___.",
-                followups: [
-                    "How do you make it less annoying?",
-                    "Is there anyone who actually enjoys that chore?"
-                ]
-            },
-            {
-                title: "Redesigning Winter Break",
-                starter: "If you could redesign winter break to make it better, what would you change?",
-                stem: "If I redesigned winter break, I would ___ so that ___.",
-                followups: [
-                    "Would you make it longer or organized differently?",
-                    "How would school feel different afterward?"
-                ]
-            },
-            {
-                title: "Most Annoying Weather",
-                starter: "What type of winter weather is the most annoying, and why?",
-                stem: "The winter weather that bothers me most is ___ because ___.",
-                followups: [
-                    "Does it affect your mood or your routine more?",
-                    "Which weather is the easiest for you to handle?"
-                ]
-            },
-            {
-                title: "Childhood Winter Activities",
-                starter: "What is something fun you used to do in winter as a kid that you don’t do anymore?",
-                stem: "When I was younger, I used to ___, but now I don’t because ___.",
-                followups: [
-                    "Would you try it again now?",
-                    "What made it fun back then?"
-                ]
-            },
-            {
-                title: "Winter Clothing",
-                starter: "What winter clothing item makes you feel the coziest or most comfortable?",
-                stem: "The winter clothing I like most is ___ because ___.",
-                followups: [
-                    "Do you care more about warmth or style?",
-                    "Is there something you’d add to your perfect winter outfit?"
-                ]
-            },
-            {
-                title: "All-Day Outdoor Winter Challenge",
-                starter: "If you had to spend a whole day outside in winter, what would you want to do?",
-                stem: "If I had to stay outside, I’d spend my time ___, ___, and ___.",
-                followups: [
-                    "What would be the hardest part?",
-                    "Would you want anyone with you?"
-                ]
-            },
-            {
-                title: "Winter and Mood",
-                starter: "Do you think winter affects people’s moods or energy levels?",
-                stem: "I think winter affects people by making them feel ___ because ___.",
-                followups: [
-                    "Does winter affect you personally?",
-                    "Is there a way to fix or balance those feelings?"
-                ]
-            },
-            {
-                title: "Best Recent Winter Memory",
-                starter: "What’s the best winter memory you’ve had in the last few years?",
-                stem: "A favorite winter memory I have is ___ because ___.",
-                followups: [
-                    "Who was with you?",
-                    "Would you want that to happen again?"
-                ]
-            },
-            {
-                title: "Winter Activity You Wish You Liked",
-                starter: "What winter activity do you wish you liked, but you really don’t?",
-                stem: "I wish I liked ___, but I don’t because ___.",
-                followups: [
-                    "What would make it more enjoyable?",
-                    "Do your friends like it?"
-                ]
-            },
-            {
-                title: "Winter Destination",
-                starter: "If you could teleport to any winter location for a day, where would you go?",
-                stem: "I would go to ___ because ___.",
-                followups: [
-                    "What would you want to see or do there?",
-                    "Would you go alone or with someone?"
-                ]
-            },
-            {
-                title: "Relaxing Winter Moments",
-                starter: "What winter sound, sight, or moment feels relaxing to you?",
-                stem: "A winter moment that relaxes me is ___ because ___.",
-                followups: [
-                    "When was the last time you noticed it?",
-                    "Does it help you focus, calm down, or something else?"
-                ]
-            }
-        ];
+        const starters = DataLoader.filter(‘fluency’, ‘starters’, function (s) {
+            return s.sourceFile === ‘activities/fluency/fluency-winter-conversation-starters.html’;
+        });
 
         const responses = starters.map(() => ({
             response: "",

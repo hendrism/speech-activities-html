@@ -1,0 +1,756 @@
+window.ActivityData = window.ActivityData || {};
+window.ActivityData.fluency = {
+  "_meta": {
+    "description": "Fluency conversation starters and therapy session prompts",
+    "futureSQLiteTable": "fluency_starters",
+    "version": "1.0",
+    "extractedAt": "2026-02-27T19:07:41.857Z",
+    "totalItems": 63,
+    "extractedFromHTML": 63
+  },
+  "starters": [
+    {
+      "id": "fluency-fluency-spring-001",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What is your favorite spring activity?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "fun {a}",
+        "sentence": "My favorite spring activity is {a}.",
+        "extended": "My favorite spring activity is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-002",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What do you like to drink on a rainy spring day?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "warm {a}",
+        "sentence": "On a rainy spring day, I like to drink {a}.",
+        "extended": "On a rainy spring day, I like to drink {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-003",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "Who do you like to play outside with in the spring?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "playing with {a}",
+        "sentence": "I like to play outside with {a} in the spring.",
+        "extended": "I like to play outside with {a} in the spring because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-004",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What do you wear when it is raining outside?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "put on {a}",
+        "sentence": "When it is raining outside, I put on {a}.",
+        "extended": "When it is raining outside, I put on {a} so that ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-005",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "Where do you like to go on a sunny spring day?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "go to {a}",
+        "sentence": "On a sunny spring day, I like to go to {a}.",
+        "extended": "On a sunny spring day, I like to go to {a} to ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-006",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What spring sound or smell do you notice?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "the {a}",
+        "sentence": "In spring, I notice {a}.",
+        "extended": "In spring, I notice {a} and it makes me feel ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-007",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What do you hope to do during spring break?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "spring break {a}",
+        "sentence": "During spring break, I hope to {a}.",
+        "extended": "During spring break, I hope to {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-008",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What is one goal for the end of the school year?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "goal: {a}",
+        "sentence": "One goal for the end of the school year is {a}.",
+        "extended": "One goal for the end of the school year is {a} so that ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-009",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What do you like to eat at a spring picnic?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "eating {a}",
+        "sentence": "At a spring picnic, I like to eat {a}.",
+        "extended": "At a spring picnic, I like to eat {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-010",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What spring clothing is your favorite?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "favorite {a}",
+        "sentence": "My favorite spring clothing is {a}.",
+        "extended": "My favorite spring clothing is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-011",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What outdoor hobby do you enjoy when the weather gets warmer?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "outdoor {a}",
+        "sentence": "When the weather gets warmer, I enjoy {a} outside.",
+        "extended": "When the weather gets warmer, I enjoy {a} outside because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-012",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What animal do you hope to see in the spring?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "see a {a}",
+        "sentence": "In the spring, I hope to see a {a}.",
+        "extended": "In the spring, I hope to see a {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-013",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "How can you help someone plant a garden?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "help by {a}",
+        "sentence": "When planting a garden, I can help by {a}.",
+        "extended": "When planting a garden, I can help by {a} so that ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-014",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What spring sound do you like to hear?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "hearing {a}",
+        "sentence": "A spring sound I like to hear is {a}.",
+        "extended": "A spring sound I like to hear is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-spring-015",
+      "sourceFile": "activities/fluency/fluency-spring.html",
+      "prompt": "What is the best part of a warm spring afternoon?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "best part: {a}",
+        "sentence": "The best part of a warm spring afternoon is {a}.",
+        "extended": "The best part of a warm spring afternoon is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-thanksgiving-001",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "prompt": "What is your favorite Thanksgiving food?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "Tasty {a}",
+        "sentence": "My favorite Thanksgiving food is {a}.",
+        "extended": "My favorite Thanksgiving food is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-thanksgiving-002",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "prompt": "Who do you like to sit next to at dinner?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "sitting by {a}",
+        "sentence": "I like to sit next to {a} at dinner.",
+        "extended": "I like to sit next to {a} at dinner because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-thanksgiving-003",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "prompt": "What job do you help with on Thanksgiving?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "helping with {a}",
+        "sentence": "On Thanksgiving, I help with {a}.",
+        "extended": "On Thanksgiving, I help with {a} so that ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-thanksgiving-004",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "prompt": "What are you thankful for this year?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "thankful for {a}",
+        "sentence": "I am thankful for {a} this year.",
+        "extended": "I am thankful for {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-thanksgiving-005",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "prompt": "What do you like to do after the big meal?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "doing {a} after eating",
+        "sentence": "After the big meal, I like to {a}.",
+        "extended": "After the big meal, I like to {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-thanksgiving-006",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "prompt": "Where do you celebrate Thanksgiving?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "at {a}",
+        "sentence": "We celebrate Thanksgiving at {a}.",
+        "extended": "We celebrate Thanksgiving at {a} so that ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-thanksgiving-007",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "prompt": "What is your favorite Thanksgiving parade balloon or float?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "the {a} float",
+        "sentence": "My favorite Thanksgiving parade balloon or float is {a}.",
+        "extended": "My favorite parade float is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-thanksgiving-008",
+      "sourceFile": "activities/fluency/fluency-thanksgiving.html",
+      "prompt": "What dessert do you look forward to?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "sweet {a}",
+        "sentence": "The dessert I look forward to is {a}.",
+        "extended": "I look forward to {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-001",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Ideal Snow Day",
+      "starter": "What’s your ideal plan for a snow day if school gets canceled?",
+      "stem": "If I had a snow day, I would start by…, then I would…, and finally I would…",
+      "followups": [
+        "Would you spend it mostly alone or with people?",
+        "Has your favorite snow-day activity changed since you were younger?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-002",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Cold vs. Mild Days",
+      "starter": "Do you prefer really cold winter days or mild gray ones? Why?",
+      "stem": "I prefer ___ days because ___.",
+      "followups": [
+        "Which type of weather makes you more productive?",
+        "Which one is harder to deal with at school?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-003",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Winter Habits",
+      "starter": "What winter tradition or habit do you enjoy, even if it’s small?",
+      "stem": "One winter habit I like is ___ because ___.",
+      "followups": [
+        "Is it something you do alone or with others?",
+        "Do you think you’ll keep that habit as an adult?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-004",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Seasonal Food/Drinks",
+      "starter": "Is there a winter food or drink you look forward to every year?",
+      "stem": "Each winter, I like ___ because ___.",
+      "followups": [
+        "Who makes it or where do you get it?",
+        "Does the taste remind you of anything?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-005",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Annoying Winter Tasks",
+      "starter": "What winter chore or task do you wish you didn’t have to do?",
+      "stem": "I really dislike ___ because ___.",
+      "followups": [
+        "How do you make it less annoying?",
+        "Is there anyone who actually enjoys that chore?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-006",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Redesigning Winter Break",
+      "starter": "If you could redesign winter break to make it better, what would you change?",
+      "stem": "If I redesigned winter break, I would ___ so that ___.",
+      "followups": [
+        "Would you make it longer or organized differently?",
+        "How would school feel different afterward?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-007",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Most Annoying Weather",
+      "starter": "What type of winter weather is the most annoying, and why?",
+      "stem": "The winter weather that bothers me most is ___ because ___.",
+      "followups": [
+        "Does it affect your mood or your routine more?",
+        "Which weather is the easiest for you to handle?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-008",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Childhood Winter Activities",
+      "starter": "What is something fun you used to do in winter as a kid that you don’t do anymore?",
+      "stem": "When I was younger, I used to ___, but now I don’t because ___.",
+      "followups": [
+        "Would you try it again now?",
+        "What made it fun back then?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-009",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Winter Clothing",
+      "starter": "What winter clothing item makes you feel the coziest or most comfortable?",
+      "stem": "The winter clothing I like most is ___ because ___.",
+      "followups": [
+        "Do you care more about warmth or style?",
+        "Is there something you’d add to your perfect winter outfit?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-010",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "All-Day Outdoor Winter Challenge",
+      "starter": "If you had to spend a whole day outside in winter, what would you want to do?",
+      "stem": "If I had to stay outside, I’d spend my time ___, ___, and ___.",
+      "followups": [
+        "What would be the hardest part?",
+        "Would you want anyone with you?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-011",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Winter and Mood",
+      "starter": "Do you think winter affects people’s moods or energy levels?",
+      "stem": "I think winter affects people by making them feel ___ because ___.",
+      "followups": [
+        "Does winter affect you personally?",
+        "Is there a way to fix or balance those feelings?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-012",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Best Recent Winter Memory",
+      "starter": "What’s the best winter memory you’ve had in the last few years?",
+      "stem": "A favorite winter memory I have is ___ because ___.",
+      "followups": [
+        "Who was with you?",
+        "Would you want that to happen again?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-013",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Winter Activity You Wish You Liked",
+      "starter": "What winter activity do you wish you liked, but you really don’t?",
+      "stem": "I wish I liked ___, but I don’t because ___.",
+      "followups": [
+        "What would make it more enjoyable?",
+        "Do your friends like it?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-014",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Winter Destination",
+      "starter": "If you could teleport to any winter location for a day, where would you go?",
+      "stem": "I would go to ___ because ___.",
+      "followups": [
+        "What would you want to see or do there?",
+        "Would you go alone or with someone?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-conversation-starters-015",
+      "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
+      "title": "Relaxing Winter Moments",
+      "starter": "What winter sound, sight, or moment feels relaxing to you?",
+      "stem": "A winter moment that relaxes me is ___ because ___.",
+      "followups": [
+        "When was the last time you noticed it?",
+        "Does it help you focus, calm down, or something else?"
+      ]
+    },
+    {
+      "id": "fluency-fluency-winter-001",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What is your favorite winter activity?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "fun {a}",
+        "sentence": "My favorite winter activity is {a}.",
+        "extended": "My favorite winter activity is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-002",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What do you like to drink when it is cold outside?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "warm {a}",
+        "sentence": "When it is cold, I like to drink {a}.",
+        "extended": "When it is cold, I like to drink {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-003",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "Who do you like to play in the snow with?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "playing with {a}",
+        "sentence": "I like to play in the snow with {a}.",
+        "extended": "I like to play in the snow with {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-004",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What do you wear first before going outside in winter?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "put on {a}",
+        "sentence": "Before I go outside in winter, I put on {a}.",
+        "extended": "Before I go outside in winter, I put on {a} so that ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-005",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "Where do you like to relax on a chilly day?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "resting in {a}",
+        "sentence": "On a chilly day, I like to relax in {a}.",
+        "extended": "On a chilly day, I like to relax in {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-006",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What winter sound or smell do you notice?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "the {a}",
+        "sentence": "In winter, I notice {a}.",
+        "extended": "In winter, I notice {a} and it makes me feel ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-007",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What do you hope to do on a snow day?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "snow day {a}",
+        "sentence": "On a snow day, I hope to {a}.",
+        "extended": "On a snow day, I hope to {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-008",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What is one goal for winter break?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "goal: {a}",
+        "sentence": "One goal for winter break is {a}.",
+        "extended": "One goal for winter break is {a} so that ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-009",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What do you like to eat on a cold day?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "warm {a}",
+        "sentence": "On a cold day, I like to eat {a}.",
+        "extended": "On a cold day, I like to eat {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-010",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What winter clothing feels coziest?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "cozy {a}",
+        "sentence": "The winter clothing that feels coziest is {a}.",
+        "extended": "The winter clothing that feels coziest is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-011",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What indoor hobby do you enjoy when it is snowy?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "indoor {a}",
+        "sentence": "When it is snowy, I enjoy {a} inside.",
+        "extended": "When it is snowy, I enjoy {a} inside because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-012",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "Where would you like to visit in winter?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "visit {a}",
+        "sentence": "In winter, I would like to visit {a}.",
+        "extended": "In winter, I would like to visit {a} so that ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-013",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "How can you help someone on an icy day?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "help by {a}",
+        "sentence": "On an icy day, I can help by {a}.",
+        "extended": "On an icy day, I can help by {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-014",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What winter sound do you like to hear?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "hearing {a}",
+        "sentence": "A winter sound I like to hear is {a}.",
+        "extended": "A winter sound I like to hear is {a} because ____."
+      }
+    },
+    {
+      "id": "fluency-fluency-winter-015",
+      "sourceFile": "activities/fluency/fluency-winter.html",
+      "prompt": "What is the best part of a snowy morning?",
+      "frames": {
+        "word": "{a}",
+        "phrase": "best part: {a}",
+        "sentence": "The best part of a snowy morning is {a}.",
+        "extended": "The best part of a snowy morning is {a} because ____."
+      }
+    },
+    {
+      "id": "gratitude",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Thankful Round",
+      "text": "Share what you are thankful for this year. Take turns adding more than one thing so the talk keeps going.",
+      "chips": [
+        "positive topic",
+        "personal sharing",
+        "expansion"
+      ],
+      "followUps": [
+        "What changed from last year?",
+        "Who helped you the most?",
+        "How did you show thanks?"
+      ]
+    },
+    {
+      "id": "leftovers",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Leftovers Plan",
+      "text": "Plan how to use Thanksgiving leftovers. Compare ideas like sandwiches, soups, or sharing with neighbors.",
+      "chips": [
+        "planning",
+        "compare ideas",
+        "sequence steps"
+      ],
+      "followUps": [
+        "Which idea is fastest to make?",
+        "What ingredients do you need?",
+        "Who will enjoy each idea the most?"
+      ]
+    },
+    {
+      "id": "parade",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Parade or Football?",
+      "text": "Decide what to watch first: the parade or the football game. Explain reasons and make a schedule.",
+      "chips": [
+        "persuade",
+        "time order",
+        "reasons"
+      ],
+      "followUps": [
+        "What time does each start?",
+        "Who wants to watch each one?",
+        "Can you split the time fairly?"
+      ]
+    },
+    {
+      "id": "travel",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Travel Tales",
+      "text": "Talk about a past Thanksgiving travel story. Describe what went smoothly and what was tricky.",
+      "chips": [
+        "narrative",
+        "problem/solution",
+        "details"
+      ],
+      "followUps": [
+        "What would you change next time?",
+        "Who helped solve the problem?",
+        "What was the best part of the trip?"
+      ]
+    },
+    {
+      "id": "traditions",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Favorite Tradition",
+      "text": "Describe a family tradition and why it matters. Invite the other person to share theirs and compare.",
+      "chips": [
+        "describe",
+        "compare",
+        "feelings"
+      ],
+      "followUps": [
+        "How did the tradition start?",
+        "What makes it special?",
+        "Would you change or add anything?"
+      ]
+    },
+    {
+      "id": "helping",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Helping Out",
+      "text": "Plan how to help before or after the meal. Divide tasks like setting the table, dishes, or packing leftovers.",
+      "chips": [
+        "plan",
+        "roles",
+        "sequence"
+      ],
+      "followUps": [
+        "Which tasks match each person’s strengths?",
+        "What needs to happen first?",
+        "How will you know the job is done well?"
+      ]
+    },
+    {
+      "id": "cooking",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Recipe Swap",
+      "text": "Talk about a favorite Thanksgiving recipe. Explain steps and ask for tips to make it better.",
+      "chips": [
+        "explain steps",
+        "ask/answer",
+        "details"
+      ],
+      "followUps": [
+        "Which step is most important?",
+        "How do you know it is done?",
+        "What can go wrong and how do you fix it?"
+      ]
+    },
+    {
+      "id": "gratitude-cards",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Gratitude Cards",
+      "text": "Plan to make gratitude cards for guests or community helpers. Decide what to write and how to deliver them.",
+      "chips": [
+        "plan",
+        "kindness",
+        "specific details"
+      ],
+      "followUps": [
+        "Who should get a card and why?",
+        "What message will you include?",
+        "How will you deliver them?"
+      ]
+    },
+    {
+      "id": "new-guest",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Welcoming a New Guest",
+      "text": "A friend is joining Thanksgiving for the first time. Plan how to make them feel included.",
+      "chips": [
+        "empathy",
+        "problem-prevention",
+        "ideas"
+      ],
+      "followUps": [
+        "What info should you share ahead of time?",
+        "What activities can include everyone?",
+        "How will you check in during the meal?"
+      ]
+    },
+    {
+      "id": "conflict",
+      "sourceFile": "activities/fluency/thanksgiving-conversation-fluency-artic.html",
+      "title": "Small Conflict, Quick Repair",
+      "text": "Two people want the last slice of pie. Talk through a fair solution without arguing.",
+      "chips": [
+        "problem solving",
+        "fairness",
+        "calm voice"
+      ],
+      "followUps": [
+        "What options are fair?",
+        "How can both people feel heard?",
+        "What words can you use to stay calm?"
+      ]
+    }
+  ]
+};

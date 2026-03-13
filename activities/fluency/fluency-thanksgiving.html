@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanksgiving Fluency Prompts</title>
+    <script src="../../data/fluency.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --bg: #f7f2ea;
@@ -235,80 +237,9 @@
     </div>
 
     <script>
-        const questions = [
-            {
-                prompt: "What is your favorite Thanksgiving food?",
-                frames: {
-                    word: "{a}",
-                    phrase: "Tasty {a}",
-                    sentence: "My favorite Thanksgiving food is {a}.",
-                    extended: "My favorite Thanksgiving food is {a} because ____."
-                }
-            },
-            {
-                prompt: "Who do you like to sit next to at dinner?",
-                frames: {
-                    word: "{a}",
-                    phrase: "sitting by {a}",
-                    sentence: "I like to sit next to {a} at dinner.",
-                    extended: "I like to sit next to {a} at dinner because ____."
-                }
-            },
-            {
-                prompt: "What job do you help with on Thanksgiving?",
-                frames: {
-                    word: "{a}",
-                    phrase: "helping with {a}",
-                    sentence: "On Thanksgiving, I help with {a}.",
-                    extended: "On Thanksgiving, I help with {a} so that ____."
-                }
-            },
-            {
-                prompt: "What are you thankful for this year?",
-                frames: {
-                    word: "{a}",
-                    phrase: "thankful for {a}",
-                    sentence: "I am thankful for {a} this year.",
-                    extended: "I am thankful for {a} because ____."
-                }
-            },
-            {
-                prompt: "What do you like to do after the big meal?",
-                frames: {
-                    word: "{a}",
-                    phrase: "doing {a} after eating",
-                    sentence: "After the big meal, I like to {a}.",
-                    extended: "After the big meal, I like to {a} because ____."
-                }
-            },
-            {
-                prompt: "Where do you celebrate Thanksgiving?",
-                frames: {
-                    word: "{a}",
-                    phrase: "at {a}",
-                    sentence: "We celebrate Thanksgiving at {a}.",
-                    extended: "We celebrate Thanksgiving at {a} so that ____."
-                }
-            },
-            {
-                prompt: "What is your favorite Thanksgiving parade balloon or float?",
-                frames: {
-                    word: "{a}",
-                    phrase: "the {a} float",
-                    sentence: "My favorite Thanksgiving parade balloon or float is {a}.",
-                    extended: "My favorite parade float is {a} because ____."
-                }
-            },
-            {
-                prompt: "What dessert do you look forward to?",
-                frames: {
-                    word: "{a}",
-                    phrase: "sweet {a}",
-                    sentence: "The dessert I look forward to is {a}.",
-                    extended: "I look forward to {a} because ____."
-                }
-            }
-        ];
+        const questions = DataLoader.filter('fluency', 'starters', function (s) {
+            return s.sourceFile === 'activities/fluency/fluency-thanksgiving.html';
+        });
 
         const levels = {
             word: { label: "Single Word", hint: "Use a single clear word." },

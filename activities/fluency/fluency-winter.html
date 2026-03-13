@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winter Fluency Prompts</title>
+    <script src="../../data/fluency.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --bg: #eef6ff;
@@ -235,143 +237,9 @@
     </div>
 
     <script>
-        const questions = [
-            {
-                prompt: "What is your favorite winter activity?",
-                frames: {
-                    word: "{a}",
-                    phrase: "fun {a}",
-                    sentence: "My favorite winter activity is {a}.",
-                    extended: "My favorite winter activity is {a} because ____."
-                }
-            },
-            {
-                prompt: "What do you like to drink when it is cold outside?",
-                frames: {
-                    word: "{a}",
-                    phrase: "warm {a}",
-                    sentence: "When it is cold, I like to drink {a}.",
-                    extended: "When it is cold, I like to drink {a} because ____."
-                }
-            },
-            {
-                prompt: "Who do you like to play in the snow with?",
-                frames: {
-                    word: "{a}",
-                    phrase: "playing with {a}",
-                    sentence: "I like to play in the snow with {a}.",
-                    extended: "I like to play in the snow with {a} because ____."
-                }
-            },
-            {
-                prompt: "What do you wear first before going outside in winter?",
-                frames: {
-                    word: "{a}",
-                    phrase: "put on {a}",
-                    sentence: "Before I go outside in winter, I put on {a}.",
-                    extended: "Before I go outside in winter, I put on {a} so that ____."
-                }
-            },
-            {
-                prompt: "Where do you like to relax on a chilly day?",
-                frames: {
-                    word: "{a}",
-                    phrase: "resting in {a}",
-                    sentence: "On a chilly day, I like to relax in {a}.",
-                    extended: "On a chilly day, I like to relax in {a} because ____."
-                }
-            },
-            {
-                prompt: "What winter sound or smell do you notice?",
-                frames: {
-                    word: "{a}",
-                    phrase: "the {a}",
-                    sentence: "In winter, I notice {a}.",
-                    extended: "In winter, I notice {a} and it makes me feel ____."
-                }
-            },
-            {
-                prompt: "What do you hope to do on a snow day?",
-                frames: {
-                    word: "{a}",
-                    phrase: "snow day {a}",
-                    sentence: "On a snow day, I hope to {a}.",
-                    extended: "On a snow day, I hope to {a} because ____."
-                }
-            },
-            {
-                prompt: "What is one goal for winter break?",
-                frames: {
-                    word: "{a}",
-                    phrase: "goal: {a}",
-                    sentence: "One goal for winter break is {a}.",
-                    extended: "One goal for winter break is {a} so that ____."
-                }
-            },
-            {
-                prompt: "What do you like to eat on a cold day?",
-                frames: {
-                    word: "{a}",
-                    phrase: "warm {a}",
-                    sentence: "On a cold day, I like to eat {a}.",
-                    extended: "On a cold day, I like to eat {a} because ____."
-                }
-            },
-            {
-                prompt: "What winter clothing feels coziest?",
-                frames: {
-                    word: "{a}",
-                    phrase: "cozy {a}",
-                    sentence: "The winter clothing that feels coziest is {a}.",
-                    extended: "The winter clothing that feels coziest is {a} because ____."
-                }
-            },
-            {
-                prompt: "What indoor hobby do you enjoy when it is snowy?",
-                frames: {
-                    word: "{a}",
-                    phrase: "indoor {a}",
-                    sentence: "When it is snowy, I enjoy {a} inside.",
-                    extended: "When it is snowy, I enjoy {a} inside because ____."
-                }
-            },
-            {
-                prompt: "Where would you like to visit in winter?",
-                frames: {
-                    word: "{a}",
-                    phrase: "visit {a}",
-                    sentence: "In winter, I would like to visit {a}.",
-                    extended: "In winter, I would like to visit {a} so that ____."
-                }
-            },
-            {
-                prompt: "How can you help someone on an icy day?",
-                frames: {
-                    word: "{a}",
-                    phrase: "help by {a}",
-                    sentence: "On an icy day, I can help by {a}.",
-                    extended: "On an icy day, I can help by {a} because ____."
-                }
-            },
-            {
-                prompt: "What winter sound do you like to hear?",
-                frames: {
-                    word: "{a}",
-                    phrase: "hearing {a}",
-                    sentence: "A winter sound I like to hear is {a}.",
-                    extended: "A winter sound I like to hear is {a} because ____."
-                }
-            },
-            {
-                prompt: "What is the best part of a snowy morning?",
-                frames: {
-                    word: "{a}",
-                    phrase: "best part: {a}",
-                    sentence: "The best part of a snowy morning is {a}.",
-                    extended: "The best part of a snowy morning is {a} because ____."
-                }
-            }
-        ];
+        const questions = DataLoader.filter('fluency', 'starters', function (s) {
+            return s.sourceFile === 'activities/fluency/fluency-winter.html';
+        });
 
         const levels = {
             word: { label: "Single Word", hint: "Use a single clear word." },

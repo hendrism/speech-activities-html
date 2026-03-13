@@ -10,6 +10,8 @@ Tags: Sentence Structure, Complex Sentences, Writing
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Complex Sentence Summary Builder</title>
+    <script src="../../data/grammar.js"></script>
+    <script src="../../js/data-loader.js"></script>
   <style>
     :root {
       --bg: #f1f5f9;
@@ -368,56 +370,7 @@ Tags: Sentence Structure, Complex Sentences, Writing
   </main>
 
   <script>
-    const stories = [
-      {
-        title: "The Library Fundraiser",
-        focus: "Author’s Purpose: persuade the town to care about reading spaces",
-        text: [
-          "The school library roof started leaking during a spring storm, soaking several shelves.",
-          "Ms. Patel, the librarian, emailed families about the damage and asked for ideas.",
-          "Students decided to host a weekend read-a-thon to collect donations.",
-          "They designed posters, recorded short videos, and handed out flyers at soccer practice.",
-          "The principal matched every dollar they raised, and the library reopened with new books.",
-          "Ms. Patel thanked the community and explained how fresh stories keep readers curious."
-        ]
-      },
-      {
-        title: "Coach Rivera’s Lesson",
-        focus: "Theme: hard work and teamwork build trust",
-        text: [
-          "The basketball team lost three games in a row because they argued during plays.",
-          "Coach Rivera called a meeting and asked each player to name a teammate’s strength.",
-          "At the next practice, she made them run drills where every pass had to include a compliment.",
-          "At first it felt silly, but the players started laughing instead of blaming each other.",
-          "They played their next game calmly, and even though they were tired, they finished strong.",
-          "Coach Rivera said winning matters less than playing like a family."
-        ]
-      },
-      {
-        title: "Mia’s Science Project",
-        focus: "Main idea: curiosity leads to discovery",
-        text: [
-          "Mia’s science class was studying local water quality, and she noticed strange bubbles near a park drain.",
-          "She tested the water and found extra detergent in the sample.",
-          "When she told her teacher, he encouraged her to present the data at the town meeting.",
-          "Mia was nervous, but she created clear slides that explained the problem and suggested a solution.",
-          "The city agreed to inspect the pipes, and a nearby laundromat fixed its waste tank.",
-          "Mia felt proud that her curiosity helped keep the river clean."
-        ]
-      },
-      {
-        title: "Community Garden Saturday",
-        focus: "Author’s purpose: inform how teamwork improved the neighborhood",
-        text: [
-          "Every Saturday, the community garden hosts families who want to learn about fresh food.",
-          "Mr. Lopez shows people how to plant seeds without wasting water.",
-          "Kids paint signs that explain which vegetables are ready to pick.",
-          "Musicians from the high school jazz club play upbeat songs while people work.",
-          "By lunchtime, the volunteers fill baskets for the food pantry.",
-          "Neighbors go home with recipes, and the garden stays open late for anyone who wants to visit."
-        ]
-      }
-    ];
+    const stories = DataLoader.filter('grammar', 'items', function(s) { return s.sourceFile === 'activities/grammar/complex-sentence-summary-builder.html'; });
 
     const storyNav = document.getElementById("storyNav");
     const storyTitle = document.getElementById("storyTitle");

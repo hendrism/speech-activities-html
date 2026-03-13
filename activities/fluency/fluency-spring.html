@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spring Fluency Prompts</title>
+    <script src="../../data/fluency.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --bg: #f0fdf4;
@@ -245,143 +247,9 @@
     </div>
 
     <script>
-        const questions = [
-            {
-                prompt: "What is your favorite spring activity?",
-                frames: {
-                    word: "{a}",
-                    phrase: "fun {a}",
-                    sentence: "My favorite spring activity is {a}.",
-                    extended: "My favorite spring activity is {a} because ____."
-                }
-            },
-            {
-                prompt: "What do you like to drink on a rainy spring day?",
-                frames: {
-                    word: "{a}",
-                    phrase: "warm {a}",
-                    sentence: "On a rainy spring day, I like to drink {a}.",
-                    extended: "On a rainy spring day, I like to drink {a} because ____."
-                }
-            },
-            {
-                prompt: "Who do you like to play outside with in the spring?",
-                frames: {
-                    word: "{a}",
-                    phrase: "playing with {a}",
-                    sentence: "I like to play outside with {a} in the spring.",
-                    extended: "I like to play outside with {a} in the spring because ____."
-                }
-            },
-            {
-                prompt: "What do you wear when it is raining outside?",
-                frames: {
-                    word: "{a}",
-                    phrase: "put on {a}",
-                    sentence: "When it is raining outside, I put on {a}.",
-                    extended: "When it is raining outside, I put on {a} so that ____."
-                }
-            },
-            {
-                prompt: "Where do you like to go on a sunny spring day?",
-                frames: {
-                    word: "{a}",
-                    phrase: "go to {a}",
-                    sentence: "On a sunny spring day, I like to go to {a}.",
-                    extended: "On a sunny spring day, I like to go to {a} to ____."
-                }
-            },
-            {
-                prompt: "What spring sound or smell do you notice?",
-                frames: {
-                    word: "{a}",
-                    phrase: "the {a}",
-                    sentence: "In spring, I notice {a}.",
-                    extended: "In spring, I notice {a} and it makes me feel ____."
-                }
-            },
-            {
-                prompt: "What do you hope to do during spring break?",
-                frames: {
-                    word: "{a}",
-                    phrase: "spring break {a}",
-                    sentence: "During spring break, I hope to {a}.",
-                    extended: "During spring break, I hope to {a} because ____."
-                }
-            },
-            {
-                prompt: "What is one goal for the end of the school year?",
-                frames: {
-                    word: "{a}",
-                    phrase: "goal: {a}",
-                    sentence: "One goal for the end of the school year is {a}.",
-                    extended: "One goal for the end of the school year is {a} so that ____."
-                }
-            },
-            {
-                prompt: "What do you like to eat at a spring picnic?",
-                frames: {
-                    word: "{a}",
-                    phrase: "eating {a}",
-                    sentence: "At a spring picnic, I like to eat {a}.",
-                    extended: "At a spring picnic, I like to eat {a} because ____."
-                }
-            },
-            {
-                prompt: "What spring clothing is your favorite?",
-                frames: {
-                    word: "{a}",
-                    phrase: "favorite {a}",
-                    sentence: "My favorite spring clothing is {a}.",
-                    extended: "My favorite spring clothing is {a} because ____."
-                }
-            },
-            {
-                prompt: "What outdoor hobby do you enjoy when the weather gets warmer?",
-                frames: {
-                    word: "{a}",
-                    phrase: "outdoor {a}",
-                    sentence: "When the weather gets warmer, I enjoy {a} outside.",
-                    extended: "When the weather gets warmer, I enjoy {a} outside because ____."
-                }
-            },
-            {
-                prompt: "What animal do you hope to see in the spring?",
-                frames: {
-                    word: "{a}",
-                    phrase: "see a {a}",
-                    sentence: "In the spring, I hope to see a {a}.",
-                    extended: "In the spring, I hope to see a {a} because ____."
-                }
-            },
-            {
-                prompt: "How can you help someone plant a garden?",
-                frames: {
-                    word: "{a}",
-                    phrase: "help by {a}",
-                    sentence: "When planting a garden, I can help by {a}.",
-                    extended: "When planting a garden, I can help by {a} so that ____."
-                }
-            },
-            {
-                prompt: "What spring sound do you like to hear?",
-                frames: {
-                    word: "{a}",
-                    phrase: "hearing {a}",
-                    sentence: "A spring sound I like to hear is {a}.",
-                    extended: "A spring sound I like to hear is {a} because ____."
-                }
-            },
-            {
-                prompt: "What is the best part of a warm spring afternoon?",
-                frames: {
-                    word: "{a}",
-                    phrase: "best part: {a}",
-                    sentence: "The best part of a warm spring afternoon is {a}.",
-                    extended: "The best part of a warm spring afternoon is {a} because ____."
-                }
-            }
-        ];
+        const questions = DataLoader.filter('fluency', 'starters', function (s) {
+            return s.sourceFile === 'activities/fluency/fluency-spring.html';
+        });
 
         const levels = {
             word: { label: "Single Word", hint: "Use a single clear word." },
