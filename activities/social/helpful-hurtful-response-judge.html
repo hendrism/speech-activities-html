@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helpful or Hurtful? Response Judge</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --ink: #0f172a;
@@ -417,108 +419,7 @@
         </div>
     </main>
     <script>
-        const scenarios = [
-            {
-                title: "Spilled Lab Materials",
-                scenario: "Chris and Jordan are working together on a science lab. Jordan accidentally knocks over a beaker and spills their materials.",
-                response: "Chris says, “Seriously? Can you stop messing everything up?”"
-            },
-            {
-                title: "Late Text Reply",
-                scenario: "A friend texts Sam during class and seems annoyed when Sam doesn’t reply right away.",
-                response: "Sam says later, “I wasn’t ignoring you. I just couldn’t text back in class. Want to talk about it?”"
-            },
-            {
-                title: "Calculator Returned Damaged",
-                scenario: "A classmate, Riley, borrows Maya’s calculator and returns it with a missing cover.",
-                response: "Maya says, “It’s fine. I’ll just buy a new one since you broke it.”"
-            },
-            {
-                title: "Presentation Assist",
-                scenario: "During a group presentation, Alex forgets a section he was supposed to say. His teammate, Brooke, steps in quickly.",
-                response: "After class, Alex says, “Thanks for jumping in. I froze for a second.”"
-            },
-            {
-                title: "Laughing After Answer",
-                scenario: "Taylor overhears two classmates laughing after she answers a question in English class. She isn’t sure if they were laughing at her.",
-                response: "Taylor says to them, “If you were laughing at me, that wasn’t cool.”"
-            },
-            {
-                title: "Project Disagreement",
-                scenario: "Drew and Avery disagree about how to divide the work for a history project. Avery thinks Drew didn’t do his part.",
-                response: "Drew says, “Look, I can see you’re frustrated. Let’s go over what still needs to be done.”"
-            },
-            {
-                title: "Assumed Avoidance",
-                scenario: "Jamie tells their friend Morgan that they can’t hang out because of family stuff. Morgan assumes Jamie just doesn’t want to spend time together.",
-                response: "Morgan says, “Whatever, Jamie. Just tell me if you don’t want to hang out.”"
-            },
-            {
-                title: "Ignored at Lunch",
-                scenario: "During lunch, a group is talking about weekend plans. No one responds when Carlos shares his idea.",
-                response: "Carlos says, “I’m not sure if you didn’t hear me or weren’t interested, but I was hoping for your thoughts.”"
-            },
-            {
-                title: "Called Out for Rudeness",
-                scenario: "A student, Leah, points out that Ethan’s comment in class came off as rude, even if he didn’t mean it that way.",
-                response: "Ethan says, “You’re too sensitive. I didn’t do anything wrong.”"
-            },
-            {
-                title: "Hallway Bump",
-                scenario: "Quinn accidentally bumps into a classmate, Sky, in the hallway while rushing to class.",
-                response: "Sky says, “Hey, are you okay? That looked like an accident.”"
-            },
-            {
-                title: "Wrong Notebook",
-                scenario: "In a rush, Pat grabs Casey’s notebook by mistake and walks off.",
-                response: "Casey says, “Hey, I think that’s mine. Can we check names and swap back?”"
-            },
-            {
-                title: "Rumor in Group Chat",
-                scenario: "A rumor about Nina shows up in the group chat. She hears Kai repeated it.",
-                response: "Nina messages, “Who told you that? Please don’t spread stuff about me without asking.”"
-            },
-            {
-                title: "Late to Practice",
-                scenario: "Jordan arrives late to rehearsal again, making the group start over.",
-                response: "A teammate says, “You’re always late. We can’t keep counting on you if this keeps happening.”"
-            },
-            {
-                title: "Idea Shot Down",
-                scenario: "During a project brainstorm, Riley’s idea is dismissed quickly by the group.",
-                response: "Riley says, “No worries—can you tell me what you think would work so we can move forward?”"
-            },
-            {
-                title: "Cafeteria Line Cut",
-                scenario: "A student cuts in front of Avery in the lunch line.",
-                response: "Avery says, “Hey, there’s a line. Can you head to the back?”"
-            },
-            {
-                title: "Name Mispronounced",
-                scenario: "A new teacher keeps mispronouncing Priya’s name.",
-                response: "Priya says, “It’s actually Pree-yah. Just wanted to let you know.”"
-            },
-            {
-                title: "Plans Canceled",
-                scenario: "Rae cancels weekend plans with Devon at the last minute.",
-                response: "Devon says, “Wow, guess I’ll find someone who actually wants to hang out.”"
-            },
-            {
-                title: "Lost Instructions",
-                scenario: "During a lab, Tasha doesn’t understand the directions Avery gave and feels lost.",
-                response: "Tasha says, “I’m confused about what you meant. Can you walk me through it once?”"
-            },
-            {
-                title: "Inside Joke",
-                scenario: "During group work, two friends laugh at an inside joke right after Leo shares an idea.",
-                response: "Leo says, “That felt like you were laughing at me. Was that about my idea?”"
-            },
-            {
-                title: "Talking Behind Backs",
-                scenario: "A friend tells Maya that the group was complaining about her without her there.",
-                response: "Maya says, “If there’s an issue with me, can you bring it to me instead of talking about me?”"
-            }
-        ];
+        const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/helpful-hurtful-response-judge.html'; });
 
         const responses = scenarios.map(() => ({
             verdict: null,

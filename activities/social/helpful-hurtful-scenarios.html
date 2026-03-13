@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helpful vs Hurtful Responses — Speech Therapy</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
 
     <!-- Shared design system -->
     <link rel="stylesheet" href="../../css/styles.css">
@@ -226,104 +228,7 @@
     <script src="../../js/utils.js"></script>
 
     <script>
-        const ACTIVITY_DATA = [
-            {
-                name: "Group Project",
-                scenario: "You are working in a group of three on a science poster. The project is due tomorrow. One student forgot to bring their notes and says they left them at home.",
-                responses: [
-                    "“You always mess up.”",
-                    "“We can figure it out.”"
-                ]
-            },
-            {
-                name: "Sitting Alone at Lunch",
-                scenario: "You walk into the cafeteria and see a student from your class sitting alone. They are looking down at their tray and not talking to anyone.",
-                responses: [
-                    "“Why are you alone?”",
-                    "“Do you want to sit with us?”"
-                ]
-            },
-            {
-                name: "Wrong Answer in Class",
-                scenario: "During math class, a student answers a question out loud. The teacher says the answer is not correct. The student looks embarrassed.",
-                responses: [
-                    "“That was wrong.”",
-                    "“It’s okay.”"
-                ]
-            },
-            {
-                name: "Losing a Game",
-                scenario: "You and your friend are playing a video game. Your friend loses and puts the controller down. They look frustrated.",
-                responses: [
-                    "“You’re bad at this.”",
-                    "“Good try.”"
-                ]
-            },
-            {
-                name: "New Student",
-                scenario: "A new student starts school today. They are sitting quietly and do not know where to go for the next class.",
-                responses: [
-                    "“Figure it out.”",
-                    "“I can show you.”"
-                ]
-            },
-            {
-                name: "Someone Bumps Into You",
-                scenario: "You are walking in the hallway between classes. Someone accidentally bumps into your shoulder and quickly says, “Sorry.”",
-                responses: [
-                    "“Watch it.”",
-                    "“It’s fine.”"
-                ]
-            },
-            {
-                name: "Different Opinion",
-                scenario: "Your classmate says they like a movie that you do not like. They are smiling and talking about their favorite part.",
-                responses: [
-                    "“That movie is dumb.”",
-                    "“I don’t like it.”"
-                ]
-            },
-            {
-                name: "Partner Working Slowly",
-                scenario: "You are working with a partner in class. You are finished with your part, but your partner is still writing and going more slowly.",
-                responses: [
-                    "“Hurry up.”",
-                    "“Do you need help?”"
-                ]
-            },
-            {
-                name: "Borrowing a Pencil",
-                scenario: "A student next to you forgot their pencil and asks if they can borrow one. You only have one pencil with you.",
-                responses: [
-                    "“No.”",
-                    "“I only have one.”"
-                ]
-            },
-            {
-                name: "Sharing an Idea",
-                scenario: "During group work, a student shares an idea that sounds different from yours. The group is listening.",
-                responses: [
-                    "“That’s wrong.”",
-                    "“Tell me more.”"
-                ]
-            },
-            {
-                name: "Forgetting Plans",
-                scenario: "You and a friend planned to meet after school to work on homework. Your friend forgets and goes home.",
-                responses: [
-                    "“You never remember.”",
-                    "“Can we try again?”"
-                ]
-            },
-            {
-                name: "Making a Small Mistake",
-                scenario: "A student drops their papers in the hallway and the papers fall everywhere.",
-                responses: [
-                    "“Wow.”",
-                    "“I’ll help.”"
-                ]
-            }
-        ];
+        const ACTIVITY_DATA = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/helpful-hurtful-scenarios.html'; });
 
         const state = {
             currentIndex: 0

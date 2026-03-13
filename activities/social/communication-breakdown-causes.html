@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Communication Breakdown Spotter</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --ink: #0f172a;
@@ -423,140 +425,7 @@
         </div>
     </main>
     <script>
-        const scenarios = [
-            {
-                title: "Jordan and the Math Problem",
-                copy: [
-                    "Jordan was explaining how to solve a math problem. She said, “You just move it over there and then do that part,” while pointing quickly at her paper.",
-                    "Her classmate looked confused and said, “Wait… what do you mean?”"
-                ],
-                causes: [
-                    "Explanation was too vague",
-                    "Missing key words",
-                    "Gestures were unclear",
-                    "Listener needed more details",
-                    "Other"
-                ]
-            },
-            {
-                title: "Luis and the Science Project",
-                copy: [
-                    "Luis told his partner, “Put it next to that one,” while looking down at the table.",
-                    "His partner paused and said, “Which one are you talking about?”"
-                ],
-                causes: [
-                    "Pronouns (“that one”) were unclear",
-                    "Not enough detail",
-                    "Lack of eye contact or direction",
-                    "Listener didn’t know the reference",
-                    "Other"
-                ]
-            },
-            {
-                title: "Maya’s Story About the Weekend",
-                copy: [
-                    "Maya started telling a story but jumped straight to the middle.",
-                    "Her friend said, “Hold on… who is that person you’re talking about?”"
-                ],
-                causes: [
-                    "Story was out of order",
-                    "Missing background information",
-                    "Unclear reference to a person",
-                    "Listener needed more context",
-                    "Other"
-                ]
-            },
-            {
-                title: "Olivia During Group Work",
-                copy: [
-                    "Olivia answered a question while facing away from the group, and she spoke softly.",
-                    "One group member said, “Sorry, I didn’t catch that.”"
-                ],
-                causes: [
-                    "Voice was too quiet",
-                    "Body turned away",
-                    "Listener couldn’t hear clearly",
-                    "Other"
-                ]
-            },
-            {
-                title: "Blake and the Directions",
-                copy: [
-                    "Blake gave directions to his friend but talked very fast.",
-                    "His friend frowned and said, “Can you say that again slower?”"
-                ],
-                causes: [
-                    "Pace was too fast",
-                    "Hard to follow the steps",
-                    "Listener couldn’t process quickly enough",
-                    "Other"
-                ]
-            },
-            {
-                title: "Sam Explaining a New Game",
-                copy: [
-                    "Sam tried to explain how to play a new game by saying, “You just do the thing after the other thing.”",
-                    "Everyone in the group looked confused."
-                ],
-                causes: [
-                    "Explanation was too vague",
-                    "Missing specific vocabulary",
-                    "Too many placeholder words",
-                    "Listener needed more detail",
-                    "Other"
-                ]
-            },
-            {
-                title: "Nina’s Reading Partner",
-                copy: [
-                    "Nina misread a key word in a sentence while reading aloud.",
-                    "Her partner tilted his head and asked, “Is that what it says?”"
-                ],
-                causes: [
-                    "Mispronunciation or misreading",
-                    "Listener misunderstood the meaning",
-                    "Important information changed",
-                    "Other"
-                ]
-            },
-            {
-                title: "Talia Asking for Supplies",
-                copy: [
-                    "Talia asked a classmate, “Can you hand me that?” without pointing or describing what she needed.",
-                    "Her classmate picked up the wrong item."
-                ],
-                causes: [
-                    "Request was unclear",
-                    "No gesture or description",
-                    "Listener couldn’t identify the object",
-                    "Other"
-                ]
-            },
-            {
-                title: "Theo Sharing His Opinion",
-                copy: [
-                    "Theo explained why he liked a book, and his friend nodded and added their own thoughts.",
-                    "Both seemed to understand each other easily."
-                ],
-                causes: [
-                    "None (no breakdown)",
-                    "Other"
-                ]
-            },
-            {
-                title: "Riley and the Group Presentation",
-                copy: [
-                    "During a presentation, Riley used a complex word incorrectly.",
-                    "A group member whispered, “I don’t think that’s what that means.”"
-                ],
-                causes: [
-                    "Incorrect word choice",
-                    "Listener became confused",
-                    "Meaning of the sentence changed",
-                    "Other"
-                ]
-            }
-        ];
+        const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/communication-breakdown-causes.html'; });
 
         const responses = scenarios.map(() => ({
             decision: null,

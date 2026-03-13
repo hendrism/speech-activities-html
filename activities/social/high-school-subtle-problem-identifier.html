@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>High School Subtle Problem Identifier</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --accent: #2563eb;
@@ -400,104 +402,7 @@
         </section>
     </main>
     <script>
-        const scenarios = [
-            {
-                title: "Group Chat Shock Value",
-                text: "During a group project chat, you drop a meme that jokes about suspensions just to see who reacts. Everyone leaves the heart emoji, but two people suddenly stop typing and the teacher supervisor silently joins the chat.",
-                impulseLevel: 4,
-                signals: ["boundary test", "respect shift", "adult monitoring"],
-                clues: [
-                    "Replies get shorter right after your message.",
-                    "Your friend who usually jokes with you switches to homework questions.",
-                    "The teacher joins but does not say anything yet."
-                ],
-                hiddenProblem: "Even if no one complains, you introduced a topic that makes school safety sound like a joke, so people feel exposed and watched.",
-                prompts: [
-                    "Who could be uncomfortable even if they laugh?",
-                    "What rule or shared expectation could teachers say was crossed?"
-                ]
-            },
-            {
-                title: "Drama Rehearsal Improv",
-                text: "You improvise a line that copies a teacher’s real-life catchphrase. The cast bursts out laughing and the director freezes, but no one tells you to stop. The teacher is in the hallway hearing it.",
-                impulseLevel: 3,
-                signals: ["privacy leak", "adult reputation", "mixed reactions"],
-                clues: [
-                    "The director’s eyes widen but they stay quiet.",
-                    "One actor laughs while another looks at the floor.",
-                    "You spot the teacher’s shoes near the door."
-                ],
-                hiddenProblem: "The joke uses a real adult’s identity without permission, which can break trust with staff and make classmates unsure about sharing things with you.",
-                prompts: [
-                    "How would you want people to talk about you when you are not there?",
-                    "What does the director’s silence tell you about the tone in the room?"
-                ]
-            },
-            {
-                title: "Science Lab Demo",
-                text: "During a safety demo, you whisper sarcastic commentary about accidents. Your lab partner chuckles the first time and then quietly moves the goggles away from you.",
-                impulseLevel: 2,
-                signals: ["safety drift", "partner disconnect", "tone mismatch"],
-                clues: [
-                    "Your partner stops making eye contact and only nods.",
-                    "The teacher glances over more often but keeps talking.",
-                    "Equipment is shifted away from you."
-                ],
-                hiddenProblem: "Your humor is telling people you are not taking safety seriously, so the partner does not trust you with shared materials.",
-                prompts: [
-                    "What job are you expected to do during a demo?",
-                    "How is your partner communicating without words?"
-                ]
-            },
-            {
-                title: "Bus Ride Overshare",
-                text: "On the ride to a game, you hype everyone up with wild stories and mention a teammate’s old meltdown in detail. The teammate stares out the window and the manager changes the song.",
-                impulseLevel: 5,
-                signals: ["privacy risk", "friend distancing", "tone shift"],
-                clues: [
-                    "The bus stays loud, but the teammate goes silent.",
-                    "Someone who usually encourages you gives a short \"chill\" comment.",
-                    "The team manager switches the music abruptly."
-                ],
-                hiddenProblem: "You turned a friend’s personal struggle into entertainment, so the trust inside the team is getting weaker even if people laugh.",
-                prompts: [
-                    "What part of that story belonged to you versus someone else?",
-                    "Who benefits from sharing it, and who carries the cost?"
-                ]
-            },
-            {
-                title: "Lunchroom Challenge",
-                text: "You dare everyone to invent the most savage nickname for a kid who is not sitting there. Staff nearby glance over but keep walking, and your table keeps giggling.",
-                impulseLevel: 3,
-                signals: ["respect drift", "target absent", "adult warning glance"],
-                clues: [
-                    "Someone laughs but quietly says “this is mean”.",
-                    "Another friend shrugs and looks at their phone instead of playing.",
-                    "Staff pause for a second before walking away."
-                ],
-                hiddenProblem: "You are creating a roast session about someone who cannot defend themselves, which can count as harassment even if teachers do not step in.",
-                prompts: [
-                    "Would this still feel funny if the student walked up?",
-                    "What is the difference between playful teasing and targeting?"
-                ]
-            },
-            {
-                title: "Student Council Pitch",
-                text: "You propose a “roast wall” at the pep rally so people can post anonymous digs. Peers laugh, but the advisor asks, “How would we keep it safe?” and the room goes quiet.",
-                impulseLevel: 2,
-                signals: ["tone read", "advisor question", "peer silence"],
-                clues: [
-                    "The advisor asks about safety but waits for your response.",
-                    "The laughter stops at the same time.",
-                    "A friend texts you under the table, “maybe not?”"
-                ],
-                hiddenProblem: "The idea sounds exciting but invites people to insult each other publicly, so it threatens school climate and could become bullying.",
-                prompts: [
-                    "What does the advisor’s question suggest about their concern?",
-                    "How fast did the energy in the room change?"
-                ]
-            }
-        ];
+        const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/high-school-subtle-problem-identifier.html'; });
 
         const scannerFilters = [
             { id: "respect", label: "Respect + Dignity", detail: "Are people being talked about like humans or props?" },

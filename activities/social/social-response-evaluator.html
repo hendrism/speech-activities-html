@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Social Response Evaluator</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
   <style>
     :root {
       --accent: #8b5cf6;
@@ -453,140 +455,7 @@
       }
     };
 
-    const scenarios = [
-      {
-        id: 1,
-        title: 'Group Project Credit',
-        tag: 'Academics',
-        conflict: `Your classmate Liam helped for the first five minutes of a group project, then scrolled on his phone. On presentation day he loudly tells the class he deserves extra credit because he “planned everything.”`,
-        responses: [
-          { text: `You roll your eyes, say “whatever,” and mutter loudly that Liam is useless so everyone can hear.` },
-          { text: `You take a breath and say, “I’m glad you brought ideas, Liam. Could we talk after class about how we each helped?”` },
-          { text: `You email the teacher later that day with a list of who completed which tasks and ask for guidance on grading.` }
-        ]
-      },
-      {
-        id: 2,
-        title: 'Lunch Table Rumor',
-        tag: 'Friends',
-        conflict: `During lunch two friends laugh about a rumor involving you. You ask if it’s true. They shrug and keep whispering.`,
-        responses: [
-          { text: `You slam your tray on the table and shout that they are fake friends and you’re done with them.` },
-          { text: `You take your tray to another table for the day and text one friend later asking if you can talk about what happened.` },
-          { text: `You joke loudly about them being terrible secret keepers so other people laugh at them.` }
-        ]
-      },
-      {
-        id: 3,
-        title: 'Text Reply Delay',
-        tag: 'Communication',
-        conflict: `Your friend sent you a long text asking for help, but you were busy and forgot to answer for six hours. They follow up with “???”`,
-        responses: [
-          { text: `You reply, “Calm down. I’m not your personal assistant.”` },
-          { text: `You send: “Hey, sorry for the delay. I was offline. Do you still need help?”` },
-          { text: `You ignore the follow-up and hope they figure it out themselves.` }
-        ]
-      },
-      {
-        id: 4,
-        title: 'Game Strategy Disagreement',
-        tag: 'Teamwork',
-        conflict: `You’re the captain for an esports match. Teammate Avery suggests a strategy you think will fail.`,
-        responses: [
-          { text: `You say, “No, that’s dumb. We’re doing it my way.”` },
-          { text: `You ask Avery to explain their idea, share your concerns, and suggest combining parts of both strategies.` },
-          { text: `You privately message another teammate to complain about Avery and plan to ignore their idea.` }
-        ]
-      },
-      {
-        id: 5,
-        title: 'Shared Locker Mix-Up',
-        tag: 'School Life',
-        conflict: `You and your friend share a locker. They borrowed your calculator and forgot to put it back before math class.`,
-        responses: [
-          { text: `You text them, “Whatever. Maybe I’ll forget your stuff on purpose next time.”` },
-          { text: `You grab a spare calculator from the teacher and ask your friend later to set a reminder so it doesn’t happen again.` },
-          { text: `You refuse to let them use your locker anymore and stop talking to them.` }
-        ]
-      },
-      {
-        id: 6,
-        title: 'Teacher Feedback',
-        tag: 'Authority',
-        conflict: `Your teacher privately mentions that you’ve been interrupting others in class discussions.`,
-        responses: [
-          { text: `You say, “Other people interrupt me all the time. Maybe you should watch them instead.”` },
-          { text: `You thank the teacher for the reminder and ask for a signal if you start interrupting so you can notice it sooner.` },
-          { text: `You nod silently but roll your eyes when the teacher looks away.` }
-        ]
-      },
-      {
-        id: 7,
-        title: 'Sibling Borrowing Clothes',
-        tag: 'Home',
-        conflict: `Your sibling borrowed your favorite hoodie without asking and spilled food on it.`,
-        responses: [
-          { text: `You post a picture of the stain on social media and write, “My sibling is the worst.”` },
-          { text: `You tell your sibling you’re upset, show them the stain, and ask them to help wash or replace it.` },
-          { text: `You hide their favorite jacket to “teach them a lesson.”` }
-        ]
-      },
-      {
-        id: 8,
-        title: 'Study Group Leader',
-        tag: 'Collaboration',
-        conflict: `You organized a study group, but one member arrives late and hasn’t read the material.`,
-        responses: [
-          { text: `You say loudly, “Why even bother showing up? Clearly you don’t care about your grade.”` },
-          { text: `You offer a quick summary and pair them with someone who can help them catch up before the next meeting.` },
-          { text: `You ignore them for the rest of the session to show how disappointed you are.` }
-        ]
-      },
-      {
-        id: 9,
-        title: 'New Student Partner',
-        tag: 'School Life',
-        conflict: `A new student joins your art class and seems nervous about an upcoming partner project. The teacher assigns you together.`,
-        responses: [
-          { text: `You smile and say, “Welcome! I’m excited to work with you. Want to look at the project checklist together?”` },
-          { text: `You shrug and say, “Just don’t mess it up,” then go back to your sketchbook.` },
-          { text: `You switch seats with a friend and ask the teacher for a different partner.` }
-        ]
-      },
-      {
-        id: 10,
-        title: 'Canceled Plans',
-        tag: 'Friends',
-        conflict: `You and your friend planned to hang out after school, but they text an hour before saying they’re exhausted and want to reschedule.`,
-        responses: [
-          { text: `You reply, “Whatever. Don’t ask me again.”` },
-          { text: `You respond, “Totally get it. Hope you can rest! Want me to drop off the notes from today’s class?”` },
-          { text: `You post a story about flaky friends so everyone knows you were canceled on.` }
-        ]
-      },
-      {
-        id: 11,
-        title: 'Teacher Email',
-        tag: 'Communication',
-        conflict: `You need extra time on a history assignment because your laptop crashed, and you have to email your teacher about it.`,
-        responses: [
-          { text: `You write: “I need more time. My laptop died. Please extend it.”` },
-          { text: `You send a polite email explaining what happened, attach a screenshot of the error, and propose a new due date.` },
-          { text: `You decide not to email because you’re embarrassed and hope the teacher forgets about the assignment.` }
-        ]
-      },
-      {
-        id: 12,
-        title: 'Group Chat Overload',
-        tag: 'Digital Life',
-        conflict: `Your group chat blew up with 200 messages while you were studying. Friends seem annoyed you didn’t respond.`,
-        responses: [
-          { text: `You send: “Can everyone chill? I have a life.”` },
-          { text: `You send a quick note explaining you were studying, thank them for updates, and ask if there’s anything you need to do now.` },
-          { text: `You mute the chat forever and make a new one without the friends who were annoyed.` }
-        ]
-      }
-    ];
+    const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/social-response-evaluator.html'; });
 
     const state = {
       selectedScenarioId: null,

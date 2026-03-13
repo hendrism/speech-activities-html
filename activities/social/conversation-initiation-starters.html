@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversation Initiation & Perspective-Taking</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --ink: #0f172a;
@@ -367,118 +369,7 @@
         </div>
     </main>
     <script>
-        const scenarios = [
-            {
-                title: "Early to Class",
-                text: "You get to class early and notice a girl you know a little bit from middle school sitting alone and looking at her phone.",
-                starters: [
-                    "Hey, I noticed…",
-                    "How’s your day going?",
-                    "I remember we had ___ together last year…",
-                    "Is that a ___ you’re looking at?",
-                    "Mind if I sit here?"
-                ]
-            },
-            {
-                title: "The Hoodie",
-                text: "You see a classmate wearing a hoodie from a show you like. You’ve never talked to her before.",
-                starters: [
-                    "Is that from ___? I love that show.",
-                    "Where did you get that hoodie?",
-                    "Did you finish the latest season?",
-                    "I just started watching—worth sticking with it?",
-                    "Who’s your favorite character?"
-                ]
-            },
-            {
-                title: "New Math Partner",
-                text: "Your math teacher assigns partners, and you’re paired with someone you haven’t worked with before.",
-                starters: [
-                    "Hey, I’m ___—have you looked at the instructions yet?",
-                    "How do you like starting projects—jump in or plan first?",
-                    "Want to split the problems or work together on each?",
-                    "What’s the toughest part of this unit so far?",
-                    "What’s your favorite way to check answers?"
-                ]
-            },
-            {
-                title: "Lunch Movie Talk",
-                text: "During lunch, you sit near a group who are talking about a new movie. You’ve seen it too.",
-                starters: [
-                    "I just saw that one too—mind if I join?",
-                    "What did you think of the ending?",
-                    "Who was your favorite character?",
-                    "No spoilers, but did you like it overall?",
-                    "I liked the soundtrack—did you?"
-                ]
-            },
-            {
-                title: "Sketchbook Curiosity",
-                text: "While waiting for dismissal, you notice a classmate flipping through a sketchbook.",
-                starters: [
-                    "Whoa, did you draw those?",
-                    "What are you working on right now?",
-                    "How long have you been sketching?",
-                    "Do you have a favorite thing to draw?",
-                    "Those look awesome—do you share your art anywhere?"
-                ]
-            },
-            {
-                title: "Field Trip Line",
-                text: "You’re lining up to get onto a bus for a field trip. The girl in front of you looks a little bored and is tapping her foot.",
-                starters: [
-                    "Excited for the trip?",
-                    "Do you know what we’re doing first when we get there?",
-                    "How long do you think the bus ride is?",
-                    "Have you been on this trip before?",
-                    "What are you most curious to see?"
-                ]
-            },
-            {
-                title: "After-School Club",
-                text: "You overhear two students talking about an after-school club you’ve been thinking about joining.",
-                starters: [
-                    "Are you talking about the ___ club?",
-                    "I’ve been thinking of joining—how do you like it?",
-                    "When do you usually meet?",
-                    "What do you do at a typical meeting?",
-                    "Is it beginner friendly?"
-                ]
-            },
-            {
-                title: "Colorful Pens",
-                text: "You walk into English class and notice someone organizing a stack of colorful pens and highlighters.",
-                starters: [
-                    "That’s a solid pen setup—do you color-code notes?",
-                    "Which pen is your favorite?",
-                    "Are those for a project today?",
-                    "I’ve been wanting to organize my notes—any tips?",
-                    "Do you use those for doodles or just notes?"
-                ]
-            },
-            {
-                title: "Book in the Hallway",
-                text: "You’re in the hallway and see a girl from your science class carrying a book you’ve read before.",
-                starters: [
-                    "I read that one—what do you think so far?",
-                    "Where are you in the story?",
-                    "Did you meet the main twist yet?",
-                    "I loved the ending—no spoilers, promise.",
-                    "Who’s your favorite character so far?"
-                ]
-            },
-            {
-                title: "Forgotten Water Bottle",
-                text: "Before gym, another student is tying her shoes and mutters something about forgetting her water bottle.",
-                starters: [
-                    "That’s rough—do you want to hit the fountain before we start?",
-                    "I’ve forgotten mine before too—want to split a quick trip to the bottle filler?",
-                    "Coach usually lets us grab water after warm-up—want to go then?",
-                    "Do you have a spare in your locker?",
-                    "We can ask if we can swing by the hall fountain first."
-                ]
-            }
-        ];
+        const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/conversation-initiation-starters.html'; });
 
         const responses = scenarios.map(() => ({
             opener1: "",

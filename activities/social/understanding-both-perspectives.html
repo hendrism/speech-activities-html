@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Understanding Both Perspectives</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             /* Core Colors */
@@ -363,38 +365,7 @@
 
     <script>
         // --- Data ---
-        const scenarios = [
-            {
-                id: 1,
-                title: "The Pencil",
-                text: "You are sitting in class working on an assignment. You put your own pencil on your desk and look away for a moment to check something on your Chromebook.\n\nA few minutes later, the person sitting next to you says, \"Hey, did you take my pencil? I can't find it.\"\n\nThey sound a little annoyed.\n\nYou still have your own pencil on your desk. You know you did not take their pencil.",
-                feelings: ["Confused", "Annoyed", "Nervous", "Embarrassed"]
-            },
-            {
-                id: 2,
-                title: "The Group Project",
-                text: "You are working in a group of three on a short class assignment. Each person is supposed to do one part.\n\nThe next day, one of your group members says, \"I thought you were going to finish your part last night. Now we're kind of behind.\"\n\nThey sound frustrated, but not angry.\n\nYou remember doing your part, but you realize you did not turn it in or share it with the group.",
-                feelings: ["Guilty", "Defensive", "Surprised", "Frustrated"]
-            },
-            {
-                id: 3,
-                title: "The Unanswered Text",
-                text: "A friend texts you after school and asks a question about homework.\n\nYou see the text, but you are busy and forget to respond.\n\nThe next day at school, the friend says, \"I guess you didn't see my message.\"\n\nTheir tone sounds a little cold or disappointed.\n\nYou realize you did see it, but you forgot to reply.",
-                feelings: ["Bad", "Annoyed", "Apologetic", "Dismissive"]
-            },
-            {
-                id: 4,
-                title: "The Seat Change",
-                text: "You usually sit next to the same person in one of your classes.\n\nOne day, you come in and see that they are sitting somewhere else and talking to someone different.\n\nThey wave at you, but they do not move back to their usual seat.\n\nYou sit in your normal seat anyway.",
-                feelings: ["Rejected", "Indifferent", "Confused", "Sad"]
-            },
-            {
-                id: 5,
-                title: "The “Never Mind”",
-                text: "You are talking to someone in class and they start to say: \"Hey, I wanted to tell you—\"\n\nThen they stop and say, \"Actually, never mind.\"\n\nThey turn back to their work.\n\nThey do not sound angry, just distracted.",
-                feelings: ["Curious", "Worried", "Relieved", "Annoyed"]
-            }
-        ];
+        const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/understanding-both-perspectives.html'; });
 
         let currentIndex = 0;
 

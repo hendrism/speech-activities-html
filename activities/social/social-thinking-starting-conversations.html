@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starting Conversations - Social Thinking</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         :root {
             --primary: #4f46e5;
@@ -389,92 +391,7 @@
     </main>
 
     <script>
-        const scenarios = [
-            {
-                id: 1,
-                title: "Scenario 1: Wrong Project",
-                text: "You sit down with your group and realize they are talking about a different project than the one you thought you were doing. They start planning without you. You can't just sit there and say nothing.",
-                hint: "Think about: Telling them you might be confused, or asking what project they're talking about.",
-                mc: [
-                    "Wait, I thought we were doing the history project. Did I miss something?",
-                    "(Say nothing and just sit there)",
-                    "This is stupid.",
-                    "Whatever."
-                ]
-            },
-            {
-                id: 2,
-                title: "Scenario 2: Someone Is in Your Seat",
-                text: "You come into class and someone is sitting in your usual seat with their stuff spread out. You need that seat.",
-                hint: "You might ask politely, or explain that you usually sit there.",
-                mc: [
-                    "Hey, sorry, I usually sit there. Could I sit there today?",
-                    "(Stare at them and stand there)",
-                    "You're in my seat. Move.",
-                    "Go sit on the floor."
-                ]
-            },
-            {
-                id: 3,
-                title: "Scenario 3: Confusing Directions",
-                text: "The teacher finishes explaining an assignment, but you don't understand what to do. Everyone else starts working.",
-                hint: "You could ask the teacher, or you could ask someone nearby.",
-                mc: [
-                    "Sorry, can you explain what we're supposed to write?",
-                    "(Do nothing and wait)",
-                    "This makes no sense.",
-                    "Put your head down."
-                ]
-            },
-            {
-                id: 4,
-                title: "Scenario 4: Partner Isn't Working",
-                text: "You're paired with someone, but they're just on their phone and not starting the work.",
-                hint: "You might remind them you're partners, or ask how to split the work.",
-                mc: [
-                    "Hey, do you want to split this up or work together?",
-                    "(Say nothing and do all the work yourself)",
-                    "You're so lazy.",
-                    "Just stare at them."
-                ]
-            },
-            {
-                id: 5,
-                title: "Scenario 5: You Didn't Hear Them",
-                text: "Someone says something to you, but you didn't hear or didn't understand. They are waiting for an answer.",
-                hint: "You can ask them to repeat it, or say you didn't hear.",
-                mc: [
-                    "Sorry, can you say that again?",
-                    "Guess and answer something random",
-                    "Ignore them",
-                    "Walk away"
-                ]
-            },
-            {
-                id: 6,
-                title: "Scenario 6: You Need to Borrow a Charger",
-                text: "Your Chromebook is almost dead. Someone across the room has a charger.",
-                hint: "You might ask politely, or explain your computer is dying.",
-                mc: [
-                    "Hey, sorry to bother you. Could I borrow your charger for a few minutes?",
-                    "Take it without asking",
-                    "Give me that.",
-                    "Just let your computer die"
-                ]
-            },
-            {
-                id: 7,
-                title: "Scenario 7: You're Not in a Group",
-                text: "In PE or another class, groups are forming. Everyone seems to be in a group except you.",
-                hint: "You might ask to join a group, or ask the teacher what to do.",
-                mc: [
-                    "Can I join your group?",
-                    "Stand there and wait forever",
-                    "Nobody likes me.",
-                    "Sit down and do nothing"
-                ]
-            }
-        ];
+        const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/social-thinking-starting-conversations.html'; });
 
         const starters = [
             "Hey, I think...",

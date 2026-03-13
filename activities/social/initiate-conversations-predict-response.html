@@ -10,6 +10,8 @@ Tags: Initiation, Prediction, Social
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversation Practice Scenarios</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
     <style>
         * {
             margin: 0;
@@ -267,83 +269,7 @@ Tags: Initiation, Prediction, Social
     </div>
 
     <script>
-        const scenarios = [
-            {
-                name: "Returning Borrowed Item",
-                difficulty: "easy",
-                description: "You borrowed a book from a classmate last week for a project. You're done with it and need to return it to them. You see them in the hallway between classes."
-            },
-            {
-                name: "Homework Question",
-                difficulty: "easy",
-                description: "You're confused about the homework assignment that was just given. The student sitting next to you seems to understand it. Class just ended and you're both packing up."
-            },
-            {
-                name: "Complimenting Something Specific",
-                difficulty: "easy",
-                description: "Someone in your art class just finished a drawing that's really impressive. You've worked near them before but haven't talked much. The class is ending and people are cleaning up."
-            },
-            {
-                name: "Group Project Start",
-                difficulty: "easy",
-                description: "You've just been assigned to work with two other students on a science project. The teacher gives you 10 minutes to exchange contact information and pick a meeting time. You need to figure out when to meet."
-            },
-            {
-                name: "Asking to Sit",
-                difficulty: "easy",
-                description: "The cafeteria is crowded and most tables are full. There's one seat open at a table where some classmates from your English class are sitting. You know their names but don't really talk to them."
-            },
-            {
-                name: "Library Encounter",
-                difficulty: "medium",
-                description: "You're at the library studying for a test when you see someone from your math class looking at the same textbook chapter. You've sat near each other but haven't talked. You figured out a good way to remember one of the formulas."
-            },
-            {
-                name: "Teacher Office Hours",
-                difficulty: "medium",
-                description: "You need to ask your teacher a question about an assignment. You go to their office hours and there's one other student already there talking to the teacher. The other student finishes and leaves. Now it's your turn."
-            },
-            {
-                name: "Club Information",
-                difficulty: "medium",
-                description: "There's a club (art, robotics, gaming, etc.) you're interested in joining. You see someone wearing the club t-shirt in your biology class. You want to know when they meet and what they do."
-            },
-            {
-                name: "Shared Interest",
-                difficulty: "medium",
-                description: "You're walking through the hallway and notice someone wearing a shirt from a book series/game/show you really like. You've seen them around but never talked to them. They're standing at their locker."
-            },
-            {
-                name: "Project Partner Question",
-                difficulty: "medium",
-                description: "You're working on a long-term project with a partner. You've been working mostly independently but need to check something with them about your part. You see them before class starts."
-            },
-            {
-                name: "Someone Initiates",
-                difficulty: "medium",
-                description: "You're sitting in the common area reading a book. Someone you don't know well sits down near you and says 'Hey, how's it going?' You need to respond and maybe continue the conversation."
-            },
-            {
-                name: "Counselor Meeting",
-                difficulty: "medium",
-                description: "You have a scheduled meeting with your guidance counselor to talk about your class schedule for next semester. You're not sure what to say after the basic greeting. You need to explain what classes you're interested in."
-            },
-            {
-                name: "Awkward Silence",
-                difficulty: "hard",
-                description: "You're working on a partner assignment with someone you don't know well. You've been working silently for 10 minutes and it's starting to feel weird. You still have 20 minutes left to work together."
-            },
-            {
-                name: "Following Up",
-                difficulty: "hard",
-                description: "Last week you had a nice conversation with someone about a video game you both play. You see them again in the hallway. You're not sure if you should say hi, and if you do, what to say beyond 'hi.'"
-            },
-            {
-                name: "Joining Discussion",
-                difficulty: "hard",
-                description: "You're early to class and a few students are talking about a topic you know a lot about (a game, book series, scientific topic, etc.). You want to add something to the conversation but you're not part of the group and they haven't noticed you."
-            }
-        ];
+        const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/initiate-conversations-predict-response.html'; });
 
         let currentScenario = 0;
         const scenarioData = {};

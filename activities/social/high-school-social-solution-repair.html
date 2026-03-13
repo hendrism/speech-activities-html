@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>High School Social Solutions with Communication Repair</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
   <style>
     :root {
       --bg: #f5f3ff;
@@ -520,128 +522,7 @@
       }
     };
 
-    const scenarios = [
-      {
-        id: "fundraiser-chat",
-        title: "Fundraiser Group Chat",
-        shortTitle: "Group Chat",
-        context: "Student Council - After-School Planning",
-        problem: "Your committee has to pick vendors for the spring fundraiser by tomorrow. Two friends still have not filled in the shared doc. You need everyone's buy-in without sounding controlling.",
-        planPrompt: "Write how you will approach the group so the plan feels like a team decision.",
-        breakdown: {
-          description: "You text: \"I'm assigning booths: Maya - tickets, Jordan - decor. We can't keep delaying.\" Maya replies, \"Okay chill. You don't decide everything,\" and goes silent.",
-          cues: ["Tone sounded bossy", "Text-only message", "No invitation for feedback"]
-        },
-        repairPrompt: "Draft a follow-up that repairs the tone, invites input, and keeps planning moving.",
-        reflectionPrompt: "What will you do next time to show leadership while keeping the team with you?",
-        strategyKeys: ["acknowledgeFeelings", "clarifyIntent", "inviteInput", "switchChannel"],
-        starterIdeas: [
-          "I want to make sure this stays a team decision.",
-          "Can we hop on a five-minute call before practice?",
-          "What part do you want to tackle?"
-        ]
-      },
-      {
-        id: "chem-lab",
-        title: "Chem Lab Confusion",
-        shortTitle: "Chem Lab",
-        context: "Chemistry Lab - Safety Gear and Bunsen Burners",
-        problem: "During a titration lab your partner Alexis keeps skipping steps and grabbing materials out of order. You need a plan for who does what so nothing spills.",
-        planPrompt: "Describe how you will set up roles respectfully before the next measurement.",
-        breakdown: {
-          description: "Over the vent hood noise you say, \"Let me handle the acid, you record the measurements.\" Alexis frowns: \"So I'm just your assistant now?\" They clearly misheard your plan.",
-          cues: ["Loud background noise", "Instructions came out fast", "Message sounded like a demand"]
-        },
-        repairPrompt: "How can you restate the plan so Alexis feels trusted and the roles are clear?",
-        reflectionPrompt: "Which communication habit will help you in future science labs?",
-        strategyKeys: ["repeatKey", "useIStatements", "askWhatTheyHeard", "useVisual"],
-        starterIdeas: [
-          "I feel better if we double-check the safety steps together.",
-          "What did you hear me say about the roles?",
-          "Let's look at the lab card and split the steps."
-        ]
-      },
-      {
-        id: "rehearsal-notes",
-        title: "Theatre Rehearsal Notes",
-        shortTitle: "Rehearsal",
-        context: "Drama Club - Auditorium After School",
-        problem: "You are assistant stage manager and your friend Jay keeps missing the cue to raise the lights. You need to correct the pattern so the scene lands.",
-        planPrompt: "Plan what you will say after rehearsal to help Jay hit the cue.",
-        breakdown: {
-          description: "You tell Jay, \"If you actually watched the script you'd remember the cue.\" Jay crosses their arms: \"Wow, thanks for calling me lazy,\" and starts packing up.",
-          cues: ["Sarcasm or sharp tone", "Feedback lacked appreciation", "Listener became defensive"]
-        },
-        repairPrompt: "Write how you will repair Jay's reaction and still solve the lighting issue.",
-        reflectionPrompt: "How can you give feedback that is both honest and supportive?",
-        strategyKeys: ["acknowledgeEffort", "useIStatements", "clarifyIntent", "inviteInput"],
-        starterIdeas: [
-          "I know you're juggling sound cues too.",
-          "I noticed the lights stayed down in scene three - can we check the cue sheet?",
-          "What would make that cue easier to remember?"
-        ]
-      },
-      {
-        id: "shift-mixup",
-        title: "Shift Coverage Mix-Up",
-        shortTitle: "Shift Mix-Up",
-        context: "Smoothie Shop - Saturday Closing Shift",
-        problem: "You and DeShawn agreed to swap next Saturday's closing shift so you can take the SAT. The schedule still has your name, and you need to confirm the switch politely.",
-        planPrompt: "Explain how you will remind DeShawn about the switch without sounding demanding.",
-        breakdown: {
-          description: "Over the blenders you say, \"Remember, you're covering my Saturday close.\" DeShawn hears, \"...covering Saturday, close?\" and panics: \"I can't cover tonight!\" before walking away.",
-          cues: ["Noisy environment", "Important detail misheard", "Assumptions about the date"]
-        },
-        repairPrompt: "How will you double-check the plan so the right shift gets covered?",
-        reflectionPrompt: "What tools will you use next time to avoid schedule confusion?",
-        strategyKeys: ["moveToQuiet", "confirmDetails", "writeItDown", "shareReason"],
-        starterIdeas: [
-          "Let's step outside for thirty seconds.",
-          "I meant next Saturday the 18th because of the SAT.",
-          "I'll text the manager and loop you in so it's official."
-        ]
-      },
-      {
-        id: "teacher-checkin",
-        title: "Teacher Check-In",
-        shortTitle: "Teacher Talk",
-        context: "English Class - After-School Conference",
-        problem: "Your partner still has not shared their slides for the group project. You plan to meet Ms. Chen for help before the due date so your grade is protected.",
-        planPrompt: "Outline how you will open the conversation so it sounds solution-focused.",
-        breakdown: {
-          description: "You start with, \"Liam isn't doing anything.\" Ms. Chen interrupts: \"Are you just complaining or do you have a plan?\" She glances at the clock.",
-          cues: ["Led with blame", "Purpose unclear", "Teacher pressed for time"]
-        },
-        repairPrompt: "Write how you will reset the conversation so Ms. Chen sees you are prepared.",
-        reflectionPrompt: "What will you bring to future teacher conversations to show responsibility?",
-        strategyKeys: ["previewPurpose", "provideEvidence", "askForTime", "summarizeNextSteps"],
-        starterIdeas: [
-          "Do you have two minutes? I brought our outline.",
-          "I'm looking for advice to keep the project on track.",
-          "If now isn't good, can we check in tomorrow after school?"
-        ]
-      },
-      {
-        id: "social-post",
-        title: "Post Misunderstood",
-        shortTitle: "Social Post",
-        context: "Instagram Stories - After the Game",
-        problem: "You posted a locker-room selfie with an inside joke caption. A classmate from the other team thinks it was about them and messages you upset. You want to calm things down.",
-        planPrompt: "Decide what you will say to clear things up before the rumor spreads.",
-        breakdown: {
-          description: "You reply, \"It was just a joke lol.\" They answer, \"So you're laughing at us? Wow.\" Then they stop responding.",
-          cues: ["Tone too casual", "Missing context", "Hurt feelings not acknowledged"]
-        },
-        repairPrompt: "Draft a message or script that adds context, apologizes, and offers next steps.",
-        reflectionPrompt: "How will you double-check future posts to avoid misunderstandings?",
-        strategyKeys: ["acknowledgeFeelings", "stateContext", "offerApology", "switchChannel"],
-        starterIdeas: [
-          "I get why that looked like we were laughing at you.",
-          "The caption was an inside joke about our own team - here's what it meant.",
-          "If you're up for a quick call, I want to hear how it landed."
-        ]
-      }
-    ];
+    const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/high-school-social-solution-repair.html'; });
 
     const responses = {};
 
