@@ -314,53 +314,7 @@
     <script>
         const articulationWordData = {};
 
-        const dynamicWordSources = [
-            {
-                id: 'sBlends',
-                name: 'S-Blends',
-                file: '../../resources/word-lists/articulation-s-blends.json'
-            },
-            {
-                id: 'rBlends',
-                name: 'R-Blends',
-                file: '../../resources/word-lists/articulation-r-blends.json'
-            },
-            {
-                id: 'initialR',
-                name: 'Initial /r/',
-                file: '../../resources/word-lists/articulation-initial-r.json'
-            },
-            {
-                id: 'lBlends',
-                name: 'L-Blends',
-                file: '../../resources/word-lists/articulation-l-blends.json'
-            },
-            {
-                id: 'otherSounds',
-                name: 'Other Sounds',
-                file: '../../resources/word-lists/articulation-other-sounds.json'
-            },
-            {
-                id: 'lSound',
-                name: '/l/ Sound (Initial, Medial, Final)',
-                file: '../../resources/word-lists/l-all-positions.json'
-            },
-            {
-                id: 'vocalicR',
-                name: 'Vocalic /r/',
-                file: '../../resources/word-lists/vocalic-r-word-lists.json'
-            },
-            {
-                id: 'sSound',
-                name: '/s/ Sound (All Positions)',
-                file: '../../resources/word-lists/s-all-positions.json'
-            },
-            {
-                id: 'shSound',
-                name: '/sh/ Sound (All Positions)',
-                file: '../../resources/word-lists/sh-all-positions.json'
-            }
-        ];
+        // dynamicWordSources removed in favor of data/articulation.json
 
         // Phoneme group structure — tiles with no categoryId are placeholders (coming soon)
         const PHONEME_GROUPS = [
@@ -394,7 +348,9 @@
             ]}
         ];
 
-        const baseCategoryOrder = dynamicWordSources.map((source) => source.id);
+        const baseCategoryOrder = [
+            'sBlends', 'rBlends', 'lBlends', 'initialR', 'vocalicR', 'lSound', 'sSound', 'shSound', 'otherSounds'
+        ];
         const categoryOrder = [...baseCategoryOrder];
 
         const POS_LABELS = {
@@ -467,96 +423,63 @@
             };
         }
 
-        function transformWordListToBlends(wordList) {
-            if (!wordList) {
-                return {};
-            }
-
-            const processedBlends = {};
-
-            if (wordList.blends && typeof wordList.blends === 'object') {
-                Object.entries(wordList.blends).forEach(([blendKey, entries]) => {
-                    const words = Array.isArray(entries) ? entries : [];
-                    const normalized = words.map(normalizeWordEntry).filter(Boolean);
-                    if (normalized.length > 0) {
-                        processedBlends[blendKey] = normalized;
-                    }
-                });
-                return processedBlends;
-            }
-
-            const positions = wordList.positions && typeof wordList.positions === 'object'
-                ? wordList.positions
-                : {};
-
-            Object.entries(positions).forEach(([positionKey, entries]) => {
-                const words = Array.isArray(entries) ? entries : [];
-                const normalized = words.map(normalizeWordEntry).filter(Boolean);
-                if (normalized.length > 0) {
-                    processedBlends[positionKey] = normalized;
-                }
-            });
-
-            return processedBlends;
-        }
-
-        function registerDynamicCategory(id, name, blends) {
-            if (!blends || Object.keys(blends).length === 0) {
-                return;
-            }
-
-            articulationWordData[id] = { name, blends };
-
-            if (!categoryOrder.includes(id)) {
-                categoryOrder.push(id);
-            }
-        }
-
         async function loadExternalWordLists() {
             state.loadingWordLists = true;
             render();
 
-            dynamicWordSources.forEach((source) => {
-                if (articulationWordData[source.id]) {
-                    delete articulationWordData[source.id];
-                }
-            });
-            categoryOrder.length = 0;
-            categoryOrder.push(...baseCategoryOrder);
+            try {
+                const response = await fetch('../../data/articulation.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error(`status ${response.status}`);
+                const data = await response.json();
 
-            const results = await Promise.allSettled(
-                dynamicWordSources.map(async (source) => {
-                    try {
-                        const response = await fetch(source.file, { cache: 'no-store' });
-                        if (!response.ok) {
-                            throw new Error(`status ${response.status}`);
-                        }
-                        const data = await response.json();
-                        return { source, data };
-                    } catch (err) {
-                        const listLabel = source.name || source.file;
-                        const reason = err?.message ? err.message : 'unknown error';
-                        throw new Error(`Could not load ${listLabel}: ${reason}`);
+                const categoryMap = {
+                    's-blends': 'sBlends',
+                    'r-blends': 'rBlends',
+                    'l-blends': 'lBlends',
+                    'other-sounds': 'otherSounds',
+                    'initial-r': 'initialR',
+                    'l-all-positions': 'lSound',
+                    's-all-positions': 'sSound',
+                    'sh-all-positions': 'shSound',
+                    'vocalic-r': 'vocalicR'
+                };
+
+                categoryOrder.length = 0;
+                categoryOrder.push(...baseCategoryOrder);
+
+                data.soundCategories.forEach((cat) => {
+                    const camelId = categoryMap[cat.id] || cat.id.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+                    let blendsData = {};
+                    if (cat.groups) {
+                        cat.groups.forEach(group => {
+                            const key = group.blend || group.position;
+                            if (key && group.words && group.words.length > 0) {
+                                blendsData[key] = group.words.map((w, index) => {
+                                    const norm = normalizeWordEntry(w);
+                                    if (!norm) return null;
+                                    return {
+                                        ...norm,
+                                        id: w.id || `${key}-${index}-${norm.text}`
+                                    };
+                                }).filter(Boolean);
+                            }
+                        });
                     }
-                })
-            );
+                    articulationWordData[camelId] = {
+                        name: cat.name,
+                        blends: blendsData
+                    };
+                    if (!categoryOrder.includes(camelId)) {
+                        categoryOrder.push(camelId);
+                    }
+                });
 
-            const errors = [];
-
-            results.forEach((result) => {
-                if (result.status === 'fulfilled') {
-                    const { source, data } = result.value;
-                    const categoryId = source.id || data.id;
-                    const categoryName = source.name || data.name || data.description || 'Custom Word List';
-                    const blends = transformWordListToBlends(data);
-                    registerDynamicCategory(categoryId, categoryName, blends);
-                } else {
-                    errors.push(result.reason?.message || String(result.reason));
-                }
-            });
-
-            state.loadingWordLists = false;
-            state.loadErrors = errors;
+                state.loadingWordLists = false;
+                state.loadErrors = [];
+            } catch (err) {
+                state.loadingWordLists = false;
+                state.loadErrors = [err.message || String(err)];
+            }
 
             if (state.selectedCategory && !articulationWordData[state.selectedCategory]) {
                 state.selectedCategory = null;
@@ -590,7 +513,7 @@
         }
 
         function handleSelectAll() {
-            if (!state.selectedCategory) return;
+            if (!state.selectedCategory || !articulationWordData[state.selectedCategory]) return;
             state.selectedBlends = Object.keys(articulationWordData[state.selectedCategory].blends);
             render();
         }
