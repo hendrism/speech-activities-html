@@ -88,16 +88,20 @@
 
         .category-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 8px;
+            margin-bottom: 8px;
         }
 
         .category-btn {
-            padding: 20px;
-            border: 3px solid #ddd;
-            border-radius: 12px;
+            padding: 7px 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
             background: white;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             font-size: 1.1em;
             font-weight: 600;
             cursor: pointer;
@@ -573,9 +577,9 @@
             render();
         }
 
-        function handleCategorySelect(category) {
+        function handleCategorySelect(category, preSelectBlend) {
             state.selectedCategory = category;
-            state.selectedBlends = [];
+            state.selectedBlends = preSelectBlend ? [preSelectBlend] : [];
             render();
         }
 
@@ -675,15 +679,54 @@
             return pageSentences.every(s => s.filledWord !== null);
         }
 
+        // Phoneme group structure for sound selection
+        const PHONEME_GROUPS = [
+            { label: 'Plosives', tiles: [
+                { label: '/p/', categoryId: null }, { label: '/b/', categoryId: null },
+                { label: '/t/', categoryId: null }, { label: '/d/', categoryId: null },
+                { label: '/k/', categoryId: 'otherSounds', preSelectBlend: 'k' },
+                { label: '/g/', categoryId: 'otherSounds', preSelectBlend: 'g' }
+            ]},
+            { label: 'Fricatives', tiles: [
+                { label: '/f/', categoryId: 'otherSounds', preSelectBlend: 'f' },
+                { label: '/v/', categoryId: null },
+                { label: '/s/', categoryId: null },
+                { label: '/z/', categoryId: null },
+                { label: '/sh/', categoryId: 'otherSounds', preSelectBlend: 'sh' },
+                { label: '/th/ (unvoiced)', categoryId: null }, { label: '/th/ (voiced)', categoryId: null },
+                { label: '/h/', categoryId: null }
+            ]},
+            { label: 'Affricates', tiles: [{ label: '/ch/', categoryId: null }, { label: '/j/', categoryId: null }]},
+            { label: 'Nasals', tiles: [{ label: '/m/', categoryId: null }, { label: '/n/', categoryId: null }, { label: '/ng/', categoryId: null }]},
+            { label: 'Liquids', tiles: [
+                { label: '/l/', categoryId: null },
+                { label: '/r/ Initial', categoryId: null },
+                { label: 'Vocalic /r/', categoryId: null }
+            ]},
+            { label: 'Glides', tiles: [{ label: '/w/', categoryId: null }, { label: '/y/', categoryId: null }]},
+            { label: 'Blends', tiles: [
+                { label: 'S-Blends', categoryId: 'sBlends' },
+                { label: 'L-Blends', categoryId: 'lBlends' },
+                { label: 'R-Blends', categoryId: 'rBlends' }
+            ]}
+        ];
+
         // Render functions
         function renderSetup() {
-            const categories = ['sBlends', 'rBlends', 'lBlends', 'otherSounds'];
-            const categoryLabels = {
-                sBlends: 'S-Blends',
-                rBlends: 'R-Blends',
-                lBlends: 'L-Blends',
-                otherSounds: '/k/, /g/, /sh/, /f/'
-            };
+            const groupedHtml = PHONEME_GROUPS.map(group => {
+                const tilesHtml = group.tiles.map(tile => {
+                    if (!tile.categoryId) {
+                        return `<button type="button" class="category-btn" disabled title="Coming soon" style="opacity:0.4;cursor:default;">${tile.label}</button>`;
+                    }
+                    const isSelected = state.selectedCategory === tile.categoryId &&
+                        (!tile.preSelectBlend || state.selectedBlends.includes(tile.preSelectBlend));
+                    const clickArg = tile.preSelectBlend
+                        ? `handleCategorySelect('${tile.categoryId}', '${tile.preSelectBlend}')`
+                        : `handleCategorySelect('${tile.categoryId}')`;
+                    return `<button type="button" class="category-btn ${isSelected ? 'selected' : ''}" onclick="${clickArg}">${tile.label}</button>`;
+                }).join('');
+                return `<div style="margin-bottom:12px;"><div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#64748b;margin-bottom:5px;">${group.label}</div><div class="category-buttons">${tilesHtml}</div></div>`;
+            }).join('');
 
             return `
                 <div class="activity-header">
@@ -694,17 +737,7 @@
                 <div class="main-content">
                     <div class="setup-container">
                         <h2>Select Target Sounds</h2>
-                        <h3>Choose a category:</h3>
-                        <div class="category-buttons">
-                            ${categories.map(cat => `
-                                <button
-                                    class="category-btn ${state.selectedCategory === cat ? 'selected' : ''}"
-                                    onclick="handleCategorySelect('${cat}')"
-                                >
-                                    ${categoryLabels[cat]}
-                                </button>
-                            `).join('')}
-                        </div>
+                        ${groupedHtml}
 
                         ${state.selectedCategory ? `
                             <div class="blend-selection">

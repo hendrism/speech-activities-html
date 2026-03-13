@@ -106,16 +106,19 @@
 
         .aps-category-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 8px;
         }
 
         .aps-category-btn {
             border: 1px solid var(--aps-border);
             background: rgba(148, 163, 184, 0.16);
-            border-radius: 16px;
-            padding: 16px;
-            font-size: 16px;
+            border-radius: 10px;
+            padding: 7px 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 13px;
             font-weight: 600;
             color: var(--aps-ink);
             cursor: pointer;
@@ -532,6 +535,38 @@
         const baseCategoryOrder = dynamicWordSources.map((source) => source.id);
         const categoryOrder = [...baseCategoryOrder];
 
+        // Phoneme group structure — tiles with no categoryId are placeholders (coming soon)
+        const PHONEME_GROUPS = [
+            { label: 'Plosives', tiles: [
+                { label: '/p/', categoryId: null }, { label: '/b/', categoryId: null },
+                { label: '/t/', categoryId: null }, { label: '/d/', categoryId: null },
+                { label: '/k/', categoryId: 'otherSounds', preSelectBlend: 'k' },
+                { label: '/g/', categoryId: 'otherSounds', preSelectBlend: 'g' }
+            ]},
+            { label: 'Fricatives', tiles: [
+                { label: '/f/', categoryId: 'otherSounds', preSelectBlend: 'f' },
+                { label: '/v/', categoryId: null },
+                { label: '/s/', categoryId: 'sSound' },
+                { label: '/z/', categoryId: null },
+                { label: '/sh/', categoryId: 'shSound' },
+                { label: '/th/ (unvoiced)', categoryId: null }, { label: '/th/ (voiced)', categoryId: null },
+                { label: '/h/', categoryId: null }
+            ]},
+            { label: 'Affricates', tiles: [{ label: '/ch/', categoryId: null }, { label: '/j/', categoryId: null }]},
+            { label: 'Nasals', tiles: [{ label: '/m/', categoryId: null }, { label: '/n/', categoryId: null }, { label: '/ng/', categoryId: null }]},
+            { label: 'Liquids', tiles: [
+                { label: '/l/', categoryId: 'lSound' },
+                { label: '/r/ Initial', categoryId: 'initialR' },
+                { label: 'Vocalic /r/', categoryId: 'vocalicR' }
+            ]},
+            { label: 'Glides', tiles: [{ label: '/w/', categoryId: null }, { label: '/y/', categoryId: null }]},
+            { label: 'Blends', tiles: [
+                { label: 'S-Blends', categoryId: 'sBlends' },
+                { label: 'L-Blends', categoryId: 'lBlends' },
+                { label: 'R-Blends', categoryId: 'rBlends' }
+            ]}
+        ];
+
         const articulationSentenceTemplates = [
             { id: 1, page: 1, template: 'The boy saw a big', blank: { pos: 'noun' }, ending: 'in the yard.' },
             { id: 2, page: 1, template: 'I like to', blank: { pos: 'verb' }, ending: 'at the park.' },
@@ -780,12 +815,12 @@
         }
 
         // Event handlers
-        function handleCategorySelect(category) {
+        function handleCategorySelect(category, preSelectBlend) {
             if (!articulationWordData[category]) {
                 return;
             }
             state.selectedCategory = category;
-            state.selectedBlends = [];
+            state.selectedBlends = preSelectBlend ? [preSelectBlend] : [];
             render();
         }
 
@@ -879,28 +914,26 @@
             const categoryData = state.selectedCategory ? articulationWordData[state.selectedCategory] : null;
             const wordsByPos = getWordsByPos();
             const availableWords = getAvailableWords();
-            const categoryButtonsHtml = categoryOrder
-                .filter((categoryId) => articulationWordData[categoryId])
-                .map((categoryId) => {
-                    const categoryInfo = articulationWordData[categoryId];
-                    const label = categoryInfo?.name || categoryId;
-                    return `
-                        <button
-                            type="button"
-                            class="aps-category-btn ${state.selectedCategory === categoryId ? 'selected' : ''}"
-                            onclick="handleCategorySelect('${categoryId}')"
-                        >
-                            ${label}
-                        </button>
-                    `;
-                })
-                .join('');
 
-            const categoryButtonsContent = categoryButtonsHtml
-                ? categoryButtonsHtml
-                : (!state.loadingWordLists
-                    ? '<p class="aps-warning">No categories available. Please reload the page.</p>'
-                    : '');
+            // Build grouped phoneme tiles
+            const groupedHtml = PHONEME_GROUPS.map(group => {
+                const tilesHtml = group.tiles.map(tile => {
+                    if (!tile.categoryId) {
+                        return `<button type="button" class="aps-category-btn" disabled title="Coming soon" style="opacity:0.4;cursor:default;">${tile.label}</button>`;
+                    }
+                    const isLoaded = !!articulationWordData[tile.categoryId];
+                    if (!isLoaded) {
+                        return `<button type="button" class="aps-category-btn" disabled title="Loading…" style="opacity:0.4;cursor:default;">${tile.label}</button>`;
+                    }
+                    const isSelected = state.selectedCategory === tile.categoryId &&
+                        (!tile.preSelectBlend || state.selectedBlends.includes(tile.preSelectBlend));
+                    const clickArg = tile.preSelectBlend
+                        ? `handleCategorySelect('${tile.categoryId}', '${tile.preSelectBlend}')`
+                        : `handleCategorySelect('${tile.categoryId}')`;
+                    return `<button type="button" class="aps-category-btn ${isSelected ? 'selected' : ''}" onclick="${clickArg}">${tile.label}</button>`;
+                }).join('');
+                return `<div style="margin-bottom:12px;"><div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--aps-muted,#475569);margin-bottom:5px;">${group.label}</div><div class="aps-category-buttons">${tilesHtml}</div></div>`;
+            }).join('');
 
             const blendGroupsHtml = categoryData
                 ? Object.entries(categoryData.blends || {})
@@ -953,11 +986,9 @@
                     </header>
 
                     <main class="aps-main">
-                        <section class="aps-panel">
-                            <h2>Select Target Category</h2>
-                            <div class="aps-category-buttons">
-                                ${categoryButtonsContent}
-                            </div>
+                        <section class="aps-panel" style="padding:20px 24px;">
+                            <h2 style="font-size:1.1rem;margin-bottom:14px;">Select Target Sound</h2>
+                            ${groupedHtml}
                             ${loadingMessage}
                             ${errorMessage}
                         </section>
