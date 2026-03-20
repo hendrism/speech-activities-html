@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorting Categories</title>
+    <title>Sorting Functions: Spring</title>
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-light: #818cf8;
-            --primary-dark: #3730a3;
+            --primary: #ec4899; /* Spring pink */
+            --primary-light: #f472b6;
+            --primary-dark: #be185d;
             --secondary: #10b981;
             --accent: #f59e0b;
-            --background: #f8fafc;
+            --background: #fdf2f8; /* Light spring pink background */
             --surface: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
@@ -104,9 +104,9 @@
 
         .sidebar-header {
             padding: 1rem;
-            background: #f1f5f9;
+            background: #fce7f3; /* Spring pink header */
             font-weight: 700;
-            color: var(--text-muted);
+            color: var(--primary-dark);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -122,7 +122,7 @@
 
         .sidebar-item {
             padding: 12px 16px;
-            border-bottom: 1px solid #f8fafc;
+            border-bottom: 1px solid #fdf2f8;
             cursor: pointer;
             transition: all 0.2s;
             font-size: 0.95rem;
@@ -131,12 +131,12 @@
         }
 
         .sidebar-item:hover {
-            background: #f8fafc;
+            background: #fdf2f8;
             color: var(--primary);
         }
 
         .sidebar-item.active {
-            background: #eef2ff;
+            background: #fbcfe8;
             color: var(--primary-dark);
             border-left: 4px solid var(--primary);
             font-weight: 600;
@@ -159,13 +159,13 @@
         }
 
         .instruction-banner {
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #fce7f3;
+            color: #be185d;
             padding: 0.75rem;
             border-radius: var(--radius-md);
             text-align: center;
             font-weight: 600;
-            border: 1px solid #bae6fd;
+            border: 1px solid #fbcfe8;
         }
 
         .set-title {
@@ -185,7 +185,7 @@
 
         .drop-zone {
             flex: 1;
-            background: #f8fafc;
+            background: #fdf2f8;
             border: 2px dashed var(--border);
             border-radius: var(--radius-md);
             min-height: 250px;
@@ -196,7 +196,7 @@
 
         .drop-zone.drag-over {
             border-color: var(--primary);
-            background: #eef2ff;
+            background: #fbcfe8;
         }
 
         .drop-zone-header {
@@ -238,7 +238,7 @@
 
         .source-pool.drag-over {
             border-color: var(--primary);
-            background: #eef2ff;
+            background: #fbcfe8;
         }
 
         .draggable-item {
@@ -270,6 +270,13 @@
             box-shadow: var(--shadow-sm);
             pointer-events: none;
             transition: width 0.2s, height 0.2s;
+            /* Fallback styling for broken images */
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .item-label {
@@ -332,7 +339,7 @@
 
     <div class="header">
         <div class="app-title">
-            <span>🗂️</span> Sorting Categories
+            <span>🌸</span> Sorting Functions: Spring
         </div>
         <div class="level-indicator">
             Set <span id="current-item-num">1</span> of 10
@@ -342,7 +349,7 @@
     <div class="app-container">
         <!-- Sidebar -->
         <div class="sidebar">
-            <div class="sidebar-header">Category Sets</div>
+            <div class="sidebar-header">Function Sets</div>
             <ul class="sidebar-list" id="sidebar-list">
                 <!-- Generated via JS -->
             </ul>
@@ -352,7 +359,7 @@
         <div class="activity-card" id="activity-card">
 
             <div class="instruction-banner">
-                🎯 Sort the items by dragging them into the correct category box.
+                🎯 Sort the items by dragging them into the correct function box.
             </div>
 
             <h2 class="set-title" id="set-title">Set Title</h2>
@@ -387,131 +394,131 @@
             {
                 id: 1,
                 title: "Set 1",
-                categories: ["Spring Clothes", "Winter Clothes"],
+                categories: ["You wear it", "You carry it"],
                 items: [
+                    { name: "Raincoat", folder: "clothing", img: "raincoat.png" },
                     { name: "Rain boots", folder: "clothing", img: "rain-boots.png" },
-                    { name: "Shorts", folder: "clothing", img: "shorts.png" },
-                    { name: "Winter coat", folder: "clothing", img: "jacket.png" },
-                    { name: "Scarf", folder: "clothing", img: "scarf.png" },
-                    { name: "T-shirt", folder: "clothing", img: "t-shirt.png" },
-                    { name: "Snow boots", folder: "clothing", img: "winter-boots.png" }
+                    { name: "Light jacket", folder: "clothing", img: "jacket.png" },
+                    { name: "Umbrella", folder: "objects", img: "umbrella.png" },
+                    { name: "Basket", folder: "objects", img: "basket.png" },
+                    { name: "Backpack", folder: "objects", img: "backpack.png" }
                 ]
             },
             {
                 id: 2,
                 title: "Set 2",
-                categories: ["Insects", "Birds"],
+                categories: ["You plant it", "You pick it"],
                 items: [
-                    { name: "Butterfly", folder: "animals", img: "butterfly.png" },
-                    { name: "Robin", folder: "animals", img: "robin.png" },
-                    { name: "Bee", folder: "animals", img: "bumblebee.png" },
-                    { name: "Sparrow", folder: "animals", img: "sparrow.png" },
-                    { name: "Ant", folder: "animals", img: "ant.png" },
-                    { name: "Blue jay", folder: "animals", img: "blue-jay.png" }
+                    { name: "Seeds", folder: "plants", img: "seeds.png" },
+                    { name: "Seedling", folder: "plants", img: "seedling.png" },
+                    { name: "Sapling", folder: "plants", img: "sapling.png" },
+                    { name: "Flower", folder: "plants", img: "flower.png" },
+                    { name: "Strawberry", folder: "food", img: "strawberry.png" },
+                    { name: "Tomato", folder: "food", img: "tomato.png" }
                 ]
             },
             {
                 id: 3,
                 title: "Set 3",
-                categories: ["Things That Grow", "Do Not Grow"],
+                categories: ["It flies", "It hops"],
                 items: [
-                    { name: "Flower", folder: "plants", img: "rose.png" },
-                    { name: "Tree", folder: "plants", img: "tree.png" },
-                    { name: "Rock", folder: "nature", img: "rock.png" },
-                    { name: "Grass", folder: "nature", img: "grass.png" },
-                    { name: "Bench", folder: "objects", img: "bench.png" },
-                    { name: "Cloud", folder: "nature", img: "cloud.png" }
+                    { name: "Butterfly", folder: "animals", img: "butterfly.png" },
+                    { name: "Bee", folder: "animals", img: "bee.png" },
+                    { name: "Robin", folder: "animals", img: "robin.png" },
+                    { name: "Frog", folder: "animals", img: "frog.png" },
+                    { name: "Rabbit", folder: "animals", img: "rabbit.png" },
+                    { name: "Grasshopper", folder: "animals", img: "grasshopper.png" }
                 ]
             },
             {
                 id: 4,
                 title: "Set 4",
-                categories: ["Rainy Day", "Sunny Day"],
+                categories: ["Use it in the garden", "Use it in the house"],
                 items: [
-                    { name: "Umbrella", folder: "objects", img: "umbrella.png" },
-                    { name: "Sunglasses", folder: "clothing", img: "sunglasses.png" },
-                    { name: "Puddle", folder: "nature", img: "puddle.png" },
-                    { name: "Beach ball", folder: "objects", img: "beach-ball.png" },
-                    { name: "Raincoat", folder: "clothing", img: "raincoat.png" },
-                    { name: "Kite", folder: "objects", img: "kite.png" }
+                    { name: "Watering can", folder: "objects", img: "watering-can.png" },
+                    { name: "Shovel", folder: "objects", img: "shovel.png" },
+                    { name: "Rake", folder: "objects", img: "rake.png" },
+                    { name: "Vase", folder: "objects", img: "vase.png" },
+                    { name: "Broom", folder: "objects", img: "broom.png" },
+                    { name: "Duster", folder: "objects", img: "duster.png" }
                 ]
             },
             {
                 id: 5,
                 title: "Set 5",
-                categories: ["Baby Animals", "Adult Animals"],
+                categories: ["It blooms", "It melts"],
                 items: [
-                    { name: "Chick", folder: "animals", img: "chick.png" },
-                    { name: "Puppy", folder: "animals", img: "puppy.png" },
-                    { name: "Duck", folder: "animals", img: "duckling.png" },
-                    { name: "Lamb", folder: "animals", img: "lamb.png" },
-                    { name: "Hen", folder: "animals", img: "chicken.png" },
-                    { name: "Dog", folder: "animals", img: "beagle.png" }
+                    { name: "Tulip", folder: "plants", img: "tulip.png" },
+                    { name: "Daffodil", folder: "plants", img: "daffodil.png" },
+                    { name: "Daisy", folder: "plants", img: "daisy.png" },
+                    { name: "Snowman", folder: "objects", img: "snowman.png" },
+                    { name: "Icicle", folder: "nature", img: "icicle.png" },
+                    { name: "Snow", folder: "nature", img: "snow.png" }
                 ]
             },
             {
                 id: 6,
                 title: "Set 6",
-                categories: ["Insects", "Birds", "Mammals"],
+                categories: ["You ride it", "You fly it"],
                 items: [
-                    { name: "Bee", folder: "animals", img: "bee.png" },
-                    { name: "Robin", folder: "animals", img: "robin2.png" },
-                    { name: "Squirrel", folder: "animals", img: "squirrel.png" },
-                    { name: "Butterfly", folder: "animals", img: "butterfly2.png" },
-                    { name: "Crow", folder: "animals", img: "crow.png" },
-                    { name: "Rabbit", folder: "animals", img: "rabbit.png" }
+                    { name: "Bicycle", folder: "objects", img: "bike.png" },
+                    { name: "Scooter", folder: "objects", img: "scooter.png" },
+                    { name: "Skateboard", folder: "objects", img: "skateboard.png" },
+                    { name: "Kite", folder: "objects", img: "kite.png" },
+                    { name: "Paper airplane", folder: "objects", img: "paper_airplane.png" },
+                    { name: "Drone", folder: "objects", img: "drone.png" }
                 ]
             },
             {
                 id: 7,
                 title: "Set 7",
-                categories: ["Wear", "Play", "Eat"],
+                categories: ["Wear in the rain", "Wear in the sun"],
                 items: [
-                    { name: "Sandals", folder: "clothing", img: "sandals.png" },
-                    { name: "Apple", folder: "food", img: "apple.png" },
-                    { name: "Jump rope", folder: "objects", img: "jump-rope.png" },
-                    { name: "Jacket", folder: "clothing", img: "windbreaker.png" },
-                    { name: "Ice cream", folder: "food", img: "ice-cream-cone.png" },
-                    { name: "Soccer ball", folder: "objects", img: "soccer-ball.png" }
+                    { name: "Raincoat", folder: "clothing", img: "raincoat.png" },
+                    { name: "Rain boots", folder: "clothing", img: "rain-boots.png" },
+                    { name: "Poncho", folder: "clothing", img: "poncho.png" },
+                    { name: "Sunglasses", folder: "clothing", img: "sunglasses.png" },
+                    { name: "Sun hat", folder: "clothing", img: "sun_hat.png" },
+                    { name: "T-shirt", folder: "clothing", img: "t-shirt.png" }
                 ]
             },
             {
                 id: 8,
                 title: "Set 8",
-                categories: ["Farm", "Zoo", "Pets"],
+                categories: ["Builds a nest", "Digs a hole"],
                 items: [
-                    { name: "Cow", folder: "animals", img: "cow.png" },
-                    { name: "Lion", folder: "animals", img: "lion.png" },
-                    { name: "Dog", folder: "animals", img: "golden-retriever.png" },
-                    { name: "Pig", folder: "animals", img: "pig.png" },
-                    { name: "Elephant", folder: "animals", img: "elephant.png" },
-                    { name: "Cat", folder: "animals", img: "cat.png" }
+                    { name: "Robin", folder: "animals", img: "robin.png" },
+                    { name: "Wasp", folder: "animals", img: "wasp.png" },
+                    { name: "Cardinal", folder: "animals", img: "cardinal.png" },
+                    { name: "Ant", folder: "animals", img: "ant.png" },
+                    { name: "Worm", folder: "animals", img: "earthworm.png" },
+                    { name: "Groundhog", folder: "animals", img: "groundhog.png" }
                 ]
             },
             {
                 id: 9,
                 title: "Set 9",
-                categories: ["Weather", "Plants", "Animals"],
+                categories: ["Lives in the ground", "Lives above ground"],
                 items: [
-                    { name: "Rain", folder: "nature", img: "rain-cloud.png" },
-                    { name: "Flower", folder: "plants", img: "rose2.png" },
-                    { name: "Frog", folder: "animals", img: "frog.png" },
-                    { name: "Sun", folder: "nature", img: "sun.png" },
-                    { name: "Tree", folder: "plants", img: "tree2.png" },
-                    { name: "Bird", folder: "animals", img: "bluebird.png" }
+                    { name: "Earthworm", folder: "animals", img: "earthworm.png" },
+                    { name: "Mole", folder: "animals", img: "mole.png" },
+                    { name: "Grub", folder: "animals", img: "larvae.png" },
+                    { name: "Robin", folder: "animals", img: "robin.png" },
+                    { name: "Butterfly", folder: "animals", img: "butterfly.png" },
+                    { name: "Chipmunk", folder: "animals", img: "chipmunk.png" }
                 ]
             },
             {
                 id: 10,
                 title: "Set 10",
-                categories: ["Sky", "Ground", "Water"],
+                categories: ["Used for gardening", "Used for outdoor fun"],
                 items: [
-                    { name: "Cloud", folder: "nature", img: "cloud2.png" },
-                    { name: "Grass", folder: "nature", img: "grass2.png" },
-                    { name: "Fish", folder: "animals", img: "fish.png" },
-                    { name: "Airplane", folder: "objects", img: "airplane.png" },
-                    { name: "Rock", folder: "nature", img: "rock2.png" },
-                    { name: "Duck", folder: "animals", img: "duck.png" }
+                    { name: "Trowel", folder: "objects", img: "trowel.png" },
+                    { name: "Watering can", folder: "objects", img: "watering-can.png" },
+                    { name: "Garden gloves", folder: "clothing", img: "garden-gloves.png" },
+                    { name: "Kite", folder: "objects", img: "kite.png" },
+                    { name: "Jump rope", folder: "objects", img: "jump-rope.png" },
+                    { name: "Sidewalk chalk", folder: "objects", img: "chalk.png" }
                 ]
             }
         ];
@@ -574,7 +581,7 @@
 
             sourcePool.innerHTML = shuffledItems.map((item, i) => `
                 <div class="draggable-item" draggable="true" ondragstart="drag(event)" id="drag-item-${i}">
-                    <img src="../../images/${item.folder}/${item.img}" alt="${item.name}" class="item-image" draggable="false">
+                    <img src="../../images/${item.folder}/${item.img}" alt="${item.name}" class="item-image" draggable="false" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'100\\'><rect width=\\'100\\' height=\\'100\\' fill=\\'%23f1f5f9\\'/><text x=\\'50\\' y=\\'50\\' font-family=\\'sans-serif\\' font-size=\\'12\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' fill=\\'%2394a3b8\\'>Image</text></svg>';">
                     <span class="item-label">${item.name}</span>
                 </div>
             `).join('');

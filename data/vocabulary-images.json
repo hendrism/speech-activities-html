@@ -1,0 +1,22 @@
+{
+  "animals/robin.png": { "name": "Robin", "tags": ["animal", "bird", "spring", "flies", "nest"] },
+  "animals/bee.png": { "name": "Bee", "tags": ["animal", "insect", "spring", "flies"] },
+  "clothing/raincoat.png": { "name": "Raincoat", "tags": ["clothing", "spring", "rain"] },
+  "clothing/rain-boots.png": { "name": "Rain boots", "tags": ["clothing", "spring", "rain"] },
+  "plants/daffodil.png": { "name": "Daffodil", "tags": ["plant", "flower", "spring", "blooms"] },
+  "plants/tulip.png": { "name": "Tulip", "tags": ["plant", "flower", "spring", "blooms"] },
+  "plants/daisy.png": { "name": "Daisy", "tags": ["plant", "flower", "spring", "blooms"] },
+  "objects/umbrella.png": { "name": "Umbrella", "tags": ["object", "spring", "rain"] },
+  "animals/rabbit.png": { "name": "Rabbit", "tags": ["animal", "mammal", "spring", "hops"] },
+  "animals/frog.png": { "name": "Frog", "tags": ["animal", "amphibian", "spring", "hops"] },
+  "objects/kite.png": { "name": "Kite", "tags": ["object", "toy", "spring", "flies"] },
+  "animals/earthworm.png": { "name": "Earthworm", "tags": ["animal", "insect", "spring", "ground"] },
+  "animals/butterfly.png": { "name": "Butterfly", "tags": ["animal", "insect", "spring", "flies"] },
+  "clothing/sunglasses.png": { "name": "Sunglasses", "tags": ["clothing", "summer", "sun"] },
+  "nature/puddle.png": { "name": "Puddle", "tags": ["nature", "spring", "rain"] },
+  "objects/snowman.png": { "name": "Snowman", "tags": ["object", "winter", "melts"] },
+  "nature/icicle.png": { "name": "Icicle", "tags": ["nature", "winter", "melts"] },
+  "nature/snow.png": { "name": "Snow", "tags": ["nature", "winter", "melts"] },
+  "plants/seeds.png": { "name": "Seeds", "tags": ["plant", "spring", "garden"] },
+  "food/strawberry.png": { "name": "Strawberry", "tags": ["food", "fruit", "spring", "summer"] }
+}
