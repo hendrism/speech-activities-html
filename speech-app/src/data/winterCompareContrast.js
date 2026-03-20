@@ -1,8 +1,8 @@
 export const winterCompareContrastData = [
     {
         title: 'Snowman vs Snowball',
-        left: { label: 'Snowman', emoji: '⛄', image: '/images/winter_items/snowman.jpg' },
-        right: { label: 'Snowball', emoji: '❄️', image: '/images/winter_items/snowball.jpg' },
+        left: { label: 'Snowman', emoji: '⛄', image: '/images/objects/snowman.jpg' },
+        right: { label: 'Snowball', emoji: '❄️', image: '/images/objects/snowball.jpg' },
         context: 'Compare the two snow items',
         items: [
             { id: '1-1', text: 'has a body', zone: 'left' },
@@ -15,8 +15,8 @@ export const winterCompareContrastData = [
     },
     {
         title: 'Mitten vs Glove',
-        left: { label: 'Mitten', emoji: '🧤', image: '/images/winter_items/mittens.png' },
-        right: { label: 'Glove', emoji: '🖐️', image: '/images/winter_items/gloves.png' },
+        left: { label: 'Mitten', emoji: '🧤', image: '/images/clothing/mittens.png' },
+        right: { label: 'Glove', emoji: '🖐️', image: '/images/clothing/gloves.png' },
         context: 'Compare winter handwear',
         items: [
             { id: '2-1', text: 'one space for fingers', zone: 'left' },
@@ -29,8 +29,8 @@ export const winterCompareContrastData = [
     },
     {
         title: 'Ice Skates vs Boots',
-        left: { label: 'Ice skates', emoji: '⛸️', image: '/images/new_winter_items/ice_skates.jpg' },
-        right: { label: 'Boots', emoji: '👢', image: '/images/winter_items/boots.png' },
+        left: { label: 'Ice skates', emoji: '⛸️', image: '/images/objects/ice_skates.jpg' },
+        right: { label: 'Boots', emoji: '👢', image: '/images/clothing/boots.png' },
         context: 'Compare winter footwear',
         items: [
             { id: '3-1', text: 'have blades', zone: 'left' },
@@ -43,8 +43,8 @@ export const winterCompareContrastData = [
     },
     {
         title: 'Sled vs Snowboard',
-        left: { label: 'Sled', emoji: '🛷', image: '/images/winter_items/sled.jpg' },
-        right: { label: 'Snowboard', emoji: '🏂', image: '/images/new_winter_items/snowboard.jpg' },
+        left: { label: 'Sled', emoji: '🛷', image: '/images/objects/sled.jpg' },
+        right: { label: 'Snowboard', emoji: '🏂', image: '/images/objects/snowboard.jpg' },
         context: 'Compare winter rides',
         items: [
             { id: '4-1', text: 'can sit on it', zone: 'left' },
@@ -58,7 +58,7 @@ export const winterCompareContrastData = [
     {
         title: 'Hot Chocolate vs Warm Tea',
         left: { label: 'Hot chocolate', emoji: '☕', image: '/images/compare_contrast_seasonal/hot_chocolate_1.jpg' },
-        right: { label: 'Warm tea', emoji: '🍵', image: '/images/new_winter_items/warm_tea.jpg' },
+        right: { label: 'Warm tea', emoji: '🍵', image: '/images/food/warm_tea.jpg' },
         context: 'Compare winter drinks',
         items: [
             { id: '5-1', text: 'sweet', zone: 'left' },
@@ -71,8 +71,8 @@ export const winterCompareContrastData = [
     },
     {
         title: 'Snow Shovel vs Broom',
-        left: { label: 'Snow shovel', emoji: '🌨️', image: '/images/winter_items/snow-shovel.jpg' },
-        right: { label: 'Broom', emoji: '🧹', image: '/images/new_winter_items/broom.jpg' },
+        left: { label: 'Snow shovel', emoji: '🌨️', image: '/images/objects/snow-shovel.jpg' },
+        right: { label: 'Broom', emoji: '🧹', image: '/images/objects/broom.jpg' },
         context: 'Compare cleaning tools',
         items: [
             { id: '6-1', text: 'scoops snow', zone: 'left' },
@@ -85,8 +85,8 @@ export const winterCompareContrastData = [
     },
     {
         title: 'Puffy Coat vs Raincoat',
-        left: { label: 'Puffy coat', emoji: '🧥', image: '/images/winter_items/winter-coat.png' },
-        right: { label: 'Raincoat', emoji: '☔', image: '/images/new_winter_items/raincoat.jpg' },
+        left: { label: 'Puffy coat', emoji: '🧥', image: '/images/clothing/winter-coat.png' },
+        right: { label: 'Raincoat', emoji: '☔', image: '/images/clothing/raincoat.jpg' },
         context: 'Compare coats',
         items: [
             { id: '7-1', text: 'filled with padding', zone: 'left' },
@@ -99,8 +99,8 @@ export const winterCompareContrastData = [
     },
     {
         title: 'Ice vs Snow',
-        left: { label: 'Ice', emoji: '🧊', image: '/images/winter_items/ice_1.jpg' },
-        right: { label: 'Snow', emoji: '❄️', image: '/images/new_winter_items/snow.jpg' },
+        left: { label: 'Ice', emoji: '🧊', image: '/images/nature/ice_1.jpg' },
+        right: { label: 'Snow', emoji: '❄️', image: '/images/nature/snow.jpg' },
         context: 'Compare frozen water',
         items: [
             { id: '8-1', text: 'hard', zone: 'left' },
@@ -113,8 +113,8 @@ export const winterCompareContrastData = [
     },
     {
         title: 'Penguin vs Polar Bear',
-        left: { label: 'Penguin', emoji: '🐧', image: '/images/new_winter_items/penguins.jpg' },
-        right: { label: 'Polar Bear', emoji: '🐻‍❄️', image: '/images/new_winter_items/polar_bear.jpg' },
+        left: { label: 'Penguin', emoji: '🐧', image: '/images/animals/penguins.jpg' },
+        right: { label: 'Polar Bear', emoji: '🐻‍❄️', image: '/images/animals/polar_bear.jpg' },
         context: 'Compare winter animals',
         items: [
             { id: '9-1', text: 'has flippers', zone: 'left' },

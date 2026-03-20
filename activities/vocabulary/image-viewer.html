@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexible Image Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #f0fdf4;
+            --surface-color: #ffffff;
+            --border-color: #d1fae5;
+            --text-main: #064e3b;
+            --text-muted: #047857;
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #34d399;
+            --accent: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a7f3d0 0%, #34d399 100%);
+            min-height: 100vh;
+            padding: clamp(16px, 3vw, 32px);
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--surface-color);
+            border-radius: 24px;
+            padding: clamp(24px, 3vw, 36px);
+            box-shadow: 0 24px 60px rgba(6, 78, 59, 0.12);
+            border: 1px solid rgba(209, 250, 229, 0.5);
+        }
+
+        .header h1 {
+            font-size: clamp(28px, 3vw, 40px);
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            max-width: 720px;
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Category Buttons */
+        .category-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            margin-bottom: 24px;
+        }
+
+        .category-btn {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            background: var(--bg-color);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: capitalize;
+            color: var(--text-main);
+        }
+
+        .category-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-light);
+            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.15);
+        }
+
+        .category-btn.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        /* Grid selections */
+        .layout-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(4, 1fr);
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .layout-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .layout-btn {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 12px;
+            background: var(--bg-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .layout-btn:hover {
+            border-color: var(--primary-light);
+            background: rgba(209, 250, 229, 0.5);
+        }
+
+        .layout-btn.selected {
+            border-color: var(--primary-dark);
+            background: var(--primary);
+            color: white;
+        }
+
+        .layout-icon {
+            display: grid;
+            gap: 2px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .layout-icon div {
+            background: currentColor;
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+
+        /* Checkbox grid */
+        .word-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            margin-bottom: 24px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 4px;
+        }
+
+        .word-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+        .word-grid::-webkit-scrollbar-thumb {
+            background-color: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        .word-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .word-option:hover {
+            background: rgba(209, 250, 229, 0.7);
+        }
+
+        .word-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .word-name {
+            font-weight: 600;
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .word-tags {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-primary:disabled {
+            background: #cbd5e1;
+            box-shadow: none;
+            cursor: not-allowed;
+            color: #f8fafc;
+        }
+
+        .btn-secondary {
+            background: var(--bg-color);
+            color: var(--text-main);
+            border: 2px solid var(--primary-light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(209, 250, 229, 0.5);
+        }
+
+        .btn-tertiary {
+            background: transparent;
+            color: var(--text-muted);
+        }
+
+        .btn-tertiary:hover {
+            color: var(--text-main);
+            background: rgba(0,0,0,0.05);
+        }
+
+        .setup-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Badges */
+        .badge {
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Status bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: var(--bg-color);
+            border-radius: 16px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Image Display Grid */
+        .viewer-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .image-grid {
+            display: grid;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* 1 Image */
+        .grid-1 {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* 2 Images */
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* 3 Images */
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* 4 Images */
+        .grid-4 {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .image-card {
+            background: var(--surface-color);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: scale(1.02);
+        }
+
+        .image-title-container {
+            width: 100%;
+            height: auto;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .image-title-container:hover {
+            background: rgba(0,0,0,0.03);
+            box-shadow: inset 0 0 0 2px var(--border-color);
+        }
+
+        .image-title {
+            font-size: clamp(20px, 2.5vw, 28px);
+            font-weight: 700;
+            color: var(--text-main);
+            transition: opacity 0.3s ease;
+            padding: 4px 12px;
+        }
+
+        .image-title.hidden {
+            opacity: 0;
+            user-select: none;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            height: auto;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .image-title {
+            font-size: clamp(20px, 2.5vw, 28px);
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .navigation-bar {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .alert-error {
+            background-color: #fee2e2;
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="app">
+    <!-- Rendered by JS -->
+</div>
+
+<script>
+    // --- State & Data ---
+    const state = {
+        mode: 'setup', // 'setup', 'viewer'
+        vocabularyData: {},
+        categories: {}, // { categoryName: [imageKeys...] }
+        selectedCategories: new Set(),
+        selectedLayout: 1, // 1, 2, 3, or 4
+        selectedWords: new Set(), // Set of imageKeys
+        showWords: false, // Default to hidden words
+        
+        // Viewer State
+        deck: [], // Shuffled array of arrays (chunks)
+        currentChunkIndex: 0,
+        error: null,
+        loading: true
+    };
+
+    // --- Data Loading ---
+    async function loadData() {
+        try {
+            const response = await fetch('../../data/vocabulary-images.json');
+            if (!response.ok) {
+                throw new Error('Failed to load vocabulary data.');
+            }
+            const data = await response.json();
+            state.vocabularyData = data;
+            
+            // Group by category (first folder in path)
+            for (const [key, info] of Object.entries(data)) {
+                const category = key.split('/')[0];
+                if (!state.categories[category]) {
+                    state.categories[category] = [];
+                }
+                state.categories[category].push(key);
+            }
+            
+            // Sort categories and words alphabetically
+            for (const cat in state.categories) {
+                state.categories[cat].sort((a, b) => {
+                    return data[a].name.localeCompare(data[b].name);
+                });
+            }
+
+            state.loading = false;
+            render();
+        } catch (error) {
+            state.error = error.message;
+            state.loading = false;
+            render();
+        }
+    }
+
+    // --- Actions ---
+    function toggleCategory(category) {
+        if (state.selectedCategories.has(category)) {
+            state.selectedCategories.delete(category);
+            // Optional: Remove words belonging to this category from selection
+            if (state.categories[category]) {
+                state.categories[category].forEach(key => state.selectedWords.delete(key));
+            }
+        } else {
+            state.selectedCategories.add(category);
+        }
+        render();
+    }
+
+    function selectLayout(num) {
+        state.selectedLayout = num;
+        render();
+    }
+
+    function toggleWord(key) {
+        if (state.selectedWords.has(key)) {
+            state.selectedWords.delete(key);
+        } else {
+            state.selectedWords.add(key);
+        }
+        render();
+    }
+
+    function selectAllWords() {
+        if (state.selectedCategories.size === 0) return;
+        state.selectedCategories.forEach(cat => {
+            state.categories[cat].forEach(key => {
+                state.selectedWords.add(key);
+            });
+        });
+        render();
+    }
+
+    function clearAllWords() {
+        state.selectedWords.clear();
+        render();
+    }
+
+    // Fisher-Yates shuffle
+    function shuffleArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // Chunk array into pieces of size N
+    function chunkArray(array, size) {
+        if (!array || array.length === 0) return [];
+        const chunks = [];
+        for (let i = 0; i < array.length; i += size) {
+            let chunk = array.slice(i, i + size);
+            // Pad the chunk by wrapping around if it's the last incomplete chunk
+            let needed = size - chunk.length;
+            let padIndex = 0;
+            while (needed > 0 && padIndex < array.length) {
+                chunk.push(array[padIndex]);
+                padIndex++;
+                needed--;
+            }
+            chunks.push(chunk);
+        }
+        return chunks;
+    }
+
+    function startViewer() {
+        if (state.selectedWords.size === 0) return;
+        
+        const wordsArray = Array.from(state.selectedWords);
+        const shuffled = shuffleArray(wordsArray);
+        state.deck = chunkArray(shuffled, state.selectedLayout);
+        state.currentChunkIndex = 0;
+        state.mode = 'viewer';
+        
+        render();
+    }
+
+    function nextChunk() {
+        if (state.currentChunkIndex < state.deck.length - 1) {
+            state.currentChunkIndex++;
+            render();
+        }
+    }
+
+    function prevChunk() {
+        if (state.currentChunkIndex > 0) {
+            state.currentChunkIndex--;
+            render();
+        }
+    }
+
+    function reshuffleAll() {
+        const wordsArray = Array.from(state.selectedWords);
+        const shuffled = shuffleArray(wordsArray);
+        state.deck = chunkArray(shuffled, state.selectedLayout);
+        state.currentChunkIndex = 0;
+        render();
+    }
+
+    function goBackToSetup() {
+        state.mode = 'setup';
+        render();
+    }
+
+    function toggleSetupShowWords() {
+        state.showWords = !state.showWords;
+        render();
+    }
+
+    function toggleGlobalShowWords() {
+        state.showWords = !state.showWords;
+        // Optionally update the DOM directly or re-render
+        render();
+    }
+
+    function revealTitle(titleId) {
+        const el = document.getElementById(titleId);
+        if (el && el.classList.contains('hidden')) {
+            el.classList.remove('hidden');
+        }
+    }
+
+    // --- Dynamic CSS for Grid Icons ---
+    function getGridIcon(num) {
+        let items = '';
+        for(let i=0; i<num; i++) {
+            items += '<div></div>';
+        }
+        let style = '';
+        if (num === 1) style = 'grid-template-columns: 1fr; grid-template-rows: 1fr;';
+        if (num === 2) style = 'grid-template-columns: 1fr 1fr; grid-template-rows: 1fr;';
+        if (num === 3) style = 'grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr; gap: 1px;';
+        if (num === 4) style = 'grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;';
+        
+        return `<div class="layout-icon" style="${style}">${items}</div>`;
+    }
+
+    // --- Rendering ---
+    function renderSetup() {
+        const categories = Object.keys(state.categories).sort();
+        
+        let categoryHtml = `
+            <section class="card">
+                <h2>1. Select Category</h2>
+                <div class="category-grid">
+                    ${categories.map(cat => `
+                        <button class="category-btn ${state.selectedCategories.has(cat) ? 'selected' : ''}" 
+                                onclick="toggleCategory('${cat}')">
+                            ${cat}
+                        </button>
+                    `).join('')}
+                </div>
+            </section>
+        `;
+
+        let wordsHtml = '';
+        if (state.selectedCategories.size > 0) {
+            let combinedWords = [];
+            state.selectedCategories.forEach(cat => {
+                combinedWords = combinedWords.concat(state.categories[cat]);
+            });
+            // Sort combined words alphabetically
+            combinedWords.sort((a,b) => state.vocabularyData[a].name.localeCompare(state.vocabularyData[b].name));
+            
+            const isAllSelected = combinedWords.length > 0 && combinedWords.every(w => state.selectedWords.has(w));
+            
+            wordsHtml = `
+                <section class="card">
+                    <div class="setup-actions">
+                        <h2>2. Select Words <span class="badge">${state.selectedWords.size} selected</span></h2>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;" onclick="selectAllWords()">Select All</button>
+                            <button class="btn btn-tertiary" style="padding: 8px 16px; font-size: 0.9rem;" onclick="clearAllWords()">Clear</button>
+                        </div>
+                    </div>
+                    <div class="word-grid">
+                        ${combinedWords.map(key => {
+                            const word = state.vocabularyData[key];
+                            const isChecked = state.selectedWords.has(key);
+                            return `
+                                <label class="word-option">
+                                    <input type="checkbox" onchange="toggleWord('${key}')" ${isChecked ? 'checked' : ''}>
+                                    <div style="display:flex; flex-direction:column; overflow:hidden;">
+                                        <span class="word-name">${word.name}</span>
+                                        ${word.tags ? `<span class="word-tags">${word.tags.join(', ')}</span>` : ''}
+                                    </div>
+                                </label>
+                            `;
+                        }).join('')}
+                    </div>
+                </section>
+            `;
+        }
+
+        let layoutHtml = '';
+        if (state.selectedWords.size > 0) {
+            layoutHtml = `
+                <section class="card">
+                    <h2>3. Choose Layout & Start</h2>
+                    <p style="margin-bottom: 16px; color: var(--text-muted); font-size: 0.95rem;">Select how many images to show at once.</p>
+                    
+                    <div class="layout-grid">
+                        ${[1, 2, 3, 4].map(num => `
+                            <button class="layout-btn ${state.selectedLayout === num ? 'selected' : ''}" 
+                                    onclick="selectLayout(${num})">
+                                ${getGridIcon(num)}
+                                <span>${num} ${num === 1 ? 'Image' : 'Images'}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                    
+                    <h3 style="font-size: 1.1rem; margin-top: 16px; margin-bottom: 12px; color: var(--text-main);">Options</h3>
+                    <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-weight:600; color: var(--text-main); font-size: 1rem; padding: 8px 0;">
+                        <input type="checkbox" style="width:20px; height:20px; accent-color: var(--primary);" onchange="toggleSetupShowWords()" ${state.showWords ? 'checked' : ''}>
+                        Show word labels automatically
+                    </label>
+                    
+                    <div style="display:flex; justify-content:center; margin-top:32px;">
+                        <button class="btn btn-primary" style="font-size: 1.25rem; padding: 16px 48px;" onclick="startViewer()">
+                            ▶ Start Viewing
+                        </button>
+                    </div>
+                </section>
+            `;
+        }
+
+        return `
+            <div class="card header">
+                <h1>🖼️ Flexible Image Viewer</h1>
+                <p>Select a category, choose your target words, and pick how many images you want to display on screen at the same time. This is perfect for labeling, identification, or categorization tasks.</p>
+            </div>
+            ${categoryHtml}
+            ${wordsHtml}
+            ${layoutHtml}
+        `;
+    }
+
+    function renderViewer() {
+        if (!state.deck || state.deck.length === 0) return '';
+
+        const chunk = state.deck[state.currentChunkIndex];
+        const isFirst = state.currentChunkIndex === 0;
+        const isLast = state.currentChunkIndex === state.deck.length - 1;
+
+        const imagesHtml = chunk.map((key, index) => {
+            const word = state.vocabularyData[key];
+            const titleId = `title-${index}`;
+            return `
+                <div class="image-card">
+                    <img src="../../images/${key}" alt="${word.name}">
+                    <div class="image-title-container" onclick="revealTitle('${titleId}')" title="Click to reveal word">
+                        <div id="${titleId}" class="image-title ${state.showWords ? '' : 'hidden'}">${word.name}</div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        return `
+            <div class="viewer-area">
+                <div class="status-bar">
+                    <div><span class="badge">${state.selectedCategories.size} Categories</span> · ${state.selectedWords.size} Words</div>
+                    <div>Page ${state.currentChunkIndex + 1} of ${state.deck.length}</div>
+                    <button class="btn btn-tertiary" style="padding:4px 12px; font-size:0.9rem;" onclick="goBackToSetup()">⚙️ Setup</button>
+                </div>
+                
+                <div class="image-grid grid-${state.selectedLayout}">
+                    ${imagesHtml}
+                </div>
+                
+                <div class="navigation-bar">
+                    <button class="btn btn-secondary" onclick="prevChunk()" ${isFirst ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>
+                        ← Previous
+                    </button>
+                    <button class="btn btn-secondary" onclick="toggleGlobalShowWords()">
+                        ${state.showWords ? '👁️ Hide Labels' : '👁️ Show Labels'}
+                    </button>
+                    <button class="btn btn-secondary" onclick="reshuffleAll()">
+                        🔀 Reshuffle All
+                    </button>
+                    <button class="btn btn-primary" onclick="nextChunk()" ${isLast ? 'disabled' : ''}>
+                        Next Page →
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    function render() {
+        const app = document.getElementById('app');
+        
+        if (state.loading) {
+            app.innerHTML = `<div class="card header"><h1>Loading...</h1></div>`;
+            return;
+        }
+
+        if (state.error) {
+            app.innerHTML = `
+                <div class="card header">
+                    <h1>Error</h1>
+                    <div class="alert-error">${state.error}</div>
+                    <p>Make sure you are running this through a local web server (e.g., Python or Node) and that data/vocabulary-images.json exists.</p>
+                </div>
+            `;
+            return;
+        }
+
+        app.innerHTML = state.mode === 'setup' ? renderSetup() : renderViewer();
+    }
+
+    // --- Init ---
+    loadData();
+</script>
+
+</body>
+</html>

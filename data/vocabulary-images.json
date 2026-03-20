@@ -1,22 +1,787 @@
 {
-  "animals/robin.png": { "name": "Robin", "tags": ["animal", "bird", "spring", "flies", "nest"] },
-  "animals/bee.png": { "name": "Bee", "tags": ["animal", "insect", "spring", "flies"] },
-  "clothing/raincoat.png": { "name": "Raincoat", "tags": ["clothing", "spring", "rain"] },
-  "clothing/rain-boots.png": { "name": "Rain boots", "tags": ["clothing", "spring", "rain"] },
-  "plants/daffodil.png": { "name": "Daffodil", "tags": ["plant", "flower", "spring", "blooms"] },
-  "plants/tulip.png": { "name": "Tulip", "tags": ["plant", "flower", "spring", "blooms"] },
-  "plants/daisy.png": { "name": "Daisy", "tags": ["plant", "flower", "spring", "blooms"] },
-  "objects/umbrella.png": { "name": "Umbrella", "tags": ["object", "spring", "rain"] },
-  "animals/rabbit.png": { "name": "Rabbit", "tags": ["animal", "mammal", "spring", "hops"] },
-  "animals/frog.png": { "name": "Frog", "tags": ["animal", "amphibian", "spring", "hops"] },
-  "objects/kite.png": { "name": "Kite", "tags": ["object", "toy", "spring", "flies"] },
-  "animals/earthworm.png": { "name": "Earthworm", "tags": ["animal", "insect", "spring", "ground"] },
-  "animals/butterfly.png": { "name": "Butterfly", "tags": ["animal", "insect", "spring", "flies"] },
-  "clothing/sunglasses.png": { "name": "Sunglasses", "tags": ["clothing", "summer", "sun"] },
-  "nature/puddle.png": { "name": "Puddle", "tags": ["nature", "spring", "rain"] },
-  "objects/snowman.png": { "name": "Snowman", "tags": ["object", "winter", "melts"] },
-  "nature/icicle.png": { "name": "Icicle", "tags": ["nature", "winter", "melts"] },
-  "nature/snow.png": { "name": "Snow", "tags": ["nature", "winter", "melts"] },
-  "plants/seeds.png": { "name": "Seeds", "tags": ["plant", "spring", "garden"] },
-  "food/strawberry.png": { "name": "Strawberry", "tags": ["food", "fruit", "spring", "summer"] }
+  "animals/robin.png": {
+    "name": "Robin",
+    "tags": [
+      "animal",
+      "bird",
+      "spring",
+      "flies",
+      "nest"
+    ]
+  },
+  "animals/bee.png": {
+    "name": "Bee",
+    "tags": [
+      "animal",
+      "insect",
+      "spring",
+      "flies"
+    ]
+  },
+  "clothing/raincoat.png": {
+    "name": "Raincoat",
+    "tags": [
+      "clothing",
+      "spring",
+      "rain"
+    ]
+  },
+  "clothing/rain-boots.png": {
+    "name": "Rain boots",
+    "tags": [
+      "clothing",
+      "spring",
+      "rain"
+    ]
+  },
+  "plants/daffodil.png": {
+    "name": "Daffodil",
+    "tags": [
+      "plant",
+      "flower",
+      "spring",
+      "blooms"
+    ]
+  },
+  "plants/tulip.png": {
+    "name": "Tulip",
+    "tags": [
+      "plant",
+      "flower",
+      "spring",
+      "blooms"
+    ]
+  },
+  "plants/daisy.png": {
+    "name": "Daisy",
+    "tags": [
+      "plant",
+      "flower",
+      "spring",
+      "blooms"
+    ]
+  },
+  "objects/umbrella.png": {
+    "name": "Umbrella",
+    "tags": [
+      "object",
+      "spring",
+      "rain"
+    ]
+  },
+  "animals/rabbit.png": {
+    "name": "Rabbit",
+    "tags": [
+      "animal",
+      "mammal",
+      "spring",
+      "hops"
+    ]
+  },
+  "animals/frog.png": {
+    "name": "Frog",
+    "tags": [
+      "animal",
+      "amphibian",
+      "spring",
+      "hops"
+    ]
+  },
+  "objects/kite.png": {
+    "name": "Kite",
+    "tags": [
+      "object",
+      "toy",
+      "spring",
+      "flies"
+    ]
+  },
+  "animals/earthworm.png": {
+    "name": "Earthworm",
+    "tags": [
+      "animal",
+      "insect",
+      "spring",
+      "ground"
+    ]
+  },
+  "animals/butterfly.png": {
+    "name": "Butterfly",
+    "tags": [
+      "animal",
+      "insect",
+      "spring",
+      "flies"
+    ]
+  },
+  "clothing/sunglasses.png": {
+    "name": "Sunglasses",
+    "tags": [
+      "clothing",
+      "summer",
+      "sun"
+    ]
+  },
+  "nature/puddle.png": {
+    "name": "Puddle",
+    "tags": [
+      "nature",
+      "spring",
+      "rain"
+    ]
+  },
+  "objects/snowman.png": {
+    "name": "Snowman",
+    "tags": [
+      "object",
+      "winter",
+      "melts"
+    ]
+  },
+  "nature/icicle.png": {
+    "name": "Icicle",
+    "tags": [
+      "nature",
+      "winter",
+      "melts"
+    ]
+  },
+  "nature/snow.png": {
+    "name": "Snow",
+    "tags": [
+      "nature",
+      "winter",
+      "melts"
+    ]
+  },
+  "plants/seeds.png": {
+    "name": "Seeds",
+    "tags": [
+      "plant",
+      "spring",
+      "garden"
+    ]
+  },
+  "food/strawberry.png": {
+    "name": "Strawberry",
+    "tags": [
+      "food",
+      "fruit",
+      "spring",
+      "summer"
+    ]
+  },
+  "objects/blanket.png": {
+    "name": "Blanket",
+    "tags": [
+      "object",
+      "winter",
+      "warm"
+    ]
+  },
+  "nature/blizzard.jpg": {
+    "name": "Blizzard",
+    "tags": [
+      "nature",
+      "winter",
+      "snow"
+    ]
+  },
+  "clothing/boots.png": {
+    "name": "Boots",
+    "tags": [
+      "clothing",
+      "winter"
+    ]
+  },
+  "animals/cardinal.jpg": {
+    "name": "Cardinal",
+    "tags": [
+      "animal",
+      "bird",
+      "winter"
+    ]
+  },
+  "objects/fireplace.png": {
+    "name": "Fireplace",
+    "tags": [
+      "object",
+      "winter",
+      "warm"
+    ]
+  },
+  "nature/frost.jpg": {
+    "name": "Frost",
+    "tags": [
+      "nature",
+      "winter",
+      "cold"
+    ]
+  },
+  "clothing/gloves.png": {
+    "name": "Gloves",
+    "tags": [
+      "clothing",
+      "winter",
+      "warm"
+    ]
+  },
+  "objects/hockey_stick.jpg": {
+    "name": "Hockey stick",
+    "tags": [
+      "object",
+      "winter",
+      "sports"
+    ]
+  },
+  "nature/ice_1.jpg": {
+    "name": "Ice",
+    "tags": [
+      "nature",
+      "winter",
+      "cold"
+    ]
+  },
+  "objects/ice_scraper.png": {
+    "name": "Ice scraper",
+    "tags": [
+      "object",
+      "winter",
+      "car"
+    ]
+  },
+  "nature/icicle.jpg": {
+    "name": "Icicle",
+    "tags": [
+      "nature",
+      "winter",
+      "cold"
+    ]
+  },
+  "clothing/mittens.png": {
+    "name": "Mittens",
+    "tags": [
+      "clothing",
+      "winter",
+      "warm"
+    ]
+  },
+  "plants/pine_tree.png": {
+    "name": "Pine tree",
+    "tags": [
+      "plant",
+      "winter",
+      "tree"
+    ]
+  },
+  "clothing/scarf.png": {
+    "name": "Scarf",
+    "tags": [
+      "clothing",
+      "winter",
+      "warm"
+    ]
+  },
+  "objects/skis.jpg": {
+    "name": "Skis",
+    "tags": [
+      "object",
+      "winter",
+      "sports"
+    ]
+  },
+  "objects/sled.jpg": {
+    "name": "Sled",
+    "tags": [
+      "object",
+      "winter",
+      "play"
+    ]
+  },
+  "objects/snow-shovel.jpg": {
+    "name": "Snow shovel",
+    "tags": [
+      "object",
+      "winter",
+      "work"
+    ]
+  },
+  "nature/snow_2.jpg": {
+    "name": "Snow",
+    "tags": [
+      "nature",
+      "winter",
+      "cold"
+    ]
+  },
+  "objects/snow_fort.png": {
+    "name": "Snow fort",
+    "tags": [
+      "object",
+      "winter",
+      "play"
+    ]
+  },
+  "objects/snow_plow.jpg": {
+    "name": "Snow plow",
+    "tags": [
+      "object",
+      "winter",
+      "work"
+    ]
+  },
+  "objects/snowball.jpg": {
+    "name": "Snowball",
+    "tags": [
+      "object",
+      "winter",
+      "play"
+    ]
+  },
+  "nature/snowflake.jpg": {
+    "name": "Snowflake",
+    "tags": [
+      "nature",
+      "winter",
+      "cold"
+    ]
+  },
+  "objects/snowman.jpg": {
+    "name": "Snowman",
+    "tags": [
+      "object",
+      "winter",
+      "play"
+    ]
+  },
+  "food/soup.jpg": {
+    "name": "Soup",
+    "tags": [
+      "food",
+      "winter",
+      "warm"
+    ]
+  },
+  "objects/space_heater.png": {
+    "name": "Space heater",
+    "tags": [
+      "object",
+      "winter",
+      "warm"
+    ]
+  },
+  "objects/thermos.jpg": {
+    "name": "Thermos",
+    "tags": [
+      "object",
+      "winter",
+      "warm"
+    ]
+  },
+  "clothing/winter-coat.png": {
+    "name": "Winter coat",
+    "tags": [
+      "clothing",
+      "winter",
+      "warm"
+    ]
+  },
+  "clothing/winter-hat.jpg": {
+    "name": "Winter hat",
+    "tags": [
+      "clothing",
+      "winter",
+      "warm"
+    ]
+  },
+  "objects/broom.jpg": {
+    "name": "Broom",
+    "tags": [
+      "object",
+      "winter"
+    ]
+  },
+  "objects/ice_skates.jpg": {
+    "name": "Ice skates",
+    "tags": [
+      "object",
+      "winter",
+      "sports"
+    ]
+  },
+  "animals/penguins.jpg": {
+    "name": "Penguins",
+    "tags": [
+      "animal",
+      "winter",
+      "bird"
+    ]
+  },
+  "animals/polar_bear.jpg": {
+    "name": "Polar bear",
+    "tags": [
+      "animal",
+      "winter",
+      "mammal"
+    ]
+  },
+  "clothing/raincoat.jpg": {
+    "name": "Raincoat",
+    "tags": [
+      "clothing",
+      "wet"
+    ]
+  },
+  "nature/snow.jpg": {
+    "name": "Snow",
+    "tags": [
+      "nature",
+      "winter"
+    ]
+  },
+  "objects/snowboard.jpg": {
+    "name": "Snowboard",
+    "tags": [
+      "object",
+      "winter",
+      "sports"
+    ]
+  },
+  "food/warm_tea.jpg": {
+    "name": "Warm tea",
+    "tags": [
+      "food",
+      "winter",
+      "drink"
+    ]
+  },
+  "actions/dogplaysnow.png": {
+    "name": "Dog playing in snow",
+    "tags": [
+      "action",
+      "winter",
+      "dog"
+    ]
+  },
+  "actions/drink-hotchocolate.png": {
+    "name": "Drinking hot chocolate",
+    "tags": [
+      "action",
+      "winter",
+      "drink"
+    ]
+  },
+  "actions/kidmakesnowman.png": {
+    "name": "Making a snowman",
+    "tags": [
+      "action",
+      "winter",
+      "play"
+    ]
+  },
+  "actions/kidsiceskate.png": {
+    "name": "Ice skating",
+    "tags": [
+      "action",
+      "winter",
+      "play"
+    ]
+  },
+  "actions/kidsled.png": {
+    "name": "Sledding",
+    "tags": [
+      "action",
+      "winter",
+      "play"
+    ]
+  },
+  "actions/manshovel.png": {
+    "name": "Shoveling",
+    "tags": [
+      "action",
+      "winter",
+      "work"
+    ]
+  },
+  "actions/throw_snowball.png": {
+    "name": "Throwing snowballs",
+    "tags": [
+      "action",
+      "winter",
+      "play"
+    ]
+  },
+  "objects/swing.png": {
+    "name": "Swing",
+    "tags": [
+      "object",
+      "spring"
+    ]
+  },
+  "objects/rainboots.png": {
+    "name": "Rain Boots",
+    "tags": [
+      "object",
+      "spring"
+    ]
+  },
+  "objects/baseballglove.png": {
+    "name": "Baseball Glove",
+    "tags": [
+      "object",
+      "spring"
+    ]
+  },
+  "objects/picnicbasket.png": {
+    "name": "Picnicbasket",
+    "tags": [
+      "object",
+      "spring"
+    ]
+  },
+  "objects/flower.png": {
+    "name": "Flower",
+    "tags": [
+      "object",
+      "spring"
+    ]
+  },
+  "objects/waterbottle.png": {
+    "name": "Water Bottle",
+    "tags": [
+      "object",
+      "spring"
+    ]
+  },
+  "objects/birdnest.png": {
+    "name": "Bird Nest",
+    "tags": [
+      "object",
+      "spring"
+    ]
+  },
+  "emotions/boyfrustrated.png": {
+    "name": "Boy frustrated",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/girlproud.png": {
+    "name": "Girl proud",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/boyunsure.png": {
+    "name": "Boy unsure",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/boyembarrassed.png": {
+    "name": "Boy embarrassed",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/girlannoyed.png": {
+    "name": "Girl annoyed",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/girlconfused.png": {
+    "name": "Girl confused",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/girlsad.png": {
+    "name": "Girl sad",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/girlbored.png": {
+    "name": "Girl bored",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/boyrelieved.png": {
+    "name": "Boy relieved",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/girltired.png": {
+    "name": "Girl tired",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/boysurprised.png": {
+    "name": "Boy surprised",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "emotions/boyworried.png": {
+    "name": "Boy worried",
+    "tags": [
+      "emotion",
+      "feeling",
+      "people"
+    ]
+  },
+  "actions/take-sandwich.png": {
+    "name": "Take sandwich",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/water-flowers.png": {
+    "name": "Water flowers",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/break-car.png": {
+    "name": "Break car",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/drop-icecream.png": {
+    "name": "Drop icecream",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/take-cookie.png": {
+    "name": "Take cookie",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/fly-kite.png": {
+    "name": "Fly kite",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/drop-books.png": {
+    "name": "Drop books",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/play-car.png": {
+    "name": "Play car",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/kick-ball.png": {
+    "name": "Kick ball",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/jump-puddle.png": {
+    "name": "Jump puddle",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/eat-sandwich.png": {
+    "name": "Eat sandwich",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/blows-hat.png": {
+    "name": "Blows hat",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/help-girl.png": {
+    "name": "Help girl",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/fly-away.png": {
+    "name": "Fly away",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/chase-hat.png": {
+    "name": "Chase hat",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  },
+  "actions/share-ball.png": {
+    "name": "Share ball",
+    "tags": [
+      "action",
+      "verb",
+      "spring"
+    ]
+  }
 }
