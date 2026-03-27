@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add an Adjective Activity</title>
+    <style>
+        :root {
+            /* Core Colors */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #ec4899;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+
+            /* Text Sizing Variables */
+            --base-size: 16px;
+            --story-size: 1.25rem;
+            --header-size: 1.5rem;
+        }
+
+        /* Text Size Classes */
+        body.text-large {
+            --base-size: 20px;
+            --story-size: 1.6rem;
+            --header-size: 1.8rem;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 60px;
+            font-size: var(--base-size);
+            line-height: 1.5;
+            transition: font-size 0.3s ease;
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- Pagination Controls --- */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pagination-info {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        /* --- Content Areas --- */
+        .story-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .story-title {
+            font-size: var(--header-size);
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary);
+            text-transform: capitalize;
+        }
+
+        /* --- Image Placeholder --- */
+        .image-container {
+            width: 100%;
+            height: 300px;
+            background-color: #e2e8f0;
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: #64748b;
+        }
+
+        .image-container svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+            fill: currentColor;
+        }
+
+        /* --- Input Frame --- */
+        .sentence-frame {
+            font-size: var(--story-size);
+            line-height: 1.8;
+            color: var(--text-main);
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .text-input {
+            padding: 0.4rem 0.8rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: var(--story-size);
+            font-family: inherit;
+            transition: border-color 0.2s;
+            width: 200px;
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .noun-label {
+            text-transform: lowercase;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .sentence-frame {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-controls">
+            <a href="index.html" class="btn btn-outline btn-sm">← Hub</a>
+            <h1 style="font-size: 1.2rem; margin: 0; font-weight: 700;">Add an Adjective</h1>
+        </div>
+        <div class="header-controls">
+            <button class="btn btn-outline btn-sm" id="textSizeBtn" title="Toggle Text Size">Aa</button>
+        </div>
+    </header>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-container">
+        <button class="btn btn-outline" id="prevBtn">← Previous</button>
+        <select id="itemSelect" class="pagination-info"
+            style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: 1rem; cursor: pointer; background: var(--card-bg); color: var(--text-main); font-family: inherit;">
+            <!-- Options populated by JS -->
+        </select>
+        <button class="btn btn-outline" id="nextBtn">Next →</button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="card" id="activityCard">
+            <div class="story-header">
+                <h2 class="story-title" id="displayTitle">Item Title</h2>
+            </div>
+
+            <div class="image-container">
+                <img id="itemImage" src="" alt=""
+                    style="max-width: 100%; max-height: 100%; object-fit: contain; display: none; border-radius: 0.5rem;">
+                <svg id="imagePlaceholderSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                </svg>
+                <div id="imagePlaceholderText">Image Placeholder</div>
+            </div>
+
+            <div class="sentence-frame">
+                <span>I see a/an</span>
+                <input type="text" id="adjectiveInput" class="text-input" placeholder="descriptive word" spellcheck="false" autocomplete="off">
+                <span id="nounLabel" class="noun-label">noun</span>.
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- Data Structure ---
+        const activityData = {
+            items: [
+                { id: 1, title: "Robin", noun: "robin", image: "images/animals/robin.png" },
+                { id: 2, title: "Blanket", noun: "blanket", image: "images/objects/blanket.png" },
+                { id: 3, title: "Strawberry", noun: "strawberry", image: "images/food/strawberry.png" },
+                { id: 4, title: "Umbrella", noun: "umbrella", image: "images/objects/umbrella.png" },
+                { id: 5, title: "Rabbit", noun: "rabbit", image: "images/animals/rabbit.png" },
+                { id: 6, title: "Sunglasses", noun: "sunglasses", image: "images/clothing/sunglasses.png" },
+                { id: 7, title: "Flower", noun: "flower", image: "images/objects/flower.png" },
+                { id: 8, title: "Baseball glove", noun: "baseball glove", image: "images/objects/baseballglove.png" },
+                { id: 9, title: "Bird nest", noun: "bird nest", image: "images/objects/birdnest.png" },
+                { id: 10, title: "Daffodil", noun: "daffodil", image: "images/plants/daffodil.png" },
+                { id: 11, title: "Snowman", noun: "snowman", image: "images/objects/snowman.png" },
+                { id: 12, title: "Kite", noun: "kite", image: "images/objects/kite.png" }
+            ]
+        };
+
+        // --- State ---
+        let currentIndex = 0;
+        let isLargeText = false;
+
+        // Object to store user input between item loads
+        const userData = {};
+
+        // --- DOM Elements ---
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const itemSelect = document.getElementById('itemSelect');
+
+        const displayTitle = document.getElementById('displayTitle');
+        const itemImage = document.getElementById('itemImage');
+        const imagePlaceholderSvg = document.getElementById('imagePlaceholderSvg');
+        const imagePlaceholderText = document.getElementById('imagePlaceholderText');
+        
+        const adjectiveInput = document.getElementById('adjectiveInput');
+        const nounLabel = document.getElementById('nounLabel');
+
+        // --- Initialization ---
+        function init() {
+            // Initialize dropdown
+            activityData.items.forEach((item, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `${index + 1}. ${item.title}`;
+                itemSelect.appendChild(option);
+
+                userData[item.id] = { adjective: '' };
+            });
+
+            loadItem(0);
+            setupEventListeners();
+        }
+
+        // --- Logic ---
+        function saveCurrentInput() {
+            const item = activityData.items[currentIndex];
+            userData[item.id] = {
+                adjective: adjectiveInput.value
+            };
+        }
+
+        function loadItem(index) {
+            // Save current before switching
+            if (activityData.items[currentIndex]) {
+                saveCurrentInput();
+            }
+
+            currentIndex = index;
+            const item = activityData.items[index];
+
+            // Render Content
+            displayTitle.textContent = `${index + 1}. ${item.title}`;
+            nounLabel.textContent = item.noun;
+
+            const imgContainer = document.querySelector('.image-container');
+            if (item.image) {
+                itemImage.src = item.image;
+                itemImage.alt = item.title;
+                itemImage.style.display = 'block';
+                imagePlaceholderSvg.style.display = 'none';
+                imagePlaceholderText.style.display = 'none';
+                imgContainer.style.border = 'none';
+                imgContainer.style.backgroundColor = 'transparent';
+            } else {
+                itemImage.style.display = 'none';
+                imagePlaceholderSvg.style.display = 'block';
+                imagePlaceholderText.style.display = 'block';
+                imagePlaceholderText.textContent = `[Image Placeholder: ${item.title}]`;
+                imgContainer.style.border = '2px dashed #cbd5e1';
+                imgContainer.style.backgroundColor = '#e2e8f0';
+            }
+
+            // Restore user data if any
+            const data = userData[item.id];
+            adjectiveInput.value = data.adjective;
+
+            // Render Pagination
+            itemSelect.value = index;
+
+            // Update button states
+            prevBtn.disabled = (currentIndex === 0);
+            prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
+            prevBtn.style.cursor = prevBtn.disabled ? "not-allowed" : "pointer";
+
+            nextBtn.disabled = (currentIndex === activityData.items.length - 1);
+            nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
+            nextBtn.style.cursor = nextBtn.disabled ? "not-allowed" : "pointer";
+            
+            // Focus input for easy typing
+            adjectiveInput.focus();
+        }
+
+        function setupEventListeners() {
+            // Text Size Toggle
+            document.getElementById('textSizeBtn').onclick = () => {
+                isLargeText = !isLargeText;
+                document.body.classList.toggle('text-large', isLargeText);
+            };
+
+            // Pagination
+            prevBtn.onclick = () => {
+                if (currentIndex > 0) loadItem(currentIndex - 1);
+            };
+
+            nextBtn.onclick = () => {
+                if (currentIndex < activityData.items.length - 1) loadItem(currentIndex + 1);
+            };
+
+            itemSelect.addEventListener('change', (e) => {
+                loadItem(parseInt(e.target.value, 10));
+            });
+
+            // Allow "Enter" key to go to next item
+            adjectiveInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !nextBtn.disabled) {
+                    loadItem(currentIndex + 1);
+                }
+            });
+
+            // Auto-save typing for resilience
+            adjectiveInput.addEventListener('input', saveCurrentInput);
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+
+</html>
