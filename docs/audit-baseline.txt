@@ -1,0 +1,496 @@
+
+❌ NON-COMPLIANT (120 files)
+  activities/articulation/articulation-make-your-own-sentence.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/articulation/articulation-paragraph-check-in.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/articulation/articulation-practice-sequential.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/articulation/articulation-practice.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/articulation/articulation-story-builder.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/articulation/articulation-word-practice.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/articulation/blend-story-sound-reader.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/articulation/final-l-blend-stories-interactive.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/articulation/final-l-blend-stories.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/articulation/vocalic-r-practice.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/fluency/fluency-spring.html
+    - has <style> block
+    - missing body category-* class
+  activities/fluency/fluency-thanksgiving.html
+    - has <style> block
+    - missing body category-* class
+  activities/fluency/fluency-therapy-session-activity.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/fluency/fluency-winter-conversation-starters.html
+    - has <style> block
+    - missing body category-* class
+  activities/fluency/fluency-winter.html
+    - has <style> block
+    - missing body category-* class
+  activities/fluency/share-your-stutter-activity.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/fluency/stuttering-fight-flight-activity.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/fluency/thanksgiving-conversation-fluency-artic.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/grammar/complex-sentence-summary-builder.html
+    - has <style> block
+    - missing body category-* class
+  activities/grammar/direction-find-the-core.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+scenarios\s*=\s*\[
+    - missing body category-* class
+  activities/grammar/direction-strategy-coach.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+scenarios\s*=\s*\[
+    - missing body category-* class
+  activities/grammar/direction-strategy-visual-guide.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/grammar/four-sentence-challenge.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/grammar/identifying-plural-nouns.html
+    - has <style> block
+    - missing body category-* class
+  activities/grammar/past-tense-hybrid.html
+    - has <style> block
+    - missing body category-* class
+  activities/grammar/plural-noun-stories.html
+    - has <style> block
+    - missing body category-* class
+  activities/grammar/plural-nouns-practice.html
+    - has <style> block
+    - missing body category-* class
+  activities/grammar/remember-and-do-challenge.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+scenarios\s*=\s*\[
+    - missing body category-* class
+  activities/grammar/sentence-breakdown-paraphrasing.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/grammar/sentence-builder-elementary.html
+    - has <style> block
+    - missing body category-* class
+  activities/grammar/sentence-builder-middle-school.html
+    - has <style> block
+    - missing body category-* class
+  activities/grammar/understanding-negation.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/grammar/winter-subject-action-object-builder.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/author-purpose-msg.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/author-theme-mainidea-sentence-builder.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/compare-contrast-activity.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/compare-contrast-builder.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/compare-contrast-seasonal-pairs.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/compare-contrast-thanksgiving.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/double-bubble-compare-contrast-fall-edition.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/fall-reading-comprehension-infer.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/fall-reading-simple.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/fall-stories-expanded-and-leveled.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/finding-message-glitch.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+scenarios\s*=\s*\[
+    - missing body category-* class
+  activities/reading/hs-story-retelling-focus.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/inference-thanksgiving-simple.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/inference-thanksgiving.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/late-fall-winter-reading-progressive.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/late-winter-early-spring-reading.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/main-idea-key-details.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/main-idea-short-stories.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/making-inferences.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/multi-level-reading-comp.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/perspective-pair-inference.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+scenarios\s*=\s*\[
+    - missing body category-* class
+  activities/reading/short-stories-pronouns-details.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/simple-story-prompts-activity.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/social-perspective-progressive.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+scenarios\s*=\s*\[
+    - missing body category-* class
+  activities/reading/spring-break-reading.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/spring-comics-reading.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/stories-inference-compare.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/story-prompts-expanded.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/story-retelling-worksheet.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/thanksgiving-literal-comprehension-progressive.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/thanksgiving-nonfiction-summary-organizer.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/winter-compare-contrast-drag.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+items\s*=\s*\[
+    - missing body category-* class
+  activities/reading/winter-short-stories.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/reading/winter-short-story-comprehension-progressive.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/winter-short-story-comprehension-tabs-complex.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/reading/winter-short-story-comprehension-tabs.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/social/communication-breakdown-causes.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/communication-breakdown-practice.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/conversation-initiation-starters.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/conversation-response-practice.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/conversation-response-thanksgiving.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/conversation-starter-practice.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/helpful-hurtful-response-judge.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/helpful-hurtful-scenarios.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/high-school-social-conflict-reflection.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/high-school-social-solution-repair.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/high-school-subtle-problem-identifier.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/inappropriate-behavior-solution-practice.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/initiate-conversations-predict-response.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/labeling-emotions-speech-strategies.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/question-response-practice.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/social/relevant-social-q-and-a.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/social/social-problem-solving-identify-problem.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/social/social-problem-solving.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/social-response-evaluator.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/social-story-practice.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/social/social-thinking-starting-conversations.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/thanksgiving-social-problem-scenarios.html
+    - has <style> block
+    - missing body category-* class
+  activities/social/understanding-both-perspectives.html
+    - has <style> block
+    - missing body category-* class
+  activities/vocabulary/analogies-activity.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/category-function-definition.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+words\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/context-clues-activity-enhanced.html
+    - has <style> block
+    - missing body category-* class
+  activities/vocabulary/context-clues-step-by-step.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/context-clues-thanksgiving.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+items\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/definition-attribute-builder.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+words\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/fall-antonym-practice.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/fall-nouns-category-function-expanded.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+items\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/identifying-antonyms.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/identifying-synonyms.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/image-viewer.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/interactive-descriptor-stories-thanksgiving.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/interactive-descriptor-stories.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+stories\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/interactive-descriptor-word-bank.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/multiple-meaning-advanced.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+words\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/multiple-meaning-words.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/prefix-practice-progressive.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/sorting-categories.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/sorting-functions-spring.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/synonyms-thanksgiving.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+items\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/vocabulary-scaffold-activity.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/winter-category-function-basic.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+words\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/winter-context-clues-interactive.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/winter-context-clues-progressive.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+items\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/winter-figurative-language-single.html
+    - has <style> block
+    - missing data-loader.js
+    - inline data pattern: const\s+items\s*=\s*\[
+    - missing body category-* class
+  activities/vocabulary/winter-vocabulary-category-function.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/winter-vocabulary-context-clues.html
+    - has <style> block
+    - missing data-loader.js
+    - missing body category-* class
+  activities/vocabulary/word-definition-activity.html
+    - missing data-loader.js
+    - missing body category-* class
+
+── Summary ──────────────────────────────
+Total:         120
+Compliant:     0
+Partial:       0
+Non-compliant: 120
