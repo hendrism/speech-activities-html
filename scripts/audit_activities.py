@@ -14,7 +14,6 @@ Usage:
   python3 scripts/audit_activities.py --summary
 """
 
-import os
 import re
 import sys
 import argparse
@@ -28,15 +27,19 @@ CATEGORIES = ["articulation", "fluency", "grammar", "reading", "social", "vocabu
 KNOWN_EXCEPTIONS = {"activities/vocabulary/image-viewer.html"}
 
 INLINE_DATA_PATTERNS = [
-    r'const\s+ACTIVITY_DATA\s*=\s*\[',
-    r'const\s+stories\s*=\s*\[',
-    r'const\s+items\s*=\s*\[',
-    r'const\s+scenarios\s*=\s*\[',
-    r'const\s+questions\s*=\s*\[',
-    r'const\s+wordList\s*=\s*\[',
-    r'const\s+words\s*=\s*\[',
-    r'window\.wordDefinitions\s*=',
-    r'window\.contextClues',
+    (r'const\s+ACTIVITY_DATA\s*=\s*\[',  'ACTIVITY_DATA array'),
+    (r'const\s+stories\s*=\s*\[',         'stories array'),
+    (r'const\s+items\s*=\s*\[',           'items array'),
+    (r'const\s+scenarios\s*=\s*\[',       'scenarios array'),
+    (r'const\s+questions\s*=\s*\[',       'questions array'),
+    (r'const\s+wordList\s*=\s*\[',        'wordList array'),
+    (r'const\s+words\s*=\s*\[',           'words array'),
+    (r'const\s+activityData\s*=\s*\[',    'activityData array'),
+    (r'const\s+passages\s*=\s*\[',        'passages array'),
+    (r'const\s+starters\s*=\s*\[',        'starters array'),
+    (r'const\s+data\s*=\s*\[',            'data array'),
+    (r'window\.wordDefinitions\s*=',       'window.wordDefinitions'),
+    (r'window\.contextClues',              'window.contextClues'),
 ]
 
 def audit_file(path):
@@ -54,9 +57,9 @@ def audit_file(path):
     if "data-loader.js" not in content:
         issues.append("missing data-loader.js")
 
-    for pattern in INLINE_DATA_PATTERNS:
+    for pattern, label in INLINE_DATA_PATTERNS:
         if re.search(pattern, content):
-            issues.append(f"inline data pattern: {pattern}")
+            issues.append(f"inline data: {label}")
             break
 
     if not re.search(r'<body[^>]+class=["\'][^"\']*category-', content):
@@ -76,6 +79,10 @@ def main():
     parser.add_argument("--summary", action="store_true", help="Print counts only")
     args = parser.parse_args()
 
+    if args.category and args.category not in CATEGORIES:
+        print(f"ERROR: unknown category '{args.category}'. Valid: {', '.join(CATEGORIES)}", file=sys.stderr)
+        sys.exit(1)
+
     categories = [args.category] if args.category else CATEGORIES
     results = {"✅ COMPLIANT": [], "⚠️  PARTIAL (expected)": [], "⚠️  PARTIAL": [], "❌ NON-COMPLIANT": []}
 
@@ -87,14 +94,16 @@ def main():
         for f in sorted(cat_dir.glob("*.html")):
             status, issues = audit_file(f)
             rel = str(f.relative_to(ROOT))
-            if status == "⚠️  PARTIAL" and rel in KNOWN_EXCEPTIONS:
+            if rel in KNOWN_EXCEPTIONS:
                 status = "⚠️  PARTIAL (expected)"
+                issues = [i + " (approved exception)" for i in issues]
             results[status].append((rel, issues))
 
     if args.summary:
         total = sum(len(v) for v in results.values())
         print(f"Total:         {total}")
         print(f"Compliant:     {len(results['✅ COMPLIANT'])}")
+        print(f"Partial (expected): {len(results['⚠️  PARTIAL (expected)'])}")
         print(f"Partial:       {len(results['⚠️  PARTIAL'])}")
         print(f"Non-compliant: {len(results['❌ NON-COMPLIANT'])}")
         return
@@ -112,6 +121,7 @@ def main():
     print(f"\n── Summary ──────────────────────────────")
     print(f"Total:         {total}")
     print(f"Compliant:     {len(results['✅ COMPLIANT'])}")
+    print(f"Partial (expected): {len(results['⚠️  PARTIAL (expected)'])}")
     print(f"Partial:       {len(results['⚠️  PARTIAL'])}")
     print(f"Non-compliant: {len(results['❌ NON-COMPLIANT'])}")
 
