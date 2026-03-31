@@ -80,6 +80,20 @@
     /* Transitions */
     --transition-fast: 0.15s ease;
     --transition-base: 0.3s ease;
+
+    /* Category accent colors */
+    --color-articulation:      #f59e0b;
+    --color-articulation-dark: #d97706;
+    --color-fluency:           #10b981;
+    --color-fluency-dark:      #059669;
+    --color-grammar:           #3b82f6;
+    --color-grammar-dark:      #2563eb;
+    --color-reading:           #8b5cf6;
+    --color-reading-dark:      #7c3aed;
+    --color-social:            #ec4899;
+    --color-social-dark:       #db2777;
+    --color-vocabulary:        #06b6d4;
+    --color-vocabulary-dark:   #0891b2;
 }
 
 /* --------------------------------------------------------------------------
@@ -99,6 +113,16 @@ body {
     min-height: 100vh;
     padding: var(--space-5);
 }
+
+/* --------------------------------------------------------------------------
+   Category backgrounds — applied via <body class="category-{name}">
+   -------------------------------------------------------------------------- */
+body.category-articulation { background: linear-gradient(135deg, var(--color-articulation), var(--color-articulation-dark)); }
+body.category-fluency       { background: linear-gradient(135deg, var(--color-fluency),      var(--color-fluency-dark)); }
+body.category-grammar       { background: linear-gradient(135deg, var(--color-grammar),      var(--color-grammar-dark)); }
+body.category-reading       { background: linear-gradient(135deg, var(--color-reading),      var(--color-reading-dark)); }
+body.category-social        { background: linear-gradient(135deg, var(--color-social),       var(--color-social-dark)); }
+body.category-vocabulary    { background: linear-gradient(135deg, var(--color-vocabulary),   var(--color-vocabulary-dark)); }
 
 /* --------------------------------------------------------------------------
    3. Layout Components
