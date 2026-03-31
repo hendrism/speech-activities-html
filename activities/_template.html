@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    ============================================================
+    CANONICAL ACTIVITY TEMPLATE — v2
+    ============================================================
+    HOW TO USE:
+      1. Copy this file into the correct category folder:
+           activities/articulation/
+           activities/fluency/
+           activities/grammar/
+           activities/reading/
+           activities/social/
+           activities/vocabulary/
+      2. Rename it (kebab-case, e.g. spring-vocabulary.html)
+      3. Update <title> and <h1>
+      4. Change {category} in the two script src paths below
+         to the actual category name (articulation, fluency, etc.)
+      5. Change the <body class> to match the category
+      6. Add new content items to /data/{category}.json
+      7. Replace renderCard() with your activity's HTML
+      8. Replace checkAnswer() with your validation logic
+      9. Delete these comments
+
+    DATA RULES (no exceptions):
+      - All content lives in /data/{category}.json
+      - Load it via DataLoader — never write inline data arrays
+      - No style blocks — use CSS variables from /css/styles.css
+    ============================================================
+    -->
+    <title>Activity Title — Speech Therapy</title>
+
+    <!-- Shared design system (colors, spacing, buttons, cards) -->
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<!-- Change category-reading to match this activity's category -->
+<body class="category-reading">
+
+    <!-- ── Header ─────────────────────────────────────── -->
+    <div class="activity-header">
+        <h1>🎯 Activity Title</h1>
+        <p>Brief one-line description of the activity</p>
+    </div>
+
+    <!-- ── Main card ──────────────────────────────────── -->
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-label" id="progress-label"></div>
+
+        <div class="nav-pills" id="nav-pills"></div>
+
+        <div class="card" id="card">
+            <!-- Dynamic content injected by renderCard() -->
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <div class="flex-between mt-4">
+            <button class="btn btn-secondary" id="prev-btn" onclick="prevItem()">← Previous</button>
+            <button class="btn btn-primary"   id="next-btn" onclick="nextItem()">Next →</button>
+        </div>
+    </div>
+
+    <!-- ── Scripts ───────────────────────────────────────
+         Load order matters:
+           1. Data file populates window.ActivityData
+           2. data-loader.js provides the DataLoader API
+           3. utils.js provides UI helpers
+           4. Your activity logic (inline <script> below)
+    ─────────────────────────────────────────────────── -->
+    <script src="../../data/{category}.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <script src="../../js/utils.js"></script>
+
+    <script>
+        // ── Load data ─────────────────────────────────────────────
+        // Replace '{category}' and '{key}' with your actual values.
+        // Example: DataLoader.get('vocabulary', 'words')
+        // See /data/README.md for all available categories and keys.
+        const items = DataLoader.get('{category}', '{key}');
+
+        // ── State ─────────────────────────────────────────────────
+        const state = {
+            items:        shuffleArray(items),  // or [...items] for sequential
+            currentIndex: 0,
+            answered:     false,
+        };
+
+        // ── Render ────────────────────────────────────────────────
+        function renderCard() {
+            const item = state.items[state.currentIndex];
+            const card = document.getElementById('card');
+            state.answered = false;
+            hideFeedback('feedback');
+
+            updateProgress('progress-fill', state.currentIndex + 1, state.items.length, 'progress-label');
+            setNavActive('nav-pills', state.currentIndex);
+
+            // ── Card content — customise this section ──
+            card.innerHTML = `
+                <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-4);">
+                    ${item.prompt}
+                </p>
+                <div class="options-grid" id="options">
+                    <!-- Render answer choices here -->
+                </div>
+            `;
+        }
+
+        // ── Answer checking ───────────────────────────────────────
+        function checkAnswer(selected) {
+            if (state.answered) return;
+            state.answered = true;
+            const isCorrect = selected === state.items[state.currentIndex].answer;
+            showFeedback('feedback', isCorrect);
+        }
+
+        // ── Navigation ────────────────────────────────────────────
+        function nextItem() {
+            if (state.currentIndex < state.items.length - 1) {
+                state.currentIndex++;
+                renderCard();
+            } else {
+                document.getElementById('card').innerHTML = `
+                    <div class="text-center">
+                        <p style="font-size: var(--font-size-2xl);">🎉 All done!</p>
+                        <p class="text-muted mt-4">Great work today.</p>
+                        <button class="btn btn-primary mt-4" onclick="restart()">Start Over</button>
+                    </div>`;
+                hideFeedback('feedback');
+            }
+        }
+
+        function prevItem() {
+            if (state.currentIndex > 0) { state.currentIndex--; renderCard(); }
+        }
+
+        function restart() {
+            state.items = shuffleArray(items);
+            state.currentIndex = 0;
+            renderCard();
+        }
+
+        // ── Init ──────────────────────────────────────────────────
+        renderNavPills('nav-pills', state.items, (idx) => {
+            state.currentIndex = idx;
+            renderCard();
+        }, { labelFn: (item, i) => `${i + 1}` });
+
+        renderCard();
+    </script>
+</body>
+</html>
