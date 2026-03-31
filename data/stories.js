@@ -1,0 +1,26504 @@
+window.ActivityData = window.ActivityData || {};
+window.ActivityData.stories = {
+  "_meta": {
+    "description": "Reading comprehension stories with literal, inferential, and prediction questions",
+    "futureSQLiteTable": "stories + story_versions + questions + choices",
+    "note": "stories_extracted.json is superseded by this file and should be deleted",
+    "version": "1.0",
+    "extractedAt": "2026-02-27T19:07:41.917Z",
+    "totalItems": 239,
+    "extractedFromHTML": 239
+  },
+  "stories": [
+    {
+      "id": 1,
+      "sourceFile": "activities/reading/author-purpose-msg.html",
+      "season": null,
+      "title": "Late Bus Message",
+      "text": "The buses will be about 20 minutes late today. There was an accident on the main road. Students should wait in their normal pickup spots. The school will give another update soon."
+    },
+    {
+      "id": 2,
+      "sourceFile": "activities/reading/author-purpose-msg.html",
+      "season": null,
+      "title": "Game Recommendation",
+      "text": "“Sky Builders” is a fun game where you design your own floating city. The controls are easy to learn and the game looks great. You can also play with friends online. It is one of the best games I’ve played this year."
+    },
+    {
+      "id": 3,
+      "sourceFile": "activities/reading/author-purpose-msg.html",
+      "season": null,
+      "title": "Library Rules",
+      "text": "The library is for reading and studying. Phones should be on silent. Food and drinks are not allowed. These rules help everyone focus."
+    },
+    {
+      "id": 4,
+      "sourceFile": "activities/reading/author-purpose-msg.html",
+      "season": null,
+      "title": "Lost Water Bottle",
+      "text": "Someone left a red water bottle in the gym. It has a sticker on the side and a black lid. It is now in the main office. Please pick it up by Friday."
+    },
+    {
+      "id": 5,
+      "sourceFile": "activities/reading/author-purpose-msg.html",
+      "season": null,
+      "title": "Recycling Reminder",
+      "text": "The school wants students to recycle more. New bins are in the hallways. Throwing away less trash helps the school and the environment. Everyone should try to use the new bins."
+    },
+    {
+      "id": 6,
+      "sourceFile": "activities/reading/author-purpose-msg.html",
+      "season": null,
+      "title": "Weather Message",
+      "text": "Heavy rain is expected this afternoon. The roads may become slippery. Some after-school activities might be canceled. Students should be careful when going home."
+    },
+    {
+      "id": 7,
+      "sourceFile": "activities/reading/author-purpose-msg.html",
+      "season": null,
+      "title": "School Dance Poster",
+      "text": "The school dance is this Friday at 7:00 p.m. Tickets are five dollars and can be bought at lunch. There will be music, snacks, and games. Everyone is invited to come."
+    },
+    {
+      "id": "kitchen",
+      "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
+      "season": null,
+      "title": "Helping in the Kitchen",
+      "text": "During the holiday, Maya helped her aunt in the kitchen. She set the table, washed vegetables, and watched how to roast them with oil and herbs. Maya asked questions about oven temperature and timing. She wanted to remember the steps so she could cook the same meal later for her friends.",
+      "type": "Informational / How-to"
+    },
+    {
+      "id": "parade",
+      "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
+      "season": null,
+      "title": "Watching the Parade",
+      "text": "Jonah and his cousins watched the parade on TV from the living room couch. They liked the bright floats, marching bands, and dancers who moved in time with the music. Jonah noticed how each float matched a song theme. He took notes on colors and shapes because he wanted to design a float for the school parade someday.",
+      "type": "Entertain / Describe"
+    },
+    {
+      "id": "shelter",
+      "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
+      "season": null,
+      "title": "Collecting Cans",
+      "text": "A group of students collected cans for the local shelter. They made posters, asked neighbors to help, and organized the boxes by food type so families could receive balanced meals. They worked after school to sort and label everything. They hoped every family would have enough for a good meal and planned to visit the shelter to see the impact of their project.",
+      "type": "Persuade / Inform to help"
+    },
+    {
+      "id": "travel",
+      "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
+      "season": null,
+      "title": "Travel Delay",
+      "text": "Olivia’s family waited at the airport when their flight was delayed two hours. They used the time to call grandparents, play a card game, and check the flight app for updates. Even though they were tired, they stayed patient and took short walks so the trip would start smoothly once they boarded.",
+      "type": "Inform / Explain"
+    },
+    {
+      "id": "thankfulness",
+      "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
+      "season": null,
+      "title": "Thankful Notes",
+      "text": "In class, students wrote short notes about what they were thankful for. One student mentioned having a calm place to read after school. Another student wrote about a friend who always helped with homework and stayed on video calls until the work was done. The notes were posted on a wall to remind the class of small things that made them feel supported.",
+      "type": "Reflect / Inform"
+    },
+    {
+      "id": "school-persuasive",
+      "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
+      "season": null,
+      "title": "Join the Food Drive",
+      "text": "Students at Lincoln Middle made a short speech to classes about the food drive. They said the food drive needed canned vegetables, pasta, and rice to support local families before winter. They explained that even one can from each student could fill many boxes. They also promised to share photos of the donations being delivered, hoping everyone would join in.",
+      "type": "Persuade"
+    },
+    {
+      "id": "why-rest",
+      "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
+      "season": null,
+      "title": "Why Rest Matters",
+      "text": "The school counselor wrote a note about taking breaks. She said short rests help students focus better and feel less stressed after long study sessions. She gave simple examples like taking a short walk, stretching between chapters, or breathing slowly for one minute. She encouraged students to test which break helped them return to work with more energy.",
+      "type": "Informational / Explain"
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-001",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "Apple Picking Day",
+      "text": [
+        "Liam and his mom go to the apple farm.",
+        "They see big red apples on the trees.",
+        "Liam picks apples and puts them in a basket.",
+        "The air feels cool and smells sweet.",
+        "They eat warm apple pie when they get home."
+      ],
+      "questions": [
+        {
+          "q": "Why does the air smell sweet?",
+          "correct": "Because of the apples",
+          "wrong": [
+            "Because of flowers",
+            "Because of the grass",
+            "Because someone is baking"
+          ]
+        },
+        {
+          "q": "How does Liam probably feel at the farm?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "What season is it in the story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Summer",
+            "Winter",
+            "Spring"
+          ]
+        },
+        {
+          "q": "Why do they make apple pie at home?",
+          "correct": "They picked fresh apples to use",
+          "wrong": [
+            "They bought apples at the store",
+            "They don't like apples",
+            "They wanted to make cookies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-002",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "The Pumpkin Patch",
+      "text": [
+        "Mia and her class visit the pumpkin patch.",
+        "She looks for a small, round pumpkin.",
+        "Her friend finds a big, lumpy one.",
+        "They ride on a hay wagon together.",
+        "Everyone laughs and waves to the farmer."
+      ],
+      "questions": [
+        {
+          "q": "Why do they ride on a hay wagon?",
+          "correct": "To get around the pumpkin patch",
+          "wrong": [
+            "Because they are tired",
+            "Because it's raining",
+            "Because they can't walk"
+          ]
+        },
+        {
+          "q": "How does Mia feel on this trip?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and lonely",
+            "Angry and frustrated",
+            "Sleepy and bored"
+          ]
+        },
+        {
+          "q": "Why does everyone wave to the farmer?",
+          "correct": "To be friendly and say thank you",
+          "wrong": [
+            "Because they are leaving",
+            "Because they need help",
+            "Because they are angry"
+          ]
+        },
+        {
+          "q": "What will they probably do with the pumpkins?",
+          "correct": "Carve them or decorate for fall",
+          "wrong": [
+            "Throw them away",
+            "Plant them",
+            "Give them back"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-003",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "Leaves Falling Down",
+      "text": [
+        "Caleb walks in the park with his dad.",
+        "The trees have red, orange, and yellow leaves.",
+        "He kicks the leaves and watches them fly.",
+        "They take a picture by a tall tree.",
+        "The wind makes the leaves dance."
+      ],
+      "questions": [
+        {
+          "q": "Why are the leaves red, orange, and yellow?",
+          "correct": "It's fall and leaves change colors",
+          "wrong": [
+            "Someone painted them",
+            "The trees are sick",
+            "It's always like that"
+          ]
+        },
+        {
+          "q": "How does Caleb feel in the park?",
+          "correct": "Happy and playful",
+          "wrong": [
+            "Sad and upset",
+            "Angry and mean",
+            "Scared and nervous"
+          ]
+        },
+        {
+          "q": "Why do they take a picture?",
+          "correct": "To remember the beautiful day",
+          "wrong": [
+            "Because the camera is broken",
+            "Because they have to",
+            "Because they are lost"
+          ]
+        },
+        {
+          "q": "Why does the wind make the leaves dance?",
+          "correct": "The wind blows them around",
+          "wrong": [
+            "The leaves are alive",
+            "Someone is shaking the trees",
+            "It's magic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-004",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "Hot Chocolate Time",
+      "text": [
+        "Emma feels cold after school.",
+        "Her sister makes hot chocolate with marshmallows.",
+        "They sit on the couch under a blanket.",
+        "They watch the rain fall outside.",
+        "The drink warms their hands and hearts."
+      ],
+      "questions": [
+        {
+          "q": "Why does Emma feel cold?",
+          "correct": "It's a cold, rainy day",
+          "wrong": [
+            "She has a fever",
+            "The house is broken",
+            "She forgot her coat at school"
+          ]
+        },
+        {
+          "q": "Why do they sit under a blanket?",
+          "correct": "To stay warm and cozy",
+          "wrong": [
+            "To hide from someone",
+            "Because there are no chairs",
+            "Because they are sleepy"
+          ]
+        },
+        {
+          "q": "How do Emma and her sister feel?",
+          "correct": "Warm, cozy, and happy",
+          "wrong": [
+            "Cold and sad",
+            "Angry and upset",
+            "Bored and lonely"
+          ]
+        },
+        {
+          "q": "Why does the drink warm their hearts?",
+          "correct": "They feel happy and loved together",
+          "wrong": [
+            "The chocolate is too hot",
+            "Their hearts are actually cold",
+            "They are sick"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-005",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "Raking the Yard",
+      "text": [
+        "Mr. Lee and his students rake the school yard.",
+        "The leaves make a giant pile.",
+        "Everyone jumps into the pile and laughs.",
+        "They take turns using the rake.",
+        "The yard looks clean when they finish."
+      ],
+      "questions": [
+        {
+          "q": "Why do they rake the yard?",
+          "correct": "To clean up the fallen leaves",
+          "wrong": [
+            "Because Mr. Lee is mean",
+            "To find something lost",
+            "Because they are bored"
+          ]
+        },
+        {
+          "q": "How do the students feel about raking?",
+          "correct": "Happy and having fun",
+          "wrong": [
+            "Sad and upset",
+            "Angry and frustrated",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why do they jump in the leaf pile?",
+          "correct": "For fun and because it looks soft",
+          "wrong": [
+            "Because they fell down",
+            "Because Mr. Lee told them to",
+            "Because they are fighting"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Spring",
+            "Summer",
+            "Winter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-006",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "Football Game Fun",
+      "text": [
+        "Carlos goes to a football game with his family.",
+        "He cheers for the red team.",
+        "They eat popcorn and drink warm cider.",
+        "The players run fast across the field.",
+        "It gets dark when the game ends."
+      ],
+      "questions": [
+        {
+          "q": "Why does it get dark during the game?",
+          "correct": "The game lasts until evening",
+          "wrong": [
+            "There's a storm",
+            "The lights broke",
+            "Someone turned off the sun"
+          ]
+        },
+        {
+          "q": "How does Carlos feel at the game?",
+          "correct": "Excited and happy",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and nervous"
+          ]
+        },
+        {
+          "q": "Why do they eat popcorn and drink cider?",
+          "correct": "It's part of the fun at games",
+          "wrong": [
+            "They didn't eat breakfast",
+            "The store was out of food",
+            "They have to"
+          ]
+        },
+        {
+          "q": "What time of day does the game end?",
+          "correct": "Evening or night",
+          "wrong": [
+            "Morning",
+            "Noon",
+            "Afternoon"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-007",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "Scarecrow in the Garden",
+      "text": [
+        "A scarecrow stands tall in the garden.",
+        "It wears a hat and an old plaid shirt.",
+        "The wind moves its arms a little bit.",
+        "Crows fly away when they see it.",
+        "The farmer smiles at his good work."
+      ],
+      "questions": [
+        {
+          "q": "Why did the farmer make the scarecrow?",
+          "correct": "To scare birds away from the garden",
+          "wrong": [
+            "To have a friend",
+            "Because he was bored",
+            "To sell it"
+          ]
+        },
+        {
+          "q": "Why do the crows fly away?",
+          "correct": "They think it's a real person",
+          "wrong": [
+            "They are going to find food",
+            "They don't like gardens",
+            "The farmer chased them"
+          ]
+        },
+        {
+          "q": "How does the farmer feel?",
+          "correct": "Proud and happy with his work",
+          "wrong": [
+            "Sad and lonely",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why can the wind move the scarecrow's arms?",
+          "correct": "They're made of light, soft materials",
+          "wrong": [
+            "The scarecrow is alive",
+            "The arms are broken",
+            "The farmer moves them"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-008",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "Fall Festival",
+      "text": [
+        "Nora's family goes to the fall festival downtown.",
+        "She eats caramel apples and popcorn.",
+        "Her brother rides the big slide.",
+        "They dance to the music and play games.",
+        "The lights shine when the sun goes down."
+      ],
+      "questions": [
+        {
+          "q": "Why do they go to the festival?",
+          "correct": "To have fun and celebrate fall",
+          "wrong": [
+            "Because they have to",
+            "Because they are lost",
+            "Because it's raining"
+          ]
+        },
+        {
+          "q": "How does Nora feel at the festival?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and bored",
+            "Angry and mean",
+            "Tired and sleepy"
+          ]
+        },
+        {
+          "q": "Why do the lights shine when the sun goes down?",
+          "correct": "So people can see in the dark",
+          "wrong": [
+            "Because someone turned them on by accident",
+            "To scare people",
+            "Because it's Christmas"
+          ]
+        },
+        {
+          "q": "What time of day do they probably leave?",
+          "correct": "Evening or nighttime",
+          "wrong": [
+            "Early morning",
+            "Noon",
+            "Right after lunch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-009",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "The Corn Maze",
+      "text": [
+        "Evan and his friends go in the corn maze.",
+        "The corn is taller than they are!",
+        "They follow signs to find the way out.",
+        "They laugh when they get lost.",
+        "At the end, they eat pumpkin donuts."
+      ],
+      "questions": [
+        {
+          "q": "Why do they laugh when lost?",
+          "correct": "They're having fun and not worried",
+          "wrong": [
+            "They are scared",
+            "They think it's funny to be mean",
+            "They want to go home"
+          ]
+        },
+        {
+          "q": "How do Evan and his friends feel?",
+          "correct": "Happy and playful",
+          "wrong": [
+            "Sad and scared",
+            "Angry and upset",
+            "Bored and sleepy"
+          ]
+        },
+        {
+          "q": "Why is the corn taller than them?",
+          "correct": "Corn grows very tall and they are children",
+          "wrong": [
+            "The corn is magic",
+            "They are lying down",
+            "The corn is on a hill"
+          ]
+        },
+        {
+          "q": "Why do they eat donuts at the end?",
+          "correct": "As a treat or reward for finishing",
+          "wrong": [
+            "Because they have to",
+            "Because they didn't eat breakfast",
+            "Because the donuts are free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-comprehension-infer-010",
+      "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
+      "season": "fall",
+      "title": "Sweater Weather",
+      "text": [
+        "Lila puts on her favorite orange sweater.",
+        "The morning air feels cool.",
+        "She walks to the bus stop with her friends.",
+        "They see fog on the grass.",
+        "Soon, the sun shines through the clouds."
+      ],
+      "questions": [
+        {
+          "q": "Why does Lila wear a sweater?",
+          "correct": "Because the air is cool outside",
+          "wrong": [
+            "Because her mom told her to",
+            "Because she spilled on her shirt",
+            "Because it's her birthday"
+          ]
+        },
+        {
+          "q": "How does Lila probably feel?",
+          "correct": "Happy and ready for school",
+          "wrong": [
+            "Sad and upset",
+            "Angry and mean",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why is there fog on the grass?",
+          "correct": "The cool morning air makes fog",
+          "wrong": [
+            "Someone sprayed water",
+            "It's smoke",
+            "The grass is on fire"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Summer",
+            "Winter",
+            "Spring"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-001",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "Apple Picking Day",
+      "text": [
+        "Liam and his mom go to the apple farm.",
+        "They see big red apples on the trees.",
+        "Liam picks apples and puts them in a basket.",
+        "The air feels cool and smells sweet.",
+        "They eat warm apple pie when they get home."
+      ],
+      "retellingPrompts": [
+        "Liam and his mom went to",
+        "They picked",
+        "The farm had",
+        "When they got home, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes to the farm?",
+          "correct": "Liam and his mom",
+          "wrong": [
+            "Liam and his dad",
+            "Mia and her class",
+            "Emma and her sister"
+          ]
+        },
+        {
+          "q": "What do they pick?",
+          "correct": "Apples",
+          "wrong": [
+            "Pumpkins",
+            "Leaves",
+            "Corn"
+          ]
+        },
+        {
+          "q": "Where do they go?",
+          "correct": "The apple farm",
+          "wrong": [
+            "The pumpkin patch",
+            "The park",
+            "The school"
+          ]
+        },
+        {
+          "q": "When do they go apple picking?",
+          "correct": "During the day",
+          "wrong": [
+            "At night",
+            "In the winter",
+            "In the morning before sunrise"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does the air smell sweet?",
+          "correct": "Because of the apples",
+          "wrong": [
+            "Because of flowers",
+            "Because of the grass",
+            "Because someone is baking"
+          ]
+        },
+        {
+          "q": "How does Liam probably feel at the farm?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "What season is it in the story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Summer",
+            "Winter",
+            "Spring"
+          ]
+        },
+        {
+          "q": "Why do they make apple pie at home?",
+          "correct": "They picked fresh apples to use",
+          "wrong": [
+            "They bought apples at the store",
+            "They don't like apples",
+            "They wanted to make cookies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-002",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "The Pumpkin Patch",
+      "text": [
+        "Mia and her class visit the pumpkin patch.",
+        "She looks for a small, round pumpkin.",
+        "Her friend finds a big, lumpy one.",
+        "They ride on a hay wagon together.",
+        "Everyone laughs and waves to the farmer."
+      ],
+      "retellingPrompts": [
+        "Mia's class went to",
+        "Mia wanted to find",
+        "They rode on",
+        "Everyone was"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes to the pumpkin patch?",
+          "correct": "Mia and her class",
+          "wrong": [
+            "Mia and her mom",
+            "Caleb and his dad",
+            "Carlos and his family"
+          ]
+        },
+        {
+          "q": "What does Mia look for?",
+          "correct": "A small, round pumpkin",
+          "wrong": [
+            "A big, lumpy pumpkin",
+            "Red apples",
+            "Yellow leaves"
+          ]
+        },
+        {
+          "q": "Where do they ride?",
+          "correct": "On a hay wagon",
+          "wrong": [
+            "On a bus",
+            "On a big slide",
+            "In a corn maze"
+          ]
+        },
+        {
+          "q": "When do they visit?",
+          "correct": "During a school day",
+          "wrong": [
+            "After school",
+            "At night",
+            "In the summer"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they ride on a hay wagon?",
+          "correct": "To get around the pumpkin patch",
+          "wrong": [
+            "Because they are tired",
+            "Because it's raining",
+            "Because they can't walk"
+          ]
+        },
+        {
+          "q": "How does Mia feel on this trip?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and lonely",
+            "Angry and frustrated",
+            "Sleepy and bored"
+          ]
+        },
+        {
+          "q": "Why does everyone wave to the farmer?",
+          "correct": "To be friendly and say thank you",
+          "wrong": [
+            "Because they are leaving",
+            "Because they need help",
+            "Because they are angry"
+          ]
+        },
+        {
+          "q": "What will they probably do with the pumpkins?",
+          "correct": "Carve them or decorate for fall",
+          "wrong": [
+            "Throw them away",
+            "Plant them",
+            "Give them back"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-003",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "Leaves Falling Down",
+      "text": [
+        "Caleb walks in the park with his dad.",
+        "The trees have red, orange, and yellow leaves.",
+        "He kicks the leaves and watches them fly.",
+        "They take a picture by a tall tree.",
+        "The wind makes the leaves dance."
+      ],
+      "retellingPrompts": [
+        "Caleb and his dad were at",
+        "The leaves were",
+        "Caleb played with",
+        "They took a picture"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who walks in the park?",
+          "correct": "Caleb and his dad",
+          "wrong": [
+            "Caleb and his mom",
+            "Liam and his mom",
+            "Evan and his friends"
+          ]
+        },
+        {
+          "q": "What color are the leaves?",
+          "correct": "Red, orange, and yellow",
+          "wrong": [
+            "Green and brown",
+            "Purple and pink",
+            "Only red"
+          ]
+        },
+        {
+          "q": "Where do they take a picture?",
+          "correct": "By a tall tree",
+          "wrong": [
+            "At the apple farm",
+            "On a hay wagon",
+            "In the corn maze"
+          ]
+        },
+        {
+          "q": "When do the leaves fall?",
+          "correct": "In the fall",
+          "wrong": [
+            "In the spring",
+            "In the summer",
+            "In the winter"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why are the leaves red, orange, and yellow?",
+          "correct": "It's fall and leaves change colors",
+          "wrong": [
+            "Someone painted them",
+            "The trees are sick",
+            "It's always like that"
+          ]
+        },
+        {
+          "q": "How does Caleb feel in the park?",
+          "correct": "Happy and playful",
+          "wrong": [
+            "Sad and upset",
+            "Angry and mean",
+            "Scared and nervous"
+          ]
+        },
+        {
+          "q": "Why do they take a picture?",
+          "correct": "To remember the beautiful day",
+          "wrong": [
+            "Because the camera is broken",
+            "Because they have to",
+            "Because they are lost"
+          ]
+        },
+        {
+          "q": "Why does the wind make the leaves dance?",
+          "correct": "The wind blows them around",
+          "wrong": [
+            "The leaves are alive",
+            "Someone is shaking the trees",
+            "It's magic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-004",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "Hot Chocolate Time",
+      "text": [
+        "Emma feels cold after school.",
+        "Her sister makes hot chocolate with marshmallows.",
+        "They sit on the couch under a blanket.",
+        "They watch the rain fall outside.",
+        "The drink warms their hands and hearts."
+      ],
+      "retellingPrompts": [
+        "Emma came home from school and",
+        "Her sister made",
+        "They sat together and",
+        "The hot chocolate made them feel"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who makes the hot chocolate?",
+          "correct": "Emma's sister",
+          "wrong": [
+            "Emma's mom",
+            "Emma's dad",
+            "Emma's brother"
+          ]
+        },
+        {
+          "q": "What do they drink?",
+          "correct": "Hot chocolate with marshmallows",
+          "wrong": [
+            "Warm apple cider",
+            "Cold milk",
+            "Orange juice"
+          ]
+        },
+        {
+          "q": "Where do they sit?",
+          "correct": "On the couch under a blanket",
+          "wrong": [
+            "At the kitchen table",
+            "In the park",
+            "On a hay wagon"
+          ]
+        },
+        {
+          "q": "When do they drink hot chocolate?",
+          "correct": "After school",
+          "wrong": [
+            "Before school",
+            "During lunch",
+            "At midnight"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does Emma feel cold?",
+          "correct": "It's a cold, rainy day",
+          "wrong": [
+            "She has a fever",
+            "The house is broken",
+            "She forgot her coat at school"
+          ]
+        },
+        {
+          "q": "Why do they sit under a blanket?",
+          "correct": "To stay warm and cozy",
+          "wrong": [
+            "To hide from someone",
+            "Because there are no chairs",
+            "Because they are sleepy"
+          ]
+        },
+        {
+          "q": "How do Emma and her sister feel?",
+          "correct": "Warm, cozy, and happy",
+          "wrong": [
+            "Cold and sad",
+            "Angry and upset",
+            "Bored and lonely"
+          ]
+        },
+        {
+          "q": "Why does the drink warm their hearts?",
+          "correct": "They feel happy and loved together",
+          "wrong": [
+            "The chocolate is too hot",
+            "Their hearts are actually cold",
+            "They are sick"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-005",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "Raking the Yard",
+      "text": [
+        "Mr. Lee and his students rake the school yard.",
+        "The leaves make a giant pile.",
+        "Everyone jumps into the pile and laughs.",
+        "They take turns using the rake.",
+        "The yard looks clean when they finish."
+      ],
+      "retellingPrompts": [
+        "Mr. Lee's students helped",
+        "They made a big pile of",
+        "Everyone had fun",
+        "At the end, the yard"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who rakes the yard?",
+          "correct": "Mr. Lee and his students",
+          "wrong": [
+            "Mr. Lee and his family",
+            "The farmer",
+            "Carlos and his brother"
+          ]
+        },
+        {
+          "q": "What do they jump into?",
+          "correct": "A pile of leaves",
+          "wrong": [
+            "A pile of pumpkins",
+            "A pile of apples",
+            "A pile of snow"
+          ]
+        },
+        {
+          "q": "Where do they rake?",
+          "correct": "The school yard",
+          "wrong": [
+            "The apple farm",
+            "The park",
+            "The corn maze"
+          ]
+        },
+        {
+          "q": "When is the yard clean?",
+          "correct": "When they finish",
+          "wrong": [
+            "Before they start",
+            "In the morning",
+            "Never"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they rake the yard?",
+          "correct": "To clean up the fallen leaves",
+          "wrong": [
+            "Because Mr. Lee is mean",
+            "To find something lost",
+            "Because they are bored"
+          ]
+        },
+        {
+          "q": "How do the students feel about raking?",
+          "correct": "Happy and having fun",
+          "wrong": [
+            "Sad and upset",
+            "Angry and frustrated",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why do they jump in the leaf pile?",
+          "correct": "For fun and because it looks soft",
+          "wrong": [
+            "Because they fell down",
+            "Because Mr. Lee told them to",
+            "Because they are fighting"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Spring",
+            "Summer",
+            "Winter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-006",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "Football Game Fun",
+      "text": [
+        "Carlos goes to a football game with his family.",
+        "He cheers for the red team.",
+        "They eat popcorn and drink warm cider.",
+        "The players run fast across the field.",
+        "It gets dark when the game ends."
+      ],
+      "retellingPrompts": [
+        "Carlos and his family went to",
+        "Carlos cheered for",
+        "They ate and drank",
+        "The game ended when"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes to the game?",
+          "correct": "Carlos and his family",
+          "wrong": [
+            "Carlos and his class",
+            "Carlos alone",
+            "Mr. Lee and his students"
+          ]
+        },
+        {
+          "q": "What color is Carlos's team?",
+          "correct": "Red",
+          "wrong": [
+            "Blue",
+            "Green",
+            "Yellow"
+          ]
+        },
+        {
+          "q": "Where do they watch the game?",
+          "correct": "At a football field",
+          "wrong": [
+            "At home on TV",
+            "At the school",
+            "At the park"
+          ]
+        },
+        {
+          "q": "When does it get dark?",
+          "correct": "When the game ends",
+          "wrong": [
+            "Before the game starts",
+            "At halftime",
+            "In the morning"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does it get dark during the game?",
+          "correct": "The game lasts until evening",
+          "wrong": [
+            "There's a storm",
+            "The lights broke",
+            "Someone turned off the sun"
+          ]
+        },
+        {
+          "q": "How does Carlos feel at the game?",
+          "correct": "Excited and happy",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and nervous"
+          ]
+        },
+        {
+          "q": "Why do they eat popcorn and drink cider?",
+          "correct": "It's part of the fun at games",
+          "wrong": [
+            "They didn't eat breakfast",
+            "The store was out of food",
+            "They have to"
+          ]
+        },
+        {
+          "q": "What time of day does the game end?",
+          "correct": "Evening or night",
+          "wrong": [
+            "Morning",
+            "Noon",
+            "Afternoon"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-007",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "Scarecrow in the Garden",
+      "text": [
+        "A scarecrow stands tall in the garden.",
+        "It wears a hat and an old plaid shirt.",
+        "The wind moves its arms a little bit.",
+        "Crows fly away when they see it.",
+        "The farmer smiles at his good work."
+      ],
+      "retellingPrompts": [
+        "There was a scarecrow in",
+        "The scarecrow wore",
+        "When birds came close, they",
+        "The farmer was happy because"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who made the scarecrow?",
+          "correct": "The farmer",
+          "wrong": [
+            "Mr. Lee",
+            "Carlos",
+            "Liam's mom"
+          ]
+        },
+        {
+          "q": "What does the scarecrow wear?",
+          "correct": "A hat and an old plaid shirt",
+          "wrong": [
+            "A crown and a cape",
+            "An orange sweater",
+            "A football uniform"
+          ]
+        },
+        {
+          "q": "Where does it stand?",
+          "correct": "In the garden",
+          "wrong": [
+            "In the corn maze",
+            "At the pumpkin patch",
+            "In the park"
+          ]
+        },
+        {
+          "q": "When do the crows fly away?",
+          "correct": "When they see the scarecrow",
+          "wrong": [
+            "When it rains",
+            "When it gets dark",
+            "In the morning"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did the farmer make the scarecrow?",
+          "correct": "To scare birds away from the garden",
+          "wrong": [
+            "To have a friend",
+            "Because he was bored",
+            "To sell it"
+          ]
+        },
+        {
+          "q": "Why do the crows fly away?",
+          "correct": "They think it's a real person",
+          "wrong": [
+            "They are going to find food",
+            "They don't like gardens",
+            "The farmer chased them"
+          ]
+        },
+        {
+          "q": "How does the farmer feel?",
+          "correct": "Proud and happy with his work",
+          "wrong": [
+            "Sad and lonely",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why can the wind move the scarecrow's arms?",
+          "correct": "They're made of light, soft materials",
+          "wrong": [
+            "The scarecrow is alive",
+            "The arms are broken",
+            "The farmer moves them"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-008",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "Fall Festival",
+      "text": [
+        "Nora's family goes to the fall festival downtown.",
+        "She eats caramel apples and popcorn.",
+        "Her brother rides the big slide.",
+        "They dance to the music and play games.",
+        "The lights shine when the sun goes down."
+      ],
+      "retellingPrompts": [
+        "Nora's family went to",
+        "Nora ate",
+        "Her brother",
+        "They had fun"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes to the festival?",
+          "correct": "Nora's family",
+          "wrong": [
+            "Nora's class",
+            "Nora and her friends",
+            "Nora alone"
+          ]
+        },
+        {
+          "q": "What does Nora eat?",
+          "correct": "Caramel apples and popcorn",
+          "wrong": [
+            "Hot chocolate and marshmallows",
+            "Pumpkin pie",
+            "Apple pie"
+          ]
+        },
+        {
+          "q": "Where is the festival?",
+          "correct": "Downtown",
+          "wrong": [
+            "At the school",
+            "At the apple farm",
+            "In the park"
+          ]
+        },
+        {
+          "q": "When do the lights shine?",
+          "correct": "When the sun goes down",
+          "wrong": [
+            "In the morning",
+            "At noon",
+            "Never"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they go to the festival?",
+          "correct": "To have fun and celebrate fall",
+          "wrong": [
+            "Because they have to",
+            "Because they are lost",
+            "Because it's raining"
+          ]
+        },
+        {
+          "q": "How does Nora feel at the festival?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and bored",
+            "Angry and mean",
+            "Tired and sleepy"
+          ]
+        },
+        {
+          "q": "Why do the lights shine when the sun goes down?",
+          "correct": "So people can see in the dark",
+          "wrong": [
+            "Because someone turned them on by accident",
+            "To scare people",
+            "Because it's Christmas"
+          ]
+        },
+        {
+          "q": "What time of day do they probably leave?",
+          "correct": "Evening or nighttime",
+          "wrong": [
+            "Early morning",
+            "Noon",
+            "Right after lunch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-009",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "The Corn Maze",
+      "text": [
+        "Evan and his friends go in the corn maze.",
+        "The corn is taller than they are!",
+        "They follow signs to find the way out.",
+        "They laugh when they get lost.",
+        "At the end, they eat pumpkin donuts."
+      ],
+      "retellingPrompts": [
+        "Evan and his friends went into",
+        "The corn was really",
+        "When they got lost, they",
+        "After the maze, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes in the maze?",
+          "correct": "Evan and his friends",
+          "wrong": [
+            "Evan and his family",
+            "Evan and his class",
+            "Evan and his sister"
+          ]
+        },
+        {
+          "q": "What do they eat?",
+          "correct": "Pumpkin donuts",
+          "wrong": [
+            "Apple pie",
+            "Caramel apples",
+            "Hot chocolate"
+          ]
+        },
+        {
+          "q": "Where do they walk?",
+          "correct": "In a corn maze",
+          "wrong": [
+            "In the park",
+            "At the football field",
+            "In the garden"
+          ]
+        },
+        {
+          "q": "When do they laugh?",
+          "correct": "When they get lost",
+          "wrong": [
+            "When they find the exit",
+            "Before they go in",
+            "When they eat donuts"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they laugh when lost?",
+          "correct": "They're having fun and not worried",
+          "wrong": [
+            "They are scared",
+            "They think it's funny to be mean",
+            "They want to go home"
+          ]
+        },
+        {
+          "q": "How do Evan and his friends feel?",
+          "correct": "Happy and playful",
+          "wrong": [
+            "Sad and scared",
+            "Angry and upset",
+            "Bored and sleepy"
+          ]
+        },
+        {
+          "q": "Why is the corn taller than them?",
+          "correct": "Corn grows very tall and they are children",
+          "wrong": [
+            "The corn is magic",
+            "They are lying down",
+            "The corn is on a hill"
+          ]
+        },
+        {
+          "q": "Why do they eat donuts at the end?",
+          "correct": "As a treat or reward for finishing",
+          "wrong": [
+            "Because they have to",
+            "Because they didn't eat breakfast",
+            "Because the donuts are free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-reading-simple-010",
+      "sourceFile": "activities/reading/fall-reading-simple.html",
+      "season": "fall",
+      "title": "Sweater Weather",
+      "text": [
+        "Lila puts on her favorite orange sweater.",
+        "The morning air feels cool.",
+        "She walks to the bus stop with her friends.",
+        "They see fog on the grass.",
+        "Soon, the sun shines through the clouds."
+      ],
+      "retellingPrompts": [
+        "Lila put on her",
+        "She walked to",
+        "The morning was",
+        "Then the sun"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who wears a sweater?",
+          "correct": "Lila",
+          "wrong": [
+            "Nora",
+            "Emma",
+            "Mia"
+          ]
+        },
+        {
+          "q": "What does the air feel like?",
+          "correct": "Cool",
+          "wrong": [
+            "Hot",
+            "Warm",
+            "Freezing cold"
+          ]
+        },
+        {
+          "q": "Where is Lila going?",
+          "correct": "To the bus stop",
+          "wrong": [
+            "To the apple farm",
+            "To the football game",
+            "To the festival"
+          ]
+        },
+        {
+          "q": "When does the sun shine?",
+          "correct": "Soon, through the clouds",
+          "wrong": [
+            "Never",
+            "At night",
+            "Before the fog"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does Lila wear a sweater?",
+          "correct": "Because the air is cool outside",
+          "wrong": [
+            "Because her mom told her to",
+            "Because she spilled on her shirt",
+            "Because it's her birthday"
+          ]
+        },
+        {
+          "q": "How does Lila probably feel?",
+          "correct": "Happy and ready for school",
+          "wrong": [
+            "Sad and upset",
+            "Angry and mean",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why is there fog on the grass?",
+          "correct": "The cool morning air makes fog",
+          "wrong": [
+            "Someone sprayed water",
+            "It's smoke",
+            "The grass is on fire"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Summer",
+            "Winter",
+            "Spring"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-001",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Apple Picking Day",
+      "text": [
+        "Liam and his mom go to the apple farm.",
+        "They see big red apples on the trees.",
+        "Liam picks apples and puts them in a basket.",
+        "The air feels cool and smells sweet.",
+        "They eat warm apple pie when they get home."
+      ],
+      "retellingPrompts": [
+        "Liam and his mom went to",
+        "They picked",
+        "The farm had",
+        "When they got home, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes to the farm?",
+          "correct": "Liam and his mom",
+          "wrong": [
+            "Liam and his dad",
+            "Mia and her class",
+            "Emma and her sister"
+          ]
+        },
+        {
+          "q": "What do they pick?",
+          "correct": "Apples",
+          "wrong": [
+            "Pumpkins",
+            "Leaves",
+            "Corn"
+          ]
+        },
+        {
+          "q": "Where do they go?",
+          "correct": "The apple farm",
+          "wrong": [
+            "The pumpkin patch",
+            "The park",
+            "The school"
+          ]
+        },
+        {
+          "q": "When do they go apple picking?",
+          "correct": "During the day",
+          "wrong": [
+            "At night",
+            "In the winter",
+            "In the morning before sunrise"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does the air smell sweet?",
+          "correct": "Because of the apples",
+          "wrong": [
+            "Because of flowers",
+            "Because of the grass",
+            "Because someone is baking"
+          ]
+        },
+        {
+          "q": "How does Liam probably feel at the farm?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "What season is it in the story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Summer",
+            "Winter",
+            "Spring"
+          ]
+        },
+        {
+          "q": "Why do they make apple pie at home?",
+          "correct": "They picked fresh apples to use",
+          "wrong": [
+            "They bought apples at the store",
+            "They don't like apples",
+            "They wanted to make cookies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-002",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "The Pumpkin Patch",
+      "text": [
+        "Mia and her class visit the pumpkin patch.",
+        "She looks for a small, round pumpkin.",
+        "Her friend finds a big, lumpy one.",
+        "They ride on a hay wagon together.",
+        "Everyone laughs and waves to the farmer."
+      ],
+      "retellingPrompts": [
+        "Mia's class went to",
+        "Mia wanted to find",
+        "They rode on",
+        "Everyone was"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes to the pumpkin patch?",
+          "correct": "Mia and her class",
+          "wrong": [
+            "Mia and her mom",
+            "Caleb and his dad",
+            "Carlos and his family"
+          ]
+        },
+        {
+          "q": "What does Mia look for?",
+          "correct": "A small, round pumpkin",
+          "wrong": [
+            "A big, lumpy pumpkin",
+            "Red apples",
+            "Yellow leaves"
+          ]
+        },
+        {
+          "q": "Where do they ride?",
+          "correct": "On a hay wagon",
+          "wrong": [
+            "On a bus",
+            "On a big slide",
+            "In a corn maze"
+          ]
+        },
+        {
+          "q": "When do they visit?",
+          "correct": "During a school day",
+          "wrong": [
+            "After school",
+            "At night",
+            "In the summer"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they ride on a hay wagon?",
+          "correct": "To get around the pumpkin patch",
+          "wrong": [
+            "Because they are tired",
+            "Because it's raining",
+            "Because they can't walk"
+          ]
+        },
+        {
+          "q": "How does Mia feel on this trip?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and lonely",
+            "Angry and frustrated",
+            "Sleepy and bored"
+          ]
+        },
+        {
+          "q": "Why does everyone wave to the farmer?",
+          "correct": "To be friendly and say thank you",
+          "wrong": [
+            "Because they are leaving",
+            "Because they need help",
+            "Because they are angry"
+          ]
+        },
+        {
+          "q": "What will they probably do with the pumpkins?",
+          "correct": "Carve them or decorate for fall",
+          "wrong": [
+            "Throw them away",
+            "Plant them",
+            "Give them back"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-003",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Leaves Falling Down",
+      "text": [
+        "Caleb walks in the park with his dad.",
+        "The trees have red, orange, and yellow leaves.",
+        "He kicks the leaves and watches them fly.",
+        "They take a picture by a tall tree.",
+        "The wind makes the leaves dance."
+      ],
+      "retellingPrompts": [
+        "Caleb and his dad were at",
+        "The leaves were",
+        "Caleb played with",
+        "They took a picture"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who walks in the park?",
+          "correct": "Caleb and his dad",
+          "wrong": [
+            "Caleb and his mom",
+            "Liam and his mom",
+            "Evan and his friends"
+          ]
+        },
+        {
+          "q": "What color are the leaves?",
+          "correct": "Red, orange, and yellow",
+          "wrong": [
+            "Green and brown",
+            "Purple and pink",
+            "Only red"
+          ]
+        },
+        {
+          "q": "Where do they take a picture?",
+          "correct": "By a tall tree",
+          "wrong": [
+            "At the apple farm",
+            "On a hay wagon",
+            "In the corn maze"
+          ]
+        },
+        {
+          "q": "When do the leaves fall?",
+          "correct": "In the fall",
+          "wrong": [
+            "In the spring",
+            "In the summer",
+            "In the winter"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why are the leaves red, orange, and yellow?",
+          "correct": "It's fall and leaves change colors",
+          "wrong": [
+            "Someone painted them",
+            "The trees are sick",
+            "It's always like that"
+          ]
+        },
+        {
+          "q": "How does Caleb feel in the park?",
+          "correct": "Happy and playful",
+          "wrong": [
+            "Sad and upset",
+            "Angry and mean",
+            "Scared and nervous"
+          ]
+        },
+        {
+          "q": "Why do they take a picture?",
+          "correct": "To remember the beautiful day",
+          "wrong": [
+            "Because the camera is broken",
+            "Because they have to",
+            "Because they are lost"
+          ]
+        },
+        {
+          "q": "Why does the wind make the leaves dance?",
+          "correct": "The wind blows them around",
+          "wrong": [
+            "The leaves are alive",
+            "Someone is shaking the trees",
+            "It's magic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-004",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Hot Chocolate Time",
+      "text": [
+        "Emma feels cold after school.",
+        "Her sister makes hot chocolate with marshmallows.",
+        "They sit on the couch under a blanket.",
+        "They watch the rain fall outside.",
+        "The drink warms their hands and hearts."
+      ],
+      "retellingPrompts": [
+        "Emma came home from school and",
+        "Her sister made",
+        "They sat together and",
+        "The hot chocolate made them feel"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who makes the hot chocolate?",
+          "correct": "Emma's sister",
+          "wrong": [
+            "Emma's mom",
+            "Emma's dad",
+            "Emma's brother"
+          ]
+        },
+        {
+          "q": "What do they drink?",
+          "correct": "Hot chocolate with marshmallows",
+          "wrong": [
+            "Warm apple cider",
+            "Cold milk",
+            "Orange juice"
+          ]
+        },
+        {
+          "q": "Where do they sit?",
+          "correct": "On the couch under a blanket",
+          "wrong": [
+            "At the kitchen table",
+            "In the park",
+            "On a hay wagon"
+          ]
+        },
+        {
+          "q": "When do they drink hot chocolate?",
+          "correct": "After school",
+          "wrong": [
+            "Before school",
+            "During lunch",
+            "At midnight"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does Emma feel cold?",
+          "correct": "It's a cold, rainy day",
+          "wrong": [
+            "She has a fever",
+            "The house is broken",
+            "She forgot her coat at school"
+          ]
+        },
+        {
+          "q": "Why do they sit under a blanket?",
+          "correct": "To stay warm and cozy",
+          "wrong": [
+            "To hide from someone",
+            "Because there are no chairs",
+            "Because they are sleepy"
+          ]
+        },
+        {
+          "q": "How do Emma and her sister feel?",
+          "correct": "Warm, cozy, and happy",
+          "wrong": [
+            "Cold and sad",
+            "Angry and upset",
+            "Bored and lonely"
+          ]
+        },
+        {
+          "q": "Why does the drink warm their hearts?",
+          "correct": "They feel happy and loved together",
+          "wrong": [
+            "The chocolate is too hot",
+            "Their hearts are actually cold",
+            "They are sick"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-005",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Raking the Yard",
+      "text": [
+        "Mr. Lee and his students rake the school yard.",
+        "The leaves make a giant pile.",
+        "Everyone jumps into the pile and laughs.",
+        "They take turns using the rake.",
+        "The yard looks clean when they finish."
+      ],
+      "retellingPrompts": [
+        "Mr. Lee's students helped",
+        "They made a big pile of",
+        "Everyone had fun",
+        "At the end, the yard"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who rakes the yard?",
+          "correct": "Mr. Lee and his students",
+          "wrong": [
+            "Mr. Lee and his family",
+            "The farmer",
+            "Carlos and his brother"
+          ]
+        },
+        {
+          "q": "What do they jump into?",
+          "correct": "A pile of leaves",
+          "wrong": [
+            "A pile of pumpkins",
+            "A pile of apples",
+            "A pile of snow"
+          ]
+        },
+        {
+          "q": "Where do they rake?",
+          "correct": "The school yard",
+          "wrong": [
+            "The apple farm",
+            "The park",
+            "The corn maze"
+          ]
+        },
+        {
+          "q": "When is the yard clean?",
+          "correct": "When they finish",
+          "wrong": [
+            "Before they start",
+            "In the morning",
+            "Never"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they rake the yard?",
+          "correct": "To clean up the fallen leaves",
+          "wrong": [
+            "Because Mr. Lee is mean",
+            "To find something lost",
+            "Because they are bored"
+          ]
+        },
+        {
+          "q": "How do the students feel about raking?",
+          "correct": "Happy and having fun",
+          "wrong": [
+            "Sad and upset",
+            "Angry and frustrated",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why do they jump in the leaf pile?",
+          "correct": "For fun and because it looks soft",
+          "wrong": [
+            "Because they fell down",
+            "Because Mr. Lee told them to",
+            "Because they are fighting"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Spring",
+            "Summer",
+            "Winter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-006",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Football Game Fun",
+      "text": [
+        "Carlos goes to a football game with his family.",
+        "He cheers for the red team.",
+        "They eat popcorn and drink warm cider.",
+        "The players run fast across the field.",
+        "It gets dark when the game ends."
+      ],
+      "retellingPrompts": [
+        "Carlos and his family went to",
+        "Carlos cheered for",
+        "They ate and drank",
+        "The game ended when"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes to the game?",
+          "correct": "Carlos and his family",
+          "wrong": [
+            "Carlos and his class",
+            "Carlos alone",
+            "Mr. Lee and his students"
+          ]
+        },
+        {
+          "q": "What color is Carlos's team?",
+          "correct": "Red",
+          "wrong": [
+            "Blue",
+            "Green",
+            "Yellow"
+          ]
+        },
+        {
+          "q": "Where do they watch the game?",
+          "correct": "At a football field",
+          "wrong": [
+            "At home on TV",
+            "At the school",
+            "At the park"
+          ]
+        },
+        {
+          "q": "When does it get dark?",
+          "correct": "When the game ends",
+          "wrong": [
+            "Before the game starts",
+            "At halftime",
+            "In the morning"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does it get dark during the game?",
+          "correct": "The game lasts until evening",
+          "wrong": [
+            "There's a storm",
+            "The lights broke",
+            "Someone turned off the sun"
+          ]
+        },
+        {
+          "q": "How does Carlos feel at the game?",
+          "correct": "Excited and happy",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and nervous"
+          ]
+        },
+        {
+          "q": "Why do they eat popcorn and drink cider?",
+          "correct": "It's part of the fun at games",
+          "wrong": [
+            "They didn't eat breakfast",
+            "The store was out of food",
+            "They have to"
+          ]
+        },
+        {
+          "q": "What time of day does the game end?",
+          "correct": "Evening or night",
+          "wrong": [
+            "Morning",
+            "Noon",
+            "Afternoon"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-007",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Scarecrow in the Garden",
+      "text": [
+        "A scarecrow stands tall in the garden.",
+        "It wears a hat and an old plaid shirt.",
+        "The wind moves its arms a little bit.",
+        "Crows fly away when they see it.",
+        "The farmer smiles at his good work."
+      ],
+      "retellingPrompts": [
+        "There was a scarecrow in",
+        "The scarecrow wore",
+        "When birds came close, they",
+        "The farmer was happy because"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who made the scarecrow?",
+          "correct": "The farmer",
+          "wrong": [
+            "Mr. Lee",
+            "Carlos",
+            "Liam's mom"
+          ]
+        },
+        {
+          "q": "What does the scarecrow wear?",
+          "correct": "A hat and an old plaid shirt",
+          "wrong": [
+            "A crown and a cape",
+            "An orange sweater",
+            "A football uniform"
+          ]
+        },
+        {
+          "q": "Where does it stand?",
+          "correct": "In the garden",
+          "wrong": [
+            "In the corn maze",
+            "At the pumpkin patch",
+            "In the park"
+          ]
+        },
+        {
+          "q": "When do the crows fly away?",
+          "correct": "When they see the scarecrow",
+          "wrong": [
+            "When it rains",
+            "When it gets dark",
+            "In the morning"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did the farmer make the scarecrow?",
+          "correct": "To scare birds away from the garden",
+          "wrong": [
+            "To have a friend",
+            "Because he was bored",
+            "To sell it"
+          ]
+        },
+        {
+          "q": "Why do the crows fly away?",
+          "correct": "They think it's a real person",
+          "wrong": [
+            "They are going to find food",
+            "They don't like gardens",
+            "The farmer chased them"
+          ]
+        },
+        {
+          "q": "How does the farmer feel?",
+          "correct": "Proud and happy with his work",
+          "wrong": [
+            "Sad and lonely",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why can the wind move the scarecrow's arms?",
+          "correct": "They're made of light, soft materials",
+          "wrong": [
+            "The scarecrow is alive",
+            "The arms are broken",
+            "The farmer moves them"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-008",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Fall Festival",
+      "text": [
+        "Nora's family goes to the fall festival downtown.",
+        "She eats caramel apples and popcorn.",
+        "Her brother rides the big slide.",
+        "They dance to the music and play games.",
+        "The lights shine when the sun goes down."
+      ],
+      "retellingPrompts": [
+        "Nora's family went to",
+        "Nora ate",
+        "Her brother",
+        "They had fun"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes to the festival?",
+          "correct": "Nora's family",
+          "wrong": [
+            "Nora's class",
+            "Nora and her friends",
+            "Nora alone"
+          ]
+        },
+        {
+          "q": "What does Nora eat?",
+          "correct": "Caramel apples and popcorn",
+          "wrong": [
+            "Hot chocolate and marshmallows",
+            "Pumpkin pie",
+            "Apple pie"
+          ]
+        },
+        {
+          "q": "Where is the festival?",
+          "correct": "Downtown",
+          "wrong": [
+            "At the school",
+            "At the apple farm",
+            "In the park"
+          ]
+        },
+        {
+          "q": "When do the lights shine?",
+          "correct": "When the sun goes down",
+          "wrong": [
+            "In the morning",
+            "At noon",
+            "Never"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they go to the festival?",
+          "correct": "To have fun and celebrate fall",
+          "wrong": [
+            "Because they have to",
+            "Because they are lost",
+            "Because it's raining"
+          ]
+        },
+        {
+          "q": "How does Nora feel at the festival?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and bored",
+            "Angry and mean",
+            "Tired and sleepy"
+          ]
+        },
+        {
+          "q": "Why do the lights shine when the sun goes down?",
+          "correct": "So people can see in the dark",
+          "wrong": [
+            "Because someone turned them on by accident",
+            "To scare people",
+            "Because it's Christmas"
+          ]
+        },
+        {
+          "q": "What time of day do they probably leave?",
+          "correct": "Evening or nighttime",
+          "wrong": [
+            "Early morning",
+            "Noon",
+            "Right after lunch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-009",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "The Corn Maze",
+      "text": [
+        "Evan and his friends go in the corn maze.",
+        "The corn is taller than they are!",
+        "They follow signs to find the way out.",
+        "They laugh when they get lost.",
+        "At the end, they eat pumpkin donuts."
+      ],
+      "retellingPrompts": [
+        "Evan and his friends went into",
+        "The corn was really",
+        "When they got lost, they",
+        "After the maze, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes in the maze?",
+          "correct": "Evan and his friends",
+          "wrong": [
+            "Evan and his family",
+            "Evan and his class",
+            "Evan and his sister"
+          ]
+        },
+        {
+          "q": "What do they eat?",
+          "correct": "Pumpkin donuts",
+          "wrong": [
+            "Apple pie",
+            "Caramel apples",
+            "Hot chocolate"
+          ]
+        },
+        {
+          "q": "Where do they walk?",
+          "correct": "In a corn maze",
+          "wrong": [
+            "In the park",
+            "At the football field",
+            "In the garden"
+          ]
+        },
+        {
+          "q": "When do they laugh?",
+          "correct": "When they get lost",
+          "wrong": [
+            "When they find the exit",
+            "Before they go in",
+            "When they eat donuts"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they laugh when lost?",
+          "correct": "They're having fun and not worried",
+          "wrong": [
+            "They are scared",
+            "They think it's funny to be mean",
+            "They want to go home"
+          ]
+        },
+        {
+          "q": "How do Evan and his friends feel?",
+          "correct": "Happy and playful",
+          "wrong": [
+            "Sad and scared",
+            "Angry and upset",
+            "Bored and sleepy"
+          ]
+        },
+        {
+          "q": "Why is the corn taller than them?",
+          "correct": "Corn grows very tall and they are children",
+          "wrong": [
+            "The corn is magic",
+            "They are lying down",
+            "The corn is on a hill"
+          ]
+        },
+        {
+          "q": "Why do they eat donuts at the end?",
+          "correct": "As a treat or reward for finishing",
+          "wrong": [
+            "Because they have to",
+            "Because they didn't eat breakfast",
+            "Because the donuts are free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-010",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Sweater Weather",
+      "text": [
+        "Lila puts on her favorite orange sweater.",
+        "The morning air feels cool.",
+        "She walks to the bus stop with her friends.",
+        "They see fog on the grass.",
+        "Soon, the sun shines through the clouds."
+      ],
+      "retellingPrompts": [
+        "Lila put on her",
+        "She walked to",
+        "The morning was",
+        "Then the sun"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who wears a sweater?",
+          "correct": "Lila",
+          "wrong": [
+            "Nora",
+            "Emma",
+            "Mia"
+          ]
+        },
+        {
+          "q": "What does the air feel like?",
+          "correct": "Cool",
+          "wrong": [
+            "Hot",
+            "Warm",
+            "Freezing cold"
+          ]
+        },
+        {
+          "q": "Where is Lila going?",
+          "correct": "To the bus stop",
+          "wrong": [
+            "To the apple farm",
+            "To the football game",
+            "To the festival"
+          ]
+        },
+        {
+          "q": "When does the sun shine?",
+          "correct": "Soon, through the clouds",
+          "wrong": [
+            "Never",
+            "At night",
+            "Before the fog"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does Lila wear a sweater?",
+          "correct": "Because the air is cool outside",
+          "wrong": [
+            "Because her mom told her to",
+            "Because she spilled on her shirt",
+            "Because it's her birthday"
+          ]
+        },
+        {
+          "q": "How does Lila probably feel?",
+          "correct": "Happy and ready for school",
+          "wrong": [
+            "Sad and upset",
+            "Angry and mean",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why is there fog on the grass?",
+          "correct": "The cool morning air makes fog",
+          "wrong": [
+            "Someone sprayed water",
+            "It's smoke",
+            "The grass is on fire"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Summer",
+            "Winter",
+            "Spring"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-011",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Grandpa's Leaf Pile",
+      "text": [
+        "Maya helps her grandpa rake leaves in his yard.",
+        "They fill five big bags with brown leaves.",
+        "Grandpa makes one special pile for fun.",
+        "Maya runs and jumps right into it.",
+        "They both laugh and drink apple cider together."
+      ],
+      "retellingPrompts": [
+        "Maya and her grandpa",
+        "They filled bags with",
+        "Grandpa made a special pile and",
+        "Afterwards, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who helps rake the leaves?",
+          "correct": "Maya and her grandpa",
+          "wrong": [
+            "Maya and her dad",
+            "Maya and her teacher",
+            "Maya and her brother"
+          ]
+        },
+        {
+          "q": "What do they put in bags?",
+          "correct": "Brown leaves",
+          "wrong": [
+            "Red apples",
+            "Pumpkins",
+            "Acorns"
+          ]
+        },
+        {
+          "q": "Where are they working?",
+          "correct": "In Grandpa's yard",
+          "wrong": [
+            "At the school",
+            "At the park",
+            "At the farm"
+          ]
+        },
+        {
+          "q": "When do they drink cider?",
+          "correct": "After they finish",
+          "wrong": [
+            "Before they start",
+            "While they rake",
+            "Never"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does Grandpa make a special pile?",
+          "correct": "So Maya can have fun jumping in it",
+          "wrong": [
+            "Because he made a mistake",
+            "To burn the leaves",
+            "Because the bags are full"
+          ]
+        },
+        {
+          "q": "How does Maya feel with her grandpa?",
+          "correct": "Happy and loved",
+          "wrong": [
+            "Sad and lonely",
+            "Angry and frustrated",
+            "Bored and tired"
+          ]
+        },
+        {
+          "q": "Why are the leaves brown?",
+          "correct": "They are old and have fallen",
+          "wrong": [
+            "Someone painted them",
+            "They are dirty",
+            "They are sick"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Spring",
+            "Summer",
+            "Winter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-012",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Making Fall Crafts",
+      "text": [
+        "Jade and her mom make fall crafts at the table.",
+        "They glue colorful leaves onto white paper.",
+        "Jade draws a smiling scarecrow with crayons.",
+        "Her mom hangs the art on the refrigerator.",
+        "Jade feels proud of her beautiful work."
+      ],
+      "retellingPrompts": [
+        "Jade and her mom made",
+        "They used leaves and",
+        "Jade drew",
+        "Her mom put the art"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who makes crafts?",
+          "correct": "Jade and her mom",
+          "wrong": [
+            "Jade and her teacher",
+            "Jade and her sister",
+            "Jade alone"
+          ]
+        },
+        {
+          "q": "What do they glue on the paper?",
+          "correct": "Colorful leaves",
+          "wrong": [
+            "Pumpkin seeds",
+            "Stickers",
+            "Cotton balls"
+          ]
+        },
+        {
+          "q": "Where does Mom hang the art?",
+          "correct": "On the refrigerator",
+          "wrong": [
+            "On the door",
+            "In Jade's room",
+            "In the garage"
+          ]
+        },
+        {
+          "q": "When does Jade feel proud?",
+          "correct": "After finishing her work",
+          "wrong": [
+            "Before starting",
+            "At breakfast",
+            "The next day"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they use fall leaves?",
+          "correct": "To make crafts with fall colors",
+          "wrong": [
+            "Because they can't find paper",
+            "Because leaves are free",
+            "Because they are messy"
+          ]
+        },
+        {
+          "q": "How does Jade feel about her craft?",
+          "correct": "Happy and proud",
+          "wrong": [
+            "Sad and disappointed",
+            "Angry and upset",
+            "Embarrassed and shy"
+          ]
+        },
+        {
+          "q": "Why does Mom hang it on the fridge?",
+          "correct": "To show she's proud and display it",
+          "wrong": [
+            "Because there's no room elsewhere",
+            "To cover something up",
+            "Because Jade asked her to"
+          ]
+        },
+        {
+          "q": "What did Jade draw?",
+          "correct": "A smiling scarecrow",
+          "wrong": [
+            "A turkey",
+            "A snowman",
+            "A flower"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-013",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Squirrels Getting Ready",
+      "text": [
+        "Owen watches squirrels run around his backyard.",
+        "They collect acorns and hide them in the ground.",
+        "One squirrel climbs up a big oak tree.",
+        "Owen's dog barks, and the squirrels run away.",
+        "His mom says the squirrels are getting ready for winter."
+      ],
+      "retellingPrompts": [
+        "Owen saw squirrels",
+        "The squirrels were collecting",
+        "When the dog barked, the squirrels",
+        "Owen's mom said they are preparing for"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who watches the squirrels?",
+          "correct": "Owen",
+          "wrong": [
+            "Owen's mom",
+            "Owen's dog",
+            "Owen's dad"
+          ]
+        },
+        {
+          "q": "What do the squirrels collect?",
+          "correct": "Acorns",
+          "wrong": [
+            "Leaves",
+            "Flowers",
+            "Rocks"
+          ]
+        },
+        {
+          "q": "Where does Owen see them?",
+          "correct": "In his backyard",
+          "wrong": [
+            "At the park",
+            "At school",
+            "At the store"
+          ]
+        },
+        {
+          "q": "When do the squirrels run away?",
+          "correct": "When the dog barks",
+          "wrong": [
+            "When it gets dark",
+            "When it rains",
+            "In the morning"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do squirrels hide acorns?",
+          "correct": "To save food for winter",
+          "wrong": [
+            "To play a game",
+            "Because they don't like them",
+            "To plant trees"
+          ]
+        },
+        {
+          "q": "How do the squirrels feel when the dog barks?",
+          "correct": "Scared and nervous",
+          "wrong": [
+            "Happy and excited",
+            "Angry and mean",
+            "Sleepy and tired"
+          ]
+        },
+        {
+          "q": "What season is it now?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Winter",
+            "Spring",
+            "Summer"
+          ]
+        },
+        {
+          "q": "Why do they need to get ready for winter?",
+          "correct": "Food will be hard to find when it's cold",
+          "wrong": [
+            "They are going on vacation",
+            "They want to build a house",
+            "They are bored"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-014",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Rainy Day Boots",
+      "text": [
+        "Sofia puts on her yellow rain boots.",
+        "She splashes in puddles on the sidewalk.",
+        "The rain makes everything smell fresh and clean.",
+        "She finds a big puddle near the tree.",
+        "Her mom takes a picture of Sofia's happy face."
+      ],
+      "retellingPrompts": [
+        "Sofia wore her",
+        "She splashed in",
+        "The rain made everything",
+        "Her mom took"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who wears the rain boots?",
+          "correct": "Sofia",
+          "wrong": [
+            "Sofia's mom",
+            "Sofia's sister",
+            "Sofia's friend"
+          ]
+        },
+        {
+          "q": "What color are the boots?",
+          "correct": "Yellow",
+          "wrong": [
+            "Red",
+            "Blue",
+            "Green"
+          ]
+        },
+        {
+          "q": "Where does Sofia splash?",
+          "correct": "In puddles on the sidewalk",
+          "wrong": [
+            "In the swimming pool",
+            "In the bathtub",
+            "At the beach"
+          ]
+        },
+        {
+          "q": "When does her mom take a picture?",
+          "correct": "When Sofia looks happy",
+          "wrong": [
+            "Before going outside",
+            "At bedtime",
+            "During breakfast"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does Sofia wear rain boots?",
+          "correct": "To keep her feet dry in the rain",
+          "wrong": [
+            "Because they match her dress",
+            "Because her shoes are lost",
+            "Because it's sunny"
+          ]
+        },
+        {
+          "q": "How does Sofia feel about the puddles?",
+          "correct": "Happy and playful",
+          "wrong": [
+            "Sad and scared",
+            "Angry and upset",
+            "Bored and tired"
+          ]
+        },
+        {
+          "q": "Why does everything smell fresh?",
+          "correct": "Because the rain cleans the air",
+          "wrong": [
+            "Because someone is baking",
+            "Because of flowers",
+            "Because of soap"
+          ]
+        },
+        {
+          "q": "Why does Mom take a picture?",
+          "correct": "To remember Sofia's happy moment",
+          "wrong": [
+            "Because the camera is new",
+            "Because she has to",
+            "Because it's picture day"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-015",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Baking Pumpkin Bread",
+      "text": [
+        "Tyler and his dad bake pumpkin bread together.",
+        "They mix flour, eggs, and pumpkin in a big bowl.",
+        "The kitchen smells sweet and spicy.",
+        "Tyler helps pour the mix into the pan.",
+        "They eat warm bread with butter when it's done."
+      ],
+      "retellingPrompts": [
+        "Tyler and his dad",
+        "They mixed",
+        "The kitchen smelled",
+        "When the bread was ready, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who bakes the bread?",
+          "correct": "Tyler and his dad",
+          "wrong": [
+            "Tyler and his mom",
+            "Tyler alone",
+            "Tyler and his grandpa"
+          ]
+        },
+        {
+          "q": "What do they bake?",
+          "correct": "Pumpkin bread",
+          "wrong": [
+            "Apple pie",
+            "Cookies",
+            "Cake"
+          ]
+        },
+        {
+          "q": "Where do they bake?",
+          "correct": "In the kitchen",
+          "wrong": [
+            "In the backyard",
+            "At school",
+            "At the store"
+          ]
+        },
+        {
+          "q": "When do they eat the bread?",
+          "correct": "When it's done baking",
+          "wrong": [
+            "Before baking it",
+            "The next day",
+            "Never"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does it smell sweet and spicy?",
+          "correct": "Because of the pumpkin and spices",
+          "wrong": [
+            "Because of flowers",
+            "Because something is burning",
+            "Because of soap"
+          ]
+        },
+        {
+          "q": "How does Tyler feel while baking?",
+          "correct": "Happy and excited",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why do they use pumpkin?",
+          "correct": "It's a fall ingredient for baking",
+          "wrong": [
+            "It's the only thing they have",
+            "Because it's green",
+            "Because Dad said so"
+          ]
+        },
+        {
+          "q": "Why do they eat it with butter?",
+          "correct": "It makes the warm bread taste better",
+          "wrong": [
+            "Because they have to",
+            "Because they don't like bread",
+            "Because it's cold"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-016",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Visiting the Corn Field",
+      "text": [
+        "Aria and her aunt walk through a tall corn field.",
+        "The corn rustles and whispers in the breeze.",
+        "They see a red barn in the distance.",
+        "Aria picks up a dried corn husk from the ground.",
+        "Her aunt tells her stories about growing up on a farm."
+      ],
+      "retellingPrompts": [
+        "Aria and her aunt visited",
+        "The corn",
+        "They could see",
+        "Aria's aunt told her"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who visits the corn field?",
+          "correct": "Aria and her aunt",
+          "wrong": [
+            "Aria and her mom",
+            "Aria and her class",
+            "Aria alone"
+          ]
+        },
+        {
+          "q": "What does Aria pick up?",
+          "correct": "A dried corn husk",
+          "wrong": [
+            "A pumpkin",
+            "An apple",
+            "A leaf"
+          ]
+        },
+        {
+          "q": "Where do they walk?",
+          "correct": "Through a corn field",
+          "wrong": [
+            "In a park",
+            "At the beach",
+            "In the city"
+          ]
+        },
+        {
+          "q": "When does the corn rustle?",
+          "correct": "In the breeze",
+          "wrong": [
+            "When it rains",
+            "At night",
+            "Never"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does the corn rustle?",
+          "correct": "The wind moves the corn stalks",
+          "wrong": [
+            "Animals are hiding in it",
+            "Someone is shaking it",
+            "It's alive"
+          ]
+        },
+        {
+          "q": "How does Aria feel on this walk?",
+          "correct": "Curious and interested",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and nervous"
+          ]
+        },
+        {
+          "q": "Why does her aunt tell farm stories?",
+          "correct": "To share memories and teach Aria",
+          "wrong": [
+            "Because she is bored",
+            "Because Aria asked for them",
+            "Because she forgot something"
+          ]
+        },
+        {
+          "q": "What color is the barn?",
+          "correct": "Red",
+          "wrong": [
+            "Blue",
+            "Yellow",
+            "Green"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-017",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Geese Flying South",
+      "text": [
+        "Zara hears honking sounds in the sky.",
+        "She looks up and sees geese flying in a V shape.",
+        "Her brother says they are going south for winter.",
+        "The geese fly over her house and disappear.",
+        "Zara waves goodbye to them from the yard."
+      ],
+      "retellingPrompts": [
+        "Zara heard",
+        "She saw geese",
+        "Her brother said the geese",
+        "Zara waved"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who sees the geese?",
+          "correct": "Zara",
+          "wrong": [
+            "Zara's brother",
+            "Zara's mom",
+            "Zara's teacher"
+          ]
+        },
+        {
+          "q": "What shape do the geese make?",
+          "correct": "A V shape",
+          "wrong": [
+            "A circle",
+            "A straight line",
+            "A triangle"
+          ]
+        },
+        {
+          "q": "Where are the geese going?",
+          "correct": "South for winter",
+          "wrong": [
+            "North for summer",
+            "To the park",
+            "To the ocean"
+          ]
+        },
+        {
+          "q": "When does Zara wave?",
+          "correct": "When they fly over her house",
+          "wrong": [
+            "Before they arrive",
+            "At night",
+            "The next day"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do the geese fly south?",
+          "correct": "To find a warmer place for winter",
+          "wrong": [
+            "Because they are lost",
+            "To visit family",
+            "Because they are scared"
+          ]
+        },
+        {
+          "q": "How does Zara feel about the geese?",
+          "correct": "Interested and amazed",
+          "wrong": [
+            "Sad and upset",
+            "Angry and mean",
+            "Bored and sleepy"
+          ]
+        },
+        {
+          "q": "What season is it now?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Winter",
+            "Spring",
+            "Summer"
+          ]
+        },
+        {
+          "q": "Why do geese fly in a V shape?",
+          "correct": "It helps them fly easier and longer",
+          "wrong": [
+            "It looks pretty",
+            "They are playing a game",
+            "They don't know how else to fly"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-018",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Leaf Collection Project",
+      "text": [
+        "Ben collects different leaves for his school project.",
+        "He finds oak, maple, and birch leaves.",
+        "He presses them carefully in a big book.",
+        "His teacher says his collection is wonderful.",
+        "Ben smiles and feels very proud."
+      ],
+      "retellingPrompts": [
+        "Ben collected leaves for",
+        "He found different kinds like",
+        "He pressed the leaves in",
+        "His teacher said"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who makes the collection?",
+          "correct": "Ben",
+          "wrong": [
+            "Ben's teacher",
+            "Ben's mom",
+            "Ben's friend"
+          ]
+        },
+        {
+          "q": "What does Ben collect?",
+          "correct": "Different leaves",
+          "wrong": [
+            "Rocks",
+            "Acorns",
+            "Flowers"
+          ]
+        },
+        {
+          "q": "Where does he press the leaves?",
+          "correct": "In a big book",
+          "wrong": [
+            "Under a rock",
+            "In a box",
+            "On the wall"
+          ]
+        },
+        {
+          "q": "When does Ben smile?",
+          "correct": "When his teacher compliments him",
+          "wrong": [
+            "Before starting",
+            "While collecting",
+            "At bedtime"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does Ben press the leaves in a book?",
+          "correct": "To flatten and preserve them",
+          "wrong": [
+            "To hide them",
+            "Because he's clumsy",
+            "To read about them"
+          ]
+        },
+        {
+          "q": "How does Ben feel about his project?",
+          "correct": "Proud and happy",
+          "wrong": [
+            "Sad and disappointed",
+            "Angry and frustrated",
+            "Scared and nervous"
+          ]
+        },
+        {
+          "q": "Why does he need different kinds of leaves?",
+          "correct": "To show variety for his project",
+          "wrong": [
+            "Because one isn't enough",
+            "Because the teacher said so",
+            "Because he's greedy"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Spring",
+            "Summer",
+            "Winter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-019",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "Planning a Costume",
+      "text": [
+        "Lily and her mom look at costume ideas online.",
+        "Lily wants to be a friendly witch for Halloween.",
+        "They buy a black hat and an orange cape.",
+        "Lily tries on the costume and twirls around.",
+        "She can't wait to wear it to the Halloween party."
+      ],
+      "retellingPrompts": [
+        "Lily and her mom looked at",
+        "Lily decided to be",
+        "They bought",
+        "Lily was excited to wear it"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who plans the costume?",
+          "correct": "Lily and her mom",
+          "wrong": [
+            "Lily and her dad",
+            "Lily and her teacher",
+            "Lily alone"
+          ]
+        },
+        {
+          "q": "What does Lily want to be?",
+          "correct": "A friendly witch",
+          "wrong": [
+            "A princess",
+            "A superhero",
+            "A pumpkin"
+          ]
+        },
+        {
+          "q": "Where do they look for ideas?",
+          "correct": "Online",
+          "wrong": [
+            "At the store",
+            "In a book",
+            "At school"
+          ]
+        },
+        {
+          "q": "When will Lily wear the costume?",
+          "correct": "To the Halloween party",
+          "wrong": [
+            "To school tomorrow",
+            "To bed",
+            "On Thanksgiving"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why does Lily want a costume?",
+          "correct": "For Halloween celebrations",
+          "wrong": [
+            "For a play",
+            "Because she's cold",
+            "To wear every day"
+          ]
+        },
+        {
+          "q": "How does Lily feel about her costume?",
+          "correct": "Excited and happy",
+          "wrong": [
+            "Sad and disappointed",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why does she twirl around?",
+          "correct": "To see how the costume looks when moving",
+          "wrong": [
+            "Because she's dizzy",
+            "Because Mom told her to",
+            "Because she fell"
+          ]
+        },
+        {
+          "q": "What season is Halloween in?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Winter",
+            "Spring",
+            "Summer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-020",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 1,
+      "title": "The Hayride Adventure",
+      "text": [
+        "Marcus goes on a hayride with his scout troop.",
+        "The tractor pulls them slowly through the farm.",
+        "They see pumpkins, corn fields, and apple trees.",
+        "Everyone sings songs and tells jokes.",
+        "At the end, they roast marshmallows by a fire."
+      ],
+      "retellingPrompts": [
+        "Marcus went on a hayride with",
+        "The tractor pulled them through",
+        "They saw",
+        "At the end, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who goes on the hayride?",
+          "correct": "Marcus and his scout troop",
+          "wrong": [
+            "Marcus and his family",
+            "Marcus alone",
+            "Marcus and his class"
+          ]
+        },
+        {
+          "q": "What pulls the hayride?",
+          "correct": "A tractor",
+          "wrong": [
+            "A truck",
+            "Horses",
+            "A bus"
+          ]
+        },
+        {
+          "q": "Where do they ride?",
+          "correct": "Through the farm",
+          "wrong": [
+            "Around the park",
+            "In the city",
+            "At the beach"
+          ]
+        },
+        {
+          "q": "When do they roast marshmallows?",
+          "correct": "At the end",
+          "wrong": [
+            "Before the ride",
+            "During the ride",
+            "Never"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do they ride slowly?",
+          "correct": "To see everything and stay safe",
+          "wrong": [
+            "Because the tractor is broken",
+            "Because they are lost",
+            "Because they are tired"
+          ]
+        },
+        {
+          "q": "How do Marcus and his friends feel?",
+          "correct": "Happy and having fun",
+          "wrong": [
+            "Sad and bored",
+            "Angry and upset",
+            "Scared and worried"
+          ]
+        },
+        {
+          "q": "Why do they sing and tell jokes?",
+          "correct": "To have fun together on the ride",
+          "wrong": [
+            "Because they have to",
+            "Because they are nervous",
+            "Because it's too quiet"
+          ]
+        },
+        {
+          "q": "What season is it in this story?",
+          "correct": "Fall or autumn",
+          "wrong": [
+            "Spring",
+            "Summer",
+            "Winter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-021",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Apple Picking Day",
+      "text": [
+        "Liam woke up early on Saturday morning, excited for the trip to Miller's Apple Farm.",
+        "His mom packed a picnic lunch, and they drove down winding country roads lined with colorful trees.",
+        "When they arrived, rows and rows of apple trees stretched across the hillside, covered with bright red fruit.",
+        "Liam carefully picked the best apples he could find, making sure not to bruise them as he placed each one gently in his basket.",
+        "The crisp autumn air smelled wonderfully sweet from all the ripe apples.",
+        "That evening, they baked a delicious apple pie together, filling the whole house with the warm scent of cinnamon.",
+        "Liam felt proud knowing the apples in their pie came from his own hard work."
+      ],
+      "retellingPrompts": [
+        "On Saturday, Liam and his mom",
+        "At the farm, they saw",
+        "Liam picked apples and",
+        "Later that day, they used the apples to"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What is the name of the farm they visited?",
+          "correct": "Miller's Apple Farm",
+          "wrong": [
+            "Johnson's Pumpkin Patch",
+            "Green Valley Farm",
+            "Sunshine Orchard"
+          ]
+        },
+        {
+          "q": "How did Liam make sure not to damage the apples?",
+          "correct": "He placed them gently in the basket",
+          "wrong": [
+            "He threw them carefully",
+            "He wrapped each one in paper",
+            "He carried them in his hands"
+          ]
+        },
+        {
+          "q": "What day of the week did they go?",
+          "correct": "Saturday",
+          "wrong": [
+            "Sunday",
+            "Friday",
+            "Monday"
+          ]
+        },
+        {
+          "q": "What spice did they use in the apple pie?",
+          "correct": "Cinnamon",
+          "wrong": [
+            "Nutmeg",
+            "Ginger",
+            "Vanilla"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did they drive on winding country roads?",
+          "correct": "The farm was in the countryside away from the city",
+          "wrong": [
+            "They were lost",
+            "It was a shortcut",
+            "The main roads were closed"
+          ]
+        },
+        {
+          "q": "Why did Liam feel proud at the end?",
+          "correct": "He worked hard to pick the apples himself",
+          "wrong": [
+            "His mom praised him",
+            "He ate the whole pie",
+            "He won a contest"
+          ]
+        },
+        {
+          "q": "What does 'crisp autumn air' tell us about the weather?",
+          "correct": "It was cool and refreshing outside",
+          "wrong": [
+            "It was very hot",
+            "It was raining",
+            "It was windy and stormy"
+          ]
+        },
+        {
+          "q": "Why did his mom pack a picnic lunch?",
+          "correct": "They would be away from home for a while",
+          "wrong": [
+            "There was no food at the farm",
+            "Liam asked her to",
+            "It was too expensive to eat there"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-022",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "The Pumpkin Patch",
+      "text": [
+        "Mrs. Thompson's third-grade class buzzed with excitement as the bus pulled into Harvest Moon Pumpkin Patch.",
+        "Mia had been looking forward to this field trip all week, especially since she wanted to find the perfect pumpkin to carve.",
+        "She searched carefully among the vines, looking for one that was just the right size and shape.",
+        "Her best friend Hannah found a huge, bumpy pumpkin that was almost too heavy to lift.",
+        "After everyone picked their pumpkins, they all climbed aboard the hay wagon for a tour of the farm.",
+        "The farmer waved his hat as they passed by, and all the students waved back enthusiastically.",
+        "Mia couldn't wait to take her pumpkin home and turn it into a jack-o'-lantern with a silly face."
+      ],
+      "retellingPrompts": [
+        "Mrs. Thompson's class went on a field trip to",
+        "Mia wanted to find",
+        "After picking pumpkins, the class",
+        "Mia planned to turn her pumpkin into"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What grade is Mia in?",
+          "correct": "Third grade",
+          "wrong": [
+            "Second grade",
+            "Fourth grade",
+            "Fifth grade"
+          ]
+        },
+        {
+          "q": "What is the name of the pumpkin patch?",
+          "correct": "Harvest Moon Pumpkin Patch",
+          "wrong": [
+            "Fall Festival Farm",
+            "Orange Valley Patch",
+            "Autumn Acres"
+          ]
+        },
+        {
+          "q": "Who is Mia's best friend?",
+          "correct": "Hannah",
+          "wrong": [
+            "Emma",
+            "Sophia",
+            "Olivia"
+          ]
+        },
+        {
+          "q": "What did Mia want to carve on her pumpkin?",
+          "correct": "A silly face",
+          "wrong": [
+            "A scary face",
+            "A cat",
+            "Her name"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why had Mia been excited all week?",
+          "correct": "She was looking forward to the field trip",
+          "wrong": [
+            "It was her birthday",
+            "She had a test",
+            "She was moving"
+          ]
+        },
+        {
+          "q": "What does 'buzzed with excitement' mean?",
+          "correct": "Everyone was talking happily and feeling excited",
+          "wrong": [
+            "There were bees on the bus",
+            "The bus was making noise",
+            "They were playing a buzzing game"
+          ]
+        },
+        {
+          "q": "Why did the farmer wave his hat?",
+          "correct": "To be friendly and greet the students",
+          "wrong": [
+            "To cool himself off",
+            "Because it was dirty",
+            "To signal the driver"
+          ]
+        },
+        {
+          "q": "Why was Hannah's pumpkin 'almost too heavy to lift'?",
+          "correct": "It was very large and weighed a lot",
+          "wrong": [
+            "She wasn't very strong",
+            "It was stuck in the ground",
+            "It was filled with water"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-023",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Leaves Falling Down",
+      "text": [
+        "Caleb and his dad decided to spend Sunday afternoon at Riverside Park to enjoy the beautiful fall weather.",
+        "The trees were putting on a magnificent show, with leaves in every shade of red, orange, gold, and yellow.",
+        "Caleb loved the crunching sound the dried leaves made under his feet as he walked.",
+        "He kicked a big pile of leaves into the air and watched them swirl and float back down like confetti.",
+        "His dad suggested they take a photo in front of the oldest oak tree in the park to remember this perfect autumn day.",
+        "A gentle breeze blew through the branches, making even more leaves dance and twirl through the air.",
+        "Caleb thought it looked like nature was celebrating fall with its own colorful party."
+      ],
+      "retellingPrompts": [
+        "Caleb and his dad went to",
+        "The trees had leaves that were",
+        "Caleb enjoyed",
+        "They took a picture to"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What is the name of the park?",
+          "correct": "Riverside Park",
+          "wrong": [
+            "Oakwood Park",
+            "Sunset Park",
+            "Meadow Park"
+          ]
+        },
+        {
+          "q": "What day did they visit the park?",
+          "correct": "Sunday",
+          "wrong": [
+            "Saturday",
+            "Friday",
+            "Monday"
+          ]
+        },
+        {
+          "q": "What kind of tree did they take a photo by?",
+          "correct": "An oak tree",
+          "wrong": [
+            "A maple tree",
+            "A pine tree",
+            "An elm tree"
+          ]
+        },
+        {
+          "q": "What did Caleb kick into the air?",
+          "correct": "A pile of leaves",
+          "wrong": [
+            "A soccer ball",
+            "Acorns",
+            "Sticks"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did the leaves make a crunching sound?",
+          "correct": "They were dried out from being on the ground",
+          "wrong": [
+            "They were frozen",
+            "Someone stepped on them first",
+            "They were extra crispy"
+          ]
+        },
+        {
+          "q": "What did Caleb mean by saying nature was 'celebrating fall'?",
+          "correct": "The colorful leaves looked festive and joyful",
+          "wrong": [
+            "There was an actual party",
+            "Animals were celebrating",
+            "People were having a festival"
+          ]
+        },
+        {
+          "q": "Why is the oak tree special?",
+          "correct": "It's the oldest tree in the park",
+          "wrong": [
+            "It's the tallest tree",
+            "It has the most leaves",
+            "It's the only oak tree"
+          ]
+        },
+        {
+          "q": "What does 'magnificent show' mean?",
+          "correct": "The trees looked amazing and beautiful",
+          "wrong": [
+            "There was a performance at the park",
+            "The trees were moving",
+            "People were watching the trees"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-024",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Hot Chocolate Time",
+      "text": [
+        "Emma shivered as she stepped off the school bus, pulling her jacket tighter against the chilly afternoon breeze.",
+        "Gray clouds filled the sky, and a light drizzle had begun to fall, making everything look damp and dreary.",
+        "When she opened the front door, her older sister Katie was already in the kitchen, heating milk on the stove.",
+        "\"I thought you might want some hot chocolate on this cold, rainy day,\" Katie said with a warm smile.",
+        "They made two steaming mugs topped with fluffy marshmallows that slowly melted into white swirls.",
+        "Snuggled together under Grandma's handmade quilt on the couch, they watched raindrops race down the window.",
+        "Emma felt grateful to have such a thoughtful sister who always knew how to make a bad weather day feel cozy and special."
+      ],
+      "retellingPrompts": [
+        "When Emma got home from school,",
+        "Her sister Katie",
+        "They sat together and",
+        "Emma felt grateful because"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What is Emma's sister's name?",
+          "correct": "Katie",
+          "wrong": [
+            "Kelly",
+            "Kathy",
+            "Karen"
+          ]
+        },
+        {
+          "q": "Where was Katie when Emma came home?",
+          "correct": "In the kitchen",
+          "wrong": [
+            "In her bedroom",
+            "In the living room",
+            "Outside"
+          ]
+        },
+        {
+          "q": "Who made the quilt they used?",
+          "correct": "Grandma",
+          "wrong": [
+            "Mom",
+            "Katie",
+            "Emma"
+          ]
+        },
+        {
+          "q": "What did they watch through the window?",
+          "correct": "Raindrops racing down",
+          "wrong": [
+            "Birds flying",
+            "Cars driving by",
+            "People walking"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "How did Katie know Emma would want hot chocolate?",
+          "correct": "She noticed the cold, rainy weather",
+          "wrong": [
+            "Emma called her",
+            "Emma always wants hot chocolate",
+            "Their mom told her"
+          ]
+        },
+        {
+          "q": "What does 'damp and dreary' mean?",
+          "correct": "Wet and gloomy looking",
+          "wrong": [
+            "Bright and cheerful",
+            "Dry and dusty",
+            "Warm and sunny"
+          ]
+        },
+        {
+          "q": "Why did Emma feel the day was 'special' despite bad weather?",
+          "correct": "Katie's kindness made her feel cared for",
+          "wrong": [
+            "She didn't have homework",
+            "She got a present",
+            "It was her birthday"
+          ]
+        },
+        {
+          "q": "What does it mean that the marshmallows 'melted into white swirls'?",
+          "correct": "They dissolved and mixed with the hot chocolate",
+          "wrong": [
+            "They spun around in circles",
+            "They turned into cream",
+            "They floated on top"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-025",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Raking the Yard",
+      "text": [
+        "Mr. Lee's fourth-grade class had volunteered to help clean up the school grounds as part of their community service project.",
+        "Autumn leaves had piled up everywhere around the playground and along the fence, making the yard look messy.",
+        "The students worked together in teams, raking the crunchy brown and gold leaves into several enormous piles.",
+        "\"Great teamwork, everyone!\" Mr. Lee called out as he watched his students cooperate so well.",
+        "Before bagging up the leaves, he surprised them by giving permission for one fun jump into the biggest pile.",
+        "Laughter filled the air as students took turns leaping into the soft, rustling mountain of leaves.",
+        "By the time they finished, the schoolyard looked neat and tidy, and the students felt proud of their hard work."
+      ],
+      "retellingPrompts": [
+        "Mr. Lee's class volunteered to",
+        "The students worked in teams to",
+        "Before cleaning up, Mr. Lee let them",
+        "When they finished, the yard looked"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What grade does Mr. Lee teach?",
+          "correct": "Fourth grade",
+          "wrong": [
+            "Third grade",
+            "Fifth grade",
+            "Sixth grade"
+          ]
+        },
+        {
+          "q": "What kind of project were they doing?",
+          "correct": "A community service project",
+          "wrong": [
+            "A science project",
+            "An art project",
+            "A reading project"
+          ]
+        },
+        {
+          "q": "Where had the leaves piled up?",
+          "correct": "Around the playground and along the fence",
+          "wrong": [
+            "Only on the field",
+            "In the parking lot",
+            "By the school entrance"
+          ]
+        },
+        {
+          "q": "How many times could students jump in the leaves?",
+          "correct": "One time",
+          "wrong": [
+            "As many times as they wanted",
+            "Two times",
+            "Three times"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did Mr. Lee praise their 'teamwork'?",
+          "correct": "They were working well together and cooperating",
+          "wrong": [
+            "They finished very quickly",
+            "They found the most leaves",
+            "They were very quiet"
+          ]
+        },
+        {
+          "q": "Why was jumping in the leaves a 'surprise'?",
+          "correct": "The students didn't expect to be allowed to play",
+          "wrong": [
+            "They had never seen leaves before",
+            "It was someone's birthday",
+            "There was a prize"
+          ]
+        },
+        {
+          "q": "What does 'rustling mountain' suggest about the leaf pile?",
+          "correct": "It was very tall and made noise when disturbed",
+          "wrong": [
+            "It was on a mountain",
+            "It was made of rocks",
+            "It was very small"
+          ]
+        },
+        {
+          "q": "How did the students probably feel about their work?",
+          "correct": "Accomplished and satisfied",
+          "wrong": [
+            "Tired and annoyed",
+            "Bored and frustrated",
+            "Confused and worried"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-026",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Football Game Fun",
+      "text": [
+        "Carlos and his family arrived at the high school stadium just as the Friday night lights were being turned on.",
+        "The smell of popcorn and hot dogs drifted through the cool evening air, and the bleachers were already filling with excited fans.",
+        "Carlos wore his favorite team's colors - a bright red jersey and matching cap - and cheered loudly whenever they scored.",
+        "His dad bought everyone warm apple cider to sip while they watched the players run incredible plays across the field.",
+        "The marching band played energetic music during halftime, and Carlos tried to clap along with the beat.",
+        "As the sun set completely and darkness fell, the bright stadium lights made everything glow.",
+        "On the drive home, Carlos talked nonstop about the most exciting plays, already hoping they could come back next week."
+      ],
+      "retellingPrompts": [
+        "Carlos and his family went to",
+        "He wore",
+        "During the game, they",
+        "Carlos wanted to"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What night of the week was the game?",
+          "correct": "Friday night",
+          "wrong": [
+            "Saturday night",
+            "Thursday night",
+            "Sunday afternoon"
+          ]
+        },
+        {
+          "q": "What did Carlos wear to show team spirit?",
+          "correct": "A red jersey and matching cap",
+          "wrong": [
+            "A blue sweater",
+            "A green jacket",
+            "A yellow shirt"
+          ]
+        },
+        {
+          "q": "What did the band do at halftime?",
+          "correct": "Played energetic music",
+          "wrong": [
+            "Sold food",
+            "Did a comedy show",
+            "Gave out prizes"
+          ]
+        },
+        {
+          "q": "What drink did they have at the game?",
+          "correct": "Warm apple cider",
+          "wrong": [
+            "Hot chocolate",
+            "Lemonade",
+            "Soda"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why are they called 'Friday night lights'?",
+          "correct": "Football games are traditionally played Friday nights under stadium lights",
+          "wrong": [
+            "The lights only work on Fridays",
+            "It's a special holiday",
+            "The lights are a different color"
+          ]
+        },
+        {
+          "q": "What does 'talked nonstop' tell us about Carlos?",
+          "correct": "He was very excited and couldn't stop talking",
+          "wrong": [
+            "He was tired",
+            "He was upset",
+            "He was confused"
+          ]
+        },
+        {
+          "q": "Why did they drink warm cider instead of cold drinks?",
+          "correct": "The evening air was cool so warm drinks felt good",
+          "wrong": [
+            "They ran out of cold drinks",
+            "It was healthier",
+            "It was cheaper"
+          ]
+        },
+        {
+          "q": "What does 'bleachers were already filling' suggest?",
+          "correct": "The game was popular and many people were coming",
+          "wrong": [
+            "The bleachers were broken",
+            "They arrived very late",
+            "There weren't enough seats"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-027",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Scarecrow in the Garden",
+      "text": [
+        "Old Farmer Jenkins stood back to admire his handiwork - a scarecrow that stood guard over his vegetable garden.",
+        "He had dressed it in his worn-out plaid flannel shirt and his oldest straw hat with a hole in the brim.",
+        "The scarecrow's arms were made from wooden poles, stuffed with hay and positioned to look like it was waving at passersby.",
+        "Every time the autumn wind picked up, those straw-filled arms would sway gently, making the scarecrow seem almost alive.",
+        "The local crows had been eating his precious corn, but now they kept their distance, fooled by the human-like figure.",
+        "Some of the neighborhood children walking by would wave back at the scarecrow, thinking it looked friendly rather than scary.",
+        "Farmer Jenkins chuckled with satisfaction, knowing his garden vegetables would be safe until harvest time."
+      ],
+      "retellingPrompts": [
+        "Farmer Jenkins made a scarecrow to",
+        "He used",
+        "When the wind blew,",
+        "The scarecrow successfully"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What is the farmer's name?",
+          "correct": "Farmer Jenkins",
+          "wrong": [
+            "Farmer Brown",
+            "Farmer Smith",
+            "Farmer Johnson"
+          ]
+        },
+        {
+          "q": "What was wrong with the hat?",
+          "correct": "It had a hole in the brim",
+          "wrong": [
+            "It was too small",
+            "It was missing",
+            "It was torn in half"
+          ]
+        },
+        {
+          "q": "What were the scarecrow's arms made from?",
+          "correct": "Wooden poles stuffed with hay",
+          "wrong": [
+            "Tree branches",
+            "Metal pipes",
+            "Rope"
+          ]
+        },
+        {
+          "q": "What were the crows trying to eat?",
+          "correct": "Corn",
+          "wrong": [
+            "Tomatoes",
+            "Pumpkins",
+            "Apples"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "What does 'admire his handiwork' mean?",
+          "correct": "Feel proud of something he created",
+          "wrong": [
+            "Fix something broken",
+            "Start working",
+            "Give up on work"
+          ]
+        },
+        {
+          "q": "Why did Farmer Jenkins use old, worn-out clothes?",
+          "correct": "He didn't need them anymore and they worked fine for the scarecrow",
+          "wrong": [
+            "They were magical",
+            "New clothes don't scare birds",
+            "He was poor"
+          ]
+        },
+        {
+          "q": "Why did the children wave at the scarecrow?",
+          "correct": "It looked friendly like it was waving at them first",
+          "wrong": [
+            "They were afraid of it",
+            "Their parents told them to",
+            "It was moving"
+          ]
+        },
+        {
+          "q": "What does 'chuckled with satisfaction' tell us?",
+          "correct": "He was pleased and happy with the result",
+          "wrong": [
+            "He was laughing at someone",
+            "He was nervous",
+            "He was angry"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-028",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Fall Festival",
+      "text": [
+        "The annual Fall Festival in downtown had transformed the town square into a wonderland of autumn fun.",
+        "Nora's family arrived early to make sure they had time to enjoy all the activities before the festival closed.",
+        "Colorful vendor booths lined the streets, selling everything from caramel apples to handmade fall decorations.",
+        "Nora's favorite treat was the caramel apple - sweet, sticky, and covered in crushed peanuts that crunched with every bite.",
+        "Her younger brother Marcus begged to go on the giant slide three times, squealing with delight each trip down.",
+        "A local band played lively bluegrass music on the main stage, and families danced together on the grass.",
+        "As twilight faded to darkness, thousands of twinkling lights strung overhead made the whole festival sparkle like magic.",
+        "Nora thought it was the most perfect autumn evening she could imagine."
+      ],
+      "retellingPrompts": [
+        "The Fall Festival was held in",
+        "Nora's favorite treat was",
+        "Her brother Marcus",
+        "When evening came,"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What is Nora's brother's name?",
+          "correct": "Marcus",
+          "wrong": [
+            "Michael",
+            "Matthew",
+            "Mason"
+          ]
+        },
+        {
+          "q": "What was on top of Nora's caramel apple?",
+          "correct": "Crushed peanuts",
+          "wrong": [
+            "Chocolate chips",
+            "Sprinkles",
+            "Coconut"
+          ]
+        },
+        {
+          "q": "What type of music did the band play?",
+          "correct": "Bluegrass",
+          "wrong": [
+            "Rock",
+            "Jazz",
+            "Country"
+          ]
+        },
+        {
+          "q": "How many times did Marcus ride the slide?",
+          "correct": "Three times",
+          "wrong": [
+            "Two times",
+            "Four times",
+            "Five times"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did they arrive early?",
+          "correct": "To have enough time to do everything before it closed",
+          "wrong": [
+            "To avoid crowds",
+            "To get free food",
+            "To set up booths"
+          ]
+        },
+        {
+          "q": "What does 'transformed into a wonderland' mean?",
+          "correct": "Changed into an amazing, magical-looking place",
+          "wrong": [
+            "Built a new building",
+            "Moved to a different location",
+            "Closed down"
+          ]
+        },
+        {
+          "q": "Why did the lights make it look 'like magic'?",
+          "correct": "They created a beautiful, enchanting atmosphere",
+          "wrong": [
+            "They were actually magic",
+            "A magician turned them on",
+            "They changed colors"
+          ]
+        },
+        {
+          "q": "What does Marcus 'squealing with delight' tell us?",
+          "correct": "He was extremely happy and excited",
+          "wrong": [
+            "He was scared",
+            "He was hurt",
+            "He was cold"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-029",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "The Corn Maze",
+      "text": [
+        "Evan and his three best friends from school had been planning their corn maze adventure for weeks.",
+        "The maze at Johnson Farm was famous for being tricky, with paths that twisted and turned in confusing directions.",
+        "As they entered through the tall corn stalks, Evan noticed how the corn towered high above their heads, blocking out most of the sunlight.",
+        "They tried to follow the wooden signs with arrows, but sometimes the signs seemed to point in opposite directions on purpose.",
+        "When they realized they had walked in a complete circle back to where they started, they all burst out laughing at their mistake.",
+        "\"This is harder than I thought!\" Evan's friend Josh admitted, studying the map they had been given.",
+        "After nearly forty minutes of searching, they finally found the exit and celebrated with delicious pumpkin donuts from the farm stand.",
+        "Evan decided that getting lost with good friends was actually more fun than finding the exit quickly."
+      ],
+      "retellingPrompts": [
+        "Evan and his friends went to",
+        "The corn maze was",
+        "They got confused because",
+        "After finishing, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What farm was the corn maze at?",
+          "correct": "Johnson Farm",
+          "wrong": [
+            "Miller Farm",
+            "Green Acres",
+            "Harvest Farm"
+          ]
+        },
+        {
+          "q": "How many friends went with Evan?",
+          "correct": "Three",
+          "wrong": [
+            "Two",
+            "Four",
+            "Five"
+          ]
+        },
+        {
+          "q": "What is one friend's name mentioned in the story?",
+          "correct": "Josh",
+          "wrong": [
+            "Jake",
+            "Jack",
+            "Joe"
+          ]
+        },
+        {
+          "q": "How long did it take them to find the exit?",
+          "correct": "Nearly forty minutes",
+          "wrong": [
+            "Twenty minutes",
+            "One hour",
+            "Two hours"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why was the maze 'famous for being tricky'?",
+          "correct": "It was known as a difficult maze that confused people",
+          "wrong": [
+            "It was in a movie",
+            "It was the biggest maze",
+            "It gave prizes"
+          ]
+        },
+        {
+          "q": "Why did the signs seem to point in 'opposite directions on purpose'?",
+          "correct": "The maze was designed to be confusing and challenging",
+          "wrong": [
+            "Someone put them up wrong",
+            "The wind moved them",
+            "They were broken"
+          ]
+        },
+        {
+          "q": "What made Evan think getting lost was 'more fun'?",
+          "correct": "Spending time laughing with friends was enjoyable",
+          "wrong": [
+            "He liked being lost",
+            "He didn't want to leave",
+            "He was afraid of the exit"
+          ]
+        },
+        {
+          "q": "Why did they laugh when they walked in a circle?",
+          "correct": "They found their mistake funny and weren't upset about it",
+          "wrong": [
+            "Someone told a joke",
+            "They were nervous",
+            "They were tired"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-030",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Sweater Weather",
+      "text": [
+        "Lila opened her closet door and immediately reached for her coziest sweater - a soft, pumpkin-orange knit her grandmother had made last year.",
+        "Looking out her bedroom window, she could see her breath making little clouds in the chilly morning air.",
+        "The weatherman on TV had predicted the first real cold morning of fall, and he was definitely right.",
+        "She walked to the corner with her friends Maya and Jordan, all bundled up in their warm jackets and scarves.",
+        "A mysterious white fog lay low across the neighborhood lawns like a soft blanket, making everything look dreamy and magical.",
+        "\"Look! The fog is disappearing!\" Maya pointed as the rising sun began breaking through the gray clouds.",
+        "By the time the school bus arrived, the fog had vanished completely, and golden sunlight warmed their faces.",
+        "Lila loved these crisp autumn mornings that started cold but promised to become beautiful, sunny days."
+      ],
+      "retellingPrompts": [
+        "On a chilly morning, Lila",
+        "She walked to the bus stop with",
+        "There was fog that",
+        "Lila enjoyed"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Who made Lila's sweater?",
+          "correct": "Her grandmother",
+          "wrong": [
+            "Her mother",
+            "Her aunt",
+            "Her sister"
+          ]
+        },
+        {
+          "q": "What color was the sweater?",
+          "correct": "Pumpkin-orange",
+          "wrong": [
+            "Red",
+            "Yellow",
+            "Brown"
+          ]
+        },
+        {
+          "q": "Who are Lila's two friends?",
+          "correct": "Maya and Jordan",
+          "wrong": [
+            "Emma and Jack",
+            "Sophie and Tyler",
+            "Ava and Ryan"
+          ]
+        },
+        {
+          "q": "What happened to the fog?",
+          "correct": "It disappeared when the sun came out",
+          "wrong": [
+            "It got thicker",
+            "It turned to rain",
+            "It stayed all day"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why could Lila see her breath?",
+          "correct": "The cold air made water vapor visible",
+          "wrong": [
+            "She was breathing differently",
+            "She was sick",
+            "The window was foggy"
+          ]
+        },
+        {
+          "q": "What does 'fog lay low like a soft blanket' mean?",
+          "correct": "The fog covered the ground gently and evenly",
+          "wrong": [
+            "There were actual blankets outside",
+            "The fog was thick and heavy",
+            "Someone put blankets on lawns"
+          ]
+        },
+        {
+          "q": "Why did the weatherman's prediction matter?",
+          "correct": "It helped people know what to wear that morning",
+          "wrong": [
+            "He won a prize",
+            "It was unusual",
+            "He was always wrong"
+          ]
+        },
+        {
+          "q": "What does Lila appreciate about autumn mornings?",
+          "correct": "The contrast between cold starts and warm, beautiful days",
+          "wrong": [
+            "She likes being cold",
+            "She enjoys foggy weather",
+            "She prefers staying inside"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-031",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Grandpa's Leaf Pile",
+      "text": [
+        "Maya spent every Saturday morning helping her grandfather with yard work, and today's job was tackling the massive amount of fallen leaves.",
+        "Grandpa's old maple trees had dropped thousands of brown, crispy leaves that covered the entire backyard like a crunchy carpet.",
+        "They worked side by side, filling bag after bag with the dried leaves, their rakes making satisfying scratching sounds on the grass.",
+        "Maya's arms were getting tired after filling the fifth bag, but she didn't want to stop helping.",
+        "\"You've worked so hard, sweetie,\" Grandpa said with a twinkle in his eye. \"I think you've earned something special.\"",
+        "He gathered all the remaining leaves into one gigantic, fluffy pile right in the middle of the yard.",
+        "Maya took a running start and jumped into the pile with a whoop of joy, sending leaves flying everywhere.",
+        "Afterward, they sat on the porch drinking cold apple cider, tired but happy, watching the last few leaves drift down from the trees."
+      ],
+      "retellingPrompts": [
+        "Every Saturday, Maya helped",
+        "They filled bags with",
+        "As a reward, Grandpa",
+        "Afterward, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "When does Maya help her grandfather?",
+          "correct": "Every Saturday morning",
+          "wrong": [
+            "Every Sunday",
+            "After school",
+            "On weekends"
+          ]
+        },
+        {
+          "q": "What kind of trees does Grandpa have?",
+          "correct": "Maple trees",
+          "wrong": [
+            "Oak trees",
+            "Pine trees",
+            "Birch trees"
+          ]
+        },
+        {
+          "q": "How many bags did Maya fill before getting tired?",
+          "correct": "Five bags",
+          "wrong": [
+            "Three bags",
+            "Seven bags",
+            "Ten bags"
+          ]
+        },
+        {
+          "q": "Where did they sit to drink cider?",
+          "correct": "On the porch",
+          "wrong": [
+            "At the kitchen table",
+            "In the yard",
+            "In the garage"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "What does 'with a twinkle in his eye' tell us?",
+          "correct": "Grandpa had a fun surprise planned",
+          "wrong": [
+            "Something was in his eye",
+            "He was crying",
+            "He was angry"
+          ]
+        },
+        {
+          "q": "Why didn't Maya want to stop even though she was tired?",
+          "correct": "She enjoyed helping her grandfather and didn't want to let him down",
+          "wrong": [
+            "She wasn't actually tired",
+            "He was paying her",
+            "She had to finish"
+          ]
+        },
+        {
+          "q": "What does 'covered like a crunchy carpet' suggest?",
+          "correct": "Leaves completely covered the ground in a thick layer",
+          "wrong": [
+            "There was an actual carpet outside",
+            "The leaves were wet",
+            "There weren't many leaves"
+          ]
+        },
+        {
+          "q": "Why did they feel 'tired but happy'?",
+          "correct": "Hard work followed by fun made them feel satisfied",
+          "wrong": [
+            "They took a nap",
+            "Someone gave them money",
+            "The work was finished"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-032",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Making Fall Crafts",
+      "text": [
+        "Rain pattered against the kitchen window as Jade and her mom decided it was the perfect day for an indoor craft project.",
+        "They spread old newspapers across the kitchen table to protect it from glue and paint.",
+        "Mom had collected colorful autumn leaves from their neighborhood - brilliant reds, bright oranges, and golden yellows.",
+        "Jade carefully arranged the prettiest leaves on her white paper, creating a pattern that looked like a rainbow of fall colors.",
+        "Once she was happy with the design, she used a glue stick to attach each leaf, pressing gently so they wouldn't tear.",
+        "With her crayons, she drew a cheerful scarecrow wearing a big smile and a patched hat standing in a pumpkin patch.",
+        "\"This is beautiful, Jade!\" her mom exclaimed, holding up the finished artwork to admire it.",
+        "Mom hung it on the refrigerator with special magnets, right at eye level so everyone who came into the kitchen would see it first.",
+        "Jade beamed with pride every time she walked past and saw her autumn masterpiece displayed so prominently."
+      ],
+      "retellingPrompts": [
+        "On a rainy day, Jade and her mom",
+        "Jade used",
+        "She drew a picture of",
+        "When it was finished,"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What was the weather like outside?",
+          "correct": "It was raining",
+          "wrong": [
+            "It was sunny",
+            "It was snowing",
+            "It was windy"
+          ]
+        },
+        {
+          "q": "What did they put on the table to protect it?",
+          "correct": "Old newspapers",
+          "wrong": [
+            "A plastic sheet",
+            "Paper towels",
+            "A tablecloth"
+          ]
+        },
+        {
+          "q": "What tool did Jade use to attach the leaves?",
+          "correct": "A glue stick",
+          "wrong": [
+            "Tape",
+            "Liquid glue",
+            "Staples"
+          ]
+        },
+        {
+          "q": "What was the scarecrow wearing?",
+          "correct": "A big smile and a patched hat",
+          "wrong": [
+            "A crown",
+            "Sunglasses",
+            "A bowtie"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why was it a 'perfect day' for indoor crafts?",
+          "correct": "The rainy weather kept them inside",
+          "wrong": [
+            "They had a holiday",
+            "The store was closed",
+            "They were bored"
+          ]
+        },
+        {
+          "q": "Why did Jade press the leaves 'gently'?",
+          "correct": "Leaves are delicate and could tear easily",
+          "wrong": [
+            "She was being lazy",
+            "The glue was weak",
+            "Her mom told her to"
+          ]
+        },
+        {
+          "q": "What does 'displayed so prominently' mean?",
+          "correct": "Shown in an obvious, important place",
+          "wrong": [
+            "Hidden away",
+            "Thrown in the trash",
+            "Put in a drawer"
+          ]
+        },
+        {
+          "q": "Why did Jade 'beam with pride'?",
+          "correct": "She felt accomplished and happy about her creation",
+          "wrong": [
+            "She was showing off",
+            "She won a contest",
+            "Someone gave her money"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-033",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Squirrels Getting Ready",
+      "text": [
+        "Owen was doing his homework at the kitchen table when movement in the backyard caught his attention.",
+        "Three busy squirrels were scampering back and forth across the lawn, their fluffy tails twitching with each quick movement.",
+        "He watched, fascinated, as one squirrel dug a small hole near the fence, dropped an acorn inside, and covered it up with dirt and leaves.",
+        "Another squirrel was racing up the trunk of the big oak tree, its tiny claws gripping the bark expertly.",
+        "Owen's golden retriever, Max, had been napping on the back porch but suddenly woke up and barked loudly at the intruders.",
+        "The startled squirrels scattered immediately, disappearing into the trees and bushes with impressive speed.",
+        "\"They're gathering food for winter,\" his mom explained, joining him at the window. \"Squirrels hide nuts all over so they'll have enough to eat when it gets cold and snowy.\"",
+        "Owen was amazed by how such small animals could be so smart and prepared for the changing seasons."
+      ],
+      "retellingPrompts": [
+        "Owen noticed squirrels",
+        "The squirrels were",
+        "When Max barked,",
+        "Owen's mom explained that"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What was Owen doing when he saw the squirrels?",
+          "correct": "His homework",
+          "wrong": [
+            "Eating lunch",
+            "Playing games",
+            "Watching TV"
+          ]
+        },
+        {
+          "q": "How many squirrels did Owen see?",
+          "correct": "Three",
+          "wrong": [
+            "Two",
+            "Four",
+            "Five"
+          ]
+        },
+        {
+          "q": "What kind of dog does Owen have?",
+          "correct": "A golden retriever",
+          "wrong": [
+            "A poodle",
+            "A beagle",
+            "A German shepherd"
+          ]
+        },
+        {
+          "q": "What is the dog's name?",
+          "correct": "Max",
+          "wrong": [
+            "Buddy",
+            "Charlie",
+            "Rocky"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do squirrels hide nuts 'all over'?",
+          "correct": "So they can find food in different places during winter",
+          "wrong": [
+            "They forget where they put them",
+            "They're playing a game",
+            "They're messy"
+          ]
+        },
+        {
+          "q": "What does 'their fluffy tails twitching' tell us?",
+          "correct": "The squirrels were alert and active",
+          "wrong": [
+            "They were sick",
+            "They were cold",
+            "They were angry"
+          ]
+        },
+        {
+          "q": "Why did Owen find the squirrels 'smart and prepared'?",
+          "correct": "They were planning ahead for a time when food would be scarce",
+          "wrong": [
+            "They could do tricks",
+            "They were bigger than other squirrels",
+            "They weren't afraid of Max"
+          ]
+        },
+        {
+          "q": "What does 'gripping the bark expertly' mean?",
+          "correct": "The squirrel was very skilled at climbing",
+          "wrong": [
+            "It was stuck",
+            "It was falling",
+            "It was being careful"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-034",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Rainy Day Boots",
+      "text": [
+        "Sofia had been watching the rain clouds gather all morning, secretly hoping for a good downpour.",
+        "Finally, after lunch, fat raindrops began splattering against the windows, and puddles started forming on the sidewalk.",
+        "She quickly pulled on her bright yellow rain boots - her favorite pair that she'd gotten for her birthday.",
+        "\"Don't go too far!\" her mom called from the doorway as Sofia dashed outside with excitement.",
+        "The rain had created dozens of perfect puddles, and Sofia carefully aimed for each one, jumping high and landing with a satisfying splash.",
+        "She discovered that the biggest puddle had formed right under the old maple tree, where water collected in a low spot in the sidewalk.",
+        "After the rain shower passed, everything smelled incredibly fresh and clean, like the world had just taken a bath.",
+        "Her mom snapped a photo of Sofia standing in her rain boots with the biggest grin on her face, muddy water drops sparkling on her rain jacket."
+      ],
+      "retellingPrompts": [
+        "Sofia had been hoping for",
+        "When it started raining, she",
+        "She found the biggest puddle",
+        "Her mom took a picture of"
+      ],
+      "basicQuestions": [
+        {
+          "q": "When did it start raining?",
+          "correct": "After lunch",
+          "wrong": [
+            "In the morning",
+            "At breakfast",
+            "At dinnertime"
+          ]
+        },
+        {
+          "q": "When did Sofia get her boots?",
+          "correct": "For her birthday",
+          "wrong": [
+            "For Christmas",
+            "Last week",
+            "At the store yesterday"
+          ]
+        },
+        {
+          "q": "Where was the biggest puddle?",
+          "correct": "Under the old maple tree",
+          "wrong": [
+            "In the driveway",
+            "At the park",
+            "By the mailbox"
+          ]
+        },
+        {
+          "q": "What was Sofia wearing besides boots?",
+          "correct": "A rain jacket",
+          "wrong": [
+            "A sweater",
+            "A dress",
+            "A t-shirt"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why was Sofia 'secretly hoping' for rain?",
+          "correct": "She loved playing in puddles but didn't want to seem too eager",
+          "wrong": [
+            "She wanted to skip school",
+            "She was tired",
+            "She was sad"
+          ]
+        },
+        {
+          "q": "What does 'the world had just taken a bath' mean?",
+          "correct": "The rain cleaned everything and made it smell fresh",
+          "wrong": [
+            "There was soap everywhere",
+            "People were bathing outside",
+            "The streets were flooded"
+          ]
+        },
+        {
+          "q": "Why did water collect in that spot?",
+          "correct": "It was a low area where water naturally gathered",
+          "wrong": [
+            "Someone dug a hole",
+            "A pipe was broken",
+            "It only rained there"
+          ]
+        },
+        {
+          "q": "How did Sofia feel about the rain?",
+          "correct": "Joyful and excited",
+          "wrong": [
+            "Upset and angry",
+            "Scared and worried",
+            "Bored and tired"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-035",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Baking Pumpkin Bread",
+      "text": [
+        "Tyler loved spending Saturday mornings in the kitchen with his dad, especially when they were baking something delicious.",
+        "Today's project was pumpkin bread, using a recipe that had been passed down from Tyler's great-grandmother.",
+        "They carefully measured out flour, sugar, cinnamon, nutmeg, and ginger, and Tyler got to crack three eggs into the big mixing bowl.",
+        "The star ingredient was a can of pure pumpkin puree - thick, orange, and smooth.",
+        "As they mixed everything together, the wonderful smell of spices began filling the kitchen, making Tyler's stomach rumble with anticipation.",
+        "Dad showed Tyler how to pour the thick batter evenly into the loaf pan without making a mess.",
+        "While the bread baked in the oven, they cleaned up together, and the whole house filled with the most amazing aroma of cinnamon and pumpkin.",
+        "When the timer finally buzzed and they pulled out the golden-brown loaf, Tyler couldn't wait to spread butter on a warm slice.",
+        "\"This tastes even better because we made it together,\" Tyler said between delicious bites."
+      ],
+      "retellingPrompts": [
+        "Tyler and his dad decided to",
+        "The recipe included spices like",
+        "While the bread baked,",
+        "Tyler thought the bread"
+      ],
+      "basicQuestions": [
+        {
+          "q": "Whose recipe did they use?",
+          "correct": "Tyler's great-grandmother's",
+          "wrong": [
+            "Tyler's mom's",
+            "A cookbook's",
+            "The internet's"
+          ]
+        },
+        {
+          "q": "How many eggs did Tyler crack?",
+          "correct": "Three",
+          "wrong": [
+            "Two",
+            "Four",
+            "Five"
+          ]
+        },
+        {
+          "q": "What was the main ingredient?",
+          "correct": "Pumpkin puree",
+          "wrong": [
+            "Apple sauce",
+            "Sweet potato",
+            "Banana"
+          ]
+        },
+        {
+          "q": "What did they spread on the warm bread?",
+          "correct": "Butter",
+          "wrong": [
+            "Jam",
+            "Cream cheese",
+            "Honey"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did Tyler's stomach rumble?",
+          "correct": "The smell made him hungry",
+          "wrong": [
+            "He was sick",
+            "He was nervous",
+            "He drank too much"
+          ]
+        },
+        {
+          "q": "What does 'recipe passed down' mean?",
+          "correct": "A recipe shared through family generations",
+          "wrong": [
+            "A recipe written down",
+            "A recipe from a book",
+            "A new recipe"
+          ]
+        },
+        {
+          "q": "Why did Tyler think it tasted 'even better'?",
+          "correct": "Making it with his dad made it more special",
+          "wrong": [
+            "It had more sugar",
+            "He was very hungry",
+            "It was warmer than usual"
+          ]
+        },
+        {
+          "q": "What does 'filling the house with aroma' suggest?",
+          "correct": "The smell spread throughout the entire home",
+          "wrong": [
+            "They opened windows",
+            "Someone was spraying perfume",
+            "The house was small"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-036",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Visiting the Corn Field",
+      "text": [
+        "Aria's Aunt Michelle had invited her to visit the old family farm where she had grown up decades ago.",
+        "As they walked through rows of tall corn stalks, Aria marveled at how the plants stretched high above her head.",
+        "The corn leaves made a gentle rustling sound whenever the breeze blew through them, almost like they were whispering secrets.",
+        "\"When I was your age, I used to play hide-and-seek in these fields,\" Aunt Michelle said with a nostalgic smile.",
+        "In the distance, they could see the faded red barn where Aunt Michelle's family had once kept horses and cows.",
+        "Aria bent down and picked up a dried corn husk that had fallen to the ground, examining its papery texture.",
+        "As they walked, Aunt Michelle shared wonderful stories about summer harvests, barn dances, and helping her parents tend to the animals.",
+        "Aria loved learning about her family's history and imagining what life was like on the farm long before she was born."
+      ],
+      "retellingPrompts": [
+        "Aria visited",
+        "The corn field had",
+        "Aunt Michelle told stories about",
+        "Aria enjoyed"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What is Aria's aunt's name?",
+          "correct": "Michelle",
+          "wrong": [
+            "Mary",
+            "Martha",
+            "Margaret"
+          ]
+        },
+        {
+          "q": "What game did Aunt Michelle play as a child?",
+          "correct": "Hide-and-seek",
+          "wrong": [
+            "Tag",
+            "Kickball",
+            "Soccer"
+          ]
+        },
+        {
+          "q": "What color was the barn?",
+          "correct": "Red",
+          "wrong": [
+            "White",
+            "Brown",
+            "Gray"
+          ]
+        },
+        {
+          "q": "What did Aria pick up from the ground?",
+          "correct": "A dried corn husk",
+          "wrong": [
+            "A corn cob",
+            "A rock",
+            "A leaf"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "What does 'nostalgic smile' tell us?",
+          "correct": "Aunt Michelle had fond memories of her childhood",
+          "wrong": [
+            "She was sad",
+            "She was confused",
+            "She was tired"
+          ]
+        },
+        {
+          "q": "Why did the corn seem to 'whisper secrets'?",
+          "correct": "The rustling sound was quiet and mysterious",
+          "wrong": [
+            "The corn could talk",
+            "Someone was hiding",
+            "It was magic"
+          ]
+        },
+        {
+          "q": "What does 'papery texture' mean?",
+          "correct": "Thin and dry like paper",
+          "wrong": [
+            "Soft and wet",
+            "Rough and bumpy",
+            "Smooth and shiny"
+          ]
+        },
+        {
+          "q": "Why did Aria love learning about family history?",
+          "correct": "It helped her understand where she came from and feel connected to her past",
+          "wrong": [
+            "She had to write a report",
+            "She was bored",
+            "Her teacher assigned it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-037",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Geese Flying South",
+      "text": [
+        "Zara was raking leaves in the front yard when she heard a strange honking sound coming from above.",
+        "She looked up and spotted a large group of geese flying in a perfect V-formation across the bright blue autumn sky.",
+        "Her older brother Danny, who was a junior in high school, came outside and noticed her watching the birds.",
+        "\"Those geese are migrating south for the winter,\" he explained. \"They fly hundreds of miles to find warmer weather and food.\"",
+        "Zara counted at least twenty geese in the formation, all following the leader at the front of the V.",
+        "The geese flew directly over their house, and Zara waved goodbye, wishing them a safe journey.",
+        "\"Why do they fly in that V-shape?\" Zara asked curiously.",
+        "Danny explained that flying in a V helps the geese save energy - the birds in back benefit from the air currents created by the ones in front.",
+        "Zara thought it was amazing how nature had such clever solutions to help animals survive."
+      ],
+      "retellingPrompts": [
+        "Zara heard honking and",
+        "Her brother Danny explained that",
+        "The geese flew in a V-shape because",
+        "Zara thought"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What was Zara doing when she heard the geese?",
+          "correct": "Raking leaves",
+          "wrong": [
+            "Playing outside",
+            "Doing homework",
+            "Walking the dog"
+          ]
+        },
+        {
+          "q": "What is her brother's name?",
+          "correct": "Danny",
+          "wrong": [
+            "David",
+            "Daniel",
+            "Derek"
+          ]
+        },
+        {
+          "q": "What grade is Danny in?",
+          "correct": "Junior year of high school",
+          "wrong": [
+            "Freshman year",
+            "Senior year",
+            "Sophomore year"
+          ]
+        },
+        {
+          "q": "About how many geese did Zara count?",
+          "correct": "At least twenty",
+          "wrong": [
+            "About ten",
+            "About fifty",
+            "About five"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why do geese migrate south?",
+          "correct": "To find warmer weather and available food",
+          "wrong": [
+            "Because they're lost",
+            "To visit family",
+            "Because they're scared"
+          ]
+        },
+        {
+          "q": "What does 'save energy' mean in this context?",
+          "correct": "Use less effort while flying long distances",
+          "wrong": [
+            "Go faster",
+            "Stop more often",
+            "Eat less food"
+          ]
+        },
+        {
+          "q": "What are 'air currents'?",
+          "correct": "Moving streams of air",
+          "wrong": [
+            "Ocean waves",
+            "Electricity",
+            "Water currents"
+          ]
+        },
+        {
+          "q": "Why did Zara wave goodbye to the geese?",
+          "correct": "She felt connected to them and wished them well",
+          "wrong": [
+            "She thought they could see her",
+            "Her brother told her to",
+            "She was trying to scare them"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-038",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Leaf Collection Project",
+      "text": [
+        "Ben's science teacher, Mrs. Palmer, had assigned an interesting project: collect and identify ten different types of tree leaves.",
+        "Every day after school for a week, Ben walked around his neighborhood with a paper bag, carefully searching for different leaf varieties.",
+        "He found oak leaves with their distinctive wavy edges, maple leaves shaped like stars, and smooth birch leaves.",
+        "To preserve them properly, he placed each leaf between the pages of a heavy dictionary, just like Mrs. Palmer had demonstrated.",
+        "After a few days of pressing, the leaves had dried flat and looked perfect for his display poster.",
+        "Using his mom's help, Ben researched each tree species online and wrote interesting facts about them on index cards.",
+        "He arranged everything neatly on a large poster board with the pressed leaves attached next to their information cards.",
+        "When Mrs. Palmer saw his finished project, she gave him excellent feedback and displayed it on the classroom wall for other students to see.",
+        "Ben felt incredibly proud that his hard work and patience had paid off so well."
+      ],
+      "retellingPrompts": [
+        "Ben's science project was to",
+        "He collected leaves including",
+        "To preserve them, he",
+        "His teacher displayed"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What is Ben's teacher's name?",
+          "correct": "Mrs. Palmer",
+          "wrong": [
+            "Mrs. Parker",
+            "Mrs. Peterson",
+            "Mrs. Powell"
+          ]
+        },
+        {
+          "q": "How many types of leaves did he need to collect?",
+          "correct": "Ten",
+          "wrong": [
+            "Five",
+            "Fifteen",
+            "Twenty"
+          ]
+        },
+        {
+          "q": "Where did Ben press the leaves?",
+          "correct": "In a heavy dictionary",
+          "wrong": [
+            "Under a rock",
+            "In the microwave",
+            "In a folder"
+          ]
+        },
+        {
+          "q": "What did Ben write on index cards?",
+          "correct": "Interesting facts about each tree species",
+          "wrong": [
+            "His name",
+            "The dates he found them",
+            "Poems about trees"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did Ben need a heavy dictionary?",
+          "correct": "The weight would flatten and dry the leaves properly",
+          "wrong": [
+            "To read about leaves",
+            "To make the leaves heavier",
+            "Because Mrs. Palmer said so"
+          ]
+        },
+        {
+          "q": "What does 'distinctive wavy edges' mean?",
+          "correct": "Unique curved edges that help identify oak leaves",
+          "wrong": [
+            "The edges were moving",
+            "The edges were broken",
+            "The edges were straight"
+          ]
+        },
+        {
+          "q": "Why did his patience 'pay off'?",
+          "correct": "Taking time to do it carefully resulted in success",
+          "wrong": [
+            "He received money",
+            "He got extra credit",
+            "He won a prize"
+          ]
+        },
+        {
+          "q": "Why would Mrs. Palmer display his project?",
+          "correct": "It was an excellent example for other students to learn from",
+          "wrong": [
+            "She had no other decorations",
+            "Ben asked her to",
+            "It was the only project"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-039",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "Planning a Costume",
+      "text": [
+        "With Halloween just three weeks away, Lily knew it was time to start planning her costume seriously.",
+        "She and her mom sat together on the couch with a laptop, browsing through costume websites for inspiration.",
+        "Lily had seen many ideas - superheroes, princesses, animals - but nothing felt quite right until she saw a friendly witch costume.",
+        "\"I want to be a good witch, not a scary one,\" she told her mom, imagining herself with a pointy hat and a kind smile.",
+        "They ordered a silky black pointed hat with a silver moon and stars, plus a bright orange cape that would flow behind her when she walked.",
+        "When the package arrived three days later, Lily immediately tried everything on and practiced her \"friendly witch\" walk.",
+        "She twirled in front of the mirror, watching the orange cape spin around her like autumn leaves swirling in the wind.",
+        "The school Halloween party was next Friday, and Lily could hardly wait to show everyone her creative costume idea."
+      ],
+      "retellingPrompts": [
+        "Lily needed to plan",
+        "She and her mom looked online and",
+        "They ordered",
+        "Lily was excited to"
+      ],
+      "basicQuestions": [
+        {
+          "q": "How much time was left until Halloween?",
+          "correct": "Three weeks",
+          "wrong": [
+            "Two weeks",
+            "One month",
+            "Five days"
+          ]
+        },
+        {
+          "q": "What kind of witch did Lily want to be?",
+          "correct": "A good, friendly witch",
+          "wrong": [
+            "A scary witch",
+            "A mean witch",
+            "A sad witch"
+          ]
+        },
+        {
+          "q": "What was on the black hat?",
+          "correct": "A silver moon and stars",
+          "wrong": [
+            "A black cat",
+            "Pumpkins",
+            "Bats"
+          ]
+        },
+        {
+          "q": "When was the school Halloween party?",
+          "correct": "Next Friday",
+          "wrong": [
+            "This weekend",
+            "On Halloween",
+            "Next month"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why did other costume ideas not feel 'quite right'?",
+          "correct": "Lily wanted something that matched her personality better",
+          "wrong": [
+            "They were too expensive",
+            "They were sold out",
+            "Her mom didn't like them"
+          ]
+        },
+        {
+          "q": "What does 'browsing through websites' mean?",
+          "correct": "Looking at different websites to find ideas",
+          "wrong": [
+            "Buying everything they saw",
+            "Reading articles",
+            "Playing games"
+          ]
+        },
+        {
+          "q": "Why did she practice a 'friendly witch walk'?",
+          "correct": "She wanted to act the part and make her costume more convincing",
+          "wrong": [
+            "She was learning to walk",
+            "Her mom made her",
+            "She was showing off"
+          ]
+        },
+        {
+          "q": "What does comparing the cape to 'autumn leaves swirling' suggest?",
+          "correct": "The cape moved gracefully and matched the fall season",
+          "wrong": [
+            "The cape had leaves on it",
+            "The cape was brown",
+            "The cape was falling apart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-fall-stories-expanded-and-leveled-040",
+      "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
+      "season": "fall",
+      "level": 2,
+      "title": "The Hayride Adventure",
+      "text": [
+        "Marcus's scout troop had been looking forward to their annual autumn hayride at Meadowbrook Farm for weeks.",
+        "When the big day finally arrived, twelve excited scouts piled onto wooden benches arranged on the hay-filled wagon.",
+        "An old green tractor slowly pulled them along a winding path through different sections of the working farm.",
+        "They passed rows of orange pumpkins still attached to their vines, tall corn fields swaying in the breeze, and apple orchards heavy with ripe fruit.",
+        "To keep spirits high during the long ride, the scouts sang campfire songs and told silly jokes that made everyone laugh.",
+        "Marcus's favorite part was when they drove through a tunnel made by two rows of trees whose branches met overhead.",
+        "At the end of the hayride, the farm owner had prepared a surprise - a crackling bonfire where they could roast marshmallows on long sticks.",
+        "As the sun set and the fire glowed warmly, Marcus decided this was the best fall activity his troop had done all year."
+      ],
+      "retellingPrompts": [
+        "Marcus's scout troop went on",
+        "The tractor pulled them past",
+        "During the ride, they",
+        "At the end, they"
+      ],
+      "basicQuestions": [
+        {
+          "q": "What is the name of the farm?",
+          "correct": "Meadowbrook Farm",
+          "wrong": [
+            "Green Valley Farm",
+            "Harvest Moon Farm",
+            "Sunny Acres Farm"
+          ]
+        },
+        {
+          "q": "How many scouts were on the hayride?",
+          "correct": "Twelve",
+          "wrong": [
+            "Ten",
+            "Fifteen",
+            "Twenty"
+          ]
+        },
+        {
+          "q": "What color was the tractor?",
+          "correct": "Green",
+          "wrong": [
+            "Red",
+            "Blue",
+            "Yellow"
+          ]
+        },
+        {
+          "q": "What was Marcus's favorite part?",
+          "correct": "The tunnel made by tree branches",
+          "wrong": [
+            "The corn fields",
+            "The singing",
+            "The marshmallows"
+          ]
+        }
+      ],
+      "inferQuestions": [
+        {
+          "q": "Why was it an 'annual' hayride?",
+          "correct": "They did it once every year as a tradition",
+          "wrong": [
+            "It lasted all year",
+            "It was the first time",
+            "It happened monthly"
+          ]
+        },
+        {
+          "q": "Why did they sing songs and tell jokes?",
+          "correct": "To stay entertained and enjoy the ride together",
+          "wrong": [
+            "Because they were bored",
+            "To annoy the driver",
+            "Because they had to"
+          ]
+        },
+        {
+          "q": "What does 'working farm' mean?",
+          "correct": "An active farm where crops are grown and sold",
+          "wrong": [
+            "A farm where people work out",
+            "A broken farm",
+            "A farm museum"
+          ]
+        },
+        {
+          "q": "Why was the bonfire a 'surprise'?",
+          "correct": "The scouts didn't know about it beforehand",
+          "wrong": [
+            "It started accidentally",
+            "It was someone's birthday",
+            "The fire was unusual"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Lunchroom Tournament",
+      "length": "short",
+      "paragraphs": [
+        "Jayden asked the assistant principal if he could run a quick chess tournament in the cafeteria at lunch. He only had fifteen minutes, so he put students into pairs and gave them five minutes per game. When he saw Miguel standing alone by the windows, Jayden stopped the tournament to ask if Miguel wanted to be his partner. They lost in the first round, but everyone in that corner of the cafeteria cheered because Miguel finally joined in instead of just watching."
+      ],
+      "snapshot": {
+        "characters": "Jayden, Miguel, and the students at the lunch tournament.",
+        "setting": "School cafeteria during lunch break.",
+        "kickoff": "Jayden set up a quick chess tournament at lunch.",
+        "challenge": "Miguel stayed by himself even though Jayden wanted him to join.",
+        "solution": "Jayden stopped the tournament to ask Miguel to be his partner.",
+        "result": "They didn't win, but Miguel felt included and everyone cheered for him."
+      },
+      "retellSteps": [
+        {
+          "label": "First",
+          "prompt": "Explain how Jayden turned lunch into a chess tournament.",
+          "help": {
+            "clue": "Think about what he organized and the time limits he set.",
+            "words": [
+              "tournament",
+              "pairs",
+              "five-minute",
+              "timed"
+            ],
+            "model": "Jayden organized students into pairs for a quick five-minute chess tournament."
+          }
+        },
+        {
+          "label": "Next",
+          "prompt": "What problem did Jayden notice while students signed up?",
+          "help": {
+            "clue": "Focus on where Miguel was standing and what he was doing.",
+            "words": [
+              "Miguel",
+              "sidelines",
+              "windows",
+              "hanging back"
+            ],
+            "model": "He saw Miguel hanging back near the windows, just watching the signup."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "Describe how Jayden responded to that problem.",
+          "help": {
+            "clue": "What did Jayden stop doing, and who did he speak to?",
+            "words": [
+              "paused",
+              "invited",
+              "doubles partner",
+              "asked"
+            ],
+            "model": "Jayden paused the bracket and invited Miguel to be his doubles partner."
+          }
+        },
+        {
+          "label": "Finally",
+          "prompt": "What was the result for Jayden and Miguel?",
+          "help": {
+            "clue": "Did they win, and how did everyone react?",
+            "words": [
+              "lost first round",
+              "cheered",
+              "included",
+              "group"
+            ],
+            "model": "They lost in the first round, but everyone cheered because Miguel finally joined in."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "Why did Jayden set a five-minute time limit for each game?",
+          "answer": "He only had fifteen minutes at lunch, so quick games made sure everyone could participate."
+        },
+        {
+          "question": "How did Miguel feel at the end of lunch?",
+          "answer": "He felt included because the crowd cheered when he played with Jayden."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Slideshow Save",
+      "length": "short",
+      "paragraphs": [
+        "Lila said she would test the photography club's slideshow before their parent showcase. Ten minutes before it started, the newest file crashed when she clicked play and everyone groaned. Instead of freaking out, Lila opened the backup folder, found yesterday's file, and used that one instead. The slideshow worked, and the club decided to start by having Lila explain how she fixed the problem."
+      ],
+      "snapshot": {
+        "characters": "Lila and the photography club members.",
+        "setting": "School media center before the parent showcase.",
+        "kickoff": "Lila tested the slideshow to make sure it worked.",
+        "challenge": "The newest file crashed when she clicked play.",
+        "solution": "She found yesterday's backup file and used that one.",
+        "result": "The slideshow worked, and Lila explained how she fixed it."
+      },
+      "retellSteps": [
+        {
+          "label": "First",
+          "prompt": "What job did Lila take on before the showcase?",
+          "help": {
+            "clue": "Think about what she promised the photography club.",
+            "words": [
+              "volunteered",
+              "test",
+              "slideshow",
+              "presentation"
+            ],
+            "model": "She volunteered to test the slideshow presentation before the showcase."
+          }
+        },
+        {
+          "label": "Next",
+          "prompt": "What went wrong right before the event?",
+          "help": {
+            "clue": "Focus on the file and what happened when she clicked play.",
+            "words": [
+              "file version",
+              "crashed",
+              "clicked play",
+              "groaned"
+            ],
+            "model": "The newest file version crashed when she clicked play and everyone groaned."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "Explain how Lila fixed the problem.",
+          "help": {
+            "clue": "She looked in a different folder for an older file.",
+            "words": [
+              "backup folder",
+              "yesterday's version",
+              "loaded",
+              "found"
+            ],
+            "model": "Lila opened the backup folder and loaded yesterday's version instead."
+          }
+        },
+        {
+          "label": "Finally",
+          "prompt": "What happened once the slideshow worked?",
+          "help": {
+            "clue": "How did the showcase begin?",
+            "words": [
+              "worked",
+              "started",
+              "explaining",
+              "solved"
+            ],
+            "model": "The slideshow worked and the club started with Lila explaining her fix."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "Why did Lila use yesterday's version of the file?",
+          "answer": "The newest version was broken, so she used an older backup that still worked."
+        },
+        {
+          "question": "How did the club use Lila's solution during the showcase?",
+          "answer": "They opened the event with Lila explaining how she solved the problem under pressure."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Playlist Power Strategy",
+      "length": "short",
+      "paragraphs": [
+        "Coach Ramirez told Malik to run practice laps without slowing down, but Malik kept losing focus halfway through. He remembered his workout playlist had three parts, each with a different speed. On the next lap, Malik hummed the songs in order to keep his pace, and his teammates noticed and asked how he did it. Coach timed them and smiled because they beat their usual time by thirty seconds."
+      ],
+      "snapshot": {
+        "characters": "Malik, Coach Ramirez, and the track team.",
+        "setting": "School track during practice.",
+        "kickoff": "Coach asked Malik to run steady laps.",
+        "challenge": "Malik lost focus halfway through each lap.",
+        "solution": "He hummed his workout playlist to keep his pace.",
+        "result": "The team finished faster and the coach was happy."
+      },
+      "retellSteps": [
+        {
+          "label": "First",
+          "prompt": "What did Coach Ramirez want Malik to do?",
+          "help": {
+            "clue": "It involved practice laps and steady speed.",
+            "words": [
+              "practice laps",
+              "no slowing",
+              "challenge"
+            ],
+            "model": "Coach Ramirez challenged Malik to run practice laps without slowing down."
+          }
+        },
+        {
+          "label": "Next",
+          "prompt": "How did Malik use his playlist to solve his focus problem?",
+          "help": {
+            "clue": "Think about the playlist sections and how he remembered them.",
+            "words": [
+              "playlist",
+              "three sections",
+              "different tempo",
+              "hummed"
+            ],
+            "model": "He remembered his workout playlist had three sections and used the songs to pace himself."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "Describe what Malik did on the next lap.",
+          "help": {
+            "clue": "What did he hum and who noticed?",
+            "words": [
+              "hummed songs",
+              "in order",
+              "teammates",
+              "noticed"
+            ],
+            "model": "On the next lap Malik hummed the songs and his teammates noticed his method."
+          }
+        },
+        {
+          "label": "Finally",
+          "prompt": "What was the result after Malik used his plan?",
+          "help": {
+            "clue": "Focus on the coach's reaction and the new lap time.",
+            "words": [
+              "beat their time",
+              "thirty seconds",
+              "coach smiled"
+            ],
+            "model": "They beat their usual warm-up by thirty seconds and the coach smiled."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "Why did Malik use his playlist as a mental strategy?",
+          "answer": "The three sections with different tempos helped him pace himself and stay focused."
+        },
+        {
+          "question": "How did Malik's teammates react to his strategy?",
+          "answer": "They noticed his method and asked about it, then finished faster than usual."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Recipe Break Strategy",
+      "length": "short",
+      "paragraphs": [
+        "Ava wanted to bake cookies as soon as she got home, but her media arts teacher gave her thirty vocabulary cards to finish. She set a fifteen-minute timer on her phone and told herself she could prep one ingredient after every five words. The quick tasks kept her awake, and by the third timer she had finished all the cards. Ava started measuring flour and sent her teacher a message that the plan worked."
+      ],
+      "snapshot": {
+        "characters": "Ava and her media arts teacher.",
+        "setting": "Ava's desk at home after school.",
+        "kickoff": "Ava had thirty vocabulary cards but wanted to bake cookies.",
+        "challenge": "She needed to stay focused to finish the work.",
+        "solution": "She used timers with small baking tasks as rewards.",
+        "result": "She finished all the cards and started baking."
+      },
+      "retellSteps": [
+        {
+          "label": "First",
+          "prompt": "What did Ava want to do and what homework blocked her?",
+          "help": {
+            "clue": "Think about baking and the thirty definitions.",
+            "words": [
+              "bake cookies",
+              "thirty cards",
+              "media arts",
+              "homework"
+            ],
+            "model": "Ava wanted to bake cookies, but she had thirty vocab cards to finish."
+          }
+        },
+        {
+          "label": "Next",
+          "prompt": "Describe the plan Ava made with her timer.",
+          "help": {
+            "clue": "She set time limits and rewarded herself with ingredient prep.",
+            "words": [
+              "fifteen-minute timer",
+              "prep ingredient",
+              "five cards"
+            ],
+            "model": "She set fifteen-minute timers and prepped one ingredient after every five cards."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "How did the short tasks help her stay focused?",
+          "help": {
+            "clue": "Did she fall asleep or stay awake?",
+            "words": [
+              "quick tasks",
+              "awake",
+              "third timer",
+              "finished"
+            ],
+            "model": "The quick tasks kept her awake, and by the third timer she had finished the cards."
+          }
+        },
+        {
+          "label": "Finally",
+          "prompt": "What happened once Ava completed her work?",
+          "help": {
+            "clue": "Did she start baking?",
+            "words": [
+              "measuring flour",
+              "guilt-free",
+              "messaged",
+              "plan worked"
+            ],
+            "model": "She started measuring flour guilt-free and told her teacher the plan worked."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "Why did Ava use ingredient prep as her reward?",
+          "answer": "Small baking tasks were quick rewards that kept her motivated without losing focus."
+        },
+        {
+          "question": "How did Ava feel after finishing the cards?",
+          "answer": "She felt proud and relaxed because she earned her baking time."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Stream Tone Reset",
+      "length": "short",
+      "paragraphs": [
+        "Nico's after-school art stream always brought in his friends, but this week the chat filled with jokes about another artist's messy sketch. He stopped drawing, reminded everyone that the channel was for support and helpful feedback, and asked viewers to post one positive comment instead. The tone changed right away, the other artist stayed, and the best part of the stream became a group drawing they made from everyone's ideas."
+      ],
+      "snapshot": {
+        "characters": "Nico, his friends, and the artist being teased.",
+        "setting": "Nico's art stream after school.",
+        "kickoff": "Nico started his stream like usual.",
+        "challenge": "The chat turned mean and made fun of another artist's sketch.",
+        "solution": "He stopped drawing and asked for positive comments only.",
+        "result": "The chat became nice, the artist stayed, and they made group art."
+      },
+      "retellSteps": [
+        {
+          "label": "First",
+          "prompt": "What did Nico notice during his art stream?",
+          "help": {
+            "clue": "Focus on the chat messages.",
+            "words": [
+              "chat",
+              "jokes",
+              "messy sketch",
+              "negative"
+            ],
+            "model": "He noticed the chat joking about another artist's messy sketch."
+          }
+        },
+        {
+          "label": "Next",
+          "prompt": "How did Nico respond to the negative chat?",
+          "help": {
+            "clue": "He stopped drawing and gave directions.",
+            "words": [
+              "stopped",
+              "reminded",
+              "new rule",
+              "positive comment"
+            ],
+            "model": "He stopped drawing, reminded everyone of the channel rules, and asked for positive comments."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "What change did Nico request from the viewers?",
+          "help": {
+            "clue": "Think about the kind of messages he wanted.",
+            "words": [
+              "post",
+              "positive comment",
+              "supportive",
+              "feedback"
+            ],
+            "model": "He asked everyone to post one positive comment instead of jokes."
+          }
+        },
+        {
+          "label": "Finally",
+          "prompt": "What happened after the chat followed Nico's plan?",
+          "help": {
+            "clue": "Look at the artist and the highlight of the stream.",
+            "words": [
+              "stayed",
+              "collaborative piece",
+              "helpful",
+              "highlight"
+            ],
+            "model": "The artist stayed, and the highlight became a collaborative piece built from suggestions."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "Why did Nico stop drawing?",
+          "answer": "He wanted to stop the negative chat and reset the tone of the stream."
+        },
+        {
+          "question": "What new highlight came from the positive chat?",
+          "answer": "They created a collaborative art piece using the helpful suggestions people posted."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Reading Sprint Challenge",
+      "length": "short",
+      "paragraphs": [
+        "Tori had to read three pages of a history article before advisory ended, but her eyes kept looking at the social media notifications on her phone. She turned it into a game by giving herself five minutes per page and drawing tiny checkboxes in the margin. The mini-sprint idea kept her going, and she finished the article with five minutes left, ready to share a cool fact with her partner."
+      ],
+      "snapshot": {
+        "characters": "Tori and her advisory partner.",
+        "setting": "School library during advisory.",
+        "kickoff": "Tori needed to read three pages before advisory ended.",
+        "challenge": "She kept looking at her phone notifications.",
+        "solution": "She made a five-minute challenge with checkboxes for each page.",
+        "result": "She finished early and was ready to share a fact."
+      },
+      "retellSteps": [
+        {
+          "label": "First",
+          "prompt": "What reading job did Tori need to finish?",
+          "help": {
+            "clue": "Focus on the number of pages and the time limit.",
+            "words": [
+              "three pages",
+              "history article",
+              "advisory"
+            ],
+            "model": "She needed to read three pages of a history article before advisory ended."
+          }
+        },
+        {
+          "label": "Next",
+          "prompt": "What distracted Tori at first?",
+          "help": {
+            "clue": "Think about what was on her phone.",
+            "words": [
+              "notifications",
+              "phone",
+              "social media",
+              "drifting"
+            ],
+            "model": "Her eyes kept drifting to social media notifications on her phone."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "How did Tori turn the distraction into motivation?",
+          "help": {
+            "clue": "She created a timed challenge and drew something.",
+            "words": [
+              "five-minute",
+              "checkboxes",
+              "margin",
+              "sprint"
+            ],
+            "model": "She set a five-minute challenge for each page and drew checkboxes in the margin."
+          }
+        },
+        {
+          "label": "Finally",
+          "prompt": "What happened after Tori used her sprint system?",
+          "help": {
+            "clue": "Did she finish with time left?",
+            "words": [
+              "finished early",
+              "five minutes",
+              "share",
+              "fact"
+            ],
+            "model": "She finished with five minutes to spare and was ready to share a fact."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "Why did Tori use five-minute sprints for each page?",
+          "answer": "The mini-challenges turned reading into a game and kept her focused."
+        },
+        {
+          "question": "What did Tori do with the extra time?",
+          "answer": "She prepared to share a surprising fact with her partner."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Animation Recovery Mission",
+      "length": "medium",
+      "paragraphs": [
+        "Ethan spent three weeks making a 3D animated logo for the tech expo. It had movements that matched the robotics team's special spin. The night before the showcase, a power surge shut down his laptop, and when he opened the file, it was all messed up code. Ethan's stomach dropped because the expo judges were expecting a finished animation.",
+        "After texting his friend Priya, they looked through auto-save folders and only found old versions. Instead of giving up, Ethan found screenshots and video clips he had posted in the club chat and rebuilt the animation piece by piece, taking snack breaks with his favorite music. By morning the new version was ready, and he kept a printed list next to his laptop to explain how he fixed it. The judges loved the comeback story just as much as the animation."
+      ],
+      "snapshot": {
+        "characters": "Ethan and his friend Priya from tech club.",
+        "setting": "Ethan's house the night before the tech expo.",
+        "kickoff": "Ethan made a 3D animated logo for the expo.",
+        "challenge": "A power surge broke the file.",
+        "solution": "He used old screenshots and Priya's help to rebuild it overnight.",
+        "result": "The new version worked, and judges liked the comeback story."
+      },
+      "retellSteps": [
+        {
+          "label": "At first",
+          "prompt": "What had Ethan created for the tech expo?",
+          "help": {
+            "clue": "Think about the animation and the robotics team.",
+            "words": [
+              "3D logo",
+              "three weeks",
+              "robotics spin"
+            ],
+            "model": "Ethan designed a 3D animated logo with movements matching the robotics team's spin."
+          }
+        },
+        {
+          "label": "Suddenly",
+          "prompt": "What disaster happened the night before the expo?",
+          "help": {
+            "clue": "Focus on the power surge and the file.",
+            "words": [
+              "power surge",
+              "corrupted",
+              "file damaged"
+            ],
+            "model": "A power surge crashed his laptop and corrupted the project file."
+          }
+        },
+        {
+          "label": "So he",
+          "prompt": "How did Ethan get help and start fixing the problem?",
+          "help": {
+            "clue": "He contacted a friend and searched for backups.",
+            "words": [
+              "texted Priya",
+              "auto-save",
+              "old versions"
+            ],
+            "model": "He texted Priya and searched auto-save folders for anything he could use."
+          }
+        },
+        {
+          "label": "After that",
+          "prompt": "Explain the strategy Ethan used to rebuild the animation.",
+          "help": {
+            "clue": "Remember the screenshots and video clips.",
+            "words": [
+              "screenshots",
+              "video clips",
+              "frame by frame",
+              "soundtrack"
+            ],
+            "model": "He rebuilt it frame by frame using screenshots and clips while timing breaks with music."
+          }
+        },
+        {
+          "label": "In the end",
+          "prompt": "How did the expo judges react to Ethan's work?",
+          "help": {
+            "clue": "Did they like the comeback story?",
+            "words": [
+              "printed steps",
+              "judges",
+              "rebuild story",
+              "animation worked"
+            ],
+            "model": "The judges enjoyed the rebuilt animation and the story of how he saved the project."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "What caused Ethan's file to be corrupted?",
+          "answer": "A power surge shut down his laptop and damaged the project file."
+        },
+        {
+          "question": "Why did Ethan print a step list for the expo?",
+          "answer": "He wanted to show exactly how he recovered the project overnight."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Gaming Club Proposal",
+      "length": "medium",
+      "paragraphs": [
+        "Maya noticed the gym stayed empty after school while students crowded the library to play games. She thought an official gaming club would keep students interested and help them balance school work, so she wrote a proposal for the principal. When she showed it to him, the principal asked how the club would balance homework, screen time, and equipment costs.",
+        "Maya met with the counselor to make a schedule that added quiet study time before each gaming session and shared a budget that used old laptops plus help from local sponsors. She even added three short movement breaks to help focus between matches. The principal approved a six-week trial, and Maya found members who agreed to share their grades with the counselor every Friday."
+      ],
+      "snapshot": {
+        "characters": "Maya, the principal, and the counselor.",
+        "setting": "School library and office.",
+        "kickoff": "Maya wrote a plan for an official gaming club.",
+        "challenge": "She had to answer questions about homework time and costs.",
+        "solution": "She made a schedule with study time and a budget with sponsors.",
+        "result": "The principal approved a trial and Maya found committed members."
+      },
+      "retellSteps": [
+        {
+          "label": "At first",
+          "prompt": "What problem did Maya notice after school?",
+          "help": {
+            "clue": "Compare the gym and the library.",
+            "words": [
+              "empty gym",
+              "crowded library",
+              "casual gaming"
+            ],
+            "model": "She saw the gym sitting empty while everyone crowded the library for gaming."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "How did Maya share her idea with the principal?",
+          "help": {
+            "clue": "She created something to show.",
+            "words": [
+              "proposal",
+              "principal",
+              "official club"
+            ],
+            "model": "She wrote a proposal and presented it to the principal for an official club."
+          }
+        },
+        {
+          "label": "Because",
+          "prompt": "What questions did the principal ask Maya to solve?",
+          "help": {
+            "clue": "Focus on time management and cost.",
+            "words": [
+              "homework",
+              "screen time",
+              "equipment costs"
+            ],
+            "model": "The principal asked how the club would handle homework and equipment costs."
+          }
+        },
+        {
+          "label": "After that",
+          "prompt": "Explain the plan Maya created with the counselor.",
+          "help": {
+            "clue": "It included study time and sponsorships.",
+            "words": [
+              "study time",
+              "budget",
+              "hand-me-down laptops",
+              "sponsorships"
+            ],
+            "model": "She made a schedule with study time and a budget using hand-me-down laptops plus sponsorships."
+          }
+        },
+        {
+          "label": "In the end",
+          "prompt": "What was the final decision about the gaming club?",
+          "help": {
+            "clue": "Was the club approved?",
+            "words": [
+              "six-week pilot",
+              "recruited members",
+              "grade logs"
+            ],
+            "model": "The principal approved a six-week pilot and Maya recruited members who agreed to log grades."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "Why did Maya add movement breaks to her plan?",
+          "answer": "She wanted short focus resets between matches to keep members sharp."
+        },
+        {
+          "question": "How will the club prove they are balancing school and gaming?",
+          "answer": "Each member promised to share their grades with the counselor every Friday."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Physics Demo Teamwork",
+      "length": "medium",
+      "paragraphs": [
+        "Jules and Rowan paired up for their physics presentation about speed and friction. Jules wanted to use skateboarding videos, but Rowan worried it would look like they were just showing off tricks. They argued so loudly in the media lab that the librarian asked if they needed different partners.",
+        "To fix it, they wrote down what each person needed from the project. Jules said he would edit short clips that showed speed changes, while Rowan would write simple captions explaining the science. They practiced in front of a friend who timed them and said they should add a pause for questions. On presentation day the class paid attention, and even the teacher said she finally understood how ramp angles change friction."
+      ],
+      "snapshot": {
+        "characters": "Jules, Rowan, and a classmate.",
+        "setting": "School media lab and classroom.",
+        "kickoff": "They teamed up for a physics presentation.",
+        "challenge": "They disagreed about using skateboarding videos.",
+        "solution": "They split the work and practiced with feedback.",
+        "result": "The class stayed interested and learned the concept."
+      },
+      "retellSteps": [
+        {
+          "label": "At first",
+          "prompt": "Why were Jules and Rowan working together?",
+          "help": {
+            "clue": "Think about the class and topic.",
+            "words": [
+              "physics presentation",
+              "acceleration",
+              "friction"
+            ],
+            "model": "They partnered for a physics presentation about acceleration and friction."
+          }
+        },
+        {
+          "label": "Next",
+          "prompt": "What did they argue about in the media lab?",
+          "help": {
+            "clue": "Focus on the skateboarding videos.",
+            "words": [
+              "skateboarding videos",
+              "showing off tricks",
+              "argued"
+            ],
+            "model": "Jules wanted skateboarding videos while Rowan thought it would look like showing off."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "How did they decide to split the work?",
+          "help": {
+            "clue": "Each person took a different part.",
+            "words": [
+              "Jules edit",
+              "Rowan captions",
+              "simple words"
+            ],
+            "model": "Jules edited the clips and Rowan wrote simple science captions."
+          }
+        },
+        {
+          "label": "After that",
+          "prompt": "What practice step helped them improve?",
+          "help": {
+            "clue": "A friend helped with timing.",
+            "words": [
+              "friend timed",
+              "pause for questions",
+              "rehearsed"
+            ],
+            "model": "They practiced with a friend who timed them and suggested a question pause."
+          }
+        },
+        {
+          "label": "In the end",
+          "prompt": "How did the class react to their presentation?",
+          "help": {
+            "clue": "Did the teacher learn something?",
+            "words": [
+              "class engaged",
+              "teacher understood",
+              "ramp angles"
+            ],
+            "model": "The class stayed engaged and the teacher said she finally understood ramp angles."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "Why was Rowan nervous about using skateboarding videos?",
+          "answer": "He worried the class would think they were just showing off tricks instead of explaining science."
+        },
+        {
+          "question": "What feedback improved their presentation?",
+          "answer": "A friend timed them and told them to add a pause for questions."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "sourceFile": "activities/reading/hs-story-retelling-focus.html",
+      "season": null,
+      "title": "Focus Checkpoint System",
+      "length": "medium",
+      "paragraphs": [
+        "Damian's counselor noticed he tapped his pencil every two minutes in history class and then asked for hallway breaks that took too long. When she asked what he liked to do, Damian got excited and talked about the fantasy worlds he was drawing in his notebook margins. That gave her an idea.",
+        "Together they made a focus tracker that treated each chunk of notes like a checkpoint. After every checkpoint, Damian checked off a square and added one detail to his margin drawing, reminding himself of the bigger reward: ten minutes to finish his world-building sketches after class. The visual timer and tiny art breaks kept him in his seat, and by Friday he had the neatest notebook in the room plus four detailed world maps to share."
+      ],
+      "snapshot": {
+        "characters": "Damian and his counselor.",
+        "setting": "History class and the counselor's office.",
+        "kickoff": "The counselor noticed Damian couldn't sit still in history.",
+        "challenge": "Damian took long breaks and lost focus.",
+        "solution": "They made a checkpoint chart with small art rewards.",
+        "result": "He stayed in class, finished neat notes, and earned drawing time."
+      },
+      "retellSteps": [
+        {
+          "label": "At first",
+          "prompt": "What problem did Damian have in history class?",
+          "help": {
+            "clue": "Think about his tapping and breaks.",
+            "words": [
+              "tapped pencil",
+              "every two minutes",
+              "hallway breaks"
+            ],
+            "model": "He tapped his pencil every two minutes and took long hallway breaks."
+          }
+        },
+        {
+          "label": "Then",
+          "prompt": "How did the counselor discover what Damian liked?",
+          "help": {
+            "clue": "She asked about his interests.",
+            "words": [
+              "asked",
+              "fantasy worlds",
+              "lit up",
+              "margins"
+            ],
+            "model": "She asked what he enjoyed, and he lit up talking about fantasy worlds in his margins."
+          }
+        },
+        {
+          "label": "So they",
+          "prompt": "What plan did Damian and the counselor create?",
+          "help": {
+            "clue": "It compared note-taking to checkpoints.",
+            "words": [
+              "focus tracker",
+              "checkpoints",
+              "check off"
+            ],
+            "model": "They created a focus tracker that treated each chunk of notes like a checkpoint."
+          }
+        },
+        {
+          "label": "After that",
+          "prompt": "How did Damian use rewards to stay focused?",
+          "help": {
+            "clue": "Think about the margin doodles and drawing time.",
+            "words": [
+              "margin doodle",
+              "one detail",
+              "ten minutes",
+              "world maps"
+            ],
+            "model": "After each checkpoint he added one detail to his doodle and earned ten minutes to draw."
+          }
+        },
+        {
+          "label": "In the end",
+          "prompt": "What changed for Damian by Friday?",
+          "help": {
+            "clue": "Look at his notebook and behavior.",
+            "words": [
+              "cleanest notebook",
+              "stayed seated",
+              "four world maps"
+            ],
+            "model": "He stayed in class, kept the cleanest notebook, and created four detailed world maps."
+          }
+        }
+      ],
+      "sparks": [
+        {
+          "question": "What inspired the counselor's idea for Damian?",
+          "answer": "Hearing him excitedly describe his fantasy world-building sparked the checkpoint tracker plan."
+        },
+        {
+          "question": "How did Damian reward himself after each checkpoint of notes?",
+          "answer": "He checked a box, added one detail to his margin doodle, and saved ten minutes to develop his world maps."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-001",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Sandwich Trip",
+      "text": "Jamal and his mom made sandwiches to take to the shelter. He woke up early and packed them in a cooler. They got in the car before the sun came up. The cooler was heavy, so his mom carried it to the door. When they drove, the sky started to turn pink.",
+      "questions": [
+        {
+          "prompt": "Why did Jamal wake up early?",
+          "hint": "Think about taking food to the shelter before people arrive.",
+          "choices": [
+            "He wanted the food ready to help people.",
+            "He wanted to watch cartoons.",
+            "He needed to sleep more.",
+            "He was going to a movie."
+          ]
+        },
+        {
+          "prompt": "Who will get the sandwiches?",
+          "hint": "They are bringing them to the shelter.",
+          "choices": [
+            "People at the shelter",
+            "The cashier at the store",
+            "Their neighbors next door",
+            "The bus driver"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-002",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Saved Pie",
+      "text": "Marisol put the last slice of pie in the fridge. She wrote a note that said, “For Dad” and taped it to the plate. Her dad was working late and would come home after dinner. She wanted him to have a treat. She closed the fridge door and smiled.",
+      "questions": [
+        {
+          "prompt": "Why did Marisol leave a note?",
+          "hint": "She wants someone to save the pie for a person.",
+          "choices": [
+            "To tell others it was for her dad",
+            "To say the pie was burnt",
+            "To show the pie was old",
+            "To make the fridge look pretty"
+          ]
+        },
+        {
+          "prompt": "Who is the pie for?",
+          "hint": "Read the note she taped.",
+          "choices": [
+            "Her dad",
+            "Her friend",
+            "Her teacher",
+            "Her cousin"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-003",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Parade Spot",
+      "text": "Carlos’s family brought folding chairs and a blanket to the parade. They arrived an hour early and sat near the street. The band would start soon, and Carlos wanted to see the balloons. His sister held a small flag. They ate muffins while they waited.",
+      "questions": [
+        {
+          "prompt": "Why did they arrive early?",
+          "hint": "They want a good place to watch.",
+          "choices": [
+            "To find a good spot before it filled up",
+            "To sleep on the sidewalk",
+            "To clean the street",
+            "To sell the chairs"
+          ]
+        },
+        {
+          "prompt": "What does bringing a blanket tell you?",
+          "hint": "Blankets can cover you when it is cold.",
+          "choices": [
+            "It might be chilly outside",
+            "They plan to swim",
+            "They want to paint",
+            "They will play soccer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-004",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Lights Out",
+      "text": "The power went out during dinner. The family lit candles and kept eating. Uncle Ben told funny stories, and the kids put down their phones. The room felt quiet but safe. They laughed and kept eating while the food was still warm.",
+      "questions": [
+        {
+          "prompt": "Why did they use candles?",
+          "hint": "There was no power for the lights.",
+          "choices": [
+            "Because the lights did not work",
+            "Because they like the smell",
+            "Because they were scared of the dark",
+            "Because they wanted to bake"
+          ]
+        },
+        {
+          "prompt": "Why did the kids stop using their phones?",
+          "hint": "Phones need power to keep working.",
+          "choices": [
+            "The phones might run out of battery",
+            "They were bored of their phones",
+            "They wanted to watch TV",
+            "They were too cold"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-005",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Airport Delay",
+      "text": "At the airport, Mom opened a bag of snacks when the screen said “Delayed.” The kids played a card game while they waited. They sat by the window and watched planes take off. A voice said the new time was one hour later. The kids yawned but kept playing.",
+      "questions": [
+        {
+          "prompt": "Why did Mom share snacks?",
+          "hint": "They will be waiting longer.",
+          "choices": [
+            "So no one got hungry while waiting",
+            "Because the plane was leaving fast",
+            "Because the store was closed",
+            "Because the snacks were free"
+          ]
+        },
+        {
+          "prompt": "What does playing cards show?",
+          "hint": "They need to pass the time.",
+          "choices": [
+            "They were trying to pass the time",
+            "They were doing homework",
+            "They were training for sports",
+            "They were fixing the plane"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-006",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "After the Game",
+      "text": "After playing football outside, the kids came in with muddy shoes. They changed clothes, and Grandma followed them holding extra towels. The cold air made their cheeks red. Grandma did not want mud on the floor. She handed them towels to dry off.",
+      "questions": [
+        {
+          "prompt": "Why did Grandma bring towels?",
+          "hint": "The kids were muddy and wet.",
+          "choices": [
+            "To help them dry off and clean up",
+            "To cover the TV",
+            "To wrap the dog",
+            "To decorate the room"
+          ]
+        },
+        {
+          "prompt": "Why did the kids change clothes?",
+          "hint": "They had muddy shoes.",
+          "choices": [
+            "Their clothes were dirty",
+            "They wanted to dress up",
+            "They were going to bed",
+            "They wanted to match colors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-007",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Thankful Notes",
+      "text": "Sophie wrote short notes that said “Thank you” and put them by each plate. Her brother helped fold the paper. After setting the table, they waited for their family to sit down. Sophie hoped everyone would read their note.",
+      "questions": [
+        {
+          "prompt": "Why did Sophie put notes by each plate?",
+          "hint": "She wants people to see a message when they sit down.",
+          "choices": [
+            "So each person would read a thank-you note",
+            "So there would be more napkins",
+            "So the plates would look taller",
+            "So she could hide her homework"
+          ]
+        },
+        {
+          "prompt": "Who are the notes for?",
+          "hint": "They are by each plate.",
+          "choices": [
+            "Everyone at the table",
+            "Only Sophie",
+            "Only her teacher",
+            "Only the mail carrier"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-008",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Extra Chair",
+      "text": "Aunt Maya brought an extra folding chair when she came in. She said, “Our cousin will be here too.” Dad moved things so the chair could fit at the table. Everyone scooted over to make space.",
+      "questions": [
+        {
+          "prompt": "Why did they add another chair?",
+          "hint": "Someone else is joining the meal.",
+          "choices": [
+            "A cousin was coming to eat with them",
+            "The chair was broken",
+            "They wanted more decorations",
+            "They needed to hold blankets"
+          ]
+        },
+        {
+          "prompt": "What does scooting over show?",
+          "hint": "They are making room.",
+          "choices": [
+            "They wanted to make space for another person",
+            "They wanted to leave the table",
+            "They wanted to reach the TV",
+            "They wanted to nap on the floor"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-009",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Smoke Alarm",
+      "text": "The oven smoked while the rolls were baking. A loud beep started, and Dad opened the windows. Mom waved a towel under the alarm. The rolls were a little dark, but the family laughed.",
+      "questions": [
+        {
+          "prompt": "Why did the alarm beep?",
+          "hint": "Think about the oven and the smoke.",
+          "choices": [
+            "Smoke from the oven set it off",
+            "It was time for bedtime",
+            "The doorbell was broken",
+            "Someone turned on music"
+          ]
+        },
+        {
+          "prompt": "Why did Dad open windows?",
+          "hint": "He wants the smoke to leave.",
+          "choices": [
+            "To let the smoke out",
+            "To cool the soup",
+            "To see the parade",
+            "To dry the laundry"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-simple-010",
+      "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
+      "season": "fall",
+      "title": "Cold Walk",
+      "text": "After dinner, Lina and her grandpa took a short walk. They wore hats and gloves because the wind was strong. When Lina shivered, Grandpa said, “Let’s head back and make cocoa.” They hurried toward the warm house.",
+      "questions": [
+        {
+          "prompt": "Why did they wear hats and gloves?",
+          "hint": "The wind felt strong outside.",
+          "choices": [
+            "It was cold and windy",
+            "It was very sunny",
+            "They wanted to play soccer",
+            "They needed to paint"
+          ]
+        },
+        {
+          "prompt": "Why did they go back to the house?",
+          "hint": "Lina was cold.",
+          "choices": [
+            "To warm up and make cocoa",
+            "To water the garden",
+            "To feed the pets outside",
+            "To look for lost keys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-001",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "The Quiet Kitchen",
+      "text": "The kitchen smelled like cinnamon and sage. Marcus chopped vegetables while his grandma stirred a pot, humming softly. Every few minutes he peeked at the clock. At 11:45 he set the timer for the oven and asked if he could mash the potatoes next. His younger cousins kept running in, asking when they could set out plates with the good napkins and candles.",
+      "questions": [
+        {
+          "prompt": "What meal are they preparing for?",
+          "hint": "They are watching the clock and using special napkins."
+        },
+        {
+          "prompt": "Why does Marcus keep checking the time?",
+          "hint": "Something needs to be ready by a certain hour when others will arrive."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-002",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "Two Plates, No Table",
+      "text": "Lina balanced two steaming plates on her knees while a football game played quietly in the corner of her laptop. The radiator hissed, and the window showed a rainy city street below. She sent a photo of the meal to her parents back home and typed, “Miss you, but we’re making our own little tradition.” Her roommate clinked a mug of apple cider against hers.",
+      "questions": [
+        {
+          "prompt": "Where are Lina and her roommate celebrating?",
+          "hint": "Think small space, city noise, and a laptop as a TV."
+        },
+        {
+          "prompt": "Why did Lina send the photo?",
+          "hint": "Consider who she misses and wants to include from afar."
+        },
+        {
+          "prompt": "How do you know the meal is special to them?",
+          "hint": "Look at what she calls it and the effort they made."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-003",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "The Early Morning Trip",
+      "text": "Before the sun rose, Jamal pulled on his scout uniform and met his troop at the community center. They loaded boxes of canned goods and bags of potatoes into a van. At their second stop, an elderly man smiled and said, “You saved me a bus ride.” Jamal’s hands were cold, but he felt proud as he handed over a frozen turkey and a recipe booklet.",
+      "questions": [
+        {
+          "prompt": "What are the scouts doing around the holiday?",
+          "hint": "Think about the food items and who they’re visiting."
+        },
+        {
+          "prompt": "Why did the elderly man feel relieved?",
+          "hint": "Consider his transportation and what he received."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-004",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "The Outdoor Table",
+      "text": "Anya’s family pushed two picnic tables together under the big oak tree. They added quilts as tablecloths and filled mason jars with leaves and cranberries. When everyone sat down, they kept their coats on. Steam rose from the dishes, and a gust of wind blew paper name cards across the grass, making everyone laugh as they chased them.",
+      "questions": [
+        {
+          "prompt": "Why are they wearing coats while eating?",
+          "hint": "Look at the setting and the season."
+        },
+        {
+          "prompt": "What tradition might this family have started?",
+          "hint": "Think about where they chose to place the tables."
+        },
+        {
+          "prompt": "Why did everyone laugh when the cards blew away?",
+          "hint": "Consider the playful, relaxed mood."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-005",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "The Last-Minute Store Run",
+      "text": "Ava stared at the nearly empty baking aisle. Only one small can of pumpkin remained, dented on the side. She grabbed it, paid, and hurried home. When she walked in, her aunt sighed in relief and slid a pie crust toward her. “You saved dessert,” her aunt said, handing Ava a cinnamon jar that was already open on the counter.",
+      "questions": [
+        {
+          "prompt": "Why was the store almost out of pumpkin?",
+          "hint": "Think about the time of year and popular dishes."
+        },
+        {
+          "prompt": "What dessert are they likely making?",
+          "hint": "Notice what Ava grabbed and the crust waiting at home."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-006",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "A Different Main Dish",
+      "text": "Rae set a platter of golden roasted vegetables in the center of the table. Next to it was a stuffed acorn squash that smelled like garlic and herbs. When Uncle Ben arrived with a foil-covered pan, he whispered, “My surprise ham is in the car, should I bring it?” Rae smiled and pointed to a note on the fridge: “Plant-based Thanksgiving this year—please join us!”",
+      "questions": [
+        {
+          "prompt": "Why did Uncle Ben whisper about his ham?",
+          "hint": "Look at the meal theme written on the fridge."
+        },
+        {
+          "prompt": "What is different about this family’s main course?",
+          "hint": "Notice what is on the table instead of meat."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-007",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "Two Houses, One Pie",
+      "text": "Jay measured sugar while his mom rolled out pie dough. He packed paper plates and plastic forks into a tote bag, then wrapped the cooled pie in foil. At noon he slid everything into the back seat next to his backpack.\n\nOn the drive he checked the clock and said, “If the parade ends on time, we’ll make it before the football game starts.” His mom reminded him to save half the pie for the evening stop. Jay laughed and said, “I know—two Thanksgivings means two slices.”",
+      "questions": [
+        {
+          "prompt": "Why did Jay pack plates and forks with the pie?",
+          "hint": "He wants to serve the dessert somewhere else."
+        },
+        {
+          "prompt": "Why does Jay mention two slices?",
+          "hint": "He will celebrate the holiday in two places."
+        },
+        {
+          "prompt": "What does the talk about the parade and football game show?",
+          "hint": "They are planning around two family visits in one day."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-008",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "String Lights in the Gym",
+      "text": "Maya unlocked the school gym and flipped on the stage lights. She dragged cafeteria tables into long rows and taped paper leaves to the ends. Her backpack held extension cords and a box of string lights she bought with her weekend pay.\n\nBy late afternoon, classmates arrived with foil pans and slow cookers. Coach Lopez carried a stack of plates and said, “This is for everyone who couldn’t travel.” As music played softly, Maya dimmed the bright gym lights so the string lights made the room feel like a cozy dining room.",
+      "questions": [
+        {
+          "prompt": "Why are they eating in the school gym?",
+          "hint": "Think about students who stayed in town for the holiday."
+        },
+        {
+          "prompt": "Why did Maya bring string lights?",
+          "hint": "She wanted the big gym to feel warm and homey."
+        },
+        {
+          "prompt": "What does the coach’s comment tell you?",
+          "hint": "This meal is meant to include people who couldn’t go home."
+        }
+      ]
+    },
+    {
+      "id": "story-inference-thanksgiving-009",
+      "sourceFile": "activities/reading/inference-thanksgiving.html",
+      "season": "fall",
+      "title": "Gate B16 Thanksgiving",
+      "text": "Tessa and her brother sat at Gate B16 with backpacks at their feet. Their dad pulled leftovers from a cooler and handed out plastic forks. A text popped up from Aunt Kim: “Flight still on time? Save room for stuffing!” Tessa snapped a photo of their mini airport picnic and wrote back, “We’re bringing some!”\n\nAn announcement crackled: the flight was delayed forty-five minutes. Their dad checked his watch and sighed, then joked, “First Thanksgiving in the sky?” Tessa tightened her scarf and said, “As long as we land before dessert.”",
+      "questions": [
+        {
+          "prompt": "Why do they have a cooler at the airport?",
+          "hint": "They are traveling with food to share at a family meal."
+        },
+        {
+          "prompt": "Why is the delay stressful for them?",
+          "hint": "They want to arrive in time for Thanksgiving dinner."
+        },
+        {
+          "prompt": "What does the dad’s joke about the sky mean?",
+          "hint": "They might be eating part of the meal on the plane if the delay lasts."
+        }
+      ]
+    },
+    {
+      "id": "story-1",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "season": "winter",
+      "title": "How Turkeys Live on a Farm",
+      "tag": "Farm Life",
+      "text": [
+        "Turkeys on a farm spend most of their day walking around large open spaces. They peck at the ground looking for food and stretch their wings when they want to move faster. Farmers check on them often to make sure they are healthy and safe.",
+        "Turkeys usually eat a simple diet made of grains, seeds, and clean water. The farmer gives them plenty of space so they have room to grow. When the weather gets colder in late fall, farmers make sure the turkeys have warm shelters."
+      ],
+      "questions": [
+        {
+          "prompt": "What two things do turkeys look for while pecking the ground?",
+          "answer": "grains and seeds",
+          "clue": "Their simple diet is made of these small foods.",
+          "choices": [
+            "grains and seeds",
+            "worms and leaves",
+            "fruit and vegetables",
+            "nuts and berries"
+          ]
+        },
+        {
+          "prompt": "What do farmers give turkeys to help them grow?",
+          "answer": "plenty of space",
+          "clue": "It lets them move around as their bodies get bigger.",
+          "choices": [
+            "plenty of space",
+            "heavy blankets",
+            "crowded pens",
+            "nightly treats"
+          ]
+        },
+        {
+          "prompt": "Why do farmers provide warm shelters in late fall?",
+          "answer": "because the weather gets colder",
+          "clue": "The season change brings chilly air.",
+          "choices": [
+            "because the weather gets colder",
+            "so the turkeys can hide from the sun",
+            "because turkeys stop eating outside",
+            "so they do not wander away"
+          ]
+        }
+      ],
+      "summaryPrompt": "Explain what turkeys need to stay healthy on a farm.",
+      "keywords": [
+        "open space",
+        "grains and seeds",
+        "clean water",
+        "warm shelter"
+      ],
+      "summarySteps": [
+        {
+          "id": "topic",
+          "label": "Topic / Theme",
+          "prompt": "What is this passage mainly about?",
+          "clue": "Think about the main subject the details all connect to.",
+          "answer": "how farm turkeys live and stay healthy",
+          "choices": [
+            "how farm turkeys live and stay healthy",
+            "how wild turkeys migrate long distances",
+            "how to cook turkeys for dinner",
+            "the history of turkeys in stories"
+          ]
+        },
+        {
+          "id": "actions",
+          "label": "Main Actions",
+          "prompt": "Which actions or routines show what happens in the passage?",
+          "clue": "Notice what the turkeys do and how farmers care for them.",
+          "answer": "they roam open spaces, peck grains and seeds, and farmers check on them with plenty of space",
+          "choices": [
+            "they roam open spaces, peck grains and seeds, and farmers check on them with plenty of space",
+            "they fly south and swim in ponds",
+            "they hide in forests and chase other animals",
+            "they only sleep indoors all day"
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Why It Matters",
+          "prompt": "Why do these actions matter or what do they lead to?",
+          "clue": "Think about how space, food, and warmth affect the turkeys.",
+          "answer": "space, grains, water, and warm shelters keep turkeys healthy when it gets colder",
+          "choices": [
+            "space, grains, water, and warm shelters keep turkeys healthy when it gets colder",
+            "they make turkeys ready to fly south for winter",
+            "they help turkeys learn new tricks",
+            "they let turkeys avoid drinking water"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-2",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "season": "winter",
+      "title": "Why Leaves Change Color",
+      "tag": "Science",
+      "text": [
+        "In late fall, the days get shorter, and there is less sunlight. Trees begin to slow down the process that keeps their leaves green. As the green color fades, other colors like red, orange, and yellow start to show.",
+        "The leaves eventually dry out because the tree is not sending them as much water. After a few weeks, the leaves become crisp and fall to the ground. This helps the tree save energy during the winter months."
+      ],
+      "questions": [
+        {
+          "prompt": "Why do leaves stop staying green?",
+          "answer": "the tree gets less sunlight and slows the green process",
+          "clue": "Shorter days change how the tree makes color.",
+          "choices": [
+            "the tree gets less sunlight and slows the green process",
+            "the wind blows the color away",
+            "bugs eat the green color off",
+            "rain washes the green away"
+          ]
+        },
+        {
+          "prompt": "What happens to the leaves after the tree sends less water?",
+          "answer": "they dry out and become crisp",
+          "clue": "With less water, they lose softness.",
+          "choices": [
+            "they dry out and become crisp",
+            "they grow larger",
+            "they turn into flowers",
+            "they stay thick and wet"
+          ]
+        },
+        {
+          "prompt": "Why do trees let their leaves fall?",
+          "answer": "to save energy during winter",
+          "clue": "Dropping leaves helps them rest in the cold months.",
+          "choices": [
+            "to save energy during winter",
+            "to make space for snow",
+            "to keep birds away",
+            "to clean the ground"
+          ]
+        }
+      ],
+      "summaryPrompt": "Describe how and why leaves change during late fall.",
+      "keywords": [
+        "shorter days",
+        "less sunlight",
+        "colors show",
+        "leaves fall",
+        "save energy"
+      ],
+      "summarySteps": [
+        {
+          "id": "topic",
+          "label": "Topic / Theme",
+          "prompt": "What is this passage mainly about?",
+          "clue": "Look for the overall process the whole passage explains.",
+          "answer": "why leaves change color and fall in late fall",
+          "choices": [
+            "why leaves change color and fall in late fall",
+            "how to plant new trees in spring",
+            "why animals grow thicker fur",
+            "how to build a wooden birdhouse"
+          ]
+        },
+        {
+          "id": "actions",
+          "label": "Main Actions",
+          "prompt": "Which changes happen to the leaves?",
+          "clue": "Follow what happens as sunlight lessens and water slows.",
+          "answer": "shorter days reduce green color, other colors show, then leaves dry out and fall",
+          "choices": [
+            "shorter days reduce green color, other colors show, then leaves dry out and fall",
+            "leaves get greener and thicker all winter",
+            "rain washes off all the colors and keeps leaves on the tree",
+            "wind blows every leaf back onto the branches"
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Why It Matters",
+          "prompt": "Why do these changes help the tree?",
+          "clue": "Think about how the tree saves energy for winter.",
+          "answer": "dropping colorful leaves helps the tree save energy for winter",
+          "choices": [
+            "dropping colorful leaves helps the tree save energy for winter",
+            "it lets the tree collect more sunlight in winter",
+            "it prepares the tree to grow fruit in winter",
+            "it keeps bugs away from the leaves"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-3",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "season": "winter",
+      "title": "Preparing Food for Thanksgiving",
+      "tag": "Home Life",
+      "text": [
+        "Many families start preparing for Thanksgiving a day or two early. They make lists of what dishes they want to cook and gather ingredients like vegetables, spices, and bread. Some foods need to be cooked slowly, so people often start early in the morning.",
+        "The kitchen becomes busy as different dishes cook at the same time. People take turns chopping, stirring, and checking the oven. Even simple tasks like washing vegetables or setting the table help the meal come together."
+      ],
+      "questions": [
+        {
+          "prompt": "Why do some families begin preparing food early?",
+          "answer": "because some foods need slow cooking time",
+          "clue": "Long-cooking dishes require extra hours.",
+          "choices": [
+            "because some foods need slow cooking time",
+            "so they can skip making lists",
+            "to finish before buying ingredients",
+            "so they do not have to clean"
+          ]
+        },
+        {
+          "prompt": "What are two tasks someone might do in the kitchen?",
+          "answer": "chopping and stirring",
+          "clue": "These are hands-on steps before food goes in the oven.",
+          "choices": [
+            "chopping and stirring",
+            "painting and sweeping leaves",
+            "building shelves and raking",
+            "mowing grass and washing cars"
+          ]
+        },
+        {
+          "prompt": "Why is teamwork helpful when cooking a big meal?",
+          "answer": "many tasks happen at once so helpers keep things moving",
+          "clue": "Shared jobs make the whole meal come together on time.",
+          "choices": [
+            "many tasks happen at once so helpers keep things moving",
+            "it keeps the kitchen cold",
+            "people can avoid making lists",
+            "it stops the oven from beeping"
+          ]
+        }
+      ],
+      "summaryPrompt": "Tell how families get ready for a Thanksgiving meal.",
+      "keywords": [
+        "plan dishes",
+        "gather ingredients",
+        "start early",
+        "share kitchen jobs"
+      ],
+      "summarySteps": [
+        {
+          "id": "topic",
+          "label": "Topic / Theme",
+          "prompt": "What is the big idea of this passage?",
+          "clue": "Focus on what the family is trying to get ready.",
+          "answer": "how families prepare for a Thanksgiving meal",
+          "choices": [
+            "how families prepare for a Thanksgiving meal",
+            "how to grow vegetables in summer",
+            "how to decorate for birthdays",
+            "how to shop for winter coats"
+          ]
+        },
+        {
+          "id": "actions",
+          "label": "Main Actions",
+          "prompt": "Which actions show how they prepare?",
+          "clue": "Notice the planning, cooking, and sharing jobs.",
+          "answer": "they make lists, gather ingredients, start slow-cooking early, and share kitchen jobs",
+          "choices": [
+            "they make lists, gather ingredients, start slow-cooking early, and share kitchen jobs",
+            "they order takeout so they do not have to cook",
+            "they skip planning and hope food appears",
+            "they only clean the house and ignore the meal"
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Why It Matters",
+          "prompt": "Why do these actions help?",
+          "clue": "Think about what teamwork and early cooking do for the meal.",
+          "answer": "early teamwork helps the meal come together on time",
+          "choices": [
+            "early teamwork helps the meal come together on time",
+            "it keeps the kitchen cold all day",
+            "it makes everyone avoid eating together",
+            "it means no one needs to chop or stir"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-4",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "season": "winter",
+      "title": "Animals Getting Ready for Winter",
+      "tag": "Wildlife",
+      "text": [
+        "Many animals start preparing for winter when late fall arrives. Squirrels gather nuts and hide them in different places so they have food later. Birds begin flying south where the weather is warmer.",
+        "Other animals grow thicker coats of fur. Deer and rabbits develop warm layers that help them stay safe in cold air. Each animal has its own way of surviving the winter months."
+      ],
+      "questions": [
+        {
+          "prompt": "What do squirrels do to prepare for winter?",
+          "answer": "gather nuts and hide them",
+          "clue": "They collect food and store it in many spots.",
+          "choices": [
+            "gather nuts and hide them",
+            "sleep all summer",
+            "build nests in water",
+            "chase birds south"
+          ]
+        },
+        {
+          "prompt": "Why do some birds fly south?",
+          "answer": "to find warmer weather",
+          "clue": "They travel to places that are not as cold.",
+          "choices": [
+            "to find warmer weather",
+            "to look for thicker fur",
+            "to dig for nuts",
+            "to build new ponds"
+          ]
+        },
+        {
+          "prompt": "How do deer and rabbits stay warm?",
+          "answer": "they grow thicker coats of fur",
+          "clue": "Their bodies add extra layers.",
+          "choices": [
+            "they grow thicker coats of fur",
+            "they wear feathers",
+            "they sleep underwater",
+            "they build fires"
+          ]
+        }
+      ],
+      "summaryPrompt": "Explain how different animals get ready for winter.",
+      "keywords": [
+        "store food",
+        "fly south",
+        "thicker fur",
+        "stay warm"
+      ],
+      "summarySteps": [
+        {
+          "id": "topic",
+          "label": "Topic / Theme",
+          "prompt": "What is the main idea of this passage?",
+          "clue": "All details point to how animals handle an upcoming season.",
+          "answer": "how different animals prepare for winter",
+          "choices": [
+            "how different animals prepare for winter",
+            "how animals find friends in spring",
+            "how pets learn tricks",
+            "how birds build nests in summer"
+          ]
+        },
+        {
+          "id": "actions",
+          "label": "Main Actions",
+          "prompt": "Which actions show their winter prep?",
+          "clue": "Look for gathering food, moving places, or changing bodies.",
+          "answer": "squirrels store nuts, birds fly south, and deer and rabbits grow thicker fur",
+          "choices": [
+            "squirrels store nuts, birds fly south, and deer and rabbits grow thicker fur",
+            "squirrels build dams, birds dive for fish, and deer learn to hibernate underwater",
+            "all animals sleep all summer and wake in spring",
+            "the animals mostly sit still and do nothing new"
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Why It Matters",
+          "prompt": "Why do these steps help the animals?",
+          "clue": "Think about food, warmth, and survival in cold weather.",
+          "answer": "these steps help the animals have food and warmth to survive winter",
+          "choices": [
+            "these steps help the animals have food and warmth to survive winter",
+            "the steps make the animals ready to travel to the ocean",
+            "they help animals avoid drinking water",
+            "they are only for making friends with people"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-5",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "season": "winter",
+      "title": "How Snow Is Formed",
+      "tag": "Weather",
+      "text": [
+        "Snow begins high in the clouds when tiny drops of water freeze into ice crystals. These crystals join together to make snowflakes. Each snowflake has its own shape, but all of them have six sides.",
+        "When the air below the clouds is cold enough, the snowflakes fall to the ground. If the air is warmer, they melt into rain. The temperature decides whether we see snow or rain."
+      ],
+      "questions": [
+        {
+          "prompt": "What forms first before a snowflake is made?",
+          "answer": "ice crystals",
+          "clue": "Tiny frozen drops join together.",
+          "choices": [
+            "ice crystals",
+            "hail stones",
+            "dust chunks",
+            "frozen leaves"
+          ]
+        },
+        {
+          "prompt": "What happens when the air below the clouds is warm?",
+          "answer": "the snowflakes melt into rain",
+          "clue": "Warm air changes their form before they reach the ground.",
+          "choices": [
+            "the snowflakes melt into rain",
+            "the snowflakes get bigger",
+            "the snowflakes turn to ice pellets",
+            "the snowflakes float forever"
+          ]
+        },
+        {
+          "prompt": "What do all snowflakes have in common?",
+          "answer": "each has six sides",
+          "clue": "Their shapes differ, but one feature always matches.",
+          "choices": [
+            "each has six sides",
+            "each is a perfect square",
+            "each has the same size",
+            "each is eight-sided"
+          ]
+        }
+      ],
+      "summaryPrompt": "Describe how snow forms and when it falls as snow instead of rain.",
+      "keywords": [
+        "ice crystals",
+        "join into flakes",
+        "six sides",
+        "cold air vs warm air"
+      ],
+      "summarySteps": [
+        {
+          "id": "topic",
+          "label": "Topic / Theme",
+          "prompt": "What is the big idea of this passage?",
+          "clue": "It explains a weather process.",
+          "answer": "how snowflakes form and what decides snow or rain",
+          "choices": [
+            "how snowflakes form and what decides snow or rain",
+            "how to build a snowman safely",
+            "why umbrellas are helpful in storms",
+            "how wind moves clouds across the sky"
+          ]
+        },
+        {
+          "id": "actions",
+          "label": "Main Actions",
+          "prompt": "What steps happen to make snow?",
+          "clue": "Follow the tiny drops in the clouds.",
+          "answer": "water freezes into ice crystals that join into six-sided flakes and fall if air is cold",
+          "choices": [
+            "water freezes into ice crystals that join into six-sided flakes and fall if air is cold",
+            "water turns into hail and melts back into ice cubes",
+            "snowflakes start as sand and then turn to rainbows",
+            "rain falls first and then freezes into leaves"
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Why It Matters",
+          "prompt": "What decides whether we see snow or rain?",
+          "clue": "Check what happens as flakes pass through warmer or colder air.",
+          "answer": "cold air keeps flakes as snow but warm air melts them into rain",
+          "choices": [
+            "cold air keeps flakes as snow but warm air melts them into rain",
+            "the moon decides if flakes land or float",
+            "loud noises turn snowflakes into hail",
+            "snow always falls no matter the temperature"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-6",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "season": "winter",
+      "title": "How People Stay Warm in Winter",
+      "tag": "Daily Life",
+      "text": [
+        "When winter begins, people use different ways to stay warm. They wear coats, hats, and gloves when they go outside. Many homes use heaters to keep the rooms comfortable.",
+        "Hot drinks like cocoa and tea help warm people up. Families may add extra blankets to their beds at night. These small steps make cold weather easier to handle."
+      ],
+      "questions": [
+        {
+          "prompt": "What clothing helps people stay warm outside?",
+          "answer": "coats, hats, and gloves",
+          "clue": "They cover the head, hands, and body.",
+          "choices": [
+            "coats, hats, and gloves",
+            "sandals and shorts",
+            "rain boots and umbrellas",
+            "swim caps and goggles"
+          ]
+        },
+        {
+          "prompt": "What do homes use to stay warm inside?",
+          "answer": "heaters",
+          "clue": "These machines warm up the rooms.",
+          "choices": [
+            "heaters",
+            "open windows",
+            "ice packs",
+            "fans"
+          ]
+        },
+        {
+          "prompt": "How do hot drinks help in winter?",
+          "answer": "they warm people up",
+          "clue": "Drinks like cocoa and tea raise body warmth.",
+          "choices": [
+            "they warm people up",
+            "they cool people down",
+            "they keep hands dry",
+            "they make rooms colder"
+          ]
+        }
+      ],
+      "summaryPrompt": "Tell how people keep themselves warm during winter.",
+      "keywords": [
+        "warm clothing",
+        "heaters",
+        "hot drinks",
+        "extra blankets"
+      ],
+      "summarySteps": [
+        {
+          "id": "topic",
+          "label": "Topic / Theme",
+          "prompt": "What is this passage mainly about?",
+          "clue": "Focus on the different ways people handle cold weather.",
+          "answer": "how people stay warm in winter",
+          "choices": [
+            "how people stay warm in winter",
+            "how people learn to swim in summer",
+            "how to cool a house in a heatwave",
+            "how to build snow forts"
+          ]
+        },
+        {
+          "id": "actions",
+          "label": "Main Actions",
+          "prompt": "What actions do people take?",
+          "clue": "Notice clothing, tools, and small routines.",
+          "answer": "they wear coats hats and gloves, use heaters, drink hot drinks, and add blankets",
+          "choices": [
+            "they wear coats hats and gloves, use heaters, drink hot drinks, and add blankets",
+            "they open windows to let cold air in",
+            "they only wear sandals and shorts",
+            "they avoid any hot food or drinks"
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Why It Matters",
+          "prompt": "Why do these steps help?",
+          "clue": "Think about comfort and safety in cold temperatures.",
+          "answer": "these steps keep people comfortable and warm during cold weather",
+          "choices": [
+            "these steps keep people comfortable and warm during cold weather",
+            "they make houses colder on purpose",
+            "they help people avoid wearing any clothes",
+            "they cool people down for summer sports"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-7",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "season": "winter",
+      "title": "Winter Birds That Stay Behind",
+      "tag": "Birds",
+      "text": [
+        "Not all birds fly south when winter arrives. Some birds, such as cardinals and blue jays, stay in colder places. These birds look for berries, seeds, and small insects to eat.",
+        "People sometimes help winter birds by putting out bird feeders. Feeders give birds extra food when natural food is hard to find. This support helps them survive the cold months."
+      ],
+      "questions": [
+        {
+          "prompt": "What are two birds that stay for the winter?",
+          "answer": "cardinals and blue jays",
+          "clue": "They are colorful birds that do not migrate.",
+          "choices": [
+            "cardinals and blue jays",
+            "pelicans and flamingos",
+            "parrots and toucans",
+            "owls and penguins"
+          ]
+        },
+        {
+          "prompt": "What kinds of food do winter birds look for?",
+          "answer": "berries, seeds, and small insects",
+          "clue": "They search for tiny foods they can find in cold weather.",
+          "choices": [
+            "berries, seeds, and small insects",
+            "fish and shrimp",
+            "nuts and large fruit",
+            "bread and cheese"
+          ]
+        },
+        {
+          "prompt": "How do bird feeders help?",
+          "answer": "they provide extra food when natural food is scarce",
+          "clue": "Feeders add to what birds can find outdoors.",
+          "choices": [
+            "they provide extra food when natural food is scarce",
+            "they warm the birds up",
+            "they give birds new feathers",
+            "they teach birds to sing"
+          ]
+        }
+      ],
+      "summaryPrompt": "Explain how winter birds survive and how people can help them.",
+      "keywords": [
+        "stay in cold areas",
+        "berries and seeds",
+        "bird feeders",
+        "extra food"
+      ],
+      "summarySteps": [
+        {
+          "id": "topic",
+          "label": "Topic / Theme",
+          "prompt": "What is the main idea of this passage?",
+          "clue": "Center on the birds that do not migrate.",
+          "answer": "birds that stay for winter and how they find food",
+          "choices": [
+            "birds that stay for winter and how they find food",
+            "how penguins swim under ice",
+            "how to teach parrots new words",
+            "where flamingos travel in summer"
+          ]
+        },
+        {
+          "id": "actions",
+          "label": "Main Actions",
+          "prompt": "Which actions show how these birds get food?",
+          "clue": "Notice what the birds search for and how people help.",
+          "answer": "cardinals and blue jays look for berries seeds insects and people add feeders for extra food",
+          "choices": [
+            "cardinals and blue jays look for berries seeds insects and people add feeders for extra food",
+            "the birds dive for fish in the ocean every day",
+            "people take away all food so birds must migrate",
+            "the birds only eat big fruit and bread"
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Why It Matters",
+          "prompt": "Why do these actions help the birds?",
+          "clue": "Think about surviving cold months.",
+          "answer": "extra food choices help the birds survive the cold months when food is scarce",
+          "choices": [
+            "extra food choices help the birds survive the cold months when food is scarce",
+            "it keeps the birds too warm to fly",
+            "it makes birds want to travel farther south",
+            "it teaches birds to sing new songs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-8",
+      "sourceFile": "activities/reading/late-fall-winter-reading-progressive.html",
+      "season": "winter",
+      "title": "Weather Patterns in Late Fall",
+      "tag": "Season Shift",
+      "text": [
+        "Late fall brings cooler temperatures and stronger winds. The days get shorter, and the sun sets earlier. Some areas have more rain, while others start seeing frost on the grass in the morning.",
+        "These weather changes help prepare the environment for winter. Plants stop growing as quickly, and animals shift their behaviors. People notice these signs as they get ready for colder months."
+      ],
+      "questions": [
+        {
+          "prompt": "What two changes happen to the weather in late fall?",
+          "answer": "temperatures get cooler and winds get stronger",
+          "clue": "The air feels colder and moves faster.",
+          "choices": [
+            "temperatures get cooler and winds get stronger",
+            "days get hotter and wind stops",
+            "temperatures rise and snow falls daily",
+            "sunlight lasts longer with calm air"
+          ]
+        },
+        {
+          "prompt": "What might people see on the grass in the morning?",
+          "answer": "frost",
+          "clue": "A thin icy layer can appear overnight.",
+          "choices": [
+            "frost",
+            "sand",
+            "fallen fruit",
+            "heavy snow piles"
+          ]
+        },
+        {
+          "prompt": "How do plants change during this time?",
+          "answer": "they stop growing as quickly",
+          "clue": "Growth slows as the season shifts.",
+          "choices": [
+            "they stop growing as quickly",
+            "they grow faster than in summer",
+            "they bloom new flowers daily",
+            "they turn into vines"
+          ]
+        }
+      ],
+      "summaryPrompt": "Describe what late-fall weather is like and how it signals winter.",
+      "keywords": [
+        "cooler air",
+        "shorter days",
+        "frost or rain",
+        "plants slow down"
+      ],
+      "summarySteps": [
+        {
+          "id": "topic",
+          "label": "Topic / Theme",
+          "prompt": "What is the big idea of this passage?",
+          "clue": "Look for the time of year and what is changing.",
+          "answer": "late-fall weather changes that signal winter",
+          "choices": [
+            "late-fall weather changes that signal winter",
+            "summer activities at the beach",
+            "how spring flowers grow",
+            "how storms form in the ocean"
+          ]
+        },
+        {
+          "id": "actions",
+          "label": "Main Actions",
+          "prompt": "Which changes happen in late fall?",
+          "clue": "Notice the weather shifts and how plants respond.",
+          "answer": "temperatures get cooler, winds grow stronger, days shorten, rain or frost appears, and plants slow down",
+          "choices": [
+            "temperatures get cooler, winds grow stronger, days shorten, rain or frost appears, and plants slow down",
+            "temperatures rise, winds stop, and plants bloom faster",
+            "snow falls every day with blazing sun",
+            "the days get longer and warmer like summer"
+          ]
+        },
+        {
+          "id": "result",
+          "label": "Why It Matters",
+          "prompt": "Why do these changes matter?",
+          "clue": "Think about what they show about the coming season.",
+          "answer": "these changes prepare the environment and signal winter is coming",
+          "choices": [
+            "these changes prepare the environment and signal winter is coming",
+            "they mean winter will be skipped this year",
+            "they make plants grow faster for harvest",
+            "they help animals stay cool in summer heat"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-1",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Melting Snowman",
+      "image": "../../images/late-winter-early-spring/1.png",
+      "alt": "Image for The Melting Snowman",
+      "versions": {
+        "simple": {
+          "text": "Mia built a snowman in her yard last week. The snowman had a carrot nose and a blue scarf. Now the sun feels warmer and the snow is melting. Mia saw a puddle where the snowman used to be. She felt sad, but then she smiled. She decided to look for the first flower of spring instead.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who built the snowman?",
+                "clue": "The main character in the story.",
+                "choices": [
+                  {
+                    "text": "Jake",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Mia",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Max",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sam",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Mia build the snowman?",
+                "clue": "Outside her home.",
+                "choices": [
+                  {
+                    "text": "At the park",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "In her yard",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "On the sidewalk",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "At school",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did Mia build the snowman?",
+                "clue": "Not today — look for a time word.",
+                "choices": [
+                  {
+                    "text": "This morning",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Last week",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yesterday",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Last month",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did the snowman have for a nose?",
+                "clue": "An orange vegetable.",
+                "choices": [
+                  {
+                    "text": "A rock",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A stick",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A carrot",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A button",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Mia feel when she saw the puddle?",
+                "clue": "The story tells you her feeling directly.",
+                "choices": [
+                  {
+                    "text": "Happy",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sad",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Scared",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Angry",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "How do you think Mia felt when she saw the puddle? Why?",
+                "clue": "The story says she felt sad. What made her sad?",
+                "choices": [
+                  {
+                    "text": "Sad because her snowman was gone",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Sad because she got wet",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Happy to see the puddle",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not feel anything",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did Mia smile at the end of the story?",
+                "clue": "What did she decide to look for?",
+                "choices": [
+                  {
+                    "text": "She found a new scarf",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Thinking about spring made her feel hopeful",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She built a new snowman",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She forgot why she was sad",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the snowman melting?",
+                "clue": "What did the story say about the sun?",
+                "choices": [
+                  {
+                    "text": "Mia poured water on it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The air was getting warmer",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It was raining",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The wind blew it down",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did Mia look for a flower instead of building a new snowman?",
+                "clue": "She was already thinking about spring.",
+                "choices": [
+                  {
+                    "text": "There was no more snow",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not like snowmen",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was ready for spring",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Flowers are easier to make",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do next time she goes outside?",
+                "clue": "Consider what she decided to look for and how she felt when she saw the flower.",
+                "choices": [
+                  {
+                    "text": "Build a new snowman with the leftover snow",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go back inside and forget about the flower",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go outside to check on the flower and look for more signs of spring",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Bring the flower inside so it does not freeze",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Do you think Mia will feel sad the next time it snows?",
+                "clue": "Consider how her feelings changed by the end of the story.",
+                "choices": [
+                  {
+                    "text": "Yes: because she will worry about losing another snowman",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No: because she learned that something new always comes after winter",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yes: because she never wants to build another snowman",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No: because she does not like snow anymore",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Mia do last week?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She will build a snowman.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She built a snowman.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She builds a snowman.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She building a snowman.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the snow doing now?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It melt.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It will melt.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It is melting.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It melted.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Mia do next?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "She looked for a flower.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She looking for a flower.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She looks for a flower.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will look for a flower.",
+                    "isCorrect": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "Last week, Mia built the best snowman on her street. She gave him a crooked carrot nose and wrapped her favorite blue scarf around his neck. But as February turned warmer, the snow started to melt a little more each day. One morning, Mia walked outside and found nothing but a puddle, a carrot, and a soggy scarf sitting in the mud. Her stomach sank — it felt like losing a friend. But then she noticed something tiny and green pushing up through the cold dirt near the fence. A flower was starting to grow. Mia picked up her scarf and smiled. Maybe something new could be just as special.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "What did Mia find where the snowman used to be?",
+                "clue": "Three things were left behind — what were they?",
+                "choices": [
+                  {
+                    "text": "A hat, a scarf, and a stick",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A puddle, a carrot, and a soggy scarf",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A carrot, a puddle, and a flower",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Just a big muddy puddle",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did Mia build the snowman?",
+                "clue": "It was before the story takes place.",
+                "choices": [
+                  {
+                    "text": "Yesterday",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Last week",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Last month",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "That same morning",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Mia do with her scarf at the end of the story?",
+                "clue": "She found it in the mud — what did she do with it?",
+                "choices": [
+                  {
+                    "text": "Left it in the mud",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Threw it away",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Picked it up",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Hung it on the fence",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What month was it when the snow started melting?",
+                "clue": "The month before March.",
+                "choices": [
+                  {
+                    "text": "January",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "December",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "February",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "April",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Mia compare losing the snowman to?",
+                "clue": "It felt like losing something that really mattered.",
+                "choices": [
+                  {
+                    "text": "Losing her favorite toy",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Losing a friend",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Losing her way home",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Losing a game",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "What does 'her stomach sank' tell you about how Mia felt?",
+                "clue": "Think about what that expression means — is it a happy or sad feeling?",
+                "choices": [
+                  {
+                    "text": "She was hungry for breakfast",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She felt sudden sadness when she saw the snowman was gone",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was excited to see the puddle",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was confused about what happened",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Mia smiled when she noticed the flower near the fence?",
+                "clue": "A flower growing in late winter usually means something hopeful.",
+                "choices": [
+                  {
+                    "text": "She recognized it as her favorite kind of flower",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She wanted to pick it and bring it inside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Seeing something new growing made her feel hopeful about spring",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She thought the flower looked funny",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What do the words 'Maybe something new could be just as special' tell you about Mia's feelings?",
+                "clue": "How did her feelings change from the beginning to the end of the story?",
+                "choices": [
+                  {
+                    "text": "She was still very sad and forcing herself to be positive",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She had decided spring was better than winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was starting to feel okay about things changing",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was pretending to feel better than she did",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the snow melting a little more each day?",
+                "clue": "What season comes after winter?",
+                "choices": [
+                  {
+                    "text": "Mia had poured water on the yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It had been raining hard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The temperature was rising as February got warmer",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The snowman had blocked the cold wind",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do next time she goes outside?",
+                "clue": "Consider what she decided to look for and how she felt when she saw the flower.",
+                "choices": [
+                  {
+                    "text": "Build a new snowman with the leftover snow",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go back inside and forget about the flower",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go outside to check on the flower and look for more signs of spring",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Bring the flower inside so it does not freeze",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Do you think Mia will feel sad the next time it snows?",
+                "clue": "Consider how her feelings changed by the end of the story.",
+                "choices": [
+                  {
+                    "text": "Yes: because she will worry about losing another snowman",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No: because she learned that something new always comes after winter",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yes: because she never wants to build another snowman",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No: because she does not like snow anymore",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"She gave him a crooked carrot nose.\" What does crooked mean?",
+                "clue": "Consider how you would stick a carrot into a snowman's face — would it always go in perfectly straight?",
+                "choices": [
+                  {
+                    "text": "Very long",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Not straight, bent to one side",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Broken in half",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Pointing downward",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"Nothing but a puddle, a carrot, and a soggy scarf sitting in the mud.\" What does soggy mean?",
+                "clue": "Consider what happens to fabric when it sits in mud and melting snow for days.",
+                "choices": [
+                  {
+                    "text": "Torn and dirty",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Frozen solid",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wet and heavy from soaking up water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Faded and old looking",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Mia do last week?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She will build the best snowman.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She built the best snowman.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She builds the best snowman.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She building the best snowman.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the flower doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It started to grow.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It will start to grow.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It is starting to grow.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It start to grow.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will happen to the snow?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "It will melt a little more.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It melted a little more.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It melting a little more.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It melts a little more.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-2",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Muddy Dog",
+      "image": "../../images/late-winter-early-spring/2.png",
+      "alt": "Image for The Muddy Dog",
+      "versions": {
+        "simple": {
+          "text": "Max the dog ran outside. The snow was melting and the yard was muddy. Max got mud all over his paws. His owner did not want mud in the house. She gave Max a bath. Max did not like the bath, but he was clean.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who gave Max a bath?",
+                "clue": "The person who takes care of him.",
+                "choices": [
+                  {
+                    "text": "His friend",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "His owner",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The neighbor",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A vet",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Max run and get muddy?",
+                "clue": "Where did Max go at the start of the story?",
+                "choices": [
+                  {
+                    "text": "At the park",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "In the yard",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "In the house",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "At the lake",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Max get all over his paws?",
+                "clue": "It is wet and brown.",
+                "choices": [
+                  {
+                    "text": "Snow",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Mud",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Paint",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Leaves",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When Max came to the door, what did his owner do?",
+                "clue": "She did not want mud in the house.",
+                "choices": [
+                  {
+                    "text": "Let him inside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Gave him food",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Gave him a bath",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Put him back in the yard",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Max feel about the bath?",
+                "clue": "The story tells you directly.",
+                "choices": [
+                  {
+                    "text": "Loved it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Did not like it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Fell asleep",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Did not care",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "How do you think Max felt when he ran outside?",
+                "clue": "He had been stuck inside all winter.",
+                "choices": [
+                  {
+                    "text": "Scared because it was cold",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Happy and excited to be free outside",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Confused about where he was",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tired and ready to come back in",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How do you think the owner felt when she saw Max covered in mud?",
+                "clue": "She did not want mud in the house.",
+                "choices": [
+                  {
+                    "text": "Happy and proud of Max",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Annoyed but not surprised",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Scared Max was hurt",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not care at all",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did the owner not let Max in the house right away?",
+                "clue": "Look at what was on Max's paws.",
+                "choices": [
+                  {
+                    "text": "She was busy cooking",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not want mud inside",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Max was too loud",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It was not his dinnertime yet",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the yard so muddy?",
+                "clue": "The story says something was happening to the snow.",
+                "choices": [
+                  {
+                    "text": "It had been raining for days",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Max dug up the ground",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow was melting",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Someone left the hose on",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will he likely do the next time the door opens?",
+                "clue": "Consider what Max loved most in this story.",
+                "choices": [
+                  {
+                    "text": "Stay inside because he learned his lesson",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Run straight back into the mud",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Wait by the door but not go out",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Look for a dry spot to play in",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Do you think Max's owner will do anything differently the next time Max goes outside?",
+                "clue": "Consider what surprised her this time and what a person might do to prepare.",
+                "choices": [
+                  {
+                    "text": "Never let Max outside again",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Watch him more carefully from the window",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Keep the tub ready so she is prepared to wash him again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Put boots on Max before he goes out",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Max do?",
+                "clue": "Look for the action he already finished.",
+                "choices": [
+                  {
+                    "text": "He will run outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He running outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He ran outside.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He runs outside.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the owner doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "She give Max a bath.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She gave Max a bath.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She is giving Max a bath.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She will give Max a bath.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Max do next time he goes out?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "He will get muddy.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He gets muddy.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He getting muddy.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He got muddy.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "Max had been stuck inside all winter, so the moment his owner opened the back door, he shot outside like a rocket. The snow was melting fast, and the yard had turned into a muddy mess. Max ran back and forth across the wet ground, completely happy. When he finally came to the door, all four paws were caked in dark mud. His owner shook her head and pointed back at the yard. She grabbed an old plastic tub from the garage, filled it with lukewarm water, and gave Max a bath right there outside. Max whined the whole time, but when it was over he was clean — and already eyeing the muddy yard again.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "What did Max do the moment the back door opened?",
+                "clue": "The story compares him to something fast.",
+                "choices": [
+                  {
+                    "text": "Trotted out slowly",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Shot outside like a rocket",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ran straight to his food bowl",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Barked at the yard",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Max's owner get the tub?",
+                "clue": "She had to go get it from somewhere nearby.",
+                "choices": [
+                  {
+                    "text": "The basement",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The bathroom",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The garage",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The hallway closet",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Max behave during his bath?",
+                "clue": "The story uses a specific word for the sound he made.",
+                "choices": [
+                  {
+                    "text": "Barked at the water",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Whined the whole time",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Stood perfectly still",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tried to run away",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What was Max doing right after his bath ended?",
+                "clue": "He was already thinking about the yard again.",
+                "choices": [
+                  {
+                    "text": "Shaking water off his fur",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Running back inside to dry off",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Eyeing the muddy yard again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Lying down to rest",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Who had Max been stuck inside with all winter before finally getting to run?",
+                "clue": "The person who opened the door for him.",
+                "choices": [
+                  {
+                    "text": "His neighbor",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "His owner",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "His dog friends",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Nobody — he had been alone",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why do you think Max ran outside like a rocket?",
+                "clue": "Consider how long he had been cooped up inside.",
+                "choices": [
+                  {
+                    "text": "He heard another dog barking outside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was chasing a squirrel",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "After being stuck inside all winter, he was bursting to run",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He was trying to get away from his owner",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Max was already eyeing the muddy yard again right after his bath?",
+                "clue": "Consider what Max seemed to love most in this story.",
+                "choices": [
+                  {
+                    "text": "He was looking for a dry spot to lie down",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Running outside was so much fun he wanted to go right back",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He was watching for other animals in the yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He forgot he had just had a bath",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How do you think Max's owner felt when she saw his mud-caked paws at the door?",
+                "clue": "She shook her head and pointed him back to the yard.",
+                "choices": [
+                  {
+                    "text": "Surprised and upset",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Amused but not thrilled about the mess",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Angry and ready to scold him",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not mind at all",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did the owner shake her head and point back at the yard instead of letting Max in?",
+                "clue": "She didn't say anything — but think about what she saw.",
+                "choices": [
+                  {
+                    "text": "She wanted Max to keep playing outside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was worried he would slip on the floor",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not want muddy paw prints all through the house",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Max was not allowed inside until dinnertime",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will he likely do the next time the door opens?",
+                "clue": "Consider what Max loved most in this story.",
+                "choices": [
+                  {
+                    "text": "Stay inside because he learned his lesson",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Run straight back into the mud",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Wait by the door but not go out",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Look for a dry spot to play in",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Do you think Max's owner will do anything differently the next time Max goes outside?",
+                "clue": "Consider what surprised her this time and what a person might do to prepare.",
+                "choices": [
+                  {
+                    "text": "Never let Max outside again",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Watch him more carefully from the window",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Keep the tub ready so she is prepared to wash him again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Put boots on Max before he goes out",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"Max had been cooped up inside all winter.\" What does cooped up mean?",
+                "clue": "Consider how Max acted the moment the door opened — what does that tell you about how he had been feeling?",
+                "choices": [
+                  {
+                    "text": "Sick and resting inside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Stuck inside with no room to run or play",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Sleeping most of the day",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Bored but comfortable inside",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"All four paws were caked in dark mud.\" What does caked mean?",
+                "clue": "Consider what mud looks like when it dries on something — is it a little bit or a lot?",
+                "choices": [
+                  {
+                    "text": "Lightly dusted with mud",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Dripping with wet mud",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Covered in a thick layer of mud that stuck on",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Stained a dark color permanently",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"She filled it with lukewarm water.\" What does lukewarm mean?",
+                "clue": "Consider why she would not use freezing cold or boiling hot water on a dog.",
+                "choices": [
+                  {
+                    "text": "Very cold",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Slightly warm, not hot or cold",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Soapy and bubbly",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Very hot",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Max do when the door opened?",
+                "clue": "Look for the action he already finished.",
+                "choices": [
+                  {
+                    "text": "He shot outside.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He shoots outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He will shoot outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He shooting outside.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the snow doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It is melting fast.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It will melt fast.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It melt fast.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It melted fast.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will the owner do if Max gets muddy again?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "She giving him another bath.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will give him another bath.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She gave him another bath.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She gives him another bath.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-3",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Early Robin",
+      "image": "../../images/late-winter-early-spring/3.png",
+      "alt": "Image for The Early Robin",
+      "versions": {
+        "simple": {
+          "text": "A robin flew into the yard. It was one of the first warm days. The bird looked for worms in the wet ground. A girl saw the robin from her window. She was excited. She knew spring was getting close.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who saw the robin from the window?",
+                "clue": "A person in the story.",
+                "choices": [
+                  {
+                    "text": "Mia",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A girl",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A boy",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her mom",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What was the robin looking for?",
+                "clue": "It lives underground and wiggles.",
+                "choices": [
+                  {
+                    "text": "Seeds",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Berries",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Worms",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Insects on the fence",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did the robin fly?",
+                "clue": "It was outside near the girl's house.",
+                "choices": [
+                  {
+                    "text": "Into a tree",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Into the yard",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Onto the roof",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Past the window",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did the robin come?",
+                "clue": "What kind of day was it?",
+                "choices": [
+                  {
+                    "text": "On a cold snowy day",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "One of the first warm days",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "On a rainy morning",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "In the middle of winter",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did the girl feel when she saw the robin?",
+                "clue": "The story tells you her feeling directly.",
+                "choices": [
+                  {
+                    "text": "Scared",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Bored",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Excited",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Sad",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why was the girl excited to see the robin?",
+                "clue": "What did she think the robin meant?",
+                "choices": [
+                  {
+                    "text": "She had never seen a robin before",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She knew spring was coming",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She wanted to catch it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was surprised birds existed",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How do you think the girl felt about winter ending?",
+                "clue": "She was excited about spring — what does that tell you?",
+                "choices": [
+                  {
+                    "text": "She was sad winter was ending",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was happy and looking forward to warmer days",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She did not care about the seasons",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She wished it would stay winter longer",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the ground wet?",
+                "clue": "What happens to snow when it gets warm?",
+                "choices": [
+                  {
+                    "text": "It had rained all week",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow was melting",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Someone left the hose on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "There was a flood nearby",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the robin able to find food in the ground now?",
+                "clue": "Think about what worms need to come to the surface.",
+                "choices": [
+                  {
+                    "text": "The ground was wet and no longer frozen",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The robin dug very deep holes",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The girl put worms out for the bird",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Worms always come out in winter",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do as more signs of spring appear?",
+                "clue": "Consider why she wrote the date down and what that tells you about her habit.",
+                "choices": [
+                  {
+                    "text": "Stop writing once she has seen the first robin",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Keep writing down other signs of spring as she notices them",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Share her notebook with her teacher for a grade",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Throw the notebook away once winter is fully over",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What do you think Dani will do next February?",
+                "clue": "The story says she does this every year — what does that tell you?",
+                "choices": [
+                  {
+                    "text": "Forget about the robin because it happens every year",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Watch the backyard again and wait for the first robin",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Try to find the robin somewhere else this time",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Stop keeping track because she already knows spring is coming",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did the robin do?",
+                "clue": "Look for the action it already finished.",
+                "choices": [
+                  {
+                    "text": "It flies into the yard.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It will fly into the yard.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It flew into the yard.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It flying into the yard.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the girl doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "She will watch the bird.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She watched the bird.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She is watching the bird.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She watch the bird.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will spring do soon?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "It will arrive.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It arrived.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It arriving.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It arrives.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "Every February, Dani watched the backyard like she was waiting for something. And she was. The first robin of the season was her personal sign that winter was finally loosening its grip. On a Tuesday morning, with frost still clinging to the grass and a few stubborn patches of snow in the corners of the yard, she spotted it — a plump little bird with a rust-red chest, hopping across the muddy ground and jabbing its beak into the soil. Dani pressed her face against the cold glass. She knew robins came back when the ground started to thaw, when worms began moving closer to the surface. Seeing that bird meant the cold wasn't going to last forever. She grabbed her notebook and wrote down the date, just like she did every year.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "What was the robin doing when Dani spotted it?",
+                "clue": "The story describes exactly how the bird was moving and searching.",
+                "choices": [
+                  {
+                    "text": "Sitting still on the fence",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Hopping across the muddy ground and jabbing its beak into the soil",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Singing from the top of the oak tree",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Flying low over the yard looking for seeds",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where was Dani when she spotted the robin?",
+                "clue": "She pressed her face against something cold.",
+                "choices": [
+                  {
+                    "text": "Standing in the backyard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "At her window, pressed against the cold glass",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "On the front porch",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Outside near the fence",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Dani do right after she spotted the robin?",
+                "clue": "She did this every year on the same occasion.",
+                "choices": [
+                  {
+                    "text": "Opened the window to get a closer look",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Called her friend to come see",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Grabbed her notebook and wrote down the date",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Took a photo with her phone",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did Dani spot the robin?",
+                "clue": "The story tells you both the day and time of day.",
+                "choices": [
+                  {
+                    "text": "On a Saturday afternoon",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On a Tuesday morning",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "On a Sunday evening",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Early Monday before school",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did the yard look like when the robin arrived?",
+                "clue": "There was still some winter weather visible.",
+                "choices": [
+                  {
+                    "text": "Green grass and no snow at all",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Deep snow covering everything",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Frost on the grass and stubborn patches of snow in the corners",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mud everywhere with no snow left",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "What does 'winter was finally loosening its grip' mean?",
+                "clue": "Picture someone who is holding something tightly — what happens when they loosen their grip?",
+                "choices": [
+                  {
+                    "text": "Winter was getting stronger and colder",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Winter was slowly coming to an end",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Winter had been very mild that year",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The grip of cold air was getting tighter",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Dani writes down the date every year when she sees the first robin?",
+                "clue": "She has done this for years — what does the date mean to her?",
+                "choices": [
+                  {
+                    "text": "She is writing a report about birds for school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The date matters to her as a personal sign that winter is ending",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She is trying to prove robins come back on the same day each year",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her teacher told her to keep a nature journal",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How do you think Dani felt when she finally spotted the first robin?",
+                "clue": "The story says she had been watching and waiting for weeks.",
+                "choices": [
+                  {
+                    "text": "Confused about why the bird came to her yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Relieved and happy — the long cold winter was finally ending",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Disappointed the robin was not bigger",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Nervous because she was not sure if it really was a robin",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do robins come back when the ground starts to thaw?",
+                "clue": "Think about what robins eat and what the ground needs to be like for them to find it.",
+                "choices": [
+                  {
+                    "text": "Robins prefer cold weather over warm",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The soft, warming ground makes worms easier to find near the surface",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Robins migrate because of the longer daylight hours only",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Robins return because other birds have already left",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do as more signs of spring appear?",
+                "clue": "Consider why she wrote the date down and what that tells you about her habit.",
+                "choices": [
+                  {
+                    "text": "Stop writing once she has seen the first robin",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Keep writing down other signs of spring as she notices them",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Share her notebook with her teacher for a grade",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Throw the notebook away once winter is fully over",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What do you think Dani will do next February?",
+                "clue": "The story says she does this every year — what does that tell you?",
+                "choices": [
+                  {
+                    "text": "Forget about the robin because it happens every year",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Watch the backyard again and wait for the first robin",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Try to find the robin somewhere else this time",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Stop keeping track because she already knows spring is coming",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"A few stubborn patches of snow in the corners of the yard.\" What does stubborn mean here?",
+                "clue": "Consider the fact that most of the snow had already melted — why was this snow still there?",
+                "choices": [
+                  {
+                    "text": "Very heavy and deep",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Dirty and gray colored",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Refusing to melt like the rest of the snow",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Packed tightly by the wind",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"A plump little bird with a rust-red chest.\" What does plump mean?",
+                "clue": "Consider what a well-fed bird might look like compared to a skinny one.",
+                "choices": [
+                  {
+                    "text": "Very small and lightweight",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Round and full bodied",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Tall and long legged",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Fluffy from its winter feathers",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"Robins came back when the ground started to thaw.\" What does thaw mean?",
+                "clue": "Consider what the ground does when temperatures rise after being frozen all winter.",
+                "choices": [
+                  {
+                    "text": "Get covered in rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Dry out and crack",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Soften as ice and frost melt away",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Get muddy from too much water",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Dani do when she saw the bird?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She pressing her face against the glass.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She presses her face against the glass.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will press her face against the glass.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She pressed her face against the glass.",
+                    "isCorrect": true
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the bird doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It hopped across the ground.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It is hopping across the ground.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It hop across the ground.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It will hop across the ground.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Dani do every year?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "She writes down the date.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will write down the date.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She wrote down the date.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She writing down the date.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-4",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Last Snowball",
+      "image": "../../images/late-winter-early-spring/4.png",
+      "alt": "Image for The Last Snowball",
+      "versions": {
+        "simple": {
+          "text": "Jake went outside on a cold morning. There was still some snow on the ground. He picked up the wet snow and made a snowball. The snow was soft and fell apart in his hands. Jake knew the snow would be gone soon. He threw the last snowball at a tree and smiled.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who is the story about?",
+                "clue": "The main character's name.",
+                "choices": [
+                  {
+                    "text": "Sam",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Jake",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Tom",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Max",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Jake go on a cold morning?",
+                "clue": "He went out of his house.",
+                "choices": [
+                  {
+                    "text": "To the park",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Outside",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "To a friend's house",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "To school",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did Jake go outside?",
+                "clue": "What kind of morning was it?",
+                "choices": [
+                  {
+                    "text": "A warm spring morning",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A cold morning",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A rainy morning",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "After a big snowstorm",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Jake make out of the snow?",
+                "clue": "Something you throw.",
+                "choices": [
+                  {
+                    "text": "A snowman",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A snowball",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A snow fort",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A snow angel",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Jake throw the snowball at?",
+                "clue": "Something big and made of wood.",
+                "choices": [
+                  {
+                    "text": "A fence",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A wall",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A tree",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A snowman",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "How do you think Jake felt about the snow melting away?",
+                "clue": "He knew the snow would be gone soon — how might that feel?",
+                "choices": [
+                  {
+                    "text": "Happy that winter was over",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A little sad to see winter go",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Scared of the snow going away",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He did not care at all",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Jake smiled after throwing the snowball?",
+                "clue": "He knew it might be the last snowball of the year.",
+                "choices": [
+                  {
+                    "text": "He missed the target",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was enjoying one last winter moment",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He built a new snowman",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "His friend saw him throw it",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the snowball falling apart?",
+                "clue": "What was happening to all the snow?",
+                "choices": [
+                  {
+                    "text": "Jake squeezed it too hard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow was too old",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow was wet and melting",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He dropped it on the ground",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did Jake know the snow would be gone soon?",
+                "clue": "What was the snow like in his hands?",
+                "choices": [
+                  {
+                    "text": "He saw it on the news",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "His mom told him",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow was wet and soft — a sign of warmer weather",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He counted the days until spring",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will he likely do when the snow is completely gone?",
+                "clue": "Consider how Jake felt about winter ending — did he seem excited about spring or was he sad to let go?",
+                "choices": [
+                  {
+                    "text": "Stay inside until summer arrives",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Find something new to enjoy now that winter is over",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Try to find more snow somewhere else",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Be too sad about winter to enjoy spring",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Next winter, do you think Jake will make a snowball the first time it snows?",
+                "clue": "Consider how much Jake clearly loved snow and what he did with the very last bit of it.",
+                "choices": [
+                  {
+                    "text": "No: because he is tired of snowballs after this winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No: he will wait until the end of winter again",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Yes: he will make one right away because he loves the snow",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yes: but only if his friends are there too",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Jake do with the snow?",
+                "clue": "Look for the action he already finished.",
+                "choices": [
+                  {
+                    "text": "He picks it up.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He picking it up.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He picked it up.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He will pick it up.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the snowball doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It is falling apart.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It will fall apart.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It fall apart.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It fell apart.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will happen to the rest of the snow?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "It disappears.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It disappeared.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It disappearing.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It will disappear.",
+                    "isCorrect": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "Jake woke up and checked the yard before he even had breakfast. There was still snow on the ground, but just barely — thin patches of it clinging to the shady corners of the yard. He pulled on his boots and went outside. The snow was wet and heavy, not the dry fluffy kind from January. He packed a handful together and the snowball started falling apart before he even drew his arm back. Jake looked at it for a second. He knew this was probably the last snow of the year. He threw it anyway, right at the old oak tree, and watched the wet clump splatter against the bark. Then he stood there for a minute, listening to the dripping sound of snow melting off the roof.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "When did Jake check the yard?",
+                "clue": "He did it before a normal morning routine activity.",
+                "choices": [
+                  {
+                    "text": "After getting dressed",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Before breakfast",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "After school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Right before bed",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where were the remaining snow patches in the yard?",
+                "clue": "They were only in spots where something blocked the sun.",
+                "choices": [
+                  {
+                    "text": "In the middle of the yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Along the driveway",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "In the shady corners",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Under the porch",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Jake describe this snow compared to January snow?",
+                "clue": "The story contrasts two different types of snow.",
+                "choices": [
+                  {
+                    "text": "This snow was deeper and colder",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "This snow was wet and heavy, not the dry fluffy kind",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "This snow was lighter and easier to pack",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "This snow was the same as always",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Jake throw the snowball at?",
+                "clue": "A specific tree he could see from the yard.",
+                "choices": [
+                  {
+                    "text": "The fence post",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The garage door",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The old oak tree",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A snow pile near the house",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Jake hear at the end of the story?",
+                "clue": "It was a sound that told you the snow was leaving.",
+                "choices": [
+                  {
+                    "text": "Birds beginning to sing",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The dripping sound of snow melting off the roof",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Wind blowing through the bare trees",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Children playing in the street",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why were the snow patches only in the shady corners of the yard?",
+                "clue": "Think about what melts snow — and what would block it.",
+                "choices": [
+                  {
+                    "text": "The wind had pushed all the snow to the corners",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Those corners were never shoveled all winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The sun had melted the snow everywhere except where it could not reach",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The corners had colder ground than the rest of the yard",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Jake paused and looked at the snowball before throwing it?",
+                "clue": "He knew something about what this snowball meant.",
+                "choices": [
+                  {
+                    "text": "He was deciding where to aim it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He realized it was probably the last snow of the year and wanted a moment with it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He was worried about getting in trouble for throwing it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He wanted to see how fast the snow was melting",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does the image of Jake standing quietly, listening to snow drip off the roof, suggest about how he felt?",
+                "clue": "He is not doing anything — just standing and listening. What kind of feeling makes you do that?",
+                "choices": [
+                  {
+                    "text": "He was bored and had nothing to do",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He felt a quiet, bittersweet sadness about winter ending",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He was listening for birds returning to the yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was trying to figure out if it would snow again",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the snow 'wet and heavy' instead of dry and fluffy?",
+                "clue": "Think about what rising temperatures do to snow.",
+                "choices": [
+                  {
+                    "text": "January had a lot of ice mixed into the snow",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It had rained on top of the snow the night before",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Warmer temperatures were beginning to melt the snow and change its texture",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The snow was old and had been packed down over the winter",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will he likely do when the snow is completely gone?",
+                "clue": "Consider how Jake felt about winter ending — did he seem excited about spring or was he sad to let go?",
+                "choices": [
+                  {
+                    "text": "Stay inside until summer arrives",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Find something new to enjoy now that winter is over",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Try to find more snow somewhere else",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Be too sad about winter to enjoy spring",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Next winter, do you think Jake will make a snowball the first time it snows?",
+                "clue": "Consider how much Jake clearly loved snow and what he did with the very last bit of it.",
+                "choices": [
+                  {
+                    "text": "No: because he is tired of snowballs after this winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No: he will wait until the end of winter again",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Yes: he will make one right away because he loves the snow",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yes: but only if his friends are there too",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"There was still snow on the ground, but just barely.\" What does barely mean?",
+                "clue": "Consider how much snow Jake found — was there a lot or almost none?",
+                "choices": [
+                  {
+                    "text": "Completely gone",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Only a small amount remaining",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "More than enough to play in",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Hidden under a layer of ice",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"He packed a handful together.\" What does packed mean here?",
+                "clue": "Consider what you have to do with snow to make it hold together as a ball.",
+                "choices": [
+                  {
+                    "text": "Picked it up loosely in one hand",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Pressed and squeezed it tightly together",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Scooped it into a cup shape",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Mixed it with water to make it stick",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"Watched the wet clump splatter against the bark.\" What does splatter mean?",
+                "clue": "Consider what wet soft snow does when it hits something hard at speed.",
+                "choices": [
+                  {
+                    "text": "Bounce off cleanly in one piece",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Stick to the bark without breaking",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Break apart and spread out in all directions",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Slide slowly down the trunk",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Jake do right at the oak tree?",
+                "clue": "Look for the action he already finished.",
+                "choices": [
+                  {
+                    "text": "He will throw the snowball.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He threw the snowball.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He throwing the snowball.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He throws the snowball.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the snow doing off the roof?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It is dripping.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It will drip.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It drip.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It dripped.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Jake do after he goes inside?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "He eating breakfast.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He ate breakfast.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He will eat breakfast.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He eats breakfast.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-5",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Muddy Boots",
+      "image": "../../images/late-winter-early-spring/5.png",
+      "alt": "Image for The Muddy Boots",
+      "versions": {
+        "simple": {
+          "text": "Lily walked home from school. The path was muddy from the melting snow. Her boots got stuck in the mud. She pulled hard and her boot came off. Her sock got wet and muddy. Lily laughed and kept walking home.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who is the story about?",
+                "clue": "Her name starts with L.",
+                "choices": [
+                  {
+                    "text": "Maya",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Lily",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mia",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Anna",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where was Lily walking?",
+                "clue": "She was on her way home.",
+                "choices": [
+                  {
+                    "text": "To the park",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Home from school",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "To a friend's house",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Around the block",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When Lily pulled her boot, what happened?",
+                "clue": "Something came off her foot.",
+                "choices": [
+                  {
+                    "text": "She fell down",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her boot came off",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Her sock ripped",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The mud splashed her",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What part of Lily got wet and muddy?",
+                "clue": "She was wearing it on her foot.",
+                "choices": [
+                  {
+                    "text": "Her coat",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her pants",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her sock",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Her bag",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Lily react when her boot came off?",
+                "clue": "She thought it was funny.",
+                "choices": [
+                  {
+                    "text": "She cried",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She got angry",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She laughed",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She sat down in the mud",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "How do you think Lily felt when her boot got stuck in the mud?",
+                "clue": "Has that ever happened to you? How would it feel?",
+                "choices": [
+                  {
+                    "text": "Calm and not bothered at all",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Surprised and maybe a little frustrated",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Very scared",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Proud of herself",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does it tell you about Lily that she laughed and kept walking?",
+                "clue": "She did not get upset — she kept going.",
+                "choices": [
+                  {
+                    "text": "She did not care about her muddy sock",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She has a good sense of humor and does not let small problems ruin her day",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She thought mud was fun to play in",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She forgot her sock was wet",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the path so muddy?",
+                "clue": "What does the story say was happening to the snow?",
+                "choices": [
+                  {
+                    "text": "It had been raining all week",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow was melting and making the ground wet",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Someone spilled water on the path",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The path was always muddy",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did Lily's boot come off when she pulled?",
+                "clue": "The mud was holding something.",
+                "choices": [
+                  {
+                    "text": "Her boot was too big for her foot",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The mud held the boot while her foot kept moving",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Her laces were untied",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She pulled too hard",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do next time she walks home?",
+                "clue": "Consider whether Lily seemed bothered by what happened or if she took it in stride.",
+                "choices": [
+                  {
+                    "text": "Take the long way home to avoid the mud",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Take the shortcut again because it did not really bother her",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ask her mom to pick her up from school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wear different shoes next time",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What do you think Lily will tell her family when she gets home?",
+                "clue": "Consider how Lily reacted when her boot came off — what does that tell you about her personality?",
+                "choices": [
+                  {
+                    "text": "Be too embarrassed to tell anyone",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Be upset and complain about the muddy path",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Laugh and tell the story because she thought it was funny",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ask her parents to fix the muddy path",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What happened to Lily's boot?",
+                "clue": "Look for the action that already finished.",
+                "choices": [
+                  {
+                    "text": "It will come off.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It coming off.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It comes off.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It came off.",
+                    "isCorrect": true
+                  }
+                ]
+              },
+              {
+                "prompt": "What is Lily doing on the way home?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "She walk home.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will walk home.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She walked home.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She is walking home.",
+                    "isCorrect": true
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Lily do with her muddy sock?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "She washed it.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She washed it.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She washing it.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will wash it.",
+                    "isCorrect": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "Lily took the shortcut home even though she knew the path through the field got muddy this time of year. The snow had been melting for days, and the ground was soft and soggy in a way that pulled at her boots with every step. She was halfway across when her left boot sank deep into a thick patch of mud and stopped moving. Lily kept walking — and her foot slid right out, leaving her standing with one boot on and one sock planted in cold wet mud. She looked down at her sock, then back at her boot still standing upright in the mud like it had decided to stay. Lily burst out laughing. She reached back, yanked the boot free with a loud sucking sound, and squished the rest of the way home.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Where was Lily walking when her boot got stuck?",
+                "clue": "She chose a specific route — not the normal way.",
+                "choices": [
+                  {
+                    "text": "Down the main road",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Across the field on the shortcut path",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Along the sidewalk near school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Through the park",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Lily's boot look like after it got stuck in the mud?",
+                "clue": "The story describes it in a funny way.",
+                "choices": [
+                  {
+                    "text": "Lying flat on its side in the mud",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Floating in a puddle",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Standing upright in the mud like it had decided to stay",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Half buried under more mud",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When Lily's boot got stuck, what did she do next?",
+                "clue": "She kept moving — even without the boot.",
+                "choices": [
+                  {
+                    "text": "Stopped and waited for someone to help her",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Kept walking, leaving her foot in the mud in a sock",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Jumped over the muddy patch",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Turned around and went back home",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What sound did the boot make when Lily yanked it free?",
+                "clue": "It was a loud, wet sound.",
+                "choices": [
+                  {
+                    "text": "A loud crack",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A splashing noise",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A loud sucking sound",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A squeaking noise",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Lily finish the walk home after getting her boot back?",
+                "clue": "The mud made every step noisy.",
+                "choices": [
+                  {
+                    "text": "She ran as fast as she could",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She took her boots off and carried them",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She squished the rest of the way home",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She waited until the path dried out",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why do you think Lily burst out laughing when her boot was standing alone in the mud?",
+                "clue": "Picture what that must have looked like.",
+                "choices": [
+                  {
+                    "text": "She was embarrassed and laughing to hide it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The whole situation was so ridiculous she could not help it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was laughing at someone watching her",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was relieved her boot did not get lost",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does Lily's reaction to the whole situation tell you about her personality?",
+                "clue": "She laughed, yanked her boot free, and squished the rest of the way home.",
+                "choices": [
+                  {
+                    "text": "She gets embarrassed easily",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She is easygoing and handles small mishaps with humor",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She does not care about getting dirty",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She avoids problems by laughing them off",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did Lily take the shortcut even though she knew it would be muddy?",
+                "clue": "She knew — but she went anyway. What does that suggest?",
+                "choices": [
+                  {
+                    "text": "She forgot it was muddy this time of year",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She decided getting home faster was worth the risk",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She wanted to get muddy on purpose",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She had no other option",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does 'the ground was soft and soggy in a way that pulled at her boots' mean?",
+                "clue": "Think about what thick wet mud does when you step in it.",
+                "choices": [
+                  {
+                    "text": "The mud was sticky and grabbed onto her boots with each step",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The ground was shaking under her feet",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her boots were pulling her forward as she walked",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ground was so soft she sank all the way in",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do next time she walks home?",
+                "clue": "Consider whether Lily seemed bothered by what happened or if she took it in stride.",
+                "choices": [
+                  {
+                    "text": "Take the long way home to avoid the mud",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Take the shortcut again because it did not really bother her",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ask her mom to pick her up from school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wear different shoes next time",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What do you think Lily will tell her family when she gets home?",
+                "clue": "Consider how Lily reacted when her boot came off — what does that tell you about her personality?",
+                "choices": [
+                  {
+                    "text": "Be too embarrassed to tell anyone",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Be upset and complain about the muddy path",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Laugh and tell the story because she thought it was funny",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ask her parents to fix the muddy path",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"The ground was soft and soggy in a way that pulled at her boots.\" What does soggy mean?",
+                "clue": "Consider what the ground looks and feels like after days of melting snow soaking into it.",
+                "choices": [
+                  {
+                    "text": "Frozen just below the surface",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Completely dry and cracked",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "So wet and soft it could barely hold its shape",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Covered in a thin layer of ice",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"She squished the rest of the way home.\" What does squished mean here?",
+                "clue": "Consider what wet boots sound and feel like with every step.",
+                "choices": [
+                  {
+                    "text": "Ran home as fast as she could",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walked carefully trying not to slip",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walked with wet boots making a soft sound each step",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Hopped on one foot to keep her sock dry",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Lily do after her boot got stuck?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She keeps walking.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She keeping walking.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will keep walking.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She kept walking.",
+                    "isCorrect": true
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the ground doing to her boots?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It will pull at them.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It pulled at them.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It is pulling at them.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It pull at them.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Lily do when she gets home?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "She taking off her wet sock.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She takes off her wet sock.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She took off her wet sock.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will take off her wet sock.",
+                    "isCorrect": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-6",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Frozen Puddle",
+      "image": "../../images/late-winter-early-spring/6.png",
+      "alt": "Image for The Frozen Puddle",
+      "versions": {
+        "simple": {
+          "text": "Anna found a big puddle on her way to school. The puddle had a thin layer of ice on top. She stepped on the ice to see what would happen. The ice cracked and her shoe got wet. Anna shook her foot and kept walking. She would not step on ice again.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who found the frozen puddle?",
+                "clue": "A girl on her way to school.",
+                "choices": [
+                  {
+                    "text": "Mia",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Anna",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Lily",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Maya",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where was Anna going when she found the puddle?",
+                "clue": "She was on her way somewhere every morning.",
+                "choices": [
+                  {
+                    "text": "To the park",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "To school",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "To a friend's house",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "To the store",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When Anna stepped on the ice, what happened?",
+                "clue": "It was not thick enough.",
+                "choices": [
+                  {
+                    "text": "Nothing happened",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice cracked and her shoe got wet",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She slipped and fell",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice held but made a loud sound",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What was on top of the puddle?",
+                "clue": "It forms when water gets very cold.",
+                "choices": [
+                  {
+                    "text": "Snow",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Mud",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A thin layer of ice",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Leaves",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Anna do after her shoe got wet?",
+                "clue": "She shook something and kept going.",
+                "choices": [
+                  {
+                    "text": "Went home to change her shoe",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sat down on the path",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Shook her foot and kept walking",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Waited for her shoe to dry",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why do you think Anna stepped on the ice even though she knew she shouldn't?",
+                "clue": "Has anything ever made you too curious to stop yourself?",
+                "choices": [
+                  {
+                    "text": "She was in a hurry to get to school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was curious and wanted to see what would happen",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She did not see the ice",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She thought the ice was thick enough",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How do you think Anna felt after her shoe got wet?",
+                "clue": "She knew it was probably her own fault.",
+                "choices": [
+                  {
+                    "text": "Happy it happened",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Annoyed but knew she had brought it on herself",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Scared and upset",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not mind at all",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was there ice on top of the puddle?",
+                "clue": "What happens to water when the temperature gets below freezing overnight?",
+                "choices": [
+                  {
+                    "text": "Someone poured water and it froze there",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It was still cold enough at night to freeze the water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The puddle was always frozen",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A truck drove through and iced it",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did the ice crack when Anna stepped on it?",
+                "clue": "Think about how thick the ice might have been.",
+                "choices": [
+                  {
+                    "text": "Anna stomped too hard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice was too thin to hold her weight",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The puddle was very deep",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ground was shaking",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "Will she likely test the ice again if she sees another frozen puddle?",
+                "clue": "Consider whether Anna seemed like someone who learns from mistakes or someone who gets curious and takes chances.",
+                "choices": [
+                  {
+                    "text": "No: she will walk around every puddle from now on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No: she learned her lesson and will never touch ice again",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Maybe — she might be curious again even though she knows what could happen",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yes: she will test it again because she thinks it will hold next time",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will her day at school was like?",
+                "clue": "Consider what it feels like to sit in school with a wet shoe all day.",
+                "choices": [
+                  {
+                    "text": "Dried off quickly and forgot about it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her shoe stayed wet and uncomfortable for most of the day",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Her teacher sent her home to change",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Took her shoe off and it dried by lunch",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Anna do on her way to school?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She finds a puddle.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will find a puddle.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She found a puddle.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She finding a puddle.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is Anna doing with her wet shoe?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "She shook her foot.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will shake her foot.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She shake her foot.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She is shaking her foot.",
+                    "isCorrect": true
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Anna do next time she sees ice?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "She stepping around it.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She stepped around it.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will step around it.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She steps around it.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "Anna almost walked right past it, but something made her stop. The puddle was wide and flat, and the top of it had frozen overnight into a thin cloudy sheet of ice. She could see the water still liquid underneath. She knew she probably should not, but she pressed the toe of her sneaker against the edge just to test it. The ice held for about one second before it gave way with a sharp crack, and cold water rushed over her shoe. Anna gasped and jumped back, shaking her foot. Her sneaker was soaked through. She stood there for a moment, looking at the broken ice floating in the puddle, and then kept walking toward school. It had seemed worth testing at the time.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "What did the ice look like on top of the puddle?",
+                "clue": "The story describes both its thickness and its color/appearance.",
+                "choices": [
+                  {
+                    "text": "Thick and clear",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Thin and cloudy",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Dark and cracked already",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "White and solid-looking",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Anna first test the ice?",
+                "clue": "She was cautious — she did not jump on it.",
+                "choices": [
+                  {
+                    "text": "Tapped it with her hand",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Threw a rock on it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Pressed the toe of her sneaker against the edge",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Stepped on the middle with both feet",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What happened right after the ice cracked?",
+                "clue": "Two things happened very quickly.",
+                "choices": [
+                  {
+                    "text": "Anna fell into the puddle completely",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Cold water rushed over her shoe and she gasped and jumped back",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The ice shattered into many pieces",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Anna laughed and kept stepping on more ice",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When had the puddle frozen over?",
+                "clue": "The story gives you a time word.",
+                "choices": [
+                  {
+                    "text": "During the afternoon",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Over several days",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Overnight",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "That very morning",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What thought did Anna have at the very end of the story?",
+                "clue": "She summed up the whole experience with one idea.",
+                "choices": [
+                  {
+                    "text": "She promised herself never to do it again",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She wished she had tested it more carefully",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It had seemed worth testing at the time",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was glad nobody saw what happened",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why do you think Anna decided to test the ice even though she knew she probably should not?",
+                "clue": "Think about that feeling of wanting to know even when you know the risk.",
+                "choices": [
+                  {
+                    "text": "She thought the warning signs were wrong",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was too curious to resist — she had to see for herself",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was in too much of a hurry to go around the puddle",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did it to impress someone nearby",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does the last line — 'It had seemed worth testing at the time' — tell you about how Anna felt about what happened?",
+                "clue": "She is not panicking or upset — think about the tone of those words.",
+                "choices": [
+                  {
+                    "text": "She was very angry at herself for being careless",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She accepted the outcome with a bit of humor — she knew the risk and took it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was relieved nothing worse happened",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was already planning to test the next puddle she found",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did the puddle have ice on top but still have liquid water underneath?",
+                "clue": "Think about how freezing works — does cold air freeze all the way down at once?",
+                "choices": [
+                  {
+                    "text": "The puddle was too deep to freeze all the way through in one night",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The water underground was warm enough to keep the bottom liquid",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The puddle had been frozen solid but was starting to melt from the top",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Someone had poured warm water into it that morning",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Anna kept walking to school instead of going home to change her shoe?",
+                "clue": "Think about how she responded to the whole situation.",
+                "choices": [
+                  {
+                    "text": "She lived too far from school to turn back",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not realize her shoe was soaked through",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A wet shoe was not worth being late for school over",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was embarrassed and did not want to go home",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "Will she likely test the ice again if she sees another frozen puddle?",
+                "clue": "Consider whether Anna seemed like someone who learns from mistakes or someone who gets curious and takes chances.",
+                "choices": [
+                  {
+                    "text": "No: she will walk around every puddle from now on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No: she learned her lesson and will never touch ice again",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Maybe — she might be curious again even though she knows what could happen",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yes: she will test it again because she thinks it will hold next time",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will her day at school was like?",
+                "clue": "Consider what it feels like to sit in school with a wet shoe all day.",
+                "choices": [
+                  {
+                    "text": "Dried off quickly and forgot about it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her shoe stayed wet and uncomfortable for most of the day",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Her teacher sent her home to change",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Took her shoe off and it dried by lunch",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"She could see the water still liquid underneath.\" What does liquid mean?",
+                "clue": "Consider the two forms water can take in winter — what is the opposite of ice?",
+                "choices": [
+                  {
+                    "text": "Warm and steamy",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Flowing and unfrozen",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Dark and murky",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Shallow and clear",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"Her sneaker was soaked through.\" What does soaked mean?",
+                "clue": "Consider what happened when cold water rushed over her shoe — how much water got in?",
+                "choices": [
+                  {
+                    "text": "A little damp on the outside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wet only on the bottom",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Completely wet all the way through",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Wet but drying quickly in the cold air",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Anna do to test the ice?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She will press her sneaker against it.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She pressing her sneaker against it.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She pressed her sneaker against it.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She presses her sneaker against it.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the water doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It is rushing over her shoe.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It rush over her shoe.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It rushed over her shoe.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It will rush over her shoe.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Anna do for her soaked sneaker?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "She will dry it out.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She dried it out.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She dries it out.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She drying it out.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-7",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Warm Afternoon",
+      "image": "../../images/late-winter-early-spring/7.png",
+      "alt": "Image for The Warm Afternoon",
+      "versions": {
+        "simple": {
+          "text": "It was a warm afternoon in late February. Tom went outside without his coat. The sun felt good on his face. He sat on the steps and watched the snow drip off the roof. A bird sang in the tree above him. Tom did not want to go back inside.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who is the story about?",
+                "clue": "A boy who goes outside.",
+                "choices": [
+                  {
+                    "text": "Jake",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sam",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tom",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Max",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Tom sit outside?",
+                "clue": "Near the front of the house.",
+                "choices": [
+                  {
+                    "text": "In the grass",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On the steps",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Under the tree",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On a bench",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did this story happen?",
+                "clue": "It was a specific season and time of day.",
+                "choices": [
+                  {
+                    "text": "A cold morning in January",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A warm afternoon in late February",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A rainy day in March",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A snowy morning in December",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Tom watch dripping off the roof?",
+                "clue": "The warm air was making it melt.",
+                "choices": [
+                  {
+                    "text": "Rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Leaves",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Snow",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ice",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did the sun feel on Tom's face?",
+                "clue": "The story says it felt a certain way.",
+                "choices": [
+                  {
+                    "text": "Too hot",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Cold",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Good",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Nothing — he did not feel it",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "How do you think Tom felt sitting in the warm sunshine?",
+                "clue": "He did not want to go back inside — what does that tell you?",
+                "choices": [
+                  {
+                    "text": "Cold and uncomfortable",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Happy and relaxed",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Bored and restless",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Worried about something",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Tom did not want to go back inside?",
+                "clue": "Think about what winter had been like before this warm day.",
+                "choices": [
+                  {
+                    "text": "He was waiting for a friend",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The warmth felt so good after a long cold winter",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He had nothing to do inside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "His mom told him to stay outside",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did Tom go outside without his coat?",
+                "clue": "What was different about the weather that day?",
+                "choices": [
+                  {
+                    "text": "He forgot it inside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It was warm enough that he did not need one",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He lost his coat",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He wanted to feel the cold air",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does the snow dripping off the roof tell you about the weather?",
+                "clue": "What makes snow melt?",
+                "choices": [
+                  {
+                    "text": "It was raining outside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The sun was causing the snow to melt",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The wind was blowing the snow off",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Someone was clearing the roof",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will he likely do on the next warm day?",
+                "clue": "Consider how much Tom enjoyed just sitting outside doing nothing in particular.",
+                "choices": [
+                  {
+                    "text": "Plan an outdoor activity with friends",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go back to his spot on the steps and enjoy the warmth again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Stay inside now that he has had his fresh air",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go for a long walk instead of sitting on the steps",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Tom likely do when spring fully arrives?",
+                "clue": "Consider what Tom seemed to love most — was it doing things outside, or just being outside?",
+                "choices": [
+                  {
+                    "text": "Spend as much time outside as possible now that it is warm",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Go back to staying inside since winter is finally over",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Look for snow since he misses winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Start a garden now that the ground is warm",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Tom do in the afternoon?",
+                "clue": "Look for the action he already finished.",
+                "choices": [
+                  {
+                    "text": "He went outside.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He goes outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He going outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He will go outside.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the snow doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It is dripping off the roof.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It will drip off the roof.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It drip off the roof.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It dripped off the roof.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Tom do later?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "He will go back inside.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He went back inside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He going back inside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He goes back inside.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "It was one of those late February days that felt like a promise. Tom stepped outside after lunch without even grabbing his coat — something he had not been able to do in months. The sun was low but warm on his face, and the air smelled different, almost like wet dirt and something green trying to wake up. He sat down on the front steps and just stayed there. Water dripped steadily from the edge of the roof where the snow was letting go. A chickadee called from somewhere in the bare oak tree above him. Tom was not doing anything in particular — just sitting, listening, feeling the warmth. It was not quite spring, but it was not really winter anymore either.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "When did Tom step outside?",
+                "clue": "The story tells you what part of the day it was.",
+                "choices": [
+                  {
+                    "text": "Early in the morning",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "After lunch",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Just before dinner",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Right when he woke up",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What was dripping from the edge of the roof?",
+                "clue": "It had been there all winter and was now letting go.",
+                "choices": [
+                  {
+                    "text": "Rain from a storm",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Water from melting snow",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Melting ice from the gutters",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Water from a leaking pipe",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Tom sit while he listened to the sounds outside?",
+                "clue": "It was near the entrance of his house.",
+                "choices": [
+                  {
+                    "text": "On a bench in the yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Under the oak tree",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On the front steps",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "At a picnic table",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What kind of bird did Tom hear in the tree above him?",
+                "clue": "It has a name that sounds like what it calls.",
+                "choices": [
+                  {
+                    "text": "A robin",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A sparrow",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A chickadee",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A cardinal",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Tom notice about the way the air smelled?",
+                "clue": "He described it with two unusual things.",
+                "choices": [
+                  {
+                    "text": "It smelled like fresh cut grass",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It smelled like wet dirt and something green trying to wake up",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It smelled like cold clean winter air",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It smelled like rain on a warm road",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "What does it mean that the day 'felt like a promise'?",
+                "clue": "A promise is something that hints at what is coming. What might this day be hinting at?",
+                "choices": [
+                  {
+                    "text": "Someone had promised Tom he could go outside that day",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The warm day felt like a sign that spring was on its way",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The weather promised to stay warm all week",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tom was promised something if he stayed outside",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Tom stayed outside for so long, just sitting and doing nothing in particular?",
+                "clue": "Think about what the weather had been like for the past few months.",
+                "choices": [
+                  {
+                    "text": "He had no homework or chores to do",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "After months of cold weather, the warmth felt too good to leave",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He was waiting to see if the chickadee would come closer",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He had fallen asleep on the steps",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does the last line — 'It was not quite spring, but it was not really winter anymore either' — tell you about how Tom felt?",
+                "clue": "He is not quite one thing or another — like the season itself.",
+                "choices": [
+                  {
+                    "text": "He was confused about what season it was",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He felt restless and ready for winter to be completely over",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was suspended in a moment between seasons — peaceful and a little uncertain",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He was hoping it would snow again before spring came",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did the air smell like 'wet dirt and something green trying to wake up'?",
+                "clue": "Think about what happens underground when the soil starts to warm.",
+                "choices": [
+                  {
+                    "text": "Someone had just dug up the garden nearby",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The sun was drying out puddles left from a rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ground was warming and plants were starting to grow beneath the surface",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The smell came from the oak tree's bark warming in the sun",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will he likely do on the next warm day?",
+                "clue": "Consider how much Tom enjoyed just sitting outside doing nothing in particular.",
+                "choices": [
+                  {
+                    "text": "Plan an outdoor activity with friends",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go back to his spot on the steps and enjoy the warmth again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Stay inside now that he has had his fresh air",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go for a long walk instead of sitting on the steps",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Tom likely do when spring fully arrives?",
+                "clue": "Consider what Tom seemed to love most — was it doing things outside, or just being outside?",
+                "choices": [
+                  {
+                    "text": "Spend as much time outside as possible now that it is warm",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Go back to staying inside since winter is finally over",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Look for snow since he misses winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Start a garden now that the ground is warm",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"Water dripped steadily from the edge of the roof.\" What does steadily mean?",
+                "clue": "Consider whether the dripping was stopping and starting or happening in a consistent way.",
+                "choices": [
+                  {
+                    "text": "Very fast and splashing loudly",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Slowly and occasionally",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "At a slow even pace without stopping",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "In loud heavy drops",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"Tom was not doing anything in particular.\" What does in particular mean?",
+                "clue": "Consider what Tom was actually doing — was he focused on one specific thing or just existing outside?",
+                "choices": [
+                  {
+                    "text": "Was doing something very important",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Had no focus on any one specific thing",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Was trying to decide what to do",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Was doing something he does every day",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Tom do after lunch?",
+                "clue": "Look for the action he already finished.",
+                "choices": [
+                  {
+                    "text": "He stepped outside.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He stepping outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He will step outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He steps outside.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is Tom doing on the steps?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "He sat there listening.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He will sit there listening.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He sit there listening.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He is sitting there listening.",
+                    "isCorrect": true
+                  }
+                ]
+              },
+              {
+                "prompt": "What will spring do soon?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "It will arrive fully.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It arrived fully.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It arriving fully.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It arrives fully.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-8",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Seed Packet",
+      "image": "../../images/late-winter-early-spring/8.png",
+      "alt": "Image for The Seed Packet",
+      "versions": {
+        "simple": {
+          "text": "Maria found an old seed packet in the garage. She wanted to plant the seeds. The ground outside was still too cold. Maria put the seeds in small cups with soil. She put them by the sunny window. She waited for the seeds to grow.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who found the seed packet?",
+                "clue": "A girl in the story.",
+                "choices": [
+                  {
+                    "text": "Anna",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Lily",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Maria",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Maya",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Maria put in the small cups?",
+                "clue": "They need soil to grow.",
+                "choices": [
+                  {
+                    "text": "Dirt and water",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Seeds and soil",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Flowers she picked",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Rocks and leaves",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Maria find the seed packet?",
+                "clue": "A place to store things near the house.",
+                "choices": [
+                  {
+                    "text": "In the kitchen",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Under her bed",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "In the garage",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "In the backyard",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Maria put the cups of seeds?",
+                "clue": "A place with lots of sunlight.",
+                "choices": [
+                  {
+                    "text": "In the closet",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On the kitchen table",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "By the sunny window",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "In the garage",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When will Maria be able to plant the seeds outside?",
+                "clue": "The ground needs to change before she can plant.",
+                "choices": [
+                  {
+                    "text": "Right now, today",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Never — seeds only grow inside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "When the ground gets warm enough",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "When the snow falls again",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "How do you think Maria felt about waiting for spring to plant her seeds?",
+                "clue": "She found the seeds and wanted to plant them right away.",
+                "choices": [
+                  {
+                    "text": "She was fine with waiting and was patient",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was impatient and eager to get started",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was not very interested in planting",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was worried the seeds would never grow",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How do you think Maria felt when she finished setting up her cups by the window?",
+                "clue": "She had found a clever solution to a problem.",
+                "choices": [
+                  {
+                    "text": "Confused about what to do next",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Proud and excited about her plan",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Worried the seeds would not grow indoors",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Bored because she had to wait",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did Maria put the seeds near the sunny window?",
+                "clue": "Think about what plants need to grow.",
+                "choices": [
+                  {
+                    "text": "The window looked nice",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "So the seeds could get sunlight to grow",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Her mom told her to",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She wanted to watch them from her chair",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did Maria use cups instead of planting outside?",
+                "clue": "What was the problem with the ground?",
+                "choices": [
+                  {
+                    "text": "She did not have enough seeds for the whole yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not want to get muddy",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ground was still too cold to plant anything",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Cups are better than ground for seeds",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do every day until the ground is ready to plant?",
+                "clue": "Consider what seedlings need and how carefully Maria planned this whole thing.",
+                "choices": [
+                  {
+                    "text": "Leave them alone and hope for the best",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Check on them, water them, and watch for signs of growth",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Move them outside as soon as she sees a sprout",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Forget about them once the excitement wears off",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What do you think Maria will do next winter when she is waiting for spring again?",
+                "clue": "Consider what worked well for her this time.",
+                "choices": [
+                  {
+                    "text": "Wait patiently until the ground is warm enough to plant outside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Start her seeds indoors early again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ask her mom to handle the gardening next time",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Try a different hobby while she waits for spring",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Maria do with the seeds?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She putting them in small cups.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She puts them in small cups.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She put them in small cups.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She will put them in small cups.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is Maria doing now?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "She wait for them to grow.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She is waiting for them to grow.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She will wait for them to grow.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She waited for them to grow.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will the seeds do?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "They grew into plants.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "They will grow into plants.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "They growing into plants.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "They grow into plants.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "Maria had been watching the snow melt for weeks, and she was done waiting for spring. She dug through the shelves in the garage until she found what she was looking for — a crinkled seed packet with a picture of sunflowers on the front, left over from last summer. The ground outside was still frozen a few inches down, too cold to plant anything real yet. But Maria had a plan. She filled six small plastic cups with potting soil, pressed two seeds into each one, and lined them up on the sunniest windowsill in the kitchen. Her mom looked at the row of cups and raised an eyebrow. Maria just shrugged. By the time the ground was ready outside, her seedlings would already have a head start.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "What kind of seeds did Maria find in the garage?",
+                "clue": "The packet had a picture on the front.",
+                "choices": [
+                  {
+                    "text": "Tomato seeds from last summer",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sunflower seeds from last summer",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Wildflower seeds from a store",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Vegetable seeds she had saved",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Maria put the seed cups?",
+                "clue": "She chose the spot with the most light in the house.",
+                "choices": [
+                  {
+                    "text": "On the windowsill in her bedroom",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On the sunniest windowsill in the kitchen",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "On a shelf in the garage",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On the dining room table",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How many seeds did Maria press into each cup?",
+                "clue": "A small number.",
+                "choices": [
+                  {
+                    "text": "One seed per cup",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Two seeds per cup",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Three seeds per cup",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "As many as would fit",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Maria's mom react when she saw the row of cups?",
+                "clue": "She did not say anything — but her face showed her feeling.",
+                "choices": [
+                  {
+                    "text": "She smiled and praised Maria's idea",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She raised an eyebrow — skeptical or surprised",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She did not notice them at all",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She told Maria it was a bad idea",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did Maria plan to move the seedlings outside?",
+                "clue": "She was thinking ahead to when conditions would change.",
+                "choices": [
+                  {
+                    "text": "Once they had their first leaves",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "As soon as the snow melted",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "By the time the ground was warm enough to plant in",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "At the start of April, no matter what",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why do you think Maria was 'done waiting' for spring?",
+                "clue": "She had been watching the snow melt for weeks.",
+                "choices": [
+                  {
+                    "text": "She had a school project due on gardening",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was impatient and wanted to act instead of just waiting",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was worried the seeds would go bad if she waited longer",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Her mom had told her to start the seeds now",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Maria just shrugged when her mom raised an eyebrow?",
+                "clue": "She did not try to explain or defend herself — she just shrugged.",
+                "choices": [
+                  {
+                    "text": "She was not sure her plan would work",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was confident in her plan and did not feel the need to explain it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She did not notice her mom's reaction",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was embarrassed about the cups and tried to hide her feelings",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the ground still too cold to plant even though the snow was melting?",
+                "clue": "Think about how deep the cold goes in winter.",
+                "choices": [
+                  {
+                    "text": "The ground gets colder every year in late February",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ground freezes deep and takes much longer to warm than the air",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The melting snow was keeping the ground cold",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Maria was in a part of the country with very cold soil",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does Maria mean when she says her seedlings would 'already have a head start'?",
+                "clue": "Think about a race — what does it mean to start before the others?",
+                "choices": [
+                  {
+                    "text": "Her plants would grow faster than plants started from seed outdoors",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "By starting indoors early, her plants would already be growing when she moved them outside",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She would plant them before any of her neighbors",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The seedlings would be stronger because of the indoor sunlight",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do every day until the ground is ready to plant?",
+                "clue": "Consider what seedlings need and how carefully Maria planned this whole thing.",
+                "choices": [
+                  {
+                    "text": "Leave them alone and hope for the best",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Check on them, water them, and watch for signs of growth",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Move them outside as soon as she sees a sprout",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Forget about them once the excitement wears off",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What do you think Maria will do next winter when she is waiting for spring again?",
+                "clue": "Consider what worked well for her this time.",
+                "choices": [
+                  {
+                    "text": "Wait patiently until the ground is warm enough to plant outside",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Start her seeds indoors early again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ask her mom to handle the gardening next time",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Try a different hobby while she waits for spring",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"A crinkled seed packet with a picture of sunflowers on the front.\" What does crinkled mean?",
+                "clue": "Consider what happens to paper when it gets old, bent, or stored for a long time.",
+                "choices": [
+                  {
+                    "text": "Faded and hard to read",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Torn along the edges",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wrinkled and creased from being stored",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Damp from sitting in the garage",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"Her mom looked at the row of cups and raised an eyebrow, a little skeptical.\" What does skeptical mean?",
+                "clue": "Consider what raising an eyebrow usually means when someone looks at something surprising.",
+                "choices": [
+                  {
+                    "text": "Excited and impressed by the idea",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Confused about what she was looking at",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Doubtful the plan would actually work",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Angry that Maria had made a mess",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "Where did Maria find the seed packet?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She digs through the shelves.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She digging through the shelves.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will dig through the shelves.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She dug through the shelves.",
+                    "isCorrect": true
+                  }
+                ]
+              },
+              {
+                "prompt": "What are the seedlings doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "They are getting a head start.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "They got a head start.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "They getting a head start.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "They will get a head start.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Maria do when the ground is ready?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "She plants them outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She will plant them outside.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She planting them outside.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She planted them outside.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-9",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The Ice on the Pond",
+      "image": "../../images/late-winter-early-spring/9.png",
+      "alt": "Image for The Ice on the Pond",
+      "versions": {
+        "simple": {
+          "text": "Sam walked to the pond near his house. All winter, he had skated on the ice. Now the ice was thin and cracked. A sign said Do Not Walk on Ice. Sam looked at the pond for a long time. He turned around and walked home.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who is the story about?",
+                "clue": "A boy who likes to skate.",
+                "choices": [
+                  {
+                    "text": "Tom",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Jake",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sam",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Max",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where was the pond?",
+                "clue": "Sam walked there from home.",
+                "choices": [
+                  {
+                    "text": "At a park far away",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Near Sam's house",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Behind the school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "In the woods",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When Sam saw the sign, what did he do?",
+                "clue": "He made the safe choice.",
+                "choices": [
+                  {
+                    "text": "He went on the ice anyway",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He called his friends to come see",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He turned around and walked home",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He waited by the pond for a while",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did the sign at the pond say?",
+                "clue": "It was a safety warning.",
+                "choices": [
+                  {
+                    "text": "No Swimming",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Pond Closed",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Do Not Walk on Ice",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Thin Ice Today",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What had Sam done at the pond all winter?",
+                "clue": "It requires special boots with blades.",
+                "choices": [
+                  {
+                    "text": "Fished in it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Skated on the ice",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Walked around it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Fed the ducks there",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "How do you think Sam felt when he saw the sign and knew he could not skate?",
+                "clue": "He had been skating there all winter — it was his favorite activity.",
+                "choices": [
+                  {
+                    "text": "Happy that the season was over",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Disappointed and sad that skating was done for the year",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Angry at whoever put the sign up",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Relieved he did not have to skate",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Sam looked at the pond for a long time before leaving?",
+                "clue": "What did the pond mean to him?",
+                "choices": [
+                  {
+                    "text": "He was checking if the ice was really dangerous",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was sad to see his favorite winter activity ending",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He was looking for something he dropped on the ice",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was waiting for a friend to show up",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the ice thin and cracked?",
+                "clue": "What happens to ice when it gets warmer outside?",
+                "choices": [
+                  {
+                    "text": "Too many people had skated on it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The warming weather was melting the ice",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A boat broke it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The fish ate it from below",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does it tell you about Sam that he followed the sign and went home?",
+                "clue": "It was not easy — he loved skating there.",
+                "choices": [
+                  {
+                    "text": "He was afraid of the water",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was responsible and made a safe choice even though it was hard",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He did not really want to skate that day",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He planned to come back later when no one was watching",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will he likely do when the pond freezes again next winter?",
+                "clue": "Consider how much skating meant to Sam and what he did almost every weekend.",
+                "choices": [
+                  {
+                    "text": "Find a different hobby and not go back to the pond",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Be the first one out there skating when the ice is solid again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Be too sad about this year to enjoy skating next winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Only skate if his friends go with him",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What Will  likely happen to the pond over the next few weeks?",
+                "clue": "Consider what time of year it is and what has been happening to the ice and snow throughout the story.",
+                "choices": [
+                  {
+                    "text": "The ice will get thicker and safer as February continues",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The pond will freeze completely solid again before spring",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice will keep melting until the pond is fully open water again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The pond will stay partly frozen until summer",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Sam do all winter?",
+                "clue": "Look for the action he already finished.",
+                "choices": [
+                  {
+                    "text": "He will skate on the ice.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He skating on the ice.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He skated on the ice.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He skates on the ice.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is Sam doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "He is walking home.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He will walk home.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He walked home.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He walk home.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will happen to the ice?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "It will melt away.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It melts away.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It melting away.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It melted away.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "All winter, the pond at the end of Sam's street had been solid enough to skate on. He had been out there almost every weekend since December, sometimes with friends, sometimes just by himself. But when he showed up on a Saturday in late February, things looked different. The ice was no longer smooth and white — it had taken on a gray glassy look, and he could see thin cracks running out from the edges. A handwritten sign zip-tied to the fence read: DO NOT WALK ON ICE. Sam stood at the edge for a while, his skates over his shoulder. He pressed the toe of his boot against the very edge of the ice and felt it give slightly, like it was sighing. He stepped back. He stayed another few minutes just looking at the pond, at the gray sky reflected in the patches of open water near the middle, and then turned and headed home. The season was over.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "How often had Sam skated at the pond during the winter?",
+                "clue": "The story tells you how frequently he was there.",
+                "choices": [
+                  {
+                    "text": "Every day after school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Almost every weekend since December",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A few times in January",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Whenever his friends invited him",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did the ice look like when Sam arrived in late February?",
+                "clue": "It was no longer white and smooth.",
+                "choices": [
+                  {
+                    "text": "White and smooth like earlier in the season",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Blue and thick with skate marks",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Gray and glassy with thin cracks running from the edges",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Completely melted with only puddles",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When Sam pressed his boot against the ice, what happened?",
+                "clue": "The story describes it in an unusual, almost gentle way.",
+                "choices": [
+                  {
+                    "text": "The ice was rock solid and did not move",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice cracked loudly under his boot",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice gave slightly, like it was sighing",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "His boot slipped and he almost fell in",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did the sign zip-tied to the fence say?",
+                "clue": "It was a direct warning.",
+                "choices": [
+                  {
+                    "text": "Caution: Thin Ice",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No Skating Until Further Notice",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "DO NOT WALK ON ICE",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Pond Closed for the Season",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where did Sam go after deciding not to skate?",
+                "clue": "He had come all the way there only to turn around.",
+                "choices": [
+                  {
+                    "text": "To a different skating rink",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "To find his friends and tell them",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He turned and headed home",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He sat on a nearby bench",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why did the ice turn gray and glassy instead of staying smooth and white?",
+                "clue": "Think about what happens to ice as it begins to weaken and melt.",
+                "choices": [
+                  {
+                    "text": "Skaters had scraped off the white top layer all winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Warming temperatures were weakening the ice and changing its structure",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The sky was gray and reflecting onto the ice",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The dark pond water was showing through from below",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why do you think Sam stayed at the pond for a few extra minutes even after deciding not to skate?",
+                "clue": "Think about what this place meant to him and what the last line says.",
+                "choices": [
+                  {
+                    "text": "He was hoping the ice might look safer if he waited",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was not ready to let go of something that had meant a lot to him all winter",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He wanted to make sure no one else tried to go on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He was waiting to see if his friends would show up",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does the last line — 'The season was over' — tell you about how Sam felt?",
+                "clue": "It is only four words. Think about how a very short, plain sentence can carry emotion.",
+                "choices": [
+                  {
+                    "text": "Sam was relieved and ready to move on to spring",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sam was stating a fact with no feeling behind it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sam felt a quiet sadness — winter skating was done and he would miss it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Sam was angry that the ice had melted too soon",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does it mean that the ice 'gave slightly, like it was sighing'?",
+                "clue": "Think about what that gentle movement — and that word 'sighing' — suggests.",
+                "choices": [
+                  {
+                    "text": "The ice was perfectly safe but just barely",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice was weak and bending under pressure — it was no longer solid",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The wind was causing the ice to shift",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice was making a whistling sound",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will he likely do when the pond freezes again next winter?",
+                "clue": "Consider how much skating meant to Sam and what he did almost every weekend.",
+                "choices": [
+                  {
+                    "text": "Find a different hobby and not go back to the pond",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Be the first one out there skating when the ice is solid again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Be too sad about this year to enjoy skating next winter",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Only skate if his friends go with him",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What Will  likely happen to the pond over the next few weeks?",
+                "clue": "Consider what time of year it is and what has been happening to the ice and snow throughout the story.",
+                "choices": [
+                  {
+                    "text": "The ice will get thicker and safer as February continues",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The pond will freeze completely solid again before spring",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The ice will keep melting until the pond is fully open water again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The pond will stay partly frozen until summer",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"The pond had been solid enough to skate on.\" What does solid mean here?",
+                "clue": "Consider what ice needs to be like for it to be safe to stand and skate on.",
+                "choices": [
+                  {
+                    "text": "Perfectly smooth with no cracks",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Thick and hard enough to hold weight",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Clear enough to see through",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Frozen all the way to the bottom",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"The ice had taken on a gray glassy look.\" What does glassy mean?",
+                "clue": "Consider what a window or pane of glass looks like — smooth, clear, a little shiny.",
+                "choices": [
+                  {
+                    "text": "Broken into sharp pieces",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Covered in a dull white frost",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Smooth and clear with a slight shine",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Dark and hard to see",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"The gray sky reflected in the patches of open water.\" What does reflected mean?",
+                "clue": "Consider what you see when you look into still water — what does the surface show you?",
+                "choices": [
+                  {
+                    "text": "The sky was casting shadows on the water",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The water was showing a mirror image of the sky",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The clouds were making the water look gray",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The water was turning dark from the cold",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Sam do at the edge of the pond?",
+                "clue": "Look for the action he already finished.",
+                "choices": [
+                  {
+                    "text": "He stands there for a while.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He stood there for a while.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "He will stand there for a while.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He standing there for a while.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the ice doing when he presses it?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It give slightly.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It is giving slightly.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It will give slightly.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It gave slightly.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will Sam do next winter?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "He skates again.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He skating again.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He skated again.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "He will skate again.",
+                    "isCorrect": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-10",
+      "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
+      "season": "winter",
+      "title": "The First Warm Rain",
+      "image": "../../images/late-winter-early-spring/10.png",
+      "alt": "Image for The First Warm Rain",
+      "versions": {
+        "simple": {
+          "text": "It rained on a Tuesday in late February. But this rain felt different. It was warm, not cold. The snow in the yard started to melt fast. Puddles grew big on the sidewalk. Maya stood on the porch and watched the rain fall. She smiled because she knew spring was almost here.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "Who watched the rain fall?",
+                "clue": "A girl in the story.",
+                "choices": [
+                  {
+                    "text": "Mia",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Anna",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Maya",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Maria",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where was Maya when she watched the rain?",
+                "clue": "She was outside but staying dry.",
+                "choices": [
+                  {
+                    "text": "At her bedroom window",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "In the backyard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On the porch",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Under a tree",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did the warm rain happen?",
+                "clue": "The story gives you a day and a month.",
+                "choices": [
+                  {
+                    "text": "On a Sunday in January",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On a Tuesday in late February",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "On a Friday in March",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On a Wednesday in early spring",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What was different about this rain?",
+                "clue": "It was not the usual winter rain.",
+                "choices": [
+                  {
+                    "text": "It rained harder than usual",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It was mixed with snow",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It was warm, not cold",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It lasted all week",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How did Maya feel when she watched the rain?",
+                "clue": "The story says she did something with her face.",
+                "choices": [
+                  {
+                    "text": "Sad",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Scared",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She smiled",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She cried",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why did Maya smile while watching the rain?",
+                "clue": "The last sentence of the story tells you why.",
+                "choices": [
+                  {
+                    "text": "She liked getting wet in the rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She knew spring was almost here",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She had no school that day",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She saw a rainbow forming",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "How do you think Maya felt about the warm rain coming?",
+                "clue": "Warm rain in February meant something good was happening.",
+                "choices": [
+                  {
+                    "text": "Worried it would flood the yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Happy and excited because spring was on its way",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She did not care about the rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She wished it was snowing instead",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did the snow in the yard melt so fast?",
+                "clue": "Two things were helping the snow disappear.",
+                "choices": [
+                  {
+                    "text": "The wind blew the snow away",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Warm rain and rising temperatures were melting it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Someone shoveled the yard",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow was already melting for weeks",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why did the puddles grow so big on the sidewalk?",
+                "clue": "Where was all the water coming from?",
+                "choices": [
+                  {
+                    "text": "It rained for three days straight",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The sidewalk had lots of low spots",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Both the rain and the melting snow were adding water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "A water pipe broke nearby",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do the next time she looks at the tree?",
+                "clue": "Consider the kind of person Maya seems to be — she noticed something small that others might miss.",
+                "choices": [
+                  {
+                    "text": "Forget about the buds now that the rain has stopped",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Check the tree again to see if the buds have grown or opened",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Pick the buds off the tree to look at them up close",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Stop paying attention to the tree once spring arrives",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What Will the yard likely look like in two or three weeks?",
+                "clue": "Consider all the changes that were already happening — the warm rain, the melting snow, the buds on the tree.",
+                "choices": [
+                  {
+                    "text": "The yard will be covered in snow again after one more cold spell",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The yard will look the same as it did during the warm rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow will be gone, the ground will be muddy, and the buds will be opening",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The yard will be fully green with flowers already blooming",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Maya do on the porch?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She will stand and watch.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She stood and watched.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She stands and watches.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She standing and watching.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the snow doing in the yard?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It will melt fast.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It melt fast.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It melted fast.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It is melting fast.",
+                    "isCorrect": true
+                  }
+                ]
+              },
+              {
+                "prompt": "What will spring do next?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "It will arrive soon.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It arriving soon.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It arrives soon.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It arrived soon.",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "complex": {
+          "text": "The rain that started on Tuesday was different from the cold stinging kind that had fallen in January. This rain was warm — not warm like summer, but warm enough that Maya did not reach for her coat when she stepped onto the porch to watch it. The snow in the yard was disappearing fast, collapsing in on itself and spreading into wide shallow puddles across the sidewalk and driveway. Maya could hear it — the constant dripping and rushing of water moving everywhere at once, finding every low spot in the yard. The bare branches of the oak tree were glistening, and she noticed something she had not seen in months: the very tips of the branches had tiny swollen buds on them. They had not opened yet, but they were there. Maya pulled her sleeves over her hands and leaned against the porch railing. Winter was not gone, but it was leaving.",
+          "questions": {
+            "literal": [
+              {
+                "prompt": "How was this rain different from the cold, stinging kind that fell in January?",
+                "clue": "The story compares the two kinds of rain directly.",
+                "choices": [
+                  {
+                    "text": "This rain came with thunder and lightning",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "This rain was warm — warm enough that Maya did not reach for her coat",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "This rain was falling much harder than January rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "This rain mixed with snow, unlike the January rain",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What did Maya notice on the tips of the oak tree's branches?",
+                "clue": "She had not seen these in months — they were very small.",
+                "choices": [
+                  {
+                    "text": "Small birds sitting in a row",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Drops of rain hanging from the twigs",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tiny swollen buds",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The first green leaves of the season",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "When did the warm rain start?",
+                "clue": "The story tells you the exact day.",
+                "choices": [
+                  {
+                    "text": "On a Monday",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On a Wednesday",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On a Tuesday",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "On a Thursday",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Where was Maya standing when she watched the rain and noticed the buds?",
+                "clue": "She was outside but not getting wet.",
+                "choices": [
+                  {
+                    "text": "In the backyard by the fence",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "On the porch, leaning against the railing",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "In the driveway under an umbrella",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "At the kitchen window inside",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What was happening to the snow in the yard during the warm rain?",
+                "clue": "The story describes it in a specific way.",
+                "choices": [
+                  {
+                    "text": "It was piling up against the fence",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It was barely melting because the rain was not that warm",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It was collapsing in on itself and spreading into wide shallow puddles",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It was turning to ice from the rain",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "Why do you think Maya pulled her sleeves over her hands instead of going inside to get a coat?",
+                "clue": "Think about what she was in the middle of watching.",
+                "choices": [
+                  {
+                    "text": "All her coats were wet from earlier",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not realize how cold she was",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She did not want to miss the moment by going inside",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was planning to go in soon anyway",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does Maya's reaction to seeing the buds on the tree tell you about her?",
+                "clue": "Most people would not have noticed tiny buds on a bare winter tree.",
+                "choices": [
+                  {
+                    "text": "She studies trees for school",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She is the kind of person who notices small signs and pays close attention to the world around her",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She was specifically looking for buds on the tree that day",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She was excited because the buds meant her allergies would start soon",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What does the last line — 'Winter was not gone, but it was leaving' — tell you about the moment Maya was experiencing?",
+                "clue": "Neither winter nor spring — what is that in-between feeling like?",
+                "choices": [
+                  {
+                    "text": "Winter was almost completely over and spring had already begun",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Maya was confused about the weather that day",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The season was in transition — something was ending and something was about to begin",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Maya was uncertain whether it would snow again",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "Why was the snow 'collapsing in on itself' instead of melting evenly from the top?",
+                "clue": "Think about where the warmth was coming from — air above, or something else?",
+                "choices": [
+                  {
+                    "text": "The rain was hitting it so hard it was breaking apart",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow was melting from below as the ground warmed, losing its structure",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The old heavy snow was too weak to hold its shape anymore",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The wind was pushing the snow piles over",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "prediction": [
+              {
+                "prompt": "What will she likely do the next time she looks at the tree?",
+                "clue": "Consider the kind of person Maya seems to be — she noticed something small that others might miss.",
+                "choices": [
+                  {
+                    "text": "Forget about the buds now that the rain has stopped",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Check the tree again to see if the buds have grown or opened",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Pick the buds off the tree to look at them up close",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Stop paying attention to the tree once spring arrives",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What Will the yard likely look like in two or three weeks?",
+                "clue": "Consider all the changes that were already happening — the warm rain, the melting snow, the buds on the tree.",
+                "choices": [
+                  {
+                    "text": "The yard will be covered in snow again after one more cold spell",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The yard will look the same as it did during the warm rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "The snow will be gone, the ground will be muddy, and the buds will be opening",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "The yard will be fully green with flowers already blooming",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "vocabulary": [
+              {
+                "prompt": "\"The bare branches of the oak tree were glistening.\" What does glistening mean?",
+                "clue": "Consider what wet branches look like when light hits them after rain.",
+                "choices": [
+                  {
+                    "text": "Covered in a thin layer of ice",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Shining with a wet sparkle from the rain",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Starting to grow new leaves",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Dark and heavy from the water",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"The very tips of the branches had tiny swollen buds on them.\" What does swollen mean?",
+                "clue": "Consider what a bud looks like just before it is about to open — is it flat or puffed out?",
+                "choices": [
+                  {
+                    "text": "Dried out and shriveled",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Bright green and fully open",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Puffed up and round, getting ready to open",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Frozen and stuck to the branch",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "\"The constant dripping and rushing of water.\" What does constant mean?",
+                "clue": "Consider whether the dripping and rushing was stopping and starting or happening the whole time.",
+                "choices": [
+                  {
+                    "text": "Very loud and overwhelming",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Stopping and starting with the rain",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Going on without stopping the whole time",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Coming from one specific spot in the yard",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "verb_tense": [
+              {
+                "prompt": "What did Maya do when she stepped onto the porch?",
+                "clue": "Look for the action she already finished.",
+                "choices": [
+                  {
+                    "text": "She pulling her sleeves over her hands.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She pulled her sleeves over her hands.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "She will pull her sleeves over her hands.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "She pulls her sleeves over her hands.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What is the water doing?",
+                "clue": "Look for the action happening right now.",
+                "choices": [
+                  {
+                    "text": "It is moving everywhere.",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "It moving everywhere.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It moved everywhere.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "It will move everywhere.",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "What will the buds do?",
+                "clue": "Look for the action that has not happened yet.",
+                "choices": [
+                  {
+                    "text": "They opened up.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "They opening up.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "They open up.",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "They will open up.",
+                    "isCorrect": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-main-idea-key-details-001",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Community Garden Workday",
+      "passage": "On Saturday morning, dozens of neighbors gathered to transform the weedy corner lot into a community garden. Mr. Ortiz marked wide beds for vegetables while Mrs. Lee studied where the sun landed and mapped tomato rows. Two middle schoolers rinsed donated pickle buckets and turned them into rain barrels so the plants could be watered without wasting tap water. By lunchtime, the beds were mulched and everyone agreed to meet weekly to keep the garden thriving.",
+      "options": [
+        "Neighbors worked together to transform a vacant lot into a community garden.",
+        "Mrs. Lee mapped the sunny spots for tomato rows.",
+        "Two middle schoolers built rain barrels from donated buckets.",
+        "The city hired a landscaping company to mow the lot for the neighbors.",
+        "Everyone agreed to meet only once a year to check on the plants."
+      ],
+      "mainIdea": "Neighbors worked together to transform a vacant lot into a community garden.",
+      "details": [
+        "Mrs. Lee mapped the sunny spots for tomato rows.",
+        "Two middle schoolers built rain barrels from donated buckets."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-002",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "School News Podcast Team",
+      "passage": "The fifth graders launched a weekly podcast so the whole school could hear news and celebrations. On Tuesdays the hosts wrote scripts and practiced reading them smoothly. Maya booked the media lab on Thursdays so she could edit the audio and tuck in gentle sound effects. Each Friday morning the finished episode was posted on the school website so families could listen on the walk to school.",
+      "options": [
+        "Fifth graders created a weekly podcast to share school news.",
+        "Students wrote scripts on Tuesdays to practice fluent reading.",
+        "Maya edited the audio in the library’s media lab each Thursday.",
+        "The team mailed compact discs to every home each Monday.",
+        "Teachers banned the students from interviewing classmates."
+      ],
+      "mainIdea": "Fifth graders created a weekly podcast to share school news.",
+      "details": [
+        "Students wrote scripts on Tuesdays to practice fluent reading.",
+        "Maya edited the audio in the library’s media lab each Thursday."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-003",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Cedar River Cleanup Challenge",
+      "passage": "The science club organized a cleanup along the Cedar River to see how much trash they could remove before fish returned to the shallow coves. Teams mapped sections of shoreline and collected every bottle cap, wrapper, and soda can they could find. Volunteers weighed each bag of trash to track their progress, and students logged wildlife sightings in a shared notebook to notice how the river responded over time.",
+      "options": [
+        "The science club organized a river cleanup to protect the Cedar River.",
+        "Teams mapped shoreline sections and picked up every piece of litter.",
+        "Volunteers weighed each bag of trash to track progress.",
+        "The cleanup lasted only ten minutes before everyone went home.",
+        "Students decided to build a skateboard ramp by the river instead."
+      ],
+      "mainIdea": "The science club organized a river cleanup to protect the Cedar River.",
+      "details": [
+        "Teams mapped shoreline sections and picked up every piece of litter.",
+        "Volunteers weighed each bag of trash to track progress."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-004",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Pop-Up STEM Night Volunteers",
+      "passage": "To boost family turnout, student leaders planned a pop-up STEM night that filled the gym with hands-on stations. The robotics crew coded tiny bots to drive through tape mazes while teammates explained how sensors worked. Nearby, the art club built pasta towers, recorded which design held more washers, and invited guests to test their own ideas. Between rotations, hosts handed out reflection cards so visitors could jot one discovery to share on the morning announcements.",
+      "options": [
+        "Students organized interactive STEM stations for families during pop-up night.",
+        "The robotics crew coded mini bots to drive through tape mazes.",
+        "Art club members built pasta towers and tracked which design held more weight.",
+        "The principal canceled the event because no one volunteered.",
+        "Only teachers were allowed to demonstrate projects while students watched."
+      ],
+      "mainIdea": "Students organized interactive STEM stations for families during pop-up night.",
+      "details": [
+        "The robotics crew coded mini bots to drive through tape mazes.",
+        "Art club members built pasta towers and tracked which design held more weight."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-005",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Library Book Swap Festival",
+      "passage": "The public library hosted a weekend book swap so readers could trade stories without spending money. Student helpers labeled tables by genre, which kept fantasy paperbacks far from biographies. Before setting down a donation, each guest filled out a colorful review card so the next reader would know what made the book memorable. Families lingered for cocoa, then left with stacks of “new-to-me” titles tucked under their arms.",
+      "options": [
+        "The library hosted a book swap so readers could trade favorites.",
+        "Student helpers labeled genre tables to keep the swap organized.",
+        "Guests filled out review cards before placing books on display.",
+        "The library bought a brand-new hardcover for every visitor instead of swapping.",
+        "The festival allowed only adults with digital tickets ordered weeks ahead."
+      ],
+      "mainIdea": "The library hosted a book swap so readers could trade favorites.",
+      "details": [
+        "Student helpers labeled genre tables to keep the swap organized.",
+        "Guests filled out review cards before placing books on display."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-006",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Weather Station Morning Crew",
+      "passage": "Each dawn, a sixth-grade crew hustled to the school garden to run its new weather station. Two students clipped temperature, humidity, and wind readings before the first bell, checking the sensors twice for accuracy. Another pair uploaded the numbers to a hallway display and added a short forecast to the principal’s daily email. Their routine meant teachers could plan recess and science experiments using fresh data gathered by their own students.",
+      "options": [
+        "Sixth graders ran a morning weather station and shared data with the school.",
+        "Two students measured temperature, humidity, and wind before the first bell.",
+        "Another pair uploaded the readings to the hallway display and daily email.",
+        "They dismantled the weather station after only one week.",
+        "The crew skipped collecting data whenever the sky looked clear."
+      ],
+      "mainIdea": "Sixth graders ran a morning weather station and shared data with the school.",
+      "details": [
+        "Two students measured temperature, humidity, and wind before the first bell.",
+        "Another pair uploaded the readings to the hallway display and daily email."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-007",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Track Team Hydration Lab",
+      "passage": "Coach Diaz turned track practice into a quick science lab about hydration. Each runner logged how much water they drank during the school day on a shared spreadsheet before lacing up. Assistant coaches timed repeat laps and compared the splits of athletes who met their water goals with those who forgot their bottles. At the end of the week, the team discussed the charts and agreed to set reminders so afternoon workouts stayed strong.",
+      "options": [
+        "The track team studied hydration habits to improve practice stamina.",
+        "Runners logged their water intake in a shared spreadsheet before workouts.",
+        "Coaches compared lap times of hydrated runners and those who forgot their bottles.",
+        "The study ended instantly because a snowstorm closed school for a month.",
+        "Only former athletes tested prototype shoes on the track that week."
+      ],
+      "mainIdea": "The track team studied hydration habits to improve practice stamina.",
+      "details": [
+        "Runners logged their water intake in a shared spreadsheet before workouts.",
+        "Coaches compared lap times of hydrated runners and those who forgot their bottles."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-008",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Therapy Dog Reading Hour",
+      "passage": "Once a month, certified therapy dogs padded into the media center so hesitant readers could practice aloud without judgment. Volunteers showed students how to greet each dog and settle on beanbag mats beside their furry listener. After finishing a chapter, readers jotted confidence scores in their journals and shared one tricky word they conquered. Teachers noticed quieter students raising their hands in class after a few calm sessions with their canine buddies.",
+      "options": [
+        "Therapy dogs visited reading hour so students could practice aloud comfortably.",
+        "Volunteers taught students how to greet the dogs before sitting on beanbags.",
+        "Readers recorded confidence scores and tricky words in their journals after sessions.",
+        "Dogs waited outside while students read alone in total silence.",
+        "The school replaced the program with a silent study hall instead."
+      ],
+      "mainIdea": "Therapy dogs visited reading hour so students could practice aloud comfortably.",
+      "details": [
+        "Volunteers taught students how to greet the dogs before sitting on beanbags.",
+        "Readers recorded confidence scores and tricky words in their journals after sessions."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-009",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Class Plant Patrol",
+      "passage": "Ms. Rao started a plant patrol chart so her students would remember to care for the fern on the window ledge. Each morning the helper opened the blinds to give the plant sunshine. After lunch the helper checked the soil and added a small cup of water if it felt dry. On Friday the class measured the fern to see how much it had grown.",
+      "options": [
+        "Ms. Rao's class took turns caring for the fern on the window ledge.",
+        "Each morning the helper opened the blinds to give the plant sunshine.",
+        "After lunch the helper checked the soil and added a small cup of water if it felt dry.",
+        "The class baked cupcakes for the fern every afternoon.",
+        "Students built a robot to water every plant in the city."
+      ],
+      "mainIdea": "Ms. Rao's class took turns caring for the fern on the window ledge.",
+      "details": [
+        "Each morning the helper opened the blinds to give the plant sunshine.",
+        "After lunch the helper checked the soil and added a small cup of water if it felt dry."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-010",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Morning Announcement Helpers",
+      "passage": "Two fourth graders helped the principal with the morning announcements. Before school they checked the whiteboard for birthdays and club reminders. They practiced the script quietly so the words would sound smooth. When the bell rang, they pressed the intercom button and read the updates to the whole building.",
+      "options": [
+        "Two fourth graders helped the principal with the morning announcements.",
+        "They checked the whiteboard for birthdays and club reminders.",
+        "They practiced the script quietly so the words would sound smooth.",
+        "They skipped school so no one heard the announcements.",
+        "Only teachers were allowed to touch the intercom button."
+      ],
+      "mainIdea": "Two fourth graders helped the principal with the morning announcements.",
+      "details": [
+        "They checked the whiteboard for birthdays and club reminders.",
+        "They practiced the script quietly so the words would sound smooth."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-011",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Rainy Day Gym Walkers",
+      "passage": "When rain covered the playground, Coach Lin turned the gym into a walking track. Students followed taped arrows and counted how many laps they could finish in ten minutes. Helpers passed out stickers every five laps so walkers could keep score. By the end, everyone felt warm even without going outside.",
+      "options": [
+        "Coach Lin set up an indoor walking track for rainy days.",
+        "Students followed taped arrows and counted their laps.",
+        "Helpers passed out stickers every five laps so walkers could keep score.",
+        "Students napped on the bleachers instead of moving.",
+        "Recess was canceled for the rest of the year."
+      ],
+      "mainIdea": "Coach Lin set up an indoor walking track for rainy days.",
+      "details": [
+        "Students followed taped arrows and counted their laps.",
+        "Helpers passed out stickers every five laps so walkers could keep score."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-012",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Neighborhood Lemonade Goal",
+      "passage": "Maya and Theo opened a lemonade stand to earn money for new watercolor paints. They squeezed lemons in the kitchen and made a bright poster that pointed neighbors to their table. Each customer signed a thank-you note that the kids taped to the jar. By sunset they had enough dollars to buy the paint set they wanted.",
+      "options": [
+        "Maya and Theo ran a lemonade stand to buy watercolor paints.",
+        "They squeezed lemons and made a bright poster for their table.",
+        "Customers signed thank-you notes that the kids taped to the jar.",
+        "They spent the money on video games instead of art supplies.",
+        "The stand sold hot chocolate in the middle of winter."
+      ],
+      "mainIdea": "Maya and Theo ran a lemonade stand to buy watercolor paints.",
+      "details": [
+        "They squeezed lemons and made a bright poster for their table.",
+        "Customers signed thank-you notes that the kids taped to the jar."
+      ]
+    },
+    {
+      "id": "story-main-idea-key-details-013",
+      "sourceFile": "activities/reading/main-idea-key-details.html",
+      "season": null,
+      "title": "Bus Buddy Bench",
+      "passage": "To make dismissal calmer, fifth graders waited by the buddy bench to help younger students find their buses. When a bus number was called, a helper walked the younger student to the correct line. The helpers wore bright sashes so teachers could spot them quickly. After the last bus left, they rolled the bench back under the awning for the next day.",
+      "options": [
+        "Fifth graders used a buddy bench to help younger students find their buses.",
+        "Helpers walked younger students to the correct bus line.",
+        "They wore bright sashes so teachers could spot them.",
+        "Older students hid during dismissal so no one found a bus.",
+        "Bus drivers stayed home instead of coming to school."
+      ],
+      "mainIdea": "Fifth graders used a buddy bench to help younger students find their buses.",
+      "details": [
+        "Helpers walked younger students to the correct bus line.",
+        "They wore bright sashes so teachers could spot them."
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-001",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Quick Story",
+      "title": "Garden Helpers",
+      "text": "Maya wakes up early to water the school garden. She pulls weeds so the vegetables have space to grow and checks that the soil is not too dry.",
+      "options": [
+        {
+          "text": "Maya takes care of the garden so the plants stay healthy.",
+          "correct": true
+        },
+        {
+          "text": "Maya wants to build a birdhouse with her friends.",
+          "correct": false
+        },
+        {
+          "text": "Maya forgets to water the plants every day.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-002",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Quick Story",
+      "title": "Snowy Surprise",
+      "text": "Leo wakes up to quiet streets covered in snow. He brushes off the front steps, packs a snowball for his sister, and warms cocoa for everyone while the kettle sings.",
+      "options": [
+        {
+          "text": "Leo helps his family enjoy the snowy morning.",
+          "correct": true
+        },
+        {
+          "text": "Leo stays in bed and ignores the weather.",
+          "correct": false
+        },
+        {
+          "text": "Leo buys new boots at the store.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-003",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Quick Story",
+      "title": "Library List",
+      "text": "Tara keeps a list of every book she borrows from the library. After dinner she checks off the chapters she read and sets a reminder to return the books on time.",
+      "options": [
+        {
+          "text": "Tara stays organized so she can read and return her books on time.",
+          "correct": true
+        },
+        {
+          "text": "Tara forgets where she puts her homework.",
+          "correct": false
+        },
+        {
+          "text": "Tara sells old books at a yard sale.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-004",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Quick Story",
+      "title": "Smooth Bus Ride",
+      "text": "The class goes on a field trip, and Devin passes out snacks, reminds friends to buckle up, and leads a quiet sing-along so the bus driver can focus.",
+      "options": [
+        {
+          "text": "Devin keeps the bus ride calm and helpful for everyone.",
+          "correct": true
+        },
+        {
+          "text": "Devin sleeps through the bus ride.",
+          "correct": false
+        },
+        {
+          "text": "Devin gets lost at the museum gift shop.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-005",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Quick Story",
+      "title": "Market Morning",
+      "text": "Nia walks through the farmers market with a small list. She compares prices, chooses ripe fruit, and thanks each farmer for growing fresh food for the neighborhood.",
+      "options": [
+        {
+          "text": "Nia carefully shops for healthy food at the market.",
+          "correct": true
+        },
+        {
+          "text": "Nia spends the day playing video games.",
+          "correct": false
+        },
+        {
+          "text": "Nia forgets to bring her list and money.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-006",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Quick Story",
+      "title": "Bike Check",
+      "text": "Before the weekend ride, Omar pumps air into every tire, tests the brakes, and adds lights so his friends can ride safely at dusk.",
+      "options": [
+        {
+          "text": "Omar makes sure the bikes are ready and safe to ride.",
+          "correct": true
+        },
+        {
+          "text": "Omar decides to sell his bike online.",
+          "correct": false
+        },
+        {
+          "text": "Omar learns to swim at the community pool.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-007",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Quick Story",
+      "title": "Neighborhood Cleanup",
+      "text": "Jaden and his cousins bring gloves to the park on Saturday. They fill buckets with litter, sort the recyclables, and leave chalk notes thanking neighbors for helping keep the area tidy.",
+      "options": [
+        {
+          "text": "Jaden leads a cleanup to keep the park neat.",
+          "correct": true
+        },
+        {
+          "text": "Jaden paints a mural inside the school gym.",
+          "correct": false
+        },
+        {
+          "text": "Jaden opens a lemonade stand for spending money.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-008",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Quick Story",
+      "title": "Lunchtime Music Club",
+      "text": "Each lunch break, Lila opens the music room early. She tapes a practice list to the wall, tunes the keyboard, and helps younger students clap the beat so they are ready for the showcase.",
+      "options": [
+        {
+          "text": "Lila runs the lunch music club so everyone can practice.",
+          "correct": true
+        },
+        {
+          "text": "Lila skips lunch to finish science homework.",
+          "correct": false
+        },
+        {
+          "text": "Lila sells old instruments at a yard sale.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-009",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Stretch Story",
+      "title": "Science Fair Fix",
+      "text": "Elena's volcano cracks the night before the science fair. She sketches a repair plan, mixes fresh plaster, and asks her brother to steady the base so the eruption will still work.",
+      "options": [
+        {
+          "text": "Elena calmly repairs her project so it is ready for the fair.",
+          "correct": true
+        },
+        {
+          "text": "Elena builds a brand-new rocket instead of a volcano.",
+          "correct": false
+        },
+        {
+          "text": "Elena ignores the crack and watches TV all night.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-010",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Stretch Story",
+      "title": "Storm Prep Crew",
+      "text": "When the forecast warns of heavy rain, Coach Imani forms teams to stack sandbags, label walkie-talkies, and call families about pickup changes so the after-school program can close safely.",
+      "options": [
+        {
+          "text": "Coach Imani organizes students to prepare the program for the storm.",
+          "correct": true
+        },
+        {
+          "text": "Coach Imani keeps everyone outside to play in the rain.",
+          "correct": false
+        },
+        {
+          "text": "Coach Imani cancels practice because no one volunteered.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-011",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Stretch Story",
+      "title": "Community Kitchen Rush",
+      "text": "Saturday orders double, so Raya reorganizes the prep table, assigns volunteers to chopping, stirring, and delivery, and tracks allergies on a clipboard to keep every meal on schedule.",
+      "options": [
+        {
+          "text": "Raya manages the busy kitchen by organizing every helper.",
+          "correct": true
+        },
+        {
+          "text": "Raya leaves the kitchen to buy new decorations.",
+          "correct": false
+        },
+        {
+          "text": "Raya cooks one meal and closes the kitchen early.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "story-main-idea-short-stories-012",
+      "sourceFile": "activities/reading/main-idea-short-stories.html",
+      "season": null,
+      "level": "Stretch Story",
+      "title": "Repair Café Updates",
+      "text": "During the repair café, Theo interviews neighbors about their broken gadgets, matches them with the right mentor, and posts timing updates on the chalkboard so visitors know when their turn is coming.",
+      "options": [
+        {
+          "text": "Theo keeps the repair café organized by guiding visitors and mentors.",
+          "correct": true
+        },
+        {
+          "text": "Theo spends the day taking apart his own skateboard.",
+          "correct": false
+        },
+        {
+          "text": "Theo shuts down the event because no one brings items.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Jonah's Quiz",
+      "difficulty": "Easier",
+      "html": "When the teacher handed back the quizzes, <span id='s1_1'>Jonah flipped his paper face down on his desk. He didn’t look at it right away.</span> While other students compared scores, Jonah traced the edge of his notebook with his finger. When his friend leaned over and asked how he did, Jonah said, “It’s whatever.” He shoved the paper into his backpack as soon as the bell rang.",
+      "q1": {
+        "text": "Question 1: What can you infer about Jonah?",
+        "hint": "Pay attention to Jonah's body language and how he treats the paper.",
+        "choices": [
+          {
+            "text": "He is proud of his score",
+            "correct": false
+          },
+          {
+            "text": "He is disappointed with how he did",
+            "correct": true
+          },
+          {
+            "text": "He forgot to study",
+            "correct": false
+          },
+          {
+            "text": "He didn’t finish the quiz",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "Other students compared scores",
+            "correct": false
+          },
+          {
+            "text": "Jonah flipped his paper face down and avoided looking at it",
+            "correct": true,
+            "highlights": [
+              "s1_1"
+            ]
+          },
+          {
+            "text": "The bell rang quickly",
+            "correct": false
+          },
+          {
+            "text": "Jonah traced his notebook",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Avery's Routine",
+      "difficulty": "Easier",
+      "html": "Avery checked the door twice before leaving the house. Halfway down the sidewalk, <span id='s2_1'>she stopped and went back inside.</span> A moment later, she came out holding her phone. She walked faster than before and keep patting her pocket as she went. When she reached the bus stop, she finally relaxed her shoulders.",
+      "q1": {
+        "text": "Question 1: What can you infer about Avery?",
+        "hint": "Why would she go back inside after checking the door?",
+        "choices": [
+          {
+            "text": "She is late for school",
+            "correct": false
+          },
+          {
+            "text": "She was worried she forgot something important",
+            "correct": true
+          },
+          {
+            "text": "She doesn’t like walking",
+            "correct": false
+          },
+          {
+            "text": "She enjoys routines",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "She walked to the bus stop",
+            "correct": false
+          },
+          {
+            "text": "She went back inside after leaving the house",
+            "correct": true,
+            "highlights": [
+              "s2_1"
+            ]
+          },
+          {
+            "text": "She held her phone",
+            "correct": false
+          },
+          {
+            "text": "She relaxed at the bus stop",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Caleb at the Movies",
+      "difficulty": "Moderate",
+      "html": "During the movie, <span id='s3_1'>Caleb kept checking the time on his phone.</span> He shifted in his seat and tapped his foot against the floor. When the lights came on, he stood up immediately. His friends were still talking about their favorite scenes, but <span id='s3_2'>Caleb was already heading toward the exit.</span> He said he had somewhere else to be.",
+      "q1": {
+        "text": "Question 1: What can you infer about Caleb?",
+        "hint": "Look at Caleb's actions while the movie was playing.",
+        "choices": [
+          {
+            "text": "He didn’t enjoy the movie very much",
+            "correct": true
+          },
+          {
+            "text": "He loves movie theaters",
+            "correct": false
+          },
+          {
+            "text": "He wanted snacks",
+            "correct": false
+          },
+          {
+            "text": "He was confused by the plot",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "The lights came on",
+            "correct": false
+          },
+          {
+            "text": "Caleb checked his phone and rushed to leave",
+            "correct": true,
+            "highlights": [
+              "s3_1",
+              "s3_2"
+            ]
+          },
+          {
+            "text": "His friends talked about the movie",
+            "correct": false
+          },
+          {
+            "text": "He tapped his foot",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Mia's Text",
+      "difficulty": "Moderate",
+      "html": "<span id='s4_1'>Mia reread the message she had typed and erased it again.</span> She stared at her phone, then set it down on her desk. A few minutes later, she picked it back up and checked for notifications. There were none. Mia sighed and leaned back in her chair.",
+      "q1": {
+        "text": "Question 1: What can you infer about Mia?",
+        "hint": "Notice how she hesitates with her message.",
+        "choices": [
+          {
+            "text": "She is bored",
+            "correct": false
+          },
+          {
+            "text": "She is feeling unsure or anxious about sending a message",
+            "correct": true
+          },
+          {
+            "text": "She forgot her phone password",
+            "correct": false
+          },
+          {
+            "text": "She doesn’t like texting",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "She leaned back in her chair",
+            "correct": false
+          },
+          {
+            "text": "She erased the message multiple times",
+            "correct": true,
+            "highlights": [
+              "s4_1"
+            ]
+          },
+          {
+            "text": "There were no notifications",
+            "correct": false
+          },
+          {
+            "text": "She stared at her desk",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Luis Quietly",
+      "difficulty": "Moderate",
+      "html": "<span id='s5_1'>When the substitute teacher called his name incorrectly, Luis didn’t say anything. A few students whispered and laughed.</span> Luis kept his head down and focused on copying notes. For the rest of class, he didn’t raise his hand. When the bell rang, he left quickly.",
+      "q1": {
+        "text": "Question 1: What can you infer about why Luis stayed quiet?",
+        "hint": "Think about how he reacted to the other students laughing.",
+        "choices": [
+          {
+            "text": "He didn’t know the answers",
+            "correct": false
+          },
+          {
+            "text": "He felt uncomfortable or embarrassed",
+            "correct": true
+          },
+          {
+            "text": "He didn’t like the substitute teacher",
+            "correct": false
+          },
+          {
+            "text": "He was tired",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "Students laughed after his name was mispronounced",
+            "correct": true,
+            "highlights": [
+              "s5_1"
+            ]
+          },
+          {
+            "text": "He copied notes",
+            "correct": false
+          },
+          {
+            "text": "The bell rang",
+            "correct": false
+          },
+          {
+            "text": "He left the classroom",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Samantha's Fundraiser",
+      "difficulty": "Harder",
+      "html": "Samantha volunteered to help plan the fundraiser. <span id='s6_1'>She arrived early and stayed late, making sure everything was set up.</span> At the end, <span id='s6_2'>the organizer thanked the group but didn’t mention Samantha.</span> She clapped along anyway. When the next fundraiser was announced, Samantha didn’t sign up.",
+      "q1": {
+        "text": "Question 1: What can you infer about Samantha’s decision?",
+        "hint": "How was Samantha treated despite her hard work?",
+        "choices": [
+          {
+            "text": "She didn’t like the fundraiser",
+            "correct": false
+          },
+          {
+            "text": "She felt discouraged or unappreciated",
+            "correct": true
+          },
+          {
+            "text": "She was too busy next time",
+            "correct": false
+          },
+          {
+            "text": "She forgot to sign up",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "She arrived early",
+            "correct": false
+          },
+          {
+            "text": "Her name was not mentioned during thanks",
+            "correct": true,
+            "highlights": [
+              "s6_2"
+            ]
+          },
+          {
+            "text": "She clapped",
+            "correct": false
+          },
+          {
+            "text": "Another fundraiser was announced",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Ryan's Laugh",
+      "difficulty": "Harder",
+      "html": "Every time his friends joked about his height, Ryan laughed with them. <span id='s7_1'>Later that night, he practiced comebacks in his room.</span> The next day, the jokes happened again. Ryan laughed, but he crossed his arms and looked away. He changed the subject as soon as he could.",
+      "q1": {
+        "text": "Question 1: What can you infer about Ryan’s true feelings?",
+        "hint": "Does his reaction in public match what he does in private?",
+        "choices": [
+          {
+            "text": "He enjoys the jokes",
+            "correct": false
+          },
+          {
+            "text": "He feels uncomfortable but hides it",
+            "correct": true
+          },
+          {
+            "text": "He wants to be taller",
+            "correct": false
+          },
+          {
+            "text": "He likes attention",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "He laughed with his friends",
+            "correct": false
+          },
+          {
+            "text": "He practiced comebacks alone later",
+            "correct": true,
+            "highlights": [
+              "s7_1"
+            ]
+          },
+          {
+            "text": "He crossed his arms",
+            "correct": false
+          },
+          {
+            "text": "He changed the subject",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Jordan's Practice",
+      "difficulty": "Harder",
+      "html": "During practice, the coach gave detailed feedback to several players. <span id='s8_1'>When it was Jordan’s turn, the coach just said, “Keep working.”</span> Jordan stayed after practice to run drills by himself. As he left, he watched the others talking and laughing with the coach. He tightened his grip on his bag and walked away.",
+      "q1": {
+        "text": "Question 1: What can you infer about Jordan?",
+        "hint": "Compare the feedback Jordan got vs. the other players.",
+        "choices": [
+          {
+            "text": "He doesn’t like his teammates",
+            "correct": false
+          },
+          {
+            "text": "He feels overlooked or frustrated",
+            "correct": true
+          },
+          {
+            "text": "He doesn’t want feedback",
+            "correct": false
+          },
+          {
+            "text": "He enjoys practicing alone",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "He stayed after practice",
+            "correct": false
+          },
+          {
+            "text": "Others received detailed feedback while he did not",
+            "correct": true,
+            "highlights": [
+              "s8_1"
+            ]
+          },
+          {
+            "text": "He carried his bag",
+            "correct": false
+          },
+          {
+            "text": "He watched others talk",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Lucas's Chat",
+      "difficulty": "Very Challenging",
+      "html": "At first, Lucas replied right away in the group chat. When messages went unanswered, he sent another joke or meme. <span id='s9_1'>Over time, he stopped doing that. He still read the messages, but he didn’t respond.</span> When someone asked if he was okay, Lucas said he was just busy.",
+      "q1": {
+        "text": "Question 1: What can you infer about why Lucas changed his behavior?",
+        "hint": "Look at the pattern of his messages and the group's response.",
+        "choices": [
+          {
+            "text": "He dislikes texting",
+            "correct": false
+          },
+          {
+            "text": "He feels discouraged or ignored",
+            "correct": true
+          },
+          {
+            "text": "He is busier than before",
+            "correct": false
+          },
+          {
+            "text": "He forgot about the chat",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "He said he was busy",
+            "correct": false
+          },
+          {
+            "text": "He stopped sending follow-up messages over time",
+            "correct": true,
+            "highlights": [
+              "s9_1"
+            ]
+          },
+          {
+            "text": "He sent memes earlier",
+            "correct": false
+          },
+          {
+            "text": "Someone asked about him",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "sourceFile": "activities/reading/making-inferences.html",
+      "season": null,
+      "title": "Nina's Plans",
+      "difficulty": "Very Challenging",
+      "html": "People often described Nina as “easygoing.” She usually went along with group plans. When she suggested doing something different one day, the group went quiet. <span id='s10_1'>Someone laughed and said, “That’s not like you.” Nina smiled and didn’t bring it up again.</span>",
+      "q1": {
+        "text": "Question 1: What can you infer about Nina’s role in the group?",
+        "hint": "What happens when Nina tries to be different from her usual self?",
+        "choices": [
+          {
+            "text": "She doesn’t care about plans",
+            "correct": false
+          },
+          {
+            "text": "She avoids expressing her preferences to fit in",
+            "correct": true
+          },
+          {
+            "text": "She prefers quiet activities",
+            "correct": false
+          },
+          {
+            "text": "She dislikes her friends",
+            "correct": false
+          }
+        ]
+      },
+      "q2": {
+        "text": "Question 2: What detail best supports that inference?",
+        "choices": [
+          {
+            "text": "The group went quiet",
+            "correct": false
+          },
+          {
+            "text": "Nina smiled after the comment",
+            "correct": false
+          },
+          {
+            "text": "Someone said, “That’s not like you” and she didn’t repeat her idea",
+            "correct": true,
+            "highlights": [
+              "s10_1"
+            ]
+          },
+          {
+            "text": "Nina suggested something different",
+            "correct": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-multi-level-reading-comp-001",
+      "sourceFile": "activities/reading/multi-level-reading-comp.html",
+      "season": null,
+      "key": "garden",
+      "title": "The Garden Project",
+      "very-simple": {
+        "text": "Alex wanted to grow plants. Alex got seeds at the store. Alex planted the seeds in dirt. The plants grew big. Alex was happy.",
+        "mainIdea": {
+          "question": "What did Alex do?",
+          "choices": [
+            "Alex grew plants",
+            "Alex went to the store",
+            "Alex was happy"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "planted",
+            "sentence": "Alex planted the seeds in dirt.",
+            "context": "Alex put the seeds in the ground so they could grow.",
+            "clues": [
+              "put in ground",
+              "so they could grow"
+            ],
+            "question": "What does 'planted' mean?",
+            "answer": "put seeds in the ground"
+          },
+          {
+            "word": "seeds",
+            "sentence": "Alex got seeds at the store.",
+            "context": "Alex bought these small things that grow into plants.",
+            "clues": [
+              "grow into plants",
+              "got at the store"
+            ],
+            "question": "What are 'seeds'?",
+            "answer": "small things that grow into plants"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Alex...",
+            "expanded": "First, Alex wanted to..."
+          },
+          {
+            "basic": "Next, Alex...",
+            "expanded": "Next, Alex got..."
+          },
+          {
+            "basic": "Then, Alex...",
+            "expanded": "Then, Alex planted..."
+          },
+          {
+            "basic": "Finally, Alex...",
+            "expanded": "Finally, Alex was..."
+          }
+        ]
+      },
+      "simple": {
+        "text": "Alex wanted to grow plants for a school project. The teacher said students could choose any science topic they wanted. Alex thought gardening would be fun and educational.\n\nAlex asked Mom and Dad to help buy supplies at the garden store. They bought tomato seeds, bean seeds, and a small shovel. Alex also picked out some plant food to help the vegetables grow better.\n\nAt home, Alex prepared a small garden area in the backyard. Alex watered the plants every morning before school. After several weeks, tiny green plants started to appear. Alex felt excited to see the first vegetables growing.\n\nBy the end of the school term, Alex had grown enough vegetables to share with the whole family. The teacher was impressed and gave Alex an excellent grade on the project.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Alex completed a successful garden project for school",
+            "Alex's family enjoyed eating homegrown vegetables",
+            "Gardening requires expensive supplies and daily care"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "supplies",
+            "sentence": "Alex asked Mom and Dad to help buy supplies at the garden store.",
+            "context": "Alex needed different materials and tools to start the garden project.",
+            "clues": [
+              "needed",
+              "materials and tools",
+              "for the garden"
+            ],
+            "question": "What are 'supplies'?",
+            "answer": "materials and tools needed for a project"
+          },
+          {
+            "word": "impressed",
+            "sentence": "The teacher was impressed and gave Alex an excellent grade on the project.",
+            "context": "The teacher thought Alex did really good work and felt proud of what Alex accomplished.",
+            "clues": [
+              "thought Alex did good work",
+              "felt proud",
+              "gave excellent grade"
+            ],
+            "question": "What does 'impressed' mean?",
+            "answer": "pleased by someone's good work"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Alex...",
+            "expanded": "First, Alex decided to..."
+          },
+          {
+            "basic": "Next, Alex...",
+            "expanded": "Next, Alex went shopping and..."
+          },
+          {
+            "basic": "Then, Alex...",
+            "expanded": "Then, Alex planted and..."
+          },
+          {
+            "basic": "Finally, Alex...",
+            "expanded": "Finally, Alex shared and..."
+          }
+        ]
+      },
+      "middle": {
+        "text": "Alex had always been interested in gardening but had never attempted it before. When their science teacher announced a project about plant growth and development, Alex recognized this as the perfect opportunity to start their first garden.\n\nAlex spent considerable time researching which vegetables would thrive in their local climate. They convinced their parents to visit the garden center, where they carefully selected heritage tomato plants, organic bean seeds, and essential gardening equipment.\n\nAt home, Alex diligently prepared a 4-foot by 6-foot plot in the backyard. They established a consistent watering routine each morning and monitored the plants' progress daily. When the first vegetables began to mature, Alex felt tremendous satisfaction from their agricultural efforts.\n\nBy the conclusion of the term, Alex had cultivated enough vegetables to supply their entire family and earned an outstanding grade on their science project. The experience taught Alex valuable lessons about patience, responsibility, and the rewards of hard work.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Alex successfully completed a challenging garden project that taught valuable life lessons",
+            "Garden centers provide all the necessary equipment for successful home gardening",
+            "Science teachers should assign more hands-on projects for student learning"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "heritage",
+            "sentence": "They carefully selected heritage tomato plants, organic bean seeds, and essential gardening equipment.",
+            "context": "Alex chose special tomato plants that were old varieties passed down from earlier generations of gardeners.",
+            "clues": [
+              "special",
+              "old varieties",
+              "passed down from earlier generations"
+            ],
+            "question": "What does 'heritage' mean in this context?",
+            "answer": "traditional varieties passed down through generations"
+          },
+          {
+            "word": "cultivated",
+            "sentence": "By the conclusion of the term, Alex had cultivated enough vegetables to supply their entire family.",
+            "context": "Alex had grown and cared for the vegetables with skill and attention until they were ready to harvest.",
+            "clues": [
+              "grown and cared for",
+              "with skill and attention",
+              "ready to harvest"
+            ],
+            "question": "What does 'cultivated' mean?",
+            "answer": "grown and cared for plants with skill"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Alex...",
+            "expanded": "First, Alex recognized the opportunity to..."
+          },
+          {
+            "basic": "Next, Alex...",
+            "expanded": "Next, Alex researched and purchased..."
+          },
+          {
+            "basic": "Then, Alex...",
+            "expanded": "Then, Alex prepared the garden and..."
+          },
+          {
+            "basic": "Finally, Alex...",
+            "expanded": "Finally, Alex succeeded by..."
+          }
+        ]
+      },
+      "complex": {
+        "text": "Alex had maintained a profound fascination with botanical sciences but had never ventured into practical horticulture. When their science instructor announced a comprehensive project examining plant development and growth cycles, Alex recognized this as an unprecedented opportunity to establish their inaugural garden.\n\nThrough meticulous research, Alex investigated which cultivars would flourish in their geographical region's specific climate and soil conditions. They persuaded their parents to accompany them to the local agricultural nursery, where they methodically selected heirloom tomato varieties, certified organic legume seeds, and professional-grade horticultural implements.\n\nUpon returning home, Alex meticulously prepared a precisely measured cultivation area in their backyard. They maintained a rigorous irrigation schedule each morning and conducted systematic assessments of their plants' developmental progress. When the initial harvest began to reach maturation, Alex experienced tremendous gratification from their agricultural accomplishments.\n\nBy the semester's conclusion, Alex had produced a substantial yield sufficient to nourish their entire household while simultaneously earning exemplary academic recognition. This endeavor demonstrated that dedication, scientific methodology, and perseverance can transform ambitious goals into tangible achievements.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Alex successfully executed a comprehensive horticultural project that demonstrated scientific principles and personal growth",
+            "Professional-grade agricultural equipment is essential for successful home cultivation projects",
+            "Academic institutions should emphasize practical applications of theoretical scientific concepts"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "horticulture",
+            "sentence": "Alex had maintained a profound fascination with botanical sciences but had never ventured into practical horticulture.",
+            "context": "Alex loved studying plants and flowers but had never tried the actual hands-on work of growing and caring for them.",
+            "clues": [
+              "studying plants",
+              "actual hands-on work",
+              "growing and caring for them"
+            ],
+            "question": "What does 'horticulture' mean?",
+            "answer": "the art and science of growing plants and gardens"
+          },
+          {
+            "word": "methodology",
+            "sentence": "This endeavor demonstrated that dedication, scientific methodology, and perseverance can transform ambitious goals into tangible achievements.",
+            "context": "Alex's success showed that using careful, step-by-step scientific approaches and methods leads to real results.",
+            "clues": [
+              "using careful",
+              "step-by-step scientific approaches",
+              "leads to real results"
+            ],
+            "question": "What does 'methodology' mean?",
+            "answer": "a system of methods and principles for doing something"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, Alex...",
+            "expanded": "Initially, Alex recognized the unprecedented opportunity to..."
+          },
+          {
+            "basic": "Subsequently, Alex...",
+            "expanded": "Subsequently, Alex conducted research and..."
+          },
+          {
+            "basic": "Following this, Alex...",
+            "expanded": "Following this preparation, Alex established..."
+          },
+          {
+            "basic": "Ultimately, Alex...",
+            "expanded": "Ultimately, Alex achieved success through..."
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-multi-level-reading-comp-002",
+      "sourceFile": "activities/reading/multi-level-reading-comp.html",
+      "season": null,
+      "key": "talent_show",
+      "title": "The Talent Show",
+      "very-simple": {
+        "text": "Maya plays piano. Maya wanted to be in the show. Maya practiced every day. Maya played at tryouts. Maya got picked for the show.",
+        "mainIdea": {
+          "question": "What happened to Maya?",
+          "choices": [
+            "Maya got in the talent show",
+            "Maya learned to play piano",
+            "Maya went to school"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "tryouts",
+            "sentence": "Maya played at tryouts.",
+            "context": "Maya had to play piano to see if she could be in the show.",
+            "clues": [
+              "play piano",
+              "see if she could be in show"
+            ],
+            "question": "What are 'tryouts'?",
+            "answer": "when you try to get into something"
+          },
+          {
+            "word": "practiced",
+            "sentence": "Maya practiced every day.",
+            "context": "Maya played piano over and over to get better.",
+            "clues": [
+              "played over and over",
+              "to get better"
+            ],
+            "question": "What does 'practiced' mean?",
+            "answer": "did something over and over to get better"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Maya...",
+            "expanded": "First, Maya wanted to..."
+          },
+          {
+            "basic": "Next, Maya...",
+            "expanded": "Next, Maya practiced..."
+          },
+          {
+            "basic": "Then, Maya...",
+            "expanded": "Then, Maya played at..."
+          },
+          {
+            "basic": "Finally, Maya...",
+            "expanded": "Finally, Maya got..."
+          }
+        ]
+      },
+      "simple": {
+        "text": "Maya had been playing piano for two years and wanted to be in the school talent show. She had never performed in front of a large audience before and felt worried about making mistakes.\n\nMaya practiced her favorite song every day after school for three weeks. Her piano teacher helped her with the difficult parts and gave her tips for staying calm. Maya also played for her family to get used to performing for others.\n\nOn audition day, Maya felt nervous but was well-prepared. She played her song with only one small error that most people didn't notice. The judges smiled and nodded during her performance.\n\nA week later, Maya was thrilled to see her name on the list of selected performers. She had earned her spot in the talent show through hard work and determination.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Maya prepared carefully and successfully earned a place in the talent show",
+            "Piano teachers provide valuable support for nervous student performers",
+            "School talent shows are difficult competitions that cause student stress"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "audition",
+            "sentence": "On audition day, Maya felt nervous but was well-prepared.",
+            "context": "Maya had to perform her piano song for the judges so they could decide if she was good enough for the show.",
+            "clues": [
+              "perform for judges",
+              "decide if good enough",
+              "for the show"
+            ],
+            "question": "What is an 'audition'?",
+            "answer": "a tryout where you perform to show your skills"
+          },
+          {
+            "word": "determination",
+            "sentence": "She had earned her spot in the talent show through hard work and determination.",
+            "context": "Maya succeeded because she didn't give up and kept working toward her goal even when it was difficult.",
+            "clues": [
+              "didn't give up",
+              "kept working toward goal",
+              "even when difficult"
+            ],
+            "question": "What does 'determination' mean?",
+            "answer": "not giving up and working hard toward a goal"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Maya...",
+            "expanded": "First, Maya wanted to..."
+          },
+          {
+            "basic": "Next, Maya...",
+            "expanded": "Next, Maya practiced by..."
+          },
+          {
+            "basic": "Then, Maya...",
+            "expanded": "Then, Maya went to auditions and..."
+          },
+          {
+            "basic": "Finally, Maya...",
+            "expanded": "Finally, Maya found out that..."
+          }
+        ]
+      },
+      "middle": {
+        "text": "Maya had been studying piano for three years but had never performed before a substantial audience. When announcements mentioned auditions for the annual school talent show, Maya experienced both excitement and anxiety about this challenging opportunity.\n\nMaya was working on a classical piece called \"Für Elise\" by Beethoven that required considerable skill. She realized she needed intensive practice to feel confident performing it publicly. For three weeks, Maya dedicated herself to rehearsing the piece daily for at least an hour after school.\n\nHer piano instructor suggested performing for gradually larger groups to build her confidence. Maya followed this advice systematically, playing first for her family, then her best friend, and eventually her entire piano class.\n\nOn audition day, Maya approached the piano with composure despite her nervousness. She delivered a polished performance with only one minor technical mistake. The judges responded positively throughout, and when results were announced a week later, Maya was delighted to discover her name among the selected performers.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Maya overcame her performance anxiety through systematic preparation and earned recognition for her musical abilities",
+            "Classical piano pieces require extensive professional instruction and expensive equipment for success",
+            "School talent competitions create unnecessary academic pressure for developing student musicians"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "composure",
+            "sentence": "On audition day, Maya approached the piano with composure despite her nervousness.",
+            "context": "Maya was able to stay calm and controlled on the outside even though she felt worried inside.",
+            "clues": [
+              "stay calm and controlled",
+              "on the outside",
+              "even though worried inside"
+            ],
+            "question": "What does 'composure' mean?",
+            "answer": "staying calm and controlled under pressure"
+          },
+          {
+            "word": "systematically",
+            "sentence": "Maya followed this advice systematically, playing first for her family, then her best friend, and eventually her entire piano class.",
+            "context": "Maya followed a careful, organized plan with specific steps in the right order to build her confidence.",
+            "clues": [
+              "careful, organized plan",
+              "specific steps",
+              "in the right order"
+            ],
+            "question": "What does 'systematically' mean?",
+            "answer": "following a careful, organized plan with specific steps"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, Maya...",
+            "expanded": "Initially, Maya felt nervous about..."
+          },
+          {
+            "basic": "To prepare, Maya...",
+            "expanded": "To prepare, Maya practiced and..."
+          },
+          {
+            "basic": "During the audition, Maya...",
+            "expanded": "During the audition, Maya performed..."
+          },
+          {
+            "basic": "Ultimately, Maya...",
+            "expanded": "Ultimately, Maya succeeded when..."
+          }
+        ]
+      },
+      "complex": {
+        "text": "Maya had been pursuing classical piano instruction for three years but had never undertaken a performance before a substantial audience. When administrative announcements publicized auditions for the institution's prestigious annual talent exhibition, Maya experienced simultaneous exhilaration and trepidation regarding this unprecedented opportunity.\n\nMaya had been mastering Beethoven's intricate composition \"Für Elise,\" recognizing that additional intensive preparation would be essential for confident public presentation. She embarked upon a rigorous three-week practice regimen, dedicating no fewer than sixty minutes daily to perfecting the piece's technical complexities and musical interpretation.\n\nHer instructor recommended graduated exposure to progressively larger audiences to ameliorate performance anxiety. Maya methodically implemented this strategy, beginning with intimate family presentations, advancing to individual peer demonstrations, and culminating with performances before her complete piano ensemble.\n\nOn the decisive audition date, Maya approached the instrument with remarkable poise despite experiencing considerable nervous tension. She delivered a compelling interpretation with merely one inconsequential technical imperfection. The adjudicating panel maintained visibly appreciative engagement throughout her presentation, and upon publication of results one week subsequently, Maya experienced profound satisfaction discovering her selection among the distinguished performers.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Maya systematically conquered performance anxiety through methodical preparation and achieved prestigious musical recognition",
+            "Prestigious institutional talent exhibitions require extensive financial investment and professional musical instruction",
+            "Academic institutions should provide comprehensive performance anxiety counseling for developing student musicians"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "ameliorate",
+            "sentence": "Her instructor recommended graduated exposure to progressively larger audiences to ameliorate performance anxiety.",
+            "context": "The instructor suggested a method to make Maya's nervousness about performing become less severe or troublesome.",
+            "clues": [
+              "make nervousness",
+              "become less severe",
+              "less troublesome"
+            ],
+            "question": "What does 'ameliorate' mean?",
+            "answer": "to make something bad or unpleasant less severe"
+          },
+          {
+            "word": "inconsequential",
+            "sentence": "She delivered a compelling interpretation with merely one inconsequential technical imperfection.",
+            "context": "Maya made only one small mistake that wasn't important enough to affect her overall performance or the judges' opinion.",
+            "clues": [
+              "one small mistake",
+              "wasn't important enough",
+              "didn't affect overall performance"
+            ],
+            "question": "What does 'inconsequential' mean?",
+            "answer": "not important enough to matter or make a difference"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, Maya...",
+            "expanded": "Initially, Maya confronted the challenge of..."
+          },
+          {
+            "basic": "Through preparation, Maya...",
+            "expanded": "Through systematic preparation, Maya implemented..."
+          },
+          {
+            "basic": "During the audition, Maya...",
+            "expanded": "During the pivotal audition, Maya demonstrated..."
+          },
+          {
+            "basic": "Consequently, Maya...",
+            "expanded": "Consequently, Maya achieved recognition by..."
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-multi-level-reading-comp-003",
+      "sourceFile": "activities/reading/multi-level-reading-comp.html",
+      "season": null,
+      "key": "mystery",
+      "title": "The Missing Lunch Mystery",
+      "very-simple": {
+        "text": "Kids lost their lunch food. The teacher looked for clues. A squirrel was taking the food. The teacher fixed the window. The mystery was solved.",
+        "mainIdea": {
+          "question": "Who took the lunch food?",
+          "choices": [
+            "A squirrel took the food",
+            "The teacher took the food",
+            "The kids took the food"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "clues",
+            "sentence": "The teacher looked for clues.",
+            "context": "The teacher looked for things to help solve the mystery.",
+            "clues": [
+              "looked for things",
+              "solve the mystery"
+            ],
+            "question": "What are 'clues'?",
+            "answer": "things that help you solve a mystery"
+          },
+          {
+            "word": "mystery",
+            "sentence": "The mystery was solved.",
+            "context": "The puzzle about who took the food was finally figured out.",
+            "clues": [
+              "puzzle",
+              "finally figured out"
+            ],
+            "question": "What is a 'mystery'?",
+            "answer": "something puzzling that needs to be figured out"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, kids...",
+            "expanded": "First, kids lost..."
+          },
+          {
+            "basic": "Next, the teacher...",
+            "expanded": "Next, the teacher looked..."
+          },
+          {
+            "basic": "Then, a squirrel...",
+            "expanded": "Then, a squirrel was..."
+          },
+          {
+            "basic": "Finally, the teacher...",
+            "expanded": "Finally, the teacher fixed..."
+          }
+        ]
+      },
+      "simple": {
+        "text": "Students at Jefferson Elementary were having a strange problem with their lunch boxes. Every day, different students reported that items from their lunches had disappeared. Emma lost her homemade cookies, Jake couldn't find his apple, and Sarah's sandwich was missing a bite.\n\nMs. Rodriguez, the third-grade teacher, decided to investigate what was happening. She asked students detailed questions about when they noticed their food was gone. She also spent extra time watching the classroom during lunch periods to look for suspicious activity.\n\nOne morning, Ms. Rodriguez arrived at school very early and quietly observed the classroom from the hallway. That's when she witnessed something unexpected - a clever gray squirrel had found a way into the room through a loose window screen and was stealing food from the lunch boxes.\n\nAfter repairing the damaged screen, Ms. Rodriguez explained the situation to her relieved students. Everyone laughed about their unusual lunch thief, and Jake even suggested they leave some nuts outside for their furry visitor.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "A teacher solved the mystery of missing lunch food by discovering a squirrel was the thief",
+            "Elementary school students should always pack healthy lunches with proper containers",
+            "School buildings require regular maintenance to prevent wildlife from entering classrooms"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "investigate",
+            "sentence": "Ms. Rodriguez, the third-grade teacher, decided to investigate what was happening.",
+            "context": "Ms. Rodriguez wanted to find out the truth about the missing food by looking for facts and evidence.",
+            "clues": [
+              "find out the truth",
+              "looking for facts and evidence"
+            ],
+            "question": "What does 'investigate' mean?",
+            "answer": "to search for facts and information to solve a problem"
+          },
+          {
+            "word": "witnessed",
+            "sentence": "That's when she witnessed something unexpected - a clever gray squirrel had found a way into the room.",
+            "context": "Ms. Rodriguez saw with her own eyes what was really happening in the classroom.",
+            "clues": [
+              "saw with her own eyes",
+              "what was really happening"
+            ],
+            "question": "What does 'witnessed' mean?",
+            "answer": "saw something happen with your own eyes"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, students...",
+            "expanded": "First, students noticed that..."
+          },
+          {
+            "basic": "Next, Ms. Rodriguez...",
+            "expanded": "Next, Ms. Rodriguez decided to..."
+          },
+          {
+            "basic": "Then, she...",
+            "expanded": "Then, she discovered that..."
+          },
+          {
+            "basic": "Finally, the mystery...",
+            "expanded": "Finally, the mystery was solved when..."
+          }
+        ]
+      },
+      "middle": {
+        "text": "Students at Lincoln Middle School began reporting an unusual phenomenon - items from their packed lunches were mysteriously vanishing. Emma's homemade cookies disappeared, Jake's fresh apple went missing, and by Thursday, five different students had experienced similar losses. The situation was creating suspicion and frustration among classmates.\n\nMs. Rodriguez, the homeroom teacher, decided to conduct a thorough investigation of these peculiar incidents. She systematically interviewed students about their missing items and established a schedule for monitoring the classroom throughout the day. Determined to resolve the mystery, she arrived at school exceptionally early Friday morning and concealed herself in the hallway to observe.\n\nDuring her careful surveillance, Ms. Rodriguez identified the actual culprit: an ingenious gray squirrel that had discovered access to the classroom through a damaged window screen. The resourceful creature was systematically opening lunch containers and transporting the most appealing snacks to its outdoor nest.\n\nAfter repairing the compromised screen, Ms. Rodriguez explained the circumstances to her greatly relieved students. The revelation transformed their previous anxiety into amusement, and Jake even proposed providing nuts for their unexpected classroom visitor. The lunch mystery had been successfully resolved.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "A systematic investigation revealed that a clever squirrel was responsible for stealing lunch items from the classroom",
+            "School maintenance problems frequently create disruptions that interfere with educational activities",
+            "Student suspicions about missing belongings often damage classroom relationships and trust"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "surveillance",
+            "sentence": "During her careful surveillance, Ms. Rodriguez identified the actual culprit.",
+            "context": "Ms. Rodriguez was secretly watching and observing the classroom to gather information about what was happening.",
+            "clues": [
+              "secretly watching",
+              "observing",
+              "gather information"
+            ],
+            "question": "What does 'surveillance' mean?",
+            "answer": "careful watching or observing, often done secretly"
+          },
+          {
+            "word": "phenomenon",
+            "sentence": "Students at Lincoln Middle School began reporting an unusual phenomenon - items from their packed lunches were mysteriously vanishing.",
+            "context": "Something strange and hard to explain was happening repeatedly at the school with students' lunches.",
+            "clues": [
+              "strange",
+              "hard to explain",
+              "happening repeatedly"
+            ],
+            "question": "What does 'phenomenon' mean?",
+            "answer": "an unusual or remarkable event that is difficult to explain"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, students...",
+            "expanded": "Initially, students experienced the problem of..."
+          },
+          {
+            "basic": "To address this, Ms. Rodriguez...",
+            "expanded": "To address this, Ms. Rodriguez conducted..."
+          },
+          {
+            "basic": "Through observation, she...",
+            "expanded": "Through careful observation, she discovered..."
+          },
+          {
+            "basic": "Resolution occurred when...",
+            "expanded": "Resolution occurred when Ms. Rodriguez..."
+          }
+        ]
+      },
+      "complex": {
+        "text": "Students at Lincoln Middle School encountered an escalating phenomenon wherein components of their meticulously prepared lunches were inexplicably disappearing. Emma's artisanal cookies vanished without trace, Jake's organic apple mysteriously disappeared, and by week's end, five students had reported analogous losses. This unprecedented situation was generating mounting suspicion and interpersonal tension throughout the academic community.\n\nMs. Rodriguez, the supervising educator, resolved to conduct a comprehensive investigation into these enigmatic occurrences. She implemented systematic student interviews regarding their missing provisions and instituted rigorous classroom surveillance protocols throughout various periods. Committed to resolving this perplexing mystery, she arrived at the educational facility extraordinarily early Friday morning and established a concealed observation position in the corridor.\n\nDuring her covert monitoring operation, Ms. Rodriguez identified the authentic perpetrator: an exceptionally resourceful gray squirrel that had ingeniously exploited a compromised window screening mechanism to gain unauthorized classroom access. This remarkable creature was methodically manipulating lunch containers with extraordinary dexterity, selectively appropriating the most nutritionally appealing items for transportation to its external habitat.\n\nFollowing the restoration of proper window screening integrity, Ms. Rodriguez elucidated the circumstances to her profoundly relieved students. This revelation transformed their preceding anxiety into collective amusement, with Jake proposing the establishment of supplemental nut provisions for their unanticipated academic associate. The alimentary mystery had achieved definitive resolution.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "A methodical investigative approach successfully identified an ingenious squirrel as the perpetrator of systematic lunch theft",
+            "Institutional infrastructure maintenance deficiencies frequently precipitate disruptive educational complications",
+            "Interpersonal suspicions within academic communities often generate unnecessary social fragmentation and mistrust"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "perpetrator",
+            "sentence": "Ms. Rodriguez identified the authentic perpetrator: an exceptionally resourceful gray squirrel.",
+            "context": "Ms. Rodriguez found the real individual who was responsible for committing the crime of taking the lunches.",
+            "clues": [
+              "real individual",
+              "responsible for committing",
+              "the crime"
+            ],
+            "question": "What does 'perpetrator' mean?",
+            "answer": "a person or thing that carries out a harmful or illegal act"
+          },
+          {
+            "word": "elucidated",
+            "sentence": "Ms. Rodriguez elucidated the circumstances to her profoundly relieved students.",
+            "context": "Ms. Rodriguez made the situation clear and easy to understand by explaining all the details to her students.",
+            "clues": [
+              "made clear",
+              "easy to understand",
+              "explaining all details"
+            ],
+            "question": "What does 'elucidated' mean?",
+            "answer": "explained something clearly and in detail"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, the community...",
+            "expanded": "Initially, the academic community confronted..."
+          },
+          {
+            "basic": "Through investigation, Ms. Rodriguez...",
+            "expanded": "Through systematic investigation, Ms. Rodriguez implemented..."
+          },
+          {
+            "basic": "Surveillance revealed...",
+            "expanded": "Comprehensive surveillance ultimately revealed..."
+          },
+          {
+            "basic": "Resolution was achieved...",
+            "expanded": "Resolution was achieved when Ms. Rodriguez..."
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-multi-level-reading-comp-004",
+      "sourceFile": "activities/reading/multi-level-reading-comp.html",
+      "season": null,
+      "key": "science_fair",
+      "title": "The Volcano Project",
+      "very-simple": {
+        "text": "Carlos wanted to make a volcano. Carlos got supplies at the store. Carlos built the volcano with clay. The volcano bubbled and looked like lava. Carlos was excited.",
+        "mainIdea": {
+          "question": "What did Carlos make?",
+          "choices": [
+            "Carlos made a volcano",
+            "Carlos went to the store",
+            "Carlos was excited"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "supplies",
+            "sentence": "Carlos got supplies at the store.",
+            "context": "Carlos bought things he needed to make the volcano.",
+            "clues": [
+              "bought things",
+              "needed",
+              "make the volcano"
+            ],
+            "question": "What are 'supplies'?",
+            "answer": "things you need to make something"
+          },
+          {
+            "word": "volcano",
+            "sentence": "Carlos wanted to make a volcano.",
+            "context": "Carlos wanted to build something that looks like a mountain that shoots out lava.",
+            "clues": [
+              "looks like a mountain",
+              "shoots out lava"
+            ],
+            "question": "What is a 'volcano'?",
+            "answer": "a mountain that can shoot out hot lava"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Carlos...",
+            "expanded": "First, Carlos wanted to..."
+          },
+          {
+            "basic": "Next, Carlos...",
+            "expanded": "Next, Carlos got..."
+          },
+          {
+            "basic": "Then, Carlos...",
+            "expanded": "Then, Carlos built..."
+          },
+          {
+            "basic": "Finally, Carlos...",
+            "expanded": "Finally, Carlos was..."
+          }
+        ]
+      },
+      "simple": {
+        "text": "Carlos had always been fascinated by volcanoes and decided to create one for the upcoming science fair. He wanted to show his classmates how a real volcano works by making a model that would actually erupt.\n\nCarlos researched volcano projects on the internet with his mom's help. They discovered that mixing baking soda with vinegar creates a bubbling reaction that looks like lava. They made a shopping list and bought all the necessary materials at the store.\n\nAt home, Carlos carefully constructed his volcano using modeling clay shaped around a plastic bottle. He mixed red food coloring with the vinegar to make it look more realistic. When he added the colored vinegar to the baking soda inside the bottle, the mixture bubbled up dramatically.\n\nCarlos was thrilled with his successful experiment. His volcano looked authentic and created an impressive eruption that would definitely capture everyone's attention at the science fair.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Carlos created a successful volcano experiment for the science fair using research and careful planning",
+            "Internet research provides students with all the information they need for school projects",
+            "Science fair projects should always involve dramatic demonstrations that impress the audience"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "experiment",
+            "sentence": "Carlos was thrilled with his successful experiment.",
+            "context": "Carlos was happy that his scientific test to see if mixing the chemicals would work turned out well.",
+            "clues": [
+              "scientific test",
+              "mixing chemicals",
+              "turned out well"
+            ],
+            "question": "What is an 'experiment'?",
+            "answer": "a scientific test to see if something works"
+          },
+          {
+            "word": "reaction",
+            "sentence": "They discovered that mixing baking soda with vinegar creates a bubbling reaction that looks like lava.",
+            "context": "When Carlos mixed the two substances together, something new happened - they bubbled up.",
+            "clues": [
+              "mixed substances together",
+              "something new happened",
+              "bubbled up"
+            ],
+            "question": "What is a 'reaction'?",
+            "answer": "what happens when two substances are mixed together"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Carlos...",
+            "expanded": "First, Carlos wanted to..."
+          },
+          {
+            "basic": "Next, Carlos...",
+            "expanded": "Next, Carlos researched and..."
+          },
+          {
+            "basic": "Then, Carlos...",
+            "expanded": "Then, Carlos built and..."
+          },
+          {
+            "basic": "Finally, Carlos...",
+            "expanded": "Finally, Carlos tested and..."
+          }
+        ]
+      },
+      "middle": {
+        "text": "Carlos had maintained a lifelong fascination with geological formations and decided to construct an erupting volcano model for the regional science fair. His objective was to demonstrate the fundamental scientific principles behind volcanic activity while creating an engaging educational presentation.\n\nThrough extensive internet research conducted with his mother's guidance, Carlos investigated various methodological approaches to volcano experimentation. They determined that combining sodium bicarbonate with acetic acid would generate the optimal chemical reaction, necessitating the purchase of specialized materials including sculptural clay, chromatic additives, and laboratory equipment.\n\nCarlos meticulously engineered his volcanic structure by skillfully molding clay around a central container to achieve geological authenticity. He formulated his hypothesis about the expected results and carefully measured the reactant proportions to ensure a dramatic eruption effect.\n\nDuring his demonstration rehearsal, Carlos systematically introduced the acidic solution into the reaction chamber while documenting the process. The subsequent eruption exceeded his theoretical predictions, creating a spectacular display that would effectively communicate volcanic science to his audience.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Carlos applied scientific methodology to create an educational volcano demonstration that exceeded his expectations",
+            "Regional science competitions require students to use expensive laboratory equipment for successful projects",
+            "Geological formations can only be understood through hands-on experimentation and practical applications"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "hypothesis",
+            "sentence": "He formulated his hypothesis about the expected results and carefully measured the reactant proportions to ensure a dramatic eruption effect.",
+            "context": "Carlos made an educated guess about what would happen in his experiment before he actually tested it.",
+            "clues": [
+              "educated guess",
+              "what would happen",
+              "before he tested it"
+            ],
+            "question": "What is a 'hypothesis'?",
+            "answer": "an educated guess about what will happen in an experiment"
+          },
+          {
+            "word": "methodological",
+            "sentence": "Through extensive internet research conducted with his mother's guidance, Carlos investigated various methodological approaches to volcano experimentation.",
+            "context": "Carlos looked at different organized ways and systems that scientists use to conduct volcano experiments properly.",
+            "clues": [
+              "organized ways",
+              "systems",
+              "conduct experiments properly"
+            ],
+            "question": "What does 'methodological' mean?",
+            "answer": "relating to organized ways or systems of doing something"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, Carlos...",
+            "expanded": "Initially, Carlos decided to..."
+          },
+          {
+            "basic": "During research, Carlos...",
+            "expanded": "During research, Carlos discovered..."
+          },
+          {
+            "basic": "While constructing, Carlos...",
+            "expanded": "While constructing, Carlos carefully..."
+          },
+          {
+            "basic": "During demonstration, Carlos...",
+            "expanded": "During demonstration, Carlos successfully..."
+          }
+        ]
+      },
+      "complex": {
+        "text": "Carlos had cultivated a profound fascination with geological phenomena and resolved to construct an authentic volcanic eruption simulation for the institution's prestigious annual science exposition. His objective was to demonstrate the fundamental chemical principles underlying volcanic activity while creating a compelling educational presentation that would illuminate complex scientific processes.\n\nThrough comprehensive internet research conducted with maternal collaboration, Carlos investigated diverse methodological approaches to volcanic experimentation. They ascertained that the interaction between sodium bicarbonate and acetic acid would produce the optimal effervescent response, necessitating the procurement of specialized materials including sculptural clay, chromatic enhancement agents, and precise measurement apparatus.\n\nCarlos meticulously engineered his volcanic structure through skillful manipulation of clay around a central receptacle to achieve maximum geological authenticity. He formulated comprehensive hypotheses regarding the anticipated outcomes and calibrated the reactant proportions with scientific precision to ensure optimal demonstration effectiveness.\n\nDuring his preliminary assessment, Carlos systematically introduced the acidic solution into the reaction chamber while maintaining detailed documentation of procedural variables. The subsequent eruption surpassed his theoretical projections, generating substantial appreciation from observers and exemplifying the successful integration of scientific methodology with compelling visual presentation.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Carlos executed a scientifically rigorous volcanic demonstration that successfully integrated theoretical knowledge with practical application",
+            "Prestigious institutional science expositions require participants to demonstrate mastery of complex chemical processes and laboratory techniques",
+            "Geological phenomena can only be comprehended through extensive theoretical study combined with hands-on experimental validation"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "ascertained",
+            "sentence": "They ascertained that the interaction between sodium bicarbonate and acetic acid would produce the optimal effervescent response.",
+            "context": "Carlos and his mother found out for certain, through their research, which chemical combination would work best for their project.",
+            "clues": [
+              "found out for certain",
+              "through research",
+              "which would work best"
+            ],
+            "question": "What does 'ascertained' mean?",
+            "answer": "found out or determined something for certain"
+          },
+          {
+            "word": "calibrated",
+            "sentence": "He formulated comprehensive hypotheses regarding the anticipated outcomes and calibrated the reactant proportions with scientific precision.",
+            "context": "Carlos carefully adjusted and fine-tuned the exact amounts of chemicals to get precisely the right results for his experiment.",
+            "clues": [
+              "carefully adjusted",
+              "fine-tuned",
+              "exact amounts",
+              "precisely right results"
+            ],
+            "question": "What does 'calibrated' mean?",
+            "answer": "carefully adjusted or fine-tuned to achieve precise results"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, Carlos...",
+            "expanded": "Initially, Carlos resolved to construct..."
+          },
+          {
+            "basic": "Through research, Carlos...",
+            "expanded": "Through comprehensive research, Carlos investigated..."
+          },
+          {
+            "basic": "During construction, Carlos...",
+            "expanded": "During construction, Carlos meticulously engineered..."
+          },
+          {
+            "basic": "At presentation, Carlos...",
+            "expanded": "At presentation, Carlos successfully demonstrated..."
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-multi-level-reading-comp-005",
+      "sourceFile": "activities/reading/multi-level-reading-comp.html",
+      "season": null,
+      "key": "new_student",
+      "title": "The New Student",
+      "very-simple": {
+        "text": "Sophia was new at school. Sophia sat alone at lunch. Jake saw Sophia was sad. Jake sat with Sophia. Now Sophia has a friend.",
+        "mainIdea": {
+          "question": "What happened at school?",
+          "choices": [
+            "Jake helped Sophia make a friend",
+            "Sophia ate lunch alone",
+            "Jake was hungry"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "alone",
+            "sentence": "Sophia sat alone at lunch.",
+            "context": "Sophia had no friends to sit with at lunch time.",
+            "clues": [
+              "no friends",
+              "sit with",
+              "lunch time"
+            ],
+            "question": "What does 'alone' mean?",
+            "answer": "by yourself with no one else"
+          },
+          {
+            "word": "friend",
+            "sentence": "Now Sophia has a friend.",
+            "context": "Sophia now has someone who likes her and wants to spend time with her.",
+            "clues": [
+              "someone who likes her",
+              "spend time with her"
+            ],
+            "question": "What is a 'friend'?",
+            "answer": "someone who likes you and wants to spend time with you"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Sophia...",
+            "expanded": "First, Sophia was..."
+          },
+          {
+            "basic": "Next, Jake...",
+            "expanded": "Next, Jake saw..."
+          },
+          {
+            "basic": "Then, Jake...",
+            "expanded": "Then, Jake sat..."
+          },
+          {
+            "basic": "Finally, Sophia...",
+            "expanded": "Finally, Sophia has..."
+          }
+        ]
+      },
+      "simple": {
+        "text": "A new girl named Sophia transferred to Washington Elementary in the middle of the school year. She felt nervous and scared because she didn't know anyone at her new school. During lunch, Sophia sat by herself at an empty table while watching other students laugh and talk with their friends.\n\nJake noticed the new student sitting alone and felt sorry for her. He remembered how difficult it was when his family moved and he started at a different school last year. Jake made a decision to approach Sophia and try to make her feel welcome.\n\nJake walked over to Sophia's table and politely asked if he could join her for lunch. Sophia's face brightened up and she gratefully said yes. Jake introduced her to several of his friends, and they all enjoyed talking about their favorite subjects, hobbies, and teachers.\n\nBy the end of her first week, Sophia had made multiple new friends and felt much more comfortable at her new school. She thanked Jake for his kindness and told him how much his friendship meant to her during this challenging time.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Jake helped a new student feel welcome and make friends by showing kindness and including her in his group",
+            "Starting at a new school in the middle of the year is always difficult for elementary students",
+            "School cafeterias are the best places for students to meet new people and develop friendships"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "transferred",
+            "sentence": "A new girl named Sophia transferred to Washington Elementary in the middle of the school year.",
+            "context": "Sophia had to leave her old school and start going to a different school instead.",
+            "clues": [
+              "leave her old school",
+              "start going to different school"
+            ],
+            "question": "What does 'transferred' mean?",
+            "answer": "moved from one school to another school"
+          },
+          {
+            "word": "approach",
+            "sentence": "Jake made a decision to approach Sophia and try to make her feel welcome.",
+            "context": "Jake decided to walk over and go near Sophia so he could talk to her and be friendly.",
+            "clues": [
+              "walk over",
+              "go near",
+              "so he could talk to her"
+            ],
+            "question": "What does 'approach' mean?",
+            "answer": "to go near someone or walk over to them"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "First, Sophia...",
+            "expanded": "First, Sophia started..."
+          },
+          {
+            "basic": "Next, Jake...",
+            "expanded": "Next, Jake noticed and..."
+          },
+          {
+            "basic": "Then, Jake...",
+            "expanded": "Then, Jake approached and..."
+          },
+          {
+            "basic": "Finally, Sophia...",
+            "expanded": "Finally, Sophia made friends and..."
+          }
+        ]
+      },
+      "middle": {
+        "text": "Sophia enrolled at Roosevelt Middle School in January, arriving midway through the academic year. The transition proved challenging as she possessed no established social connections and felt intimidated by the unfamiliar environment. During her first lunch period, she sat isolated at an empty table, observing other students interacting comfortably within their established friendship groups.\n\nJake observed the new student sitting alone and immediately empathized with her difficult situation. Having experienced a similar transition when his family relocated the previous year, he understood the challenges of adjusting to an unfamiliar school environment. Jake resolved to reach out and offer genuine friendship to help ease her adjustment.\n\nApproaching Sophia's table with consideration, Jake courteously requested permission to join her for lunch. Sophia's expression immediately improved, and she welcomed his company with obvious relief. Jake facilitated introductions with his established friend group, who demonstrated warmth and acceptance toward their new classmate.\n\nWithin one week, Sophia had successfully integrated into the school's social environment and developed several meaningful friendships. She expressed heartfelt gratitude to Jake for his compassionate gesture and credited him with transforming her initially overwhelming experience into a positive transition.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Jake's empathetic outreach helped a new student successfully integrate into the school community through genuine friendship",
+            "Middle school transitions require comprehensive administrative support programs to ensure student success",
+            "Academic institutions should implement structured social integration programs for mid-year transfer students"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "empathized",
+            "sentence": "Jake observed the new student sitting alone and immediately empathized with her difficult situation.",
+            "context": "Jake understood exactly how Sophia felt because he had been in the same difficult situation himself before.",
+            "clues": [
+              "understood exactly how she felt",
+              "same difficult situation",
+              "himself before"
+            ],
+            "question": "What does 'empathized' mean?",
+            "answer": "understood and shared someone else's feelings from personal experience"
+          },
+          {
+            "word": "integrated",
+            "sentence": "Within one week, Sophia had successfully integrated into the school's social environment and developed several meaningful friendships.",
+            "context": "Sophia had become a natural part of the school's social groups and fit in well with other students.",
+            "clues": [
+              "became natural part",
+              "social groups",
+              "fit in well"
+            ],
+            "question": "What does 'integrated' mean?",
+            "answer": "became part of a group and fit in successfully"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, Sophia...",
+            "expanded": "Initially, Sophia transferred and..."
+          },
+          {
+            "basic": "Jake noticed and...",
+            "expanded": "Jake noticed and empathized..."
+          },
+          {
+            "basic": "By approaching, Jake...",
+            "expanded": "By approaching, Jake facilitated..."
+          },
+          {
+            "basic": "Ultimately, Sophia...",
+            "expanded": "Ultimately, Sophia successfully integrated..."
+          }
+        ]
+      },
+      "complex": {
+        "text": "Sophia commenced her enrollment at Jefferson Middle School during the midpoint of the academic semester, necessitating a formidable adjustment to an entirely unfamiliar institutional environment. The transition proved particularly arduous as she possessed no established social connections and felt overwhelmed by the intricate dynamics of pre-existing peer relationships. During her inaugural cafeteria experience, she maintained isolation at an unoccupied table, observing the sophisticated social interactions occurring within well-established cliques.\n\nJake discerned the newly arrived student's solitary predicament and experienced profound empathy regarding her circumstances. Having endured a comparable transitional challenge during the preceding academic year when his family's relocation necessitated educational institution transfer, he possessed intimate comprehension of the psychological complexities inherent in scholastic environmental adaptation. Jake formulated a deliberate resolution to extend compassionate friendship and facilitate social inclusion.\n\nApproaching Sophia's location with respectful consideration, Jake courteously solicited permission to share her dining space. Sophia's countenance demonstrated marked improvement, and she expressed genuine appreciation for his considerate gesture. Jake orchestrated systematic introductions with his established peer network, who demonstrated remarkable receptivity and authentic warmth toward facilitating her social integration.\n\nWithin a single week, Sophia had achieved successful assimilation into the institution's complex social infrastructure and cultivated multiple authentic interpersonal relationships. She conveyed profound gratitude to Jake for his compassionate intervention and attributed her positive transitional outcome to his empathetic leadership in fostering inclusive community dynamics.",
+        "mainIdea": {
+          "question": "What is the main idea of this story?",
+          "choices": [
+            "Jake's deliberate compassionate intervention facilitated a new student's successful social assimilation through empathetic leadership and inclusive community building",
+            "Educational institutions require comprehensive systematic approaches to address the complex psychological challenges faced by transfer students",
+            "Adolescent social dynamics within academic environments typically create exclusionary barriers that prevent meaningful peer integration"
+          ],
+          "correct": 0
+        },
+        "contextClues": [
+          {
+            "word": "compassionate",
+            "sentence": "Jake formulated a deliberate resolution to extend compassionate friendship and facilitate social inclusion.",
+            "context": "Jake made a thoughtful decision to show caring, kind friendship that would help Sophia feel included and accepted.",
+            "clues": [
+              "thoughtful decision",
+              "caring, kind friendship",
+              "help feel included and accepted"
+            ],
+            "question": "What does 'compassionate' mean?",
+            "answer": "showing caring concern and kindness toward someone who is suffering"
+          },
+          {
+            "word": "assimilation",
+            "sentence": "Within a single week, Sophia had achieved successful assimilation into the institution's complex social infrastructure.",
+            "context": "Sophia had completely blended in and become a natural part of the school's complicated social system and relationships.",
+            "clues": [
+              "completely blended in",
+              "natural part",
+              "complicated social system"
+            ],
+            "question": "What does 'assimilation' mean?",
+            "answer": "the process of becoming fully absorbed and integrated into a group or system"
+          }
+        ],
+        "sequence": [
+          {
+            "basic": "Initially, Sophia...",
+            "expanded": "Initially, Sophia commenced enrollment and..."
+          },
+          {
+            "basic": "Jake discerned and...",
+            "expanded": "Jake discerned the situation and..."
+          },
+          {
+            "basic": "Through intervention, Jake...",
+            "expanded": "Through deliberate intervention, Jake orchestrated..."
+          },
+          {
+            "basic": "Consequently, Sophia...",
+            "expanded": "Consequently, Sophia achieved successful..."
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-short-stories-pronouns-details-001",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Garden Helper",
+      "text": "Maya planted tomato seeds in her garden last spring. She watered them every morning before school. The plants grew tall and strong under the sunny sky. Maya's neighbor, Mr. Chen, gave her tips about removing weeds. By summer, she had bright red tomatoes to share with her whole family.",
+      "pronounQuestions": [
+        {
+          "q": "Who watered the plants every morning?",
+          "help1": "Look at the second sentence. Is this person identified as a girl or boy?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Maya) watered the plants."
+        },
+        {
+          "q": "What did Mr. Chen give Maya?",
+          "help1": "Find where Mr. Chen is mentioned. What did this person do?",
+          "help2": "Complete: '_____ gave her tips' (A) He (B) She (C) It",
+          "answer": "He gave her tips about removing weeds."
+        },
+        {
+          "q": "Who shared the tomatoes with family?",
+          "help1": "Who grew the tomatoes? This is the same person in the first sentence.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) Mr. Chen",
+          "answer": "She (Maya) shared the tomatoes."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Think about what Maya does with her garden from spring to summer.",
+        "choices": [
+          {
+            "text": "Maya cares for her garden and grows tomatoes to share.",
+            "correct": true
+          },
+          {
+            "text": "Mr. Chen plants his own vegetable garden next door.",
+            "correct": false
+          },
+          {
+            "text": "Maya stops caring for the plants after just one week.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What happened first in this story?",
+          "prompt": "The story started when..."
+        },
+        {
+          "q": "What did Maya do every morning?",
+          "prompt": "Every morning, Maya..."
+        },
+        {
+          "q": "Who helped Maya with her garden?",
+          "prompt": "Mr. Chen helped by..."
+        },
+        {
+          "q": "What happened by summer?",
+          "prompt": "By summer..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-002",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Library Mystery",
+      "text": "Alex found a mysterious book on the library shelf yesterday. They opened it carefully and discovered old photographs inside. The pictures showed their town from 100 years ago. Alex brought the book to Ms. Rivera, the librarian. She explained that someone had donated their family album by mistake.",
+      "pronounQuestions": [
+        {
+          "q": "Who found the mysterious book?",
+          "help1": "Check the first sentence. The text doesn't say if this person is a boy or girl.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Alex) found the book."
+        },
+        {
+          "q": "Who explained about the family album?",
+          "help1": "Look for the person's title (Ms.). What does this tell you?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Ms. Rivera) explained."
+        },
+        {
+          "q": "What did Alex discover inside the book?",
+          "help1": "The person who found the book also opened it. Use the same pronoun.",
+          "help2": "Complete: '_____ opened it and discovered...' (A) He (B) She (C) They",
+          "answer": "They discovered old photographs."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Focus on what Alex discovers about the mysterious book.",
+        "choices": [
+          {
+            "text": "Alex finds an old photo album and returns it to the librarian.",
+            "correct": true
+          },
+          {
+            "text": "Alex keeps the book because the photos are worth a lot.",
+            "correct": false
+          },
+          {
+            "text": "Ms. Rivera asks Alex to organize every shelf in the library.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "Where did Alex find the book?",
+          "prompt": "Alex found the book..."
+        },
+        {
+          "q": "What was inside the book?",
+          "prompt": "Inside the book were..."
+        },
+        {
+          "q": "What did the pictures show?",
+          "prompt": "The pictures showed..."
+        },
+        {
+          "q": "Who explained about the book?",
+          "prompt": "Ms. Rivera explained that..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-003",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Soccer Game",
+      "text": "Carlos practiced soccer every day after school. He wanted to make the winning goal in Saturday's big game. During the match, his teammate Emma passed him the ball. Carlos dribbled past two defenders and kicked hard. The ball soared into the net, and his whole team cheered!",
+      "pronounQuestions": [
+        {
+          "q": "Who practiced soccer every day?",
+          "help1": "The first sentence names a person. Is this a boy's or girl's name?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Carlos) practiced soccer."
+        },
+        {
+          "q": "Who passed the ball to Carlos?",
+          "help1": "Look at the third sentence. What does the name 'Emma' tell you?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Emma) passed the ball."
+        },
+        {
+          "q": "Who made the winning goal?",
+          "help1": "Who kicked the ball into the net? Look at sentences 4 and 5.",
+          "help2": "Complete: '_____ dribbled and kicked' (A) He (B) She (C) It",
+          "answer": "He (Carlos) made the goal."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Consider Carlos's goal for practice and what happens in the big game.",
+        "choices": [
+          {
+            "text": "Carlos practices hard and scores the winning goal for his team.",
+            "correct": true
+          },
+          {
+            "text": "Emma scores the winning goal while Carlos watches from the bench.",
+            "correct": false
+          },
+          {
+            "text": "Carlos decides to quit soccer before the championship game begins.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What did Carlos do every day?",
+          "prompt": "Carlos practiced..."
+        },
+        {
+          "q": "What did Carlos want to do?",
+          "prompt": "Carlos wanted to..."
+        },
+        {
+          "q": "What happened during the match?",
+          "prompt": "During the match, Emma..."
+        },
+        {
+          "q": "How did the story end?",
+          "prompt": "The story ended when..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-004",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Science Fair",
+      "text": "Jordan worked on a volcano project for the science fair. They mixed baking soda and vinegar to create an eruption. The experiment was messy but exciting. Jordan's teacher, Mr. Lopez, was impressed by their presentation. He gave them a blue ribbon for creativity.",
+      "pronounQuestions": [
+        {
+          "q": "Who created the volcano eruption?",
+          "help1": "Find who did the mixing. The story doesn't specify boy or girl.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Jordan) created the eruption."
+        },
+        {
+          "q": "Who gave Jordan a blue ribbon?",
+          "help1": "Look for someone with the title 'Mr.' What does this tell you?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Mr. Lopez) gave the ribbon."
+        },
+        {
+          "q": "What impressed Mr. Lopez?",
+          "help1": "What did Jordan show to the teacher? Who presented it?",
+          "help2": "Complete: '_____ presentation' (A) His (B) Her (C) Their",
+          "answer": "Their presentation impressed him."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Look at what Jordan builds and how the teacher reacts.",
+        "choices": [
+          {
+            "text": "Jordan's volcano project impresses the teacher and earns a blue ribbon.",
+            "correct": true
+          },
+          {
+            "text": "Jordan forgets the volcano at home and misses the science fair.",
+            "correct": false
+          },
+          {
+            "text": "Mr. Lopez asks every student to clean the messy lab after school.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What was Jordan's project?",
+          "prompt": "Jordan worked on..."
+        },
+        {
+          "q": "What did Jordan mix together?",
+          "prompt": "Jordan mixed..."
+        },
+        {
+          "q": "How did Mr. Lopez feel?",
+          "prompt": "Mr. Lopez was impressed by..."
+        },
+        {
+          "q": "What did Jordan receive?",
+          "prompt": "Jordan received..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-005",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Birthday Surprise",
+      "text": "Grandma June baked a three-layer chocolate cake for her grandson's birthday. She decorated it with blue frosting and ten candles. The kitchen smelled wonderful all afternoon. When Tommy arrived, he couldn't believe his eyes. She had created his favorite superhero on top of the cake!",
+      "pronounQuestions": [
+        {
+          "q": "Who baked the cake?",
+          "help1": "Look at the first sentence. The title 'Grandma' and name 'June' tell you this is female.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Grandma June) baked the cake."
+        },
+        {
+          "q": "Who couldn't believe his eyes?",
+          "help1": "Find Tommy in sentence 4. Is this name typically for a boy or girl?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Tommy) couldn't believe his eyes."
+        },
+        {
+          "q": "Who decorated the cake?",
+          "help1": "The same person who baked also decorated. Check sentences 1 and 2.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Grandma June) decorated it."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Think about what Grandma June prepares and how Tommy feels.",
+        "choices": [
+          {
+            "text": "Grandma surprises Tommy with a special superhero cake she baked herself.",
+            "correct": true
+          },
+          {
+            "text": "Tommy bakes a birthday cake for Grandma and leaves off the frosting.",
+            "correct": false
+          },
+          {
+            "text": "Grandma buys simple cupcakes because she had no time to bake.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What did Grandma June make?",
+          "prompt": "Grandma June baked..."
+        },
+        {
+          "q": "How did she decorate it?",
+          "prompt": "She decorated it with..."
+        },
+        {
+          "q": "How did the kitchen smell?",
+          "prompt": "The kitchen smelled..."
+        },
+        {
+          "q": "What special detail was on the cake?",
+          "prompt": "On top of the cake was..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-006",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Lost Puppy",
+      "text": "Officer Davis found a small puppy wandering near the park. She checked the puppy's collar for a name tag. The tag said 'Milo' with a phone number. Officer Davis called the number and spoke to a worried family. They came to pick up their puppy within ten minutes.",
+      "pronounQuestions": [
+        {
+          "q": "Who found the puppy?",
+          "help1": "Look at the title 'Officer' and the name. Sentence 2 gives you a pronoun clue.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Officer Davis) found the puppy."
+        },
+        {
+          "q": "Who came to pick up the puppy?",
+          "help1": "Look at the last sentence. Was it one person or a group?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (the family) picked up the puppy."
+        },
+        {
+          "q": "Who called the phone number?",
+          "help1": "Find who made the call in sentence 4. This is the same person who found the puppy.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Officer Davis) called."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Focus on what Officer Davis does after finding the puppy.",
+        "choices": [
+          {
+            "text": "Officer Davis finds a lost puppy and reunites it with its family.",
+            "correct": true
+          },
+          {
+            "text": "Officer Davis keeps the puppy because it has no name on the tag.",
+            "correct": false
+          },
+          {
+            "text": "The family decides to give the puppy away to a new neighbor.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "Where did Officer Davis find the puppy?",
+          "prompt": "Officer Davis found the puppy..."
+        },
+        {
+          "q": "What information was on the tag?",
+          "prompt": "The tag said..."
+        },
+        {
+          "q": "What did Officer Davis do next?",
+          "prompt": "Officer Davis called..."
+        },
+        {
+          "q": "How long did it take the family to arrive?",
+          "prompt": "The family came..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-007",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Art Class",
+      "text": "Sam loves painting pictures of animals. They brought their own brushes to art class today. Mrs. Kim showed the class how to mix colors for sunset backgrounds. Sam painted a purple and orange sky behind a wolf. Their artwork won first place in the school art show.",
+      "pronounQuestions": [
+        {
+          "q": "Who brought brushes to class?",
+          "help1": "The text doesn't say if Sam is a boy or girl. Check sentence 2.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Sam) brought brushes."
+        },
+        {
+          "q": "Who showed the class about mixing colors?",
+          "help1": "Look for the teacher. The title 'Mrs.' tells you this is female.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Mrs. Kim) showed the class."
+        },
+        {
+          "q": "Whose artwork won first place?",
+          "help1": "Who painted the wolf picture? This is the main character.",
+          "help2": "Complete: '_____ artwork won' (A) His (B) Her (C) Their",
+          "answer": "Their (Sam's) artwork won."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Notice what Sam paints and how the class reacts.",
+        "choices": [
+          {
+            "text": "Sam paints a sunset scene with a wolf and wins the art show.",
+            "correct": true
+          },
+          {
+            "text": "Sam forgets their brushes and cannot finish the painting in class.",
+            "correct": false
+          },
+          {
+            "text": "Mrs. Kim asks Sam to paint only food instead of animals.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What does Sam love to paint?",
+          "prompt": "Sam loves painting..."
+        },
+        {
+          "q": "What did Mrs. Kim teach?",
+          "prompt": "Mrs. Kim showed the class..."
+        },
+        {
+          "q": "What did Sam paint?",
+          "prompt": "Sam painted..."
+        },
+        {
+          "q": "What happened at the art show?",
+          "prompt": "Sam's artwork..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-008",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Camping Trip",
+      "text": "Uncle Marcus took his nieces camping in the mountains last weekend. He taught them how to set up a tent and build a campfire. The girls learned to identify different animal tracks in the dirt. At night, he pointed out constellations in the starry sky. Everyone agreed it was the best trip ever.",
+      "pronounQuestions": [
+        {
+          "q": "Who taught about setting up the tent?",
+          "help1": "Find 'Uncle Marcus' in the text. The title 'Uncle' indicates male.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Uncle Marcus) taught them."
+        },
+        {
+          "q": "Who learned about animal tracks?",
+          "help1": "Look at sentence 3. The word 'girls' tells you about gender and number.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (the girls) learned."
+        },
+        {
+          "q": "Who pointed out constellations?",
+          "help1": "This is the same person who taught camping skills. Check sentences 2 and 4.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Uncle Marcus) pointed them out."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Think about what Uncle Marcus teaches his nieces during the trip.",
+        "choices": [
+          {
+            "text": "Uncle Marcus teaches his nieces camping skills during their mountain trip.",
+            "correct": true
+          },
+          {
+            "text": "The girls spend the weekend indoors because the weather is stormy.",
+            "correct": false
+          },
+          {
+            "text": "Uncle Marcus forgets the tent and they decide to drive back home.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "Who went camping?",
+          "prompt": "Uncle Marcus and his nieces..."
+        },
+        {
+          "q": "What did Uncle Marcus teach?",
+          "prompt": "He taught them how to..."
+        },
+        {
+          "q": "What did the girls learn about?",
+          "prompt": "The girls learned to identify..."
+        },
+        {
+          "q": "What did they see at night?",
+          "prompt": "At night, they saw..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-009",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Invention",
+      "text": "Riley spent months building a robot in their garage workshop. They programmed it to help sort recyclables into different bins. The robot had spinning wheels and mechanical arms. Riley's parents were amazed when they saw the demonstration. The local newspaper wrote a story about their talented young inventor.",
+      "pronounQuestions": [
+        {
+          "q": "Who built the robot?",
+          "help1": "Check the first sentence. The story doesn't specify if Riley is a boy or girl.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Riley) built the robot."
+        },
+        {
+          "q": "Who were amazed by the demonstration?",
+          "help1": "Look at sentence 4. Was it one parent or both?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Riley's parents) were amazed."
+        },
+        {
+          "q": "Who did the newspaper write about?",
+          "help1": "The inventor is the main person in this story. Check the last sentence.",
+          "help2": "Complete: '_____ talented inventor' (A) his (B) her (C) their",
+          "answer": "Their (Riley's) invention was featured."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Focus on what Riley builds and how others respond.",
+        "choices": [
+          {
+            "text": "Riley creates a recycling robot that impresses their parents and community.",
+            "correct": true
+          },
+          {
+            "text": "Riley's robot breaks immediately and nobody wants to see the invention.",
+            "correct": false
+          },
+          {
+            "text": "The newspaper asks Riley to stop experimenting in the garage workshop.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What did Riley build?",
+          "prompt": "Riley built..."
+        },
+        {
+          "q": "What did the robot do?",
+          "prompt": "The robot helped..."
+        },
+        {
+          "q": "How did Riley's parents react?",
+          "prompt": "Riley's parents were..."
+        },
+        {
+          "q": "What did the newspaper do?",
+          "prompt": "The newspaper wrote..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-010",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The School Play",
+      "text": "Ms. Thompson directed the school play about pirates. She held auditions for two weeks to find the perfect cast. A student named Casey earned the lead role of Captain Redbeard. They practiced their lines every afternoon. Casey's performance on opening night made everyone in the audience cheer.",
+      "pronounQuestions": [
+        {
+          "q": "Who directed the play?",
+          "help1": "Find the director's name and title. 'Ms.' tells you this is female.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Ms. Thompson) directed it."
+        },
+        {
+          "q": "Who earned the lead role?",
+          "help1": "Find Casey in sentence 3. The story doesn't say boy or girl.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Casey) earned the role."
+        },
+        {
+          "q": "Who held auditions?",
+          "help1": "The director would hold auditions. Check sentence 2.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Ms. Thompson) held auditions."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Notice who earns the lead role and what happens at the performance.",
+        "choices": [
+          {
+            "text": "Casey practices hard as Captain Redbeard and thrills the audience on opening night.",
+            "correct": true
+          },
+          {
+            "text": "Ms. Thompson cancels the play because no students audition for any roles.",
+            "correct": false
+          },
+          {
+            "text": "Casey forgets the lines and the audience quietly leaves the theater.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What was the play about?",
+          "prompt": "The play was about..."
+        },
+        {
+          "q": "How long were auditions?",
+          "prompt": "Ms. Thompson held auditions for..."
+        },
+        {
+          "q": "Who got the lead role?",
+          "prompt": "Casey earned..."
+        },
+        {
+          "q": "What happened on opening night?",
+          "prompt": "On opening night..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-011",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Rainy Day Adventure",
+      "text": "Noah noticed the rain had created huge puddles in his backyard. He put on his yellow rain boots and ran outside. The biggest puddle was perfect for jumping. Noah's little sister, Zoe, watched from the window and wanted to join. She quickly got ready and splashed alongside him.",
+      "pronounQuestions": [
+        {
+          "q": "Who put on yellow rain boots?",
+          "help1": "Look at sentence 2. 'Noah' is typically a boy's name.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Noah) put on boots."
+        },
+        {
+          "q": "Who watched from the window?",
+          "help1": "Find Zoe in sentence 4. The text says 'little sister.'",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Zoe) watched."
+        },
+        {
+          "q": "Who splashed alongside Noah?",
+          "help1": "Who got ready and went outside in sentence 5?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Zoe) splashed with him."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Think about what Noah and Zoe do once it starts raining.",
+        "choices": [
+          {
+            "text": "Noah and Zoe enjoy jumping in the backyard puddles together.",
+            "correct": true
+          },
+          {
+            "text": "Noah stays inside because he dislikes getting his yellow boots wet.",
+            "correct": false
+          },
+          {
+            "text": "Zoe watches the rain but refuses to play with her brother.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What did Noah notice?",
+          "prompt": "Noah noticed that..."
+        },
+        {
+          "q": "What did Noah do?",
+          "prompt": "Noah put on his boots and..."
+        },
+        {
+          "q": "Who wanted to join?",
+          "prompt": "Zoe watched and..."
+        },
+        {
+          "q": "What did Zoe do?",
+          "prompt": "Zoe got ready and..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-012",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Community Garden",
+      "text": "Taylor volunteered at the community garden every Saturday morning. They pulled weeds, watered vegetables, and picked ripe tomatoes. Mr. Washington, the garden coordinator, appreciated their hard work. He gave Taylor a basket of fresh carrots to take home. Taylor's family made a delicious soup with them that evening.",
+      "pronounQuestions": [
+        {
+          "q": "Who volunteered on Saturdays?",
+          "help1": "The main person isn't identified as boy or girl in the story.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Taylor) volunteered."
+        },
+        {
+          "q": "Who gave Taylor the carrots?",
+          "help1": "Look for 'Mr. Washington.' What does 'Mr.' tell you?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Mr. Washington) gave carrots."
+        },
+        {
+          "q": "Whose family made soup?",
+          "help1": "Who brought the carrots home? This is the volunteer.",
+          "help2": "Complete: '_____ family' (A) His (B) Her (C) Their",
+          "answer": "Their (Taylor's) family made soup."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Focus on how Taylor helps at the community garden.",
+        "choices": [
+          {
+            "text": "Taylor volunteers in the garden and takes home fresh carrots for soup.",
+            "correct": true
+          },
+          {
+            "text": "Taylor forgets to water the plants and all the vegetables dry out.",
+            "correct": false
+          },
+          {
+            "text": "Mr. Washington tells Taylor to stop visiting the garden every Saturday.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "When did Taylor volunteer?",
+          "prompt": "Taylor volunteered..."
+        },
+        {
+          "q": "What work did Taylor do?",
+          "prompt": "Taylor pulled weeds, watered..."
+        },
+        {
+          "q": "What did Mr. Washington give Taylor?",
+          "prompt": "Mr. Washington gave..."
+        },
+        {
+          "q": "What did Taylor's family make?",
+          "prompt": "Taylor's family made..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-013",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Swimming Lesson",
+      "text": "Coach Maria teaches swimming at the recreation center. She demonstrates proper breathing techniques for the backstroke. Eight-year-old Lily watches carefully and tries to copy her movements. The little girl kicks her legs and glides through the water. Coach Maria smiles proudly as she sees Lily's improvement.",
+      "pronounQuestions": [
+        {
+          "q": "Who teaches swimming?",
+          "help1": "Find Coach Maria in the first sentence. 'Maria' is typically a girl's name.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Coach Maria) teaches."
+        },
+        {
+          "q": "Who tries to copy the movements?",
+          "help1": "Look at sentence 3. It says 'little girl.'",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Lily) copies the movements."
+        },
+        {
+          "q": "Who demonstrates breathing techniques?",
+          "help1": "The coach demonstrates. Check sentence 2.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Coach Maria) demonstrates."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Think about what Coach Maria teaches Lily during the lesson.",
+        "choices": [
+          {
+            "text": "Coach Maria teaches Lily the backstroke and is proud of her progress.",
+            "correct": true
+          },
+          {
+            "text": "Lily refuses to practice, so Coach Maria cancels the swimming lesson.",
+            "correct": false
+          },
+          {
+            "text": "Coach Maria only watches other students and ignores Lily's efforts.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "Where does Coach Maria teach?",
+          "prompt": "Coach Maria teaches at..."
+        },
+        {
+          "q": "What does Coach Maria demonstrate?",
+          "prompt": "She demonstrates..."
+        },
+        {
+          "q": "What does Lily do?",
+          "prompt": "Lily watches and tries to..."
+        },
+        {
+          "q": "How does Coach Maria feel?",
+          "prompt": "Coach Maria smiles because..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-014",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Chess Tournament",
+      "text": "Dr. Anderson organized a chess tournament at the community center. He invited players of all ages to participate. Morgan arrived early to practice their opening moves. They had studied chess strategies for months. Morgan's dedication paid off when they won the tournament trophy.",
+      "pronounQuestions": [
+        {
+          "q": "Who organized the tournament?",
+          "help1": "Find the person with 'Dr.' in their title. Sentence 2 gives a pronoun.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Dr. Anderson) organized it."
+        },
+        {
+          "q": "Who arrived early to practice?",
+          "help1": "Find Morgan in sentence 3. The text doesn't specify boy or girl.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Morgan) arrived early."
+        },
+        {
+          "q": "Who won the trophy?",
+          "help1": "Who studied and was dedicated? Check the last sentence.",
+          "help2": "Complete: '_____ dedication' (A) His (B) Her (C) Their",
+          "answer": "Their (Morgan's) dedication paid off."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Focus on Morgan's preparation and what happens at the tournament.",
+        "choices": [
+          {
+            "text": "Morgan studies chess strategies and wins the community tournament trophy.",
+            "correct": true
+          },
+          {
+            "text": "Morgan forgets the rules and leaves the tournament before the games start.",
+            "correct": false
+          },
+          {
+            "text": "Dr. Anderson cancels the event because nobody wants to play chess.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What did Dr. Anderson organize?",
+          "prompt": "Dr. Anderson organized..."
+        },
+        {
+          "q": "Who did he invite?",
+          "prompt": "He invited..."
+        },
+        {
+          "q": "What did Morgan do to prepare?",
+          "prompt": "Morgan studied..."
+        },
+        {
+          "q": "What happened at the tournament?",
+          "prompt": "Morgan won..."
+        }
+      ]
+    },
+    {
+      "id": "story-short-stories-pronouns-details-015",
+      "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "season": null,
+      "title": "The Bake Sale",
+      "text": "Isabella decided to bake cookies for the school bake sale. She made chocolate chip, oatmeal, and peanut butter varieties. Her little brother, Max, helped by stirring the dough. He carefully placed each cookie on the baking sheet. Together, they raised money for new playground equipment.",
+      "pronounQuestions": [
+        {
+          "q": "Who decided to bake cookies?",
+          "help1": "Look at the first sentence. 'Isabella' is typically a girl's name.",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "She (Isabella) decided to bake."
+        },
+        {
+          "q": "Who helped stir the dough?",
+          "help1": "Find Max in sentence 3. It says 'little brother.'",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "He (Max) helped stir."
+        },
+        {
+          "q": "Who raised money together?",
+          "help1": "The last sentence says two people worked together. How many?",
+          "help2": "Choose the pronoun: (A) He (B) She (C) They",
+          "answer": "They (Isabella and Max) raised money."
+        }
+      ],
+      "mainIdea": {
+        "question": "What is the main idea of this story?",
+        "clue": "Think about what Isabella and Max do for the bake sale.",
+        "choices": [
+          {
+            "text": "Isabella and Max bake different cookies to raise money for new equipment.",
+            "correct": true
+          },
+          {
+            "text": "Max eats all the cookies and the bake sale has nothing to sell.",
+            "correct": false
+          },
+          {
+            "text": "Isabella decides to buy candy instead of baking treats for school.",
+            "correct": false
+          }
+        ]
+      },
+      "keyEvents": [
+        {
+          "q": "What did Isabella decide to do?",
+          "prompt": "Isabella decided to..."
+        },
+        {
+          "q": "What kinds of cookies did she make?",
+          "prompt": "She made..."
+        },
+        {
+          "q": "How did Max help?",
+          "prompt": "Max helped by..."
+        },
+        {
+          "q": "What was the money for?",
+          "prompt": "They raised money for..."
+        }
+      ]
+    },
+    {
+      "id": "story-stories-inference-compare-001",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "season": null,
+      "title": "The Championship Tryouts",
+      "text": "Marcus had been dreaming about making the varsity basketball team all summer. He practiced every single day, working on his free throws until his arms hurt. His best friend Tyler was also trying out, but Tyler was naturally taller and seemed to make every shot without even trying.\n\nOn tryout day, Marcus arrived two hours early to practice. His palms were sweaty, and his stomach felt like it was full of butterflies. When Coach Williams called his name, Marcus took a deep breath and walked onto the court. He missed his first shot, then his second. Tyler stepped up after him and swished three shots in a row like it was nothing. After tryouts, Marcus sat in the parking lot staring at his phone, not wanting to go home and face his dad. Tyler came over and asked, \"Hey man, you okay?\" Marcus just shrugged and said, \"Yeah, whatever. I'm fine.\"",
+      "inference": [
+        {
+          "character": "Marcus",
+          "question": "How does Marcus feel after the tryouts?",
+          "context": "Think about a time when you worked really hard for something and it didn't go the way you hoped it would.",
+          "choices": [
+            "Disappointed and embarrassed",
+            "Angry at Tyler",
+            "Excited and confident",
+            "Proud of his effort"
+          ],
+          "correct": 0,
+          "evidence": [
+            "missed his first shot, then his second",
+            "sat in the parking lot staring at his phone",
+            "didn't want to go home and face his dad",
+            "just shrugged and said, 'Yeah, whatever. I'm fine.'"
+          ]
+        },
+        {
+          "character": "Tyler",
+          "question": "What is Tyler probably thinking when he sees Marcus upset?",
+          "context": "Think about how you would feel if your best friend was struggling with something you found easy.",
+          "choices": [
+            "He wants to help Marcus feel better",
+            "He's happy he did better than Marcus",
+            "He's worried Marcus will be mad at him",
+            "He thinks Marcus should quit basketball"
+          ],
+          "correct": 0,
+          "evidence": [
+            "Tyler came over and sat next to him",
+            "Hey man, you okay?",
+            "Tyler asked"
+          ]
+        }
+      ],
+      "compare": {
+        "item1": "Marcus",
+        "item2": "Tyler",
+        "items": [
+          {
+            "text": "Trying out for the varsity basketball team",
+            "type": "similarity"
+          },
+          {
+            "text": "Friends with each other",
+            "type": "similarity"
+          },
+          {
+            "text": "Practiced every day all summer",
+            "type": "item1"
+          },
+          {
+            "text": "Naturally taller",
+            "type": "item2"
+          },
+          {
+            "text": "Arrived two hours early to practice",
+            "type": "item1"
+          },
+          {
+            "text": "Made shots easily during tryouts",
+            "type": "item2"
+          },
+          {
+            "text": "Felt nervous during tryouts",
+            "type": "item1"
+          },
+          {
+            "text": "Seemed confident during tryouts",
+            "type": "item2"
+          },
+          {
+            "text": "Cares about the other person's feelings",
+            "type": "item2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-stories-inference-compare-002",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "season": null,
+      "title": "The Gaming Tournament",
+      "text": "Jake had been preparing for the Fortnite tournament for weeks. His strategy was all about playing it safe - staying hidden, avoiding fights, and making it to the final circle. His teammate Alex had a completely different approach. Alex loved to drop into crowded areas, take on multiple opponents, and go for high-action games.\n\n\"Dude, we need to be aggressive if we want to win this thing,\" Alex said during their practice session. The tournament was starting in an hour, and they still couldn't agree on a strategy. Jake felt his chest getting tight - they had trained so hard for this, and now they might mess it up because they couldn't work together. Alex was pacing around the room, cracking his knuckles loudly. \"Fine, whatever. We'll play your boring way,\" Alex muttered, throwing his controller on the couch.",
+      "inference": [
+        {
+          "character": "Jake",
+          "question": "How is Jake feeling about the upcoming tournament?",
+          "context": "Think about a time when you and a friend couldn't agree on something important right before you had to do it together.",
+          "choices": [
+            "Anxious and worried about their teamwork",
+            "Excited and confident about winning",
+            "Angry at Alex for disagreeing",
+            "Ready to play solo instead"
+          ],
+          "correct": 0,
+          "evidence": [
+            "felt his chest getting tight",
+            "they might mess it up because they couldn't work together",
+            "they still couldn't agree on a strategy"
+          ]
+        },
+        {
+          "character": "Alex",
+          "question": "What does Alex's behavior show about how he's feeling?",
+          "context": "Think about how people act when they feel like their ideas aren't being heard or valued.",
+          "choices": [
+            "Frustrated and giving up on having input",
+            "Happy to compromise with Jake",
+            "Scared about the tournament",
+            "Confident they'll win either way"
+          ],
+          "correct": 0,
+          "evidence": [
+            "pacing around the room",
+            "cracking his knuckles loudly",
+            "Fine, whatever",
+            "throwing his controller on the couch"
+          ]
+        }
+      ],
+      "compare": {
+        "item1": "Jake's Strategy",
+        "item2": "Alex's Strategy",
+        "items": [
+          {
+            "text": "Wants to win the tournament",
+            "type": "similarity"
+          },
+          {
+            "text": "Requires good gaming skills",
+            "type": "similarity"
+          },
+          {
+            "text": "Staying hidden from other players",
+            "type": "item1"
+          },
+          {
+            "text": "Dropping into crowded areas",
+            "type": "item2"
+          },
+          {
+            "text": "Avoiding fights when possible",
+            "type": "item1"
+          },
+          {
+            "text": "Taking on multiple opponents",
+            "type": "item2"
+          },
+          {
+            "text": "Focus on making it to final circle",
+            "type": "item1"
+          },
+          {
+            "text": "Going for high-action games",
+            "type": "item2"
+          },
+          {
+            "text": "Playing it safe",
+            "type": "item1"
+          },
+          {
+            "text": "Being aggressive",
+            "type": "item2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-stories-inference-compare-003",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "season": null,
+      "title": "The Project Choice",
+      "text": "Mr. Rodriguez announced that students could choose between two final projects for science class. Option A was building a working robot that required coding and engineering. Option B was creating a documentary about climate change with research, interviews, and video editing.\n\nEthan's eyes lit up when he heard about the robot project. He had been teaching himself to code Python all year and loved taking apart electronics at home. But when he looked around the room, he noticed that all the \"smart kids\" - the ones who always got A's - were already talking about forming groups for the robot project. Meanwhile, his friend Carlos was excited about the documentary. \"Think about it, man. We could interview real scientists and film some cool locations. Plus, it actually matters for the world,\" Carlos said. Ethan nodded, but kept glancing at the robot group. His palms started to sweat as he realized he had to make a decision by tomorrow.",
+      "inference": [
+        {
+          "character": "Ethan",
+          "question": "What is Ethan's internal conflict about?",
+          "context": "Think about a time when you wanted to do something but worried about whether you belonged or were good enough.",
+          "choices": [
+            "He wants to do the robot project but feels intimidated by the other students",
+            "He can't decide if robots or documentaries are cooler",
+            "He's worried about working with Carlos",
+            "He thinks the teacher will be unfair"
+          ],
+          "correct": 0,
+          "evidence": [
+            "Ethan's eyes lit up when he heard about the robot project",
+            "all the 'smart kids' were already talking about forming groups",
+            "kept glancing at the robot group",
+            "palms started to sweat"
+          ]
+        },
+        {
+          "character": "Carlos",
+          "question": "How does Carlos feel about the documentary project?",
+          "context": "Think about how someone sounds when they're genuinely excited about an idea and trying to get their friend interested too.",
+          "choices": [
+            "Enthusiastic and passionate about making a difference",
+            "Only interested because it seems easier than coding",
+            "Worried that Ethan won't choose it",
+            "Unsure about which project to pick"
+          ],
+          "correct": 0,
+          "evidence": [
+            "Carlos was excited about the documentary",
+            "Think about it, man",
+            "it's something that actually matters for the world"
+          ]
+        }
+      ],
+      "compare": {
+        "item1": "Robot Project",
+        "item2": "Documentary Project",
+        "items": [
+          {
+            "text": "Final project for science class",
+            "type": "similarity"
+          },
+          {
+            "text": "Requires working with technology",
+            "type": "similarity"
+          },
+          {
+            "text": "Involves coding and programming",
+            "type": "item1"
+          },
+          {
+            "text": "Involves research and interviews",
+            "type": "item2"
+          },
+          {
+            "text": "Requires engineering skills",
+            "type": "item1"
+          },
+          {
+            "text": "Requires video editing skills",
+            "type": "item2"
+          },
+          {
+            "text": "Building something that moves and works",
+            "type": "item1"
+          },
+          {
+            "text": "Creating content about real-world issues",
+            "type": "item2"
+          },
+          {
+            "text": "Appeals to students who like electronics",
+            "type": "item1"
+          },
+          {
+            "text": "Could involve traveling to film locations",
+            "type": "item2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-stories-inference-compare-004",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "season": null,
+      "title": "The School Choice Decision",
+      "text": "Danny's family was moving across town, and his parents said he could choose between the public high school or a private school they could afford with financial aid. Lincoln Public High was huge with an amazing football program where he could probably blend in with the crowd. St. Mary's Private was smaller, more focused on academics, and had a reputation for tight-knit friendships but no football team.\n\nAt Lincoln, Danny could continue playing football, which he'd been doing since middle school. The coach had already called him twice, talking about scholarships and state championships. But when Danny visited, the hallways felt like a maze, and most students seemed to already have their friend groups locked down. St. Mary's felt more welcoming when he toured it. Students actually made eye contact and said hello, and teachers seemed to know every kid's name. Danny sat in his room that night, staring at both acceptance letters. His dad wanted him to go to Lincoln for the sports opportunities, but something in his gut was pulling him toward St. Mary's.",
+      "inference": [
+        {
+          "character": "Danny",
+          "question": "What is Danny's biggest worry about this decision?",
+          "context": "Think about starting at a new school where you don't know anyone and have to make all new friends.",
+          "choices": [
+            "He's worried about fitting in and making friends",
+            "He's only concerned about playing football",
+            "He thinks the academics will be too hard",
+            "He doesn't want to disappoint anyone"
+          ],
+          "correct": 0,
+          "evidence": [
+            "he could probably blend in",
+            "most students seemed to already have their friend groups locked down",
+            "Roosevelt felt more welcoming",
+            "Students actually made eye contact and said hello"
+          ]
+        },
+        {
+          "character": "Danny",
+          "question": "How does Danny feel about his dad's opinion?",
+          "context": "Think about when a parent wants you to make one choice, but your heart is telling you something different.",
+          "choices": [
+            "Torn between doing what his dad wants and following his instincts",
+            "Completely agrees with his dad's choice",
+            "Angry that his dad has an opinion",
+            "Sure his dad is wrong about everything"
+          ],
+          "correct": 0,
+          "evidence": [
+            "His dad wanted him to go to Lincoln",
+            "but something in his gut was pulling him toward Roosevelt",
+            "Danny sat in his room that night, staring at both acceptance letters"
+          ]
+        }
+      ],
+      "compare": {
+        "item1": "Lincoln Public High",
+        "item2": "St. Mary's Private",
+        "items": [
+          {
+            "text": "High school options for Danny",
+            "type": "similarity"
+          },
+          {
+            "text": "Both accepted Danny as a student",
+            "type": "similarity"
+          },
+          {
+            "text": "Amazing football program",
+            "type": "item1"
+          },
+          {
+            "text": "No football team available",
+            "type": "item2"
+          },
+          {
+            "text": "Huge student body",
+            "type": "item1"
+          },
+          {
+            "text": "Smaller, more intimate school",
+            "type": "item2"
+          },
+          {
+            "text": "Could probably blend in easily",
+            "type": "item1"
+          },
+          {
+            "text": "Students made eye contact and said hello",
+            "type": "item2"
+          },
+          {
+            "text": "Scholarship opportunities in sports",
+            "type": "item1"
+          },
+          {
+            "text": "More focused on academics",
+            "type": "item2"
+          },
+          {
+            "text": "Friend groups seemed already formed",
+            "type": "item1"
+          },
+          {
+            "text": "Reputation for tight-knit friendships",
+            "type": "item2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-stories-inference-compare-005",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "season": null,
+      "title": "The Sports Season Dilemma",
+      "text": "Miguel had always played soccer in the fall, but this year the new football coach had been trying to recruit him. \"You've got the speed and the build for it, Miguel. We could really use you as a running back,\" Coach Thompson said after seeing Miguel outrun everyone in gym class.\n\nSoccer had been Miguel's first love since he was six years old. He knew every move, every strategy, and his teammates were like brothers to him. But football was more popular at school, and Miguel couldn't help but notice how the football players got more attention from everyone. Miguel's little brother Carlos looked up to him and came to every soccer game, wearing Miguel's old jersey. \"You're not really going to quit soccer, are you?\" Carlos asked one evening. Miguel ruffled his brother's hair but couldn't give him a straight answer. The deadline to sign up for teams was tomorrow.",
+      "inference": [
+        {
+          "character": "Miguel",
+          "question": "What is Miguel's main internal struggle?",
+          "context": "Think about having to choose between something you love and something that might give you more popularity or recognition.",
+          "choices": [
+            "Torn between staying loyal to soccer and the appeal of football popularity",
+            "Worried about getting injured in either sport",
+            "Unsure if he's athletic enough for either team",
+            "Mad at the football coach for recruiting him"
+          ],
+          "correct": 0,
+          "evidence": [
+            "Soccer had been Miguel's first love",
+            "football was more popular at school",
+            "football players got more attention",
+            "Miguel still had no idea what to do"
+          ]
+        },
+        {
+          "character": "Carlos",
+          "question": "How does Carlos feel about Miguel possibly switching sports?",
+          "context": "Think about how a little brother would feel if his hero changed something that they shared together.",
+          "choices": [
+            "Disappointed and worried about losing their special connection",
+            "Excited about football being more popular",
+            "Indifferent about which sport Miguel plays",
+            "Angry at Miguel for considering football"
+          ],
+          "correct": 0,
+          "evidence": [
+            "came to every soccer game, wearing Miguel's old jersey",
+            "You're not really going to quit soccer, are you?",
+            "looked up to him"
+          ]
+        }
+      ],
+      "compare": {
+        "item1": "Soccer",
+        "item2": "Football",
+        "items": [
+          {
+            "text": "Fall sports at Miguel's school",
+            "type": "similarity"
+          },
+          {
+            "text": "Both require speed and athletic ability",
+            "type": "similarity"
+          },
+          {
+            "text": "Miguel's first love since age six",
+            "type": "item1"
+          },
+          {
+            "text": "Newly offered opportunity for Miguel",
+            "type": "item2"
+          },
+          {
+            "text": "Teammates are like brothers",
+            "type": "item1"
+          },
+          {
+            "text": "Coach wants Miguel as running back",
+            "type": "item2"
+          },
+          {
+            "text": "Miguel knows every move and strategy",
+            "type": "item1"
+          },
+          {
+            "text": "More popular sport at school",
+            "type": "item2"
+          },
+          {
+            "text": "Players get more attention from everyone",
+            "type": "item2"
+          },
+          {
+            "text": "Carlos comes to watch wearing Miguel's jersey",
+            "type": "item1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-stories-inference-compare-006",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "season": null,
+      "title": "The Game Store Dilemma",
+      "text": "Ryan finally had permission to buy a new video game and stood at GameStop trying to decide between two he'd been wanting forever. Call of Duty was the game all his friends were playing online. They talked about it constantly at lunch and always invited each other to play after school.\n\nBut Ryan had also been eyeing Minecraft for months. He loved building things and creating his own worlds, but none of his friends were into it. \"Dude, just get Call of Duty. We can all play together tonight,\" his friend Jake said, pulling out his phone to show Ryan a cool moment from the game. Ryan stared at both game cases. Call of Duty would mean fitting in with his friends, but Minecraft was what he actually wanted to play. The store was closing in ten minutes.",
+      "inference": [
+        {
+          "character": "Ryan",
+          "question": "What is Ryan's main conflict about buying the game?",
+          "context": "Think about a time when you had to choose between what your friends wanted and what you really wanted.",
+          "choices": [
+            "He's torn between fitting in with friends and choosing what he actually enjoys",
+            "He's worried about spending too much money",
+            "He can't decide which game has better graphics",
+            "He's upset that his friends play video games"
+          ],
+          "correct": 0,
+          "evidence": [
+            "Call of Duty would mean fitting in with his friends",
+            "but Minecraft was what he actually wanted to play",
+            "stood between two games he'd been wanting forever"
+          ]
+        }
+      ],
+      "compare": {
+        "item1": "Call of Duty",
+        "item2": "Minecraft",
+        "items": [
+          {
+            "text": "Video games that Ryan wants",
+            "type": "similarity"
+          },
+          {
+            "text": "Both available at the game store",
+            "type": "similarity"
+          },
+          {
+            "text": "All his friends are playing this",
+            "type": "item1"
+          },
+          {
+            "text": "None of his friends play this",
+            "type": "item2"
+          },
+          {
+            "text": "Friends talk about it constantly at lunch",
+            "type": "item1"
+          },
+          {
+            "text": "Ryan loves building and creating worlds",
+            "type": "item2"
+          },
+          {
+            "text": "Friends invite each other to play after school",
+            "type": "item1"
+          },
+          {
+            "text": "What Ryan actually wants to play",
+            "type": "item2"
+          },
+          {
+            "text": "Would help Ryan fit in",
+            "type": "item1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-stories-inference-compare-007",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "season": null,
+      "title": "The Test Strategy",
+      "text": "The biggest history test of the semester was tomorrow, and Jamal still hadn't studied. His friend Chris always made flashcards and studied for hours, usually getting A's on everything. \"Just make flashcards and memorize all the dates,\" Chris told him. \"That's how you ace these tests.\"\n\nBut Jamal learned differently. He liked to read everything once, then explain it out loud to himself like he was teaching someone else. It took longer, but information stuck better in his brain that way. Chris looked stressed, shuffling through his huge stack of flashcards. \"You're going to fail if you don't study like me,\" Chris warned. Jamal looked at his textbook, then at Chris's flashcards. There were only four hours left to study, and he had to pick a method.",
+      "inference": [
+        {
+          "character": "Jamal",
+          "question": "How is Jamal feeling about the test situation?",
+          "context": "Think about a time when someone told you the 'right' way to do something, but you knew you learned better a different way.",
+          "choices": [
+            "Pressured to study like Chris but knows he learns differently",
+            "Confident that Chris's method will work for him",
+            "Not worried about the test at all",
+            "Angry at Chris for giving advice"
+          ],
+          "correct": 0,
+          "evidence": [
+            "Jamal learned differently",
+            "information stuck better in his brain that way",
+            "he had to pick a method",
+            "Chris warned"
+          ]
+        }
+      ],
+      "compare": {
+        "item1": "Chris's Method",
+        "item2": "Jamal's Method",
+        "items": [
+          {
+            "text": "Ways to study for the history test",
+            "type": "similarity"
+          },
+          {
+            "text": "Both require time and effort",
+            "type": "similarity"
+          },
+          {
+            "text": "Making flashcards",
+            "type": "item1"
+          },
+          {
+            "text": "Reading everything once",
+            "type": "item1"
+          },
+          {
+            "text": "Memorizing all the dates",
+            "type": "item1"
+          },
+          {
+            "text": "Explaining out loud like teaching",
+            "type": "item2"
+          },
+          {
+            "text": "Usually gets A's on tests",
+            "type": "item1"
+          },
+          {
+            "text": "Information sticks better in brain",
+            "type": "item2"
+          },
+          {
+            "text": "Takes longer to do",
+            "type": "item2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-stories-inference-compare-008",
+      "sourceFile": "activities/reading/stories-inference-compare.html",
+      "season": null,
+      "title": "The Lunch Table Choice",
+      "text": "It was Aiden's first day at a new school, and lunchtime was the scariest part. He stood in the cafeteria holding his tray, looking around at all the different groups. At one table sat the athletes - they were loud, laughing, and seemed really confident. Aiden had played JV basketball at his old school, so maybe he could fit in there.\n\nAt another table, he spotted some kids playing card games and talking about video games and anime. They seemed quieter but more relaxed, and Aiden recognized some of the games they were discussing. One of the athlete kids noticed him standing there. \"Hey new guy, you can sit here if you want,\" he called out. But at the same moment, a kid from the gaming table looked up and waved him over. \"We've got room if you play Magic cards,\" he said. Aiden had to choose where to sit, knowing it might determine his whole social life at this school.",
+      "inference": [
+        {
+          "character": "Aiden",
+          "question": "What is Aiden most worried about in this moment?",
+          "context": "Think about starting somewhere new where you don't know anyone and having to figure out where you belong.",
+          "choices": [
+            "Making the right choice about which group to join",
+            "Whether the food in the cafeteria is good",
+            "Getting good grades at his new school",
+            "Finding his way to his next class"
+          ],
+          "correct": 0,
+          "evidence": [
+            "lunchtime was the scariest part",
+            "Aiden had to choose where to sit",
+            "knowing it might determine his whole social life at this school"
+          ]
+        }
+      ],
+      "compare": {
+        "item1": "Athletes Table",
+        "item2": "Gaming Table",
+        "items": [
+          {
+            "text": "Groups of students at lunch",
+            "type": "similarity"
+          },
+          {
+            "text": "Both invited Aiden to sit with them",
+            "type": "similarity"
+          },
+          {
+            "text": "Loud and laughing",
+            "type": "item1"
+          },
+          {
+            "text": "Quieter but more relaxed",
+            "type": "item2"
+          },
+          {
+            "text": "Seemed really confident",
+            "type": "item1"
+          },
+          {
+            "text": "Playing card games",
+            "type": "item2"
+          },
+          {
+            "text": "Aiden played JV basketball before",
+            "type": "item1"
+          },
+          {
+            "text": "Talking about video games and anime",
+            "type": "item2"
+          },
+          {
+            "text": "Aiden recognized some games they discussed",
+            "type": "item2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-1",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Cranberry Spill",
+      "level": "Simple",
+      "text": "Lena carried a bowl of cranberries to the table. She tripped on the rug. The cranberries spilled onto the floor. Her brother helped her pick them up. They washed the berries and put them back in the bowl.",
+      "questions": [
+        {
+          "prompt": "What did Lena carry?",
+          "answer": "a bowl of cranberries",
+          "clue": "She was holding a bowl filled with small red berries.",
+          "choices": [
+            "a bowl of cranberries",
+            "a plate of cookies",
+            "a basket of apples",
+            "a tray of cups"
+          ]
+        },
+        {
+          "prompt": "What made her trip?",
+          "answer": "the rug",
+          "clue": "Her foot caught on something on the floor.",
+          "choices": [
+            "the rug",
+            "a chair leg",
+            "a loose tile",
+            "a toy car"
+          ]
+        },
+        {
+          "prompt": "Where did the cranberries fall?",
+          "answer": "onto the floor",
+          "clue": "They scattered down where her feet were.",
+          "choices": [
+            "onto the floor",
+            "onto the table",
+            "into the sink",
+            "into the trash"
+          ]
+        },
+        {
+          "prompt": "Who helped her?",
+          "answer": "her brother",
+          "clue": "A sibling came to help.",
+          "choices": [
+            "her brother",
+            "her sister",
+            "her mom",
+            "her neighbor"
+          ]
+        },
+        {
+          "prompt": "What did they do after picking up the berries?",
+          "answer": "washed them and put them back in the bowl",
+          "clue": "They cleaned the berries and returned them to where they started.",
+          "choices": [
+            "washed them and put them back in the bowl",
+            "threw them away",
+            "fed them to the dog",
+            "used them to make sauce"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-2",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Big Parade",
+      "level": "Simple",
+      "text": "Sam sat on the couch to watch the Thanksgiving parade. His mom brought him a blanket. A giant turkey balloon floated across the screen. Sam pointed and laughed. His mom sat next to him and watched too.",
+      "questions": [
+        {
+          "prompt": "What did Sam watch?",
+          "answer": "the Thanksgiving parade",
+          "clue": "It was a holiday parade on TV.",
+          "choices": [
+            "the Thanksgiving parade",
+            "a football game",
+            "a cooking show",
+            "a movie"
+          ]
+        },
+        {
+          "prompt": "What did his mom bring him?",
+          "answer": "a blanket",
+          "clue": "She brought something warm to cover him.",
+          "choices": [
+            "a blanket",
+            "hot cocoa",
+            "a pillow",
+            "a stuffed animal"
+          ]
+        },
+        {
+          "prompt": "What big balloon did Sam see?",
+          "answer": "a giant turkey balloon",
+          "clue": "It was shaped like the Thanksgiving bird.",
+          "choices": [
+            "a giant turkey balloon",
+            "a big pumpkin balloon",
+            "a giant balloon dog",
+            "a huge balloon snowman"
+          ]
+        },
+        {
+          "prompt": "What did Sam do when he saw it?",
+          "answer": "pointed and laughed",
+          "clue": "He reacted with a happy gesture and sound.",
+          "choices": [
+            "pointed and laughed",
+            "hid under the blanket",
+            "took a picture",
+            "called his friend"
+          ]
+        },
+        {
+          "prompt": "Who sat next to him?",
+          "answer": "his mom",
+          "clue": "The same person who brought the blanket sat beside him.",
+          "choices": [
+            "his mom",
+            "his sister",
+            "his dad",
+            "his grandma"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-3",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Pie Decision",
+      "level": "Simple",
+      "text": "Jordan opened the fridge. He saw pumpkin pie and apple pie. He asked his sister which one he should choose. She told him to try the apple pie. Jordan cut a small slice.",
+      "questions": [
+        {
+          "prompt": "What did Jordan open?",
+          "answer": "the fridge",
+          "clue": "He looked inside the cold place where food is kept.",
+          "choices": [
+            "the fridge",
+            "the oven",
+            "a cupboard",
+            "the pantry door"
+          ]
+        },
+        {
+          "prompt": "What two pies did he see?",
+          "answer": "pumpkin pie and apple pie",
+          "clue": "They were two classic fall pies.",
+          "choices": [
+            "pumpkin pie and apple pie",
+            "cherry pie and pecan pie",
+            "blueberry pie and peach pie",
+            "chocolate pie and lemon pie"
+          ]
+        },
+        {
+          "prompt": "Who did he ask for help?",
+          "answer": "his sister",
+          "clue": "He asked a sibling.",
+          "choices": [
+            "his sister",
+            "his dad",
+            "his friend",
+            "his teacher"
+          ]
+        },
+        {
+          "prompt": "Which pie did she suggest?",
+          "answer": "the apple pie",
+          "clue": "She picked the one with fruit slices.",
+          "choices": [
+            "the apple pie",
+            "the pumpkin pie",
+            "the cherry pie",
+            "the pecan pie"
+          ]
+        },
+        {
+          "prompt": "What did Jordan do at the end?",
+          "answer": "cut a small slice",
+          "clue": "He served himself a little piece.",
+          "choices": [
+            "cut a small slice",
+            "took both pies",
+            "closed the fridge without eating",
+            "burned the pie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-4",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "Setting the Table",
+      "level": "Simple",
+      "text": "Maya placed plates on the table. She added forks and spoons. She put a paper turkey in the middle. Her cousins brought napkins. Soon the table was ready.",
+      "questions": [
+        {
+          "prompt": "What did Maya put on the table first?",
+          "answer": "plates",
+          "clue": "She started with the dishes people eat from.",
+          "choices": [
+            "plates",
+            "cups",
+            "napkins",
+            "glasses"
+          ]
+        },
+        {
+          "prompt": "What did she add next?",
+          "answer": "forks and spoons",
+          "clue": "She set out the utensils.",
+          "choices": [
+            "forks and spoons",
+            "cups",
+            "chairs",
+            "candles"
+          ]
+        },
+        {
+          "prompt": "What did she place in the middle of the table?",
+          "answer": "a paper turkey",
+          "clue": "She added a paper decoration shaped like the main bird.",
+          "choices": [
+            "a paper turkey",
+            "a vase of flowers",
+            "a bowl of fruit",
+            "a candle"
+          ]
+        },
+        {
+          "prompt": "Who brought napkins?",
+          "answer": "her cousins",
+          "clue": "Other kids in the family helped.",
+          "choices": [
+            "her cousins",
+            "her parents",
+            "her neighbor",
+            "her teacher"
+          ]
+        },
+        {
+          "prompt": "What was ready at the end?",
+          "answer": "the table",
+          "clue": "All the place settings were complete.",
+          "choices": [
+            "the table",
+            "the dessert",
+            "the living room",
+            "the dishwasher"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-5",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Turkey Timer",
+      "level": "Simple",
+      "text": "Owen watched the oven clock. The turkey had five minutes left. His grandma told him not to open the door. Owen stood very still. When the timer beeped, he called her right away.",
+      "questions": [
+        {
+          "prompt": "What was Owen watching?",
+          "answer": "the oven clock",
+          "clue": "He kept his eyes on the time for the turkey.",
+          "choices": [
+            "the oven clock",
+            "the TV",
+            "the microwave",
+            "the window"
+          ]
+        },
+        {
+          "prompt": "How many minutes were left?",
+          "answer": "five minutes",
+          "clue": "The turkey needed just a little more time, only one hand number.",
+          "choices": [
+            "five minutes",
+            "ten minutes",
+            "two minutes",
+            "fifteen minutes"
+          ]
+        },
+        {
+          "prompt": "Who told him not to open the door?",
+          "answer": "his grandma",
+          "clue": "An older family member gave the instruction.",
+          "choices": [
+            "his grandma",
+            "his mom",
+            "his dad",
+            "his sister"
+          ]
+        },
+        {
+          "prompt": "What did Owen do while he waited?",
+          "answer": "stood very still",
+          "clue": "He stayed in one spot without moving much.",
+          "choices": [
+            "stood very still",
+            "paced around the kitchen",
+            "played a game",
+            "took a nap"
+          ]
+        },
+        {
+          "prompt": "What happened when the timer beeped?",
+          "answer": "he called her right away",
+          "clue": "He got her attention immediately when it beeped.",
+          "choices": [
+            "he called her right away",
+            "he opened the oven",
+            "he turned off the oven",
+            "he walked outside"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-6",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Pumpkin Patch",
+      "level": "Moderate",
+      "text": "Rosa and her dad walked slowly through the pumpkin patch, taking their time as they looked at each row. She wanted a pumpkin that was small enough for her to carry but still round and bright. After checking several spots, she found one sitting near a wooden fence. Her dad picked it up to make sure it wasn't soft or damaged, then handed it back to her with a smile. They talked about turning it into pie later that evening.",
+      "questions": [
+        {
+          "prompt": "Who walked through the pumpkin patch with Rosa?",
+          "answer": "her dad",
+          "clue": "A parent joined Rosa on the walk.",
+          "choices": [
+            "her dad",
+            "her mom",
+            "her brother",
+            "her friend"
+          ]
+        },
+        {
+          "prompt": "What kind of pumpkin was she looking for?",
+          "answer": "a small, round, bright pumpkin she could carry",
+          "clue": "She wanted one she could lift herself but that still looked nicely shaped.",
+          "choices": [
+            "a small, round, bright pumpkin she could carry",
+            "a huge pumpkin for carving",
+            "a tall skinny pumpkin",
+            "a green unripe pumpkin"
+          ]
+        },
+        {
+          "prompt": "Where did she find the pumpkin she liked?",
+          "answer": "near a wooden fence",
+          "clue": "It was sitting close to a fence.",
+          "choices": [
+            "near a wooden fence",
+            "beside the barn door",
+            "by the hay bales",
+            "next to the wagon"
+          ]
+        },
+        {
+          "prompt": "What did her dad check before giving it to her?",
+          "answer": "that it wasn't soft or damaged",
+          "clue": "He made sure the pumpkin felt firm and healthy.",
+          "choices": [
+            "that it wasn't soft or damaged",
+            "that it cost less",
+            "that it was the biggest",
+            "that it had a long stem"
+          ]
+        },
+        {
+          "prompt": "What did they plan to make with the pumpkin?",
+          "answer": "pie",
+          "clue": "They talked about turning it into dessert later.",
+          "choices": [
+            "pie",
+            "soup",
+            "a jack-o-lantern",
+            "pumpkin bread"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-7",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Leftovers",
+      "level": "Moderate",
+      "text": "After the Thanksgiving meal, Caleb opened several containers to see what was left. He chose a few slices of turkey and placed them neatly on his plate. He added mashed potatoes and a spoonful of stuffing because they were his favorites. Once everything was ready, he warmed the food in the microwave and watched the numbers count down. When he tasted the first bite, he felt glad to have another small holiday meal.",
+      "questions": [
+        {
+          "prompt": "What did Caleb open after the meal?",
+          "answer": "several containers",
+          "clue": "He looked through storage boxes of food.",
+          "choices": [
+            "several containers",
+            "the oven",
+            "a cookbook",
+            "a gift box"
+          ]
+        },
+        {
+          "prompt": "What did he put on his plate first?",
+          "answer": "slices of turkey",
+          "clue": "He started with meat.",
+          "choices": [
+            "slices of turkey",
+            "mashed potatoes",
+            "stuffing",
+            "vegetables"
+          ]
+        },
+        {
+          "prompt": "What two sides did he add?",
+          "answer": "mashed potatoes and stuffing",
+          "clue": "He picked his two favorite soft sides.",
+          "choices": [
+            "mashed potatoes and stuffing",
+            "corn and salad",
+            "bread and soup",
+            "cranberry sauce and green beans"
+          ]
+        },
+        {
+          "prompt": "Where did he warm the food?",
+          "answer": "in the microwave",
+          "clue": "He watched the numbers count down on this appliance.",
+          "choices": [
+            "in the microwave",
+            "on the stove",
+            "in the oven",
+            "on a grill"
+          ]
+        },
+        {
+          "prompt": "How did he feel when he took his first bite?",
+          "answer": "glad to have another small holiday meal",
+          "clue": "He felt happy to enjoy the food again.",
+          "choices": [
+            "glad to have another small holiday meal",
+            "disappointed it was cold",
+            "nervous about the taste",
+            "too full to eat"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-8",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Fall Walk",
+      "level": "Moderate",
+      "text": "After their Thanksgiving meal, Nora and her aunt went outside for a walk to enjoy the cool air. The ground was covered in colorful leaves, and some of them made a soft crunch under their shoes. Nora kicked a small pile just to see the leaves scatter in the air. Her aunt laughed and told her it reminded her of when she was a kid. They continued walking, talking about their favorite parts of the day.",
+      "questions": [
+        {
+          "prompt": "When did Nora and her aunt go for a walk?",
+          "answer": "after their Thanksgiving meal",
+          "clue": "They went outside once they finished eating.",
+          "choices": [
+            "after their Thanksgiving meal",
+            "before breakfast",
+            "late at night",
+            "during a rainstorm"
+          ]
+        },
+        {
+          "prompt": "What covered the ground?",
+          "answer": "colorful leaves",
+          "clue": "The path was layered with fallen leaves.",
+          "choices": [
+            "colorful leaves",
+            "snow",
+            "mud puddles",
+            "pebbles"
+          ]
+        },
+        {
+          "prompt": "What did Nora do with the pile of leaves?",
+          "answer": "kicked a small pile to scatter them",
+          "clue": "She knocked a pile with her foot.",
+          "choices": [
+            "kicked a small pile to scatter them",
+            "sat down in them",
+            "raked them neatly",
+            "put them in a bag"
+          ]
+        },
+        {
+          "prompt": "What did her aunt say it reminded her of?",
+          "answer": "when she was a kid",
+          "clue": "It made her think about her own childhood.",
+          "choices": [
+            "when she was a kid",
+            "a movie",
+            "last summer's trip",
+            "a song"
+          ]
+        },
+        {
+          "prompt": "What did they talk about as they walked?",
+          "answer": "their favorite parts of the day",
+          "clue": "They shared highlights from the day.",
+          "choices": [
+            "their favorite parts of the day",
+            "tomorrow's chores",
+            "news headlines",
+            "what to buy at the store"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-9",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Grocery Run",
+      "level": "Moderate",
+      "text": "Ty picked up the shopping list from the counter and read the items his mom still needed. She asked him to find a package of dinner rolls while she checked the produce section. Ty walked down the bread aisle and scanned the shelves until he spotted the rolls on the top shelf. He reached up, grabbed the package, and carried it back to the cart. His mom thanked him for helping and crossed the item off the list.",
+      "questions": [
+        {
+          "prompt": "What did Ty pick up from the counter?",
+          "answer": "the shopping list",
+          "clue": "He grabbed the note of items they needed.",
+          "choices": [
+            "the shopping list",
+            "a receipt",
+            "his phone",
+            "a coupon"
+          ]
+        },
+        {
+          "prompt": "What did his mom tell him to find?",
+          "answer": "a package of dinner rolls",
+          "clue": "She asked for bread to go with dinner.",
+          "choices": [
+            "a package of dinner rolls",
+            "a gallon of milk",
+            "a bag of apples",
+            "a box of cereal"
+          ]
+        },
+        {
+          "prompt": "Where did Ty look for the rolls?",
+          "answer": "in the bread aisle",
+          "clue": "He walked along the aisle with loaves and buns.",
+          "choices": [
+            "in the bread aisle",
+            "in the freezer section",
+            "by the deli counter",
+            "in the produce area"
+          ]
+        },
+        {
+          "prompt": "Where were the rolls located on the shelf?",
+          "answer": "on the top shelf",
+          "clue": "He had to reach up to get them.",
+          "choices": [
+            "on the top shelf",
+            "on the bottom shelf",
+            "in the middle bin",
+            "behind the counter"
+          ]
+        },
+        {
+          "prompt": "What did his mom do after he brought them back?",
+          "answer": "thanked him and crossed the item off the list",
+          "clue": "She showed appreciation and marked it as done.",
+          "choices": [
+            "thanked him and crossed the item off the list",
+            "asked him to return them",
+            "put them back on the shelf",
+            "told him to find more milk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-10",
+      "sourceFile": "activities/reading/thanksgiving-literal-comprehension-progressive.html",
+      "season": "fall",
+      "title": "The Family Photo",
+      "level": "Moderate",
+      "text": "The whole family gathered in the living room after dinner to take a holiday photo. Uncle Ray balanced his phone on a stack of books to get a good angle, then set a countdown timer. Everyone shifted around until they had a spot, and several people adjusted their shirts or hair. When the flash went off, they all froze for a moment before relaxing again. They checked the picture together and laughed at how one cousin blinked right when the photo was taken.",
+      "questions": [
+        {
+          "prompt": "Where did the family gather for the photo?",
+          "answer": "in the living room",
+          "clue": "They met in the room with couches after dinner.",
+          "choices": [
+            "in the living room",
+            "outside on the porch",
+            "in the kitchen",
+            "in the backyard"
+          ]
+        },
+        {
+          "prompt": "What did Uncle Ray balance his phone on?",
+          "answer": "a stack of books",
+          "clue": "He used some books to prop up his phone.",
+          "choices": [
+            "a stack of books",
+            "a chair",
+            "a tripod",
+            "a shelf"
+          ]
+        },
+        {
+          "prompt": "What did everyone do before the picture was taken?",
+          "answer": "found a spot and adjusted their shirts or hair",
+          "clue": "They moved into position and fixed how they looked.",
+          "choices": [
+            "found a spot and adjusted their shirts or hair",
+            "ate dessert",
+            "left the room",
+            "started a video call"
+          ]
+        },
+        {
+          "prompt": "What happened when the flash went off?",
+          "answer": "they all froze for a moment",
+          "clue": "They held still at the exact moment of the photo.",
+          "choices": [
+            "they all froze for a moment",
+            "they closed their eyes to rest",
+            "they ran out of the room",
+            "they waved at the camera"
+          ]
+        },
+        {
+          "prompt": "Why did they laugh when they looked at the photo?",
+          "answer": "one cousin blinked right when the photo was taken",
+          "clue": "They noticed a relative had eyes closed in the shot.",
+          "choices": [
+            "one cousin blinked right when the photo was taken",
+            "the picture was blurry",
+            "the phone fell over",
+            "someone was not in the frame"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-thanksgiving-nonfiction-summary-organizer-001",
+      "sourceFile": "activities/reading/thanksgiving-nonfiction-summary-organizer.html",
+      "season": "fall",
+      "title": "Why Turkey Became the Main Dish",
+      "paragraphs": [
+        "Early Thanksgiving meals did not always feature turkey. Colonists and Native peoples ate deer, fish, and corn. By the 1800s, turkeys became common because they were large enough to feed many people and were easy to raise on farms.",
+        "Writers and newspapers helped make turkey the star of the holiday meal. Recipes showed simple ways to roast the bird, and families liked that one turkey could serve a crowd. Today, millions of turkeys are grown each fall for Thanksgiving tables across the country."
+      ],
+      "mainIdeaOptions": [
+        "Turkey became the main Thanksgiving dish because it fed many people and was promoted over time.",
+        "Colonists only ate fish for every holiday meal.",
+        "Modern Thanksgiving dinners do not include any meat."
+      ],
+      "clueWords": [
+        "colonists",
+        "1800s",
+        "large bird",
+        "holiday meal"
+      ],
+      "frameHints": {
+        "topic": "how turkey became the main dish",
+        "purpose": "to explain why turkey is served on Thanksgiving",
+        "key": "turkey was practical and then widely promoted"
+      }
+    },
+    {
+      "id": "parade",
+      "sourceFile": "activities/reading/thanksgiving-nonfiction-summary-organizer.html",
+      "season": "fall",
+      "title": "Macy's Thanksgiving Day Parade",
+      "paragraphs": [
+        "The Macy's Thanksgiving Day Parade began in New York City in 1924. Store employees dressed in costumes and marched to celebrate the holiday and the start of the shopping season. Large animal balloons were added a few years later to draw bigger crowds.",
+        "Television made the parade famous across the country. Today, the route is about two and a half miles long, and giant character balloons require many handlers. The parade still ends at the Macy's store to signal the beginning of winter shopping."
+      ],
+      "mainIdeaOptions": [
+        "The Macy's parade started in 1924 and grew with balloons and TV to mark the holiday shopping season.",
+        "The parade began last year and only uses paper decorations.",
+        "The route is short because the city does not allow balloons."
+      ],
+      "clueWords": [
+        "1924",
+        "New York City",
+        "balloons",
+        "shopping season"
+      ],
+      "frameHints": {
+        "topic": "the history of the Macy's parade",
+        "purpose": "to show how the parade became a tradition",
+        "key": "media and balloons helped it grow"
+      }
+    },
+    {
+      "id": "cranberry",
+      "sourceFile": "activities/reading/thanksgiving-nonfiction-summary-organizer.html",
+      "season": "fall",
+      "title": "Cranberry Sauce on the Table",
+      "paragraphs": [
+        "Cranberries are native to North America and grow in wet bogs. Wampanoag and other Native peoples used the tart berries in food and medicine. When European settlers arrived, they learned to harvest cranberries in the fall.",
+        "By the early 1900s, companies began canning cranberry sauce, making it easy to serve. Families liked the bright color and sweet-tart taste alongside turkey and stuffing. Today, cranberry sauce is a common side dish at many Thanksgiving meals."
+      ],
+      "mainIdeaOptions": [
+        "Cranberry sauce became a Thanksgiving side because the native berry was easy to harvest and later easy to can.",
+        "Cranberries only grow in deserts far from water.",
+        "People avoid cranberries because they are too hard to cook."
+      ],
+      "clueWords": [
+        "native berry",
+        "bogs",
+        "canned",
+        "side dish"
+      ],
+      "frameHints": {
+        "topic": "how cranberries became a Thanksgiving side",
+        "purpose": "to explain why cranberry sauce is common",
+        "key": "local berries plus canning made it popular"
+      }
+    },
+    {
+      "id": "food-drive",
+      "sourceFile": "activities/reading/thanksgiving-nonfiction-summary-organizer.html",
+      "season": "fall",
+      "title": "Thanksgiving Food Drives",
+      "paragraphs": [
+        "Many schools and community groups run food drives in November. They collect canned vegetables, boxed stuffing, and other shelf-stable foods. These items go to food pantries that prepare boxes for families before the holiday.",
+        "Food drives often set goals based on the number of meals they want to support. Volunteers sort donations by type and check dates. Local businesses may match donations with money to buy fresh produce. Together, these efforts help more households have a full Thanksgiving meal."
+      ],
+      "mainIdeaOptions": [
+        "Thanksgiving food drives gather shelf-stable items and funds so pantries can give full meal boxes to families.",
+        "Food drives only accept fresh pies from restaurants.",
+        "Pantries do not organize donations before sharing them."
+      ],
+      "clueWords": [
+        "food drives",
+        "pantries",
+        "donations",
+        "meal boxes"
+      ],
+      "frameHints": {
+        "topic": "how food drives support Thanksgiving meals",
+        "purpose": "to show how donations reach families",
+        "key": "organized collecting and sorting fills meal boxes"
+      }
+    },
+    {
+      "id": "safety",
+      "sourceFile": "activities/reading/thanksgiving-nonfiction-summary-organizer.html",
+      "season": "fall",
+      "title": "Thanksgiving Kitchen Safety",
+      "paragraphs": [
+        "Cooking large holiday meals requires careful food safety. Raw turkey can contain bacteria, so it should stay separate from vegetables and be kept in the refrigerator until cooking time. Clean cutting boards and washing hands reduce the spread of germs.",
+        "A food thermometer checks that turkey reaches a safe temperature of 165°F. Leftovers should be cooled in shallow containers and placed in the fridge within two hours. Following these steps lowers the chance of foodborne illness during Thanksgiving."
+      ],
+      "mainIdeaOptions": [
+        "Simple food safety steps, like separation and proper cooking, keep Thanksgiving meals safe to eat.",
+        "Turkeys never need to be refrigerated before cooking.",
+        "Leftovers can stay on the counter all day without risk."
+      ],
+      "clueWords": [
+        "165°F",
+        "separate",
+        "refrigerate",
+        "leftovers"
+      ],
+      "frameHints": {
+        "topic": "food safety for the holiday meal",
+        "purpose": "to prevent illness from germs",
+        "key": "safe handling and cooking protect families"
+      }
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-001",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Snowman vs Snowball",
+      "a": "Snowman",
+      "b": "Snowball",
+      "imageA": "../../images/objects/snowman.jpg",
+      "imageB": "../../images/objects/snowball.jpg",
+      "facts": [
+        {
+          "text": "has a body",
+          "target": "a"
+        },
+        {
+          "text": "stands up",
+          "target": "a"
+        },
+        {
+          "text": "small",
+          "target": "b"
+        },
+        {
+          "text": "easy to throw",
+          "target": "b"
+        },
+        {
+          "text": "made of snow",
+          "target": "both"
+        },
+        {
+          "text": "cold",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-002",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Mitten vs Glove",
+      "a": "Mitten",
+      "b": "Glove",
+      "imageA": "../../images/clothing/mittens.png",
+      "imageB": "../../images/clothing/gloves.png",
+      "facts": [
+        {
+          "text": "one space for fingers",
+          "target": "a"
+        },
+        {
+          "text": "warm",
+          "target": "a"
+        },
+        {
+          "text": "separate fingers",
+          "target": "b"
+        },
+        {
+          "text": "good for gripping",
+          "target": "b"
+        },
+        {
+          "text": "worn on hands",
+          "target": "both"
+        },
+        {
+          "text": "used in winter",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-003",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Ice Skates vs Boots",
+      "a": "Ice skates",
+      "b": "Boots",
+      "imageA": "../../images/objects/ice_skates.jpg",
+      "imageB": "../../images/clothing/boots.png",
+      "facts": [
+        {
+          "text": "have blades",
+          "target": "a"
+        },
+        {
+          "text": "used on ice",
+          "target": "a"
+        },
+        {
+          "text": "have thick soles",
+          "target": "b"
+        },
+        {
+          "text": "used for walking",
+          "target": "b"
+        },
+        {
+          "text": "worn on feet",
+          "target": "both"
+        },
+        {
+          "text": "protect from cold",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-004",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Sled vs Snowboard",
+      "a": "Sled",
+      "b": "Snowboard",
+      "imageA": "../../images/objects/sled.jpg",
+      "imageB": "../../images/objects/snowboard.jpg",
+      "facts": [
+        {
+          "text": "can sit on it",
+          "target": "a"
+        },
+        {
+          "text": "can carry more than one person",
+          "target": "a"
+        },
+        {
+          "text": "you stand on it",
+          "target": "b"
+        },
+        {
+          "text": "used for tricks or sliding",
+          "target": "b"
+        },
+        {
+          "text": "slide on snow",
+          "target": "both"
+        },
+        {
+          "text": "used for fun",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-005",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Hot Chocolate vs Warm Tea",
+      "a": "Hot chocolate",
+      "b": "Warm tea",
+      "imageA": "../../images/compare_contrast_seasonal/hot_chocolate_1.jpg",
+      "imageB": "../../images/food/warm_tea.jpg",
+      "facts": [
+        {
+          "text": "sweet",
+          "target": "a"
+        },
+        {
+          "text": "made with cocoa",
+          "target": "a"
+        },
+        {
+          "text": "mild flavor",
+          "target": "b"
+        },
+        {
+          "text": "made with leaves",
+          "target": "b"
+        },
+        {
+          "text": "warm drinks",
+          "target": "both"
+        },
+        {
+          "text": "good on cold days",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-006",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Snow Shovel vs Broom",
+      "a": "Snow shovel",
+      "b": "Broom",
+      "imageA": "../../images/objects/snow-shovel.jpg",
+      "imageB": "../../images/objects/broom.jpg",
+      "facts": [
+        {
+          "text": "scoops snow",
+          "target": "a"
+        },
+        {
+          "text": "heavy",
+          "target": "a"
+        },
+        {
+          "text": "sweeps light things",
+          "target": "b"
+        },
+        {
+          "text": "light to hold",
+          "target": "b"
+        },
+        {
+          "text": "used for cleaning",
+          "target": "both"
+        },
+        {
+          "text": "held with hands",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-007",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Puffy Coat vs Raincoat",
+      "a": "Puffy coat",
+      "b": "Raincoat",
+      "imageA": "../../images/clothing/winter-coat.png",
+      "imageB": "../../images/clothing/raincoat.jpg",
+      "facts": [
+        {
+          "text": "filled with padding",
+          "target": "a"
+        },
+        {
+          "text": "very warm",
+          "target": "a"
+        },
+        {
+          "text": "thin",
+          "target": "b"
+        },
+        {
+          "text": "keeps water out",
+          "target": "b"
+        },
+        {
+          "text": "worn outdoors",
+          "target": "both"
+        },
+        {
+          "text": "protect your body",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-008",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Ice vs Snow",
+      "a": "Ice",
+      "b": "Snow",
+      "imageA": "../../images/nature/ice_1.jpg",
+      "imageB": "../../images/nature/snow.jpg",
+      "facts": [
+        {
+          "text": "hard",
+          "target": "a"
+        },
+        {
+          "text": "smooth",
+          "target": "a"
+        },
+        {
+          "text": "soft",
+          "target": "b"
+        },
+        {
+          "text": "fluffy",
+          "target": "b"
+        },
+        {
+          "text": "cold",
+          "target": "both"
+        },
+        {
+          "text": "made of water",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-009",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Penguin vs Polar Bear",
+      "a": "Penguin",
+      "b": "Polar bear",
+      "imageA": "../../images/animals/penguins.jpg",
+      "imageB": "../../images/animals/polar_bear.jpg",
+      "facts": [
+        {
+          "text": "has flippers",
+          "target": "a"
+        },
+        {
+          "text": "waddles",
+          "target": "a"
+        },
+        {
+          "text": "has paws",
+          "target": "b"
+        },
+        {
+          "text": "walks on four legs",
+          "target": "b"
+        },
+        {
+          "text": "live in cold places",
+          "target": "both"
+        },
+        {
+          "text": "thick bodies to stay warm",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-compare-contrast-drag-010",
+      "sourceFile": "activities/reading/winter-compare-contrast-drag.html",
+      "season": "winter",
+      "title": "Scarf vs Hat",
+      "a": "Scarf",
+      "b": "Hat",
+      "imageA": "../../images/clothing/scarf.png",
+      "imageB": "../../images/clothing/winter-hat.jpg",
+      "facts": [
+        {
+          "text": "wraps around neck",
+          "target": "a"
+        },
+        {
+          "text": "long",
+          "target": "a"
+        },
+        {
+          "text": "sits on head",
+          "target": "b"
+        },
+        {
+          "text": "round",
+          "target": "b"
+        },
+        {
+          "text": "clothing for winter",
+          "target": "both"
+        },
+        {
+          "text": "keep you warm",
+          "target": "both"
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-001",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Snowy Shortcut",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_1.png",
+      "alt": "A snowy path behind a library with a bench",
+      "text": "Lena took a new path home after school because the usual sidewalk was blocked by a large pile of snow. The shortcut led behind the old library, where the wind was stronger and the ground was icy. Halfway through, she saw a small stray cat shivering under a bench. She stopped walking and tried to coax it toward her, unsure what to do next.",
+      "literal": [
+        {
+          "prompt": "Who is the main character?",
+          "hint": "Look for the name at the start.",
+          "choices": [
+            "Lena",
+            "Maya",
+            "Weston",
+            "Erin"
+          ]
+        },
+        {
+          "prompt": "What was blocked by snow?",
+          "hint": "Think about what she normally walks on.",
+          "choices": [
+            "The sidewalk",
+            "The road",
+            "The store",
+            "The bus stop"
+          ]
+        },
+        {
+          "prompt": "Where did the shortcut go?",
+          "hint": "It went behind a building.",
+          "choices": [
+            "Behind the old library",
+            "Behind a house",
+            "Behind the school",
+            "Behind a store"
+          ]
+        },
+        {
+          "prompt": "What animal did Lena see?",
+          "hint": "It was shivering under a bench.",
+          "choices": [
+            "A cat",
+            "A dog",
+            "A squirrel",
+            "A rabbit"
+          ]
+        },
+        {
+          "prompt": "When did Lena take the shortcut?",
+          "hint": "Look for when she was walking home.",
+          "choices": [
+            "After school",
+            "Early in the morning",
+            "Late at night",
+            "During lunch"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why is the cat shivering?",
+          "hint": "Think about the cold, snowy shortcut.",
+          "choices": [
+            "Because it is cold outside",
+            "Because it is very excited",
+            "Because it is full of energy",
+            "Because it is covered in paint"
+          ]
+        },
+        {
+          "prompt": "How does Lena probably feel when she sees the cat?",
+          "hint": "She notices the cat is alone in the snow.",
+          "choices": [
+            "Caring and worried",
+            "Angry at the cat",
+            "Silly about the snow",
+            "Not interested at all"
+          ]
+        },
+        {
+          "prompt": "Why did Lena stop walking?",
+          "hint": "What made her pause in the icy shortcut?",
+          "choices": [
+            "She saw the cold cat",
+            "She wanted to tie her shoe",
+            "She got a text message",
+            "She heard music"
+          ]
+        },
+        {
+          "prompt": "What is Lena unsure about?",
+          "hint": "She does not know the best way to help.",
+          "choices": [
+            "How to help the cat",
+            "Which shortcut to take tomorrow",
+            "What homework she has",
+            "Where to buy boots"
+          ]
+        },
+        {
+          "prompt": "How does the icy ground change her choices?",
+          "hint": "Ice can make walking slow.",
+          "choices": [
+            "She might need to move slowly and be careful",
+            "She can run very fast",
+            "She can ride a bike there",
+            "She can sit and relax"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will Lena probably do to keep the cat safe?",
+          "hint": "Think about getting the cat somewhere warmer.",
+          "choices": [
+            "She will look for an adult or a warm spot to help the cat",
+            "She will leave the cat in the snow all night",
+            "She will go ice skating with the cat",
+            "She will ignore the cat and run home fast"
+          ]
+        },
+        {
+          "prompt": "If the sidewalk stays blocked tomorrow, what will Lena most likely do?",
+          "hint": "She already tried a different path today.",
+          "choices": [
+            "She will use the shortcut behind the library again",
+            "She will skip school completely",
+            "She will fly to class",
+            "She will drive a bus herself"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "Look at the first sentence for the name.",
+          "slot": "character",
+          "choices": [
+            "Lena",
+            "Maya",
+            "Mira",
+            "Aria"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about why she tried the shortcut.",
+          "slot": "want",
+          "choices": [
+            "Find a quick way home",
+            "Buy a snack",
+            "Build a snow fort",
+            "Ride the bus"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "Something was in the way and very cold.",
+          "slot": "problem",
+          "choices": [
+            "Snow blocked the sidewalk and the path was icy",
+            "She forgot her homework",
+            "The store was closed",
+            "Her phone was loud"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "She stopped when she saw the cat.",
+          "slot": "solution",
+          "choices": [
+            "She stopped and tried to call the cold cat closer",
+            "She ran past everything",
+            "She called a taxi",
+            "She went back to school"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about what happened after she paused.",
+          "slot": "result",
+          "choices": [
+            "She paused with the cat, still thinking what to do next",
+            "She forgot about the cat",
+            "She left the path right away",
+            "She took a bus home"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "blocked",
+          "clue": "Stopped from moving through.",
+          "context": "The usual sidewalk was <span class=\"highlight-word\">blocked</span> by a large pile of snow.",
+          "choices": [
+            "stopped",
+            "open",
+            "fast"
+          ]
+        },
+        {
+          "word": "shortcut",
+          "clue": "A faster way.",
+          "context": "The <span class=\"highlight-word\">shortcut</span> led behind the old library.",
+          "choices": [
+            "quick path",
+            "long road",
+            "busy place"
+          ]
+        },
+        {
+          "word": "shivering",
+          "clue": "Your body shakes from cold.",
+          "context": "She saw a small stray cat <span class=\"highlight-word\">shivering</span> under a bench.",
+          "choices": [
+            "shaking",
+            "sleeping",
+            "smiling"
+          ]
+        },
+        {
+          "word": "unsure",
+          "clue": "Not certain.",
+          "context": "She stopped walking and tried to coax it toward her, <span class=\"highlight-word\">unsure</span> what to do next.",
+          "choices": [
+            "not certain",
+            "very confident",
+            "loud"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "blocked",
+          "clue": "Something is in the way.",
+          "context": "The usual sidewalk was <span class=\"highlight-word\">blocked</span> by a large pile of snow.",
+          "choices": [
+            "Not able to pass",
+            "Easy to move through",
+            "Moving quickly"
+          ]
+        },
+        {
+          "word": "coax",
+          "clue": "Try to get someone to do something.",
+          "context": "She stopped walking and tried to <span class=\"highlight-word\">coax</span> it toward her.",
+          "choices": [
+            "Gently urge someone",
+            "Ignore someone",
+            "Push someone away"
+          ]
+        },
+        {
+          "word": "shivering",
+          "clue": "Your body is moving because of cold.",
+          "context": "She saw a small stray cat <span class=\"highlight-word\">shivering</span> under a bench.",
+          "choices": [
+            "Standing still",
+            "Shaking from cold",
+            "Breathing fast"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-002",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Frozen Window Pattern",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_2.png",
+      "alt": "Frost shapes on a bedroom window",
+      "text": "Jamal woke up and saw strange patterns on his bedroom window. The frost made shapes that looked like trees and mountains. He pressed his hand to the glass and wondered if the shapes meant the weather was getting colder. His mom called him downstairs to help warm the car before school, but he kept thinking about the designs.",
+      "literal": [
+        {
+          "prompt": "Who saw the frost patterns?",
+          "hint": "Look for the name at the beginning.",
+          "choices": [
+            "Jamal",
+            "Eli",
+            "Rowan",
+            "Mateo"
+          ]
+        },
+        {
+          "prompt": "What did Jamal see on his window?",
+          "hint": "It looked like trees and mountains.",
+          "choices": [
+            "Frost patterns",
+            "Rain drops",
+            "Stickers",
+            "Dirt"
+          ]
+        },
+        {
+          "prompt": "Where was Jamal when he saw the shapes?",
+          "hint": "Think of a room in a house.",
+          "choices": [
+            "His bedroom",
+            "The kitchen",
+            "The bus",
+            "The library"
+          ]
+        },
+        {
+          "prompt": "What did his mom ask him to help with?",
+          "hint": "It had to do with the car.",
+          "choices": [
+            "Warming the car",
+            "Washing the dishes",
+            "Doing homework",
+            "Feeding the dog"
+          ]
+        },
+        {
+          "prompt": "When did this happen?",
+          "hint": "Think about when he woke up.",
+          "choices": [
+            "In the morning",
+            "At lunchtime",
+            "Late at night",
+            "After school"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why are there frost shapes on the window?",
+          "hint": "Cold air can freeze water on glass into patterns.",
+          "choices": [
+            "Cold air froze water on the window",
+            "Someone painted the shapes",
+            "Jamal drew them with a marker",
+            "Stickers made the shapes"
+          ]
+        },
+        {
+          "prompt": "How does Jamal likely feel when he sees the shapes?",
+          "hint": "He is seeing something new on his window.",
+          "choices": [
+            "Curious or amazed",
+            "Angry at the window",
+            "Bored and sleepy",
+            "Scared of loud noise"
+          ]
+        },
+        {
+          "prompt": "Why does Jamal press his hand to the glass?",
+          "hint": "He wants to check the temperature.",
+          "choices": [
+            "To feel how cold it is",
+            "To wipe the window clean",
+            "To block the sunlight",
+            "To open it fast"
+          ]
+        },
+        {
+          "prompt": "What is Jamal wondering about the weather?",
+          "hint": "He connects the frost to the air outside.",
+          "choices": [
+            "If it is getting colder",
+            "If lunch is ready",
+            "If he lost a toy",
+            "If he should watch TV now"
+          ]
+        },
+        {
+          "prompt": "Why does his mom want the car warmed up?",
+          "hint": "Think about winter mornings.",
+          "choices": [
+            "Because the car is cold in winter",
+            "Because the car is too hot",
+            "Because the car is out of gas",
+            "Because the car is dirty"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will Jamal likely do after helping warm the car?",
+          "hint": "Think about what was still on his mind.",
+          "choices": [
+            "He will keep thinking about the frost patterns and maybe talk about them",
+            "He will forget winter exists",
+            "He will paint the whole window red",
+            "He will refuse to go to school ever again"
+          ]
+        },
+        {
+          "prompt": "If the frost shows up again tomorrow morning, what might Jamal do?",
+          "hint": "He is curious about the shapes.",
+          "choices": [
+            "He will check the window for new shapes again",
+            "He will cover the window so he cannot see it",
+            "He will close his eyes all morning",
+            "He will throw snowballs at the window"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "Check the start for the name.",
+          "slot": "character",
+          "choices": [
+            "Jamal",
+            "Eli",
+            "Rowan",
+            "Mateo"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about the frosty window.",
+          "slot": "want",
+          "choices": [
+            "Know what the frost shapes meant",
+            "Go back to sleep",
+            "Open the window wide",
+            "Find a lost toy"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "He had a question about the weather.",
+          "slot": "problem",
+          "choices": [
+            "He did not know why the frost was there",
+            "He forgot his lunch",
+            "The window was broken",
+            "He could not find his shoes"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "He tried to check the cold glass.",
+          "slot": "solution",
+          "choices": [
+            "He touched the window and kept thinking while going to warm the car",
+            "He yelled at the frost",
+            "He wiped the whole window clean",
+            "He ignored the frost"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about what he did after seeing the shapes.",
+          "slot": "result",
+          "choices": [
+            "He went to help warm the car and still wondered about the designs",
+            "He forgot all about the patterns",
+            "He stayed home from school",
+            "He broke the glass"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "patterns",
+          "clue": "Repeating designs.",
+          "context": "Jamal woke up and saw strange <span class=\"highlight-word\">patterns</span> on his bedroom window.",
+          "choices": [
+            "designs",
+            "sounds",
+            "smells"
+          ]
+        },
+        {
+          "word": "wondered",
+          "clue": "Had a question.",
+          "context": "He pressed his hand to the glass and <span class=\"highlight-word\">wondered</span> if the shapes meant the weather was getting colder.",
+          "choices": [
+            "thought",
+            "yelled",
+            "ran"
+          ]
+        },
+        {
+          "word": "strange",
+          "clue": "Not usual.",
+          "context": "Jamal woke up and saw <span class=\"highlight-word\">strange</span> patterns on his bedroom window.",
+          "choices": [
+            "unusual",
+            "normal",
+            "boring"
+          ]
+        },
+        {
+          "word": "colder",
+          "clue": "More cold.",
+          "context": "He wondered if the shapes meant the weather was getting <span class=\"highlight-word\">colder</span>.",
+          "choices": [
+            "chillier",
+            "brighter",
+            "louder"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "patterns",
+          "clue": "Designs that show up again and again.",
+          "context": "Jamal woke up and saw strange <span class=\"highlight-word\">patterns</span> on his bedroom window.",
+          "choices": [
+            "Repeating designs",
+            "Random sounds",
+            "Bright lights"
+          ]
+        },
+        {
+          "word": "frost",
+          "clue": "A thin layer on very cold glass or ground.",
+          "context": "The <span class=\"highlight-word\">frost</span> made shapes that looked like trees and mountains.",
+          "choices": [
+            "Hot air",
+            "Thin ice",
+            "Wet snow"
+          ]
+        },
+        {
+          "word": "wondered",
+          "clue": "You have a question in your mind.",
+          "context": "He pressed his hand to the glass and <span class=\"highlight-word\">wondered</span> if the shapes meant the weather was getting colder.",
+          "choices": [
+            "Thought or questioned",
+            "Yelled loudly",
+            "Forgot quickly"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-003",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Light in the Woods",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_3.png",
+      "alt": "A glowing lantern under snowy trees",
+      "text": "During a quiet walk in the woods, Mira noticed a soft blue light shining under the snow near a fallen log. She brushed the snow away and found a tiny lantern someone must have dropped. She wanted to return it, but she was not sure who it belonged to. She picked it up and headed toward the trail sign in case someone came looking.",
+      "literal": [
+        {
+          "prompt": "Who found the lantern?",
+          "hint": "Look for the girl's name.",
+          "choices": [
+            "Mira",
+            "Aria",
+            "Tasha",
+            "Lena"
+          ]
+        },
+        {
+          "prompt": "What did Mira find under the snow?",
+          "hint": "It gave off light.",
+          "choices": [
+            "A small lantern",
+            "A book",
+            "A hat",
+            "A map"
+          ]
+        },
+        {
+          "prompt": "Where was Mira walking?",
+          "hint": "Think of a outdoor place with trees.",
+          "choices": [
+            "In the woods",
+            "In a classroom",
+            "In her kitchen",
+            "In the store"
+          ]
+        },
+        {
+          "prompt": "What covered the lantern at first?",
+          "hint": "It is cold and white.",
+          "choices": [
+            "Snow",
+            "Leaves",
+            "Water",
+            "Mud"
+          ]
+        },
+        {
+          "prompt": "When did Mira plan to look for the owner?",
+          "hint": "She headed toward something that helps people find their way.",
+          "choices": [
+            "When she walked to the trail sign",
+            "When she got home",
+            "When school ended",
+            "When she reached the store"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why might the lantern be under the snow?",
+          "hint": "Think of someone walking on the trail.",
+          "choices": [
+            "Someone dropped it by accident",
+            "Someone hid it on purpose",
+            "It grew there",
+            "It was part of the tree"
+          ]
+        },
+        {
+          "prompt": "How does Mira likely feel when she finds it?",
+          "hint": "She did not expect to see a light.",
+          "choices": [
+            "Surprised and curious",
+            "Mad at the snow",
+            "Ready to go home right away",
+            "Scared of the trees"
+          ]
+        },
+        {
+          "prompt": "Why does she carry the lantern with her?",
+          "hint": "She wants it to get back to the right person.",
+          "choices": [
+            "To return it to the owner",
+            "To hide it in her bag",
+            "To sell it online",
+            "To play a trick"
+          ]
+        },
+        {
+          "prompt": "What problem does Mira have to solve?",
+          "hint": "She needs to know whose lantern it is.",
+          "choices": [
+            "She does not know who owns it",
+            "She forgot her lunch",
+            "She cannot read the map",
+            "She is late for dinner"
+          ]
+        },
+        {
+          "prompt": "Why is the light interesting?",
+          "hint": "It is still bright under snow.",
+          "choices": [
+            "It keeps glowing even in the cold",
+            "It plays music",
+            "It changes into a toy",
+            "It smells like cookies"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will Mira probably do when she reaches the trail sign?",
+          "hint": "She wants to give the lantern back.",
+          "choices": [
+            "She will wait near the sign to see if someone comes looking",
+            "She will bury the lantern again",
+            "She will throw the lantern into the air",
+            "She will forget about the lantern and run home"
+          ]
+        },
+        {
+          "prompt": "If no one comes for the lantern, what might Mira do next?",
+          "hint": "Think about who else could keep it safe.",
+          "choices": [
+            "She will bring it to a park worker or another adult",
+            "She will leave it in the snow forever",
+            "She will smash it on a rock",
+            "She will toss it in a river"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "Look for the girl who found the light.",
+          "slot": "character",
+          "choices": [
+            "Mira",
+            "Aria",
+            "Tasha",
+            "Lena"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about the lantern.",
+          "slot": "want",
+          "choices": [
+            "Return the tiny lantern to its owner",
+            "Hide the lantern",
+            "Throw the lantern away",
+            "Sell the lantern"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "She was not sure about something important.",
+          "slot": "problem",
+          "choices": [
+            "She did not know who owned it",
+            "She was late for lunch",
+            "She lost her shoes",
+            "She forgot the trail map"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "She moved toward a place with signs.",
+          "slot": "solution",
+          "choices": [
+            "She picked it up and walked to the trail sign to find the owner",
+            "She buried it in the snow",
+            "She left it on the log",
+            "She threw it in the air"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about what she hoped would happen next.",
+          "slot": "result",
+          "choices": [
+            "She carried the lantern, hoping someone would come for it",
+            "She forgot about the lantern",
+            "She broke the lantern",
+            "She dropped the lantern back in the snow"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "noticed",
+          "clue": "Saw.",
+          "context": "During a quiet walk in the woods, Mira <span class=\"highlight-word\">noticed</span> a soft blue light shining under the snow.",
+          "choices": [
+            "saw",
+            "forgot",
+            "dropped"
+          ]
+        },
+        {
+          "word": "glowing",
+          "clue": "Giving off light.",
+          "context": "She noticed a soft blue light <span class=\"highlight-word\">glowing</span> under the snow near a fallen log.",
+          "choices": [
+            "shining",
+            "dark",
+            "quiet"
+          ]
+        },
+        {
+          "word": "unsure",
+          "clue": "Not sure.",
+          "context": "She wanted to return it, but she was <span class=\"highlight-word\">unsure</span> who it belonged to.",
+          "choices": [
+            "not sure",
+            "ready",
+            "proud"
+          ]
+        },
+        {
+          "word": "trail",
+          "clue": "Path outdoors.",
+          "context": "She picked it up and headed toward the <span class=\"highlight-word\">trail</span> sign in case someone came looking.",
+          "choices": [
+            "path",
+            "room",
+            "wall"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "lantern",
+          "clue": "A light you can carry.",
+          "context": "She brushed the snow away and found a tiny <span class=\"highlight-word\">lantern</span> someone must have dropped.",
+          "choices": [
+            "A light you hold",
+            "A tool for digging",
+            "A warm coat"
+          ]
+        },
+        {
+          "word": "glowing",
+          "clue": "It gives off a soft light.",
+          "context": "She noticed a soft blue light <span class=\"highlight-word\">glowing</span> under the snow near a fallen log.",
+          "choices": [
+            "Making soft light",
+            "Making loud sound",
+            "Making strong wind"
+          ]
+        },
+        {
+          "word": "trail",
+          "clue": "An outside path people follow.",
+          "context": "She picked it up and headed toward the <span class=\"highlight-word\">trail</span> sign in case someone came looking.",
+          "choices": [
+            "An outside path",
+            "A big wall",
+            "A high mountain"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-004",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Skating Lesson",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_4.png",
+      "alt": "Two people ice skating at an outdoor rink",
+      "text": "Eli agreed to help his younger cousin learn how to ice skate at the outdoor rink. The ice was a little bumpy from last night's snow, and they both slipped a few times. Eli tried to stay patient and showed his cousin how to glide instead of stepping. His cousin held tightly to his coat, afraid of falling again.",
+      "literal": [
+        {
+          "prompt": "Who is helping his cousin skate?",
+          "hint": "Look for the older boy's name.",
+          "choices": [
+            "Eli",
+            "Jamal",
+            "Rowan",
+            "Weston"
+          ]
+        },
+        {
+          "prompt": "What are they trying to do?",
+          "hint": "Think of the ice.",
+          "choices": [
+            "Learn to skate",
+            "Do homework",
+            "Build a snowman",
+            "Ride bikes"
+          ]
+        },
+        {
+          "prompt": "Where are they practicing?",
+          "hint": "It is outside.",
+          "choices": [
+            "At an outdoor rink",
+            "At school",
+            "In a gym",
+            "In the backyard"
+          ]
+        },
+        {
+          "prompt": "What made the ice harder to skate on?",
+          "hint": "Snow fell last night.",
+          "choices": [
+            "It was bumpy",
+            "It was colorful",
+            "It was warm",
+            "It was dry"
+          ]
+        },
+        {
+          "prompt": "What does the cousin hold onto?",
+          "hint": "He is scared of falling.",
+          "choices": [
+            "Eli's coat",
+            "A tree",
+            "A bench",
+            "A rope"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why is the cousin nervous on the ice?",
+          "hint": "He does not want to fall down.",
+          "choices": [
+            "He might slip and fall",
+            "He wants a snack",
+            "He lost his hat",
+            "He is late for class"
+          ]
+        },
+        {
+          "prompt": "How is Eli showing patience?",
+          "hint": "Notice how he teaches.",
+          "choices": [
+            "He teaches slowly and calmly",
+            "He yells at his cousin",
+            "He skates away alone",
+            "He sits and ignores him"
+          ]
+        },
+        {
+          "prompt": "Why do they slip sometimes?",
+          "hint": "Think about the ice surface.",
+          "choices": [
+            "The ice is bumpy and uneven",
+            "Their coats are too big",
+            "The music is too loud",
+            "They are wearing boots"
+          ]
+        },
+        {
+          "prompt": "How might the cousin feel when Eli holds his coat?",
+          "hint": "Someone is helping him balance.",
+          "choices": [
+            "Safer and braver",
+            "Angry at Eli",
+            "Silly about the snow",
+            "Sleepy"
+          ]
+        },
+        {
+          "prompt": "Why are they practicing at the rink?",
+          "hint": "Think about what is needed for skating.",
+          "choices": [
+            "The rink has ice made for skating",
+            "It is close to a store",
+            "It has a snack bar",
+            "It is warm like summer"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will Eli keep doing to help his cousin skate?",
+          "hint": "Think about how he was teaching.",
+          "choices": [
+            "He will keep guiding him to glide smoothly and stay patient",
+            "He will stop helping and play video games",
+            "He will make the ice bumpier on purpose",
+            "He will push his cousin so he falls"
+          ]
+        },
+        {
+          "prompt": "After some practice, what might his cousin be able to do?",
+          "hint": "Think about improving on the ice.",
+          "choices": [
+            "He will skate with more balance on his own",
+            "He will forget how to stand",
+            "He will fly off the rink",
+            "He will never step on ice again"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "He was the older helper.",
+          "slot": "character",
+          "choices": [
+            "Eli",
+            "Jamal",
+            "Rowan",
+            "Weston"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about the ice lesson.",
+          "slot": "want",
+          "choices": [
+            "Help his cousin learn to skate",
+            "Buy skates at a store",
+            "Watch a movie",
+            "Build a snow fort"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "The ice did not make it easy.",
+          "slot": "problem",
+          "choices": [
+            "The ice was bumpy and his cousin kept slipping",
+            "They had no helmets",
+            "They were hungry",
+            "They had no music"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "He showed how to move feet smoothly.",
+          "slot": "solution",
+          "choices": [
+            "He stayed patient and showed how to glide",
+            "He stopped the lesson",
+            "He left the rink",
+            "He told his cousin to skate alone"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about the cousin's next step.",
+          "slot": "result",
+          "choices": [
+            "His cousin held his coat and kept trying to skate",
+            "His cousin quit right away",
+            "They went home angry",
+            "They took off their skates forever"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "agreed",
+          "clue": "Said yes.",
+          "context": "Eli <span class=\"highlight-word\">agreed</span> to help his younger cousin learn how to ice skate.",
+          "choices": [
+            "said yes",
+            "argued",
+            "ignored"
+          ]
+        },
+        {
+          "word": "bumpy",
+          "clue": "Not smooth.",
+          "context": "The ice was a little <span class=\"highlight-word\">bumpy</span> from last night's snow.",
+          "choices": [
+            "uneven",
+            "smooth",
+            "soft"
+          ]
+        },
+        {
+          "word": "patient",
+          "clue": "Calm while waiting.",
+          "context": "Eli tried to stay <span class=\"highlight-word\">patient</span> and showed his cousin how to glide.",
+          "choices": [
+            "calm",
+            "rushed",
+            "angry"
+          ]
+        },
+        {
+          "word": "afraid",
+          "clue": "Scared.",
+          "context": "His cousin held tightly to his coat, <span class=\"highlight-word\">afraid</span> of falling again.",
+          "choices": [
+            "scared",
+            "excited",
+            "bored"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "glide",
+          "clue": "Move smoothly.",
+          "context": "He showed his cousin how to <span class=\"highlight-word\">glide</span> instead of stepping.",
+          "choices": [
+            "Move smooth and easy",
+            "Jump in place",
+            "Stop suddenly"
+          ]
+        },
+        {
+          "word": "bumpy",
+          "clue": "It has small bumps.",
+          "context": "The ice was a little <span class=\"highlight-word\">bumpy</span> from last night's snow.",
+          "choices": [
+            "Smooth and flat",
+            "Uneven with bumps",
+            "Very shiny"
+          ]
+        },
+        {
+          "word": "patient",
+          "clue": "Calm while waiting.",
+          "context": "Eli tried to stay <span class=\"highlight-word\">patient</span> and showed his cousin how to glide.",
+          "choices": [
+            "Calm and willing to wait",
+            "Angry right away",
+            "Talking nonstop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-005",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Missing Mittens",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_5.png",
+      "alt": "A student locker with winter mittens missing",
+      "text": "Aria opened her locker before recess and realized her mittens were gone. She needed them because the class planned to build snow shelters outside. She checked under her books and in her backpack, but they were not there. Her friend Weston suggested looking in the lost and found before the class went out.",
+      "literal": [
+        {
+          "prompt": "Who lost her mittens?",
+          "hint": "Look for her name.",
+          "choices": [
+            "Aria",
+            "Mira",
+            "Erin",
+            "Tasha"
+          ]
+        },
+        {
+          "prompt": "What were the students planning to build?",
+          "hint": "They go outside in the snow.",
+          "choices": [
+            "Snow shelters",
+            "Snowmen",
+            "Snowballs",
+            "Snow forts in a video game"
+          ]
+        },
+        {
+          "prompt": "Where did Aria look first?",
+          "hint": "A place where school things go.",
+          "choices": [
+            "Her locker",
+            "The office",
+            "The gym",
+            "The bus"
+          ]
+        },
+        {
+          "prompt": "Who gave her an idea?",
+          "hint": "Look for a friend in the story.",
+          "choices": [
+            "Weston",
+            "Eli",
+            "Jamal",
+            "Rowan"
+          ]
+        },
+        {
+          "prompt": "When did Aria notice the mittens were gone?",
+          "hint": "Think about before recess.",
+          "choices": [
+            "Before recess",
+            "After school",
+            "At breakfast",
+            "At night"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why does Aria need the mittens?",
+          "hint": "She will be outside in the snow.",
+          "choices": [
+            "To keep her hands warm for building snow shelters",
+            "To play a video game",
+            "To clean her locker",
+            "To write in class"
+          ]
+        },
+        {
+          "prompt": "How might Aria feel when she cannot find them?",
+          "hint": "Think of losing something you need right away.",
+          "choices": [
+            "Worried or upset",
+            "Excited",
+            "Proud",
+            "Sleepy"
+          ]
+        },
+        {
+          "prompt": "Why might the mittens be in the lost and found?",
+          "hint": "Someone else could have picked them up.",
+          "choices": [
+            "A person turned them in",
+            "They melted into water",
+            "The teacher hid them for fun",
+            "They blew away in the wind"
+          ]
+        },
+        {
+          "prompt": "How is Weston helping her?",
+          "hint": "He tells her a place to try.",
+          "choices": [
+            "He suggests looking in the lost and found",
+            "He keeps the mittens",
+            "He tells her to skip recess",
+            "He hides her backpack"
+          ]
+        },
+        {
+          "prompt": "Why does Aria need to fix the problem quickly?",
+          "hint": "Think about the timing of recess.",
+          "choices": [
+            "Recess is about to start",
+            "She wants to take a nap",
+            "She wants to read a book quietly",
+            "She wants to ride the bus"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will Aria likely do before recess starts?",
+          "hint": "Think about Weston's idea.",
+          "choices": [
+            "She will go to the lost and found to look for her mittens",
+            "She will decide not to play outside at all",
+            "She will throw away her coat",
+            "She will ask to skip recess forever"
+          ]
+        },
+        {
+          "prompt": "If she finds her mittens, what will she do outside?",
+          "hint": "Remember the class plan for recess.",
+          "choices": [
+            "She will wear them while building the snow shelters",
+            "She will keep them in her desk and stay indoors",
+            "She will trade them for candy",
+            "She will bury them in the snow"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "Look for the student who lost something.",
+          "slot": "character",
+          "choices": [
+            "Aria",
+            "Mira",
+            "Erin",
+            "Tasha"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about recess plans.",
+          "slot": "want",
+          "choices": [
+            "Find her mittens for the snow shelter activity",
+            "Get a new backpack",
+            "Skip recess",
+            "Hide in the classroom"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "She could not find something warm.",
+          "slot": "problem",
+          "choices": [
+            "Her mittens were missing from her locker",
+            "Her coat was too big",
+            "The bell was broken",
+            "The snow melted"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "She searched and listened to a friend's idea.",
+          "slot": "solution",
+          "choices": [
+            "She checked her locker and backpack and planned to look in the lost and found with Weston",
+            "She stayed at her desk",
+            "She asked the teacher to cancel recess",
+            "She went outside without any mittens"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about the next place she would go.",
+          "slot": "result",
+          "choices": [
+            "She got ready to go to the lost and found before recess",
+            "She forgot about the mittens",
+            "She found them in the gym",
+            "She went home instead of to recess"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "realized",
+          "clue": "Understood suddenly.",
+          "context": "Aria opened her locker before recess and <span class=\"highlight-word\">realized</span> her mittens were gone.",
+          "choices": [
+            "understood",
+            "forgot",
+            "hid"
+          ]
+        },
+        {
+          "word": "checked",
+          "clue": "Looked at carefully.",
+          "context": "She <span class=\"highlight-word\">checked</span> under her books and in her backpack.",
+          "choices": [
+            "looked",
+            "slept",
+            "broke"
+          ]
+        },
+        {
+          "word": "suggested",
+          "clue": "Offered an idea.",
+          "context": "Her friend Weston <span class=\"highlight-word\">suggested</span> looking in the lost and found.",
+          "choices": [
+            "recommended",
+            "refused",
+            "grabbed"
+          ]
+        },
+        {
+          "word": "missing",
+          "clue": "Lost.",
+          "context": "Aria opened her locker before recess and realized her mittens were <span class=\"highlight-word\">missing</span>.",
+          "choices": [
+            "lost",
+            "clean",
+            "new"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "realized",
+          "clue": "You suddenly know something.",
+          "context": "Aria opened her locker before recess and <span class=\"highlight-word\">realized</span> her mittens were gone.",
+          "choices": [
+            "Now understand",
+            "Pretend not to see",
+            "Lose something"
+          ]
+        },
+        {
+          "word": "shelters",
+          "clue": "Places that protect you.",
+          "context": "She needed them because the class planned to build snow <span class=\"highlight-word\">shelters</span> outside.",
+          "choices": [
+            "Safe places",
+            "Fun toys",
+            "Snow decorations"
+          ]
+        },
+        {
+          "word": "suggested",
+          "clue": "Gave an idea.",
+          "context": "Her friend Weston <span class=\"highlight-word\">suggested</span> looking in the lost and found before the class went out.",
+          "choices": [
+            "Offered an idea",
+            "Said no to everything",
+            "Took something away"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-006",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Quiet Bus Ride",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_6.png",
+      "alt": "A school bus driving on snowy roads",
+      "text": "The school bus moved slowly on the snowy roads. Most students were silent, watching the tall piles of snow pass by. Maya noticed the driver looked tired from concentrating so much. She decided to sit still and avoid talking so the bus stayed calm. She hoped everyone would get home safely.",
+      "literal": [
+        {
+          "prompt": "Who is watching the driver carefully?",
+          "hint": "A girl on the bus.",
+          "choices": [
+            "Maya",
+            "Aria",
+            "Mira",
+            "Tasha"
+          ]
+        },
+        {
+          "prompt": "What vehicle are they riding in?",
+          "hint": "It carries many students.",
+          "choices": [
+            "A school bus",
+            "A car",
+            "A train",
+            "A bike"
+          ]
+        },
+        {
+          "prompt": "Where are the students looking?",
+          "hint": "Think of winter weather outside.",
+          "choices": [
+            "Out the windows",
+            "At the ceiling",
+            "At the driver's chair",
+            "Under the seats"
+          ]
+        },
+        {
+          "prompt": "What is outside the bus?",
+          "hint": "Think of winter.",
+          "choices": [
+            "Tall piles of snow",
+            "A swimming pool",
+            "A playground",
+            "A park in summer"
+          ]
+        },
+        {
+          "prompt": "When do the students ride the bus?",
+          "hint": "Think of going home or to school.",
+          "choices": [
+            "During a school day",
+            "At midnight",
+            "During a field trip",
+            "After dinner"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why might the driver look tired?",
+          "hint": "Driving in snow takes a lot of focus.",
+          "choices": [
+            "Because driving in snow is hard work",
+            "Because he wants to watch TV",
+            "Because the bus is new",
+            "Because the students are silent"
+          ]
+        },
+        {
+          "prompt": "How might Maya feel seeing the driver concentrate?",
+          "hint": "She wants to help the ride stay safe.",
+          "choices": [
+            "Calm and respectful",
+            "Angry at the driver",
+            "Bored of the trip",
+            "Wild and silly"
+          ]
+        },
+        {
+          "prompt": "Why does Maya stay quiet?",
+          "hint": "Think about distractions while driving.",
+          "choices": [
+            "To help keep the bus calm for the driver",
+            "To hide from her friends",
+            "To take a long nap",
+            "To listen to music"
+          ]
+        },
+        {
+          "prompt": "Why is the bus moving slowly?",
+          "hint": "Look at the snowy roads.",
+          "choices": [
+            "Snow makes the roads slippery",
+            "The bus is brand new",
+            "The bus is empty",
+            "The driver likes to go slow for fun"
+          ]
+        },
+        {
+          "prompt": "How would loud talking affect the driver?",
+          "hint": "Noise can pull attention away.",
+          "choices": [
+            "It could distract him from the road",
+            "It could make the bus warmer",
+            "It could clean the windows",
+            "It could make the snow melt"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will Maya keep doing during the snowy bus ride?",
+          "hint": "She wanted the bus to stay calm.",
+          "choices": [
+            "She will stay quiet and still so the driver can focus",
+            "She will start shouting songs",
+            "She will stand up and dance",
+            "She will tell jokes loudly to everyone"
+          ]
+        },
+        {
+          "prompt": "When the bus reaches the students' stops, what will probably happen?",
+          "hint": "Think about the goal of a careful ride.",
+          "choices": [
+            "Everyone will get off safely because the ride stayed calm",
+            "The bus will drive past everyone on purpose",
+            "No one will be allowed to leave",
+            "The students will start a snowball fight inside the bus"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "Look for the student watching the driver.",
+          "slot": "character",
+          "choices": [
+            "Maya",
+            "Aria",
+            "Mira",
+            "Tasha"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about the bus ride.",
+          "slot": "want",
+          "choices": [
+            "Keep the bus calm and safe on the snowy ride",
+            "Make the bus go faster",
+            "Tell jokes to everyone",
+            "Open all the windows"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "The weather made riding tricky.",
+          "slot": "problem",
+          "choices": [
+            "The snowy roads made the driver tired and busy",
+            "The bus had no seats",
+            "The lights were too bright",
+            "The heater was too loud"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "She tried to help by what she did with her voice and body.",
+          "slot": "solution",
+          "choices": [
+            "She sat still and stayed quiet to help",
+            "She sang loudly",
+            "She asked to drive the bus",
+            "She jumped in the aisle"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about the bus mood after she decided to be calm.",
+          "slot": "result",
+          "choices": [
+            "The bus stayed quiet while she hoped everyone got home safely",
+            "The bus became wild and loud",
+            "Everyone got off the bus right away",
+            "She left the bus in the snow"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "quiet",
+          "clue": "Very still or silent.",
+          "context": "Most students were silent, making the bus feel <span class=\"highlight-word\">quiet</span> during the snowy ride.",
+          "choices": [
+            "silent",
+            "noisy",
+            "crowded"
+          ]
+        },
+        {
+          "word": "noticed",
+          "clue": "Saw.",
+          "context": "Maya <span class=\"highlight-word\">noticed</span> the driver looked tired from concentrating so much.",
+          "choices": [
+            "saw",
+            "ignored",
+            "dropped"
+          ]
+        },
+        {
+          "word": "calm",
+          "clue": "Relaxed and steady.",
+          "context": "She decided to sit still and avoid talking so the bus stayed <span class=\"highlight-word\">calm</span>.",
+          "choices": [
+            "relaxed",
+            "upset",
+            "loud"
+          ]
+        },
+        {
+          "word": "slowly",
+          "clue": "Not fast.",
+          "context": "The school bus moved <span class=\"highlight-word\">slowly</span> on the snowy roads.",
+          "choices": [
+            "not fast",
+            "quickly",
+            "suddenly"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "piles",
+          "clue": "A lot of something stacked up.",
+          "context": "Most students were silent, watching the tall <span class=\"highlight-word\">piles</span> of snow pass by.",
+          "choices": [
+            "A tall stack",
+            "A tiny piece",
+            "A flat space"
+          ]
+        },
+        {
+          "word": "concentrating",
+          "clue": "Focusing your mind.",
+          "context": "Maya noticed the driver looked tired from <span class=\"highlight-word\">concentrating</span> so much.",
+          "choices": [
+            "Focusing hard",
+            "Sleeping lightly",
+            "Talking fast"
+          ]
+        },
+        {
+          "word": "calm",
+          "clue": "Quiet and relaxed.",
+          "context": "She decided to sit still and avoid talking so the bus stayed <span class=\"highlight-word\">calm</span>.",
+          "choices": [
+            "Relaxed",
+            "Nervous",
+            "Wild and loud"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-007",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Warm Coat Exchange",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_7.png",
+      "alt": "Kids trading winter coats at a community center",
+      "text": "At the community center, kids were trading winter items that no longer fit them. Mateo brought a coat that was too small and hoped to find a better one. He spotted a thick red coat on the rack, but another boy reached for it at the same time. They both paused, unsure who should take it.",
+      "literal": [
+        {
+          "prompt": "Who is trying to find a new coat?",
+          "hint": "Look for the boy's name.",
+          "choices": [
+            "Mateo",
+            "Eli",
+            "Rowan",
+            "Jamal"
+          ]
+        },
+        {
+          "prompt": "What kind of place are they in?",
+          "hint": "It is open to the public.",
+          "choices": [
+            "A community center",
+            "A movie theater",
+            "A bus",
+            "A diner"
+          ]
+        },
+        {
+          "prompt": "What color is the coat both boys reach for?",
+          "hint": "A bright color.",
+          "choices": [
+            "Red",
+            "Green",
+            "Blue",
+            "Black"
+          ]
+        },
+        {
+          "prompt": "What are kids doing at the event?",
+          "hint": "They bring clothing that does not fit.",
+          "choices": [
+            "Trading winter items",
+            "Buying snacks",
+            "Playing games",
+            "Singing songs"
+          ]
+        },
+        {
+          "prompt": "When do Mateo and the other boy pause?",
+          "hint": "They both reach at the same time.",
+          "choices": [
+            "When they both grab the coat",
+            "When the lights turn off",
+            "When the teacher calls them",
+            "When music starts"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why do both boys stop reaching?",
+          "hint": "They both grabbed the coat at the same time.",
+          "choices": [
+            "They are unsure who should get the coat",
+            "They suddenly dislike the coat",
+            "The coat vanished",
+            "They want to start a race"
+          ]
+        },
+        {
+          "prompt": "How might Mateo feel right now?",
+          "hint": "He wanted the red coat too.",
+          "choices": [
+            "Unsure or a little shy",
+            "Angry at everyone",
+            "Very sleepy",
+            "Laughing at the coat"
+          ]
+        },
+        {
+          "prompt": "Why is a coat exchange helpful?",
+          "hint": "Think about kids growing.",
+          "choices": [
+            "Kids outgrow coats and can trade for a better size",
+            "It makes coats taste better",
+            "It teaches math facts",
+            "It turns coats into toys"
+          ]
+        },
+        {
+          "prompt": "Why might the other boy want the red coat?",
+          "hint": "Think about staying warm.",
+          "choices": [
+            "It looks warm and could fit him",
+            "He wants to hide it",
+            "He wants to throw it away",
+            "He wants to color on it"
+          ]
+        },
+        {
+          "prompt": "What is a good next step for Mateo?",
+          "hint": "Think about sharing and talking.",
+          "choices": [
+            "Talk with the boy to decide who should take it",
+            "Grab the coat and run",
+            "Walk away angry",
+            "Hide the coat behind the rack"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will Mateo and the other boy likely do after they pause?",
+          "hint": "Think about solving the coat choice together.",
+          "choices": [
+            "They will talk it out and decide who should take the red coat",
+            "They will both rip the coat apart",
+            "They will throw the coat outside in the snow",
+            "They will leave without any coats"
+          ]
+        },
+        {
+          "prompt": "If the red coat does not fit Mateo, what will he probably do?",
+          "hint": "He still needs a warmer coat.",
+          "choices": [
+            "He will look for another coat that fits at the exchange",
+            "He will give up on getting any coat",
+            "He will wear his too-small coat forever",
+            "He will stop coming to the center"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "He brought a too-small coat.",
+          "slot": "character",
+          "choices": [
+            "Mateo",
+            "Eli",
+            "Rowan",
+            "Jamal"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about why he came to the exchange.",
+          "slot": "want",
+          "choices": [
+            "Find a warm coat that fit",
+            "Buy a hat",
+            "Get candy",
+            "Play a video game"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "Someone else wanted the same coat.",
+          "slot": "problem",
+          "choices": [
+            "Another boy reached for the same red coat",
+            "The coats were all wet",
+            "The room was closed",
+            "No one else was there"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "They paused together.",
+          "slot": "solution",
+          "choices": [
+            "They both paused to talk and decide who should take it",
+            "Mateo grabbed the coat and ran",
+            "They left the coat on the floor",
+            "Mateo went home angry"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about choosing fairly.",
+          "slot": "result",
+          "choices": [
+            "They could decide together so someone got the coat",
+            "No one ever got a coat",
+            "The coat disappeared",
+            "They stopped being polite"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "exchange",
+          "clue": "Trade.",
+          "context": "At the community center, kids were trading winter items at the coat <span class=\"highlight-word\">exchange</span>.",
+          "choices": [
+            "trade",
+            "break",
+            "hide"
+          ]
+        },
+        {
+          "word": "paused",
+          "clue": "Stopped briefly.",
+          "context": "They both <span class=\"highlight-word\">paused</span>, unsure who should take it.",
+          "choices": [
+            "stopped",
+            "ran",
+            "shouted"
+          ]
+        },
+        {
+          "word": "thick",
+          "clue": "Heavy or not thin.",
+          "context": "He spotted a <span class=\"highlight-word\">thick</span> red coat on the rack.",
+          "choices": [
+            "heavy",
+            "thin",
+            "tiny"
+          ]
+        },
+        {
+          "word": "unsure",
+          "clue": "Not certain.",
+          "context": "They both paused, <span class=\"highlight-word\">unsure</span> who should take it.",
+          "choices": [
+            "uncertain",
+            "confident",
+            "ready"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "exchange",
+          "clue": "Trade with someone.",
+          "context": "At the community center, kids were at a coat <span class=\"highlight-word\">exchange</span> for winter items.",
+          "choices": [
+            "Trade items",
+            "Break items",
+            "Hide items"
+          ]
+        },
+        {
+          "word": "fit",
+          "clue": "The right size.",
+          "context": "Mateo brought a coat that was too small and hoped to find one that would <span class=\"highlight-word\">fit</span>.",
+          "choices": [
+            "The size that works",
+            "Too heavy to lift",
+            "Only worn for parties"
+          ]
+        },
+        {
+          "word": "paused",
+          "clue": "Stopped for a short time.",
+          "context": "They both <span class=\"highlight-word\">paused</span>, unsure who should take it.",
+          "choices": [
+            "Stopped briefly",
+            "Ran fast",
+            "Dropped something"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-008",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Frozen Pond Discovery",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_8.png",
+      "alt": "Two kids standing on a frozen pond",
+      "text": "When the pond froze over, two friends, Tasha and Erin, walked across the surface near the shallow end. Light snow fell as they moved carefully. They spotted something dark under the ice. At first they thought it was a branch, but then they realized it was an old fishing net someone left behind. They wondered if they should try to pull it out or leave it for an adult.",
+      "literal": [
+        {
+          "prompt": "Who is walking on the frozen pond?",
+          "hint": "Two friends.",
+          "choices": [
+            "Tasha and Erin",
+            "Mira and Aria",
+            "Lena and Eli",
+            "Rowan and Mateo"
+          ]
+        },
+        {
+          "prompt": "What do they see under the ice?",
+          "hint": "Not a branch after all.",
+          "choices": [
+            "A fishing net",
+            "A fish",
+            "A phone",
+            "A toy"
+          ]
+        },
+        {
+          "prompt": "Where are they walking?",
+          "hint": "Solid water.",
+          "choices": [
+            "On a frozen pond",
+            "On a sidewalk",
+            "In the cafeteria",
+            "On a roof"
+          ]
+        },
+        {
+          "prompt": "What is falling during their walk?",
+          "hint": "It is winter.",
+          "choices": [
+            "Light snow",
+            "Heavy rain",
+            "Leaves",
+            "Dust"
+          ]
+        },
+        {
+          "prompt": "When do they try to figure out what to do?",
+          "hint": "After seeing the object.",
+          "choices": [
+            "After noticing the net",
+            "Before walking outside",
+            "After going home",
+            "Before eating lunch"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why is there a net under the ice?",
+          "hint": "Think about fishing on the pond.",
+          "choices": [
+            "Someone left it after fishing",
+            "It grew out of the ice",
+            "It fell from the sky",
+            "It is a toy from a store"
+          ]
+        },
+        {
+          "prompt": "How do Tasha and Erin likely feel when they see it?",
+          "hint": "They did not expect to find it.",
+          "choices": [
+            "Curious and a little unsure",
+            "Angry at the pond",
+            "Very sleepy",
+            "Hungry for lunch"
+          ]
+        },
+        {
+          "prompt": "Why do they wonder if they should pull it out?",
+          "hint": "Think about staying safe on the ice.",
+          "choices": [
+            "They are not sure if it is safe for kids to move it",
+            "They want to break the ice",
+            "They want to race each other",
+            "They want to build a snowman"
+          ]
+        },
+        {
+          "prompt": "How does walking near the shallow end help?",
+          "hint": "The water there is not deep.",
+          "choices": [
+            "It is safer to stand where the water is shallow",
+            "It melts the ice faster",
+            "It makes them run faster",
+            "It hides the net completely"
+          ]
+        },
+        {
+          "prompt": "Why might they ask an adult for help?",
+          "hint": "Adults handle tricky or risky jobs.",
+          "choices": [
+            "An adult can safely remove the net",
+            "An adult wants a photo",
+            "An adult will start a snowball fight",
+            "An adult needs to teach math"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will Tasha and Erin probably do about the net?",
+          "hint": "They were thinking about safety.",
+          "choices": [
+            "They will ask an adult to help decide what to do",
+            "They will jump on the ice without thinking",
+            "They will forget about the net forever",
+            "They will push each other toward it"
+          ]
+        },
+        {
+          "prompt": "If an adult says it's safe to move the net, what might they do next?",
+          "hint": "Think about removing it carefully.",
+          "choices": [
+            "They will carefully pull it out together near the shallow end",
+            "They will kick the ice until it breaks apart",
+            "They will leave the net frozen for years",
+            "They will throw snowballs at the net for fun"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "Two friends on the ice.",
+          "slot": "character",
+          "choices": [
+            "Tasha and Erin",
+            "Mira and Aria",
+            "Lena and Eli",
+            "Rowan and Mateo"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about their walk on the frozen pond.",
+          "slot": "want",
+          "choices": [
+            "Explore the frozen pond safely",
+            "Swim in the pond",
+            "Ride bikes on the ice",
+            "Build a house there"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "They saw something under the ice.",
+          "slot": "problem",
+          "choices": [
+            "They found an old net under the ice and were not sure if it was safe to move",
+            "The ice was melting fast",
+            "They dropped their skates",
+            "It started to rain hard"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "They thought about who should help.",
+          "slot": "solution",
+          "choices": [
+            "They thought about asking an adult before pulling it out",
+            "They jumped on the net",
+            "They ignored the net",
+            "They ran home right away without thinking"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about their next safe step.",
+          "slot": "result",
+          "choices": [
+            "They planned to ask an adult for help",
+            "They left the pond forever",
+            "They kept the net secret",
+            "They used the net as a game"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "spotted",
+          "clue": "Saw.",
+          "context": "They <span class=\"highlight-word\">spotted</span> something dark under the ice.",
+          "choices": [
+            "saw",
+            "lost",
+            "forgot"
+          ]
+        },
+        {
+          "word": "shallow",
+          "clue": "Not deep.",
+          "context": "They walked across the surface near the <span class=\"highlight-word\">shallow</span> end.",
+          "choices": [
+            "not deep",
+            "dark",
+            "wide"
+          ]
+        },
+        {
+          "word": "wondered",
+          "clue": "Thought about.",
+          "context": "They <span class=\"highlight-word\">wondered</span> if they should try to pull it out or leave it for an adult.",
+          "choices": [
+            "thought",
+            "yelled",
+            "jumped"
+          ]
+        },
+        {
+          "word": "left behind",
+          "clue": "Forgotten.",
+          "context": "They realized it was an old fishing net someone had <span class=\"highlight-word\">left behind</span>.",
+          "choices": [
+            "forgotten",
+            "cleaned",
+            "fixed"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "shallow",
+          "clue": "Not deep.",
+          "context": "They walked across the surface near the <span class=\"highlight-word\">shallow</span> end.",
+          "choices": [
+            "Not deep",
+            "Very deep",
+            "Hard to see through"
+          ]
+        },
+        {
+          "word": "visible",
+          "clue": "It is not hidden; you can spot it.",
+          "context": "They spotted something dark under the ice, barely <span class=\"highlight-word\">visible</span>.",
+          "choices": [
+            "Able to be seen",
+            "Hidden",
+            "Floating away"
+          ]
+        },
+        {
+          "word": "realized",
+          "clue": "You suddenly understand something.",
+          "context": "At first they thought it was a branch, but then they <span class=\"highlight-word\">realized</span> it was an old fishing net.",
+          "choices": [
+            "Understood something",
+            "Forgot something",
+            "Missed something"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-009",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Storm at Lunch",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_9.png",
+      "alt": "Students at lunch hearing about a snowstorm",
+      "text": "During lunch, the school announced that a sudden snowstorm was coming. Students were told they might have to leave early. Rowan felt excited at first, but then worried because his younger sister needed to be picked up from her school. He checked his phone to see if his parents had texted.",
+      "literal": [
+        {
+          "prompt": "Who is worried about his sister?",
+          "hint": "Look for the boy's name.",
+          "choices": [
+            "Rowan",
+            "Eli",
+            "Jamal",
+            "Weston"
+          ]
+        },
+        {
+          "prompt": "What did the school announce?",
+          "hint": "Something about weather.",
+          "choices": [
+            "A sudden snowstorm",
+            "A new club",
+            "A field trip",
+            "A fire drill"
+          ]
+        },
+        {
+          "prompt": "Where is Rowan when he hears the news?",
+          "hint": "Students eat there.",
+          "choices": [
+            "The cafeteria",
+            "The bus",
+            "The gym",
+            "The office"
+          ]
+        },
+        {
+          "prompt": "What does Rowan check?",
+          "hint": "A device.",
+          "choices": [
+            "His phone",
+            "A clock",
+            "A book",
+            "A map"
+          ]
+        },
+        {
+          "prompt": "When might students go home?",
+          "hint": "Think about the storm.",
+          "choices": [
+            "Early",
+            "Late at night",
+            "On Saturday",
+            "During summer"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why does Rowan have mixed feelings?",
+          "hint": "Snow can be fun, but he thinks about his sister.",
+          "choices": [
+            "Snow is exciting but he worries about his sister getting picked up",
+            "He wants more homework",
+            "He is bored with lunch",
+            "He wants a new phone"
+          ]
+        },
+        {
+          "prompt": "Why does he check his phone?",
+          "hint": "Think about his family plan.",
+          "choices": [
+            "To see if his parents texted about the storm",
+            "To play a game",
+            "To take a picture of lunch",
+            "To change the clock time"
+          ]
+        },
+        {
+          "prompt": "What problem is Rowan thinking about?",
+          "hint": "It involves his younger sister.",
+          "choices": [
+            "Who will pick up his sister from school",
+            "What he will eat later",
+            "Which book to read",
+            "How to draw snowflakes"
+          ]
+        },
+        {
+          "prompt": "How might other students feel about leaving early?",
+          "hint": "Snow changes their day.",
+          "choices": [
+            "Excited or a little nervous",
+            "Hungry",
+            "Sleepy",
+            "Angry at Rowan"
+          ]
+        },
+        {
+          "prompt": "Why does the school tell them during lunch?",
+          "hint": "Think about safety and planning.",
+          "choices": [
+            "So everyone can get home safely",
+            "So they can make lunch shorter",
+            "So they can start a movie",
+            "So they can skip homework"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "What will the school probably do because of the snowstorm?",
+          "hint": "Think about the early dismissal announcement.",
+          "choices": [
+            "It will send students home early if needed",
+            "It will keep everyone overnight for fun",
+            "It will cancel lunch forever",
+            "It will make students walk home during the storm"
+          ]
+        },
+        {
+          "prompt": "After checking his phone, what might Rowan do next?",
+          "hint": "He wants his sister to be safe.",
+          "choices": [
+            "He will contact his parents or wait for their plan about his sister",
+            "He will throw his phone away",
+            "He will start a snowball fight in the cafeteria",
+            "He will forget about his sister completely"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "He worried about his sister.",
+          "slot": "character",
+          "choices": [
+            "Rowan",
+            "Eli",
+            "Jamal",
+            "Weston"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about his younger sister.",
+          "slot": "want",
+          "choices": [
+            "Make sure his sister was picked up during the storm",
+            "Eat lunch faster",
+            "Join a new club",
+            "Build a snow fort in the cafeteria"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "Weather changed the school day.",
+          "slot": "problem",
+          "choices": [
+            "A sudden snowstorm might send students home early",
+            "The lunch line was long",
+            "The power went out",
+            "No one had homework"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "He used his phone.",
+          "slot": "solution",
+          "choices": [
+            "He checked his phone for a message from his parents",
+            "He shouted for help",
+            "He left school without telling anyone",
+            "He ignored the storm"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about what he waited for.",
+          "slot": "result",
+          "choices": [
+            "He waited for his parents' plan so his sister would be safe",
+            "He stopped worrying",
+            "He forgot he had a sister",
+            "He missed the bus on purpose"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "announced",
+          "clue": "Told out loud.",
+          "context": "During lunch, the school <span class=\"highlight-word\">announced</span> that a sudden snowstorm was coming.",
+          "choices": [
+            "told",
+            "hid",
+            "erased"
+          ]
+        },
+        {
+          "word": "sudden",
+          "clue": "Happening quickly.",
+          "context": "Students were told a <span class=\"highlight-word\">sudden</span> snowstorm was coming.",
+          "choices": [
+            "quick",
+            "slow",
+            "planned"
+          ]
+        },
+        {
+          "word": "worried",
+          "clue": "Concerned.",
+          "context": "Rowan felt excited at first, but then <span class=\"highlight-word\">worried</span> because his younger sister needed to be picked up.",
+          "choices": [
+            "concerned",
+            "happy",
+            "bored"
+          ]
+        },
+        {
+          "word": "checked",
+          "clue": "Looked at.",
+          "context": "He <span class=\"highlight-word\">checked</span> his phone to see if his parents had texted.",
+          "choices": [
+            "looked at",
+            "ignored",
+            "broke"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "announced",
+          "clue": "Said to everyone.",
+          "context": "During lunch, the school <span class=\"highlight-word\">announced</span> that a sudden snowstorm was coming.",
+          "choices": [
+            "Told everyone",
+            "Whispers quietly",
+            "Said only to one person"
+          ]
+        },
+        {
+          "word": "sudden",
+          "clue": "Happens quickly.",
+          "context": "Students were told a <span class=\"highlight-word\">sudden</span> snowstorm was coming.",
+          "choices": [
+            "Happens fast",
+            "Happens slowly",
+            "Happens only at night"
+          ]
+        },
+        {
+          "word": "concern",
+          "clue": "Something you worry about.",
+          "context": "Rowan's main <span class=\"highlight-word\">concern</span> was his younger sister needing to be picked up.",
+          "choices": [
+            "A worry",
+            "A fun surprise",
+            "A joke"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-winter-short-story-comprehension-progressive-010",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-progressive.html",
+      "season": "winter",
+      "title": "The Snow Sculpture Surprise",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_10.png",
+      "alt": "Kids building a snow sculpture in a park",
+      "text": "In the park, a group of friends worked on a snow sculpture for a winter contest. They planned to make a tall polar bear, but halfway through the snow started crumbling. One friend suggested switching the design to a short penguin instead. Everyone agreed and quickly changed their plan.",
+      "literal": [
+        {
+          "prompt": "Who is making the snow sculpture?",
+          "hint": "More than one person.",
+          "choices": [
+            "A group of friends",
+            "One teacher",
+            "Two strangers",
+            "One student alone"
+          ]
+        },
+        {
+          "prompt": "What were they making first?",
+          "hint": "A tall animal.",
+          "choices": [
+            "A polar bear",
+            "A penguin",
+            "A dog",
+            "A snow fox"
+          ]
+        },
+        {
+          "prompt": "What was happening to the sculpture?",
+          "hint": "It was falling apart.",
+          "choices": [
+            "It was crumbling",
+            "It was growing",
+            "It was melting fast",
+            "It was changing color"
+          ]
+        },
+        {
+          "prompt": "What new shape did they choose?",
+          "hint": "A short animal.",
+          "choices": [
+            "A penguin",
+            "A moose",
+            "A fish",
+            "A rabbit"
+          ]
+        },
+        {
+          "prompt": "Where are they building it?",
+          "hint": "A public outdoor place.",
+          "choices": [
+            "The park",
+            "The classroom",
+            "The gym",
+            "A hallway"
+          ]
+        }
+      ],
+      "inferential": [
+        {
+          "prompt": "Why might the bear shape be hard to build?",
+          "hint": "Think about size.",
+          "choices": [
+            "It was too tall",
+            "It was too hot",
+            "It was too colorful",
+            "It was too loud"
+          ]
+        },
+        {
+          "prompt": "How might the group feel about changing plans?",
+          "hint": "Think of teamwork.",
+          "choices": [
+            "Okay with trying something new",
+            "Angry and yelling",
+            "Tired of snow",
+            "Ready to go home immediately"
+          ]
+        },
+        {
+          "prompt": "Why does the penguin work better?",
+          "hint": "Think of size again.",
+          "choices": [
+            "It is smaller and easier to shape",
+            "It makes noise",
+            "It floats",
+            "It melts slower"
+          ]
+        },
+        {
+          "prompt": "What does this show about the group?",
+          "hint": "Think about working together.",
+          "choices": [
+            "They can solve problems",
+            "They argue all the time",
+            "They do not like snow",
+            "They never finish anything"
+          ]
+        },
+        {
+          "prompt": "How might the sculpture look when finished?",
+          "hint": "Think of a penguin made of snow.",
+          "choices": [
+            "Short and smooth",
+            "Tall and scary",
+            "Bright red",
+            "Covered in leaves"
+          ]
+        }
+      ],
+      "future": [
+        {
+          "prompt": "After changing the design, what will the friends do next?",
+          "hint": "Think about the new plan.",
+          "choices": [
+            "They will build the shorter penguin together",
+            "They will quit building anything",
+            "They will forget the contest completely",
+            "They will turn the snow into soup"
+          ]
+        },
+        {
+          "prompt": "If the penguin turns out sturdy, what will they do for the contest?",
+          "hint": "They still want to take part.",
+          "choices": [
+            "They will enter the penguin sculpture in the winter contest",
+            "They will break it before judging",
+            "They will hide it so no one sees",
+            "They will pretend they never built it"
+          ]
+        }
+      ],
+      "retell": [
+        {
+          "prompt": "Who was the main character?",
+          "hint": "Think of the team working together.",
+          "slot": "character",
+          "choices": [
+            "A group of friends",
+            "One teacher",
+            "Two strangers",
+            "One student alone"
+          ]
+        },
+        {
+          "prompt": "What did they want?",
+          "hint": "Think about the contest idea.",
+          "slot": "want",
+          "choices": [
+            "Build a tall polar bear snow sculpture for the contest",
+            "Have a snowball fight",
+            "Take a long nap",
+            "Go to the movies"
+          ]
+        },
+        {
+          "prompt": "What was the problem?",
+          "hint": "Something was happening to the bear shape.",
+          "slot": "problem",
+          "choices": [
+            "The snow bear started crumbling",
+            "There was no snow",
+            "They forgot their tools",
+            "They had no time to meet"
+          ]
+        },
+        {
+          "prompt": "What did they do to solve the problem?",
+          "hint": "They chose a new idea.",
+          "slot": "solution",
+          "choices": [
+            "They switched to a short penguin design",
+            "They stopped building anything",
+            "They left the park",
+            "They yelled at each other"
+          ]
+        },
+        {
+          "prompt": "What was the end result?",
+          "hint": "Think about the team's choice after changing the plan.",
+          "slot": "result",
+          "choices": [
+            "They all agreed and kept building the new penguin",
+            "They gave up and went home",
+            "They knocked down the penguin",
+            "They changed to a new plan every minute"
+          ]
+        }
+      ],
+      "synonyms": [
+        {
+          "word": "planned",
+          "clue": "Decided ahead of time.",
+          "context": "They <span class=\"highlight-word\">planned</span> to make a tall polar bear.",
+          "choices": [
+            "decided",
+            "forgot",
+            "ruined"
+          ]
+        },
+        {
+          "word": "crumbling",
+          "clue": "Breaking apart.",
+          "context": "Halfway through the snow started <span class=\"highlight-word\">crumbling</span>.",
+          "choices": [
+            "breaking",
+            "growing",
+            "freezing"
+          ]
+        },
+        {
+          "word": "suggested",
+          "clue": "Offered an idea.",
+          "context": "One friend <span class=\"highlight-word\">suggested</span> switching the design to a short penguin instead.",
+          "choices": [
+            "proposed",
+            "demanded",
+            "refused"
+          ]
+        },
+        {
+          "word": "changed",
+          "clue": "Switched.",
+          "context": "Everyone agreed and quickly <span class=\"highlight-word\">changed</span> their plan.",
+          "choices": [
+            "switched",
+            "stayed",
+            "stopped"
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "word": "sculpture",
+          "clue": "A shape someone makes.",
+          "context": "In the park, a group of friends worked on a snow <span class=\"highlight-word\">sculpture</span> for a winter contest.",
+          "choices": [
+            "A built shape",
+            "A snack to eat",
+            "A big hill"
+          ]
+        },
+        {
+          "word": "crumbling",
+          "clue": "Breaking apart.",
+          "context": "They planned to make a tall polar bear, but halfway through the snow started <span class=\"highlight-word\">crumbling</span>.",
+          "choices": [
+            "Breaking into pieces",
+            "Growing stronger",
+            "Floating up"
+          ]
+        },
+        {
+          "word": "agreed",
+          "clue": "Thought the same thing.",
+          "context": "Everyone <span class=\"highlight-word\">agreed</span> and quickly changed their plan.",
+          "choices": [
+            "Decided together",
+            "Argued loudly",
+            "Did not listen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-1",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Snowy Arrival",
+      "image": "../../images/winter_stories/story1_snowy-arrival.png",
+      "alt": "Students entering a school while snow falls",
+      "text": [
+        "Snow covered the school yard early in the morning, leaving everything bright and quiet.",
+        "Students walked slowly because the ground looked slick, and a cold wind pushed against their jackets.",
+        "As they moved toward the doors, they talked about how winter arrived so quickly.",
+        "Everyone felt calmer once they stepped into the warm hallway."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "What covered the school yard in the morning?",
+              "clue": "It left everything bright and quiet.",
+              "choices": [
+                {
+                  "text": "Snow",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Falling leaves",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Rain puddles",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the students walk across the yard?",
+              "clue": "They moved carefully because the ground looked slick.",
+              "choices": [
+                {
+                  "text": "Slowly",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Running fast",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Skipping in circles",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where were the students heading?",
+              "clue": "They moved toward this part of the school.",
+              "choices": [
+                {
+                  "text": "The doors",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The playground",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The bus stop",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where did everyone feel calmer?",
+              "clue": "They stepped into this warm place.",
+              "choices": [
+                {
+                  "text": "The hallway",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The snowy yard",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The parking lot",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did the students walk slowly across the yard?",
+              "clue": "Consider how the slick ground affects their steps.",
+              "choices": [
+                {
+                  "text": "They wanted to avoid slipping",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They were waiting for the bus",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They were counting their steps",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does their talk about winter arriving quickly suggest?",
+              "clue": "Think about their reaction to the sudden snow.",
+              "choices": [
+                {
+                  "text": "They were surprised by the fast change",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They were bored with winter",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They wanted it to be hotter",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did they feel calmer inside the hallway?",
+              "clue": "Compare the hallway to the windy, slick yard.",
+              "choices": [
+                {
+                  "text": "It was warm and out of the wind",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It was louder than outside",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It was darker and scarier",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might the bright, quiet yard make the morning feel?",
+              "clue": "Snow often changes the mood of a place.",
+              "choices": [
+                {
+                  "text": "Peaceful and still",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Chaotic and noisy",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Crowded and busy",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of go: \"The students ______ into the warm building.\"",
+              "clue": "The past tense of \"go\" rhymes with \"sent.\"",
+              "choices": [
+                {
+                  "text": "Went",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Goed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Gone",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of blow: \"A cold wind ______ against their jackets.\"",
+              "clue": "The past tense ends with \"-ew.\"",
+              "choices": [
+                {
+                  "text": "Blew",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Blowed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Blown",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of feel: \"Everyone ______ calmer once they stepped inside.\"",
+              "clue": "It is a four-letter past tense form.",
+              "choices": [
+                {
+                  "text": "Felt",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Feeled",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Fell",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of fall: \"Snow ______ early in the morning and covered the yard.\"",
+              "clue": "Think of the past tense of \"fall\" that ends with \"-ell.\"",
+              "choices": [
+                {
+                  "text": "Fell",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Fallen",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Falled",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of put: \"Sam ______ on his thick coat first.\"",
+              "clue": "The past tense of \"put\" is spelled the same as the present tense.",
+              "choices": [
+                {
+                  "text": "Put",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Putted",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Puts",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of hit: \"A burst of cold ______ his face when he stepped outdoors.\"",
+              "clue": "This past tense form does not add -ed and stays the same as the base verb.",
+              "choices": [
+                {
+                  "text": "Hit",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Hitted",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Hits",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of keep: \"He ______ walking with steady steps even in the freezing air.\"",
+              "clue": "The past tense of \"keep\" ends with \"-pt.\"",
+              "choices": [
+                {
+                  "text": "Kept",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Keeped",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Keep",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of feel: \"He ______ more confident once he was fully bundled up.\"",
+              "clue": "It is a four-letter past tense form.",
+              "choices": [
+                {
+                  "text": "Felt",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Feeled",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Fell",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of rise: \"Warm steam ______ from the exhaust into the icy air.\"",
+              "clue": "The past tense of \"rise\" ends with \"-ose.\"",
+              "choices": [
+                {
+                  "text": "Rose",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Rised",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Risen",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of blow: \"A wave of cold ______ in behind Ben when he climbed the steps.\"",
+              "clue": "The past tense ends with \"-ew.\"",
+              "choices": [
+                {
+                  "text": "Blew",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Blowed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Blown",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of go: \"He ______ down the aisle to pick a seat near the window.\"",
+              "clue": "The past tense of \"go\" rhymes with \"sent.\"",
+              "choices": [
+                {
+                  "text": "Went",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Goed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Gone",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of choose: \"Ben ______ a seat near the window so he could watch the snow.\"",
+              "clue": "The past tense of \"choose\" ends with \"-ose.\"",
+              "choices": [
+                {
+                  "text": "Chose",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Choosed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Chosen",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of sit: \"The small bird ______ on the fence outside the classroom window.\"",
+              "clue": "The past tense of \"sit\" uses a short a vowel sound.",
+              "choices": [
+                {
+                  "text": "Sat",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sit",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sitted",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of shake: \"It ______ snow from its feathers.\"",
+              "clue": "The past tense ends with \"-ook.\"",
+              "choices": [
+                {
+                  "text": "Shook",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Shaked",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Shaken",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of keep: \"The students ______ quiet because they did not want to scare it away.\"",
+              "clue": "The past tense of \"keep\" ends with \"-pt.\"",
+              "choices": [
+                {
+                  "text": "Kept",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Keeped",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Keep",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of fly: \"After a moment, the bird ______ off toward a nearby tree.\"",
+              "clue": "The past tense of \"fly\" ends with \"-ew.\"",
+              "choices": [
+                {
+                  "text": "Flew",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Flied",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Flown",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of make: \"Maya ______ a cup of hot cocoa during lunch.\"",
+              "clue": "The past tense of \"make\" ends with \"-ade.\"",
+              "choices": [
+                {
+                  "text": "Made",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Maked",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Make",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of take: \"She ______ a slow sip and felt the warmth move through her chest.\"",
+              "clue": "The past tense of \"take\" ends with \"-ook.\"",
+              "choices": [
+                {
+                  "text": "Took",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Taked",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Taken",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of spread: \"The heat from the cup ______ through her fingers.\"",
+              "clue": "The past tense of this verb is spelled the same as the base word.",
+              "choices": [
+                {
+                  "text": "Spread",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Spreaded",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Spreads",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of feel: \"She ______ calmer and more ready to finish the day.\"",
+              "clue": "It is a four-letter past tense form.",
+              "choices": [
+                {
+                  "text": "Felt",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Feeled",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Fell",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of leave: \"The class ______ a winding trail of footprints behind them.\"",
+              "clue": "The past tense of \"leave\" ends with \"-eft.\"",
+              "choices": [
+                {
+                  "text": "Left",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Leaved",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Leave",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of sting: \"The cold air ______ their cheeks.\"",
+              "clue": "The past tense ends with \"-ung.\"",
+              "choices": [
+                {
+                  "text": "Stung",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Stinged",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Stang",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of ring: \"When the bell ______, they headed back inside.\"",
+              "clue": "Think of the past tense of \"ring\" that rhymes with \"sang.\"",
+              "choices": [
+                {
+                  "text": "Rang",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Rung",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Ringed",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of go: \"They ______ back inside, grateful for the warm building.\"",
+              "clue": "The past tense of \"go\" rhymes with \"sent.\"",
+              "choices": [
+                {
+                  "text": "Went",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Goed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Gone",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of take: \"Mr. Lee ______ a bag of salt and spread it across the ground.\"",
+              "clue": "The past tense of \"take\" ends with \"-ook.\"",
+              "choices": [
+                {
+                  "text": "Took",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Taked",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Taken",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of begin: \"The ice ______ to melt slowly.\"",
+              "clue": "The past tense of \"begin\" ends with \"-gan.\"",
+              "choices": [
+                {
+                  "text": "Began",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Beginned",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Begun",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of stand: \"Many kids ______ and talked about how slippery it had been.\"",
+              "clue": "The past tense of \"stand\" ends with \"-ood.\"",
+              "choices": [
+                {
+                  "text": "Stood",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Standed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Stooded",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of let: \"Mr. Lee ______ everyone continue inside once the walkway looked clear.\"",
+              "clue": "The past tense of this verb stays the same as the base form.",
+              "choices": [
+                {
+                  "text": "Let",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Letted",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Lets",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of blow: \"A strong winter wind ______ across the parking lot.\"",
+              "clue": "The past tense ends with \"-ew.\"",
+              "choices": [
+                {
+                  "text": "Blew",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Blowed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Blown",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of feel: \"The air ______ sharp and cold on her face.\"",
+              "clue": "It is a four-letter past tense form.",
+              "choices": [
+                {
+                  "text": "Felt",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Feeled",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Fell",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of make: \"The wind ______ her take a smaller stride every few steps.\"",
+              "clue": "The past tense of \"make\" ends with \"-ade.\"",
+              "choices": [
+                {
+                  "text": "Made",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Maked",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Makes",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of get: \"When she finally ______ to the building, she felt immediate relief.\"",
+              "clue": "The past tense of \"get\" is three letters long.",
+              "choices": [
+                {
+                  "text": "Got",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Getted",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Gets",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of fall: \"Snowflakes ______ down during dismissal.\"",
+              "clue": "The past tense of \"fall\" ends with \"-ell.\"",
+              "choices": [
+                {
+                  "text": "Fell",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Falled",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Fallen",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of hold: \"Jay ______ out his glove to catch a few.\"",
+              "clue": "The past tense of \"hold\" changes the vowel sound.",
+              "choices": [
+                {
+                  "text": "Held",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Holded",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Holds",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of make: \"The quiet snowfall ______ everything feel slower and peaceful.\"",
+              "clue": "The past tense of \"make\" ends with \"-ade.\"",
+              "choices": [
+                {
+                  "text": "Made",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Maked",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Make",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of take: \"Jay ______ a deep breath before walking to the bus line.\"",
+              "clue": "The past tense of \"take\" ends with \"-ook.\"",
+              "choices": [
+                {
+                  "text": "Took",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Taked",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Taken",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-2",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Layering Up",
+      "image": "../../images/winter_stories/story2.png",
+      "alt": "Child putting on winter clothing",
+      "text": [
+        "Sam layered on his winter clothes, starting with his thick coat and then pulling on a knit hat that covered his ears.",
+        "He added gloves because the air outside was freezing today.",
+        "When he finally stepped outdoors, a burst of cold hit his face, but he kept walking with steady steps.",
+        "He felt more confident knowing he was fully bundled up."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "What clothing did Sam put on first?",
+              "clue": "It was thick and went over his body.",
+              "choices": [
+                {
+                  "text": "His coat",
+                  "isCorrect": true
+                },
+                {
+                  "text": "His gloves",
+                  "isCorrect": false
+                },
+                {
+                  "text": "His boots",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What did Sam pull on after his coat?",
+              "clue": "It was a knit item that covered his ears.",
+              "choices": [
+                {
+                  "text": "A hat",
+                  "isCorrect": true
+                },
+                {
+                  "text": "A scarf",
+                  "isCorrect": false
+                },
+                {
+                  "text": "A backpack",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did Sam add gloves?",
+              "clue": "The text mentions the temperature outside.",
+              "choices": [
+                {
+                  "text": "Because the air was freezing",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Because he lost his hat",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Because it was raining",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What happened when Sam stepped outdoors?",
+              "clue": "It hit his face right away.",
+              "choices": [
+                {
+                  "text": "A burst of cold hit his face",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Snow piled on his feet",
+                  "isCorrect": false
+                },
+                {
+                  "text": "A bird landed on his hat",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did Sam keep steady steps even when the cold hit?",
+              "clue": "Think about how prepared he was.",
+              "choices": [
+                {
+                  "text": "He felt protected by his layers",
+                  "isCorrect": true
+                },
+                {
+                  "text": "He was rushing to finish a race",
+                  "isCorrect": false
+                },
+                {
+                  "text": "He wanted to cool down",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did layering make Sam feel?",
+              "clue": "Check the last sentence for his emotion.",
+              "choices": [
+                {
+                  "text": "More confident and ready",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sleepy and tired",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Too warm to move",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why is the hat that covers his ears important?",
+              "clue": "Ears get cold quickly in freezing air.",
+              "choices": [
+                {
+                  "text": "It helps keep his ears warm",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It keeps snow off his shoes",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It makes his coat lighter",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does Sam’s reaction to the cold burst show?",
+              "clue": "He keeps walking with steady steps.",
+              "choices": [
+                {
+                  "text": "He is determined to handle the cold",
+                  "isCorrect": true
+                },
+                {
+                  "text": "He wants to go back inside immediately",
+                  "isCorrect": false
+                },
+                {
+                  "text": "He forgot to zip his coat",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-3",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Bus Stop Chill",
+      "image": "../../images/winter_stories/story3_new.png",
+      "alt": "Student finding a seat on a bus in winter",
+      "text": [
+        "The bus arrived with a puff of warm steam rising from the exhaust into the icy air.",
+        "When Ben climbed the steps, a wave of cold blew in behind him, making him shiver for a moment.",
+        "He moved down the aisle and picked a seat near the window so he could watch the falling snow.",
+        "As the bus started up again, he felt his hands slowly warm in the heated air."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "What rose from the bus exhaust?",
+              "clue": "It looked warm in the icy air.",
+              "choices": [
+                {
+                  "text": "A puff of warm steam",
+                  "isCorrect": true
+                },
+                {
+                  "text": "A burst of leaves",
+                  "isCorrect": false
+                },
+                {
+                  "text": "A spray of water",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What happened when Ben climbed the steps?",
+              "clue": "It made him shiver.",
+              "choices": [
+                {
+                  "text": "A wave of cold blew in",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The lights went off",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The bus drove away",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where did Ben choose to sit?",
+              "clue": "He wanted to watch the snow.",
+              "choices": [
+                {
+                  "text": "Near the window",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Beside the driver",
+                  "isCorrect": false
+                },
+                {
+                  "text": "On the bus steps",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What happened to Ben’s hands as the bus started?",
+              "clue": "The heated air affected them.",
+              "choices": [
+                {
+                  "text": "They slowly warmed up",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They got colder",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They became wet",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did Ben shiver when he climbed the steps?",
+              "clue": "Notice what blew in behind him.",
+              "choices": [
+                {
+                  "text": "Cold air rushed in through the open door",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The heater turned off suddenly",
+                  "isCorrect": false
+                },
+                {
+                  "text": "He forgot his gloves at home",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did Ben pick a seat near the window?",
+              "clue": "He wanted to see something outside.",
+              "choices": [
+                {
+                  "text": "To watch the falling snow",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To keep the window shut tight",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To avoid talking to anyone",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the heated air change Ben’s comfort?",
+              "clue": "Think about his hands.",
+              "choices": [
+                {
+                  "text": "It made him feel warmer and more relaxed",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It made the bus feel colder",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It dried his coat too much",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might watching the snow from the window make the ride feel?",
+              "clue": "Snow can affect mood.",
+              "choices": [
+                {
+                  "text": "Calm and interesting",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Loud and distracting",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Fast and scary",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-4",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Bird on the Fence",
+      "image": "../../images/winter_stories/story4.png",
+      "alt": "Small bird perched on a snowy fence",
+      "text": [
+        "A small bird landed on the fence outside the classroom window, shaking snow from its feathers.",
+        "It hopped from one spot to another, looking for food hidden beneath the frozen ground.",
+        "The students watched quietly because they didn’t want to scare it away.",
+        "After a moment, the bird lifted its wings and flew off toward a nearby tree."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "Where did the small bird land?",
+              "clue": "It was outside the classroom window.",
+              "choices": [
+                {
+                  "text": "On the fence",
+                  "isCorrect": true
+                },
+                {
+                  "text": "On a desk",
+                  "isCorrect": false
+                },
+                {
+                  "text": "On the bus",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What did the bird shake from its feathers?",
+              "clue": "It is cold and white.",
+              "choices": [
+                {
+                  "text": "Snow",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Water",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sand",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What were the students doing while watching?",
+              "clue": "They did not want to scare the bird.",
+              "choices": [
+                {
+                  "text": "Watching quietly",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Shouting loudly",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Clapping hands",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where did the bird fly after a moment?",
+              "clue": "It left for another place nearby.",
+              "choices": [
+                {
+                  "text": "Toward a nearby tree",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Inside the classroom",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Into a nest on the bus",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did the students stay quiet?",
+              "clue": "They wanted the bird to keep looking for food.",
+              "choices": [
+                {
+                  "text": "To avoid scaring the bird away",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To make the room colder",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To practice whispering",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why was the bird hopping from spot to spot?",
+              "clue": "It searched beneath the frozen ground.",
+              "choices": [
+                {
+                  "text": "To find hidden food",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To build a snow fort",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To make a nest on the fence",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did the bird shake snow from its feathers?",
+              "clue": "Consider how snow feels on a small body.",
+              "choices": [
+                {
+                  "text": "To stay dry and ready to fly",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To make more noise",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To show off to the students",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why might the bird fly to the nearby tree?",
+              "clue": "Think about what trees can provide.",
+              "choices": [
+                {
+                  "text": "For safety and shelter",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To race the students",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To get closer to the bus",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-5",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Warm Cocoa",
+      "image": "../../images/winter_stories/story5.png",
+      "alt": "Mug of hot cocoa being stirred",
+      "text": [
+        "Maya made a cup of hot cocoa during lunch, stirring the warm drink until it smelled sweet and chocolatey.",
+        "The heat from the cup spread through her fingers, which had been cold from walking outside.",
+        "She took a slow sip and felt the warmth move through her chest.",
+        "It made her feel calm and more ready to finish the rest of her school day."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "When did Maya make the cup of hot cocoa?",
+              "clue": "Look at the first sentence for the time of day.",
+              "choices": [
+                {
+                  "text": "During lunch",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Before school started",
+                  "isCorrect": false
+                },
+                {
+                  "text": "After bedtime",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the cocoa smell after stirring?",
+              "clue": "Two words describe the scent.",
+              "choices": [
+                {
+                  "text": "Sweet and chocolatey",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Spicy and minty",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sour and salty",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What spread through Maya’s fingers?",
+              "clue": "It came from the cup.",
+              "choices": [
+                {
+                  "text": "The heat from the cup",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Falling snow",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Cold wind",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where did Maya feel the warmth move after she sipped?",
+              "clue": "It moved through this part of her body.",
+              "choices": [
+                {
+                  "text": "Through her chest",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Through her shoes",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Through her backpack",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did Maya stir the cocoa?",
+              "clue": "She wanted it to be ready to drink.",
+              "choices": [
+                {
+                  "text": "To mix it evenly for good flavor",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To cool it down too fast",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To spill it on purpose",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did the heat from the cup matter to Maya?",
+              "clue": "Think about her hands before holding the cup.",
+              "choices": [
+                {
+                  "text": "Her fingers were cold from being outside",
+                  "isCorrect": true
+                },
+                {
+                  "text": "She wanted to freeze her hands",
+                  "isCorrect": false
+                },
+                {
+                  "text": "She needed to dry wet paint",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the warm cocoa affect her mood?",
+              "clue": "Notice how she felt after drinking.",
+              "choices": [
+                {
+                  "text": "Calm and ready to finish the day",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Upset and distracted",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sleepy and unable to work",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might the cocoa help her with the rest of the school day?",
+              "clue": "Warmth can change energy and focus.",
+              "choices": [
+                {
+                  "text": "It gave her comfort to keep working",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It made her too cold to write",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It stopped her from talking",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-6",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Snowy Recess Path",
+      "image": "../../images/winter_stories/story6.png",
+      "alt": "Students making a walking path in the snow",
+      "text": [
+        "During recess, the class walked into the snow-covered yard, leaving a winding trail of footprints behind them.",
+        "The cold air made their cheeks sting, but they kept moving and followed each other in a long line.",
+        "Some students joked about how deep the snow felt under their boots.",
+        "When the bell rang, they headed back inside, grateful for the warm building."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "When did the class walk into the snow-covered yard?",
+              "clue": "Look for the time mentioned in the first sentence.",
+              "choices": [
+                {
+                  "text": "During recess",
+                  "isCorrect": true
+                },
+                {
+                  "text": "During math class",
+                  "isCorrect": false
+                },
+                {
+                  "text": "During dismissal",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What did they leave behind them in the snow?",
+              "clue": "It was a winding trail.",
+              "choices": [
+                {
+                  "text": "Footprints",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Bicycle tracks",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Painted arrows",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What made their cheeks sting?",
+              "clue": "It was the weather around them.",
+              "choices": [
+                {
+                  "text": "The cold air",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Hot sunlight",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Falling rain",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where did the students go when the bell rang?",
+              "clue": "They were glad to reach this place.",
+              "choices": [
+                {
+                  "text": "Back inside the warm building",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To the bus stop",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To the cafeteria",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did they follow each other in a long line?",
+              "clue": "Consider how to move through deep snow.",
+              "choices": [
+                {
+                  "text": "It made a clear path to walk safely",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They wanted to block the doorway",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They were racing to be first",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did some students joke about the deep snow?",
+              "clue": "Think about how they reacted to the cold situation.",
+              "choices": [
+                {
+                  "text": "They were having fun together despite the cold",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They were angry about recess",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They wanted to end recess early",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why were they grateful when they headed back inside?",
+              "clue": "Compare the warm building to the cold yard.",
+              "choices": [
+                {
+                  "text": "The building was warm and comfortable",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They missed a bus ride",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They wanted to get wet again",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the cold air change their experience outside?",
+              "clue": "Notice its effect on their faces and movement.",
+              "choices": [
+                {
+                  "text": "It made their cheeks sting and slowed them down",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It made them feel hot and sweaty",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It kept the snow from piling up",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-7",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Melting the Ice",
+      "image": "../../images/winter_stories/story7.png",
+      "alt": "Salt being spread on an icy sidewalk",
+      "text": [
+        "Ice covered part of the sidewalk near the entrance, so Mr. Lee grabbed a bag of salt and spread it across the ground.",
+        "The ice began to melt slowly, creating a safer path for the students.",
+        "Many kids watched and talked about how slippery it had been earlier.",
+        "Once the walkway looked clear, Mr. Lee nodded and let everyone continue inside."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "What covered part of the sidewalk near the entrance?",
+              "clue": "It made the ground slippery.",
+              "choices": [
+                {
+                  "text": "Ice",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Leaves",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sand",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Who spread salt across the ground?",
+              "clue": "Find the name in the first sentence.",
+              "choices": [
+                {
+                  "text": "Mr. Lee",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Ms. Park",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Ben",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What started to happen after the salt was spread?",
+              "clue": "The surface began to change.",
+              "choices": [
+                {
+                  "text": "The ice began to melt",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Snow piled up higher",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The salt turned to ice",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "When did Mr. Lee let everyone continue inside?",
+              "clue": "He waited for a change on the walkway.",
+              "choices": [
+                {
+                  "text": "After the walkway looked clear",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Before he spread any salt",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Right when the ice appeared",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did Mr. Lee spread salt on the sidewalk?",
+              "clue": "Think about what salt does to ice.",
+              "choices": [
+                {
+                  "text": "To melt the ice and make it safer",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To decorate the walkway",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To make the ground colder",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why were the kids talking about the slippery ground?",
+              "clue": "It affected them earlier.",
+              "choices": [
+                {
+                  "text": "They remembered how unsafe it felt",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They wanted to play soccer there",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They were planning to make it icy again",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did melting the ice change the path?",
+              "clue": "Consider the safety of the walkway.",
+              "choices": [
+                {
+                  "text": "It reduced slipping and made it safer",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It made the path darker",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It stopped people from using it",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did Mr. Lee wait to let everyone inside until the walkway looked clear?",
+              "clue": "He wanted to protect the students.",
+              "choices": [
+                {
+                  "text": "To be sure it was safe to walk",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To make the line longer",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To count every student",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-8",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Windy Walk",
+      "image": "../../images/winter_stories/story8.png",
+      "alt": "Student holding a scarf while wind blows",
+      "text": [
+        "A strong winter wind blew across the parking lot, pushing against Tia’s hood as she tried to walk.",
+        "She held her scarf close to her mouth because the air felt sharp and cold.",
+        "Every few steps, the wind made her take a smaller stride.",
+        "When she finally reached the building, she felt immediate relief as the warm air wrapped around her."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "What pushed against Tia’s hood?",
+              "clue": "It was moving across the parking lot.",
+              "choices": [
+                {
+                  "text": "A strong winter wind",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Falling rain",
+                  "isCorrect": false
+                },
+                {
+                  "text": "A passing car",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What did Tia hold close to her mouth?",
+              "clue": "It helped block the sharp air.",
+              "choices": [
+                {
+                  "text": "Her scarf",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Her notebook",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Her lunch bag",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the wind change her walking?",
+              "clue": "It affected the length of her steps.",
+              "choices": [
+                {
+                  "text": "It made her take smaller strides",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It made her run faster",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It made her jump higher",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where did Tia feel relief?",
+              "clue": "She felt it when she reached a warm place.",
+              "choices": [
+                {
+                  "text": "Inside the building",
+                  "isCorrect": true
+                },
+                {
+                  "text": "In the middle of the parking lot",
+                  "isCorrect": false
+                },
+                {
+                  "text": "On the playground",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did Tia hold her scarf close to her mouth?",
+              "clue": "Think about the air she was breathing.",
+              "choices": [
+                {
+                  "text": "To block the sharp, cold air",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To hide from friends",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To keep the scarf from falling",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did the wind make her take smaller strides?",
+              "clue": "Consider what strong wind does to balance.",
+              "choices": [
+                {
+                  "text": "Smaller steps helped her stay steady",
+                  "isCorrect": true
+                },
+                {
+                  "text": "She wanted to count more steps",
+                  "isCorrect": false
+                },
+                {
+                  "text": "She hoped to make the walk longer",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did Tia likely feel once she entered the building?",
+              "clue": "Warm air replaced the cold wind.",
+              "choices": [
+                {
+                  "text": "Relieved and comfortable",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Hot and dizzy",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Still freezing",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the strong wind affect her walk overall?",
+              "clue": "Think about her pace and effort.",
+              "choices": [
+                {
+                  "text": "It slowed her and made the walk harder",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It made her float quickly",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It made the path shorter",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-9",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Snowflake Catch",
+      "image": "../../images/winter_stories/story9.png",
+      "alt": "Hand catching a snowflake on a glove",
+      "text": [
+        "Snowflakes drifted down during dismissal, landing softly on Jay’s jacket and hair.",
+        "He held out his glove to catch a few, watching how each one melted into a tiny drop of water.",
+        "The quiet snowfall made everything feel slower and more peaceful.",
+        "Jay took a deep breath and walked to the bus line, enjoying the winter moment."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "When did the snowflakes drift down?",
+              "clue": "Check the first sentence for the time.",
+              "choices": [
+                {
+                  "text": "During dismissal",
+                  "isCorrect": true
+                },
+                {
+                  "text": "During breakfast",
+                  "isCorrect": false
+                },
+                {
+                  "text": "During midnight",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where did the snowflakes land on Jay?",
+              "clue": "Two parts of his clothing and body are named.",
+              "choices": [
+                {
+                  "text": "On his jacket and hair",
+                  "isCorrect": true
+                },
+                {
+                  "text": "On his shoes and socks",
+                  "isCorrect": false
+                },
+                {
+                  "text": "On his backpack and desk",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What did Jay hold out to catch the snowflakes?",
+              "clue": "It covered his hand.",
+              "choices": [
+                {
+                  "text": "His glove",
+                  "isCorrect": true
+                },
+                {
+                  "text": "His notebook",
+                  "isCorrect": false
+                },
+                {
+                  "text": "His umbrella",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What happened to the snowflakes he caught?",
+              "clue": "They changed form on his glove.",
+              "choices": [
+                {
+                  "text": "They melted into tiny drops of water",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They turned into ice cubes",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They stayed frozen for hours",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did Jay watch the snowflakes melt?",
+              "clue": "Think about his interest in them.",
+              "choices": [
+                {
+                  "text": "He was curious about how they change",
+                  "isCorrect": true
+                },
+                {
+                  "text": "He wanted to freeze them solid",
+                  "isCorrect": false
+                },
+                {
+                  "text": "He needed to count them for homework",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the quiet snowfall affect the setting?",
+              "clue": "It changed the pace of everything.",
+              "choices": [
+                {
+                  "text": "It made things feel slower and peaceful",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It made the area loud and busy",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It made the ground shake",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did Jay take a deep breath before walking to the bus line?",
+              "clue": "Consider his enjoyment of the moment.",
+              "choices": [
+                {
+                  "text": "He wanted to enjoy the calm winter air",
+                  "isCorrect": true
+                },
+                {
+                  "text": "He was out of breath from running",
+                  "isCorrect": false
+                },
+                {
+                  "text": "He was holding his breath too long",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might catching snowflakes have made Jay feel?",
+              "clue": "Think about his actions and the peaceful scene.",
+              "choices": [
+                {
+                  "text": "Curious and content",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Angry and rushed",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Scared and nervous",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-10",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs-complex.html",
+      "season": "winter",
+      "title": "Warm Classroom",
+      "image": "../../images/winter_stories/story10.png",
+      "alt": "Heater warming a classroom",
+      "text": [
+        "The classroom felt chilly in the morning, so Ms. Park turned on the heater to warm the space.",
+        "Students gathered at their desks and rubbed their hands together while waiting for the room to heat up.",
+        "As the minutes passed, the air grew warmer and the windows began to clear.",
+        "Everyone settled into their work once they felt more comfortable."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "Who turned on the heater?",
+              "clue": "The first sentence names the person.",
+              "choices": [
+                {
+                  "text": "Ms. Park",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Mr. Lee",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sam",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "When did the classroom feel chilly?",
+              "clue": "Note the time of day in the first sentence.",
+              "choices": [
+                {
+                  "text": "In the morning",
+                  "isCorrect": true
+                },
+                {
+                  "text": "At midnight",
+                  "isCorrect": false
+                },
+                {
+                  "text": "In the afternoon",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What were students doing while waiting for the room to heat up?",
+              "clue": "It involved their hands.",
+              "choices": [
+                {
+                  "text": "Rubbing their hands together",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Playing tag in the hall",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Opening all the windows",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What happened to the windows as the room warmed?",
+              "clue": "They changed as the air grew warmer.",
+              "choices": [
+                {
+                  "text": "They began to clear",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They turned blue",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They opened wide",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why did Ms. Park turn on the heater?",
+              "clue": "Think about the temperature at the start.",
+              "choices": [
+                {
+                  "text": "To warm the chilly classroom",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To cool the room further",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To make more noise",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why did the windows begin to clear as the room warmed?",
+              "clue": "Consider what heat does to moisture on windows.",
+              "choices": [
+                {
+                  "text": "The warmth removed the foggy condensation",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The heater painted the windows",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The wind blew the glass clean",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How did the warmer air affect the students?",
+              "clue": "Notice what they did after feeling comfortable.",
+              "choices": [
+                {
+                  "text": "They settled into their work",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They left the room quickly",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They took a nap on the floor",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might the students have felt once the room was warm?",
+              "clue": "Compare their comfort before and after.",
+              "choices": [
+                {
+                  "text": "Comfortable and focused",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Too cold to think",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Hot and unable to work",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "past",
+          "label": "Irregular Past Tense",
+          "questions": [
+            {
+              "prompt": "Fill in the blank with the past tense of feel: \"The classroom ______ chilly in the morning.\"",
+              "clue": "It is a four-letter past tense form.",
+              "choices": [
+                {
+                  "text": "Felt",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Feeled",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Feel",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of sit: \"Students ______ at their desks and rubbed their hands together.\"",
+              "clue": "The past tense of \"sit\" uses a short a vowel sound.",
+              "choices": [
+                {
+                  "text": "Sat",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sit",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sitted",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of begin: \"The windows ______ to clear as the air grew warmer.\"",
+              "clue": "The past tense of \"begin\" ends with \"-gan.\"",
+              "choices": [
+                {
+                  "text": "Began",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Beginned",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Begun",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Fill in the blank with the past tense of get: \"Everyone ______ into their work once they felt more comfortable.\"",
+              "clue": "The past tense of \"get\" is three letters long.",
+              "choices": [
+                {
+                  "text": "Got",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Getted",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Gets",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-1",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Snowy Arrival",
+      "image": "../../images/winter_stories/story1_snowy-arrival.png",
+      "alt": "Students entering a school while snow falls",
+      "text": [
+        "Snow starts falling outside the school.",
+        "The ground turns white.",
+        "Students walk to the door slowly.",
+        "They go inside to get warm."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "Who walks toward the building?",
+              "clue": "Think about which group is moving together.",
+              "choices": [
+                {
+                  "text": "The students",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The bus drivers",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The neighbors",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What is falling outside the school?",
+              "clue": "It is a type of frozen weather falling from the sky.",
+              "choices": [
+                {
+                  "text": "Snow",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Rain",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Falling leaves",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where are the students walking as the snow falls?",
+              "clue": "They are heading toward a place to enter the school.",
+              "choices": [
+                {
+                  "text": "To the door",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To the playground",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To the cafeteria",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What color does the ground turn?",
+              "clue": "Snow covers the ground with this color.",
+              "choices": [
+                {
+                  "text": "White",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Green",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Brown",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why do the students walk slowly?",
+              "clue": "Consider what fresh snow does to the ground.",
+              "choices": [
+                {
+                  "text": "So they do not slip on the snow",
+                  "isCorrect": true
+                },
+                {
+                  "text": "So they can make loud noises",
+                  "isCorrect": false
+                },
+                {
+                  "text": "So they can block the doorway",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why do the students go inside?",
+              "clue": "Look at what they want to feel.",
+              "choices": [
+                {
+                  "text": "To get warm",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To start recess",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To meet the bus driver",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might the students feel once they reach the warm building?",
+              "clue": "Think about how cold bodies feel in heat.",
+              "choices": [
+                {
+                  "text": "Relieved and cozy",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sleepy and bored",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Upset and angry",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How does the snow change what they do outside?",
+              "clue": "Notice how the weather affects their routine.",
+              "choices": [
+                {
+                  "text": "They go inside instead of staying out",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They start a long playground game",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They run laps around the school",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-2",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Layering Up",
+      "image": "../../images/winter_stories/story2.png",
+      "alt": "Child putting on winter clothing",
+      "text": [
+        "Sam puts on his coat.",
+        "Then he puts on his hat.",
+        "Next he puts on his gloves.",
+        "Now he is ready to go outside."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "What clothing item does Sam put on first?",
+              "clue": "It covers his upper body.",
+              "choices": [
+                {
+                  "text": "His coat",
+                  "isCorrect": true
+                },
+                {
+                  "text": "His gloves",
+                  "isCorrect": false
+                },
+                {
+                  "text": "His scarf",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does Sam put on right after his coat?",
+              "clue": "It goes on his head before his gloves.",
+              "choices": [
+                {
+                  "text": "His hat",
+                  "isCorrect": true
+                },
+                {
+                  "text": "His gloves",
+                  "isCorrect": false
+                },
+                {
+                  "text": "His boots",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Which item comes after the hat?",
+              "clue": "It keeps his hands warm.",
+              "choices": [
+                {
+                  "text": "His gloves",
+                  "isCorrect": true
+                },
+                {
+                  "text": "His socks",
+                  "isCorrect": false
+                },
+                {
+                  "text": "His backpack",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What is Sam ready to do after putting on his clothes?",
+              "clue": "The last sentence explains his plan.",
+              "choices": [
+                {
+                  "text": "Go outside",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Go to sleep",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Make lunch",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why is Sam adding all these layers?",
+              "clue": "Think about the weather outside.",
+              "choices": [
+                {
+                  "text": "To stay warm outdoors",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To swim in a pool",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To take a nap",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might Sam feel once he is dressed?",
+              "clue": "He put on enough to face the cold.",
+              "choices": [
+                {
+                  "text": "Cozy and ready to play",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Hot and sleepy",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Hungry and worried",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why might Sam put on his hat before his gloves?",
+              "clue": "Think about what part of the body loses heat fast.",
+              "choices": [
+                {
+                  "text": "To keep his head warm first",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To practice balancing",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To match his boots",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What might Sam still need to add before snow play?",
+              "clue": "He covered his head and hands but not his feet.",
+              "choices": [
+                {
+                  "text": "Boots to protect his feet",
+                  "isCorrect": true
+                },
+                {
+                  "text": "A swimsuit",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Indoor slippers",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-3",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Bus Stop Chill",
+      "image": "../../images/winter_stories/story3_new.png",
+      "alt": "Student finding a seat on a bus in winter",
+      "text": [
+        "The bus stops at the corner.",
+        "Ben steps onto the bus, and cold air comes in behind him.",
+        "He walks down the aisle to find a seat.",
+        "Then he sits in an empty spot and warms his hands."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "Where does the bus stop?",
+              "clue": "It halts at the corner of the street.",
+              "choices": [
+                {
+                  "text": "At the corner",
+                  "isCorrect": true
+                },
+                {
+                  "text": "In a parking garage",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Inside the school",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Who steps onto the bus?",
+              "clue": "Check the second sentence for the name.",
+              "choices": [
+                {
+                  "text": "Ben",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sam",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Mr. Lee",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What comes in behind Ben?",
+              "clue": "It follows him through the open door.",
+              "choices": [
+                {
+                  "text": "Cold air",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Hot air",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Falling leaves",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does Ben do after finding a seat?",
+              "clue": "He tries to make his hands feel better.",
+              "choices": [
+                {
+                  "text": "He warms his hands",
+                  "isCorrect": true
+                },
+                {
+                  "text": "He reads a book",
+                  "isCorrect": false
+                },
+                {
+                  "text": "He opens a window",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why does cold air come in behind Ben?",
+              "clue": "Think about what happens when a bus door opens in winter.",
+              "choices": [
+                {
+                  "text": "The open door lets winter air inside",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The heater is blowing cold air",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The windows are all open",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why might Ben walk down the aisle before sitting?",
+              "clue": "He needs to find a certain place.",
+              "choices": [
+                {
+                  "text": "To find an empty seat",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To tell the driver to leave",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To close all the windows",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might Ben feel as he warms his hands?",
+              "clue": "Consider the change from cold to warm.",
+              "choices": [
+                {
+                  "text": "Relieved and more comfortable",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Angry and impatient",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sleepy and ready for bed",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why is warming his hands important before the ride?",
+              "clue": "Cold hands can affect comfort during travel.",
+              "choices": [
+                {
+                  "text": "Warm hands help him feel cozy during the ride",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Warm hands make the bus go faster",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Warm hands keep the windows clear",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-4",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Bird on the Fence",
+      "image": "../../images/winter_stories/story4.png",
+      "alt": "Small bird perched on a snowy fence",
+      "text": [
+        "A bird lands on the fence.",
+        "It shakes off the snow.",
+        "It looks around for food.",
+        "Then it flies away."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "Where does the bird land?",
+              "clue": "It is a long wooden or metal line by a yard.",
+              "choices": [
+                {
+                  "text": "On the fence",
+                  "isCorrect": true
+                },
+                {
+                  "text": "On a tree branch",
+                  "isCorrect": false
+                },
+                {
+                  "text": "On a roof",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does the bird shake off?",
+              "clue": "It is light and cold.",
+              "choices": [
+                {
+                  "text": "Snow",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Leaves",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Water drops",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does the bird look around for?",
+              "clue": "It is something the bird wants to eat.",
+              "choices": [
+                {
+                  "text": "Food",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sticks",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Water to swim in",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does the bird do after looking around?",
+              "clue": "It moves away through the air.",
+              "choices": [
+                {
+                  "text": "It flies away",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It digs a hole",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It goes to sleep",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why does the bird shake off the snow?",
+              "clue": "Think about what snow does to feathers.",
+              "choices": [
+                {
+                  "text": "To dry off and fly comfortably",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To make a nest",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To call other birds",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How is the bird acting when it looks around for food?",
+              "clue": "Notice its careful movements.",
+              "choices": [
+                {
+                  "text": "Alert and searching",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sleepy and resting",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Upset and noisy",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why might the bird fly away after looking?",
+              "clue": "Think about whether it found what it needed.",
+              "choices": [
+                {
+                  "text": "It may need to search somewhere else",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It is tired of flying",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It wants to play with snow",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might the cold weather make the bird feel?",
+              "clue": "Birds need warmth to stay comfortable.",
+              "choices": [
+                {
+                  "text": "Chilly and eager to find shelter",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sweaty and hot",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Soaking wet from rain",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-5",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Warm Cocoa",
+      "image": "../../images/winter_stories/story5.png",
+      "alt": "Mug of hot cocoa being stirred",
+      "text": [
+        "Maya makes hot cocoa.",
+        "She stirs it with a spoon.",
+        "She takes one small sip.",
+        "Then she smiles because it is warm."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "Who makes the hot cocoa?",
+              "clue": "Look at the name in the first sentence.",
+              "choices": [
+                {
+                  "text": "Maya",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Tia",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Jay",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does Maya use to stir the cocoa?",
+              "clue": "It is a small tool from the kitchen drawer.",
+              "choices": [
+                {
+                  "text": "A spoon",
+                  "isCorrect": true
+                },
+                {
+                  "text": "A straw",
+                  "isCorrect": false
+                },
+                {
+                  "text": "A fork",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does Maya do right after stirring?",
+              "clue": "She tests the drink with a small taste.",
+              "choices": [
+                {
+                  "text": "Takes one small sip",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Pours it out",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Adds more snow",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How does Maya react after sipping?",
+              "clue": "Notice her facial expression.",
+              "choices": [
+                {
+                  "text": "She smiles",
+                  "isCorrect": true
+                },
+                {
+                  "text": "She frowns",
+                  "isCorrect": false
+                },
+                {
+                  "text": "She coughs",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why does Maya stir the cocoa?",
+              "clue": "She wants the drink to be mixed evenly.",
+              "choices": [
+                {
+                  "text": "To mix the cocoa so it is smooth",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To cool it down quickly",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To make bubbles for fun",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why does she take only a small sip first?",
+              "clue": "Think about the temperature of hot drinks.",
+              "choices": [
+                {
+                  "text": "To test the heat safely",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To finish it in one gulp",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To share it with everyone",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How does the warm cocoa make her feel?",
+              "clue": "She smiles because of this feeling.",
+              "choices": [
+                {
+                  "text": "Cozy and happy",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Bored and tired",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Cold and shivery",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might the cocoa help on a snowy day?",
+              "clue": "Think about what a warm drink does to a cold body.",
+              "choices": [
+                {
+                  "text": "It warms her up from the inside",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It makes her colder",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It makes her run faster",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-6",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Snowy Recess Path",
+      "image": "../../images/winter_stories/story6.png",
+      "alt": "Students making a walking path in the snow",
+      "text": [
+        "The class lines up for recess.",
+        "They walk into the snowy yard.",
+        "They make one big path in the snow.",
+        "Then they follow the path back inside."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "When does the class line up?",
+              "clue": "Check the first sentence for the time of day.",
+              "choices": [
+                {
+                  "text": "For recess",
+                  "isCorrect": true
+                },
+                {
+                  "text": "For lunch",
+                  "isCorrect": false
+                },
+                {
+                  "text": "For dismissal",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where do they walk together?",
+              "clue": "It is outside and covered in snow.",
+              "choices": [
+                {
+                  "text": "Into the snowy yard",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Into the library",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Into the cafeteria",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What do they make in the snow?",
+              "clue": "It is a single route for everyone to use.",
+              "choices": [
+                {
+                  "text": "One big path",
+                  "isCorrect": true
+                },
+                {
+                  "text": "A snow fort",
+                  "isCorrect": false
+                },
+                {
+                  "text": "A tall snowman",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where do they go after using the path?",
+              "clue": "They return to the building.",
+              "choices": [
+                {
+                  "text": "Back inside",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To the bus stop",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To the gym",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why do they make one big path?",
+              "clue": "Consider how snow can be tricky to walk through.",
+              "choices": [
+                {
+                  "text": "To keep a clear, safe walkway",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To hide their footprints",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To make the snow deeper",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might one shared path help the teachers?",
+              "clue": "Think about watching students in the snow.",
+              "choices": [
+                {
+                  "text": "It is easier to supervise one route",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It makes the path louder",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It lets students get lost",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why do they follow the same path back inside?",
+              "clue": "Fresh snow can soak shoes.",
+              "choices": [
+                {
+                  "text": "To avoid deep snow and stay dry",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To erase their work",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To confuse their friends",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might the students feel while walking the path?",
+              "clue": "Picture kids exploring snow together.",
+              "choices": [
+                {
+                  "text": "Excited and careful",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Angry and scared",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sleepy and bored",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-7",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Melting the Ice",
+      "image": "../../images/winter_stories/story7.png",
+      "alt": "Salt being spread on an icy sidewalk",
+      "text": [
+        "Ice covers the sidewalk.",
+        "Mr. Lee spreads salt on the ground.",
+        "The ice starts to melt.",
+        "Students walk across safely."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "What covers the sidewalk at first?",
+              "clue": "It is frozen water.",
+              "choices": [
+                {
+                  "text": "Ice",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Leaves",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sand",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Who spreads salt on the ground?",
+              "clue": "Read the second sentence for the name.",
+              "choices": [
+                {
+                  "text": "Mr. Lee",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Ms. Park",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Ben",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What happens to the ice after the salt is added?",
+              "clue": "Look at the third sentence.",
+              "choices": [
+                {
+                  "text": "It starts to melt",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It turns thicker",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It becomes snow",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How do students walk once the ice melts?",
+              "clue": "Check the last sentence.",
+              "choices": [
+                {
+                  "text": "They walk across safely",
+                  "isCorrect": true
+                },
+                {
+                  "text": "They slide across for fun",
+                  "isCorrect": false
+                },
+                {
+                  "text": "They stay inside all day",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why does Mr. Lee spread salt on the sidewalk?",
+              "clue": "Think about how salt affects ice.",
+              "choices": [
+                {
+                  "text": "To melt the ice so people can walk safely",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To decorate the sidewalk",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To make the ground warmer for plants",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might the sidewalk feel after the salt works?",
+              "clue": "Consider the surface when ice is gone.",
+              "choices": [
+                {
+                  "text": "Less slippery and safer",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Stickier and muddy",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Hot like summer pavement",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why is it important for students to walk safely here?",
+              "clue": "Think about what could happen on ice.",
+              "choices": [
+                {
+                  "text": "To prevent falls and injuries",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To make the walk shorter",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To stay perfectly silent",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might students feel after seeing the ice melt?",
+              "clue": "They can move without fear.",
+              "choices": [
+                {
+                  "text": "Confident and relieved",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Confused and upset",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sleepy and bored",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-8",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Windy Walk",
+      "image": "../../images/winter_stories/story8.png",
+      "alt": "Student holding a scarf while wind blows",
+      "text": [
+        "A cold wind blows hard.",
+        "Tia pulls up her hood.",
+        "She holds her scarf close to her face.",
+        "Then she hurries into the building."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "What blows hard at the start of the story?",
+              "clue": "It is a type of weather, not snow.",
+              "choices": [
+                {
+                  "text": "A cold wind",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Heavy rain",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Hot sunshine",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Who pulls up her hood?",
+              "clue": "Look for the name in the second sentence.",
+              "choices": [
+                {
+                  "text": "Tia",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Maya",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Jay",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does she hold close to her face?",
+              "clue": "It is a winter accessory.",
+              "choices": [
+                {
+                  "text": "Her scarf",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Her backpack",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Her notebook",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where does she hurry at the end?",
+              "clue": "She moves toward a warm place.",
+              "choices": [
+                {
+                  "text": "Into the building",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Into the snowy yard",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Onto the playground",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why does Tia pull up her hood?",
+              "clue": "Think about protecting herself from the wind.",
+              "choices": [
+                {
+                  "text": "To block the cold wind from her head",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To hide from her friends",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To show off her hat",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How does holding her scarf close help her?",
+              "clue": "Consider how scarves can be used in cold weather.",
+              "choices": [
+                {
+                  "text": "It shields her face from the cold air",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It helps her run faster",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It changes the color of the scarf",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might Tia feel while the wind blows hard?",
+              "clue": "Think about a strong, cold wind.",
+              "choices": [
+                {
+                  "text": "Cold and eager to get inside",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Hot and sweating",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sleepy and yawning",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why does she hurry into the building?",
+              "clue": "Notice what she is trying to escape.",
+              "choices": [
+                {
+                  "text": "To get out of the wind and warm up",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To avoid doing homework",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To start a race in the hall",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-9",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Snowflake Catch",
+      "image": "../../images/winter_stories/story9.png",
+      "alt": "Hand catching a snowflake on a glove",
+      "text": [
+        "Snow falls during dismissal.",
+        "Jay steps outside.",
+        "He catches a snowflake on his glove.",
+        "Then he watches it melt."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "When does the snow fall in this story?",
+              "clue": "Check the first sentence for the time.",
+              "choices": [
+                {
+                  "text": "During dismissal",
+                  "isCorrect": true
+                },
+                {
+                  "text": "During breakfast",
+                  "isCorrect": false
+                },
+                {
+                  "text": "During lunch",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Who steps outside?",
+              "clue": "Look at the second sentence.",
+              "choices": [
+                {
+                  "text": "Jay",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Maya",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Tia",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Where does Jay catch the snowflake?",
+              "clue": "It lands on something he is wearing on his hand.",
+              "choices": [
+                {
+                  "text": "On his glove",
+                  "isCorrect": true
+                },
+                {
+                  "text": "On his sleeve",
+                  "isCorrect": false
+                },
+                {
+                  "text": "On his notebook",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What does Jay watch happen to the snowflake?",
+              "clue": "It changes because of warmth.",
+              "choices": [
+                {
+                  "text": "It melts",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It turns into rain",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It freezes harder",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why does the snowflake melt on his glove?",
+              "clue": "Consider the temperature of his hand covering.",
+              "choices": [
+                {
+                  "text": "The warmth of his glove melts it",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The wind blows it away",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The bus heater melts it",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might Jay feel while watching the snowflake melt?",
+              "clue": "He is paying close attention.",
+              "choices": [
+                {
+                  "text": "Curious and fascinated",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Angry and upset",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sleepy and uninterested",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why might Jay catch the snowflake on a glove instead of his bare hand?",
+              "clue": "Think about which surface keeps a snowflake longer.",
+              "choices": [
+                {
+                  "text": "A glove is softer and melts it slower",
+                  "isCorrect": true
+                },
+                {
+                  "text": "A glove tastes better",
+                  "isCorrect": false
+                },
+                {
+                  "text": "A glove makes it grow",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What might Jay notice about the snowflake before it melts?",
+              "clue": "Snowflakes have unique patterns.",
+              "choices": [
+                {
+                  "text": "Its small, detailed shape",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Its loud buzzing sound",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Its bright green color",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story-10",
+      "sourceFile": "activities/reading/winter-short-story-comprehension-tabs.html",
+      "season": "winter",
+      "title": "Warm Classroom",
+      "image": "../../images/winter_stories/story10.png",
+      "alt": "Heater warming a classroom",
+      "text": [
+        "The classroom feels chilly.",
+        "Ms. Park turns on the heater.",
+        "The room warms up slowly.",
+        "Students sit down and begin their work."
+      ],
+      "questionSets": [
+        {
+          "key": "literal",
+          "label": "Literal",
+          "questions": [
+            {
+              "prompt": "How does the classroom feel at the start?",
+              "clue": "Look at the first sentence.",
+              "choices": [
+                {
+                  "text": "Chilly",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Hot",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Flooded",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Who turns on the heater?",
+              "clue": "The third sentence names the person.",
+              "choices": [
+                {
+                  "text": "Ms. Park",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Mr. Lee",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Sam",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What happens to the room after the heater is on?",
+              "clue": "It does this slowly.",
+              "choices": [
+                {
+                  "text": "It warms up slowly",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It fills with snow",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It gets darker",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "What do students do once the room warms?",
+              "clue": "Check the last sentence.",
+              "choices": [
+                {
+                  "text": "Sit down and begin their work",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Run outside to play",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Go to the cafeteria",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "inferential",
+          "label": "Inferential",
+          "questions": [
+            {
+              "prompt": "Why does Ms. Park turn on the heater?",
+              "clue": "Think about the chilly start.",
+              "choices": [
+                {
+                  "text": "To make the room comfortable",
+                  "isCorrect": true
+                },
+                {
+                  "text": "To dry wet paint",
+                  "isCorrect": false
+                },
+                {
+                  "text": "To keep the windows open",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How might students feel as the room warms up?",
+              "clue": "Warmth changes comfort and focus.",
+              "choices": [
+                {
+                  "text": "More comfortable and focused",
+                  "isCorrect": true
+                },
+                {
+                  "text": "Sleepy from the cold",
+                  "isCorrect": false
+                },
+                {
+                  "text": "Scared of the heater",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "Why does the room warm up slowly instead of instantly?",
+              "clue": "Consider how heaters change temperature.",
+              "choices": [
+                {
+                  "text": "Heaters take time to change the air",
+                  "isCorrect": true
+                },
+                {
+                  "text": "The heater is filled with ice",
+                  "isCorrect": false
+                },
+                {
+                  "text": "The windows are wide open",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "prompt": "How does a warmer room affect their work time?",
+              "clue": "Think about working while comfortable.",
+              "choices": [
+                {
+                  "text": "It helps them stay on task",
+                  "isCorrect": true
+                },
+                {
+                  "text": "It stops them from writing",
+                  "isCorrect": false
+                },
+                {
+                  "text": "It makes them leave early",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
