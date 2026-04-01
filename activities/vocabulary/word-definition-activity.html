@@ -9,9 +9,13 @@
         // Configuration for the Universal Quiz
         window.activityType = 'definitions';
     </script>
+    <script src="../../data/vocabulary.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/quiz-engine.js"></script>
 </head>
 
-<body>
+<body class="category-vocabulary">
     <!-- Load the Universal Quiz Template -->
     <!-- 
          Since we are in a flat file system, we can't easily "include" HTML.
@@ -42,7 +46,7 @@
 
     <div id="app-root"></div>
 
-    <script type="module">
+    <script>
         // We can import the logic and render it.
         // This means `universal-quiz.html` isn't strictly needed as a file if we have the JS.
         // BUT having a standalone HTML file is good for testing.
@@ -50,8 +54,8 @@
         // Let's re-use the logic we wrote in universal-quiz.html but imported here.
         // I will duplicate the minimal HTML structure here and import the engine.
 
-        import { wordDefinitions } from './js/language-data.js';
-        import { QuizEngine } from './js/quiz-engine.js';
+        const wordDefinitions = DataLoader.get('vocabulary', 'wordDefinitions');
+        
 
         document.body.innerHTML = `
             <link rel="stylesheet" href="../../css/styles.css">
