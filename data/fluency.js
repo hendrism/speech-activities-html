@@ -266,8 +266,8 @@ window.ActivityData.fluency = {
       "id": "fluency-fluency-winter-conversation-starters-001",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Ideal Snow Day",
-      "starter": "What’s your ideal plan for a snow day if school gets canceled?",
-      "stem": "If I had a snow day, I would start by…, then I would…, and finally I would…",
+      "starter": "What\u2019s your ideal plan for a snow day if school gets canceled?",
+      "stem": "If I had a snow day, I would start by\u2026, then I would\u2026, and finally I would\u2026",
       "followups": [
         "Would you spend it mostly alone or with people?",
         "Has your favorite snow-day activity changed since you were younger?"
@@ -288,11 +288,11 @@ window.ActivityData.fluency = {
       "id": "fluency-fluency-winter-conversation-starters-003",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Winter Habits",
-      "starter": "What winter tradition or habit do you enjoy, even if it’s small?",
+      "starter": "What winter tradition or habit do you enjoy, even if it\u2019s small?",
       "stem": "One winter habit I like is ___ because ___.",
       "followups": [
         "Is it something you do alone or with others?",
-        "Do you think you’ll keep that habit as an adult?"
+        "Do you think you\u2019ll keep that habit as an adult?"
       ]
     },
     {
@@ -310,7 +310,7 @@ window.ActivityData.fluency = {
       "id": "fluency-fluency-winter-conversation-starters-005",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Annoying Winter Tasks",
-      "starter": "What winter chore or task do you wish you didn’t have to do?",
+      "starter": "What winter chore or task do you wish you didn\u2019t have to do?",
       "stem": "I really dislike ___ because ___.",
       "followups": [
         "How do you make it less annoying?",
@@ -343,8 +343,8 @@ window.ActivityData.fluency = {
       "id": "fluency-fluency-winter-conversation-starters-008",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Childhood Winter Activities",
-      "starter": "What is something fun you used to do in winter as a kid that you don’t do anymore?",
-      "stem": "When I was younger, I used to ___, but now I don’t because ___.",
+      "starter": "What is something fun you used to do in winter as a kid that you don\u2019t do anymore?",
+      "stem": "When I was younger, I used to ___, but now I don\u2019t because ___.",
       "followups": [
         "Would you try it again now?",
         "What made it fun back then?"
@@ -358,7 +358,7 @@ window.ActivityData.fluency = {
       "stem": "The winter clothing I like most is ___ because ___.",
       "followups": [
         "Do you care more about warmth or style?",
-        "Is there something you’d add to your perfect winter outfit?"
+        "Is there something you\u2019d add to your perfect winter outfit?"
       ]
     },
     {
@@ -366,7 +366,7 @@ window.ActivityData.fluency = {
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "All-Day Outdoor Winter Challenge",
       "starter": "If you had to spend a whole day outside in winter, what would you want to do?",
-      "stem": "If I had to stay outside, I’d spend my time ___, ___, and ___.",
+      "stem": "If I had to stay outside, I\u2019d spend my time ___, ___, and ___.",
       "followups": [
         "What would be the hardest part?",
         "Would you want anyone with you?"
@@ -376,7 +376,7 @@ window.ActivityData.fluency = {
       "id": "fluency-fluency-winter-conversation-starters-011",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Winter and Mood",
-      "starter": "Do you think winter affects people’s moods or energy levels?",
+      "starter": "Do you think winter affects people\u2019s moods or energy levels?",
       "stem": "I think winter affects people by making them feel ___ because ___.",
       "followups": [
         "Does winter affect you personally?",
@@ -387,7 +387,7 @@ window.ActivityData.fluency = {
       "id": "fluency-fluency-winter-conversation-starters-012",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Best Recent Winter Memory",
-      "starter": "What’s the best winter memory you’ve had in the last few years?",
+      "starter": "What\u2019s the best winter memory you\u2019ve had in the last few years?",
       "stem": "A favorite winter memory I have is ___ because ___.",
       "followups": [
         "Who was with you?",
@@ -398,8 +398,8 @@ window.ActivityData.fluency = {
       "id": "fluency-fluency-winter-conversation-starters-013",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Winter Activity You Wish You Liked",
-      "starter": "What winter activity do you wish you liked, but you really don’t?",
-      "stem": "I wish I liked ___, but I don’t because ___.",
+      "starter": "What winter activity do you wish you liked, but you really don\u2019t?",
+      "stem": "I wish I liked ___, but I don\u2019t because ___.",
       "followups": [
         "What would make it more enjoyable?",
         "Do your friends like it?"
@@ -683,7 +683,7 @@ window.ActivityData.fluency = {
         "sequence"
       ],
       "followUps": [
-        "Which tasks match each person’s strengths?",
+        "Which tasks match each person\u2019s strengths?",
         "What needs to happen first?",
         "How will you know the job is done well?"
       ]
@@ -750,6 +750,108 @@ window.ActivityData.fluency = {
         "What options are fair?",
         "How can both people feel heard?",
         "What words can you use to stay calm?"
+      ]
+    }
+  ],
+  "practiceWords": [
+    {
+      "id": "pw-001",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "on",
+      "syllables": "oooooonnnnn",
+      "level": "easy",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-002",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "in",
+      "syllables": "iiiiiinnnnnn",
+      "level": "easy",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-003",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "my",
+      "syllables": "mmmmmmyyyyyy",
+      "level": "easy",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-004",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "an",
+      "syllables": "aaaaaannnnnn",
+      "level": "easy",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-005",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "lightly",
+      "syllables": "lllllliiight \u2014 llllllyyyyyy",
+      "level": "medium",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-006",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "freeing",
+      "syllables": "frrrrreeeeee \u2014 iiiiiinnnggg",
+      "level": "medium",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-007",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "gently",
+      "syllables": "geeeeennnnnt \u2014 llllllyyyyyy",
+      "level": "medium",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-008",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "easy",
+      "syllables": "eeeeeeaaaaaa \u2014 ssssssyyyyyy",
+      "level": "medium",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-009",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "softly",
+      "syllables": "sssssooooft \u2014 llllllyyyyyy",
+      "level": "medium",
+      "tags": [
+        "gentle-onset"
+      ]
+    },
+    {
+      "id": "pw-010",
+      "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
+      "word": "smoothly",
+      "syllables": "sssssmooooth \u2014 llllllyyyyyy",
+      "level": "medium",
+      "tags": [
+        "gentle-onset"
       ]
     }
   ]

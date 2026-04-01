@@ -751,5 +751,17 @@
         "What words can you use to stay calm?"
       ]
     }
+  ],
+  "practiceWords": [
+    { "id": "pw-001", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "on", "syllables": "oooooonnnnn", "level": "easy", "tags": ["gentle-onset"] },
+    { "id": "pw-002", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "in", "syllables": "iiiiiinnnnnn", "level": "easy", "tags": ["gentle-onset"] },
+    { "id": "pw-003", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "my", "syllables": "mmmmmmyyyyyy", "level": "easy", "tags": ["gentle-onset"] },
+    { "id": "pw-004", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "an", "syllables": "aaaaaannnnnn", "level": "easy", "tags": ["gentle-onset"] },
+    { "id": "pw-005", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "lightly", "syllables": "lllllliiight — llllllyyyyyy", "level": "medium", "tags": ["gentle-onset"] },
+    { "id": "pw-006", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "freeing", "syllables": "frrrrreeeeee — iiiiiinnnggg", "level": "medium", "tags": ["gentle-onset"] },
+    { "id": "pw-007", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "gently", "syllables": "geeeeennnnnt — llllllyyyyyy", "level": "medium", "tags": ["gentle-onset"] },
+    { "id": "pw-008", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "easy", "syllables": "eeeeeeaaaaaa — ssssssyyyyyy", "level": "medium", "tags": ["gentle-onset"] },
+    { "id": "pw-009", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "softly", "syllables": "sssssooooft — llllllyyyyyy", "level": "medium", "tags": ["gentle-onset"] },
+    { "id": "pw-010", "sourceFile": "activities/fluency/fluency-therapy-session-activity.html", "word": "smoothly", "syllables": "sssssmooooth — llllllyyyyyy", "level": "medium", "tags": ["gentle-onset"] }
   ]
 }
