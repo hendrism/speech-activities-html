@@ -3,10 +3,11 @@ window.ActivityData.grammar = {
   "_meta": {
     "description": "Grammar exercises: sentence builders, plural nouns, tense, negation",
     "futureSQLiteTable": "grammar_items",
-    "version": "1.0",
+    "version": "1.1",
     "extractedAt": "2026-02-27T19:07:41.872Z",
     "totalItems": 211,
-    "extractedFromHTML": 211
+    "extractedFromHTML": 211,
+    "updatedAt": "2026-04-01T00:00:00.000Z"
   },
   "items": [
     {
@@ -4270,6 +4271,1460 @@ window.ActivityData.grammar = {
         "To enhance my skills, I...",
         "Technology can enhance learning by...",
         "We can enhance the experience by..."
+      ]
+    }
+  ],
+  "directionFindTheCore": [
+    {
+      "name": "Underline Title",
+      "tag": "Warm-Up",
+      "chunks": [
+        {
+          "text": "underline the title on your worksheet",
+          "key": true
+        },
+        {
+          "text": "even though we won't grade it today",
+          "key": false
+        }
+      ],
+      "direction": "Please underline the title on your worksheet, even though we won't grade it today.",
+      "tips": [
+        "Underline the action words.",
+        "Ask: what would I tell a friend in five words?",
+        "Ignore the reason that follows the comma."
+      ]
+    },
+    {
+      "name": "Planner Reminder",
+      "tag": "Organization",
+      "chunks": [
+        {
+          "text": "highlight today's homework line in your planner",
+          "key": true
+        },
+        {
+          "text": "not the entire page",
+          "key": false
+        }
+      ],
+      "direction": "Highlight today's homework line in your planner, not the entire page.",
+      "tips": [
+        "Say the command out loud.",
+        "Focus on the verb + object.",
+        "Skip the extra warning."
+      ]
+    },
+    {
+      "name": "Email Ms. Rivera",
+      "tag": "School",
+      "chunks": [
+        {
+          "text": "email the science lab reflection to Ms. Rivera",
+          "key": true
+        },
+        {
+          "text": "even if the portal still says draft",
+          "key": false
+        }
+      ],
+      "direction": "Email the science lab reflection to Ms. Rivera, even if the portal still says draft.",
+      "tips": [
+        "Circle the main verb.",
+        "Repeat the short direction in your own words.",
+        "Let the 'even if' part go."
+      ]
+    },
+    {
+      "name": "Chromebook Return",
+      "tag": "Technology",
+      "chunks": [
+        {
+          "text": "place your Chromebook on shelf three",
+          "key": true
+        },
+        {
+          "text": "after the bell rings",
+          "key": false
+        },
+        {
+          "text": "even though the carts look empty",
+          "key": false
+        }
+      ],
+      "direction": "Place your Chromebook on shelf three after the bell rings, even though the carts look empty.",
+      "tips": [
+        "Keep the shelf location; drop the timing and comment.",
+        "Visualize the core action.",
+        "Use finger counting if needed."
+      ]
+    },
+    {
+      "name": "Bring Pink Sheet",
+      "tag": "Meeting Prep",
+      "chunks": [
+        {
+          "text": "bring the pink data sheet to the meeting",
+          "key": true
+        },
+        {
+          "text": "not the white one from last week",
+          "key": false
+        }
+      ],
+      "direction": "Bring the pink data sheet to the meeting, not the white one from last week.",
+      "tips": [
+        "Say the instruction without the comma.",
+        "Highlight the noun that matters.",
+        "Ignore the comparison detail."
+      ]
+    },
+    {
+      "name": "Sign Clipboard",
+      "tag": "Attendance",
+      "chunks": [
+        {
+          "text": "sign the attendance clipboard on the counter",
+          "key": true
+        },
+        {
+          "text": "regardless of whether you signed in online",
+          "key": false
+        }
+      ],
+      "direction": "Sign the attendance clipboard on the counter, regardless of whether you signed in online.",
+      "tips": [
+        "Look for the must-do verb.",
+        "Imagine yourself doing only that part.",
+        "Let the 'regardless' phrase fade out."
+      ]
+    },
+    {
+      "name": "Recycle Note",
+      "tag": "Daily Life",
+      "chunks": [
+        {
+          "text": "recycle the flyer next to the printer",
+          "key": true
+        },
+        {
+          "text": "even though it looks brand new",
+          "key": false
+        }
+      ],
+      "direction": "Recycle the flyer next to the printer, even though it looks brand new.",
+      "tips": [
+        "Focus on recycle + object.",
+        "Read the sentence without the extra clause.",
+        "Restate the short direction."
+      ]
+    },
+    {
+      "name": "Turn In Form",
+      "tag": "Office",
+      "chunks": [
+        {
+          "text": "turn in your field trip form to the bin by the door",
+          "key": true
+        },
+        {
+          "text": "despite the note saying Friday",
+          "key": false
+        }
+      ],
+      "direction": "Turn in your field trip form to the bin by the door, despite the note saying Friday.",
+      "tips": [
+        "Underline the command first.",
+        "Decide if the rest changes the action.",
+        "Keep the location if it matters to completing it."
+      ]
+    },
+    {
+      "name": "Jacket Hook",
+      "tag": "Hallway",
+      "chunks": [
+        {
+          "text": "hang your jacket on hook number four",
+          "key": true
+        },
+        {
+          "text": "even if the first hook is open",
+          "key": false
+        }
+      ],
+      "direction": "Hang your jacket on hook number four, even if the first hook is open.",
+      "tips": [
+        "Notice the verb hang.",
+        "Keep the hook number; skip the extra option.",
+        "Say the short version: hang it on hook four."
+      ]
+    },
+    {
+      "name": "Homework Tray",
+      "tag": "Classroom Routine",
+      "chunks": [
+        {
+          "text": "place tonight's homework in the blue tray",
+          "key": true
+        },
+        {
+          "text": "not on my desk like yesterday",
+          "key": false
+        }
+      ],
+      "direction": "Place tonight's homework in the blue tray, not on my desk like yesterday.",
+      "tips": [
+        "Spot place + blue tray.",
+        "The comma phrase is just a reminder.",
+        "Restate the core: put it in the blue tray."
+      ]
+    },
+    {
+      "name": "Voice Level",
+      "tag": "Group Work",
+      "chunks": [
+        {
+          "text": "use a level-two voice to share your idea",
+          "key": true
+        },
+        {
+          "text": "even though the class next door is loud",
+          "key": false
+        }
+      ],
+      "direction": "Use a level-two voice to share your idea, even though the class next door is loud.",
+      "tips": [
+        "Underline the instruction use.",
+        "Ignore the comparison to other noise.",
+        "Practice saying just the core direction."
+      ]
+    },
+    {
+      "name": "Return Library Book",
+      "tag": "Library",
+      "chunks": [
+        {
+          "text": "return your overdue library book to the bin by the door",
+          "key": true
+        },
+        {
+          "text": "before you browse for new ones",
+          "key": false
+        }
+      ],
+      "direction": "Return your overdue library book to the bin by the door before you browse for new ones.",
+      "tips": [
+        "Keep return the book + location.",
+        "The timing detail is extra.",
+        "Say the command without the last clause."
+      ]
+    },
+    {
+      "name": "Raise Hand",
+      "tag": "Participation",
+      "chunks": [
+        {
+          "text": "raise your hand if you have a question",
+          "key": true
+        },
+        {
+          "text": "instead of calling out this time",
+          "key": false
+        }
+      ],
+      "direction": "Raise your hand if you have a question, instead of calling out this time.",
+      "tips": [
+        "Find the core action raise your hand.",
+        "Set aside the comparison phrase.",
+        "Repeat the main idea in your own words."
+      ]
+    },
+    {
+      "name": "Backpack Spot",
+      "tag": "Dismissal",
+      "chunks": [
+        {
+          "text": "set your backpack on the second shelf",
+          "key": true
+        },
+        {
+          "text": "even though the floor looks clean",
+          "key": false
+        }
+      ],
+      "direction": "Set your backpack on the second shelf, even though the floor looks clean.",
+      "tips": [
+        "Mark the verb set.",
+        "Ignore the comment about the floor.",
+        "Restate: backpack goes on the second shelf."
+      ]
+    },
+    {
+      "name": "Tablet Charge",
+      "tag": "Technology",
+      "chunks": [
+        {
+          "text": "plug your tablet into the charging cart labeled B",
+          "key": true
+        },
+        {
+          "text": "even if cart A looks empty",
+          "key": false
+        }
+      ],
+      "direction": "Plug your tablet into the charging cart labeled B, even if cart A looks empty.",
+      "tips": [
+        "Keep plug + cart B.",
+        "Let the comparison go.",
+        "Picture yourself doing just the core step."
+      ]
+    },
+    {
+      "name": "Seat Sticker",
+      "tag": "Morning Routine",
+      "chunks": [
+        {
+          "text": "sit in the seat with your name sticker",
+          "key": true
+        },
+        {
+          "text": "not the one your friend used yesterday",
+          "key": false
+        }
+      ],
+      "direction": "Sit in the seat with your name sticker, not the one your friend used yesterday.",
+      "tips": [
+        "Underline sit in the seat.",
+        "Notice the sticker clue and skip the rest.",
+        "Say the short command aloud."
+      ]
+    },
+    {
+      "name": "Folder Turn-In",
+      "tag": "Office",
+      "chunks": [
+        {
+          "text": "drop your signed form inside the red folder",
+          "key": true
+        },
+        {
+          "text": "even if the bin is closer",
+          "key": false
+        }
+      ],
+      "direction": "Drop your signed form inside the red folder, even if the bin is closer.",
+      "tips": [
+        "Focus on drop + red folder.",
+        "Ignore the nearby option.",
+        "Repeat only the must-do direction."
+      ]
+    },
+    {
+      "name": "Notes to Locker",
+      "tag": "Hallway",
+      "chunks": [
+        {
+          "text": "take the note back to your locker",
+          "key": true
+        },
+        {
+          "text": "even though the teacher said you could read it later",
+          "key": false
+        }
+      ],
+      "direction": "Take the note back to your locker, even though the teacher said you could read it later.",
+      "tips": [
+        "Keep the action take the note back.",
+        "The permission detail is extra.",
+        "Summarize the action in one short phrase."
+      ]
+    }
+  ],
+  "directionStrategyCoach": [
+    {
+      "id": 1,
+      "title": "Chemistry Lab Submission",
+      "tag": "Science",
+      "direction": "Upload the full lab report to Google Classroom by 8 PM tonight. Make sure your data table and conclusion are attached, and share the file with your lab partners.",
+      "strategyHints": [
+        "Set a reminder on your phone",
+        "Highlight or underline due time",
+        "Check attachments before submitting",
+        "Share the document with partners"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Counselor Appointment",
+      "tag": "School Planning",
+      "direction": "Meet with the school counselor tomorrow during lunch to finalize your class schedule. Bring the signed parent form and your list of preferred electives.",
+      "strategyHints": [
+        "Place the parent form in your backpack tonight",
+        "Create a calendar reminder for lunch",
+        "Write electives list before bed",
+        "Set an alert 5 minutes before lunch"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Group Presentation",
+      "tag": "Collaboration",
+      "direction": "By Thursday, email the group slides to Ms. Chen and copy your team. Include your speaking notes in the last slide and rename the file with your period number.",
+      "strategyHints": [
+        "Check the file name before sending",
+        "Draft the email the night before",
+        "Paste notes into the final slide",
+        "Use the CC line to copy the team"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Volunteer Shift",
+      "tag": "Community",
+      "direction": "Arrive at the library volunteer desk at 3:45 PM on Saturday. Wear your name badge, sign in with the supervisor, and shelve carts A and C before you leave.",
+      "strategyHints": [
+        "Lay out your badge the night before",
+        "Set a travel-time alarm",
+        "Check in at the front desk first",
+        "Cross off carts after shelving"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "SAT Practice Plan",
+      "tag": "Study Skills",
+      "direction": "Complete page 46 of the SAT practice book tonight. Circle any questions you skip, and text your tutor your score before 9 PM.",
+      "strategyHints": [
+        "Schedule a quiet study block",
+        "Use sticky notes to mark skipped items",
+        "Keep your tutor’s number ready",
+        "Set a 9 PM reminder to text"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Drama Club Rehearsal",
+      "tag": "Extracurricular",
+      "direction": "Memorize scene three for rehearsal on Monday. Practice the lines with tone changes, record yourself once, and bring the script to check tricky sections.",
+      "strategyHints": [
+        "Break the scene into smaller chunks",
+        "Record yourself on your phone",
+        "Highlight tough lines in the script",
+        "Schedule time to rehearse out loud"
+      ]
+    }
+  ],
+  "directionStrategyDefaults": [
+    "Reread the direction slowly",
+    "Underline or highlight key words",
+    "Repeat the direction out loud",
+    "Write the steps in order",
+    "Set a phone reminder or alarm",
+    "Ask for clarification if needed",
+    "Check off steps as you complete them"
+  ],
+  "rememberAndDo": [
+    {
+      "name": "Desk Setup",
+      "tag": "Desk Setup",
+      "summary": "Sit down, take out your pencil, and open your notebook to the first page.",
+      "steps": [
+        "Sit in your chair.",
+        "Take out your pencil.",
+        "Open your notebook to the first page."
+      ],
+      "hints": [
+        "Say: sit, pencil, notebook.",
+        "Tap three fingers as you plan.",
+        "Picture the notebook open on the desk."
+      ]
+    },
+    {
+      "name": "Pack-Up Routine",
+      "tag": "Pack-Up",
+      "summary": "Put your reading book in your backpack, zip it, and place the backpack on the hook.",
+      "steps": [
+        "Put your reading book in your backpack.",
+        "Zip your backpack.",
+        "Place the backpack on the hook."
+      ],
+      "hints": [
+        "Repeat the steps softly twice.",
+        "Visualize the hook on the wall.",
+        "Check off each move in your head."
+      ]
+    },
+    {
+      "name": "Snack Break",
+      "tag": "Snack Break",
+      "summary": "Wash your hands, take an apple from the bowl, and sit at the small table.",
+      "steps": [
+        "Wash your hands.",
+        "Take an apple from the bowl.",
+        "Sit at the small table."
+      ],
+      "hints": [
+        "Say: wash, grab, sit.",
+        "Use finger counting for the three moves.",
+        "Picture the table waiting for you."
+      ]
+    },
+    {
+      "name": "Study Hall Plan",
+      "tag": "Classroom",
+      "summary": "During study hall, organize your science binder, highlight lab steps, and submit the make-up assignment.",
+      "steps": [
+        "Organize the science binder.",
+        "Highlight lab steps that still need work.",
+        "Submit the make-up assignment in Classroom."
+      ],
+      "hints": [
+        "Whisper the order twice.",
+        "Sketch three boxes in the notes app.",
+        "Picture yourself at the study hall table."
+      ]
+    },
+    {
+      "name": "Library Print Job",
+      "tag": "Tech Routine",
+      "summary": "Log into the library computer, open email, download the form, print it, and drop it in the counselor inbox before you leave.",
+      "steps": [
+        "Log into the library computer.",
+        "Open your email inbox.",
+        "Download the attached form.",
+        "Print the form double-sided.",
+        "Drop it in the counselor inbox on your way out."
+      ],
+      "hints": [
+        "Write the verbs: log, open, download, print, drop.",
+        "Finger count each move.",
+        "Imagine the walk to the inbox."
+      ]
+    },
+    {
+      "name": "Morning Start",
+      "tag": "Morning Start",
+      "summary": "Hang up your backpack, turn in homework, sharpen two pencils, and begin the warm-up on your Chromebook.",
+      "steps": [
+        "Hang up your backpack.",
+        "Turn in your homework.",
+        "Sharpen two pencils.",
+        "Start the warm-up on your Chromebook."
+      ],
+      "hints": [
+        "Say the list quietly before you move.",
+        "See the route from door to desk.",
+        "Check off on a sticky note."
+      ]
+    },
+    {
+      "name": "Work Shift Tasks",
+      "tag": "Work Shift",
+      "summary": "Clock in, wipe the counter, restock the three snack bins, and record what you finished.",
+      "steps": [
+        "Clock in.",
+        "Wipe the counter.",
+        "Restock the three snack bins.",
+        "Record the finished tasks."
+      ],
+      "hints": [
+        "Break it into pairs.",
+        "Make tally marks as you go.",
+        "Picture the counter getting cleaner."
+      ]
+    },
+    {
+      "name": "Virtual Meeting",
+      "tag": "Virtual",
+      "summary": "Join the Zoom early, rename yourself with your group letter, open the shared doc, and add your reflection in the Student 2 box.",
+      "steps": [
+        "Join the Zoom five minutes early.",
+        "Rename yourself with your group letter.",
+        "Open the shared document.",
+        "Add your reflection in the Student 2 box."
+      ],
+      "hints": [
+        "Write the four steps on a sticky note.",
+        "Say each step out loud once.",
+        "Visualize the Zoom screen layout."
+      ]
+    }
+  ],
+  "rememberAndDoHelpers": [
+    "Repeat it softly",
+    "Visualize it",
+    "Write quick notes",
+    "Use finger counting",
+    "Set a reminder"
+  ],
+  "fourSentenceChallenge": [
+    {
+      "id": "summer-winter",
+      "a": "Summer",
+      "b": "Winter",
+      "iconA": "☀️",
+      "iconB": "❄️",
+      "sentences": {
+        "category": {
+          "model": "Both summer and winter are seasons.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "Summer is hotter than winter.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "People go swimming in summer, but they bundle up more in winter.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think summer is the most exciting because it stays sunny late.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "book-movie",
+      "a": "Book",
+      "b": "Movie",
+      "iconA": "📚",
+      "iconB": "🎬",
+      "sentences": {
+        "category": {
+          "model": "Both books and movies are ways to tell stories.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A movie is shorter than a book.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You use a book to read quietly, but you use a movie to watch on a screen.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think books are the most detailed because they share many thoughts.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "cat-dog",
+      "a": "Cat",
+      "b": "Dog",
+      "iconA": "🐱",
+      "iconB": "🐶",
+      "sentences": {
+        "category": {
+          "model": "Both cats and dogs are animals people keep as pets.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "Dogs are louder than cats.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You feed a cat at its bowl, but you walk a dog around the block.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think cats are the most independent because they take care of themselves.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "rain-snow",
+      "a": "Rain",
+      "b": "Snow",
+      "iconA": "🌧️",
+      "iconB": "🌨️",
+      "sentences": {
+        "category": {
+          "model": "Both rain and snow are kinds of weather.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "Snow is fluffier than rain.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "Rain waters the ground, but snow covers it in a white layer.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think rain is the most refreshing because it smells clean.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "mountain-beach",
+      "a": "Mountain",
+      "b": "Beach",
+      "iconA": "🏔️",
+      "iconB": "🏖️",
+      "sentences": {
+        "category": {
+          "model": "Both mountains and beaches are natural places to visit.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A mountain is taller than a beach.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You visit a mountain to hike up trails, but you visit a beach to swim and build sandcastles.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think beaches are the most relaxing because you can hear waves.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "pencil-marker",
+      "a": "Pencil",
+      "b": "Marker",
+      "iconA": "✏️",
+      "iconB": "🖍️",
+      "sentences": {
+        "category": {
+          "model": "Both pencils and markers are writing tools.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A marker is bolder than a pencil.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You use a pencil to erase mistakes, but you use a marker to make bright lines.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think markers are the most colorful because they come in bright shades.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "city-country",
+      "a": "City",
+      "b": "Countryside",
+      "iconA": "🌆",
+      "iconB": "🌾",
+      "sentences": {
+        "category": {
+          "model": "Both the city and the countryside are places where people live.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A city is busier than the countryside.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "People go to the city to work and shop, but they go to the countryside to relax.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think the countryside is the most peaceful because it is quiet.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "breakfast-dinner",
+      "a": "Breakfast",
+      "b": "Dinner",
+      "iconA": "🍳",
+      "iconB": "🍽️",
+      "sentences": {
+        "category": {
+          "model": "Both breakfast and dinner are meals.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "Dinner is later than breakfast.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You eat breakfast to start the day, but you eat dinner to finish the day.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think dinner is the most social because everyone eats together.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "laptop-tablet",
+      "a": "Laptop",
+      "b": "Tablet",
+      "iconA": "💻",
+      "iconB": "📱",
+      "sentences": {
+        "category": {
+          "model": "Both laptops and tablets are electronic devices.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A laptop is heavier than a tablet.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You use a laptop to type long papers, but you use a tablet to read or draw on the go.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think tablets are the most portable because they fit in backpacks easily.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "train-plane",
+      "a": "Train",
+      "b": "Plane",
+      "iconA": "🚆",
+      "iconB": "✈️",
+      "sentences": {
+        "category": {
+          "model": "Both trains and planes are vehicles.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A plane is faster than a train.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You take a train to travel along tracks, but you take a plane to fly through the sky.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think planes are the most thrilling because they fly high above the clouds.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "soccer-basketball",
+      "a": "Soccer",
+      "b": "Basketball",
+      "iconA": "⚽",
+      "iconB": "🏀",
+      "sentences": {
+        "category": {
+          "model": "Both soccer and basketball are team sports.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A soccer field is larger than a basketball court.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You use a soccer ball to kick goals, but you use a basketball to shoot hoops.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think soccer is the most energetic because you keep running.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "coffee-tea",
+      "a": "Coffee",
+      "b": "Tea",
+      "iconA": "☕",
+      "iconB": "🍵",
+      "sentences": {
+        "category": {
+          "model": "Both coffee and tea are drinks.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "Coffee is stronger than tea.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You drink coffee to wake up quickly, but you drink tea to calm your body.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think tea is the most calming because it helps me slow down.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "day-night",
+      "a": "Day",
+      "b": "Night",
+      "iconA": "🌅",
+      "iconB": "🌃",
+      "sentences": {
+        "category": {
+          "model": "Both day and night are parts of the daily cycle.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "Daytime is brighter than nighttime.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "People use the day to go to school, but they use the night to rest.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think night is the most peaceful because it feels quiet.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "school-home",
+      "a": "School",
+      "b": "Home",
+      "iconA": "🏫",
+      "iconB": "🏠",
+      "sentences": {
+        "category": {
+          "model": "Both school and home are places where you learn.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "School is busier than home.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You go to school to learn with teachers, but you stay home to practice and relax.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think home is the most comfortable because it feels safe.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "desert-forest",
+      "a": "Desert",
+      "b": "Forest",
+      "iconA": "🏜️",
+      "iconB": "🌳",
+      "sentences": {
+        "category": {
+          "model": "Both deserts and forests are habitats.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A desert is drier than a forest.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "A desert supports animals that like heat, but a forest shelters animals that need shade.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think forests are the most interesting because they are full of life.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "bicycle-scooter",
+      "a": "Bicycle",
+      "b": "Scooter",
+      "iconA": "🚲",
+      "iconB": "🛴",
+      "sentences": {
+        "category": {
+          "model": "Both bicycles and scooters are personal vehicles.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A bicycle is faster than a scooter.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You ride a bicycle to travel longer distances, but you ride a scooter to zip short blocks.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think scooters are the most playful because you can glide quickly.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "ice-cream-cake",
+      "a": "Ice Cream",
+      "b": "Cake",
+      "iconA": "🍨",
+      "iconB": "🍰",
+      "sentences": {
+        "category": {
+          "model": "Both ice cream and cake are desserts.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "Ice cream is colder than cake.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You eat ice cream to cool down, but you eat cake to celebrate with slices.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think ice cream is the most fun because it melts on your tongue.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "river-lake",
+      "a": "River",
+      "b": "Lake",
+      "iconA": "🏞️",
+      "iconB": "🚣",
+      "sentences": {
+        "category": {
+          "model": "Both rivers and lakes are bodies of water.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A river is longer than a lake.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You visit a river to watch water flow, but you visit a lake to see calm water stay still.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think lakes are the most peaceful because the water stays still.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "teacher-coach",
+      "a": "Teacher",
+      "b": "Coach",
+      "iconA": "👩‍🏫",
+      "iconB": "🏈",
+      "sentences": {
+        "category": {
+          "model": "Both teachers and coaches are helpers.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "A coach is louder than a teacher.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You work with a teacher to learn academics, but you work with a coach to practice skills.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think coaches are the most motivating because they cheer loudly.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    },
+    {
+      "id": "email-text",
+      "a": "Email",
+      "b": "Text",
+      "iconA": "📧",
+      "iconB": "💬",
+      "sentences": {
+        "category": {
+          "model": "Both emails and texts are messages.",
+          "frame": "Both ___ and ___ are ___"
+        },
+        "description": {
+          "model": "An email is longer than a text.",
+          "frame": "___ is ___er than ___"
+        },
+        "function": {
+          "model": "You send an email to write longer messages, but you send a text to share quick updates.",
+          "frame": "You use ___ to ___, but you use ___ to ___"
+        },
+        "opinion": {
+          "model": "I think texts are the most convenient because they send quickly.",
+          "frame": "I think ___ is the most ___ because ___"
+        }
+      }
+    }
+  ],
+  "winterSAOScenes": [
+    {
+      "title": "Snowy Shortcut",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_1.png",
+      "alt": "A snowy path behind a library with a bench"
+    },
+    {
+      "title": "Frozen Window Pattern",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_2.png",
+      "alt": "Frost shapes on a bedroom window"
+    },
+    {
+      "title": "Light in the Woods",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_3.png",
+      "alt": "A glowing lantern under snowy trees"
+    },
+    {
+      "title": "Skating Lesson",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_4.png",
+      "alt": "Two people ice skating at an outdoor rink"
+    },
+    {
+      "title": "Missing Mittens",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_5.png",
+      "alt": "A student locker with winter mittens missing"
+    },
+    {
+      "title": "Quiet Bus Ride",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_6.png",
+      "alt": "A school bus driving on snowy roads"
+    },
+    {
+      "title": "Warm Coat Exchange",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_7.png",
+      "alt": "Kids trading winter coats at a community center"
+    },
+    {
+      "title": "Frozen Pond Discovery",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_8.png",
+      "alt": "Two kids standing on a frozen pond"
+    },
+    {
+      "title": "Storm at Lunch",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_9.png",
+      "alt": "Students at lunch hearing about a snowstorm"
+    },
+    {
+      "title": "Snow Sculpture",
+      "image": "../../images/winter_short_story_comprehension_progressive/story_10.png",
+      "alt": "Kids building a snow sculpture in a park"
+    },
+    {
+      "title": "Snowy Arrival",
+      "image": "../../images/winter_stories/story1_snowy-arrival.png",
+      "alt": "Students entering a school while snow falls"
+    },
+    {
+      "title": "Layering Up",
+      "image": "../../images/winter_stories/story2.png",
+      "alt": "Child putting on winter clothing"
+    },
+    {
+      "title": "Bus Stop Chill",
+      "image": "../../images/winter_stories/story3_new.png",
+      "alt": "Student finding a seat on a bus in winter"
+    },
+    {
+      "title": "Bird on the Fence",
+      "image": "../../images/winter_stories/story4.png",
+      "alt": "Small bird perched on a snowy fence"
+    },
+    {
+      "title": "Warm Cocoa",
+      "image": "../../images/winter_stories/story5.png",
+      "alt": "Mug of hot cocoa being stirred"
+    },
+    {
+      "title": "Snowy Recess Path",
+      "image": "../../images/winter_stories/story6.png",
+      "alt": "Students making a walking path in the snow"
+    },
+    {
+      "title": "Melting the Ice",
+      "image": "../../images/winter_stories/story7.png",
+      "alt": "Salt being spread on an icy sidewalk"
+    },
+    {
+      "title": "Windy Walk",
+      "image": "../../images/winter_stories/story8.png",
+      "alt": "Student holding a scarf while wind blows"
+    },
+    {
+      "title": "Snowflake Catch",
+      "image": "../../images/winter_stories/story9.png",
+      "alt": "Hand catching a snowflake on a glove"
+    },
+    {
+      "title": "Warm Classroom",
+      "image": "../../images/winter_stories/story10.png",
+      "alt": "Heater warming a classroom"
+    },
+    {
+      "title": "Make a Snowman",
+      "image": "../../images/actions/kidmakesnowman.png",
+      "alt": "Kid making a snowman"
+    },
+    {
+      "title": "Throw a Snowball",
+      "image": "../../images/actions/throw_snowball.png",
+      "alt": "Person throwing a snowball"
+    },
+    {
+      "title": "Kids Ice Skating",
+      "image": "../../images/actions/kidsiceskate.png",
+      "alt": "Kids ice skating"
+    },
+    {
+      "title": "Kids Sledding",
+      "image": "../../images/actions/kidsled.png",
+      "alt": "Kids riding a sled"
+    },
+    {
+      "title": "Drink Hot Chocolate",
+      "image": "../../images/actions/drink-hotchocolate.png",
+      "alt": "Person drinking hot chocolate"
+    },
+    {
+      "title": "Shovel Snow",
+      "image": "../../images/actions/manshovel.png",
+      "alt": "Person shoveling snow"
+    },
+    {
+      "title": "Dog Playing in Snow",
+      "image": "../../images/actions/dogplaysnow.png",
+      "alt": "Dog playing in snow"
+    }
+  ],
+  "winterSAOChips": {
+    "who": [
+      "The girl",
+      "The boy",
+      "The students",
+      "The friends"
+    ],
+    "action": [
+      "is helping",
+      "is watching",
+      "is carrying",
+      "is holding"
+    ],
+    "detail": [
+      "near the bus stop.",
+      "on the icy path.",
+      "at the outdoor rink.",
+      "under the streetlights."
+    ]
+  },
+  "negation": [
+    {
+      "id": 1,
+      "sentence": "The boy is not eating.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/pizza1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/pizza2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "sentence": "The girl is not sitting.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/sitting1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/sitting2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "sentence": "The dog is not sleeping.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/dogsleep1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/dogsleep2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "sentence": "The man is not wearing a hat.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/hat1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/hat2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "sentence": "The cup is not empty.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/cupempty1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/cupempty2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "sentence": "The boy is not running.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/boy_run1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/boy_run2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "sentence": "The boy is not holding a book.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/book1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/book2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "sentence": "The cat is not under the table.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/cat_table1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/cat_table2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "sentence": "The boy is not drinking.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/boy_drink1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/boy_drink2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "sentence": "The light is not on.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/light1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/light2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "sentence": "The girl is not jumping.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/girl_jump1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/girl_jump2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "sentence": "The door is not open.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/door_open1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/door_open2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "sentence": "The dog is not eating.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/dog_eat1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/dog_eat2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "sentence": "The boy is not wearing shoes.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/boy_shoes1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/boy_shoes2.png",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "sentence": "The girl is not brushing her teeth.",
+      "images": [
+        {
+          "src": "../../negation_images_separated/girl_teeth1.png",
+          "correct": false
+        },
+        {
+          "src": "../../negation_images_separated/girl_teeth2.png",
+          "correct": true
+        }
       ]
     }
   ]
