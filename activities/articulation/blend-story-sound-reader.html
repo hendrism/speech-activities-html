@@ -4,168 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blend Story Reader - One at a Time</title>
-    <style>
-        :root {
-            --ink: #0f172a;
-            --cloud: #e2e8f0;
-            --mint: #34d399;
-            --sea: #0ea5e9;
-            --sand: #f8fafc;
-            --amber: #f59e0b;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: linear-gradient(135deg, #f8fafc, #e0f2fe);
-            color: var(--ink);
-        }
-        .page {
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: 28px 18px 44px;
-        }
-        h1 {
-            margin: 0 0 10px;
-            text-align: center;
-            letter-spacing: 0.3px;
-        }
-        .intro {
-            background: white;
-            border: 1px solid var(--cloud);
-            border-radius: 14px;
-            padding: 14px 16px;
-            line-height: 1.5;
-            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-            margin-bottom: 14px;
-        }
-        .set-tabs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 10px;
-            margin: 12px 0 16px;
-        }
-        .tab-btn {
-            border: 1px solid var(--cloud);
-            border-radius: 12px;
-            padding: 12px 14px;
-            font-weight: 700;
-            background: white;
-            cursor: pointer;
-            text-align: left;
-            transition: all 0.15s ease;
-            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-        }
-        .tab-btn.active {
-            background: linear-gradient(135deg, #e0f2fe, #ecfeff);
-            border-color: var(--sea);
-            color: #075985;
-        }
-        .story-card {
-            background: white;
-            border: 1px solid var(--cloud);
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
-        }
-        .story-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-        .story-meta span {
-            font-weight: 700;
-        }
-        .tag {
-            background: #ecfeff;
-            color: #075985;
-            border: 1px solid #bae6fd;
-            border-radius: 10px;
-            padding: 6px 10px;
-            font-size: 0.9rem;
-        }
-        .story-title {
-            margin: 0 0 8px;
-            color: var(--sea);
-        }
-        .story-text {
-            line-height: 1.6;
-            margin: 0 0 10px;
-        }
-        .targets {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 10px;
-            background: #fef9c3;
-            border: 1px solid #fde68a;
-            color: #92400e;
-            font-weight: 700;
-        }
-        .controls {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 12px;
-        }
-        .btn {
-            border: none;
-            border-radius: 12px;
-            padding: 10px 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-        .btn:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-        }
-        .btn-primary {
-            background: var(--sea);
-            color: white;
-        }
-        .btn-secondary {
-            background: var(--mint);
-            color: #064e3b;
-        }
-        .btn-outline {
-            background: white;
-            color: var(--ink);
-            border: 1px solid var(--cloud);
-        }
-        .highlight {
-            background: #fef08a;
-            padding: 1px 3px;
-            border-radius: 4px;
-        }
-        .counter {
-            display: inline-block;
-            padding: 8px 10px;
-            border-radius: 10px;
-            background: var(--sand);
-            border: 1px solid var(--cloud);
-            font-weight: 700;
-        }
-        @media (max-width: 720px) {
-            .story-meta {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .controls {
-                flex-direction: column;
-            }
-            .controls .btn, .counter {
-                width: 100%;
-                text-align: center;
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="category-articulation">
     <div class="page">
         <h1>Blend Story Reader</h1>
         <div class="intro">
@@ -189,7 +29,10 @@
             </div>
         </div>
     </div>
-    <script>
+    <script src="../../data/articulation.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <script src="../../js/utils.js"></script>
+  <script>
         const storySets = [
             {
                 key: 'initial-r',
