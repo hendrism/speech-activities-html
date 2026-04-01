@@ -21,3 +21,33 @@ Use imperative, scope-first commit summaries (`activity: add multi-level reading
 
 ## Security & Asset Handling
 These activities often run offline in schools, so avoid external CDNs or fonts—embed everything locally. Never commit student data or proprietary word lists; anonymize examples before saving to `resources/`. When importing third-party art, document the license in `IMAGE_GUIDE.md` and drop assets into the correct `images/` subfolder with credit metadata inside that guide.
+
+## Activity Creation Standard
+
+**Always start from `/activities/_template.html`.** Copy it into the correct category folder and rename it. Never start from scratch or copy an existing activity file — existing files may be in various states of migration.
+
+### Rules (no exceptions)
+
+1. **No inline data** — all content goes in `/data/{category}.json`. Check `/data/README.md` for the right file and key names.
+2. **No `<style>` blocks** — all styling via `/css/styles.css`. Use CSS variables from that file.
+3. **Set `<body class="category-{name}">`** — this applies the correct background gradient automatically.
+4. **Load data via `data-loader.js` only** — script load order before `</body>` must be:
+
+   ```html
+   <script src="../../data/{category}.js"></script>
+   <script src="../../js/data-loader.js"></script>
+   <script src="../../js/utils.js"></script>
+   <!-- then your inline <script> activity logic -->
+   ```
+
+5. **Access data via DataLoader** — `DataLoader.get('{category}', '{key}')`, never `window.ActivityData` directly.
+
+### Quick checklist before committing a new activity
+
+- [ ] Copied from `_template.html`, not an existing activity
+- [ ] `<body>` has `class="category-{name}"` (e.g. `category-vocabulary`)
+- [ ] No `<style>` block anywhere in the file
+- [ ] Data loads from `/data/{category}.js` via `DataLoader.get()`
+- [ ] New content items added to the correct `/data/{category}.json`
+- [ ] Page opens in browser with no console errors
+- [ ] All interactive controls work
