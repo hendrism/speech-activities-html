@@ -3,14 +3,14 @@
  * Maps activity IDs to their configuration, data, and engine type.
  */
 
-// Data is now loaded globally via language-data.js
+// Data loaded via data/vocabulary.js + DataLoader
 
 window.activityRegistry = {
     'definitions': {
         title: '🎯 Word Definitions',
         subtitle: 'Match the words to their meanings',
         type: 'quiz',
-        data: window.wordDefinitions,
+        data: DataLoader.get('vocabulary', 'wordDefinitions'),
         engineConfig: {
             questionTemplate: (item) => `What is the definition of <span class="target-word">${item.word}</span>?`,
             hintTemplate: (item) => item.categoryHint,
@@ -22,10 +22,10 @@ window.activityRegistry = {
         title: '🔍 Context Clues',
         subtitle: 'Use clues to find the meaning',
         type: 'quiz',
-        data: window.contextCluesEasy, // Default to Easy
+        data: DataLoader.filter('vocabulary', 'contextClues', c => c.level === 'easy'),
         levels: {
-            'Easy': window.contextCluesEasy,
-            'Medium': window.contextCluesMedium,
+            'Easy': DataLoader.filter('vocabulary', 'contextClues', c => c.level === 'easy'),
+            'Medium': DataLoader.filter('vocabulary', 'contextClues', c => c.level === 'medium'),
             'All': null // Merged at runtime
         },
         engineConfig: {
