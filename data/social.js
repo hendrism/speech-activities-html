@@ -5383,5 +5383,2544 @@ window.ActivityData.social = {
         "Annoyed"
       ]
     }
-  ]
+  ],
+  "conversationStarters": [
+    "Hey, I think...",
+    "Um, sorry, but...",
+    "Wait, are we supposed to...",
+    "Can I...",
+    "I'm not sure, but...",
+    "Excuse me, I think..."
+  ],
+  "problemStories": [
+    {
+      "id": "social-problem-story-001",
+      "title": "Alex's Lunch",
+      "text": "Alex sat at the corner of the lunch table, balancing his tray on his knees because there wasn't much space. He started telling a story about his dog getting loose that morning, but halfway through, someone laughed at a video on their phone. Another person leaned across the table to talk to someone else. Alex paused, waited a second, then tried again. No one looked up. He shrugged and ate his fries instead. When the bell rang, everyone stood up at once and walked off together. Alex threw away his tray and followed behind them.",
+      "hint": "Notice how the group responds when Alex tries to talk.",
+      "choices": [
+        {
+          "text": "Alex forgot his lunch",
+          "correct": false
+        },
+        {
+          "text": "Alex is being ignored by his friends",
+          "correct": true
+        },
+        {
+          "text": "Alex is late for class",
+          "correct": false
+        },
+        {
+          "text": "Alex is upset about his dog",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-002",
+      "title": "Riley's Weekend",
+      "text": "The group chat buzzed all Friday afternoon. Plans kept changing, jokes flew back and forth, and screenshots piled up. By the time Riley checked her phone after practice, the conversation had moved on without her. She scrolled up, reading messages about a movie she hadn't been asked about. Later that night, photos appeared on social media. Everyone looked happy. On Monday, people talked about it like it was no big deal. Riley nodded along, even though no one ever asked why she hadn't been there.",
+      "hint": "Think about how Riley finds out about plans.",
+      "choices": [
+        {
+          "text": "Riley dislikes movies",
+          "correct": false
+        },
+        {
+          "text": "Riley is being left out socially",
+          "correct": true
+        },
+        {
+          "text": "Riley missed practice",
+          "correct": false
+        },
+        {
+          "text": "Riley forgot to reply",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-003",
+      "title": "Ethan's Project",
+      "text": "During the group project, Ethan volunteered to put together the slides. He sent drafts to the group chat and asked for feedback. No one responded. The night before the presentation, someone messaged asking if he could \"just fix a few things real quick.\" During the presentation, another student explained the slides while Ethan clicked through them. Afterward, the group thanked each other and packed up. No one mentioned the hours Ethan spent working. He told himself it didn't matter, but it still bothered him on the walk to his next class.",
+      "hint": "Pay attention to effort versus recognition.",
+      "choices": [
+        {
+          "text": "Ethan enjoys working alone",
+          "correct": false
+        },
+        {
+          "text": "Ethan's contribution is being overlooked",
+          "correct": true
+        },
+        {
+          "text": "Ethan did the project incorrectly",
+          "correct": false
+        },
+        {
+          "text": "Ethan forgot to speak",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-004",
+      "title": "Jamal the Helper",
+      "text": "Whenever something went wrong, people went to Jamal. If there was confusion about homework, someone asked him. If friends argued, he listened and tried to smooth things over. Jamal didn't mind at first. It felt good to be trusted. Over time, though, it started to feel expected. When he said he didn't have the energy to help one afternoon, someone sighed and said, \"Really?\" Jamal laughed it off, but later that night he felt drained and annoyed. He wondered when helping became his job.",
+      "hint": "Think about expectations placed on Jamal.",
+      "choices": [
+        {
+          "text": "Jamal dislikes his friends",
+          "correct": false
+        },
+        {
+          "text": "Jamal feels pressured into a role he didn't choose",
+          "correct": true
+        },
+        {
+          "text": "Jamal avoids responsibility",
+          "correct": false
+        },
+        {
+          "text": "Jamal wants attention",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-005",
+      "title": "Lena's Style",
+      "text": "Lena liked joking around, but one person in her friend group always took it further. They made comments about her clothes, her grades, the way she talked. People laughed, and Lena smiled along. When she didn't laugh once, someone said, \"Relax, we're kidding.\" After that, she laughed every time, even when it didn't feel funny. Before hanging out, she started thinking carefully about what she wore and what she said. She didn't want to give anyone more material.",
+      "hint": "Look at how humor affects Lena.",
+      "choices": [
+        {
+          "text": "Lena enjoys teasing",
+          "correct": false
+        },
+        {
+          "text": "Lena feels uncomfortable because of repeated jokes at her expense",
+          "correct": true
+        },
+        {
+          "text": "Lena wants to change her style",
+          "correct": false
+        },
+        {
+          "text": "Lena dislikes laughing",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-006",
+      "title": "Noah's Messages",
+      "text": "Messages between Noah and his best friend used to go back and forth all day. Lately, Noah noticed he was the only one starting conversations. Replies came hours later, if at all. When they passed each other in the hallway, things felt normal enough. Still, Noah kept wondering if he'd missed something. He typed out a message asking if everything was okay, then deleted it. He didn't want to seem dramatic. The silence felt louder than an argument would have.",
+      "hint": "Focus on what's missing rather than what's said.",
+      "choices": [
+        {
+          "text": "Noah talks too much",
+          "correct": false
+        },
+        {
+          "text": "Noah is dealing with unclear communication in a friendship",
+          "correct": true
+        },
+        {
+          "text": "Noah is avoiding school",
+          "correct": false
+        },
+        {
+          "text": "Noah prefers texting less",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-007",
+      "title": "Priya in Class",
+      "text": "In class discussions, Priya often had ideas but hesitated before raising her hand. The last time she shared one, a few students talked over her. A minute later, someone else said almost the same thing and the teacher nodded approvingly. Priya stared at her notebook. She stopped volunteering after that. When the teacher later asked why she was so quiet, Priya shrugged and said she was tired.",
+      "hint": "Notice what happens after Priya speaks.",
+      "choices": [
+        {
+          "text": "Priya does not understand the material",
+          "correct": false
+        },
+        {
+          "text": "Priya feels dismissed when she participates",
+          "correct": true
+        },
+        {
+          "text": "Priya dislikes the teacher",
+          "correct": false
+        },
+        {
+          "text": "Priya prefers listening",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-008",
+      "title": "Marcus the Organizer",
+      "text": "Whenever something needed organizing, people looked to Marcus. He made schedules, reminded people about deadlines, and followed up when things slipped. If he forgot once, someone joked that he was \"off his game.\" Marcus started double-checking everything. He stayed up late making sure no one was disappointed. When he finally said he needed a break, the response was awkward silence. He realized people liked what he did more than they noticed how much it cost him.",
+      "hint": "Think about how Marcus is valued.",
+      "choices": [
+        {
+          "text": "Marcus wants praise",
+          "correct": false
+        },
+        {
+          "text": "Marcus feels taken for granted in his role",
+          "correct": true
+        },
+        {
+          "text": "Marcus dislikes responsibility",
+          "correct": false
+        },
+        {
+          "text": "Marcus is unreliable",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-009",
+      "title": "Theo's Humor",
+      "text": "Theo liked making sarcastic comments. People laughed, so he kept doing it. Sometimes classmates stopped mid-sentence when he jumped in with a joke. Group work felt slower, quieter. Theo didn't connect that to himself. He just noticed fewer people sitting near him. When someone avoided partnering up with him, he felt irritated and confused. He thought he was being honest and entertaining. He didn't realize how exhausting it could feel to others.",
+      "hint": "Focus on impact rather than intention.",
+      "choices": [
+        {
+          "text": "Theo is being treated unfairly",
+          "correct": false
+        },
+        {
+          "text": "Theo's behavior is affecting his relationships negatively",
+          "correct": true
+        },
+        {
+          "text": "Theo dislikes group work",
+          "correct": false
+        },
+        {
+          "text": "Theo is shy",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "social-problem-story-010",
+      "title": "Hannah's Boundaries",
+      "text": "Everyone described Hannah as \"easygoing.\" She went along with plans, adjusted her schedule, and rarely complained. When she finally said she couldn't help with something, the reaction surprised her. Someone asked if she was upset. Another joked that she was \"changing.\" Hannah started wondering how much of herself she'd been shrinking without noticing. Saying no felt wrong, even though she knew it shouldn't. She wasn't sure how to be herself without disappointing people.",
+      "hint": "Think about identity and expectations.",
+      "choices": [
+        {
+          "text": "Hannah dislikes her friends",
+          "correct": false
+        },
+        {
+          "text": "Hannah struggles with setting boundaries and self-expression",
+          "correct": true
+        },
+        {
+          "text": "Hannah wants new hobbies",
+          "correct": false
+        },
+        {
+          "text": "Hannah avoids helping others",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "reflectionStories": [
+    {
+      "id": "sharing-toys",
+      "title": "Sharing Toys",
+      "topic": "Story 1",
+      "levels": [
+        {
+          "name": "Level 1",
+          "sentences": [
+            "Alex has a new toy car.",
+            "Mia asks, “Can I have a turn?”",
+            "Alex says, “No, it’s mine!”",
+            "Mia looks sad and walks away.",
+            "Alex starts to feel bad."
+          ],
+          "questions": [
+            {
+              "prompt": "How does Mia feel?",
+              "answer": "sad",
+              "choices": [
+                "Sad",
+                "Angry",
+                "Excited"
+              ],
+              "clue": "Think about Mia’s face after Alex says no."
+            },
+            {
+              "prompt": "Why does Alex feel bad?",
+              "answer": "he did not share",
+              "choices": [
+                "He did not share.",
+                "He got a new toy.",
+                "He lost the car."
+              ],
+              "clue": "What did Alex do that made Mia walk away?"
+            },
+            {
+              "prompt": "What can Alex do next?",
+              "answer": "say sorry and share",
+              "choices": [
+                "Say sorry and share.",
+                "Walk away.",
+                "Hide the toy."
+              ],
+              "clue": "What action would help Mia feel better and fix the problem?"
+            }
+          ]
+        },
+        {
+          "name": "Level 2",
+          "sentences": [
+            "Alex zoomed his new toy car across the floor.",
+            "Mia watched with wide eyes. “Can I have a turn?” she asked.",
+            "Alex gripped the car and pulled it closer. “No, I just got it,” he said.",
+            "Mia’s shoulders drooped as she shuffled away, staring at the ground.",
+            "Alex’s smile disappeared while he kept glancing toward Mia."
+          ],
+          "questions": [
+            {
+              "prompt": "What clues show how Mia feels when Alex says no?",
+              "answer": "upset",
+              "choices": [
+                "Upset",
+                "Silly",
+                "Excited"
+              ],
+              "clue": "Watch what Mia’s shoulders and eyes do after Alex refuses."
+            },
+            {
+              "prompt": "Why does Alex start to feel unsure after Mia leaves?",
+              "answer": "he sees mia is disappointed",
+              "choices": [
+                "He sees Mia is disappointed.",
+                "He wants another toy.",
+                "He remembers homework."
+              ],
+              "clue": "Notice his smile and where he looks once Mia walks away."
+            },
+            {
+              "prompt": "What could Alex do to make things better?",
+              "answer": "offer mia a turn",
+              "choices": [
+                "Offer Mia a turn.",
+                "Hide the car.",
+                "Tell Mia to leave."
+              ],
+              "clue": "Think about what would help both kids enjoy the car."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "saying-thank-you",
+      "title": "Saying Thank You",
+      "topic": "Story 2",
+      "levels": [
+        {
+          "name": "Level 1",
+          "sentences": [
+            "Liam drops his papers on the floor.",
+            "Ben helps him pick them up.",
+            "Liam says, “Thanks for helping me!”",
+            "Ben smiles and says, “You’re welcome.”",
+            "Both boys feel happy."
+          ],
+          "questions": [
+            {
+              "prompt": "What did Ben do?",
+              "answer": "he helped liam",
+              "choices": [
+                "He helped Liam.",
+                "He dropped papers.",
+                "He ran away."
+              ],
+              "clue": "Look for the action Ben did right after the papers fell."
+            },
+            {
+              "prompt": "How do the boys feel?",
+              "answer": "happy",
+              "choices": [
+                "Happy",
+                "Mad",
+                "Scared"
+              ],
+              "clue": "Think about how they feel after they share kind words."
+            },
+            {
+              "prompt": "Why does Liam say thank you?",
+              "answer": "ben helped him",
+              "choices": [
+                "Ben helped him.",
+                "He found a toy.",
+                "He wanted to play."
+              ],
+              "clue": "What happened that made Liam grateful?"
+            }
+          ]
+        },
+        {
+          "name": "Level 2",
+          "sentences": [
+            "Liam’s arms were full of homework pages when they slipped and fluttered to the floor.",
+            "Ben stopped walking, crouched down, and scooped up the loose sheets.",
+            "Liam let out a relieved breath and said, “Thanks for helping me.”",
+            "Ben grinned and answered, “You’re welcome.”",
+            "The hallway felt calmer as they stacked the papers together."
+          ],
+          "questions": [
+            {
+              "prompt": "What does Ben do when he sees the papers fall?",
+              "answer": "he helps pick them up",
+              "choices": [
+                "He helps pick them up.",
+                "He laughs and keeps walking.",
+                "He drops more papers."
+              ],
+              "clue": "Watch Ben’s body when the papers scatter."
+            },
+            {
+              "prompt": "How can you tell the boys feel good afterward?",
+              "answer": "they smile and speak kindly",
+              "choices": [
+                "They smile and speak kindly.",
+                "They argue loudly.",
+                "They run away."
+              ],
+              "clue": "Listen to the words they use and notice their faces."
+            },
+            {
+              "prompt": "Why does Liam use grateful words?",
+              "answer": "because ben helped him",
+              "choices": [
+                "Because Ben helped him.",
+                "Because he found money.",
+                "Because class ended."
+              ],
+              "clue": "Think about what changed for Liam when Ben stepped in."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "waiting-turn",
+      "title": "Waiting for a Turn",
+      "topic": "Story 3",
+      "levels": [
+        {
+          "name": "Level 1",
+          "sentences": [
+            "Ella wants to swing at recess.",
+            "Another student is using the swing.",
+            "Ella waits in line quietly.",
+            "When it’s her turn, she smiles and swings high.",
+            "Her teacher says, “Nice waiting!”"
+          ],
+          "questions": [
+            {
+              "prompt": "What does Ella do?",
+              "answer": "she waits in line",
+              "choices": [
+                "She waits in line.",
+                "She takes the swing.",
+                "She walks away."
+              ],
+              "clue": "Notice Ella’s choice while the swing is busy."
+            },
+            {
+              "prompt": "How does Ella feel after she swings?",
+              "answer": "happy",
+              "choices": [
+                "Happy",
+                "Tired",
+                "Mad"
+              ],
+              "clue": "Look at Ella’s face when it becomes her turn."
+            },
+            {
+              "prompt": "What does her teacher say?",
+              "answer": "nice waiting",
+              "choices": [
+                "Nice waiting!",
+                "Stop that!",
+                "No more turns."
+              ],
+              "clue": "The teacher responds to Ella’s patient behavior."
+            }
+          ]
+        },
+        {
+          "name": "Level 2",
+          "sentences": [
+            "Ella spotted the swing and bounced on her toes.",
+            "A classmate was soaring through the air already.",
+            "Ella clasped her hands and stood in line, keeping her feet still.",
+            "When the swing was free, she pumped her legs and grinned as she flew higher.",
+            "Her teacher nodded with a smile and said, “Nice waiting.”"
+          ],
+          "questions": [
+            {
+              "prompt": "What does Ella choose to do while she waits?",
+              "answer": "she stands in line quietly",
+              "choices": [
+                "She stands in line quietly.",
+                "She pushes past others.",
+                "She leaves the playground."
+              ],
+              "clue": "Watch Ella’s body and feet while she waits."
+            },
+            {
+              "prompt": "How can you tell Ella enjoys her turn?",
+              "answer": "she smiles as she swings high",
+              "choices": [
+                "She smiles as she swings high.",
+                "She sighs and drags her feet.",
+                "She complains to the teacher."
+              ],
+              "clue": "Look at her face and what she does with the swing."
+            },
+            {
+              "prompt": "Why does the teacher praise her?",
+              "answer": "because she waited patiently",
+              "choices": [
+                "Because she waited patiently.",
+                "Because she ran to the swing.",
+                "Because she stopped playing."
+              ],
+              "clue": "Think about the behavior the teacher is noticing."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kind-words",
+      "title": "Using Kind Words",
+      "topic": "Story 4",
+      "levels": [
+        {
+          "name": "Level 1",
+          "sentences": [
+            "Jake calls Sam a mean name.",
+            "Sam looks hurt and doesn’t talk.",
+            "Jake sees that Sam is sad.",
+            "Jake says, “I’m sorry.”",
+            "Sam smiles a little."
+          ],
+          "questions": [
+            {
+              "prompt": "How does Sam feel when Jake is mean?",
+              "answer": "sad",
+              "choices": [
+                "Sad",
+                "Silly",
+                "Excited"
+              ],
+              "clue": "Notice Sam’s feelings when he hears the mean name."
+            },
+            {
+              "prompt": "What does Jake say after he feels sorry?",
+              "answer": "i’m sorry",
+              "choices": [
+                "I’m sorry.",
+                "Go away.",
+                "Be quiet."
+              ],
+              "clue": "Jake uses words to fix the hurt feelings."
+            },
+            {
+              "prompt": "How does Sam feel at the end?",
+              "answer": "a little happy",
+              "choices": [
+                "A little happy.",
+                "Very mad.",
+                "Still angry."
+              ],
+              "clue": "Look at Sam’s face after Jake apologizes."
+            }
+          ]
+        },
+        {
+          "name": "Level 2",
+          "sentences": [
+            "Jake let a sharp name slip out at Sam.",
+            "Sam’s shoulders lowered and he stared at the floor without speaking.",
+            "Jake noticed Sam’s quiet face.",
+            "He walked back and said softly, “I’m sorry.”",
+            "Sam’s mouth tugged into a small smile."
+          ],
+          "questions": [
+            {
+              "prompt": "What clues show Sam’s feelings after Jake’s words?",
+              "answer": "he looks down and stays quiet",
+              "choices": [
+                "He looks down and stays quiet.",
+                "He laughs loudly.",
+                "He jumps around."
+              ],
+              "clue": "Watch Sam’s face and body language right after the comment."
+            },
+            {
+              "prompt": "What does Jake decide to say to fix things?",
+              "answer": "i’m sorry",
+              "choices": [
+                "I’m sorry.",
+                "Whatever.",
+                "Leave me alone."
+              ],
+              "clue": "Listen to the words Jake uses when he notices Sam’s reaction."
+            },
+            {
+              "prompt": "How do you know Sam begins to feel better?",
+              "answer": "he gives a small smile",
+              "choices": [
+                "He gives a small smile.",
+                "He walks away angry.",
+                "He shouts back."
+              ],
+              "clue": "Notice Sam’s expression after Jake apologizes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "losing-game",
+      "title": "Losing a Game",
+      "topic": "Story 5",
+      "levels": [
+        {
+          "name": "Level 1",
+          "sentences": [
+            "Noah plays a board game with Ava.",
+            "Ava wins the game.",
+            "Noah feels mad and wants to quit.",
+            "Ava says, “Good game!”",
+            "Noah takes a deep breath and smiles."
+          ],
+          "questions": [
+            {
+              "prompt": "How does Noah feel when he loses?",
+              "answer": "mad",
+              "choices": [
+                "Mad",
+                "Happy",
+                "Tired"
+              ],
+              "clue": "How does Noah react right after Ava wins?"
+            },
+            {
+              "prompt": "What does Ava say?",
+              "answer": "good game",
+              "choices": [
+                "Good game!",
+                "You lose!",
+                "Don’t play!"
+              ],
+              "clue": "Listen to the kind words Ava uses after the game."
+            },
+            {
+              "prompt": "What should Noah do next?",
+              "answer": "take a deep breath",
+              "choices": [
+                "Take a deep breath.",
+                "Yell at Ava.",
+                "Leave the room."
+              ],
+              "clue": "What calming choice helps Noah feel better?"
+            }
+          ]
+        },
+        {
+          "name": "Level 2",
+          "sentences": [
+            "Noah and Ava finished their board game with pieces scattered across the table.",
+            "Ava moved the last piece and grinned in victory.",
+            "Noah’s eyebrows pulled together and he thought about quitting.",
+            "Ava offered a friendly smile. “Good game!” she said.",
+            "Noah breathed in slowly and let the air out, then smiled back."
+          ],
+          "questions": [
+            {
+              "prompt": "How do you know Noah is upset about losing?",
+              "answer": "he frowns and thinks about quitting",
+              "choices": [
+                "He frowns and thinks about quitting.",
+                "He laughs and dances.",
+                "He thanks Ava right away."
+              ],
+              "clue": "Look at Noah’s face and what he wants to do next."
+            },
+            {
+              "prompt": "What kind words does Ava share?",
+              "answer": "good game",
+              "choices": [
+                "Good game!",
+                "You should go home!",
+                "I win, you lose!"
+              ],
+              "clue": "Listen to the words Ava uses after the game ends."
+            },
+            {
+              "prompt": "What calm choice helps Noah move on?",
+              "answer": "he takes a deep breath",
+              "choices": [
+                "He takes a deep breath.",
+                "He tosses the pieces.",
+                "He stomps off."
+              ],
+              "clue": "Notice what Noah does with his breathing before he smiles."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "helping-friend",
+      "title": "Helping a Friend",
+      "topic": "Story 6",
+      "levels": [
+        {
+          "name": "Level 1",
+          "sentences": [
+            "Lila sees Ben fall on the playground.",
+            "She runs to help him up.",
+            "Ben says, “Thank you!”",
+            "Lila feels proud for helping.",
+            "Ben feels better."
+          ],
+          "questions": [
+            {
+              "prompt": "What happens to Ben?",
+              "answer": "he falls",
+              "choices": [
+                "He falls.",
+                "He wins.",
+                "He runs away."
+              ],
+              "clue": "Think about what happens before Lila helps."
+            },
+            {
+              "prompt": "What does Lila do?",
+              "answer": "she helps him",
+              "choices": [
+                "She helps him.",
+                "She laughs.",
+                "She ignores him."
+              ],
+              "clue": "Look at Lila’s actions after Ben falls."
+            },
+            {
+              "prompt": "How does Lila feel after she helps?",
+              "answer": "proud",
+              "choices": [
+                "Proud",
+                "Mad",
+                "Scared"
+              ],
+              "clue": "Helping someone can make you feel good inside."
+            }
+          ]
+        },
+        {
+          "name": "Level 2",
+          "sentences": [
+            "Ben’s shoe caught on the curb and he tumbled onto the playground.",
+            "Lila hurried over and reached out a hand.",
+            "Ben took a breath and said, “Thanks for the help.”",
+            "Lila’s chest felt warm and she stood a little taller.",
+            "Ben brushed off his knees and smiled."
+          ],
+          "questions": [
+            {
+              "prompt": "What happens to Ben on the playground?",
+              "answer": "he trips and falls",
+              "choices": [
+                "He trips and falls.",
+                "He scores a goal.",
+                "He goes home early."
+              ],
+              "clue": "Notice what causes Lila to rush over."
+            },
+            {
+              "prompt": "How does Lila respond right away?",
+              "answer": "she runs over to help him up",
+              "choices": [
+                "She runs over to help him up.",
+                "She laughs at him.",
+                "She ignores him."
+              ],
+              "clue": "Look at Lila’s first action after Ben hits the ground."
+            },
+            {
+              "prompt": "What feeling do Lila’s actions give her afterward?",
+              "answer": "she feels proud",
+              "choices": [
+                "She feels proud.",
+                "She feels jealous.",
+                "She feels bored."
+              ],
+              "clue": "Think about how people feel after they help someone."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "left-out",
+      "title": "When Someone is Left Out",
+      "topic": "Story 7",
+      "levels": [
+        {
+          "name": "Level 1",
+          "sentences": [
+            "Sofia and Maya are playing a game.",
+            "Eli wants to play too.",
+            "They say, “No, just us.”",
+            "Eli walks away and looks sad.",
+            "Sofia thinks and says, “Come play with us!”"
+          ],
+          "questions": [
+            {
+              "prompt": "How does Eli feel?",
+              "answer": "sad",
+              "choices": [
+                "Sad",
+                "Silly",
+                "Excited"
+              ],
+              "clue": "Think about Eli’s reaction when he is left out."
+            },
+            {
+              "prompt": "What does Sofia say at the end?",
+              "answer": "come play with us",
+              "choices": [
+                "Come play with us!",
+                "Go away!",
+                "Not today!"
+              ],
+              "clue": "Sofia changes her words to include Eli."
+            },
+            {
+              "prompt": "How do they feel when Eli joins?",
+              "answer": "happy",
+              "choices": [
+                "Happy",
+                "Mad",
+                "Tired"
+              ],
+              "clue": "Notice the mood once everyone plays together."
+            }
+          ]
+        },
+        {
+          "name": "Level 2",
+          "sentences": [
+            "Sofia and Maya were deep in a game when Eli walked over with a hopeful smile.",
+            "“Can I play too?” he asked.",
+            "“Maybe later,” Sofia said quickly, and Maya nodded.",
+            "Eli’s gaze dropped and his steps slowed as he turned away.",
+            "Sofia watched him leave, took a breath, and called, “Come play with us!”"
+          ],
+          "questions": [
+            {
+              "prompt": "What clues show how Eli feels when he is turned away?",
+              "answer": "he looks down and walks away",
+              "choices": [
+                "He looks down and walks away.",
+                "He laughs and claps.",
+                "He cheers loudly."
+              ],
+              "clue": "Notice Eli’s face and pace after he hears “maybe later.”"
+            },
+            {
+              "prompt": "What does Sofia decide to tell Eli afterward?",
+              "answer": "come play with us",
+              "choices": [
+                "Come play with us!",
+                "Go play somewhere else!",
+                "Maybe later!"
+              ],
+              "clue": "She changes her words when she sees Eli’s reaction."
+            },
+            {
+              "prompt": "How do the kids feel once Eli joins in?",
+              "answer": "happy",
+              "choices": [
+                "Happy",
+                "Grumpy",
+                "Sleepy"
+              ],
+              "clue": "Think about how play feels when everyone is included."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "following-directions",
+      "title": "Following Directions",
+      "topic": "Story 8",
+      "levels": [
+        {
+          "name": "Level 1",
+          "sentences": [
+            "The class lines up for lunch.",
+            "Jack runs ahead of everyone.",
+            "The teacher says, “Please go back and wait.”",
+            "Jack feels sorry and walks to the end of the line.",
+            "Now everyone feels calm and ready to go."
+          ],
+          "questions": [
+            {
+              "prompt": "What does Jack do first?",
+              "answer": "he runs ahead",
+              "choices": [
+                "He runs ahead.",
+                "He waits in line.",
+                "He eats lunch."
+              ],
+              "clue": "Notice Jack’s action before the teacher talks."
+            },
+            {
+              "prompt": "What does the teacher say?",
+              "answer": "please go back and wait",
+              "choices": [
+                "Please go back and wait.",
+                "Come to the front.",
+                "Go outside."
+              ],
+              "clue": "The teacher gives Jack a direction to fix the problem."
+            },
+            {
+              "prompt": "How does Jack feel at the end?",
+              "answer": "sorry",
+              "choices": [
+                "Sorry",
+                "Silly",
+                "Angry"
+              ],
+              "clue": "Jack changes his behavior after he listens."
+            }
+          ]
+        },
+        {
+          "name": "Level 2",
+          "sentences": [
+            "The lunch line formed down the hallway.",
+            "Jack darted past his classmates and slid into the front spot.",
+            "The teacher gave him a calm look and said, “Please go back and wait.”",
+            "Jack’s head lowered as he walked to the back.",
+            "The line moved forward quietly after he returned."
+          ],
+          "questions": [
+            {
+              "prompt": "What is Jack’s first action in the line?",
+              "answer": "he darts past everyone",
+              "choices": [
+                "He darts past everyone.",
+                "He waits patiently.",
+                "He opens his lunch."
+              ],
+              "clue": "Think about how Jack moves when the line starts."
+            },
+            {
+              "prompt": "What does the teacher ask Jack to do?",
+              "answer": "please go back and wait",
+              "choices": [
+                "Please go back and wait.",
+                "Take the first spot.",
+                "Run to the gym."
+              ],
+              "clue": "Listen to the calm direction the teacher gives."
+            },
+            {
+              "prompt": "How can you tell Jack feels sorry afterward?",
+              "answer": "he lowers his head and walks to the back",
+              "choices": [
+                "He lowers his head and walks to the back.",
+                "He laughs loudly.",
+                "He keeps cutting the line."
+              ],
+              "clue": "Watch Jack’s body language after the reminder."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "qaTopics": [
+    {
+      "id": "favorites",
+      "label": "💛 Favorites",
+      "accent": "#fbbf24",
+      "questions": [
+        {
+          "question": "What is your favorite color?",
+          "starter": "My favorite color is ",
+          "examples": [
+            "My favorite color is blue.",
+            "My favorite color is red."
+          ]
+        },
+        {
+          "question": "What is your favorite food?",
+          "starter": "My favorite food is ",
+          "examples": [
+            "My favorite food is pizza.",
+            "My favorite food is noodles."
+          ]
+        },
+        {
+          "question": "What is your favorite animal?",
+          "starter": "My favorite animal is ",
+          "examples": [
+            "My favorite animal is a dog.",
+            "My favorite animal is a cat."
+          ]
+        },
+        {
+          "question": "What is your favorite game?",
+          "starter": "My favorite game is ",
+          "examples": [
+            "My favorite game is tag.",
+            "My favorite game is chess."
+          ]
+        },
+        {
+          "question": "What is your favorite show or movie?",
+          "starter": "My favorite show or movie is ",
+          "examples": [
+            "My favorite movie is Frozen.",
+            "My favorite show is Bluey."
+          ]
+        },
+        {
+          "question": "What is your favorite toy?",
+          "starter": "My favorite toy is ",
+          "examples": [
+            "My favorite toy is my stuffed bear.",
+            "My favorite toy is my LEGO set."
+          ]
+        },
+        {
+          "question": "What is your favorite song?",
+          "starter": "My favorite song is ",
+          "examples": [
+            "My favorite song is Happy.",
+            "My favorite song is Roar."
+          ]
+        },
+        {
+          "question": "What is your favorite drink?",
+          "starter": "My favorite drink is ",
+          "examples": [
+            "My favorite drink is lemonade.",
+            "My favorite drink is chocolate milk."
+          ]
+        },
+        {
+          "question": "What is your favorite holiday?",
+          "starter": "My favorite holiday is ",
+          "examples": [
+            "My favorite holiday is Halloween.",
+            "My favorite holiday is Christmas."
+          ]
+        },
+        {
+          "question": "What is your favorite thing to do after school?",
+          "starter": "After school, my favorite thing to do is ",
+          "examples": [
+            "After school, I like to play outside.",
+            "After school, I like to read."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "daily-life",
+      "label": "🌦️ Daily Life",
+      "accent": "#38bdf8",
+      "questions": [
+        {
+          "question": "What did you eat for breakfast?",
+          "starter": "For breakfast, I ate ",
+          "examples": [
+            "For breakfast, I ate cereal.",
+            "For breakfast, I ate eggs."
+          ]
+        },
+        {
+          "question": "What do you like to do at recess?",
+          "starter": "At recess, I like to ",
+          "examples": [
+            "At recess, I like to swing.",
+            "At recess, I like to play soccer."
+          ]
+        },
+        {
+          "question": "What do you do after school?",
+          "starter": "After school, I usually ",
+          "examples": [
+            "After school, I do my homework.",
+            "After school, I play with my dog."
+          ]
+        },
+        {
+          "question": "How do you get to school?",
+          "starter": "I get to school by ",
+          "examples": [
+            "I get to school by bus.",
+            "I get to school by car."
+          ]
+        },
+        {
+          "question": "What do you like to play inside?",
+          "starter": "Inside, I like to play ",
+          "examples": [
+            "Inside, I like to play board games.",
+            "Inside, I like to draw."
+          ]
+        },
+        {
+          "question": "What do you like to play outside?",
+          "starter": "Outside, I like to play ",
+          "examples": [
+            "Outside, I like to ride my bike.",
+            "Outside, I like to play basketball."
+          ]
+        },
+        {
+          "question": "What time do you go to bed?",
+          "starter": "I usually go to bed at ",
+          "examples": [
+            "I go to bed at eight o'clock.",
+            "I go to bed at nine."
+          ]
+        },
+        {
+          "question": "What do you like to do on weekends?",
+          "starter": "On weekends, I like to ",
+          "examples": [
+            "On weekends, I like to visit my grandma.",
+            "On weekends, I like to watch movies."
+          ]
+        },
+        {
+          "question": "Who helps you with homework?",
+          "starter": "When I need help with homework, I ask ",
+          "examples": [
+            "My mom helps me with homework.",
+            "My teacher helps me with homework."
+          ]
+        },
+        {
+          "question": "What is something you do every morning?",
+          "starter": "Every morning, I ",
+          "examples": [
+            "Every morning, I brush my teeth.",
+            "Every morning, I eat breakfast."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "school",
+      "label": "🎒 School Topics",
+      "accent": "#60a5fa",
+      "questions": [
+        {
+          "question": "What is your favorite subject?",
+          "starter": "My favorite subject is ",
+          "examples": [
+            "My favorite subject is math.",
+            "My favorite subject is art."
+          ]
+        },
+        {
+          "question": "What do you like about school?",
+          "starter": "At school, I like ",
+          "examples": [
+            "At school, I like seeing my friends.",
+            "At school, I like recess."
+          ]
+        },
+        {
+          "question": "What is something fun you did in class?",
+          "starter": "Something fun I did in class was ",
+          "examples": [
+            "I built a volcano in class.",
+            "I painted in class."
+          ]
+        },
+        {
+          "question": "Who do you sit with at lunch?",
+          "starter": "At lunch, I sit with ",
+          "examples": [
+            "I sit with my best friend at lunch.",
+            "I sit with my brother at lunch."
+          ]
+        },
+        {
+          "question": "What do you like to do in PE?",
+          "starter": "In PE, I like to ",
+          "examples": [
+            "In PE, I like to run.",
+            "In PE, I like to play dodgeball."
+          ]
+        },
+        {
+          "question": "What do you like to read about?",
+          "starter": "I like to read about ",
+          "examples": [
+            "I like to read about animals.",
+            "I like to read about space."
+          ]
+        },
+        {
+          "question": "What is your favorite school lunch?",
+          "starter": "My favorite school lunch is ",
+          "examples": [
+            "My favorite school lunch is pizza.",
+            "My favorite school lunch is tacos."
+          ]
+        },
+        {
+          "question": "Who helps you in class?",
+          "starter": "In class, I get help from ",
+          "examples": [
+            "My teacher helps me in class.",
+            "My friend helps me in class."
+          ]
+        },
+        {
+          "question": "What is your favorite thing to do at school?",
+          "starter": "At school, my favorite thing to do is ",
+          "examples": [
+            "At school, I like to draw.",
+            "At school, I like science."
+          ]
+        },
+        {
+          "question": "What do you like about your teacher?",
+          "starter": "I like that my teacher ",
+          "examples": [
+            "I like that my teacher is kind.",
+            "I like that my teacher reads stories."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fun",
+      "label": "🎉 Fun & Free Time",
+      "accent": "#f472b6",
+      "questions": [
+        {
+          "question": "What do you like to do for fun?",
+          "starter": "For fun, I like to ",
+          "examples": [
+            "For fun, I like to draw.",
+            "For fun, I like to ride my bike."
+          ]
+        },
+        {
+          "question": "What games do you play with friends?",
+          "starter": "With my friends, I play ",
+          "examples": [
+            "I play tag with my friends.",
+            "I play hide and seek with my friends."
+          ]
+        },
+        {
+          "question": "What do you like to do on a rainy day?",
+          "starter": "On a rainy day, I like to ",
+          "examples": [
+            "On a rainy day, I like to read.",
+            "On a rainy day, I like to build a fort."
+          ]
+        },
+        {
+          "question": "What is something fun you did recently?",
+          "starter": "Something fun I did recently was ",
+          "examples": [
+            "I went to the park.",
+            "I went to a birthday party."
+          ]
+        },
+        {
+          "question": "What do you like to draw or make?",
+          "starter": "I like to draw or make ",
+          "examples": [
+            "I like to draw animals.",
+            "I like to make bracelets."
+          ]
+        },
+        {
+          "question": "What is your favorite video game?",
+          "starter": "My favorite video game is ",
+          "examples": [
+            "My favorite video game is Mario Kart.",
+            "My favorite video game is Roblox."
+          ]
+        },
+        {
+          "question": "Who do you like to play with?",
+          "starter": "I like to play with ",
+          "examples": [
+            "I like to play with my sister.",
+            "I like to play with my neighbor."
+          ]
+        },
+        {
+          "question": "What do you like to do outside?",
+          "starter": "Outside, I like to ",
+          "examples": [
+            "Outside, I like to play soccer.",
+            "Outside, I like to jump rope."
+          ]
+        },
+        {
+          "question": "What is something that makes you laugh?",
+          "starter": "Something that makes me laugh is ",
+          "examples": [
+            "Silly jokes make me laugh.",
+            "My dog makes me laugh."
+          ]
+        },
+        {
+          "question": "What makes you feel happy?",
+          "starter": "I feel happy when ",
+          "examples": [
+            "I feel happy when I play with friends.",
+            "I feel happy when I read."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feelings",
+      "label": "🧠 Feelings & Social",
+      "accent": "#34d399",
+      "questions": [
+        {
+          "question": "What makes you feel happy?",
+          "starter": "I feel happy when ",
+          "examples": [
+            "I feel happy when I help others.",
+            "I feel happy when I play games."
+          ]
+        },
+        {
+          "question": "What makes you feel sad?",
+          "starter": "I feel sad when ",
+          "examples": [
+            "I feel sad when I lose a toy.",
+            "I feel sad when a friend is sick."
+          ]
+        },
+        {
+          "question": "What do you do when you feel mad?",
+          "starter": "When I feel mad, I ",
+          "examples": [
+            "When I feel mad, I take deep breaths.",
+            "When I feel mad, I count to ten."
+          ]
+        },
+        {
+          "question": "What makes you feel proud?",
+          "starter": "I feel proud when ",
+          "examples": [
+            "I feel proud when I finish my homework.",
+            "I feel proud when I help someone."
+          ]
+        },
+        {
+          "question": "What helps you calm down?",
+          "starter": "I calm down by ",
+          "examples": [
+            "I calm down by breathing slowly.",
+            "I calm down by squeezing a stress ball."
+          ]
+        },
+        {
+          "question": "What do you do when a friend is sad?",
+          "starter": "When a friend is sad, I ",
+          "examples": [
+            "When a friend is sad, I sit with them.",
+            "When a friend is sad, I give them a hug."
+          ]
+        },
+        {
+          "question": "What makes you feel excited?",
+          "starter": "I feel excited when ",
+          "examples": [
+            "I feel excited when we have a field trip.",
+            "I feel excited when my friends visit."
+          ]
+        },
+        {
+          "question": "How do you feel when someone shares with you?",
+          "starter": "When someone shares with me, I feel ",
+          "examples": [
+            "I feel thankful when someone shares with me.",
+            "I feel happy when someone shares with me."
+          ]
+        },
+        {
+          "question": "What do you do when someone is mean?",
+          "starter": "When someone is mean, I ",
+          "examples": [
+            "When someone is mean, I tell an adult.",
+            "When someone is mean, I walk away."
+          ]
+        },
+        {
+          "question": "How can you help a friend?",
+          "starter": "I can help a friend by ",
+          "examples": [
+            "I help a friend by sharing my toys.",
+            "I help a friend by listening."
+          ]
+        }
+      ]
+    }
+  ],
+  "questionPracticeCategories": {
+    "about-me": {
+      "name": "About Me",
+      "icon": "🌟",
+      "yes-no": [
+        {
+          "q": "Do you like to read books?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I love reading adventure books.",
+            "No, I prefer watching movies instead."
+          ]
+        },
+        {
+          "q": "Are you good at math?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I am really good at solving math problems.",
+            "No, I find math challenging but I try my best."
+          ]
+        },
+        {
+          "q": "Do you have a pet?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I have a cute dog named Buddy.",
+            "No, I don't have any pets right now."
+          ]
+        },
+        {
+          "q": "Are you the oldest child in your family?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I am the oldest of three kids.",
+            "No, I have an older brother."
+          ]
+        },
+        {
+          "q": "Do you like to sing?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I love singing along to my favorite songs.",
+            "No, I prefer listening to music instead."
+          ]
+        },
+        {
+          "q": "Are you afraid of the dark?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I get scared in complete darkness.",
+            "No, I don't mind the dark at all."
+          ]
+        }
+      ],
+      "wh": [
+        {
+          "q": "What is your favorite color?",
+          "starters": [
+            "My favorite",
+            "I really like"
+          ],
+          "examples": [
+            "My favorite color is purple because it's pretty.",
+            "I really like blue because it reminds me of the ocean."
+          ]
+        },
+        {
+          "q": "When is your birthday?",
+          "starters": [
+            "My birthday",
+            "I was born"
+          ],
+          "examples": [
+            "My birthday is in March.",
+            "I was born on June 15th."
+          ]
+        },
+        {
+          "q": "What do you want to be when you grow up?",
+          "starters": [
+            "I want",
+            "When I grow up"
+          ],
+          "examples": [
+            "I want to be a veterinarian to help animals.",
+            "When I grow up, I want to be a teacher."
+          ]
+        },
+        {
+          "q": "Who is your best friend?",
+          "starters": [
+            "My best friend",
+            "I have"
+          ],
+          "examples": [
+            "My best friend is Sarah from my class.",
+            "I have several good friends, but Emma is my closest."
+          ]
+        },
+        {
+          "q": "What makes you feel happy?",
+          "starters": [
+            "I feel happy",
+            "What makes me"
+          ],
+          "examples": [
+            "I feel happy when I spend time with my family.",
+            "What makes me happy is playing with my friends."
+          ]
+        },
+        {
+          "q": "Where would you like to travel?",
+          "starters": [
+            "I would like",
+            "I want to"
+          ],
+          "examples": [
+            "I would like to visit Disney World someday.",
+            "I want to travel to Paris to see the Eiffel Tower."
+          ]
+        }
+      ]
+    },
+    "school": {
+      "name": "School",
+      "icon": "🏫",
+      "yes-no": [
+        {
+          "q": "Do you like your teacher this year?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I really like my teacher because she's kind.",
+            "No, I wish my teacher explained things more clearly."
+          ]
+        },
+        {
+          "q": "Is math your favorite subject?",
+          "starters": [
+            "Yes, math",
+            "No, math"
+          ],
+          "examples": [
+            "Yes, math is my favorite subject because I love solving problems.",
+            "No, math is not my favorite subject."
+          ]
+        },
+        {
+          "q": "Do you eat lunch at school?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I eat lunch in the cafeteria with my friends.",
+            "No, I bring my lunch from home every day."
+          ]
+        },
+        {
+          "q": "Are you in any after-school activities?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I participate in the art club after school.",
+            "No, I go home right after school ends."
+          ]
+        },
+        {
+          "q": "Do you like doing homework?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I enjoy homework because it helps me learn.",
+            "No, I find homework boring and hard."
+          ]
+        },
+        {
+          "q": "Is your school big?",
+          "starters": [
+            "Yes, my school",
+            "No, my school"
+          ],
+          "examples": [
+            "Yes, my school has over 500 students.",
+            "No, my school is pretty small with just a few classes."
+          ]
+        }
+      ],
+      "wh": [
+        {
+          "q": "What is your favorite subject in school?",
+          "starters": [
+            "My favorite subject",
+            "I really enjoy"
+          ],
+          "examples": [
+            "My favorite subject is art because I love being creative.",
+            "I really enjoy science class because we do cool experiments."
+          ]
+        },
+        {
+          "q": "Who sits next to you in class?",
+          "starters": [
+            "The person who",
+            "My classmate"
+          ],
+          "examples": [
+            "The person who sits next to me is Jake.",
+            "My classmate Maria sits right beside my desk."
+          ]
+        },
+        {
+          "q": "What do you do during recess?",
+          "starters": [
+            "During recess, I",
+            "At recess, I"
+          ],
+          "examples": [
+            "During recess, I play on the swings with my friends.",
+            "At recess, I like to read books under the big tree."
+          ]
+        },
+        {
+          "q": "When do you usually do your homework?",
+          "starters": [
+            "I usually do",
+            "I complete my"
+          ],
+          "examples": [
+            "I usually do my homework right after dinner.",
+            "I complete my homework as soon as I get home."
+          ]
+        },
+        {
+          "q": "What supplies do you need for school?",
+          "starters": [
+            "I need",
+            "For school, I"
+          ],
+          "examples": [
+            "I need pencils, notebooks, and folders for my classes.",
+            "For school, I use a backpack to carry all my supplies."
+          ]
+        },
+        {
+          "q": "Where do you sit during lunch?",
+          "starters": [
+            "I sit",
+            "During lunch, I"
+          ],
+          "examples": [
+            "I sit at the round table near the windows.",
+            "During lunch, I sit with my friends at our usual spot."
+          ]
+        }
+      ]
+    },
+    "home": {
+      "name": "Home & Family",
+      "icon": "🏡",
+      "yes-no": [
+        {
+          "q": "Do you have your own bedroom?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I have my own pink bedroom.",
+            "No, I share a room with my little sister."
+          ]
+        },
+        {
+          "q": "Does your family eat dinner together?",
+          "starters": [
+            "Yes, we",
+            "No, we"
+          ],
+          "examples": [
+            "Yes, we always eat dinner together at 6 PM.",
+            "No, we usually eat at different times."
+          ]
+        },
+        {
+          "q": "Do you help with chores at home?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I help by setting the table and feeding our cat.",
+            "No, I don't have regular chores yet."
+          ]
+        },
+        {
+          "q": "Are your grandparents still alive?",
+          "starters": [
+            "Yes, my",
+            "No, my"
+          ],
+          "examples": [
+            "Yes, my grandparents visit us every weekend.",
+            "No, my grandparents live very far away."
+          ]
+        },
+        {
+          "q": "Does your family have a car?",
+          "starters": [
+            "Yes, we",
+            "No, we"
+          ],
+          "examples": [
+            "Yes, we have a blue SUV that fits our whole family.",
+            "No, we use public transportation to get around."
+          ]
+        },
+        {
+          "q": "Do you like spending time with your siblings?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I love playing games with my brother.",
+            "No, I sometimes prefer to have alone time."
+          ]
+        }
+      ],
+      "wh": [
+        {
+          "q": "What chores do you do at home?",
+          "starters": [
+            "At home, I",
+            "My chores include"
+          ],
+          "examples": [
+            "At home, I help by washing dishes and vacuuming.",
+            "My chores include making my bed and taking out trash."
+          ]
+        },
+        {
+          "q": "Who cooks dinner in your family?",
+          "starters": [
+            "In my family,",
+            "Usually,"
+          ],
+          "examples": [
+            "In my family, my mom cooks dinner most nights.",
+            "Usually, my dad makes dinner on weekends."
+          ]
+        },
+        {
+          "q": "What is your favorite room in your house?",
+          "starters": [
+            "My favorite room",
+            "I really love"
+          ],
+          "examples": [
+            "My favorite room is my bedroom because it's cozy.",
+            "I really love our living room where we watch movies."
+          ]
+        },
+        {
+          "q": "When does your family watch TV together?",
+          "starters": [
+            "We watch",
+            "My family watches"
+          ],
+          "examples": [
+            "We watch TV together after dinner every day.",
+            "My family watches movies on Friday nights."
+          ]
+        },
+        {
+          "q": "Where does your family like to go on weekends?",
+          "starters": [
+            "On weekends, we",
+            "My family likes"
+          ],
+          "examples": [
+            "On weekends, we often go to the park or mall.",
+            "My family likes to visit my aunt's house."
+          ]
+        },
+        {
+          "q": "What does your family do for fun?",
+          "starters": [
+            "For fun, we",
+            "My family enjoys"
+          ],
+          "examples": [
+            "For fun, we play board games and go on bike rides.",
+            "My family enjoys having picnics in our backyard."
+          ]
+        }
+      ]
+    },
+    "hobbies": {
+      "name": "Hobbies",
+      "icon": "🎨",
+      "yes-no": [
+        {
+          "q": "Do you like to draw or paint?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I love drawing animals and flowers.",
+            "No, I prefer doing crafts with beads instead."
+          ]
+        },
+        {
+          "q": "Can you play any musical instruments?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I can play piano and I'm learning guitar.",
+            "No, I don't play instruments but I love listening to music."
+          ]
+        },
+        {
+          "q": "Do you collect anything special?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I collect stickers and put them in a special book.",
+            "No, I don't collect anything right now."
+          ]
+        },
+        {
+          "q": "Are you good at sports?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I'm really good at soccer and swimming.",
+            "No, I'm not very athletic but I try my best."
+          ]
+        },
+        {
+          "q": "Do you like to dance?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I take dance classes and love performing.",
+            "No, I feel shy about dancing in front of others."
+          ]
+        },
+        {
+          "q": "Do you enjoy doing puzzles?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I love doing 1000-piece jigsaw puzzles.",
+            "No, I find puzzles too frustrating and hard."
+          ]
+        }
+      ],
+      "wh": [
+        {
+          "q": "What do you like to do in your free time?",
+          "starters": [
+            "In my free time,",
+            "I like to"
+          ],
+          "examples": [
+            "In my free time, I enjoy reading and playing video games.",
+            "I like to spend time drawing and listening to music."
+          ]
+        },
+        {
+          "q": "What is your favorite craft or art project?",
+          "starters": [
+            "My favorite",
+            "I really enjoy"
+          ],
+          "examples": [
+            "My favorite art project is making friendship bracelets.",
+            "I really enjoy painting watercolor pictures of nature."
+          ]
+        },
+        {
+          "q": "What sport do you most enjoy playing?",
+          "starters": [
+            "I most enjoy",
+            "My favorite sport"
+          ],
+          "examples": [
+            "I most enjoy playing basketball with my friends.",
+            "My favorite sport is swimming because I love being in water."
+          ]
+        },
+        {
+          "q": "What kind of music do you like best?",
+          "starters": [
+            "I like",
+            "My favorite music"
+          ],
+          "examples": [
+            "I like pop music and songs that I can sing along to.",
+            "My favorite music is country because the stories are nice."
+          ]
+        },
+        {
+          "q": "What hobby would you like to try?",
+          "starters": [
+            "I would like",
+            "I want to try"
+          ],
+          "examples": [
+            "I would like to try learning how to knit scarves.",
+            "I want to try rock climbing at the indoor gym."
+          ]
+        },
+        {
+          "q": "When do you have time for your hobbies?",
+          "starters": [
+            "I have time",
+            "I do my hobbies"
+          ],
+          "examples": [
+            "I have time for hobbies after school and on weekends.",
+            "I do my hobbies before bedtime when I'm relaxed."
+          ]
+        }
+      ]
+    },
+    "food": {
+      "name": "Food",
+      "icon": "🍕",
+      "yes-no": [
+        {
+          "q": "Do you like spicy food?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I love eating spicy tacos and hot sauce.",
+            "No, I prefer mild foods because spice hurts my mouth."
+          ]
+        },
+        {
+          "q": "Are you a picky eater?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I only like a few different foods.",
+            "No, I'm willing to try almost anything new."
+          ]
+        },
+        {
+          "q": "Do you know how to cook anything?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I can make scrambled eggs and grilled cheese.",
+            "No, I don't know how to cook yet."
+          ]
+        },
+        {
+          "q": "Do you like vegetables?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I especially like carrots and broccoli.",
+            "No, I think most vegetables taste yucky."
+          ]
+        },
+        {
+          "q": "Is breakfast your favorite meal?",
+          "starters": [
+            "Yes, breakfast",
+            "No, breakfast"
+          ],
+          "examples": [
+            "Yes, breakfast is my favorite because I love pancakes.",
+            "No, breakfast is not my favorite meal of the day."
+          ]
+        },
+        {
+          "q": "Do you like trying new foods?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I enjoy discovering new flavors and dishes.",
+            "No, I prefer to stick with foods I already know."
+          ]
+        }
+      ],
+      "wh": [
+        {
+          "q": "What is your favorite food?",
+          "starters": [
+            "My favorite food",
+            "I really love"
+          ],
+          "examples": [
+            "My favorite food is pizza because it has cheese and pepperoni.",
+            "I really love spaghetti with meatballs and garlic bread."
+          ]
+        },
+        {
+          "q": "What do you usually eat for breakfast?",
+          "starters": [
+            "For breakfast, I",
+            "I usually eat"
+          ],
+          "examples": [
+            "For breakfast, I usually have cereal and orange juice.",
+            "I usually eat toast with peanut butter and a banana."
+          ]
+        },
+        {
+          "q": "What food do you absolutely hate?",
+          "starters": [
+            "I absolutely hate",
+            "The food I"
+          ],
+          "examples": [
+            "I absolutely hate Brussels sprouts because they're bitter.",
+            "The food I dislike most is liver because of the texture."
+          ]
+        },
+        {
+          "q": "Where is your favorite place to eat out?",
+          "starters": [
+            "My favorite place",
+            "I love eating"
+          ],
+          "examples": [
+            "My favorite place to eat is the Italian restaurant downtown.",
+            "I love eating at the diner because they have great milkshakes."
+          ]
+        },
+        {
+          "q": "What snack do you eat most often?",
+          "starters": [
+            "I most often",
+            "My go-to snack"
+          ],
+          "examples": [
+            "I most often snack on apple slices with peanut butter.",
+            "My go-to snack is popcorn while watching TV."
+          ]
+        },
+        {
+          "q": "What would you cook for a friend?",
+          "starters": [
+            "I would cook",
+            "For a friend,"
+          ],
+          "examples": [
+            "I would cook mac and cheese because most people like it.",
+            "For a friend, I would make chocolate chip cookies."
+          ]
+        }
+      ]
+    },
+    "animals": {
+      "name": "Animals",
+      "icon": "🐱",
+      "yes-no": [
+        {
+          "q": "Are you afraid of any animals?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I am scared of spiders and snakes.",
+            "No, I'm not afraid of any animals at all."
+          ]
+        },
+        {
+          "q": "Do you have a favorite wild animal?",
+          "starters": [
+            "Yes, my",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, my favorite wild animal is the dolphin.",
+            "No, I don't have a specific favorite wild animal."
+          ]
+        },
+        {
+          "q": "Would you like to work with animals someday?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I would love to be a veterinarian or zookeeper.",
+            "No, I prefer working with people instead of animals."
+          ]
+        },
+        {
+          "q": "Have you ever been to a zoo?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I went to the zoo last summer with my family.",
+            "No, I have never visited a zoo before."
+          ]
+        },
+        {
+          "q": "Do you think pets should live indoors?",
+          "starters": [
+            "Yes, I think",
+            "No, I think"
+          ],
+          "examples": [
+            "Yes, I think pets are safer when they live inside.",
+            "No, I think some animals need to be outside sometimes."
+          ]
+        },
+        {
+          "q": "Are you good with taking care of animals?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I'm very gentle and responsible with pets.",
+            "No, I sometimes forget to do things like feeding time."
+          ]
+        }
+      ],
+      "wh": [
+        {
+          "q": "What is your favorite animal?",
+          "starters": [
+            "My favorite animal",
+            "I really love"
+          ],
+          "examples": [
+            "My favorite animal is a golden retriever dog.",
+            "I really love pandas because they're cute and fluffy."
+          ]
+        },
+        {
+          "q": "What pet would you most like to have?",
+          "starters": [
+            "I would most",
+            "The pet I"
+          ],
+          "examples": [
+            "I would most like to have a kitten to cuddle with.",
+            "The pet I want most is a hamster in a big cage."
+          ]
+        },
+        {
+          "q": "What do you think is the scariest animal?",
+          "starters": [
+            "I think the",
+            "The scariest animal"
+          ],
+          "examples": [
+            "I think the shark is the scariest because of its teeth.",
+            "The scariest animal to me is a big spider."
+          ]
+        },
+        {
+          "q": "Where would you most like to see animals?",
+          "starters": [
+            "I would like",
+            "The place I"
+          ],
+          "examples": [
+            "I would like to see animals at an aquarium.",
+            "The place I want to visit is an African safari."
+          ]
+        },
+        {
+          "q": "What animal do you think is most intelligent?",
+          "starters": [
+            "I think",
+            "The most intelligent"
+          ],
+          "examples": [
+            "I think dolphins are the most intelligent sea animals.",
+            "The most intelligent animal is probably a chimpanzee."
+          ]
+        },
+        {
+          "q": "What sound does your favorite animal make?",
+          "starters": [
+            "My favorite animal",
+            "The sound is"
+          ],
+          "examples": [
+            "My favorite animal makes a soft purring sound.",
+            "The sound is a happy bark when dogs are excited."
+          ]
+        }
+      ]
+    },
+    "entertainment": {
+      "name": "Movies & TV",
+      "icon": "🎬",
+      "yes-no": [
+        {
+          "q": "Do you like scary movies?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I enjoy scary movies but only during the day.",
+            "No, I get too frightened and have bad dreams."
+          ]
+        },
+        {
+          "q": "Do you watch cartoons?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I still love watching animated movies and shows.",
+            "No, I prefer shows with real people now."
+          ]
+        },
+        {
+          "q": "Are you allowed to watch TV on school nights?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I can watch one hour after I finish homework.",
+            "No, I'm only allowed to watch TV on weekends."
+          ]
+        },
+        {
+          "q": "Do you like movies better than TV shows?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I prefer movies because they tell a complete story.",
+            "No, I like TV shows because I can follow characters longer."
+          ]
+        },
+        {
+          "q": "Have you ever been to a movie theater?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I love going to the movies and getting popcorn.",
+            "No, I have only watched movies at home so far."
+          ]
+        },
+        {
+          "q": "Do you like singing shows like American Idol?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I love watching people perform and compete.",
+            "No, I prefer comedy shows that make me laugh."
+          ]
+        }
+      ],
+      "wh": [
+        {
+          "q": "What is your favorite movie?",
+          "starters": [
+            "My favorite movie",
+            "I really love"
+          ],
+          "examples": [
+            "My favorite movie is Frozen because I love the songs.",
+            "I really love the Harry Potter movies because they're magical."
+          ]
+        },
+        {
+          "q": "What TV show do you watch most often?",
+          "starters": [
+            "I watch",
+            "My favorite show"
+          ],
+          "examples": [
+            "I watch sitcoms that make me laugh after school.",
+            "My favorite show is a cooking competition on Food Network."
+          ]
+        },
+        {
+          "q": "Who is your favorite actor or actress?",
+          "starters": [
+            "My favorite",
+            "I really like"
+          ],
+          "examples": [
+            "My favorite actress is Emma Watson from Harry Potter.",
+            "I really like the actor who plays Spider-Man."
+          ]
+        },
+        {
+          "q": "What type of movies do you enjoy most?",
+          "starters": [
+            "I enjoy",
+            "My favorite type"
+          ],
+          "examples": [
+            "I enjoy romantic comedies because they're funny and sweet.",
+            "My favorite type of movie is action adventures."
+          ]
+        },
+        {
+          "q": "When do you usually watch TV?",
+          "starters": [
+            "I usually watch",
+            "I watch TV"
+          ],
+          "examples": [
+            "I usually watch TV right after dinner with my family.",
+            "I watch TV on Saturday mornings before everyone wakes up."
+          ]
+        },
+        {
+          "q": "What movie made you cry?",
+          "starters": [
+            "The movie that",
+            "I cried when"
+          ],
+          "examples": [
+            "The movie that made me cry was about a dog who got lost.",
+            "I cried when I watched the sad parts of Titanic."
+          ]
+        }
+      ]
+    },
+    "friends": {
+      "name": "Friends",
+      "icon": "👭",
+      "yes-no": [
+        {
+          "q": "Do you have a lot of friends?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I have many friends from school and my neighborhood.",
+            "No, I have just a few very close friends."
+          ]
+        },
+        {
+          "q": "Is it easy for you to make new friends?",
+          "starters": [
+            "Yes, it",
+            "No, it"
+          ],
+          "examples": [
+            "Yes, it is easy because I like talking to new people.",
+            "No, it takes me a while to feel comfortable with others."
+          ]
+        },
+        {
+          "q": "Do you and your friends ever argue?",
+          "starters": [
+            "Yes, we",
+            "No, we"
+          ],
+          "examples": [
+            "Yes, we sometimes disagree but we always make up.",
+            "No, we get along really well and rarely fight."
+          ]
+        },
+        {
+          "q": "Do you prefer hanging out with one friend or a group?",
+          "starters": [
+            "I prefer",
+            "I like"
+          ],
+          "examples": [
+            "I prefer spending time with just one friend at a time.",
+            "I like being with a big group because it's more fun."
+          ]
+        },
+        {
+          "q": "Are most of your friends from school?",
+          "starters": [
+            "Yes, most",
+            "No, most"
+          ],
+          "examples": [
+            "Yes, most of my friends are from my classes.",
+            "No, most of my friends live in my neighborhood."
+          ]
+        },
+        {
+          "q": "Do you keep in touch with old friends?",
+          "starters": [
+            "Yes, I",
+            "No, I"
+          ],
+          "examples": [
+            "Yes, I still text my friend who moved to another state.",
+            "No, I lose touch when people aren't around anymore."
+          ]
+        }
+      ],
+      "wh": [
+        {
+          "q": "What do you and your friends like to do together?",
+          "starters": [
+            "We like to",
+            "My friends and I"
+          ],
+          "examples": [
+            "We like to play video games and ride our bikes together.",
+            "My friends and I enjoy having sleepovers and watching movies."
+          ]
+        },
+        {
+          "q": "What makes someone a good friend?",
+          "starters": [
+            "A good friend",
+            "I think"
+          ],
+          "examples": [
+            "A good friend is someone who listens and cares about you.",
+            "I think good friends are honest and fun to be around."
+          ]
+        },
+        {
+          "q": "Who was your first best friend?",
+          "starters": [
+            "My first",
+            "I became friends"
+          ],
+          "examples": [
+            "My first best friend was Katie from kindergarten.",
+            "I became friends with Alex when we were in preschool together."
+          ]
+        },
+        {
+          "q": "What is the most fun thing you've done with friends?",
+          "starters": [
+            "The most fun",
+            "We had"
+          ],
+          "examples": [
+            "The most fun was when we had a birthday party sleepover.",
+            "We had a great time when we went to the amusement park."
+          ]
+        },
+        {
+          "q": "Where do you usually hang out with your friends?",
+          "starters": [
+            "We usually",
+            "My friends and I"
+          ],
+          "examples": [
+            "We usually hang out at each other's houses after school.",
+            "My friends and I like to meet at the park playground."
+          ]
+        },
+        {
+          "q": "What would you do if a friend was being mean?",
+          "starters": [
+            "If a friend",
+            "I would"
+          ],
+          "examples": [
+            "If a friend was being mean, I would tell them how I feel.",
+            "I would talk to my parents or teacher about the problem."
+          ]
+        }
+      ]
+    }
+  }
 };
