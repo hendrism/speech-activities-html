@@ -163,11 +163,11 @@
                         panel.innerHTML = "";
                         return;
                     }
-                    const words = [];
+                    const helpChips = [];
                     groups.forEach(g => {
-                        (helpWords[g] || []).forEach(w => words.push(w));
+                        (helpWords[g] || []).forEach(w => helpChips.push(w));
                     });
-                    panel.innerHTML = words.length ? words.map(w => `<span class="chip" data-word="${w}">${w}</span>`).join("") : `<span class="note">No suggestions yet.</span>`;
+                    panel.innerHTML = helpChips.length ? helpChips.map(w => `<span class="chip" data-word="${w}">${w}</span>`).join("") : `<span class="note">No suggestions yet.</span>`;
                     panel.classList.add("show");
                     panel.querySelectorAll(".chip").forEach(chip => {
                         chip.addEventListener("click", e => {
