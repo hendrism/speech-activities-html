@@ -194,68 +194,6 @@
             gap: 8px;
         }
 
-        .featured-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 48px;
-        }
-
-        .featured-card {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            border-radius: 20px;
-            padding: 24px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-            text-decoration: none;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .featured-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .featured-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
-            border-radius: 50%;
-        }
-
-        .featured-tag {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(4px);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 12px;
-            align-self: flex-start;
-        }
-
-        .featured-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .featured-desc {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            margin-bottom: 0;
-            flex-grow: 1;
-        }
-
         /* --- Activities Grid --- */
         .activities-grid {
             display: grid;
@@ -291,37 +229,12 @@
             margin-bottom: 12px;
         }
 
-        .card-icon {
-            font-size: 2rem;
-            width: 48px;
-            height: 48px;
-            background: #f1f5f9;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
         .card-title {
             font-size: 1.15rem;
             font-weight: 600;
             color: var(--text-main);
             margin: 0 0 4px 0;
             line-height: 1.3;
-        }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 0;
-            line-height: 1.5;
-            flex-grow: 1;
         }
 
         .card-tags {
@@ -338,22 +251,6 @@
             background: #f1f5f9;
             color: #475569;
             font-weight: 500;
-        }
-
-        .tag.new-system {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        .tag.winter {
-            background: #e0f2fe;
-            color: #0284c7;
-        }
-
-        .tag.thanksgiving,
-        .tag.fall {
-            background: #ffedd5;
-            color: #9a3412;
         }
 
         /* Empty state */
@@ -493,6 +390,8 @@
 
             const filtered = allActivities.filter(item => {
                 if (currentFilter !== 'all' && item.category !== currentFilter) return false;
+                // Search on title only — activity-index.json has no description field.
+                // If description is added to the index schema, extend this predicate.
                 if (searchLower && !item.title.toLowerCase().includes(searchLower)) return false;
                 return true;
             });
@@ -527,8 +426,8 @@
             document.getElementById('activitiesGrid').innerHTML = `
                 <div class="empty-state" style="grid-column: 1/-1">
                     <div class="empty-state-icon">⚠️</div>
-                    <h3>Activities require a local server</h3>
-                    <p>Run: <code>npx http-server</code> then open <code>http://localhost:8080</code></p>
+                    <h3>Failed to load activities</h3>
+                    <p>If opening as a file, run: <code>npx http-server</code> then open <code>http://localhost:8080</code></p>
                 </div>
             `;
         }
