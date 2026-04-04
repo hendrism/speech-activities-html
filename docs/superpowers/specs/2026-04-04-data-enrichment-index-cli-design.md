@@ -7,156 +7,249 @@
 
 Three independent improvements to the speech therapy activity site:
 
-1. **Populate level/tags** on catalog array items across all six data files
-2. **Refactor index.html** to dynamically load from `data/activity-index.json`
-3. **Build `scripts/add-content.py`** — interactive CLI for adding new data items
-
-These tasks are independent and can be implemented in any order.
+1. **`scripts/populate-tags.py`** — populate `level`/`tags` on catalog array items across data/*.json
+2. **index.html refactor** — dynamic load from `data/activity-index.json` via fetch()
+3. **`scripts/add-content.py`** — interactive CLI to add new data items
 
 ---
 
-## Task 1 — Level/Tags Population Script
+## Task 1 — `scripts/populate-tags.py`
 
-### Goal
-Populate `level` and `tags` fields on catalog array items so the activity browser can filter by difficulty and topic. Items that already have these fields are left untouched.
+### Scope — Exact Arrays
 
-### Script
-`scripts/populate-tags.py`
+Only the following arrays receive level/tags. All other arrays in all six files are left untouched.
 
-### Catalog Arrays in Scope
+| File | Array key |
+|------|-----------|
+| `stories.json` | `stories` |
+| `social.json` | `scenarios`, `problemStories`, `reflectionStories` |
+| `grammar.json` | `items` |
+| `fluency.json` | `starters` |
+| `vocabulary.json` | `wordDefinitions`, `contextClues` |
+| `articulation.json` | `paragraphPassages`, `lBlendStories` |
 
-| File | Arrays |
-|------|--------|
-| `stories.json` | `stories[]` |
-| `social.json` | `scenarios[]`, `problemStories[]`, `reflectionStories[]` |
-| `grammar.json` | `items[]` |
-| `fluency.json` | `starters[]` |
-| `vocabulary.json` | `wordDefinitions[]`, `contextClues[]` |
-| `articulation.json` | `paragraphPassages[]`, `lBlendStories[]` |
+All other top-level keys in these files (e.g., `stories.json`'s 25 per-activity sub-arrays, `articulation.json`'s `soundCategories`, `social.json`'s `conversationStarters`) are ignored.
 
-**Out of scope:** per-activity sub-arrays in stories.json (e.g. `fall-reading-simple`), `soundCategories` nested word groups in articulation.json, `conversationStarters` string array, `directionStrategyDefaults`/`rememberAndDoHelpers` string arrays.
+### Skip Policy
 
-### Level Heuristic
+**Skip if present:** If an item already has a non-null `level` value (any value, including non-conforming like `"Simple"` or integer `1`), leave both `level` and `tags` untouched. Only items where `level` is `null` or missing get updated. Same rule for `tags` — skip if non-empty array already present.
 
-Assign based on existing fields (`level`, `difficulty`, `length`) if present. Otherwise derive from title/text keywords:
+This means the script never overwrites existing data.
 
-- `easy` — keywords: "simple", "beginning", "elementary", "level 1", short text (< 80 words), student age context (K–3)
-- `hard` — keywords: "complex", "middle school", "high school", "hs-", multi-clause, abstract reasoning
-- `medium` — default when no signals found
+### Level Assignment (for items with null/missing level)
 
-### Tag Heuristic
+Check these signals in order, stop at the first match:
 
-Extract from:
-1. Existing `season`, `tag`, `focus`, `category` fields on the item
-2. Title keywords → seasonal (`fall`, `winter`, `spring`, `thanksgiving`), topic (`animals`, `inference`, `retelling`, `pronouns`, `compare-contrast`, `emotions`, `conversation`, `articulation`)
-3. `sourceFile` path segment (e.g. `author-purpose` → `["author-purpose"]`)
+1. **Existing field on item** — `difficulty`, `length` → map to easy/medium/hard:
+   - `"simple"`, `"Easier"`, `"short"`, `"Level 1"`, `"level1"` → `"easy"`
+   - `"complex"`, `"Stretch"`, `"long"`, `"Level 3"`, `"level3"` → `"hard"`
+   - `"moderate"`, `"medium"`, `"Level 2"`, `"level2"` → `"medium"`
+2. **Title keywords** (case-insensitive):
+   - `easy` signals: `"simple"`, `"beginning"`, `"elementary"`, `"basic"`, `"short"`, `"easy"`
+   - `hard` signals: `"complex"`, `"advanced"`, `"high school"`, `"hs-"`, `"progressive"`, `"challenge"`
+   - `medium` signals: `"middle school"`, `"intermediate"`
+3. **sourceFile path**:
+   - Path contains `"hs-"` or `"high-school"` → `"hard"`
+   - Path contains `"elementary"` or `"simple"` → `"easy"`
+4. **Default:** `"medium"`
 
-Tags are lowercase, hyphenated strings. Minimum 1 tag per item.
+### Tag Assignment (for items with null/missing/empty tags)
 
-### Output
-- Writes updated JSON back to `data/{category}.json`
-- Regenerates `data/{category}.js` wrapper using the same format as existing wrappers: `window.ActivityData = window.ActivityData || {}; window.ActivityData.{category} = { ... };`
-- Prints a summary: items updated, items skipped (already tagged), per-file counts
+Build a tag list from the following sources, deduplicated, lowercase, hyphenated:
 
-### JS Wrapper Format (reference)
+1. **Existing item fields** (use value if present):
+   - `season` → e.g. `"fall"` becomes tag `"fall"`
+   - `tag` → use as-is (lowercased, spaces → hyphens)
+   - `focus` → lowercased, spaces → hyphens
+   - `category` → lowercased
+
+2. **Title keyword extraction** — map these keywords to tags:
+
+   | Keyword (case-insensitive) | Tag |
+   |---|---|
+   | fall, autumn | `fall` |
+   | winter | `winter` |
+   | spring | `spring` |
+   | thanksgiving | `thanksgiving` |
+   | animal, animals | `animals` |
+   | inference, infer | `inference` |
+   | retell, retelling | `retelling` |
+   | pronoun | `pronouns` |
+   | compare, contrast | `compare-contrast` |
+   | emotion | `emotions` |
+   | conversation | `conversation` |
+   | articulation | `articulation` |
+   | summary, summarize | `summarizing` |
+   | author | `author-purpose` |
+   | vocabulary | `vocabulary` |
+   | sentence | `sentence-building` |
+   | fluency | `fluency` |
+   | social | `social-skills` |
+   | problem, solving | `problem-solving` |
+
+3. **sourceFile basename** → strip `.html` extension, use as fallback tag if no other tags found (e.g. `author-purpose-msg` → `["author-purpose-msg"]`)
+
+Minimum 1 tag per item. If all sources yield nothing, use the category name as the tag (e.g. `"fluency"`).
+
+### JS Wrapper Regeneration
+
+After updating a JSON file, regenerate the `.js` wrapper by writing the entire updated JSON content (all top-level keys preserved) into the wrapper format:
+
 ```js
 window.ActivityData = window.ActivityData || {};
-window.ActivityData.{category} = { ...full JSON content... };
+window.ActivityData.{category} = {
+  ...full JSON object...
+};
+```
+
+The JS wrapper must contain the entire file, not just the updated array.
+
+### Output Summary
+
+Print per file:
+```
+social.json: 18 items updated, 5 skipped (already tagged), 0 errors
+  → data/social.js regenerated
 ```
 
 ---
 
-## Task 2 — index.html Dynamic Activity Loading
+## Task 2 — index.html Dynamic Loading
 
-### Goal
-Replace the ~800-line hardcoded JS activity data object in index.html with a `fetch('data/activity-index.json')` call. The activity grid renders from the JSON catalog, making it self-maintaining.
+### What `activity-index.json` Contains (authoritative source)
 
-### Changes to index.html
-
-**Remove:**
-- The entire hardcoded `const activityData = [...]` structure (~lines 500–1300)
-- All per-card `icon`, `description`, and `tags` properties (not in activity-index.json schema)
-
-**Add:**
-- `fetch('data/activity-index.json')` on DOMContentLoaded
-- Dynamic card rendering from the JSON
-
-### Card Schema (from activity-index.json)
 ```json
 {
-  "id": "communication-breakdown-causes",
-  "category": "social",
-  "title": "Communication Breakdown Spotter",
-  "sourceFile": "activities/social/communication-breakdown-causes.html",
-  "type": "content-driven"
+  "_meta": { "description": "...", "generatedAt": "..." },
+  "activities": [
+    {
+      "id": "communication-breakdown-causes",
+      "category": "social",
+      "title": "Communication Breakdown Spotter",
+      "sourceFile": "activities/social/communication-breakdown-causes.html",
+      "type": "content-driven"
+    }
+  ]
 }
 ```
 
-### Rendered Card
-- Title from `title`
-- Link to `sourceFile`
-- Category badge from `category`
-- `type` badge (content-driven / tool)
-- No icons or descriptions (dropped)
+`activity-index.json` is the authoritative catalog (121 entries). It is the single source of truth after this refactor.
 
-### Category Filtering
-Sidebar nav items correspond to `category` values: `articulation`, `fluency`, `grammar`, `reading`, `social`, `vocabulary`. Clicking a category filters the grid. "All" shows everything. The current sidebar nav structure is preserved.
+### Fields Intentionally Dropped
 
-### Activity Counts
-Sidebar category counts update dynamically from the loaded JSON (currently hardcoded).
+`icon`, `description`, and `tags` from the current hardcoded inline array are **dropped**. This is a deliberate trade-off: the index becomes self-maintaining. Cards show title, category badge, and type badge only.
 
-### Error State
-If fetch fails (e.g. opened as `file://` without a server), display a message: "Start the dev server to view activities: `npx http-server`"
+### Featured Section
 
-### Stale Data Cleanup
-The 9 stale entries in the current hardcoded list disappear automatically. The 14 missing activities appear automatically.
+The current featured section (3 large cards) is **removed**. The top of the main content area shows the category-filtered grid immediately. The section header "All Activities" / "Reading" etc. remains.
+
+### Rendered Card Structure
+
+```html
+<a href="{sourceFile}" class="card">
+  <span class="category-badge category-{category}">{category}</span>
+  <h3 class="card-title">{title}</h3>
+  <span class="type-badge">{type}</span>
+</a>
+```
+
+### Category Filter
+
+Sidebar nav items: All, Articulation, Fluency, Grammar, Reading, Social, Vocabulary (matching `category` field values). Clicking filters the grid. "All" count = total activities. Per-category counts rendered dynamically from the loaded JSON.
+
+### Search
+
+Existing search filters against `title` (case-insensitive substring match). Preserved as-is.
+
+### Error / Offline State
+
+If `fetch` fails (e.g. opened as `file://`), replace the grid with:
+
+```html
+<div class="error-state">
+  <p>Activities require a local server to load.</p>
+  <code>npx http-server</code> then open <code>http://localhost:8080</code>
+</div>
+```
+
+No silent failure — the user gets a clear actionable message.
+
+### Legacy Cleanup
+
+The 9 stale entries in the current hardcoded list disappear automatically (they don't exist in `activity-index.json`). The 14 missing activities appear automatically.
 
 ---
 
 ## Task 3 — `scripts/add-content.py`
 
-### Goal
-Interactive CLI for adding new items to catalog arrays. Writes JSON + regenerates the `.js` wrapper in one step.
-
 ### Usage
+
 ```
 python3 scripts/add-content.py
 ```
 
+No arguments. Fully interactive. stdlib only: `json`, `pathlib`, `re`, `sys`.
+
 ### Flow
-1. Prompt: category (`vocabulary` / `stories` / `social` / `grammar` / `articulation` / `fluency`)
-2. Prompt: target array (filtered to catalog arrays for the chosen category)
-3. Prompt: required fields for that array (title, sourceFile, level, tags, plus array-specific fields)
-4. Auto-generate `id` following existing convention: `{category}-{array-slug}-{NNN}` where NNN = next integer
-5. Validate: level must be `easy`/`medium`/`hard`; tags must be non-empty; sourceFile must end in `.html`
-6. Preview the new item as JSON, confirm with user (Y/n)
-7. Write to `data/{category}.json` + regenerate `data/{category}.js`
-8. Print: `✓ Added to data/{category}.json (N → N+1 items). Wrapper regenerated.`
 
-### Array-Specific Prompts
+1. Prompt: category
+2. Prompt: target array (show only catalog arrays for chosen category)
+3. Prompt: required + optional fields for that array
+4. Auto-generate `id`
+5. Preview JSON, confirm (Y/n)
+6. Write JSON + regenerate `.js` wrapper
+7. Print confirmation
 
-| Category → Array | Extra fields prompted |
-|---|---|
-| stories → stories | season (optional), sourceFile |
-| social → scenarios | sourceFile |
-| social → problemStories | sourceFile |
-| social → reflectionStories | topic |
-| grammar → items | sourceFile, focus (optional) |
-| fluency → starters | sourceFile, frames.word/phrase/sentence (optional) |
-| vocabulary → wordDefinitions | word, imageUrl (optional), category (optional) |
-| vocabulary → contextClues | clueType, word, text, hint |
-| articulation → paragraphPassages | text, targetSound |
-| articulation → lBlendStories | text |
+### Per-Array Field Prompts and ID Formats
 
-### No External Dependencies
-Uses only Python stdlib: `json`, `pathlib`, `re`, `sys`.
+| Category | Array | Required prompts | Optional prompts | ID format |
+|---|---|---|---|---|
+| vocabulary | wordDefinitions | word, imageUrl | category, categoryHint | `word-def-{NNN}` (NNN = zero-padded 3-digit, next after max existing) |
+| vocabulary | contextClues | level, clueType, word, text | hint | `cc-{level}-{NNN}` |
+| stories | stories | title, sourceFile | season | next integer (max existing + 1) |
+| social | scenarios | title, sourceFile | — | `social-{sourceFile-slug}-001` (slug = basename without .html) |
+| social | problemStories | title, text | — | `social-problem-story-{NNN}` |
+| social | reflectionStories | title, topic | — | `sharing-{slug}` where slug = title lowercased, spaces → hyphens |
+| grammar | items | title, sourceFile | focus | `grammar-{sourceFile-slug}-001` |
+| fluency | starters | sourceFile, prompt | frames.word, frames.phrase, frames.sentence | `fluency-{sourceFile-slug}-001` |
+| articulation | paragraphPassages | title, text, targetSound | — | `passage-{NNN}` |
+| articulation | lBlendStories | title, text | — | `lblend-story-{NNN}` |
+
+NNN = 3-digit zero-padded integer, next after the highest existing numeric suffix in that array.
+
+### `sourceFile` Validation
+
+- Must end in `.html`
+- Must start with `activities/` or `activity-loader`
+- Script checks if the file exists at `{repo_root}/{sourceFile}` — warns but does not block if missing (the file may not be created yet)
+
+### `level` Validation
+
+Must be exactly `"easy"`, `"medium"`, or `"hard"`. Re-prompt on invalid input.
+
+### `tags` Input
+
+Comma-separated string. Strip whitespace. Convert spaces within a tag to hyphens. Minimum 1 tag required.
+
+### JS Wrapper Regeneration
+
+Same as Task 1: write entire JSON content into `window.ActivityData.{category} = {...};` wrapper. Preserve all top-level keys.
+
+### Confirmation Preview
+
+Show the new item as pretty-printed JSON before writing:
+```
+New item to add to data/social.json → scenarios:
+{
+  "id": "social-my-new-activity-001",
+  "title": "My New Activity",
+  ...
+}
+Write? [Y/n]:
+```
 
 ---
 
 ## Implementation Order
 
-1. `scripts/populate-tags.py` (Task 1) — standalone, no dependencies
-2. `index.html` refactor (Task 2) — standalone
-3. `scripts/add-content.py` (Task 3) — standalone
-
-All three can be implemented in parallel or in any order.
+Tasks are independent. Suggested order: Task 1 → Task 3 → Task 2 (data first, then tools, then UI).
