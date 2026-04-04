@@ -22,6 +22,10 @@ window.ActivityData.grammar = {
         "They designed posters, recorded short videos, and handed out flyers at soccer practice.",
         "The principal matched every dollar they raised, and the library reopened with new books.",
         "Ms. Patel thanked the community and explained how fresh stories keep readers curious."
+      ],
+      "level": "medium",
+      "tags": [
+        "authors-purpose-persuade-the-town-to-care-about-reading-spaces"
       ]
     },
     {
@@ -36,6 +40,10 @@ window.ActivityData.grammar = {
         "At first it felt silly, but the players started laughing instead of blaming each other.",
         "They played their next game calmly, and even though they were tired, they finished strong.",
         "Coach Rivera said winning matters less than playing like a family."
+      ],
+      "level": "medium",
+      "tags": [
+        "theme-hard-work-and-teamwork-build-trust"
       ]
     },
     {
@@ -50,6 +58,10 @@ window.ActivityData.grammar = {
         "Mia was nervous, but she created clear slides that explained the problem and suggested a solution.",
         "The city agreed to inspect the pipes, and a nearby laundromat fixed its waste tank.",
         "Mia felt proud that her curiosity helped keep the river clean."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-curiosity-leads-to-discovery"
       ]
     },
     {
@@ -64,6 +76,10 @@ window.ActivityData.grammar = {
         "Musicians from the high school jazz club play upbeat songs while people work.",
         "By lunchtime, the volunteers fill baskets for the food pantry.",
         "Neighbors go home with recipes, and the garden stays open late for anyone who wants to visit."
+      ],
+      "level": "medium",
+      "tags": [
+        "authors-purpose-inform-how-teamwork-improved-the-neighborhood"
       ]
     },
     {
@@ -77,7 +93,11 @@ window.ActivityData.grammar = {
         "children",
         "childen"
       ],
-      "correct": "children"
+      "correct": "children",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 2,
@@ -90,7 +110,11 @@ window.ActivityData.grammar = {
         "feets",
         "feet"
       ],
-      "correct": "feet"
+      "correct": "feet",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 3,
@@ -103,7 +127,11 @@ window.ActivityData.grammar = {
         "leaves",
         "leafes"
       ],
-      "correct": "leaves"
+      "correct": "leaves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 4,
@@ -116,7 +144,11 @@ window.ActivityData.grammar = {
         "bushies",
         "bushes"
       ],
-      "correct": "bushes"
+      "correct": "bushes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 5,
@@ -129,7 +161,11 @@ window.ActivityData.grammar = {
         "geese",
         "goosies"
       ],
-      "correct": "geese"
+      "correct": "geese",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 6,
@@ -142,7 +178,11 @@ window.ActivityData.grammar = {
         "foxies",
         "foxes"
       ],
-      "correct": "foxes"
+      "correct": "foxes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 7,
@@ -155,7 +195,11 @@ window.ActivityData.grammar = {
         "mices",
         "mice"
       ],
-      "correct": "mice"
+      "correct": "mice",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 8,
@@ -168,7 +212,11 @@ window.ActivityData.grammar = {
         "teeths",
         "teeth"
       ],
-      "correct": "teeth"
+      "correct": "teeth",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 9,
@@ -181,7 +229,11 @@ window.ActivityData.grammar = {
         "berres",
         "berries"
       ],
-      "correct": "berries"
+      "correct": "berries",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 10,
@@ -194,7 +246,11 @@ window.ActivityData.grammar = {
         "shelfes",
         "shelves"
       ],
-      "correct": "shelves"
+      "correct": "shelves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 11,
@@ -207,7 +263,11 @@ window.ActivityData.grammar = {
         "wolfes",
         "wolves"
       ],
-      "correct": "wolves"
+      "correct": "wolves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 12,
@@ -220,7 +280,11 @@ window.ActivityData.grammar = {
         "fishies",
         "fish"
       ],
-      "correct": "fish"
+      "correct": "fish",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 13,
@@ -233,7 +297,11 @@ window.ActivityData.grammar = {
         "toweles",
         "towelies"
       ],
-      "correct": "towels"
+      "correct": "towels",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 14,
@@ -246,7 +314,11 @@ window.ActivityData.grammar = {
         "chairies",
         "chairs"
       ],
-      "correct": "chairs"
+      "correct": "chairs",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 15,
@@ -259,7 +331,11 @@ window.ActivityData.grammar = {
         "sandals",
         "sandalis"
       ],
-      "correct": "sandals"
+      "correct": "sandals",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 16,
@@ -272,7 +348,11 @@ window.ActivityData.grammar = {
         "seagulles",
         "seagullies"
       ],
-      "correct": "seagulls"
+      "correct": "seagulls",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 17,
@@ -285,7 +365,11 @@ window.ActivityData.grammar = {
         "sandwichies",
         "sandwiches"
       ],
-      "correct": "sandwiches"
+      "correct": "sandwiches",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 18,
@@ -298,7 +382,11 @@ window.ActivityData.grammar = {
         "crabes",
         "crabies"
       ],
-      "correct": "crabs"
+      "correct": "crabs",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 19,
@@ -311,7 +399,11 @@ window.ActivityData.grammar = {
         "umbrellas",
         "umbrellies"
       ],
-      "correct": "umbrellas"
+      "correct": "umbrellas",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 20,
@@ -324,7 +416,11 @@ window.ActivityData.grammar = {
         "shelles",
         "shellies"
       ],
-      "correct": "shells"
+      "correct": "shells",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 21,
@@ -337,7 +433,11 @@ window.ActivityData.grammar = {
         "pebblies",
         "pebbeles"
       ],
-      "correct": "pebbles"
+      "correct": "pebbles",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 22,
@@ -350,7 +450,11 @@ window.ActivityData.grammar = {
         "backpackies",
         "backpacks"
       ],
-      "correct": "backpacks"
+      "correct": "backpacks",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 23,
@@ -363,7 +467,11 @@ window.ActivityData.grammar = {
         "displayies",
         "displays"
       ],
-      "correct": "displays"
+      "correct": "displays",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 24,
@@ -376,7 +484,11 @@ window.ActivityData.grammar = {
         "studentes",
         "studenties"
       ],
-      "correct": "students"
+      "correct": "students",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 25,
@@ -389,7 +501,11 @@ window.ActivityData.grammar = {
         "weekes",
         "weekies"
       ],
-      "correct": "weeks"
+      "correct": "weeks",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 26,
@@ -402,7 +518,11 @@ window.ActivityData.grammar = {
         "people",
         "personnes"
       ],
-      "correct": "people"
+      "correct": "people",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 27,
@@ -415,7 +535,11 @@ window.ActivityData.grammar = {
         "formationnes",
         "formationies"
       ],
-      "correct": "formations"
+      "correct": "formations",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 28,
@@ -428,7 +552,11 @@ window.ActivityData.grammar = {
         "jares",
         "jaries"
       ],
-      "correct": "jars"
+      "correct": "jars",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 29,
@@ -441,7 +569,11 @@ window.ActivityData.grammar = {
         "volcanoes",
         "volcanies"
       ],
-      "correct": "volcanoes"
+      "correct": "volcanoes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 30,
@@ -454,7 +586,11 @@ window.ActivityData.grammar = {
         "womens",
         "women"
       ],
-      "correct": "women"
+      "correct": "women",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 31,
@@ -467,7 +603,11 @@ window.ActivityData.grammar = {
         "aislees",
         "aislies"
       ],
-      "correct": "aisles"
+      "correct": "aisles",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 32,
@@ -480,7 +620,11 @@ window.ActivityData.grammar = {
         "notes",
         "noties"
       ],
-      "correct": "notes"
+      "correct": "notes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 33,
@@ -493,7 +637,11 @@ window.ActivityData.grammar = {
         "cactuss",
         "cacti"
       ],
-      "correct": "cacti"
+      "correct": "cacti",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 34,
@@ -506,7 +654,11 @@ window.ActivityData.grammar = {
         "plantes",
         "planties"
       ],
-      "correct": "plants"
+      "correct": "plants",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 35,
@@ -519,7 +671,11 @@ window.ActivityData.grammar = {
         "trophes",
         "trophies"
       ],
-      "correct": "trophies"
+      "correct": "trophies",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 36,
@@ -532,7 +688,11 @@ window.ActivityData.grammar = {
         "teams",
         "teamies"
       ],
-      "correct": "teams"
+      "correct": "teams",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 37,
@@ -545,7 +705,11 @@ window.ActivityData.grammar = {
         "dishies",
         "dishes"
       ],
-      "correct": "dishes"
+      "correct": "dishes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 38,
@@ -558,7 +722,11 @@ window.ActivityData.grammar = {
         "boxes",
         "boxies"
       ],
-      "correct": "boxes"
+      "correct": "boxes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 39,
@@ -571,7 +739,11 @@ window.ActivityData.grammar = {
         "canes",
         "canies"
       ],
-      "correct": "cans"
+      "correct": "cans",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 40,
@@ -584,7 +756,11 @@ window.ActivityData.grammar = {
         "potatoies",
         "potatoes"
       ],
-      "correct": "potatoes"
+      "correct": "potatoes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 41,
@@ -597,7 +773,11 @@ window.ActivityData.grammar = {
         "loafes",
         "loaves"
       ],
-      "correct": "loaves"
+      "correct": "loaves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 42,
@@ -610,7 +790,11 @@ window.ActivityData.grammar = {
         "beanes",
         "beanies"
       ],
-      "correct": "beans"
+      "correct": "beans",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 43,
@@ -623,7 +807,11 @@ window.ActivityData.grammar = {
         "olivies",
         "olives"
       ],
-      "correct": "olives"
+      "correct": "olives",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 44,
@@ -636,7 +824,11 @@ window.ActivityData.grammar = {
         "poties",
         "pots"
       ],
-      "correct": "pots"
+      "correct": "pots",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 45,
@@ -649,7 +841,11 @@ window.ActivityData.grammar = {
         "knifes",
         "knives"
       ],
-      "correct": "knives"
+      "correct": "knives",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 46,
@@ -662,7 +858,11 @@ window.ActivityData.grammar = {
         "bussies",
         "buses"
       ],
-      "correct": "buses"
+      "correct": "buses",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 47,
@@ -675,7 +875,11 @@ window.ActivityData.grammar = {
         "permission slips",
         "permission slipes"
       ],
-      "correct": "permission slips"
+      "correct": "permission slips",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 48,
@@ -688,7 +892,11 @@ window.ActivityData.grammar = {
         "lunch boxs",
         "lunch boxes"
       ],
-      "correct": "lunch boxes"
+      "correct": "lunch boxes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 49,
@@ -701,7 +909,11 @@ window.ActivityData.grammar = {
         "giraffie",
         "giraffes"
       ],
-      "correct": "giraffes"
+      "correct": "giraffes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 50,
@@ -714,7 +926,11 @@ window.ActivityData.grammar = {
         "neckies",
         "necks"
       ],
-      "correct": "necks"
+      "correct": "necks",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 51,
@@ -727,7 +943,11 @@ window.ActivityData.grammar = {
         "oxs",
         "oxen"
       ],
-      "correct": "oxen"
+      "correct": "oxen",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 52,
@@ -740,7 +960,11 @@ window.ActivityData.grammar = {
         "flies",
         "flyes"
       ],
-      "correct": "flies"
+      "correct": "flies",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 53,
@@ -753,7 +977,11 @@ window.ActivityData.grammar = {
         "terrariums",
         "terrariums"
       ],
-      "correct": "terrariums"
+      "correct": "terrariums",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 54,
@@ -766,7 +994,11 @@ window.ActivityData.grammar = {
         "lizardies",
         "lizards"
       ],
-      "correct": "lizards"
+      "correct": "lizards",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 55,
@@ -779,7 +1011,11 @@ window.ActivityData.grammar = {
         "geckies",
         "geckos"
       ],
-      "correct": "geckos"
+      "correct": "geckos",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 56,
@@ -792,7 +1028,11 @@ window.ActivityData.grammar = {
         "pythonies",
         "pythons"
       ],
-      "correct": "pythons"
+      "correct": "pythons",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 57,
@@ -805,7 +1045,11 @@ window.ActivityData.grammar = {
         "facies",
         "faces"
       ],
-      "correct": "faces"
+      "correct": "faces",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 58,
@@ -818,7 +1062,11 @@ window.ActivityData.grammar = {
         "deeries",
         "deer"
       ],
-      "correct": "deer"
+      "correct": "deer",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 59,
@@ -831,7 +1079,11 @@ window.ActivityData.grammar = {
         "calfes",
         "calves"
       ],
-      "correct": "calves"
+      "correct": "calves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 60,
@@ -844,7 +1096,11 @@ window.ActivityData.grammar = {
         "handes",
         "handies"
       ],
-      "correct": "hands"
+      "correct": "hands",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 61,
@@ -857,7 +1113,11 @@ window.ActivityData.grammar = {
         "tripies",
         "trips"
       ],
-      "correct": "trips"
+      "correct": "trips",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": "grammar-past-tense-hybrid-001",
@@ -882,6 +1142,10 @@ window.ActivityData.grammar = {
             "walking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -907,6 +1171,10 @@ window.ActivityData.grammar = {
             "playing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -932,6 +1200,10 @@ window.ActivityData.grammar = {
             "helping"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -957,6 +1229,10 @@ window.ActivityData.grammar = {
             "watching"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -982,6 +1258,10 @@ window.ActivityData.grammar = {
             "painting"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1007,6 +1287,10 @@ window.ActivityData.grammar = {
             "cleaning"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1032,6 +1316,10 @@ window.ActivityData.grammar = {
             "talking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1057,6 +1345,10 @@ window.ActivityData.grammar = {
             "cooking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1082,6 +1374,10 @@ window.ActivityData.grammar = {
             "jumping"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1107,6 +1403,10 @@ window.ActivityData.grammar = {
             "climbing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1132,6 +1432,10 @@ window.ActivityData.grammar = {
             "dancing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1157,6 +1461,10 @@ window.ActivityData.grammar = {
             "laughing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1182,6 +1490,10 @@ window.ActivityData.grammar = {
             "calling"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1207,6 +1519,10 @@ window.ActivityData.grammar = {
             "working"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1232,6 +1548,10 @@ window.ActivityData.grammar = {
             "studying"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1257,6 +1577,10 @@ window.ActivityData.grammar = {
             "listening"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1282,6 +1606,10 @@ window.ActivityData.grammar = {
             "answering"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1307,6 +1635,10 @@ window.ActivityData.grammar = {
             "opening"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1332,6 +1664,10 @@ window.ActivityData.grammar = {
             "eating"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1357,6 +1693,10 @@ window.ActivityData.grammar = {
             "going"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1382,6 +1722,10 @@ window.ActivityData.grammar = {
             "running"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1407,6 +1751,10 @@ window.ActivityData.grammar = {
             "swimming"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1432,6 +1780,10 @@ window.ActivityData.grammar = {
             "flying"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1457,6 +1809,10 @@ window.ActivityData.grammar = {
             "singing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1482,6 +1838,10 @@ window.ActivityData.grammar = {
             "writing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1507,6 +1867,10 @@ window.ActivityData.grammar = {
             "drawing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1532,6 +1896,10 @@ window.ActivityData.grammar = {
             "knowing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1557,6 +1925,10 @@ window.ActivityData.grammar = {
             "taking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1582,6 +1954,10 @@ window.ActivityData.grammar = {
             "seeing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1607,6 +1983,10 @@ window.ActivityData.grammar = {
             "buying"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1632,6 +2012,10 @@ window.ActivityData.grammar = {
             "bringing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1657,6 +2041,10 @@ window.ActivityData.grammar = {
             "thinking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1682,6 +2070,10 @@ window.ActivityData.grammar = {
             "catching"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1707,6 +2099,10 @@ window.ActivityData.grammar = {
             "teaching"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1732,6 +2128,10 @@ window.ActivityData.grammar = {
             "finding"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1757,6 +2157,10 @@ window.ActivityData.grammar = {
             "making"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1782,6 +2186,10 @@ window.ActivityData.grammar = {
             "saying"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1807,6 +2215,10 @@ window.ActivityData.grammar = {
             "telling"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1832,6 +2244,10 @@ window.ActivityData.grammar = {
             "giving"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1857,6 +2273,10 @@ window.ActivityData.grammar = {
             "getting"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1882,6 +2302,10 @@ window.ActivityData.grammar = {
             "coming"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1907,6 +2331,10 @@ window.ActivityData.grammar = {
             "breaking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1932,6 +2360,10 @@ window.ActivityData.grammar = {
             "speaking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1957,6 +2389,10 @@ window.ActivityData.grammar = {
             "wearing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1982,6 +2418,10 @@ window.ActivityData.grammar = {
             "feeling"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -2023,6 +2463,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 2
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2064,6 +2508,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2105,6 +2553,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2146,6 +2598,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2187,6 +2643,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 0
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2228,6 +2688,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2269,6 +2733,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 0
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2310,6 +2778,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2351,6 +2823,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 0
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2392,6 +2868,10 @@ window.ActivityData.grammar = {
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2406,7 +2886,11 @@ window.ActivityData.grammar = {
         "mouses",
         "mousies"
       ],
-      "color": "#ef4444"
+      "color": "#ef4444",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-002",
@@ -2419,7 +2903,11 @@ window.ActivityData.grammar = {
         "childs",
         "childes"
       ],
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-003",
@@ -2432,7 +2920,11 @@ window.ActivityData.grammar = {
         "foots",
         "feets"
       ],
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-004",
@@ -2446,7 +2938,11 @@ window.ActivityData.grammar = {
         "gooses",
         "goosies"
       ],
-      "color": "#10b981"
+      "color": "#10b981",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-005",
@@ -2460,7 +2956,11 @@ window.ActivityData.grammar = {
         "tooths",
         "toothes"
       ],
-      "color": "#f59e0b"
+      "color": "#f59e0b",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-006",
@@ -2474,7 +2974,11 @@ window.ActivityData.grammar = {
         "sheeps",
         "sheepes"
       ],
-      "color": "#84cc16"
+      "color": "#84cc16",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-007",
@@ -2487,7 +2991,11 @@ window.ActivityData.grammar = {
         "mans",
         "manes"
       ],
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-008",
@@ -2500,7 +3008,11 @@ window.ActivityData.grammar = {
         "womans",
         "womanes"
       ],
-      "color": "#ec4899"
+      "color": "#ec4899",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-009",
@@ -2514,7 +3026,11 @@ window.ActivityData.grammar = {
         "persons",
         "peoples"
       ],
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-010",
@@ -2528,7 +3044,11 @@ window.ActivityData.grammar = {
         "deers",
         "deeres"
       ],
-      "color": "#84cc16"
+      "color": "#84cc16",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-011",
@@ -2542,7 +3062,11 @@ window.ActivityData.grammar = {
         "fishs",
         "fishes"
       ],
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-012",
@@ -2555,7 +3079,11 @@ window.ActivityData.grammar = {
         "oxs",
         "oxes"
       ],
-      "color": "#92400e"
+      "color": "#92400e",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-013",
@@ -2568,7 +3096,11 @@ window.ActivityData.grammar = {
         "cates",
         "catses"
       ],
-      "color": "#3b82f6"
+      "color": "#3b82f6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-014",
@@ -2582,7 +3114,11 @@ window.ActivityData.grammar = {
         "doges",
         "dogges"
       ],
-      "color": "#f97316"
+      "color": "#f97316",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-015",
@@ -2596,7 +3132,11 @@ window.ActivityData.grammar = {
         "bookes",
         "bookies"
       ],
-      "color": "#6366f1"
+      "color": "#6366f1",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-016",
@@ -2610,7 +3150,11 @@ window.ActivityData.grammar = {
         "boxs",
         "boxies"
       ],
-      "color": "#ec4899"
+      "color": "#ec4899",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-017",
@@ -2623,7 +3167,11 @@ window.ActivityData.grammar = {
         "buss",
         "busies"
       ],
-      "color": "#14b8a6"
+      "color": "#14b8a6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-018",
@@ -2637,7 +3185,11 @@ window.ActivityData.grammar = {
         "dishs",
         "dishies"
       ],
-      "color": "#a855f7"
+      "color": "#a855f7",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-019",
@@ -2650,7 +3202,11 @@ window.ActivityData.grammar = {
         "cares",
         "carses"
       ],
-      "color": "#dc2626"
+      "color": "#dc2626",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-020",
@@ -2663,7 +3219,11 @@ window.ActivityData.grammar = {
         "treses",
         "treeses"
       ],
-      "color": "#16a34a"
+      "color": "#16a34a",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-021",
@@ -2677,7 +3237,11 @@ window.ActivityData.grammar = {
         "housen",
         "housies"
       ],
-      "color": "#ca8a04"
+      "color": "#ca8a04",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-022",
@@ -2690,7 +3254,11 @@ window.ActivityData.grammar = {
         "glasss",
         "glassen"
       ],
-      "color": "#0ea5e9"
+      "color": "#0ea5e9",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-023",
@@ -2704,7 +3272,11 @@ window.ActivityData.grammar = {
         "watchs",
         "watchen"
       ],
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-024",
@@ -2717,7 +3289,11 @@ window.ActivityData.grammar = {
         "babys",
         "babyses"
       ],
-      "color": "#f472b6"
+      "color": "#f472b6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-025",
@@ -2731,7 +3307,11 @@ window.ActivityData.grammar = {
         "citys",
         "cityses"
       ],
-      "color": "#64748b"
+      "color": "#64748b",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-026",
@@ -2745,7 +3325,11 @@ window.ActivityData.grammar = {
         "leafs",
         "leaveses"
       ],
-      "color": "#22c55e"
+      "color": "#22c55e",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-027",
@@ -2759,7 +3343,11 @@ window.ActivityData.grammar = {
         "loafs",
         "loavies"
       ],
-      "color": "#f97316"
+      "color": "#f97316",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-028",
@@ -2773,7 +3361,11 @@ window.ActivityData.grammar = {
         "wolfs",
         "wolfes"
       ],
-      "color": "#0ea5e9"
+      "color": "#0ea5e9",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-029",
@@ -2787,7 +3379,11 @@ window.ActivityData.grammar = {
         "knifes",
         "knivies"
       ],
-      "color": "#ef4444"
+      "color": "#ef4444",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-030",
@@ -2801,7 +3397,11 @@ window.ActivityData.grammar = {
         "shelfs",
         "shelvies"
       ],
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-031",
@@ -2815,7 +3415,11 @@ window.ActivityData.grammar = {
         "elfs",
         "elvies"
       ],
-      "color": "#ec4899"
+      "color": "#ec4899",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-032",
@@ -2829,7 +3433,11 @@ window.ActivityData.grammar = {
         "thiefs",
         "thievs"
       ],
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-033",
@@ -2843,7 +3451,11 @@ window.ActivityData.grammar = {
         "lifes",
         "lifves"
       ],
-      "color": "#facc15"
+      "color": "#facc15",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-034",
@@ -2857,7 +3469,11 @@ window.ActivityData.grammar = {
         "cactuses",
         "cacties"
       ],
-      "color": "#10b981"
+      "color": "#10b981",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-035",
@@ -2871,7 +3487,11 @@ window.ActivityData.grammar = {
         "funguses",
         "fungies"
       ],
-      "color": "#a855f7"
+      "color": "#a855f7",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-036",
@@ -2885,7 +3505,11 @@ window.ActivityData.grammar = {
         "fairys",
         "fairries"
       ],
-      "color": "#f472b6"
+      "color": "#f472b6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-037",
@@ -2899,7 +3523,11 @@ window.ActivityData.grammar = {
         "cherrys",
         "cherryes"
       ],
-      "color": "#e11d48"
+      "color": "#e11d48",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-038",
@@ -2913,7 +3541,11 @@ window.ActivityData.grammar = {
         "puppys",
         "puppyes"
       ],
-      "color": "#0ea5e9"
+      "color": "#0ea5e9",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-039",
@@ -2927,7 +3559,11 @@ window.ActivityData.grammar = {
         "monkies",
         "monkeyses"
       ],
-      "color": "#22d3ee"
+      "color": "#22d3ee",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-040",
@@ -2941,7 +3577,11 @@ window.ActivityData.grammar = {
         "toyies",
         "toies"
       ],
-      "color": "#6366f1"
+      "color": "#6366f1",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-041",
@@ -2955,7 +3595,11 @@ window.ActivityData.grammar = {
         "floweres",
         "flours"
       ],
-      "color": "#ec4899"
+      "color": "#ec4899",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-042",
@@ -2969,7 +3613,11 @@ window.ActivityData.grammar = {
         "sandwichs",
         "sandwichies"
       ],
-      "color": "#fb7185"
+      "color": "#fb7185",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-043",
@@ -2983,7 +3631,11 @@ window.ActivityData.grammar = {
         "beachs",
         "beches"
       ],
-      "color": "#38bdf8"
+      "color": "#38bdf8",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-044",
@@ -2997,7 +3649,11 @@ window.ActivityData.grammar = {
         "heros",
         "heroies"
       ],
-      "color": "#7c3aed"
+      "color": "#7c3aed",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-045",
@@ -3011,7 +3667,11 @@ window.ActivityData.grammar = {
         "potatos",
         "potatoess"
       ],
-      "color": "#f97316"
+      "color": "#f97316",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-046",
@@ -3025,7 +3685,11 @@ window.ActivityData.grammar = {
         "tomatos",
         "tomatoeses"
       ],
-      "color": "#ef4444"
+      "color": "#ef4444",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-047",
@@ -3039,7 +3703,11 @@ window.ActivityData.grammar = {
         "echos",
         "echoies"
       ],
-      "color": "#a855f7"
+      "color": "#a855f7",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-048",
@@ -3053,7 +3721,11 @@ window.ActivityData.grammar = {
         "pianoes",
         "pianoses"
       ],
-      "color": "#1d4ed8"
+      "color": "#1d4ed8",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-049",
@@ -3067,7 +3739,11 @@ window.ActivityData.grammar = {
         "photoes",
         "photoses"
       ],
-      "color": "#f59e0b"
+      "color": "#f59e0b",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-050",
@@ -3081,7 +3757,11 @@ window.ActivityData.grammar = {
         "storys",
         "storyes"
       ],
-      "color": "#2563eb"
+      "color": "#2563eb",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "0": {
@@ -3711,7 +4391,11 @@ window.ActivityData.grammar = {
       },
       "id": "grammar-sentence-breakdown-paraphrasing-001",
       "sourceFile": "activities/grammar/sentence-breakdown-paraphrasing.html",
-      "key": "items"
+      "key": "items",
+      "level": "medium",
+      "tags": [
+        "sentence-breakdown-paraphrasing"
+      ]
     },
     {
       "id": "grammar-sentence-builder-elementary-001",
@@ -3725,6 +4409,10 @@ window.ActivityData.grammar = {
         "She was curious when...",
         "Curious people like to...",
         "My friend is curious about..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3739,6 +4427,10 @@ window.ActivityData.grammar = {
         "I felt brave when...",
         "She was brave because...",
         "The brave girl..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3753,6 +4445,10 @@ window.ActivityData.grammar = {
         "I feel cheerful when...",
         "She was cheerful because...",
         "A cheerful person..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3767,6 +4463,10 @@ window.ActivityData.grammar = {
         "We will discover...",
         "When I discover something...",
         "Scientists discover..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3781,6 +4481,10 @@ window.ActivityData.grammar = {
         "Can you imagine...",
         "She imagined...",
         "It's fun to imagine..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3795,6 +4499,10 @@ window.ActivityData.grammar = {
         "He was generous when...",
         "Being generous means...",
         "The generous teacher..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3809,6 +4517,10 @@ window.ActivityData.grammar = {
         "It was ordinary until...",
         "Ordinary things are...",
         "On an ordinary morning..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3823,6 +4535,10 @@ window.ActivityData.grammar = {
         "The precious jewel...",
         "Something precious to me is...",
         "This is precious because..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3837,6 +4553,10 @@ window.ActivityData.grammar = {
         "You should be careful...",
         "The careful student...",
         "Being careful helps..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3851,6 +4571,10 @@ window.ActivityData.grammar = {
         "The ancient castle...",
         "In ancient times...",
         "Ancient objects are..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3865,6 +4589,10 @@ window.ActivityData.grammar = {
         "I saw an enormous...",
         "Something enormous is...",
         "An enormous wave..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3879,6 +4607,10 @@ window.ActivityData.grammar = {
         "I think... is delicious because...",
         "A delicious meal...",
         "My mom made delicious..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3893,6 +4625,10 @@ window.ActivityData.grammar = {
         "She felt grateful when...",
         "Being grateful means...",
         "I'm grateful that..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3907,6 +4643,10 @@ window.ActivityData.grammar = {
         "I feel cozy when...",
         "A cozy place is...",
         "On cozy winter nights..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3921,6 +4661,10 @@ window.ActivityData.grammar = {
         "Swift animals can...",
         "I was swift when...",
         "A swift runner..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3935,6 +4679,10 @@ window.ActivityData.grammar = {
         "I felt gloomy when...",
         "Gloomy clouds...",
         "On gloomy mornings..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3949,6 +4697,10 @@ window.ActivityData.grammar = {
         "A sturdy bridge...",
         "Sturdy things are...",
         "We need something sturdy to..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3963,6 +4715,10 @@ window.ActivityData.grammar = {
         "I feel peaceful when...",
         "The peaceful afternoon...",
         "Peaceful means..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3977,6 +4733,10 @@ window.ActivityData.grammar = {
         "She accomplished...",
         "To accomplish this, I...",
         "People can accomplish..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3991,6 +4751,10 @@ window.ActivityData.grammar = {
         "The confident speaker...",
         "Being confident helps...",
         "She was confident that..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -4005,6 +4769,10 @@ window.ActivityData.grammar = {
         "She became an advocate when...",
         "As an advocate of...",
         "The advocate argued that..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4019,6 +4787,10 @@ window.ActivityData.grammar = {
         "When we collaborate...",
         "Scientists collaborate because...",
         "The ability to collaborate is..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4033,6 +4805,10 @@ window.ActivityData.grammar = {
         "Her perspective changed when...",
         "Understanding different perspectives helps...",
         "The story was told from the perspective of..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4047,6 +4823,10 @@ window.ActivityData.grammar = {
         "Resilient people can...",
         "The community was resilient after...",
         "To become more resilient, I..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4061,6 +4841,10 @@ window.ActivityData.grammar = {
         "Innovative solutions can...",
         "The most innovative thing I've seen...",
         "Companies need innovative thinkers to..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4075,6 +4859,10 @@ window.ActivityData.grammar = {
         "Scientists analyze data to...",
         "To analyze the problem, we...",
         "After analyzing the situation..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4089,6 +4877,10 @@ window.ActivityData.grammar = {
         "I felt empathy when...",
         "Empathy is important because...",
         "People with empathy can..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4103,6 +4895,10 @@ window.ActivityData.grammar = {
         "A substantial amount of...",
         "The substantial evidence showed...",
         "He made substantial progress in..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4117,6 +4913,10 @@ window.ActivityData.grammar = {
         "An eloquent speaker can...",
         "He was eloquent when describing...",
         "The eloquent argument convinced..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4131,6 +4931,10 @@ window.ActivityData.grammar = {
         "Meticulous planning ensures...",
         "The meticulous detective...",
         "Being meticulous is important when..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4145,6 +4949,10 @@ window.ActivityData.grammar = {
         "This creates a paradox because...",
         "One interesting paradox in life...",
         "The story presents a paradox when..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4159,6 +4967,10 @@ window.ActivityData.grammar = {
         "The scientist's hypothesis suggested...",
         "To test the hypothesis...",
         "Based on the hypothesis..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4173,6 +4985,10 @@ window.ActivityData.grammar = {
         "The legitimate winner was...",
         "He had legitimate reasons to...",
         "A legitimate business must..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4187,6 +5003,10 @@ window.ActivityData.grammar = {
         "Ambiguous instructions can...",
         "The ambiguous statement led to...",
         "When something is ambiguous..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4201,6 +5021,10 @@ window.ActivityData.grammar = {
         "While contemplating the question...",
         "He often contemplates...",
         "It's worth contemplating whether..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4215,6 +5039,10 @@ window.ActivityData.grammar = {
         "He was diligent in his efforts to...",
         "Diligent work habits include...",
         "Being diligent means..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4229,6 +5057,10 @@ window.ActivityData.grammar = {
         "Change is inevitable because...",
         "The inevitable result was...",
         "We knew it was inevitable when..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4243,6 +5075,10 @@ window.ActivityData.grammar = {
         "After scrutinizing the evidence...",
         "Experts scrutinize data to...",
         "When you scrutinize something..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4257,6 +5093,10 @@ window.ActivityData.grammar = {
         "Compassion is important because...",
         "Acts of compassion include...",
         "I felt compassion when..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4271,6 +5111,10 @@ window.ActivityData.grammar = {
         "To enhance my skills, I...",
         "Technology can enhance learning by...",
         "We can enhance the experience by..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     }
   ],

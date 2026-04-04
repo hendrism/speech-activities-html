@@ -43,6 +43,10 @@
             "needs batteries"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "vehicle"
       ]
     },
     {
@@ -79,6 +83,10 @@
             "lists items by size"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "book"
       ]
     },
     {
@@ -115,6 +123,10 @@
             "mixes chemicals"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "scientific-instrument"
       ]
     },
     {
@@ -151,6 +163,10 @@
             "contains liquids only"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "bag"
       ]
     },
     {
@@ -187,6 +203,10 @@
             "has pages and a spine"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "electronic-device"
       ]
     },
     {
@@ -223,6 +243,10 @@
             "repairs cars"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "building"
       ]
     },
     {
@@ -259,6 +283,10 @@
             "has gears and springs"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "measuring-instrument"
       ]
     },
     {
@@ -295,6 +323,10 @@
             "is used to paint pictures"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "cutting-tool"
       ]
     },
     {
@@ -331,6 +363,10 @@
             "is used to listen to music"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "optical-instrument"
       ]
     },
     {
@@ -367,6 +403,10 @@
             "has a liquid crystal display"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "navigation-tool"
       ]
     },
     {
@@ -403,6 +443,10 @@
             "has mechanics and engineers"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "medical-facility"
       ]
     },
     {
@@ -439,6 +483,10 @@
             "hangs from cables outside"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "transportation-device"
       ]
     },
     {
@@ -475,6 +523,10 @@
             "runs on gasoline"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "appliance"
       ]
     },
     {
@@ -511,6 +563,10 @@
             "is woven rope"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "safety-device"
       ]
     },
     {
@@ -547,6 +603,10 @@
             "is held in both hands"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "medical-instrument"
       ]
     },
     {
@@ -583,6 +643,10 @@
             "is made of metal"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "container"
       ]
     },
     {
@@ -619,6 +683,10 @@
             "has rope handles only"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "moving-staircase"
       ]
     },
     {
@@ -655,6 +723,10 @@
             "is made by animals"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "geological-formation"
       ]
     },
     {
@@ -691,6 +763,10 @@
             "is controlled by a captain"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "musical-ensemble"
       ]
     },
     {
@@ -727,6 +803,10 @@
             "enables people to lift heavy objects"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "mobility-device"
       ]
     }
   ],
@@ -755,6 +835,9 @@
           "text": "a place you visit",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -781,6 +864,9 @@
           "text": "to walk very slowly",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -807,6 +893,9 @@
           "text": "a soft pillow",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -833,6 +922,9 @@
           "text": "to sleep deeply",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -859,6 +951,9 @@
           "text": "a cold dessert",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -885,6 +980,9 @@
           "text": "very quiet",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -911,6 +1009,9 @@
           "text": "hungry",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -937,6 +1038,9 @@
           "text": "scared",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -963,6 +1067,9 @@
           "text": "felt very cold",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -989,6 +1096,9 @@
           "text": "short",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1015,6 +1125,9 @@
           "text": "not cold",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1041,6 +1154,9 @@
           "text": "not wet",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1067,6 +1183,9 @@
           "text": "not green",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1093,6 +1212,9 @@
           "text": "not quiet",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1119,6 +1241,9 @@
           "text": "not soft",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1145,6 +1270,9 @@
           "text": "tall trees",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1171,6 +1299,9 @@
           "text": "kinds of bread",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1197,6 +1328,9 @@
           "text": "kinds of plants",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1223,6 +1357,9 @@
           "text": "places to visit",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1249,6 +1386,9 @@
           "text": "hot soups",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1275,6 +1415,9 @@
           "text": "wanting to read",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1301,6 +1444,9 @@
           "text": "very angry and mad",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1327,6 +1473,9 @@
           "text": "needing a bath",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1353,6 +1502,9 @@
           "text": "tired or sleepy",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1379,6 +1531,9 @@
           "text": "feeling cold",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1405,6 +1560,9 @@
           "text": "happy and joyful",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1431,6 +1589,9 @@
           "text": "expensive; costing a lot",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1457,6 +1618,9 @@
           "text": "funny and silly",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1483,6 +1647,9 @@
           "text": "new",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1509,6 +1676,9 @@
           "text": "a funny joke",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1535,6 +1705,9 @@
           "text": "rainy",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1561,6 +1734,9 @@
           "text": "very happy",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1587,6 +1763,9 @@
           "text": "taught",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1613,6 +1792,9 @@
           "text": "color nicely",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1639,6 +1821,9 @@
           "text": "wrong",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1665,6 +1850,9 @@
           "text": "soothing music",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     },
     {
@@ -1691,6 +1879,9 @@
           "text": "silly",
           "isCorrect": false
         }
+      ],
+      "tags": [
+        "vocabulary"
       ]
     }
   ]

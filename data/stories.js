@@ -15,49 +15,77 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/author-purpose-msg.html",
       "season": null,
       "title": "Late Bus Message",
-      "text": "The buses will be about 20 minutes late today. There was an accident on the main road. Students should wait in their normal pickup spots. The school will give another update soon."
+      "text": "The buses will be about 20 minutes late today. There was an accident on the main road. Students should wait in their normal pickup spots. The school will give another update soon.",
+      "level": "medium",
+      "tags": [
+        "author-purpose-msg"
+      ]
     },
     {
       "id": 2,
       "sourceFile": "activities/reading/author-purpose-msg.html",
       "season": null,
       "title": "Game Recommendation",
-      "text": "“Sky Builders” is a fun game where you design your own floating city. The controls are easy to learn and the game looks great. You can also play with friends online. It is one of the best games I’ve played this year."
+      "text": "“Sky Builders” is a fun game where you design your own floating city. The controls are easy to learn and the game looks great. You can also play with friends online. It is one of the best games I’ve played this year.",
+      "level": "medium",
+      "tags": [
+        "author-purpose-msg"
+      ]
     },
     {
       "id": 3,
       "sourceFile": "activities/reading/author-purpose-msg.html",
       "season": null,
       "title": "Library Rules",
-      "text": "The library is for reading and studying. Phones should be on silent. Food and drinks are not allowed. These rules help everyone focus."
+      "text": "The library is for reading and studying. Phones should be on silent. Food and drinks are not allowed. These rules help everyone focus.",
+      "level": "medium",
+      "tags": [
+        "author-purpose-msg"
+      ]
     },
     {
       "id": 4,
       "sourceFile": "activities/reading/author-purpose-msg.html",
       "season": null,
       "title": "Lost Water Bottle",
-      "text": "Someone left a red water bottle in the gym. It has a sticker on the side and a black lid. It is now in the main office. Please pick it up by Friday."
+      "text": "Someone left a red water bottle in the gym. It has a sticker on the side and a black lid. It is now in the main office. Please pick it up by Friday.",
+      "level": "medium",
+      "tags": [
+        "author-purpose-msg"
+      ]
     },
     {
       "id": 5,
       "sourceFile": "activities/reading/author-purpose-msg.html",
       "season": null,
       "title": "Recycling Reminder",
-      "text": "The school wants students to recycle more. New bins are in the hallways. Throwing away less trash helps the school and the environment. Everyone should try to use the new bins."
+      "text": "The school wants students to recycle more. New bins are in the hallways. Throwing away less trash helps the school and the environment. Everyone should try to use the new bins.",
+      "level": "medium",
+      "tags": [
+        "author-purpose-msg"
+      ]
     },
     {
       "id": 6,
       "sourceFile": "activities/reading/author-purpose-msg.html",
       "season": null,
       "title": "Weather Message",
-      "text": "Heavy rain is expected this afternoon. The roads may become slippery. Some after-school activities might be canceled. Students should be careful when going home."
+      "text": "Heavy rain is expected this afternoon. The roads may become slippery. Some after-school activities might be canceled. Students should be careful when going home.",
+      "level": "medium",
+      "tags": [
+        "author-purpose-msg"
+      ]
     },
     {
       "id": 7,
       "sourceFile": "activities/reading/author-purpose-msg.html",
       "season": null,
       "title": "School Dance Poster",
-      "text": "The school dance is this Friday at 7:00 p.m. Tickets are five dollars and can be bought at lunch. There will be music, snacks, and games. Everyone is invited to come."
+      "text": "The school dance is this Friday at 7:00 p.m. Tickets are five dollars and can be bought at lunch. There will be music, snacks, and games. Everyone is invited to come.",
+      "level": "medium",
+      "tags": [
+        "author-purpose-msg"
+      ]
     },
     {
       "id": "kitchen",
@@ -65,7 +93,11 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Helping in the Kitchen",
       "text": "During the holiday, Maya helped her aunt in the kitchen. She set the table, washed vegetables, and watched how to roast them with oil and herbs. Maya asked questions about oven temperature and timing. She wanted to remember the steps so she could cook the same meal later for her friends.",
-      "type": "Informational / How-to"
+      "type": "Informational / How-to",
+      "level": "medium",
+      "tags": [
+        "author-theme-mainidea-sentence-builder"
+      ]
     },
     {
       "id": "parade",
@@ -73,7 +105,11 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Watching the Parade",
       "text": "Jonah and his cousins watched the parade on TV from the living room couch. They liked the bright floats, marching bands, and dancers who moved in time with the music. Jonah noticed how each float matched a song theme. He took notes on colors and shapes because he wanted to design a float for the school parade someday.",
-      "type": "Entertain / Describe"
+      "type": "Entertain / Describe",
+      "level": "medium",
+      "tags": [
+        "author-theme-mainidea-sentence-builder"
+      ]
     },
     {
       "id": "shelter",
@@ -81,7 +117,11 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Collecting Cans",
       "text": "A group of students collected cans for the local shelter. They made posters, asked neighbors to help, and organized the boxes by food type so families could receive balanced meals. They worked after school to sort and label everything. They hoped every family would have enough for a good meal and planned to visit the shelter to see the impact of their project.",
-      "type": "Persuade / Inform to help"
+      "type": "Persuade / Inform to help",
+      "level": "medium",
+      "tags": [
+        "author-theme-mainidea-sentence-builder"
+      ]
     },
     {
       "id": "travel",
@@ -89,7 +129,11 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Travel Delay",
       "text": "Olivia’s family waited at the airport when their flight was delayed two hours. They used the time to call grandparents, play a card game, and check the flight app for updates. Even though they were tired, they stayed patient and took short walks so the trip would start smoothly once they boarded.",
-      "type": "Inform / Explain"
+      "type": "Inform / Explain",
+      "level": "medium",
+      "tags": [
+        "author-theme-mainidea-sentence-builder"
+      ]
     },
     {
       "id": "thankfulness",
@@ -97,7 +141,11 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Thankful Notes",
       "text": "In class, students wrote short notes about what they were thankful for. One student mentioned having a calm place to read after school. Another student wrote about a friend who always helped with homework and stayed on video calls until the work was done. The notes were posted on a wall to remind the class of small things that made them feel supported.",
-      "type": "Reflect / Inform"
+      "type": "Reflect / Inform",
+      "level": "medium",
+      "tags": [
+        "author-theme-mainidea-sentence-builder"
+      ]
     },
     {
       "id": "school-persuasive",
@@ -105,7 +153,11 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Join the Food Drive",
       "text": "Students at Lincoln Middle made a short speech to classes about the food drive. They said the food drive needed canned vegetables, pasta, and rice to support local families before winter. They explained that even one can from each student could fill many boxes. They also promised to share photos of the donations being delivered, hoping everyone would join in.",
-      "type": "Persuade"
+      "type": "Persuade",
+      "level": "medium",
+      "tags": [
+        "author-theme-mainidea-sentence-builder"
+      ]
     },
     {
       "id": "why-rest",
@@ -113,7 +165,11 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Why Rest Matters",
       "text": "The school counselor wrote a note about taking breaks. She said short rests help students focus better and feel less stressed after long study sessions. She gave simple examples like taking a short walk, stretching between chapters, or breathing slowly for one minute. She encouraged students to test which break helped them return to work with more energy.",
-      "type": "Informational / Explain"
+      "type": "Informational / Explain",
+      "level": "medium",
+      "tags": [
+        "author-theme-mainidea-sentence-builder"
+      ]
     },
     {
       "id": "story-fall-reading-comprehension-infer-001",
@@ -164,6 +220,10 @@ window.ActivityData.stories = {
             "They wanted to make cookies"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -215,6 +275,10 @@ window.ActivityData.stories = {
             "Give them back"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -266,6 +330,10 @@ window.ActivityData.stories = {
             "It's magic"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -317,6 +385,10 @@ window.ActivityData.stories = {
             "They are sick"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -368,6 +440,10 @@ window.ActivityData.stories = {
             "Winter"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -419,6 +495,10 @@ window.ActivityData.stories = {
             "Afternoon"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -470,6 +550,10 @@ window.ActivityData.stories = {
             "The farmer moves them"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -521,6 +605,10 @@ window.ActivityData.stories = {
             "Right after lunch"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -572,6 +660,10 @@ window.ActivityData.stories = {
             "Because the donuts are free"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -623,6 +715,10 @@ window.ActivityData.stories = {
             "Spring"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -718,6 +814,10 @@ window.ActivityData.stories = {
             "They wanted to make cookies"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -813,6 +913,10 @@ window.ActivityData.stories = {
             "Give them back"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -908,6 +1012,10 @@ window.ActivityData.stories = {
             "It's magic"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1003,6 +1111,10 @@ window.ActivityData.stories = {
             "They are sick"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1098,6 +1210,10 @@ window.ActivityData.stories = {
             "Winter"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1193,6 +1309,10 @@ window.ActivityData.stories = {
             "Afternoon"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1288,6 +1408,10 @@ window.ActivityData.stories = {
             "The farmer moves them"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1383,6 +1507,10 @@ window.ActivityData.stories = {
             "Right after lunch"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1478,6 +1606,10 @@ window.ActivityData.stories = {
             "Because the donuts are free"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1573,6 +1705,10 @@ window.ActivityData.stories = {
             "Spring"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1669,6 +1805,9 @@ window.ActivityData.stories = {
             "They wanted to make cookies"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1765,6 +1904,9 @@ window.ActivityData.stories = {
             "Give them back"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1861,6 +2003,9 @@ window.ActivityData.stories = {
             "It's magic"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -1957,6 +2102,9 @@ window.ActivityData.stories = {
             "They are sick"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2053,6 +2201,9 @@ window.ActivityData.stories = {
             "Winter"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2149,6 +2300,9 @@ window.ActivityData.stories = {
             "Afternoon"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2245,6 +2399,9 @@ window.ActivityData.stories = {
             "The farmer moves them"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2341,6 +2498,9 @@ window.ActivityData.stories = {
             "Right after lunch"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2437,6 +2597,9 @@ window.ActivityData.stories = {
             "Because the donuts are free"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2533,6 +2696,9 @@ window.ActivityData.stories = {
             "Spring"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2629,6 +2795,9 @@ window.ActivityData.stories = {
             "Winter"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2725,6 +2894,9 @@ window.ActivityData.stories = {
             "A flower"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2821,6 +2993,9 @@ window.ActivityData.stories = {
             "They are bored"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -2917,6 +3092,9 @@ window.ActivityData.stories = {
             "Because it's picture day"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3013,6 +3191,9 @@ window.ActivityData.stories = {
             "Because it's cold"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3109,6 +3290,9 @@ window.ActivityData.stories = {
             "Green"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3205,6 +3389,9 @@ window.ActivityData.stories = {
             "They don't know how else to fly"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3301,6 +3488,9 @@ window.ActivityData.stories = {
             "Winter"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3397,6 +3587,9 @@ window.ActivityData.stories = {
             "Summer"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3493,6 +3686,9 @@ window.ActivityData.stories = {
             "Winter"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3591,6 +3787,9 @@ window.ActivityData.stories = {
             "It was too expensive to eat there"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3689,6 +3888,9 @@ window.ActivityData.stories = {
             "It was filled with water"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3787,6 +3989,9 @@ window.ActivityData.stories = {
             "People were watching the trees"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3885,6 +4090,9 @@ window.ActivityData.stories = {
             "They floated on top"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -3983,6 +4191,9 @@ window.ActivityData.stories = {
             "Confused and worried"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4081,6 +4292,9 @@ window.ActivityData.stories = {
             "There weren't enough seats"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4179,6 +4393,9 @@ window.ActivityData.stories = {
             "He was angry"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4278,6 +4495,9 @@ window.ActivityData.stories = {
             "He was cold"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4377,6 +4597,9 @@ window.ActivityData.stories = {
             "They were tired"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4476,6 +4699,9 @@ window.ActivityData.stories = {
             "She prefers staying inside"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4575,6 +4801,9 @@ window.ActivityData.stories = {
             "The work was finished"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4675,6 +4904,9 @@ window.ActivityData.stories = {
             "Someone gave her money"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4774,6 +5006,9 @@ window.ActivityData.stories = {
             "It was being careful"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4873,6 +5108,9 @@ window.ActivityData.stories = {
             "Bored and tired"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -4973,6 +5211,9 @@ window.ActivityData.stories = {
             "The house was small"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -5072,6 +5313,9 @@ window.ActivityData.stories = {
             "Her teacher assigned it"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -5172,6 +5416,9 @@ window.ActivityData.stories = {
             "She was trying to scare them"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -5272,6 +5519,9 @@ window.ActivityData.stories = {
             "It was the only project"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -5371,6 +5621,9 @@ window.ActivityData.stories = {
             "The cape was falling apart"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -5470,6 +5723,9 @@ window.ActivityData.stories = {
             "The fire was unusual"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -5556,6 +5812,10 @@ window.ActivityData.stories = {
           "question": "How did Miguel feel at the end of lunch?",
           "answer": "He felt included because the crowd cheered when he played with Jayden."
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -5642,6 +5902,10 @@ window.ActivityData.stories = {
           "question": "How did the club use Lila's solution during the showcase?",
           "answer": "They opened the event with Lila explaining how she solved the problem under pressure."
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -5726,6 +5990,10 @@ window.ActivityData.stories = {
           "question": "How did Malik's teammates react to his strategy?",
           "answer": "They noticed his method and asked about it, then finished faster than usual."
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -5811,6 +6079,10 @@ window.ActivityData.stories = {
           "question": "How did Ava feel after finishing the cards?",
           "answer": "She felt proud and relaxed because she earned her baking time."
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -5897,6 +6169,10 @@ window.ActivityData.stories = {
           "question": "What new highlight came from the positive chat?",
           "answer": "They created a collaborative art piece using the helpful suggestions people posted."
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -5982,6 +6258,10 @@ window.ActivityData.stories = {
           "question": "What did Tori do with the extra time?",
           "answer": "She prepared to share a surprising fact with her partner."
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -6080,6 +6360,10 @@ window.ActivityData.stories = {
           "question": "Why did Ethan print a step list for the expo?",
           "answer": "He wanted to show exactly how he recovered the project overnight."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -6177,6 +6461,10 @@ window.ActivityData.stories = {
           "question": "How will the club prove they are balancing school and gaming?",
           "answer": "Each member promised to share their grades with the counselor every Friday."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -6273,6 +6561,10 @@ window.ActivityData.stories = {
           "question": "What feedback improved their presentation?",
           "answer": "A friend timed them and told them to add a pause for questions."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -6371,6 +6663,10 @@ window.ActivityData.stories = {
           "question": "How did Damian reward himself after each checkpoint of notes?",
           "answer": "He checked a box, added one detail to his margin doodle, and saved ten minutes to develop his world maps."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "hs-story-retelling-focus"
       ]
     },
     {
@@ -6400,6 +6696,10 @@ window.ActivityData.stories = {
             "The bus driver"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6429,6 +6729,10 @@ window.ActivityData.stories = {
             "Her cousin"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6458,6 +6762,10 @@ window.ActivityData.stories = {
             "They will play soccer"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6487,6 +6795,10 @@ window.ActivityData.stories = {
             "They were too cold"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6516,6 +6828,10 @@ window.ActivityData.stories = {
             "They were fixing the plane"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6545,6 +6861,10 @@ window.ActivityData.stories = {
             "They wanted to match colors"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6574,6 +6894,10 @@ window.ActivityData.stories = {
             "Only the mail carrier"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6603,6 +6927,10 @@ window.ActivityData.stories = {
             "They wanted to nap on the floor"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6632,6 +6960,10 @@ window.ActivityData.stories = {
             "To dry the laundry"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6661,6 +6993,10 @@ window.ActivityData.stories = {
             "To look for lost keys"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6678,6 +7014,10 @@ window.ActivityData.stories = {
           "prompt": "Why does Marcus keep checking the time?",
           "hint": "Something needs to be ready by a certain hour when others will arrive."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6699,6 +7039,10 @@ window.ActivityData.stories = {
           "prompt": "How do you know the meal is special to them?",
           "hint": "Look at what she calls it and the effort they made."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6716,6 +7060,10 @@ window.ActivityData.stories = {
           "prompt": "Why did the elderly man feel relieved?",
           "hint": "Consider his transportation and what he received."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6737,6 +7085,10 @@ window.ActivityData.stories = {
           "prompt": "Why did everyone laugh when the cards blew away?",
           "hint": "Consider the playful, relaxed mood."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6754,6 +7106,10 @@ window.ActivityData.stories = {
           "prompt": "What dessert are they likely making?",
           "hint": "Notice what Ava grabbed and the crust waiting at home."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6771,6 +7127,10 @@ window.ActivityData.stories = {
           "prompt": "What is different about this family’s main course?",
           "hint": "Notice what is on the table instead of meat."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6792,6 +7152,10 @@ window.ActivityData.stories = {
           "prompt": "What does the talk about the parade and football game show?",
           "hint": "They are planning around two family visits in one day."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6813,6 +7177,10 @@ window.ActivityData.stories = {
           "prompt": "What does the coach’s comment tell you?",
           "hint": "This meal is meant to include people who couldn’t go home."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -6834,6 +7202,11 @@ window.ActivityData.stories = {
           "prompt": "What does the dad’s joke about the sky mean?",
           "hint": "They might be eating part of the meal on the plane if the delay lasts."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "fall",
+        "thanksgiving"
       ]
     },
     {
@@ -6928,6 +7301,11 @@ window.ActivityData.stories = {
             "they let turkeys avoid drinking water"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter",
+        "farm-life"
       ]
     },
     {
@@ -7023,6 +7401,11 @@ window.ActivityData.stories = {
             "it keeps bugs away from the leaves"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter",
+        "science"
       ]
     },
     {
@@ -7117,6 +7500,12 @@ window.ActivityData.stories = {
             "it means no one needs to chop or stir"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter",
+        "home-life",
+        "thanksgiving"
       ]
     },
     {
@@ -7211,6 +7600,12 @@ window.ActivityData.stories = {
             "they are only for making friends with people"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter",
+        "wildlife",
+        "animals"
       ]
     },
     {
@@ -7305,6 +7700,11 @@ window.ActivityData.stories = {
             "snow always falls no matter the temperature"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter",
+        "weather"
       ]
     },
     {
@@ -7399,6 +7799,11 @@ window.ActivityData.stories = {
             "they cool people down for summer sports"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter",
+        "daily-life"
       ]
     },
     {
@@ -7493,6 +7898,11 @@ window.ActivityData.stories = {
             "it teaches birds to sing new songs"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter",
+        "birds"
       ]
     },
     {
@@ -7587,6 +7997,12 @@ window.ActivityData.stories = {
             "they help animals stay cool in summer heat"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter",
+        "season-shift",
+        "fall"
       ]
     },
     {
@@ -8285,7 +8701,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-2",
@@ -9005,7 +9425,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-3",
@@ -9725,7 +10149,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-4",
@@ -10445,7 +10873,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-5",
@@ -11143,7 +11575,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-6",
@@ -11841,7 +12277,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-7",
@@ -12539,7 +12979,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-8",
@@ -13237,7 +13681,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-9",
@@ -13957,7 +14405,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-10",
@@ -14677,7 +15129,11 @@ window.ActivityData.stories = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "story-main-idea-key-details-001",
@@ -14696,6 +15152,10 @@ window.ActivityData.stories = {
       "details": [
         "Mrs. Lee mapped the sunny spots for tomato rows.",
         "Two middle schoolers built rain barrels from donated buckets."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14715,6 +15175,10 @@ window.ActivityData.stories = {
       "details": [
         "Students wrote scripts on Tuesdays to practice fluent reading.",
         "Maya edited the audio in the library’s media lab each Thursday."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14734,6 +15198,10 @@ window.ActivityData.stories = {
       "details": [
         "Teams mapped shoreline sections and picked up every piece of litter.",
         "Volunteers weighed each bag of trash to track progress."
+      ],
+      "level": "hard",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14753,6 +15221,10 @@ window.ActivityData.stories = {
       "details": [
         "The robotics crew coded mini bots to drive through tape mazes.",
         "Art club members built pasta towers and tracked which design held more weight."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14772,6 +15244,10 @@ window.ActivityData.stories = {
       "details": [
         "Student helpers labeled genre tables to keep the swap organized.",
         "Guests filled out review cards before placing books on display."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14791,6 +15267,10 @@ window.ActivityData.stories = {
       "details": [
         "Two students measured temperature, humidity, and wind before the first bell.",
         "Another pair uploaded the readings to the hallway display and daily email."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14810,6 +15290,10 @@ window.ActivityData.stories = {
       "details": [
         "Runners logged their water intake in a shared spreadsheet before workouts.",
         "Coaches compared lap times of hydrated runners and those who forgot their bottles."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14829,6 +15313,10 @@ window.ActivityData.stories = {
       "details": [
         "Volunteers taught students how to greet the dogs before sitting on beanbags.",
         "Readers recorded confidence scores and tricky words in their journals after sessions."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14848,6 +15336,10 @@ window.ActivityData.stories = {
       "details": [
         "Each morning the helper opened the blinds to give the plant sunshine.",
         "After lunch the helper checked the soil and added a small cup of water if it felt dry."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14867,6 +15359,10 @@ window.ActivityData.stories = {
       "details": [
         "They checked the whiteboard for birthdays and club reminders.",
         "They practiced the script quietly so the words would sound smooth."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14886,6 +15382,10 @@ window.ActivityData.stories = {
       "details": [
         "Students followed taped arrows and counted their laps.",
         "Helpers passed out stickers every five laps so walkers could keep score."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14905,6 +15405,10 @@ window.ActivityData.stories = {
       "details": [
         "They squeezed lemons and made a bright poster for their table.",
         "Customers signed thank-you notes that the kids taped to the jar."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14924,6 +15428,10 @@ window.ActivityData.stories = {
       "details": [
         "Helpers walked younger students to the correct bus line.",
         "They wore bright sashes so teachers could spot them."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-key-details"
       ]
     },
     {
@@ -14946,6 +15454,9 @@ window.ActivityData.stories = {
           "text": "Maya forgets to water the plants every day.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -14968,6 +15479,9 @@ window.ActivityData.stories = {
           "text": "Leo buys new boots at the store.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -14990,6 +15504,9 @@ window.ActivityData.stories = {
           "text": "Tara sells old books at a yard sale.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15012,6 +15529,9 @@ window.ActivityData.stories = {
           "text": "Devin gets lost at the museum gift shop.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15034,6 +15554,9 @@ window.ActivityData.stories = {
           "text": "Nia forgets to bring her list and money.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15056,6 +15579,9 @@ window.ActivityData.stories = {
           "text": "Omar learns to swim at the community pool.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15078,6 +15604,9 @@ window.ActivityData.stories = {
           "text": "Jaden opens a lemonade stand for spending money.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15100,6 +15629,9 @@ window.ActivityData.stories = {
           "text": "Lila sells old instruments at a yard sale.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15122,6 +15654,9 @@ window.ActivityData.stories = {
           "text": "Elena ignores the crack and watches TV all night.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15144,6 +15679,9 @@ window.ActivityData.stories = {
           "text": "Coach Imani cancels practice because no one volunteered.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15166,6 +15704,9 @@ window.ActivityData.stories = {
           "text": "Raya cooks one meal and closes the kitchen early.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15188,6 +15729,9 @@ window.ActivityData.stories = {
           "text": "Theo shuts down the event because no one brings items.",
           "correct": false
         }
+      ],
+      "tags": [
+        "main-idea-short-stories"
       ]
     },
     {
@@ -15242,7 +15786,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "easy",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 2,
@@ -15296,7 +15844,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "easy",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 3,
@@ -15351,7 +15903,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 4,
@@ -15405,7 +15961,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 5,
@@ -15459,7 +16019,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 6,
@@ -15513,7 +16077,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 7,
@@ -15567,7 +16135,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 8,
@@ -15621,7 +16193,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 9,
@@ -15675,7 +16251,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": 10,
@@ -15729,7 +16309,11 @@ window.ActivityData.stories = {
             "correct": false
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "making-inferences"
+      ]
     },
     {
       "id": "story-multi-level-reading-comp-001",
@@ -15958,7 +16542,11 @@ window.ActivityData.stories = {
             "expanded": "Ultimately, Alex achieved success through..."
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "multi-level-reading-comp"
+      ]
     },
     {
       "id": "story-multi-level-reading-comp-002",
@@ -16187,7 +16775,11 @@ window.ActivityData.stories = {
             "expanded": "Consequently, Maya achieved recognition by..."
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "multi-level-reading-comp"
+      ]
     },
     {
       "id": "story-multi-level-reading-comp-003",
@@ -16414,7 +17006,11 @@ window.ActivityData.stories = {
             "expanded": "Resolution was achieved when Ms. Rodriguez..."
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "multi-level-reading-comp"
+      ]
     },
     {
       "id": "story-multi-level-reading-comp-004",
@@ -16645,7 +17241,11 @@ window.ActivityData.stories = {
             "expanded": "At presentation, Carlos successfully demonstrated..."
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "multi-level-reading-comp"
+      ]
     },
     {
       "id": "story-multi-level-reading-comp-005",
@@ -16874,7 +17474,11 @@ window.ActivityData.stories = {
             "expanded": "Consequently, Sophia achieved successful..."
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "multi-level-reading-comp"
+      ]
     },
     {
       "id": "story-short-stories-pronouns-details-001",
@@ -16937,6 +17541,10 @@ window.ActivityData.stories = {
           "q": "What happened by summer?",
           "prompt": "By summer..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17000,6 +17608,10 @@ window.ActivityData.stories = {
           "q": "Who explained about the book?",
           "prompt": "Ms. Rivera explained that..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17063,6 +17675,10 @@ window.ActivityData.stories = {
           "q": "How did the story end?",
           "prompt": "The story ended when..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17126,6 +17742,10 @@ window.ActivityData.stories = {
           "q": "What did Jordan receive?",
           "prompt": "Jordan received..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17189,6 +17809,10 @@ window.ActivityData.stories = {
           "q": "What special detail was on the cake?",
           "prompt": "On top of the cake was..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17252,6 +17876,10 @@ window.ActivityData.stories = {
           "q": "How long did it take the family to arrive?",
           "prompt": "The family came..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17315,6 +17943,10 @@ window.ActivityData.stories = {
           "q": "What happened at the art show?",
           "prompt": "Sam's artwork..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17378,6 +18010,10 @@ window.ActivityData.stories = {
           "q": "What did they see at night?",
           "prompt": "At night, they saw..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17441,6 +18077,10 @@ window.ActivityData.stories = {
           "q": "What did the newspaper do?",
           "prompt": "The newspaper wrote..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17504,6 +18144,10 @@ window.ActivityData.stories = {
           "q": "What happened on opening night?",
           "prompt": "On opening night..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17567,6 +18211,10 @@ window.ActivityData.stories = {
           "q": "What did Zoe do?",
           "prompt": "Zoe got ready and..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17630,6 +18278,10 @@ window.ActivityData.stories = {
           "q": "What did Taylor's family make?",
           "prompt": "Taylor's family made..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17693,6 +18345,10 @@ window.ActivityData.stories = {
           "q": "How does Coach Maria feel?",
           "prompt": "Coach Maria smiles because..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17756,6 +18412,10 @@ window.ActivityData.stories = {
           "q": "What happened at the tournament?",
           "prompt": "Morgan won..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17819,6 +18479,10 @@ window.ActivityData.stories = {
           "q": "What was the money for?",
           "prompt": "They raised money for..."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "short-stories-pronouns-details"
       ]
     },
     {
@@ -17905,7 +18569,11 @@ window.ActivityData.stories = {
             "type": "item2"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "stories-inference-compare"
+      ]
     },
     {
       "id": "story-stories-inference-compare-002",
@@ -17995,7 +18663,11 @@ window.ActivityData.stories = {
             "type": "item2"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "stories-inference-compare"
+      ]
     },
     {
       "id": "story-stories-inference-compare-003",
@@ -18085,7 +18757,11 @@ window.ActivityData.stories = {
             "type": "item2"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "stories-inference-compare"
+      ]
     },
     {
       "id": "story-stories-inference-compare-004",
@@ -18183,7 +18859,11 @@ window.ActivityData.stories = {
             "type": "item2"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "stories-inference-compare"
+      ]
     },
     {
       "id": "story-stories-inference-compare-005",
@@ -18273,7 +18953,11 @@ window.ActivityData.stories = {
             "type": "item1"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "stories-inference-compare"
+      ]
     },
     {
       "id": "story-stories-inference-compare-006",
@@ -18341,7 +19025,11 @@ window.ActivityData.stories = {
             "type": "item1"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "stories-inference-compare"
+      ]
     },
     {
       "id": "story-stories-inference-compare-007",
@@ -18410,7 +19098,11 @@ window.ActivityData.stories = {
             "type": "item2"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "stories-inference-compare"
+      ]
     },
     {
       "id": "story-stories-inference-compare-008",
@@ -18478,7 +19170,11 @@ window.ActivityData.stories = {
             "type": "item2"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "stories-inference-compare"
+      ]
     },
     {
       "id": "story-1",
@@ -18543,6 +19239,9 @@ window.ActivityData.stories = {
             "used them to make sauce"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -18608,6 +19307,9 @@ window.ActivityData.stories = {
             "his grandma"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -18673,6 +19375,9 @@ window.ActivityData.stories = {
             "burned the pie"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -18738,6 +19443,9 @@ window.ActivityData.stories = {
             "the dishwasher"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -18803,6 +19511,9 @@ window.ActivityData.stories = {
             "he walked outside"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -18868,6 +19579,9 @@ window.ActivityData.stories = {
             "pumpkin bread"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -18933,6 +19647,9 @@ window.ActivityData.stories = {
             "too full to eat"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -18998,6 +19715,9 @@ window.ActivityData.stories = {
             "what to buy at the store"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -19063,6 +19783,9 @@ window.ActivityData.stories = {
             "told him to find more milk"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -19128,6 +19851,9 @@ window.ActivityData.stories = {
             "someone was not in the frame"
           ]
         }
+      ],
+      "tags": [
+        "fall"
       ]
     },
     {
@@ -19154,7 +19880,11 @@ window.ActivityData.stories = {
         "topic": "how turkey became the main dish",
         "purpose": "to explain why turkey is served on Thanksgiving",
         "key": "turkey was practical and then widely promoted"
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fall"
+      ]
     },
     {
       "id": "parade",
@@ -19180,7 +19910,12 @@ window.ActivityData.stories = {
         "topic": "the history of the Macy's parade",
         "purpose": "to show how the parade became a tradition",
         "key": "media and balloons helped it grow"
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fall",
+        "thanksgiving"
+      ]
     },
     {
       "id": "cranberry",
@@ -19206,7 +19941,11 @@ window.ActivityData.stories = {
         "topic": "how cranberries became a Thanksgiving side",
         "purpose": "to explain why cranberry sauce is common",
         "key": "local berries plus canning made it popular"
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fall"
+      ]
     },
     {
       "id": "food-drive",
@@ -19232,7 +19971,12 @@ window.ActivityData.stories = {
         "topic": "how food drives support Thanksgiving meals",
         "purpose": "to show how donations reach families",
         "key": "organized collecting and sorting fills meal boxes"
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fall",
+        "thanksgiving"
+      ]
     },
     {
       "id": "safety",
@@ -19258,7 +20002,12 @@ window.ActivityData.stories = {
         "topic": "food safety for the holiday meal",
         "purpose": "to prevent illness from germs",
         "key": "safe handling and cooking protect families"
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fall",
+        "thanksgiving"
+      ]
     },
     {
       "id": "story-winter-compare-contrast-drag-001",
@@ -19294,6 +20043,10 @@ window.ActivityData.stories = {
           "text": "cold",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19330,6 +20083,10 @@ window.ActivityData.stories = {
           "text": "used in winter",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19366,6 +20123,10 @@ window.ActivityData.stories = {
           "text": "protect from cold",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19402,6 +20163,10 @@ window.ActivityData.stories = {
           "text": "used for fun",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19438,6 +20203,10 @@ window.ActivityData.stories = {
           "text": "good on cold days",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19474,6 +20243,10 @@ window.ActivityData.stories = {
           "text": "held with hands",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19510,6 +20283,10 @@ window.ActivityData.stories = {
           "text": "protect your body",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19546,6 +20323,10 @@ window.ActivityData.stories = {
           "text": "made of water",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19582,6 +20363,10 @@ window.ActivityData.stories = {
           "text": "thick bodies to stay warm",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19618,6 +20403,10 @@ window.ActivityData.stories = {
           "text": "keep you warm",
           "target": "both"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -19884,6 +20673,10 @@ window.ActivityData.stories = {
             "Breathing fast"
           ]
         }
+      ],
+      "level": "easy",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -20150,6 +20943,10 @@ window.ActivityData.stories = {
             "Forgot quickly"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -20416,6 +21213,10 @@ window.ActivityData.stories = {
             "A high mountain"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -20682,6 +21483,10 @@ window.ActivityData.stories = {
             "Talking nonstop"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -20948,6 +21753,10 @@ window.ActivityData.stories = {
             "Took something away"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -21214,6 +22023,10 @@ window.ActivityData.stories = {
             "Wild and loud"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -21480,6 +22293,10 @@ window.ActivityData.stories = {
             "Dropped something"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -21746,6 +22563,10 @@ window.ActivityData.stories = {
             "Missed something"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -22012,6 +22833,10 @@ window.ActivityData.stories = {
             "A joke"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -22278,6 +23103,10 @@ window.ActivityData.stories = {
             "Did not listen"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -23152,6 +23981,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -23324,6 +24157,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -23496,6 +24333,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -23668,6 +24509,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -23840,6 +24685,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -24012,6 +24861,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -24184,6 +25037,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -24356,6 +25213,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -24528,6 +25389,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -24778,6 +25643,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -24950,6 +25819,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -25122,6 +25995,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -25294,6 +26171,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -25466,6 +26347,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -25638,6 +26523,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -25810,6 +26699,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -25982,6 +26875,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -26154,6 +27051,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -26326,6 +27227,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -26498,6 +27403,10 @@ window.ActivityData.stories = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     }
   ],

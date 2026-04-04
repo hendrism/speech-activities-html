@@ -23,6 +23,10 @@ window.ActivityData.social = {
         "Gestures were unclear",
         "Listener needed more details",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "problem-solving"
       ]
     },
     {
@@ -39,6 +43,10 @@ window.ActivityData.social = {
         "Lack of eye contact or direction",
         "Listener didn’t know the reference",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -55,6 +63,10 @@ window.ActivityData.social = {
         "Unclear reference to a person",
         "Listener needed more context",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -70,6 +82,10 @@ window.ActivityData.social = {
         "Body turned away",
         "Listener couldn’t hear clearly",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -85,6 +101,10 @@ window.ActivityData.social = {
         "Hard to follow the steps",
         "Listener couldn’t process quickly enough",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -101,6 +121,10 @@ window.ActivityData.social = {
         "Too many placeholder words",
         "Listener needed more detail",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -116,6 +140,10 @@ window.ActivityData.social = {
         "Listener misunderstood the meaning",
         "Important information changed",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -131,6 +159,10 @@ window.ActivityData.social = {
         "No gesture or description",
         "Listener couldn’t identify the object",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -144,6 +176,10 @@ window.ActivityData.social = {
       "causes": [
         "None (no breakdown)",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -159,6 +195,10 @@ window.ActivityData.social = {
         "Listener became confused",
         "Meaning of the sentence changed",
         "Other"
+      ],
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-causes"
       ]
     },
     {
@@ -180,7 +220,11 @@ window.ActivityData.social = {
         "Check for understanding: “Did that help?”"
       ],
       "coach": "“Let me rephrase: the trenches — the deep tunnels soldiers lived in — were muddy and unsafe.”",
-      "reflection": "What clue told you someone misunderstood?"
+      "reflection": "What clue told you someone misunderstood?",
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-practice"
+      ]
     },
     {
       "id": "social-communication-breakdown-practice-002",
@@ -201,7 +245,11 @@ window.ActivityData.social = {
         "Confirm: “Did you get caramel latte?”"
       ],
       "coach": "“Sorry, it’s loud. Large latte… caramel, please.” (say it slower with eye contact)",
-      "reflection": "How can you stay polite even when the line is moving fast?"
+      "reflection": "How can you stay polite even when the line is moving fast?",
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-practice"
+      ]
     },
     {
       "id": "social-communication-breakdown-practice-003",
@@ -222,7 +270,11 @@ window.ActivityData.social = {
         "Offer to write it down if needed."
       ],
       "coach": "“Locker question! I forgot my calculator — may I get it so I can finish the worksheet?”",
-      "reflection": "What is different about speaking to someone who doesn’t know you?"
+      "reflection": "What is different about speaking to someone who doesn’t know you?",
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-practice"
+      ]
     },
     {
       "id": "social-communication-breakdown-practice-004",
@@ -243,7 +295,11 @@ window.ActivityData.social = {
         "Use an emoji or short sentence to show tone."
       ],
       "coach": "“Yes! I’ll be there at 6:15 — my mom is driving. If anything changes, I’ll text by 5:30.”",
-      "reflection": "How does clear texting prevent mix-ups?"
+      "reflection": "How does clear texting prevent mix-ups?",
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-practice"
+      ]
     },
     {
       "id": "social-communication-breakdown-practice-005",
@@ -264,7 +320,11 @@ window.ActivityData.social = {
         "Double-check by repeating the size together."
       ],
       "coach": "“Thanks! I need the women’s eight in this black style, please.”",
-      "reflection": "How can you correct someone without sounding upset?"
+      "reflection": "How can you correct someone without sounding upset?",
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-practice"
+      ]
     },
     {
       "id": "social-communication-breakdown-practice-006",
@@ -285,7 +345,11 @@ window.ActivityData.social = {
         "Say, “To add to what Maya said…” for clarity."
       ],
       "coach": "“To add to Maya’s idea, I think the main conflict shows…” (said after the teacher nods)",
-      "reflection": "What helps your teacher and peers know when you’re ready to speak?"
+      "reflection": "What helps your teacher and peers know when you’re ready to speak?",
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-practice"
+      ]
     },
     {
       "id": "social-communication-breakdown-practice-007",
@@ -306,7 +370,11 @@ window.ActivityData.social = {
         "End with “That’s all” so they know you’re done."
       ],
       "coach": "“Hi! Can I get a chicken sandwich… (pause) medium fries… and that’s all.”",
-      "reflection": "How does pacing help in noisy situations?"
+      "reflection": "How does pacing help in noisy situations?",
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-practice"
+      ]
     },
     {
       "id": "social-communication-breakdown-practice-008",
@@ -327,7 +395,11 @@ window.ActivityData.social = {
         "Ask a question to re-engage them."
       ],
       "coach": "“Sorry, that probably sounded random. We were talking about last Friday’s pep rally — want me to rewind?”",
-      "reflection": "How can you tell someone needs more context?"
+      "reflection": "How can you tell someone needs more context?",
+      "level": "medium",
+      "tags": [
+        "communication-breakdown-practice"
+      ]
     },
     {
       "id": "social-conversation-initiation-starters-001",
@@ -340,6 +412,10 @@ window.ActivityData.social = {
         "I remember we had ___ together last year…",
         "Is that a ___ you’re looking at?",
         "Mind if I sit here?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -353,6 +429,10 @@ window.ActivityData.social = {
         "Did you finish the latest season?",
         "I just started watching—worth sticking with it?",
         "Who’s your favorite character?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -366,6 +446,10 @@ window.ActivityData.social = {
         "Want to split the problems or work together on each?",
         "What’s the toughest part of this unit so far?",
         "What’s your favorite way to check answers?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -379,6 +463,10 @@ window.ActivityData.social = {
         "Who was your favorite character?",
         "No spoilers, but did you like it overall?",
         "I liked the soundtrack—did you?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -392,6 +480,10 @@ window.ActivityData.social = {
         "How long have you been sketching?",
         "Do you have a favorite thing to draw?",
         "Those look awesome—do you share your art anywhere?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -405,6 +497,10 @@ window.ActivityData.social = {
         "How long do you think the bus ride is?",
         "Have you been on this trip before?",
         "What are you most curious to see?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -418,6 +514,10 @@ window.ActivityData.social = {
         "When do you usually meet?",
         "What do you do at a typical meeting?",
         "Is it beginner friendly?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -431,6 +531,10 @@ window.ActivityData.social = {
         "Are those for a project today?",
         "I’ve been wanting to organize my notes—any tips?",
         "Do you use those for doodles or just notes?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -444,6 +548,10 @@ window.ActivityData.social = {
         "Did you meet the main twist yet?",
         "I loved the ending—no spoilers, promise.",
         "Who’s your favorite character so far?"
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -457,6 +565,10 @@ window.ActivityData.social = {
         "Coach usually lets us grab water after warm-up—want to go then?",
         "Do you have a spare in your locker?",
         "We can ask if we can swing by the hall fountain first."
+      ],
+      "level": "medium",
+      "tags": [
+        "conversation-initiation-starters"
       ]
     },
     {
@@ -501,7 +613,11 @@ window.ActivityData.social = {
             "content": "\"That's tough. Would it help if we studied together for the next test? Sometimes it helps to have someone quiz you and explain things differently.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 2,
@@ -545,7 +661,11 @@ window.ActivityData.social = {
             "content": "\"What parts still need to be done? Maybe we should have a quick meeting where we divide everything up clearly so everyone knows exactly what they're responsible for.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 3,
@@ -589,7 +709,11 @@ window.ActivityData.social = {
             "content": "\"I can't this weekend because I have a family thing, but what about next weekend? Or we could grab lunch one day after school this week if you're free.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 4,
@@ -633,7 +757,11 @@ window.ActivityData.social = {
             "content": "\"Yeah, go ahead. No worries.\" (Then you could continue eating or doing what you were doing, which is also okay!)"
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 5,
@@ -677,7 +805,11 @@ window.ActivityData.social = {
             "content": "\"Sorry, I actually need mine too because my phone is low too. Maybe try asking the teacher if they have one you can use for a bit?\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 6,
@@ -721,7 +853,11 @@ window.ActivityData.social = {
             "content": "\"Thanks for inviting me! I'm not sure if I can make it because I might have family stuff, but let me check and I'll let you know tomorrow.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 7,
@@ -765,7 +901,11 @@ window.ActivityData.social = {
             "content": "\"Forget about it, we're still in this. Let's focus on defense and get the ball back.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 8,
@@ -809,7 +949,11 @@ window.ActivityData.social = {
             "content": "\"I was kind of excited about this because I've never done it before. But I get it if you're not into it. Maybe we could vote on it or do your thing this time and mine next time?\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 9,
@@ -853,7 +997,11 @@ window.ActivityData.social = {
             "content": "\"I tried to do it but I got really confused about what we were supposed to do. Could you explain it again? I want to make sure I do it right.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 10,
@@ -897,7 +1045,11 @@ window.ActivityData.social = {
             "content": "\"I was actually working on homework with my study group through text. Can I have 15 more minutes to finish this, and then I'll put it away for the rest of the night?\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 11,
@@ -941,7 +1093,11 @@ window.ActivityData.social = {
             "content": "\"Actually, yes. I'm looking for headphones under $30. Do you have any recommendations?\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 12,
@@ -985,7 +1141,11 @@ window.ActivityData.social = {
             "content": "\"Could I redo the last essay I turned in? I think I understand the material better now and I'd like a chance to show that.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 13,
@@ -1029,7 +1189,11 @@ window.ActivityData.social = {
             "content": "\"I've been overwhelmed with homework and studying for my test. Could I do it tonight after dinner instead? I promise I'll get it done.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 14,
@@ -1073,7 +1237,11 @@ window.ActivityData.social = {
             "content": "\"I'm just browsing right now, but thank you! I'll come find you if I need help.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 15,
@@ -1117,7 +1285,11 @@ window.ActivityData.social = {
             "content": "\"Thanks for offering. I'm going to review my notes tonight and watch some tutorial videos. Can I let you know if I still need help after that?\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 16,
@@ -1161,7 +1333,11 @@ window.ActivityData.social = {
             "content": "\"I'm going with some classmates. Just planning to walk around and maybe get food. I'll keep my phone on and text you when I get there and when I'm heading home. Does 5 PM work?\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 17,
@@ -1205,7 +1381,11 @@ window.ActivityData.social = {
             "content": "\"What do you recommend? I've never been here before. What's popular?\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": 18,
@@ -1249,7 +1429,11 @@ window.ActivityData.social = {
             "content": "\"Things are going pretty well. My grades are where I want them to be and I'm staying on top of my work. Thanks for checking in though.\""
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-practice"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-001",
@@ -1277,7 +1461,11 @@ window.ActivityData.social = {
           "hint2": "Offer a simple way to help.",
           "hint3": "Stay friendly and brief."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-002",
@@ -1305,7 +1493,11 @@ window.ActivityData.social = {
           "hint2": "Invite them to share.",
           "hint3": "Use a calm tone."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-003",
@@ -1333,7 +1525,11 @@ window.ActivityData.social = {
           "hint2": "Clarify where/what to play.",
           "hint3": "Stay calm and clear."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-004",
@@ -1361,7 +1557,11 @@ window.ActivityData.social = {
           "hint2": "Keep it short.",
           "hint3": "Tone: respectful and steady."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-005",
@@ -1389,7 +1589,11 @@ window.ActivityData.social = {
           "hint2": "Keep it simple.",
           "hint3": "Stay calm."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-006",
@@ -1417,7 +1621,11 @@ window.ActivityData.social = {
           "hint2": "Stay brief.",
           "hint3": "Speak clearly."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-007",
@@ -1445,7 +1653,11 @@ window.ActivityData.social = {
           "hint2": "Mention a small portion.",
           "hint3": "Stay calm."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-008",
@@ -1473,7 +1685,11 @@ window.ActivityData.social = {
           "hint2": "Ask to go now if needed.",
           "hint3": "Stay steady."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": "social-conversation-response-thanksgiving-009",
@@ -1501,7 +1717,11 @@ window.ActivityData.social = {
           "hint2": "Keep it direct.",
           "hint3": "Stay calm."
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-response-thanksgiving"
+      ]
     },
     {
       "id": 1,
@@ -1591,7 +1811,11 @@ window.ActivityData.social = {
             "placeholder": "Would that work for you so I can stay caught up?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 2,
@@ -1681,7 +1905,11 @@ window.ActivityData.social = {
             "placeholder": "Would that help or is there something else you’d rather do?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 3,
@@ -1771,7 +1999,11 @@ window.ActivityData.social = {
             "placeholder": "Would that trade work for the schedule?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 4,
@@ -1861,7 +2093,11 @@ window.ActivityData.social = {
             "placeholder": "Does that plan work for everyone so we stay on track?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 5,
@@ -1951,7 +2187,11 @@ window.ActivityData.social = {
             "placeholder": "Could we see if there is room in my schedule for the switch?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 6,
@@ -2041,7 +2281,11 @@ window.ActivityData.social = {
             "placeholder": "I want to make it right and be sure we're good."
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 7,
@@ -2131,7 +2375,11 @@ window.ActivityData.social = {
             "placeholder": "Want to come over and work on it with us?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 8,
@@ -2221,7 +2469,11 @@ window.ActivityData.social = {
             "placeholder": "Would that be okay with you?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 9,
@@ -2311,7 +2563,11 @@ window.ActivityData.social = {
             "placeholder": "Would that work for you?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 10,
@@ -2401,7 +2657,11 @@ window.ActivityData.social = {
             "placeholder": "Does that sound like a good plan to you?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 11,
@@ -2491,7 +2751,11 @@ window.ActivityData.social = {
             "placeholder": "Are you planning to go again soon?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation"
+      ]
     },
     {
       "id": 12,
@@ -2581,7 +2845,11 @@ window.ActivityData.social = {
             "placeholder": "Would that work for you?"
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": 13,
@@ -2671,147 +2939,231 @@ window.ActivityData.social = {
             "placeholder": "Maybe we can adjust what we post so it feels better."
           }
         ]
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "conversation-starter-practice"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-001",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Spilled Lab Materials",
       "scenario": "Chris and Jordan are working together on a science lab. Jordan accidentally knocks over a beaker and spills their materials.",
-      "response": "Chris says, “Seriously? Can you stop messing everything up?”"
+      "response": "Chris says, “Seriously? Can you stop messing everything up?”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-002",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Late Text Reply",
       "scenario": "A friend texts Sam during class and seems annoyed when Sam doesn’t reply right away.",
-      "response": "Sam says later, “I wasn’t ignoring you. I just couldn’t text back in class. Want to talk about it?”"
+      "response": "Sam says later, “I wasn’t ignoring you. I just couldn’t text back in class. Want to talk about it?”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-003",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Calculator Returned Damaged",
       "scenario": "A classmate, Riley, borrows Maya’s calculator and returns it with a missing cover.",
-      "response": "Maya says, “It’s fine. I’ll just buy a new one since you broke it.”"
+      "response": "Maya says, “It’s fine. I’ll just buy a new one since you broke it.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-004",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Presentation Assist",
       "scenario": "During a group presentation, Alex forgets a section he was supposed to say. His teammate, Brooke, steps in quickly.",
-      "response": "After class, Alex says, “Thanks for jumping in. I froze for a second.”"
+      "response": "After class, Alex says, “Thanks for jumping in. I froze for a second.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-005",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Laughing After Answer",
       "scenario": "Taylor overhears two classmates laughing after she answers a question in English class. She isn’t sure if they were laughing at her.",
-      "response": "Taylor says to them, “If you were laughing at me, that wasn’t cool.”"
+      "response": "Taylor says to them, “If you were laughing at me, that wasn’t cool.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-006",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Project Disagreement",
       "scenario": "Drew and Avery disagree about how to divide the work for a history project. Avery thinks Drew didn’t do his part.",
-      "response": "Drew says, “Look, I can see you’re frustrated. Let’s go over what still needs to be done.”"
+      "response": "Drew says, “Look, I can see you’re frustrated. Let’s go over what still needs to be done.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-007",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Assumed Avoidance",
       "scenario": "Jamie tells their friend Morgan that they can’t hang out because of family stuff. Morgan assumes Jamie just doesn’t want to spend time together.",
-      "response": "Morgan says, “Whatever, Jamie. Just tell me if you don’t want to hang out.”"
+      "response": "Morgan says, “Whatever, Jamie. Just tell me if you don’t want to hang out.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-008",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Ignored at Lunch",
       "scenario": "During lunch, a group is talking about weekend plans. No one responds when Carlos shares his idea.",
-      "response": "Carlos says, “I’m not sure if you didn’t hear me or weren’t interested, but I was hoping for your thoughts.”"
+      "response": "Carlos says, “I’m not sure if you didn’t hear me or weren’t interested, but I was hoping for your thoughts.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-009",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Called Out for Rudeness",
       "scenario": "A student, Leah, points out that Ethan’s comment in class came off as rude, even if he didn’t mean it that way.",
-      "response": "Ethan says, “You’re too sensitive. I didn’t do anything wrong.”"
+      "response": "Ethan says, “You’re too sensitive. I didn’t do anything wrong.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-010",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Hallway Bump",
       "scenario": "Quinn accidentally bumps into a classmate, Sky, in the hallway while rushing to class.",
-      "response": "Sky says, “Hey, are you okay? That looked like an accident.”"
+      "response": "Sky says, “Hey, are you okay? That looked like an accident.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-011",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Wrong Notebook",
       "scenario": "In a rush, Pat grabs Casey’s notebook by mistake and walks off.",
-      "response": "Casey says, “Hey, I think that’s mine. Can we check names and swap back?”"
+      "response": "Casey says, “Hey, I think that’s mine. Can we check names and swap back?”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-012",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Rumor in Group Chat",
       "scenario": "A rumor about Nina shows up in the group chat. She hears Kai repeated it.",
-      "response": "Nina messages, “Who told you that? Please don’t spread stuff about me without asking.”"
+      "response": "Nina messages, “Who told you that? Please don’t spread stuff about me without asking.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-013",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Late to Practice",
       "scenario": "Jordan arrives late to rehearsal again, making the group start over.",
-      "response": "A teammate says, “You’re always late. We can’t keep counting on you if this keeps happening.”"
+      "response": "A teammate says, “You’re always late. We can’t keep counting on you if this keeps happening.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-014",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Idea Shot Down",
       "scenario": "During a project brainstorm, Riley’s idea is dismissed quickly by the group.",
-      "response": "Riley says, “No worries—can you tell me what you think would work so we can move forward?”"
+      "response": "Riley says, “No worries—can you tell me what you think would work so we can move forward?”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-015",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Cafeteria Line Cut",
       "scenario": "A student cuts in front of Avery in the lunch line.",
-      "response": "Avery says, “Hey, there’s a line. Can you head to the back?”"
+      "response": "Avery says, “Hey, there’s a line. Can you head to the back?”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-016",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Name Mispronounced",
       "scenario": "A new teacher keeps mispronouncing Priya’s name.",
-      "response": "Priya says, “It’s actually Pree-yah. Just wanted to let you know.”"
+      "response": "Priya says, “It’s actually Pree-yah. Just wanted to let you know.”",
+      "level": "medium",
+      "tags": [
+        "pronouns"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-017",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Plans Canceled",
       "scenario": "Rae cancels weekend plans with Devon at the last minute.",
-      "response": "Devon says, “Wow, guess I’ll find someone who actually wants to hang out.”"
+      "response": "Devon says, “Wow, guess I’ll find someone who actually wants to hang out.”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-018",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Lost Instructions",
       "scenario": "During a lab, Tasha doesn’t understand the directions Avery gave and feels lost.",
-      "response": "Tasha says, “I’m confused about what you meant. Can you walk me through it once?”"
+      "response": "Tasha says, “I’m confused about what you meant. Can you walk me through it once?”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-019",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Inside Joke",
       "scenario": "During group work, two friends laugh at an inside joke right after Leo shares an idea.",
-      "response": "Leo says, “That felt like you were laughing at me. Was that about my idea?”"
+      "response": "Leo says, “That felt like you were laughing at me. Was that about my idea?”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-response-judge-020",
       "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Talking Behind Backs",
       "scenario": "A friend tells Maya that the group was complaining about her without her there.",
-      "response": "Maya says, “If there’s an issue with me, can you bring it to me instead of talking about me?”"
+      "response": "Maya says, “If there’s an issue with me, can you bring it to me instead of talking about me?”",
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-response-judge"
+      ]
     },
     {
       "id": "social-helpful-hurtful-scenarios-001",
@@ -2821,6 +3173,10 @@ window.ActivityData.social = {
       "responses": [
         "“You always mess up.”",
         "“We can figure it out.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2831,6 +3187,10 @@ window.ActivityData.social = {
       "responses": [
         "“Why are you alone?”",
         "“Do you want to sit with us?”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2841,6 +3201,10 @@ window.ActivityData.social = {
       "responses": [
         "“That was wrong.”",
         "“It’s okay.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2851,6 +3215,10 @@ window.ActivityData.social = {
       "responses": [
         "“You’re bad at this.”",
         "“Good try.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2861,6 +3229,10 @@ window.ActivityData.social = {
       "responses": [
         "“Figure it out.”",
         "“I can show you.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2871,6 +3243,10 @@ window.ActivityData.social = {
       "responses": [
         "“Watch it.”",
         "“It’s fine.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2881,6 +3257,10 @@ window.ActivityData.social = {
       "responses": [
         "“That movie is dumb.”",
         "“I don’t like it.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2891,6 +3271,10 @@ window.ActivityData.social = {
       "responses": [
         "“Hurry up.”",
         "“Do you need help?”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2901,6 +3285,10 @@ window.ActivityData.social = {
       "responses": [
         "“No.”",
         "“I only have one.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2911,6 +3299,10 @@ window.ActivityData.social = {
       "responses": [
         "“That’s wrong.”",
         "“Tell me more.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2921,6 +3313,10 @@ window.ActivityData.social = {
       "responses": [
         "“You never remember.”",
         "“Can we try again?”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2931,6 +3327,10 @@ window.ActivityData.social = {
       "responses": [
         "“Wow.”",
         "“I’ll help.”"
+      ],
+      "level": "medium",
+      "tags": [
+        "helpful-hurtful-scenarios"
       ]
     },
     {
@@ -2971,6 +3371,10 @@ window.ActivityData.social = {
             "I could remind them that next time we both need to stick to the plan."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3011,6 +3415,10 @@ window.ActivityData.social = {
             "I could tell them the situation hurt my feelings."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3051,6 +3459,10 @@ window.ActivityData.social = {
             "I could suggest asking the teacher for extra help."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3091,6 +3503,10 @@ window.ActivityData.social = {
             "I could suggest calling later to catch up."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3131,6 +3547,10 @@ window.ActivityData.social = {
             "I could offer to redo the packet if it can’t be found."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3171,6 +3591,10 @@ window.ActivityData.social = {
             "I could tell Sam I need space for my books on the bottom."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3211,6 +3635,10 @@ window.ActivityData.social = {
             "I could see if another art member can bring the paints."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3251,6 +3679,10 @@ window.ActivityData.social = {
             "I could suggest they meet me at the car now and we go straight home."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3291,6 +3723,10 @@ window.ActivityData.social = {
             "I could plan a way to move the conversation with my friends."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3331,6 +3767,10 @@ window.ActivityData.social = {
             "I could ask a close friend to back me up with the facts."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3371,6 +3811,10 @@ window.ActivityData.social = {
             "I could ask if I can leave once the reading is complete."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3411,6 +3855,10 @@ window.ActivityData.social = {
             "I could suggest talking in person tomorrow to clear it up."
           ]
         }
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-conflict-reflection"
       ]
     },
     {
@@ -3441,6 +3889,10 @@ window.ActivityData.social = {
         "I want to make sure this stays a team decision.",
         "Can we hop on a five-minute call before practice?",
         "What part do you want to tackle?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-solution-repair"
       ]
     },
     {
@@ -3471,6 +3923,10 @@ window.ActivityData.social = {
         "I feel better if we double-check the safety steps together.",
         "What did you hear me say about the roles?",
         "Let's look at the lab card and split the steps."
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-solution-repair"
       ]
     },
     {
@@ -3501,6 +3957,10 @@ window.ActivityData.social = {
         "I know you're juggling sound cues too.",
         "I noticed the lights stayed down in scene three - can we check the cue sheet?",
         "What would make that cue easier to remember?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-solution-repair"
       ]
     },
     {
@@ -3531,6 +3991,10 @@ window.ActivityData.social = {
         "Let's step outside for thirty seconds.",
         "I meant next Saturday the 18th because of the SAT.",
         "I'll text the manager and loop you in so it's official."
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-solution-repair"
       ]
     },
     {
@@ -3561,6 +4025,10 @@ window.ActivityData.social = {
         "Do you have two minutes? I brought our outline.",
         "I'm looking for advice to keep the project on track.",
         "If now isn't good, can we check in tomorrow after school?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-solution-repair"
       ]
     },
     {
@@ -3591,6 +4059,10 @@ window.ActivityData.social = {
         "I get why that looked like we were laughing at you.",
         "The caption was an inside joke about our own team - here's what it meant.",
         "If you're up for a quick call, I want to hear how it landed."
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-social-solution-repair"
       ]
     },
     {
@@ -3613,6 +4085,10 @@ window.ActivityData.social = {
       "prompts": [
         "Who could be uncomfortable even if they laugh?",
         "What rule or shared expectation could teachers say was crossed?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-subtle-problem-identifier"
       ]
     },
     {
@@ -3635,6 +4111,10 @@ window.ActivityData.social = {
       "prompts": [
         "How would you want people to talk about you when you are not there?",
         "What does the director’s silence tell you about the tone in the room?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-subtle-problem-identifier"
       ]
     },
     {
@@ -3657,6 +4137,10 @@ window.ActivityData.social = {
       "prompts": [
         "What job are you expected to do during a demo?",
         "How is your partner communicating without words?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-subtle-problem-identifier"
       ]
     },
     {
@@ -3679,6 +4163,10 @@ window.ActivityData.social = {
       "prompts": [
         "What part of that story belonged to you versus someone else?",
         "Who benefits from sharing it, and who carries the cost?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-subtle-problem-identifier"
       ]
     },
     {
@@ -3701,6 +4189,10 @@ window.ActivityData.social = {
       "prompts": [
         "Would this still feel funny if the student walked up?",
         "What is the difference between playful teasing and targeting?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-subtle-problem-identifier"
       ]
     },
     {
@@ -3723,6 +4215,10 @@ window.ActivityData.social = {
       "prompts": [
         "What does the advisor’s question suggest about their concern?",
         "How fast did the energy in the room change?"
+      ],
+      "level": "hard",
+      "tags": [
+        "high-school-subtle-problem-identifier"
       ]
     },
     {
@@ -3736,7 +4232,11 @@ window.ActivityData.social = {
         "You are showing the teacher that you either didn't listen to the first reminder or chose to ignore it, suggesting you need repeated corrections.",
         "It can escalate to the teacher confiscating your materials or moving you to a different seat, disrupting your own learning."
       ],
-      "solution": "Apologize sincerely and immediately, put the pencil down completely or switch to a silent fidget object (like a stress ball or fidget cube), and demonstrate you can work quietly for the remainder of the reading period without additional reminders."
+      "solution": "Apologize sincerely and immediately, put the pencil down completely or switch to a silent fidget object (like a stress ball or fidget cube), and demonstrate you can work quietly for the remainder of the reading period without additional reminders.",
+      "level": "easy",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 2,
@@ -3749,7 +4249,11 @@ window.ActivityData.social = {
         "It signals to your group members that you don't take the assignment seriously or don't care about their genuine stress and need for help.",
         "People may mute the chat, remove you from the group, or stop including you in future collaborative work because you're seen as unreliable."
       ],
-      "solution": "Stop posting GIFs immediately, delete the most recent ones if possible, send a brief \"my bad, got carried away—back to the assignment\" message, and either contribute helpful answers to the homework questions or stay quiet to let others work through their questions."
+      "solution": "Stop posting GIFs immediately, delete the most recent ones if possible, send a brief \"my bad, got carried away—back to the assignment\" message, and either contribute helpful answers to the homework questions or stay quiet to let others work through their questions.",
+      "level": "easy",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 3,
@@ -3762,7 +4266,11 @@ window.ActivityData.social = {
         "You demonstrate to everyone at the table that you don't respect personal boundaries when someone directly asks you to stop.",
         "It increases the likelihood of a direct confrontation with Alex, damaged friendship, or other friends distancing themselves from you because they don't want to be mocked next."
       ],
-      "solution": "Immediately stop the impression, acknowledge out loud that you crossed a line (\"You're right, I should've stopped—sorry\"), check in with Alex privately after lunch to make sure they're okay and apologize again, then intentionally shift the conversation to a different, neutral topic for the rest of lunch."
+      "solution": "Immediately stop the impression, acknowledge out loud that you crossed a line (\"You're right, I should've stopped—sorry\"), check in with Alex privately after lunch to make sure they're okay and apologize again, then intentionally shift the conversation to a different, neutral topic for the rest of lunch.",
+      "level": "easy",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 4,
@@ -3775,7 +4283,11 @@ window.ActivityData.social = {
         "Other students witness you dismissing adult support, which can influence how they treat teachers and may lower the overall respect level in the classroom.",
         "Your sarcastic response shuts down any opportunity for Ms. Rodriguez to offer help, extensions, or strategies to complete the work, leaving you stuck with the missing assignments."
       ],
-      "solution": "Take a deep breath and reset your tone, then restate your understanding more respectfully (e.g., \"You're right, I do need to finish those—can I get a checklist of what's missing?\"), and if you're feeling overwhelmed, ask for a brief private conversation after class instead of reacting with sarcasm in front of everyone."
+      "solution": "Take a deep breath and reset your tone, then restate your understanding more respectfully (e.g., \"You're right, I do need to finish those—can I get a checklist of what's missing?\"), and if you're feeling overwhelmed, ask for a brief private conversation after class instead of reacting with sarcasm in front of everyone.",
+      "level": "easy",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 5,
@@ -3788,7 +4300,11 @@ window.ActivityData.social = {
         "The entire rehearsal loses valuable time while the director and cast process what happened and decide whether to continue or wait for your return, setting everyone behind schedule.",
         "Your outburst sends a harmful message to the group that mistakes aren't acceptable, creating a tense environment where others may be afraid to take risks or ask for help."
       ],
-      "solution": "Return to the rehearsal within a few minutes (or by the next day at the latest), apologize to Jordan and the director in front of the group for the outburst and for wasting everyone's time, acknowledge that you were frustrated but handled it poorly, suggest taking a 5-minute reset break together before running the scene again, and offer to work with Jordan outside of rehearsal to help with line memorization."
+      "solution": "Return to the rehearsal within a few minutes (or by the next day at the latest), apologize to Jordan and the director in front of the group for the outburst and for wasting everyone's time, acknowledge that you were frustrated but handled it poorly, suggest taking a 5-minute reset break together before running the scene again, and offer to work with Jordan outside of rehearsal to help with line memorization.",
+      "level": "medium",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 6,
@@ -3801,7 +4317,11 @@ window.ActivityData.social = {
         "It clearly communicates that you don't trust or value your teammates' contributions, damaging group morale and making them feel disrespected and undermined.",
         "If your changes introduced any errors or removed important content, there's no time to catch or fix it collaboratively, potentially lowering the group's grade."
       ],
-      "solution": "As soon as you wake up and realize what happened, immediately message the group apologizing for the takeover, offer to restore the original slides using version history in Google Slides, suggest a quick 15-minute video call or in-person huddle before class to review both versions together and collaboratively decide which design elements to keep, and commit to asking for group input before making major changes in the future."
+      "solution": "As soon as you wake up and realize what happened, immediately message the group apologizing for the takeover, offer to restore the original slides using version history in Google Slides, suggest a quick 15-minute video call or in-person huddle before class to review both versions together and collaboratively decide which design elements to keep, and commit to asking for group input before making major changes in the future.",
+      "level": "medium",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 7,
@@ -3814,7 +4334,11 @@ window.ActivityData.social = {
         "You create tension and frustration with both peers (who may avoid or resent you later) and staff members monitoring the hallway who have to manage the bottleneck you caused.",
         "You're violating school safety protocols about keeping exits and pathways clear, which are in place for emergencies like fire drills or lockdowns, putting everyone at risk."
       ],
-      "solution": "Immediately move to the side of the hallway or out of the doorway as soon as someone asks, turn around and apologize directly to the students you delayed (\"Sorry for blocking you, that was my bad\"), and establish a new meeting spot with Tyler—like near the lockers or outside the cafeteria—that doesn't obstruct high-traffic areas during passing periods."
+      "solution": "Immediately move to the side of the hallway or out of the doorway as soon as someone asks, turn around and apologize directly to the students you delayed (\"Sorry for blocking you, that was my bad\"), and establish a new meeting spot with Tyler—like near the lockers or outside the cafeteria—that doesn't obstruct high-traffic areas during passing periods.",
+      "level": "medium",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 8,
@@ -3827,7 +4351,11 @@ window.ActivityData.social = {
         "The entire class loses instructional time because Mr. Patel has to pause the lesson to address your refusal and defiance, delaying the lab for everyone.",
         "If a chemical accident occurs—whether to you or someone else—because proper safety protocols weren't followed, the lab could be shut down, the class could lose lab privileges, and you could face serious disciplinary or even medical consequences."
       ],
-      "solution": "Immediately put on the safety goggles and return to your seat, apologize to Mr. Patel both privately and in front of the class for being disrespectful and disregarding safety rules, and ask one of your lab partners to verbally review the safety steps with you so you're fully clear on the procedure and can demonstrate you're taking it seriously going forward."
+      "solution": "Immediately put on the safety goggles and return to your seat, apologize to Mr. Patel both privately and in front of the class for being disrespectful and disregarding safety rules, and ask one of your lab partners to verbally review the safety steps with you so you're fully clear on the procedure and can demonstrate you're taking it seriously going forward.",
+      "level": "medium",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 9,
@@ -3840,7 +4368,11 @@ window.ActivityData.social = {
         "Your coach and teammates see that private, vulnerable team moments aren't safe with you, which can damage the team's culture of support and psychological safety.",
         "Once something is posted online—even in a private group chat—screenshots or copies can spread beyond the team to other students, social media, or even parents, escalating the situation and creating long-term reputation damage for Chris and potential discipline for you."
       ],
-      "solution": "Immediately delete the video from the group chat and any other platforms, send a direct private message to Chris with a sincere apology explaining you didn't think it through and shouldn't have posted without asking first, also apologize to the coach and team in the group chat, and work with Chris and the coach to establish clear boundaries and agreements about what can be recorded and shared in the future to rebuild trust."
+      "solution": "Immediately delete the video from the group chat and any other platforms, send a direct private message to Chris with a sincere apology explaining you didn't think it through and shouldn't have posted without asking first, also apologize to the coach and team in the group chat, and work with Chris and the coach to establish clear boundaries and agreements about what can be recorded and shared in the future to rebuild trust.",
+      "level": "hard",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": 10,
@@ -3853,112 +4385,176 @@ window.ActivityData.social = {
         "Other group members who were considering opening up may now feel unsafe and choose to stay silent, fearing their emotions will also be laughed at or minimized, undermining the entire purpose of the group.",
         "The counselor now has to stop the session and repair the emotional safety of the space before anyone can continue, losing valuable group time and potentially requiring individual follow-up with Sam."
       ],
-      "solution": "Immediately acknowledge your mistake out loud (\"I'm sorry, that laugh was out of line and I shouldn't have made a joke\"), validate Sam's feelings directly (\"What you're going through sounds really hard, and I didn't mean to make it seem like it wasn't serious\"), ask the counselor and group how you can help keep the space respectful and supportive going forward, and if appropriate, follow up with Sam privately after group to offer a more personal apology and check in on how they're doing."
+      "solution": "Immediately acknowledge your mistake out loud (\"I'm sorry, that laugh was out of line and I shouldn't have made a joke\"), validate Sam's feelings directly (\"What you're going through sounds really hard, and I didn't mean to make it seem like it wasn't serious\"), ask the counselor and group how you can help keep the space respectful and supportive going forward, and if appropriate, follow up with Sam privately after group to offer a more personal apology and check in on how they're doing.",
+      "level": "hard",
+      "tags": [
+        "inappropriate-behavior-solution-practice"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-001",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Returning Borrowed Item",
       "difficulty": "easy",
-      "description": "You borrowed a book from a classmate last week for a project. You're done with it and need to return it to them. You see them in the hallway between classes."
+      "description": "You borrowed a book from a classmate last week for a project. You're done with it and need to return it to them. You see them in the hallway between classes.",
+      "level": "easy",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-002",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Homework Question",
       "difficulty": "easy",
-      "description": "You're confused about the homework assignment that was just given. The student sitting next to you seems to understand it. Class just ended and you're both packing up."
+      "description": "You're confused about the homework assignment that was just given. The student sitting next to you seems to understand it. Class just ended and you're both packing up.",
+      "level": "easy",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-003",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Complimenting Something Specific",
       "difficulty": "easy",
-      "description": "Someone in your art class just finished a drawing that's really impressive. You've worked near them before but haven't talked much. The class is ending and people are cleaning up."
+      "description": "Someone in your art class just finished a drawing that's really impressive. You've worked near them before but haven't talked much. The class is ending and people are cleaning up.",
+      "level": "easy",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-004",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Group Project Start",
       "difficulty": "easy",
-      "description": "You've just been assigned to work with two other students on a science project. The teacher gives you 10 minutes to exchange contact information and pick a meeting time. You need to figure out when to meet."
+      "description": "You've just been assigned to work with two other students on a science project. The teacher gives you 10 minutes to exchange contact information and pick a meeting time. You need to figure out when to meet.",
+      "level": "easy",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-005",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Asking to Sit",
       "difficulty": "easy",
-      "description": "The cafeteria is crowded and most tables are full. There's one seat open at a table where some classmates from your English class are sitting. You know their names but don't really talk to them."
+      "description": "The cafeteria is crowded and most tables are full. There's one seat open at a table where some classmates from your English class are sitting. You know their names but don't really talk to them.",
+      "level": "easy",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-006",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Library Encounter",
       "difficulty": "medium",
-      "description": "You're at the library studying for a test when you see someone from your math class looking at the same textbook chapter. You've sat near each other but haven't talked. You figured out a good way to remember one of the formulas."
+      "description": "You're at the library studying for a test when you see someone from your math class looking at the same textbook chapter. You've sat near each other but haven't talked. You figured out a good way to remember one of the formulas.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-007",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Teacher Office Hours",
       "difficulty": "medium",
-      "description": "You need to ask your teacher a question about an assignment. You go to their office hours and there's one other student already there talking to the teacher. The other student finishes and leaves. Now it's your turn."
+      "description": "You need to ask your teacher a question about an assignment. You go to their office hours and there's one other student already there talking to the teacher. The other student finishes and leaves. Now it's your turn.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-008",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Club Information",
       "difficulty": "medium",
-      "description": "There's a club (art, robotics, gaming, etc.) you're interested in joining. You see someone wearing the club t-shirt in your biology class. You want to know when they meet and what they do."
+      "description": "There's a club (art, robotics, gaming, etc.) you're interested in joining. You see someone wearing the club t-shirt in your biology class. You want to know when they meet and what they do.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-009",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Shared Interest",
       "difficulty": "medium",
-      "description": "You're walking through the hallway and notice someone wearing a shirt from a book series/game/show you really like. You've seen them around but never talked to them. They're standing at their locker."
+      "description": "You're walking through the hallway and notice someone wearing a shirt from a book series/game/show you really like. You've seen them around but never talked to them. They're standing at their locker.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-010",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Project Partner Question",
       "difficulty": "medium",
-      "description": "You're working on a long-term project with a partner. You've been working mostly independently but need to check something with them about your part. You see them before class starts."
+      "description": "You're working on a long-term project with a partner. You've been working mostly independently but need to check something with them about your part. You see them before class starts.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-011",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Someone Initiates",
       "difficulty": "medium",
-      "description": "You're sitting in the common area reading a book. Someone you don't know well sits down near you and says 'Hey, how's it going?' You need to respond and maybe continue the conversation."
+      "description": "You're sitting in the common area reading a book. Someone you don't know well sits down near you and says 'Hey, how's it going?' You need to respond and maybe continue the conversation.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-012",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Counselor Meeting",
       "difficulty": "medium",
-      "description": "You have a scheduled meeting with your guidance counselor to talk about your class schedule for next semester. You're not sure what to say after the basic greeting. You need to explain what classes you're interested in."
+      "description": "You have a scheduled meeting with your guidance counselor to talk about your class schedule for next semester. You're not sure what to say after the basic greeting. You need to explain what classes you're interested in.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-013",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Awkward Silence",
       "difficulty": "hard",
-      "description": "You're working on a partner assignment with someone you don't know well. You've been working silently for 10 minutes and it's starting to feel weird. You still have 20 minutes left to work together."
+      "description": "You're working on a partner assignment with someone you don't know well. You've been working silently for 10 minutes and it's starting to feel weird. You still have 20 minutes left to work together.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-014",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Following Up",
       "difficulty": "hard",
-      "description": "Last week you had a nice conversation with someone about a video game you both play. You see them again in the hallway. You're not sure if you should say hi, and if you do, what to say beyond 'hi.'"
+      "description": "Last week you had a nice conversation with someone about a video game you both play. You see them again in the hallway. You're not sure if you should say hi, and if you do, what to say beyond 'hi.'",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-initiate-conversations-predict-response-015",
       "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "name": "Joining Discussion",
       "difficulty": "hard",
-      "description": "You're early to class and a few students are talking about a topic you know a lot about (a game, book series, scientific topic, etc.). You want to add something to the conversation but you're not part of the group and they haven't noticed you."
+      "description": "You're early to class and a few students are talking about a topic you know a lot about (a game, book series, scientific topic, etc.). You want to add something to the conversation but you're not part of the group and they haven't noticed you.",
+      "level": "medium",
+      "tags": [
+        "initiate-conversations-predict-response"
+      ]
     },
     {
       "id": "social-labeling-emotions-speech-strategies-001",
@@ -3978,6 +4574,10 @@ window.ActivityData.social = {
         "Jordan feels relieved because someone included him.",
         "Jordan feels happier because he finally knows what to do.",
         "Jordan feels appreciated because his group saved him a part."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -3998,6 +4598,10 @@ window.ActivityData.social = {
         "Maya feels relieved because her friend had a real reason for not responding.",
         "Maya feels calmer because she understands what happened.",
         "Maya feels appreciated because her friend apologized."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4018,6 +4622,10 @@ window.ActivityData.social = {
         "Chris feels encouraged because people said supportive things.",
         "Chris feels relieved because the whispers weren’t about him.",
         "Chris feels proud because someone liked his topic."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4038,6 +4646,10 @@ window.ActivityData.social = {
         "Sam feels helpful because he supported someone who needed it.",
         "Sam feels appreciated because the student thanked him.",
         "Sam feels calmer because the situation improved."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4058,6 +4670,10 @@ window.ActivityData.social = {
         "Riley feels proud because she earned second place.",
         "Riley feels happy because people complimented her art.",
         "Riley feels excited because her family celebrated with her."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4078,6 +4694,10 @@ window.ActivityData.social = {
         "Lily feels relieved because someone noticed the problem.",
         "Lily feels appreciated because a classmate offered help.",
         "Lily feels calmer because the situation improved."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4098,6 +4718,10 @@ window.ActivityData.social = {
         "Marcus feels relieved because the friend remembered him.",
         "Marcus feels excited because he has a saved seat.",
         "Marcus feels happy because the plan still worked out."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4118,6 +4742,10 @@ window.ActivityData.social = {
         "Naomi feels proud because someone liked her art.",
         "Naomi feels encouraged because someone asked about her technique.",
         "Naomi feels relieved because the reaction was positive."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4138,6 +4766,10 @@ window.ActivityData.social = {
         "Aiden feels encouraged because classmates praised him.",
         "Aiden feels relieved because they liked his performance.",
         "Aiden feels proud because he kept going even after the mistake."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4158,6 +4790,10 @@ window.ActivityData.social = {
         "Zoe feels proud because she finished strong.",
         "Zoe feels happy because she improved.",
         "Zoe feels relieved because the second round went better."
+      ],
+      "level": "medium",
+      "tags": [
+        "labeling-emotions-speech-strategies"
       ]
     },
     {
@@ -4220,7 +4856,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 2,
@@ -4282,7 +4922,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 3,
@@ -4344,7 +4988,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 4,
@@ -4406,7 +5054,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 5,
@@ -4468,7 +5120,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 6,
@@ -4531,7 +5187,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 7,
@@ -4593,7 +5253,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 8,
@@ -4655,7 +5319,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 9,
@@ -4718,7 +5386,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 10,
@@ -4780,7 +5452,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 11,
@@ -4842,7 +5518,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-problem-solving"
+      ]
     },
     {
       "id": 12,
@@ -4904,7 +5584,11 @@ window.ActivityData.social = {
             ]
           }
         }
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "social-skills"
+      ]
     },
     {
       "id": 1,
@@ -4922,6 +5606,10 @@ window.ActivityData.social = {
         {
           "text": "You email the teacher later that day with a list of who completed which tasks and ask for guidance on grading."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "academics"
       ]
     },
     {
@@ -4940,6 +5628,10 @@ window.ActivityData.social = {
         {
           "text": "You joke loudly about them being terrible secret keepers so other people laugh at them."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "friends"
       ]
     },
     {
@@ -4958,6 +5650,10 @@ window.ActivityData.social = {
         {
           "text": "You ignore the follow-up and hope they figure it out themselves."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "communication"
       ]
     },
     {
@@ -4976,6 +5672,10 @@ window.ActivityData.social = {
         {
           "text": "You privately message another teammate to complain about Avery and plan to ignore their idea."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "teamwork"
       ]
     },
     {
@@ -4994,6 +5694,10 @@ window.ActivityData.social = {
         {
           "text": "You refuse to let them use your locker anymore and stop talking to them."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "school-life"
       ]
     },
     {
@@ -5012,6 +5716,10 @@ window.ActivityData.social = {
         {
           "text": "You nod silently but roll your eyes when the teacher looks away."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "authority"
       ]
     },
     {
@@ -5030,6 +5738,10 @@ window.ActivityData.social = {
         {
           "text": "You hide their favorite jacket to “teach them a lesson.”"
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "home"
       ]
     },
     {
@@ -5048,6 +5760,10 @@ window.ActivityData.social = {
         {
           "text": "You ignore them for the rest of the session to show how disappointed you are."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "collaboration"
       ]
     },
     {
@@ -5066,6 +5782,10 @@ window.ActivityData.social = {
         {
           "text": "You switch seats with a friend and ask the teacher for a different partner."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "school-life"
       ]
     },
     {
@@ -5084,6 +5804,10 @@ window.ActivityData.social = {
         {
           "text": "You post a story about flaky friends so everyone knows you were canceled on."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "friends"
       ]
     },
     {
@@ -5102,6 +5826,10 @@ window.ActivityData.social = {
         {
           "text": "You decide not to email because you’re embarrassed and hope the teacher forgets about the assignment."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "communication"
       ]
     },
     {
@@ -5120,6 +5848,10 @@ window.ActivityData.social = {
         {
           "text": "You mute the chat forever and make a new one without the friends who were annoyed."
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "digital-life"
       ]
     },
     {
@@ -5133,6 +5865,10 @@ window.ActivityData.social = {
         "(Say nothing and just sit there)",
         "This is stupid.",
         "Whatever."
+      ],
+      "level": "medium",
+      "tags": [
+        "social-thinking-starting-conversations"
       ]
     },
     {
@@ -5146,6 +5882,10 @@ window.ActivityData.social = {
         "(Stare at them and stand there)",
         "You're in my seat. Move.",
         "Go sit on the floor."
+      ],
+      "level": "medium",
+      "tags": [
+        "social-thinking-starting-conversations"
       ]
     },
     {
@@ -5159,6 +5899,10 @@ window.ActivityData.social = {
         "(Do nothing and wait)",
         "This makes no sense.",
         "Put your head down."
+      ],
+      "level": "medium",
+      "tags": [
+        "social-thinking-starting-conversations"
       ]
     },
     {
@@ -5172,6 +5916,10 @@ window.ActivityData.social = {
         "(Say nothing and do all the work yourself)",
         "You're so lazy.",
         "Just stare at them."
+      ],
+      "level": "medium",
+      "tags": [
+        "social-thinking-starting-conversations"
       ]
     },
     {
@@ -5185,6 +5933,10 @@ window.ActivityData.social = {
         "Guess and answer something random",
         "Ignore them",
         "Walk away"
+      ],
+      "level": "medium",
+      "tags": [
+        "social-thinking-starting-conversations"
       ]
     },
     {
@@ -5198,6 +5950,10 @@ window.ActivityData.social = {
         "Take it without asking",
         "Give me that.",
         "Just let your computer die"
+      ],
+      "level": "medium",
+      "tags": [
+        "social-thinking-starting-conversations"
       ]
     },
     {
@@ -5211,6 +5967,10 @@ window.ActivityData.social = {
         "Stand there and wait forever",
         "Nobody likes me.",
         "Sit down and do nothing"
+      ],
+      "level": "medium",
+      "tags": [
+        "social-thinking-starting-conversations"
       ]
     },
     {
@@ -5222,6 +5982,10 @@ window.ActivityData.social = {
         "running late",
         "people waiting",
         "missed communication"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5233,6 +5997,10 @@ window.ActivityData.social = {
         "exclusion",
         "no eye contact",
         "tries to join but ignored"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5244,6 +6012,10 @@ window.ActivityData.social = {
         "slow response",
         "group impatience",
         "possible exclusion"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5255,6 +6027,10 @@ window.ActivityData.social = {
         "public criticism",
         "cook’s reaction",
         "tone"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5266,6 +6042,10 @@ window.ActivityData.social = {
         "device use",
         "missing cues",
         "others waiting"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5277,6 +6057,10 @@ window.ActivityData.social = {
         "ignoring seating plan",
         "comfort of others",
         "noise"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5288,6 +6072,10 @@ window.ActivityData.social = {
         "exclusion",
         "limited resources",
         "nonverbal signals"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5299,6 +6087,10 @@ window.ActivityData.social = {
         "no permission",
         "quantity taken",
         "others’ expectations"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5310,6 +6102,10 @@ window.ActivityData.social = {
         "missing label",
         "safety risk",
         "guest concern"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5321,6 +6117,10 @@ window.ActivityData.social = {
         "no consent",
         "public sharing",
         "privacy"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-social-problem-scenarios"
       ]
     },
     {
@@ -5333,6 +6133,10 @@ window.ActivityData.social = {
         "Annoyed",
         "Nervous",
         "Embarrassed"
+      ],
+      "level": "medium",
+      "tags": [
+        "understanding-both-perspectives"
       ]
     },
     {
@@ -5345,6 +6149,10 @@ window.ActivityData.social = {
         "Defensive",
         "Surprised",
         "Frustrated"
+      ],
+      "level": "medium",
+      "tags": [
+        "understanding-both-perspectives"
       ]
     },
     {
@@ -5357,6 +6165,10 @@ window.ActivityData.social = {
         "Annoyed",
         "Apologetic",
         "Dismissive"
+      ],
+      "level": "medium",
+      "tags": [
+        "understanding-both-perspectives"
       ]
     },
     {
@@ -5369,6 +6181,10 @@ window.ActivityData.social = {
         "Indifferent",
         "Confused",
         "Sad"
+      ],
+      "level": "medium",
+      "tags": [
+        "understanding-both-perspectives"
       ]
     },
     {
@@ -5381,6 +6197,10 @@ window.ActivityData.social = {
         "Worried",
         "Relieved",
         "Annoyed"
+      ],
+      "level": "medium",
+      "tags": [
+        "understanding-both-perspectives"
       ]
     }
   ],
@@ -5415,6 +6235,10 @@ window.ActivityData.social = {
           "text": "Alex is upset about his dog",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5439,6 +6263,10 @@ window.ActivityData.social = {
           "text": "Riley forgot to reply",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5463,6 +6291,10 @@ window.ActivityData.social = {
           "text": "Ethan forgot to speak",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5487,6 +6319,10 @@ window.ActivityData.social = {
           "text": "Jamal wants attention",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5511,6 +6347,10 @@ window.ActivityData.social = {
           "text": "Lena dislikes laughing",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5535,6 +6375,10 @@ window.ActivityData.social = {
           "text": "Noah prefers texting less",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5559,6 +6403,10 @@ window.ActivityData.social = {
           "text": "Priya prefers listening",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5583,6 +6431,10 @@ window.ActivityData.social = {
           "text": "Marcus is unreliable",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5607,6 +6459,10 @@ window.ActivityData.social = {
           "text": "Theo is shy",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5631,6 +6487,10 @@ window.ActivityData.social = {
           "text": "Hannah avoids helping others",
           "correct": false
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     }
   ],
@@ -5724,6 +6584,10 @@ window.ActivityData.social = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5815,6 +6679,10 @@ window.ActivityData.social = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5906,6 +6774,10 @@ window.ActivityData.social = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -5997,6 +6869,10 @@ window.ActivityData.social = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -6088,6 +6964,10 @@ window.ActivityData.social = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -6179,6 +7059,10 @@ window.ActivityData.social = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -6270,6 +7154,10 @@ window.ActivityData.social = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     },
     {
@@ -6361,6 +7249,10 @@ window.ActivityData.social = {
             }
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "social"
       ]
     }
   ],

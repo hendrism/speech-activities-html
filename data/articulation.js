@@ -1293,7 +1293,7 @@ window.ActivityData.articulation = {
     },
     {
       "id": "l-all-positions",
-      "name": "L Sound \u2013 All Positions",
+      "name": "L Sound – All Positions",
       "soundType": "single",
       "targetSound": "l",
       "sourceFile": "resources/word-lists/l-all-positions.json",
@@ -1497,7 +1497,7 @@ window.ActivityData.articulation = {
     },
     {
       "id": "s-all-positions",
-      "name": "S Sound \u2013 All Positions",
+      "name": "S Sound – All Positions",
       "soundType": "single",
       "targetSound": "s",
       "sourceFile": "resources/word-lists/s-all-positions.json",
@@ -1706,7 +1706,7 @@ window.ActivityData.articulation = {
     },
     {
       "id": "sh-all-positions",
-      "name": "SH Sound \u2013 All Positions",
+      "name": "SH Sound – All Positions",
       "soundType": "single",
       "targetSound": "sh",
       "sourceFile": "resources/word-lists/sh-all-positions.json",

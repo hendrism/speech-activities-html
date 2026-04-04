@@ -18,7 +18,11 @@ window.ActivityData.fluency = {
         "phrase": "fun {a}",
         "sentence": "My favorite spring activity is {a}.",
         "extended": "My favorite spring activity is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-002",
@@ -29,7 +33,11 @@ window.ActivityData.fluency = {
         "phrase": "warm {a}",
         "sentence": "On a rainy spring day, I like to drink {a}.",
         "extended": "On a rainy spring day, I like to drink {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-003",
@@ -40,7 +48,11 @@ window.ActivityData.fluency = {
         "phrase": "playing with {a}",
         "sentence": "I like to play outside with {a} in the spring.",
         "extended": "I like to play outside with {a} in the spring because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-004",
@@ -51,7 +63,11 @@ window.ActivityData.fluency = {
         "phrase": "put on {a}",
         "sentence": "When it is raining outside, I put on {a}.",
         "extended": "When it is raining outside, I put on {a} so that ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-005",
@@ -62,7 +78,11 @@ window.ActivityData.fluency = {
         "phrase": "go to {a}",
         "sentence": "On a sunny spring day, I like to go to {a}.",
         "extended": "On a sunny spring day, I like to go to {a} to ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-006",
@@ -73,7 +93,11 @@ window.ActivityData.fluency = {
         "phrase": "the {a}",
         "sentence": "In spring, I notice {a}.",
         "extended": "In spring, I notice {a} and it makes me feel ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-007",
@@ -84,7 +108,11 @@ window.ActivityData.fluency = {
         "phrase": "spring break {a}",
         "sentence": "During spring break, I hope to {a}.",
         "extended": "During spring break, I hope to {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-008",
@@ -95,7 +123,11 @@ window.ActivityData.fluency = {
         "phrase": "goal: {a}",
         "sentence": "One goal for the end of the school year is {a}.",
         "extended": "One goal for the end of the school year is {a} so that ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-009",
@@ -106,7 +138,11 @@ window.ActivityData.fluency = {
         "phrase": "eating {a}",
         "sentence": "At a spring picnic, I like to eat {a}.",
         "extended": "At a spring picnic, I like to eat {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-010",
@@ -117,7 +153,11 @@ window.ActivityData.fluency = {
         "phrase": "favorite {a}",
         "sentence": "My favorite spring clothing is {a}.",
         "extended": "My favorite spring clothing is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-011",
@@ -128,7 +168,11 @@ window.ActivityData.fluency = {
         "phrase": "outdoor {a}",
         "sentence": "When the weather gets warmer, I enjoy {a} outside.",
         "extended": "When the weather gets warmer, I enjoy {a} outside because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-012",
@@ -139,7 +183,12 @@ window.ActivityData.fluency = {
         "phrase": "see a {a}",
         "sentence": "In the spring, I hope to see a {a}.",
         "extended": "In the spring, I hope to see a {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring",
+        "animals"
+      ]
     },
     {
       "id": "fluency-fluency-spring-013",
@@ -150,7 +199,11 @@ window.ActivityData.fluency = {
         "phrase": "help by {a}",
         "sentence": "When planting a garden, I can help by {a}.",
         "extended": "When planting a garden, I can help by {a} so that ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-014",
@@ -161,7 +214,11 @@ window.ActivityData.fluency = {
         "phrase": "hearing {a}",
         "sentence": "A spring sound I like to hear is {a}.",
         "extended": "A spring sound I like to hear is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-spring-015",
@@ -172,7 +229,11 @@ window.ActivityData.fluency = {
         "phrase": "best part: {a}",
         "sentence": "The best part of a warm spring afternoon is {a}.",
         "extended": "The best part of a warm spring afternoon is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     },
     {
       "id": "fluency-fluency-thanksgiving-001",
@@ -183,7 +244,11 @@ window.ActivityData.fluency = {
         "phrase": "Tasty {a}",
         "sentence": "My favorite Thanksgiving food is {a}.",
         "extended": "My favorite Thanksgiving food is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "thanksgiving"
+      ]
     },
     {
       "id": "fluency-fluency-thanksgiving-002",
@@ -194,7 +259,11 @@ window.ActivityData.fluency = {
         "phrase": "sitting by {a}",
         "sentence": "I like to sit next to {a} at dinner.",
         "extended": "I like to sit next to {a} at dinner because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-thanksgiving"
+      ]
     },
     {
       "id": "fluency-fluency-thanksgiving-003",
@@ -205,7 +274,11 @@ window.ActivityData.fluency = {
         "phrase": "helping with {a}",
         "sentence": "On Thanksgiving, I help with {a}.",
         "extended": "On Thanksgiving, I help with {a} so that ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "thanksgiving"
+      ]
     },
     {
       "id": "fluency-fluency-thanksgiving-004",
@@ -216,7 +289,11 @@ window.ActivityData.fluency = {
         "phrase": "thankful for {a}",
         "sentence": "I am thankful for {a} this year.",
         "extended": "I am thankful for {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-thanksgiving"
+      ]
     },
     {
       "id": "fluency-fluency-thanksgiving-005",
@@ -227,7 +304,11 @@ window.ActivityData.fluency = {
         "phrase": "doing {a} after eating",
         "sentence": "After the big meal, I like to {a}.",
         "extended": "After the big meal, I like to {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-thanksgiving"
+      ]
     },
     {
       "id": "fluency-fluency-thanksgiving-006",
@@ -238,7 +319,11 @@ window.ActivityData.fluency = {
         "phrase": "at {a}",
         "sentence": "We celebrate Thanksgiving at {a}.",
         "extended": "We celebrate Thanksgiving at {a} so that ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "thanksgiving"
+      ]
     },
     {
       "id": "fluency-fluency-thanksgiving-007",
@@ -249,7 +334,11 @@ window.ActivityData.fluency = {
         "phrase": "the {a} float",
         "sentence": "My favorite Thanksgiving parade balloon or float is {a}.",
         "extended": "My favorite parade float is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "thanksgiving"
+      ]
     },
     {
       "id": "fluency-fluency-thanksgiving-008",
@@ -260,17 +349,25 @@ window.ActivityData.fluency = {
         "phrase": "sweet {a}",
         "sentence": "The dessert I look forward to is {a}.",
         "extended": "I look forward to {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-thanksgiving"
+      ]
     },
     {
       "id": "fluency-fluency-winter-conversation-starters-001",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Ideal Snow Day",
-      "starter": "What\u2019s your ideal plan for a snow day if school gets canceled?",
-      "stem": "If I had a snow day, I would start by\u2026, then I would\u2026, and finally I would\u2026",
+      "starter": "What’s your ideal plan for a snow day if school gets canceled?",
+      "stem": "If I had a snow day, I would start by…, then I would…, and finally I would…",
       "followups": [
         "Would you spend it mostly alone or with people?",
         "Has your favorite snow-day activity changed since you were younger?"
+      ],
+      "level": "medium",
+      "tags": [
+        "fluency-winter-conversation-starters"
       ]
     },
     {
@@ -282,17 +379,25 @@ window.ActivityData.fluency = {
       "followups": [
         "Which type of weather makes you more productive?",
         "Which one is harder to deal with at school?"
+      ],
+      "level": "medium",
+      "tags": [
+        "fluency-winter-conversation-starters"
       ]
     },
     {
       "id": "fluency-fluency-winter-conversation-starters-003",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Winter Habits",
-      "starter": "What winter tradition or habit do you enjoy, even if it\u2019s small?",
+      "starter": "What winter tradition or habit do you enjoy, even if it’s small?",
       "stem": "One winter habit I like is ___ because ___.",
       "followups": [
         "Is it something you do alone or with others?",
-        "Do you think you\u2019ll keep that habit as an adult?"
+        "Do you think you’ll keep that habit as an adult?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -304,17 +409,25 @@ window.ActivityData.fluency = {
       "followups": [
         "Who makes it or where do you get it?",
         "Does the taste remind you of anything?"
+      ],
+      "level": "medium",
+      "tags": [
+        "fluency-winter-conversation-starters"
       ]
     },
     {
       "id": "fluency-fluency-winter-conversation-starters-005",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Annoying Winter Tasks",
-      "starter": "What winter chore or task do you wish you didn\u2019t have to do?",
+      "starter": "What winter chore or task do you wish you didn’t have to do?",
       "stem": "I really dislike ___ because ___.",
       "followups": [
         "How do you make it less annoying?",
         "Is there anyone who actually enjoys that chore?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -326,6 +439,10 @@ window.ActivityData.fluency = {
       "followups": [
         "Would you make it longer or organized differently?",
         "How would school feel different afterward?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -337,17 +454,25 @@ window.ActivityData.fluency = {
       "followups": [
         "Does it affect your mood or your routine more?",
         "Which weather is the easiest for you to handle?"
+      ],
+      "level": "medium",
+      "tags": [
+        "fluency-winter-conversation-starters"
       ]
     },
     {
       "id": "fluency-fluency-winter-conversation-starters-008",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Childhood Winter Activities",
-      "starter": "What is something fun you used to do in winter as a kid that you don\u2019t do anymore?",
-      "stem": "When I was younger, I used to ___, but now I don\u2019t because ___.",
+      "starter": "What is something fun you used to do in winter as a kid that you don’t do anymore?",
+      "stem": "When I was younger, I used to ___, but now I don’t because ___.",
       "followups": [
         "Would you try it again now?",
         "What made it fun back then?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -358,7 +483,11 @@ window.ActivityData.fluency = {
       "stem": "The winter clothing I like most is ___ because ___.",
       "followups": [
         "Do you care more about warmth or style?",
-        "Is there something you\u2019d add to your perfect winter outfit?"
+        "Is there something you’d add to your perfect winter outfit?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -366,43 +495,59 @@ window.ActivityData.fluency = {
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "All-Day Outdoor Winter Challenge",
       "starter": "If you had to spend a whole day outside in winter, what would you want to do?",
-      "stem": "If I had to stay outside, I\u2019d spend my time ___, ___, and ___.",
+      "stem": "If I had to stay outside, I’d spend my time ___, ___, and ___.",
       "followups": [
         "What would be the hardest part?",
         "Would you want anyone with you?"
+      ],
+      "level": "hard",
+      "tags": [
+        "winter"
       ]
     },
     {
       "id": "fluency-fluency-winter-conversation-starters-011",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Winter and Mood",
-      "starter": "Do you think winter affects people\u2019s moods or energy levels?",
+      "starter": "Do you think winter affects people’s moods or energy levels?",
       "stem": "I think winter affects people by making them feel ___ because ___.",
       "followups": [
         "Does winter affect you personally?",
         "Is there a way to fix or balance those feelings?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
       "id": "fluency-fluency-winter-conversation-starters-012",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Best Recent Winter Memory",
-      "starter": "What\u2019s the best winter memory you\u2019ve had in the last few years?",
+      "starter": "What’s the best winter memory you’ve had in the last few years?",
       "stem": "A favorite winter memory I have is ___ because ___.",
       "followups": [
         "Who was with you?",
         "Would you want that to happen again?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
       "id": "fluency-fluency-winter-conversation-starters-013",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "title": "Winter Activity You Wish You Liked",
-      "starter": "What winter activity do you wish you liked, but you really don\u2019t?",
-      "stem": "I wish I liked ___, but I don\u2019t because ___.",
+      "starter": "What winter activity do you wish you liked, but you really don’t?",
+      "stem": "I wish I liked ___, but I don’t because ___.",
       "followups": [
         "What would make it more enjoyable?",
         "Do your friends like it?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -414,6 +559,10 @@ window.ActivityData.fluency = {
       "followups": [
         "What would you want to see or do there?",
         "Would you go alone or with someone?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -425,6 +574,10 @@ window.ActivityData.fluency = {
       "followups": [
         "When was the last time you noticed it?",
         "Does it help you focus, calm down, or something else?"
+      ],
+      "level": "medium",
+      "tags": [
+        "winter"
       ]
     },
     {
@@ -436,7 +589,11 @@ window.ActivityData.fluency = {
         "phrase": "fun {a}",
         "sentence": "My favorite winter activity is {a}.",
         "extended": "My favorite winter activity is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-002",
@@ -447,7 +604,11 @@ window.ActivityData.fluency = {
         "phrase": "warm {a}",
         "sentence": "When it is cold, I like to drink {a}.",
         "extended": "When it is cold, I like to drink {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-003",
@@ -458,7 +619,11 @@ window.ActivityData.fluency = {
         "phrase": "playing with {a}",
         "sentence": "I like to play in the snow with {a}.",
         "extended": "I like to play in the snow with {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-004",
@@ -469,7 +634,11 @@ window.ActivityData.fluency = {
         "phrase": "put on {a}",
         "sentence": "Before I go outside in winter, I put on {a}.",
         "extended": "Before I go outside in winter, I put on {a} so that ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-005",
@@ -480,7 +649,11 @@ window.ActivityData.fluency = {
         "phrase": "resting in {a}",
         "sentence": "On a chilly day, I like to relax in {a}.",
         "extended": "On a chilly day, I like to relax in {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-006",
@@ -491,7 +664,11 @@ window.ActivityData.fluency = {
         "phrase": "the {a}",
         "sentence": "In winter, I notice {a}.",
         "extended": "In winter, I notice {a} and it makes me feel ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-007",
@@ -502,7 +679,11 @@ window.ActivityData.fluency = {
         "phrase": "snow day {a}",
         "sentence": "On a snow day, I hope to {a}.",
         "extended": "On a snow day, I hope to {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-008",
@@ -513,7 +694,11 @@ window.ActivityData.fluency = {
         "phrase": "goal: {a}",
         "sentence": "One goal for winter break is {a}.",
         "extended": "One goal for winter break is {a} so that ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-009",
@@ -524,7 +709,11 @@ window.ActivityData.fluency = {
         "phrase": "warm {a}",
         "sentence": "On a cold day, I like to eat {a}.",
         "extended": "On a cold day, I like to eat {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-010",
@@ -535,7 +724,11 @@ window.ActivityData.fluency = {
         "phrase": "cozy {a}",
         "sentence": "The winter clothing that feels coziest is {a}.",
         "extended": "The winter clothing that feels coziest is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-011",
@@ -546,7 +739,11 @@ window.ActivityData.fluency = {
         "phrase": "indoor {a}",
         "sentence": "When it is snowy, I enjoy {a} inside.",
         "extended": "When it is snowy, I enjoy {a} inside because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-012",
@@ -557,7 +754,11 @@ window.ActivityData.fluency = {
         "phrase": "visit {a}",
         "sentence": "In winter, I would like to visit {a}.",
         "extended": "In winter, I would like to visit {a} so that ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-013",
@@ -568,7 +769,11 @@ window.ActivityData.fluency = {
         "phrase": "help by {a}",
         "sentence": "On an icy day, I can help by {a}.",
         "extended": "On an icy day, I can help by {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-014",
@@ -579,7 +784,11 @@ window.ActivityData.fluency = {
         "phrase": "hearing {a}",
         "sentence": "A winter sound I like to hear is {a}.",
         "extended": "A winter sound I like to hear is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "winter"
+      ]
     },
     {
       "id": "fluency-fluency-winter-015",
@@ -590,7 +799,11 @@ window.ActivityData.fluency = {
         "phrase": "best part: {a}",
         "sentence": "The best part of a snowy morning is {a}.",
         "extended": "The best part of a snowy morning is {a} because ____."
-      }
+      },
+      "level": "medium",
+      "tags": [
+        "fluency-winter"
+      ]
     },
     {
       "id": "gratitude",
@@ -606,6 +819,10 @@ window.ActivityData.fluency = {
         "What changed from last year?",
         "Who helped you the most?",
         "How did you show thanks?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -622,6 +839,10 @@ window.ActivityData.fluency = {
         "Which idea is fastest to make?",
         "What ingredients do you need?",
         "Who will enjoy each idea the most?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -638,6 +859,10 @@ window.ActivityData.fluency = {
         "What time does each start?",
         "Who wants to watch each one?",
         "Can you split the time fairly?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -654,6 +879,10 @@ window.ActivityData.fluency = {
         "What would you change next time?",
         "Who helped solve the problem?",
         "What was the best part of the trip?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -670,6 +899,10 @@ window.ActivityData.fluency = {
         "How did the tradition start?",
         "What makes it special?",
         "Would you change or add anything?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -683,9 +916,13 @@ window.ActivityData.fluency = {
         "sequence"
       ],
       "followUps": [
-        "Which tasks match each person\u2019s strengths?",
+        "Which tasks match each person’s strengths?",
         "What needs to happen first?",
         "How will you know the job is done well?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -702,6 +939,10 @@ window.ActivityData.fluency = {
         "Which step is most important?",
         "How do you know it is done?",
         "What can go wrong and how do you fix it?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -718,6 +959,10 @@ window.ActivityData.fluency = {
         "Who should get a card and why?",
         "What message will you include?",
         "How will you deliver them?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -734,6 +979,10 @@ window.ActivityData.fluency = {
         "What info should you share ahead of time?",
         "What activities can include everyone?",
         "How will you check in during the meal?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     },
     {
@@ -750,6 +999,10 @@ window.ActivityData.fluency = {
         "What options are fair?",
         "How can both people feel heard?",
         "What words can you use to stay calm?"
+      ],
+      "level": "medium",
+      "tags": [
+        "thanksgiving-conversation-fluency-artic"
       ]
     }
   ],
@@ -798,7 +1051,7 @@ window.ActivityData.fluency = {
       "id": "pw-005",
       "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
       "word": "lightly",
-      "syllables": "lllllliiight \u2014 llllllyyyyyy",
+      "syllables": "lllllliiight — llllllyyyyyy",
       "level": "medium",
       "tags": [
         "gentle-onset"
@@ -808,7 +1061,7 @@ window.ActivityData.fluency = {
       "id": "pw-006",
       "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
       "word": "freeing",
-      "syllables": "frrrrreeeeee \u2014 iiiiiinnnggg",
+      "syllables": "frrrrreeeeee — iiiiiinnnggg",
       "level": "medium",
       "tags": [
         "gentle-onset"
@@ -818,7 +1071,7 @@ window.ActivityData.fluency = {
       "id": "pw-007",
       "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
       "word": "gently",
-      "syllables": "geeeeennnnnt \u2014 llllllyyyyyy",
+      "syllables": "geeeeennnnnt — llllllyyyyyy",
       "level": "medium",
       "tags": [
         "gentle-onset"
@@ -828,7 +1081,7 @@ window.ActivityData.fluency = {
       "id": "pw-008",
       "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
       "word": "easy",
-      "syllables": "eeeeeeaaaaaa \u2014 ssssssyyyyyy",
+      "syllables": "eeeeeeaaaaaa — ssssssyyyyyy",
       "level": "medium",
       "tags": [
         "gentle-onset"
@@ -838,7 +1091,7 @@ window.ActivityData.fluency = {
       "id": "pw-009",
       "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
       "word": "softly",
-      "syllables": "sssssooooft \u2014 llllllyyyyyy",
+      "syllables": "sssssooooft — llllllyyyyyy",
       "level": "medium",
       "tags": [
         "gentle-onset"
@@ -848,7 +1101,7 @@ window.ActivityData.fluency = {
       "id": "pw-010",
       "sourceFile": "activities/fluency/fluency-therapy-session-activity.html",
       "word": "smoothly",
-      "syllables": "sssssmooooth \u2014 llllllyyyyyy",
+      "syllables": "sssssmooooth — llllllyyyyyy",
       "level": "medium",
       "tags": [
         "gentle-onset"

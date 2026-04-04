@@ -21,6 +21,10 @@
         "They designed posters, recorded short videos, and handed out flyers at soccer practice.",
         "The principal matched every dollar they raised, and the library reopened with new books.",
         "Ms. Patel thanked the community and explained how fresh stories keep readers curious."
+      ],
+      "level": "medium",
+      "tags": [
+        "authors-purpose-persuade-the-town-to-care-about-reading-spaces"
       ]
     },
     {
@@ -35,6 +39,10 @@
         "At first it felt silly, but the players started laughing instead of blaming each other.",
         "They played their next game calmly, and even though they were tired, they finished strong.",
         "Coach Rivera said winning matters less than playing like a family."
+      ],
+      "level": "medium",
+      "tags": [
+        "theme-hard-work-and-teamwork-build-trust"
       ]
     },
     {
@@ -49,6 +57,10 @@
         "Mia was nervous, but she created clear slides that explained the problem and suggested a solution.",
         "The city agreed to inspect the pipes, and a nearby laundromat fixed its waste tank.",
         "Mia felt proud that her curiosity helped keep the river clean."
+      ],
+      "level": "medium",
+      "tags": [
+        "main-idea-curiosity-leads-to-discovery"
       ]
     },
     {
@@ -63,6 +75,10 @@
         "Musicians from the high school jazz club play upbeat songs while people work.",
         "By lunchtime, the volunteers fill baskets for the food pantry.",
         "Neighbors go home with recipes, and the garden stays open late for anyone who wants to visit."
+      ],
+      "level": "medium",
+      "tags": [
+        "authors-purpose-inform-how-teamwork-improved-the-neighborhood"
       ]
     },
     {
@@ -76,7 +92,11 @@
         "children",
         "childen"
       ],
-      "correct": "children"
+      "correct": "children",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 2,
@@ -89,7 +109,11 @@
         "feets",
         "feet"
       ],
-      "correct": "feet"
+      "correct": "feet",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 3,
@@ -102,7 +126,11 @@
         "leaves",
         "leafes"
       ],
-      "correct": "leaves"
+      "correct": "leaves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 4,
@@ -115,7 +143,11 @@
         "bushies",
         "bushes"
       ],
-      "correct": "bushes"
+      "correct": "bushes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 5,
@@ -128,7 +160,11 @@
         "geese",
         "goosies"
       ],
-      "correct": "geese"
+      "correct": "geese",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 6,
@@ -141,7 +177,11 @@
         "foxies",
         "foxes"
       ],
-      "correct": "foxes"
+      "correct": "foxes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 7,
@@ -154,7 +194,11 @@
         "mices",
         "mice"
       ],
-      "correct": "mice"
+      "correct": "mice",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 8,
@@ -167,7 +211,11 @@
         "teeths",
         "teeth"
       ],
-      "correct": "teeth"
+      "correct": "teeth",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 9,
@@ -180,7 +228,11 @@
         "berres",
         "berries"
       ],
-      "correct": "berries"
+      "correct": "berries",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 10,
@@ -193,7 +245,11 @@
         "shelfes",
         "shelves"
       ],
-      "correct": "shelves"
+      "correct": "shelves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 11,
@@ -206,7 +262,11 @@
         "wolfes",
         "wolves"
       ],
-      "correct": "wolves"
+      "correct": "wolves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 12,
@@ -219,7 +279,11 @@
         "fishies",
         "fish"
       ],
-      "correct": "fish"
+      "correct": "fish",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 13,
@@ -232,7 +296,11 @@
         "toweles",
         "towelies"
       ],
-      "correct": "towels"
+      "correct": "towels",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 14,
@@ -245,7 +313,11 @@
         "chairies",
         "chairs"
       ],
-      "correct": "chairs"
+      "correct": "chairs",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 15,
@@ -258,7 +330,11 @@
         "sandals",
         "sandalis"
       ],
-      "correct": "sandals"
+      "correct": "sandals",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 16,
@@ -271,7 +347,11 @@
         "seagulles",
         "seagullies"
       ],
-      "correct": "seagulls"
+      "correct": "seagulls",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 17,
@@ -284,7 +364,11 @@
         "sandwichies",
         "sandwiches"
       ],
-      "correct": "sandwiches"
+      "correct": "sandwiches",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 18,
@@ -297,7 +381,11 @@
         "crabes",
         "crabies"
       ],
-      "correct": "crabs"
+      "correct": "crabs",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 19,
@@ -310,7 +398,11 @@
         "umbrellas",
         "umbrellies"
       ],
-      "correct": "umbrellas"
+      "correct": "umbrellas",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 20,
@@ -323,7 +415,11 @@
         "shelles",
         "shellies"
       ],
-      "correct": "shells"
+      "correct": "shells",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 21,
@@ -336,7 +432,11 @@
         "pebblies",
         "pebbeles"
       ],
-      "correct": "pebbles"
+      "correct": "pebbles",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 22,
@@ -349,7 +449,11 @@
         "backpackies",
         "backpacks"
       ],
-      "correct": "backpacks"
+      "correct": "backpacks",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 23,
@@ -362,7 +466,11 @@
         "displayies",
         "displays"
       ],
-      "correct": "displays"
+      "correct": "displays",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 24,
@@ -375,7 +483,11 @@
         "studentes",
         "studenties"
       ],
-      "correct": "students"
+      "correct": "students",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 25,
@@ -388,7 +500,11 @@
         "weekes",
         "weekies"
       ],
-      "correct": "weeks"
+      "correct": "weeks",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 26,
@@ -401,7 +517,11 @@
         "people",
         "personnes"
       ],
-      "correct": "people"
+      "correct": "people",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 27,
@@ -414,7 +534,11 @@
         "formationnes",
         "formationies"
       ],
-      "correct": "formations"
+      "correct": "formations",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 28,
@@ -427,7 +551,11 @@
         "jares",
         "jaries"
       ],
-      "correct": "jars"
+      "correct": "jars",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 29,
@@ -440,7 +568,11 @@
         "volcanoes",
         "volcanies"
       ],
-      "correct": "volcanoes"
+      "correct": "volcanoes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 30,
@@ -453,7 +585,11 @@
         "womens",
         "women"
       ],
-      "correct": "women"
+      "correct": "women",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 31,
@@ -466,7 +602,11 @@
         "aislees",
         "aislies"
       ],
-      "correct": "aisles"
+      "correct": "aisles",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 32,
@@ -479,7 +619,11 @@
         "notes",
         "noties"
       ],
-      "correct": "notes"
+      "correct": "notes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 33,
@@ -492,7 +636,11 @@
         "cactuss",
         "cacti"
       ],
-      "correct": "cacti"
+      "correct": "cacti",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 34,
@@ -505,7 +653,11 @@
         "plantes",
         "planties"
       ],
-      "correct": "plants"
+      "correct": "plants",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 35,
@@ -518,7 +670,11 @@
         "trophes",
         "trophies"
       ],
-      "correct": "trophies"
+      "correct": "trophies",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 36,
@@ -531,7 +687,11 @@
         "teams",
         "teamies"
       ],
-      "correct": "teams"
+      "correct": "teams",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 37,
@@ -544,7 +704,11 @@
         "dishies",
         "dishes"
       ],
-      "correct": "dishes"
+      "correct": "dishes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 38,
@@ -557,7 +721,11 @@
         "boxes",
         "boxies"
       ],
-      "correct": "boxes"
+      "correct": "boxes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 39,
@@ -570,7 +738,11 @@
         "canes",
         "canies"
       ],
-      "correct": "cans"
+      "correct": "cans",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 40,
@@ -583,7 +755,11 @@
         "potatoies",
         "potatoes"
       ],
-      "correct": "potatoes"
+      "correct": "potatoes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 41,
@@ -596,7 +772,11 @@
         "loafes",
         "loaves"
       ],
-      "correct": "loaves"
+      "correct": "loaves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 42,
@@ -609,7 +789,11 @@
         "beanes",
         "beanies"
       ],
-      "correct": "beans"
+      "correct": "beans",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 43,
@@ -622,7 +806,11 @@
         "olivies",
         "olives"
       ],
-      "correct": "olives"
+      "correct": "olives",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 44,
@@ -635,7 +823,11 @@
         "poties",
         "pots"
       ],
-      "correct": "pots"
+      "correct": "pots",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 45,
@@ -648,7 +840,11 @@
         "knifes",
         "knives"
       ],
-      "correct": "knives"
+      "correct": "knives",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 46,
@@ -661,7 +857,11 @@
         "bussies",
         "buses"
       ],
-      "correct": "buses"
+      "correct": "buses",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 47,
@@ -674,7 +874,11 @@
         "permission slips",
         "permission slipes"
       ],
-      "correct": "permission slips"
+      "correct": "permission slips",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 48,
@@ -687,7 +891,11 @@
         "lunch boxs",
         "lunch boxes"
       ],
-      "correct": "lunch boxes"
+      "correct": "lunch boxes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 49,
@@ -700,7 +908,11 @@
         "giraffie",
         "giraffes"
       ],
-      "correct": "giraffes"
+      "correct": "giraffes",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 50,
@@ -713,7 +925,11 @@
         "neckies",
         "necks"
       ],
-      "correct": "necks"
+      "correct": "necks",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 51,
@@ -726,7 +942,11 @@
         "oxs",
         "oxen"
       ],
-      "correct": "oxen"
+      "correct": "oxen",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 52,
@@ -739,7 +959,11 @@
         "flies",
         "flyes"
       ],
-      "correct": "flies"
+      "correct": "flies",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 53,
@@ -752,7 +976,11 @@
         "terrariums",
         "terrariums"
       ],
-      "correct": "terrariums"
+      "correct": "terrariums",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 54,
@@ -765,7 +993,11 @@
         "lizardies",
         "lizards"
       ],
-      "correct": "lizards"
+      "correct": "lizards",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 55,
@@ -778,7 +1010,11 @@
         "geckies",
         "geckos"
       ],
-      "correct": "geckos"
+      "correct": "geckos",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 56,
@@ -791,7 +1027,11 @@
         "pythonies",
         "pythons"
       ],
-      "correct": "pythons"
+      "correct": "pythons",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 57,
@@ -804,7 +1044,11 @@
         "facies",
         "faces"
       ],
-      "correct": "faces"
+      "correct": "faces",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 58,
@@ -817,7 +1061,11 @@
         "deeries",
         "deer"
       ],
-      "correct": "deer"
+      "correct": "deer",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 59,
@@ -830,7 +1078,11 @@
         "calfes",
         "calves"
       ],
-      "correct": "calves"
+      "correct": "calves",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 60,
@@ -843,7 +1095,11 @@
         "handes",
         "handies"
       ],
-      "correct": "hands"
+      "correct": "hands",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": 61,
@@ -856,7 +1112,11 @@
         "tripies",
         "trips"
       ],
-      "correct": "trips"
+      "correct": "trips",
+      "level": "medium",
+      "tags": [
+        "identifying-plural-nouns"
+      ]
     },
     {
       "id": "grammar-past-tense-hybrid-001",
@@ -881,6 +1141,10 @@
             "walking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -906,6 +1170,10 @@
             "playing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -931,6 +1199,10 @@
             "helping"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -956,6 +1228,10 @@
             "watching"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -981,6 +1257,10 @@
             "painting"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1006,6 +1286,10 @@
             "cleaning"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1031,6 +1315,10 @@
             "talking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1056,6 +1344,10 @@
             "cooking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1081,6 +1373,10 @@
             "jumping"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1106,6 +1402,10 @@
             "climbing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1131,6 +1431,10 @@
             "dancing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1156,6 +1460,10 @@
             "laughing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1181,6 +1489,10 @@
             "calling"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1206,6 +1518,10 @@
             "working"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1231,6 +1547,10 @@
             "studying"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1256,6 +1576,10 @@
             "listening"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1281,6 +1605,10 @@
             "answering"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1306,6 +1634,10 @@
             "opening"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1331,6 +1663,10 @@
             "eating"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1356,6 +1692,10 @@
             "going"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1381,6 +1721,10 @@
             "running"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1406,6 +1750,10 @@
             "swimming"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1431,6 +1779,10 @@
             "flying"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1456,6 +1808,10 @@
             "singing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1481,6 +1837,10 @@
             "writing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1506,6 +1866,10 @@
             "drawing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1531,6 +1895,10 @@
             "knowing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1556,6 +1924,10 @@
             "taking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1581,6 +1953,10 @@
             "seeing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1606,6 +1982,10 @@
             "buying"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1631,6 +2011,10 @@
             "bringing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1656,6 +2040,10 @@
             "thinking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1681,6 +2069,10 @@
             "catching"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1706,6 +2098,10 @@
             "teaching"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1731,6 +2127,10 @@
             "finding"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1756,6 +2156,10 @@
             "making"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1781,6 +2185,10 @@
             "saying"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1806,6 +2214,10 @@
             "telling"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1831,6 +2243,10 @@
             "giving"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1856,6 +2272,10 @@
             "getting"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1881,6 +2301,10 @@
             "coming"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1906,6 +2330,10 @@
             "breaking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1931,6 +2359,10 @@
             "speaking"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1956,6 +2388,10 @@
             "wearing"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -1981,6 +2417,10 @@
             "feeling"
           ]
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "past-tense-hybrid"
       ]
     },
     {
@@ -2022,6 +2462,10 @@
           ],
           "answer": 2
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2063,6 +2507,10 @@
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2104,6 +2552,10 @@
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2145,6 +2597,10 @@
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2186,6 +2642,10 @@
           ],
           "answer": 0
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2227,6 +2687,10 @@
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2268,6 +2732,10 @@
           ],
           "answer": 0
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2309,6 +2777,10 @@
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2350,6 +2822,10 @@
           ],
           "answer": 0
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2391,6 +2867,10 @@
           ],
           "answer": 1
         }
+      ],
+      "level": "medium",
+      "tags": [
+        "plural-noun-stories"
       ]
     },
     {
@@ -2405,7 +2885,11 @@
         "mouses",
         "mousies"
       ],
-      "color": "#ef4444"
+      "color": "#ef4444",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-002",
@@ -2418,7 +2902,11 @@
         "childs",
         "childes"
       ],
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-003",
@@ -2431,7 +2919,11 @@
         "foots",
         "feets"
       ],
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-004",
@@ -2445,7 +2937,11 @@
         "gooses",
         "goosies"
       ],
-      "color": "#10b981"
+      "color": "#10b981",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-005",
@@ -2459,7 +2955,11 @@
         "tooths",
         "toothes"
       ],
-      "color": "#f59e0b"
+      "color": "#f59e0b",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-006",
@@ -2473,7 +2973,11 @@
         "sheeps",
         "sheepes"
       ],
-      "color": "#84cc16"
+      "color": "#84cc16",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-007",
@@ -2486,7 +2990,11 @@
         "mans",
         "manes"
       ],
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-008",
@@ -2499,7 +3007,11 @@
         "womans",
         "womanes"
       ],
-      "color": "#ec4899"
+      "color": "#ec4899",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-009",
@@ -2513,7 +3025,11 @@
         "persons",
         "peoples"
       ],
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-010",
@@ -2527,7 +3043,11 @@
         "deers",
         "deeres"
       ],
-      "color": "#84cc16"
+      "color": "#84cc16",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-011",
@@ -2541,7 +3061,11 @@
         "fishs",
         "fishes"
       ],
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-012",
@@ -2554,7 +3078,11 @@
         "oxs",
         "oxes"
       ],
-      "color": "#92400e"
+      "color": "#92400e",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-013",
@@ -2567,7 +3095,11 @@
         "cates",
         "catses"
       ],
-      "color": "#3b82f6"
+      "color": "#3b82f6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-014",
@@ -2581,7 +3113,11 @@
         "doges",
         "dogges"
       ],
-      "color": "#f97316"
+      "color": "#f97316",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-015",
@@ -2595,7 +3131,11 @@
         "bookes",
         "bookies"
       ],
-      "color": "#6366f1"
+      "color": "#6366f1",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-016",
@@ -2609,7 +3149,11 @@
         "boxs",
         "boxies"
       ],
-      "color": "#ec4899"
+      "color": "#ec4899",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-017",
@@ -2622,7 +3166,11 @@
         "buss",
         "busies"
       ],
-      "color": "#14b8a6"
+      "color": "#14b8a6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-018",
@@ -2636,7 +3184,11 @@
         "dishs",
         "dishies"
       ],
-      "color": "#a855f7"
+      "color": "#a855f7",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-019",
@@ -2649,7 +3201,11 @@
         "cares",
         "carses"
       ],
-      "color": "#dc2626"
+      "color": "#dc2626",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-020",
@@ -2662,7 +3218,11 @@
         "treses",
         "treeses"
       ],
-      "color": "#16a34a"
+      "color": "#16a34a",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-021",
@@ -2676,7 +3236,11 @@
         "housen",
         "housies"
       ],
-      "color": "#ca8a04"
+      "color": "#ca8a04",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-022",
@@ -2689,7 +3253,11 @@
         "glasss",
         "glassen"
       ],
-      "color": "#0ea5e9"
+      "color": "#0ea5e9",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-023",
@@ -2703,7 +3271,11 @@
         "watchs",
         "watchen"
       ],
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-024",
@@ -2716,7 +3288,11 @@
         "babys",
         "babyses"
       ],
-      "color": "#f472b6"
+      "color": "#f472b6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-025",
@@ -2730,7 +3306,11 @@
         "citys",
         "cityses"
       ],
-      "color": "#64748b"
+      "color": "#64748b",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-026",
@@ -2744,7 +3324,11 @@
         "leafs",
         "leaveses"
       ],
-      "color": "#22c55e"
+      "color": "#22c55e",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-027",
@@ -2758,7 +3342,11 @@
         "loafs",
         "loavies"
       ],
-      "color": "#f97316"
+      "color": "#f97316",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-028",
@@ -2772,7 +3360,11 @@
         "wolfs",
         "wolfes"
       ],
-      "color": "#0ea5e9"
+      "color": "#0ea5e9",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-029",
@@ -2786,7 +3378,11 @@
         "knifes",
         "knivies"
       ],
-      "color": "#ef4444"
+      "color": "#ef4444",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-030",
@@ -2800,7 +3396,11 @@
         "shelfs",
         "shelvies"
       ],
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-031",
@@ -2814,7 +3414,11 @@
         "elfs",
         "elvies"
       ],
-      "color": "#ec4899"
+      "color": "#ec4899",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-032",
@@ -2828,7 +3432,11 @@
         "thiefs",
         "thievs"
       ],
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-033",
@@ -2842,7 +3450,11 @@
         "lifes",
         "lifves"
       ],
-      "color": "#facc15"
+      "color": "#facc15",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-034",
@@ -2856,7 +3468,11 @@
         "cactuses",
         "cacties"
       ],
-      "color": "#10b981"
+      "color": "#10b981",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-035",
@@ -2870,7 +3486,11 @@
         "funguses",
         "fungies"
       ],
-      "color": "#a855f7"
+      "color": "#a855f7",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-036",
@@ -2884,7 +3504,11 @@
         "fairys",
         "fairries"
       ],
-      "color": "#f472b6"
+      "color": "#f472b6",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-037",
@@ -2898,7 +3522,11 @@
         "cherrys",
         "cherryes"
       ],
-      "color": "#e11d48"
+      "color": "#e11d48",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-038",
@@ -2912,7 +3540,11 @@
         "puppys",
         "puppyes"
       ],
-      "color": "#0ea5e9"
+      "color": "#0ea5e9",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-039",
@@ -2926,7 +3558,11 @@
         "monkies",
         "monkeyses"
       ],
-      "color": "#22d3ee"
+      "color": "#22d3ee",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-040",
@@ -2940,7 +3576,11 @@
         "toyies",
         "toies"
       ],
-      "color": "#6366f1"
+      "color": "#6366f1",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-041",
@@ -2954,7 +3594,11 @@
         "floweres",
         "flours"
       ],
-      "color": "#ec4899"
+      "color": "#ec4899",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-042",
@@ -2968,7 +3612,11 @@
         "sandwichs",
         "sandwichies"
       ],
-      "color": "#fb7185"
+      "color": "#fb7185",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-043",
@@ -2982,7 +3630,11 @@
         "beachs",
         "beches"
       ],
-      "color": "#38bdf8"
+      "color": "#38bdf8",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-044",
@@ -2996,7 +3648,11 @@
         "heros",
         "heroies"
       ],
-      "color": "#7c3aed"
+      "color": "#7c3aed",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-045",
@@ -3010,7 +3666,11 @@
         "potatos",
         "potatoess"
       ],
-      "color": "#f97316"
+      "color": "#f97316",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-046",
@@ -3024,7 +3684,11 @@
         "tomatos",
         "tomatoeses"
       ],
-      "color": "#ef4444"
+      "color": "#ef4444",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-047",
@@ -3038,7 +3702,11 @@
         "echos",
         "echoies"
       ],
-      "color": "#a855f7"
+      "color": "#a855f7",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-048",
@@ -3052,7 +3720,11 @@
         "pianoes",
         "pianoses"
       ],
-      "color": "#1d4ed8"
+      "color": "#1d4ed8",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-049",
@@ -3066,7 +3738,11 @@
         "photoes",
         "photoses"
       ],
-      "color": "#f59e0b"
+      "color": "#f59e0b",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "id": "grammar-plural-nouns-practice-050",
@@ -3080,7 +3756,11 @@
         "storys",
         "storyes"
       ],
-      "color": "#2563eb"
+      "color": "#2563eb",
+      "level": "medium",
+      "tags": [
+        "plural-nouns-practice"
+      ]
     },
     {
       "0": {
@@ -3710,7 +4390,11 @@
       },
       "id": "grammar-sentence-breakdown-paraphrasing-001",
       "sourceFile": "activities/grammar/sentence-breakdown-paraphrasing.html",
-      "key": "items"
+      "key": "items",
+      "level": "medium",
+      "tags": [
+        "sentence-breakdown-paraphrasing"
+      ]
     },
     {
       "id": "grammar-sentence-builder-elementary-001",
@@ -3724,6 +4408,10 @@
         "She was curious when...",
         "Curious people like to...",
         "My friend is curious about..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3738,6 +4426,10 @@
         "I felt brave when...",
         "She was brave because...",
         "The brave girl..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3752,6 +4444,10 @@
         "I feel cheerful when...",
         "She was cheerful because...",
         "A cheerful person..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3766,6 +4462,10 @@
         "We will discover...",
         "When I discover something...",
         "Scientists discover..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3780,6 +4480,10 @@
         "Can you imagine...",
         "She imagined...",
         "It's fun to imagine..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3794,6 +4498,10 @@
         "He was generous when...",
         "Being generous means...",
         "The generous teacher..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3808,6 +4516,10 @@
         "It was ordinary until...",
         "Ordinary things are...",
         "On an ordinary morning..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3822,6 +4534,10 @@
         "The precious jewel...",
         "Something precious to me is...",
         "This is precious because..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3836,6 +4552,10 @@
         "You should be careful...",
         "The careful student...",
         "Being careful helps..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3850,6 +4570,10 @@
         "The ancient castle...",
         "In ancient times...",
         "Ancient objects are..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3864,6 +4588,10 @@
         "I saw an enormous...",
         "Something enormous is...",
         "An enormous wave..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3878,6 +4606,10 @@
         "I think... is delicious because...",
         "A delicious meal...",
         "My mom made delicious..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3892,6 +4624,10 @@
         "She felt grateful when...",
         "Being grateful means...",
         "I'm grateful that..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3906,6 +4642,10 @@
         "I feel cozy when...",
         "A cozy place is...",
         "On cozy winter nights..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3920,6 +4660,10 @@
         "Swift animals can...",
         "I was swift when...",
         "A swift runner..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3934,6 +4678,10 @@
         "I felt gloomy when...",
         "Gloomy clouds...",
         "On gloomy mornings..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3948,6 +4696,10 @@
         "A sturdy bridge...",
         "Sturdy things are...",
         "We need something sturdy to..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3962,6 +4714,10 @@
         "I feel peaceful when...",
         "The peaceful afternoon...",
         "Peaceful means..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3976,6 +4732,10 @@
         "She accomplished...",
         "To accomplish this, I...",
         "People can accomplish..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -3990,6 +4750,10 @@
         "The confident speaker...",
         "Being confident helps...",
         "She was confident that..."
+      ],
+      "level": "easy",
+      "tags": [
+        "sentence-builder-elementary"
       ]
     },
     {
@@ -4004,6 +4768,10 @@
         "She became an advocate when...",
         "As an advocate of...",
         "The advocate argued that..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4018,6 +4786,10 @@
         "When we collaborate...",
         "Scientists collaborate because...",
         "The ability to collaborate is..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4032,6 +4804,10 @@
         "Her perspective changed when...",
         "Understanding different perspectives helps...",
         "The story was told from the perspective of..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4046,6 +4822,10 @@
         "Resilient people can...",
         "The community was resilient after...",
         "To become more resilient, I..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4060,6 +4840,10 @@
         "Innovative solutions can...",
         "The most innovative thing I've seen...",
         "Companies need innovative thinkers to..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4074,6 +4858,10 @@
         "Scientists analyze data to...",
         "To analyze the problem, we...",
         "After analyzing the situation..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4088,6 +4876,10 @@
         "I felt empathy when...",
         "Empathy is important because...",
         "People with empathy can..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4102,6 +4894,10 @@
         "A substantial amount of...",
         "The substantial evidence showed...",
         "He made substantial progress in..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4116,6 +4912,10 @@
         "An eloquent speaker can...",
         "He was eloquent when describing...",
         "The eloquent argument convinced..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4130,6 +4930,10 @@
         "Meticulous planning ensures...",
         "The meticulous detective...",
         "Being meticulous is important when..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4144,6 +4948,10 @@
         "This creates a paradox because...",
         "One interesting paradox in life...",
         "The story presents a paradox when..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4158,6 +4966,10 @@
         "The scientist's hypothesis suggested...",
         "To test the hypothesis...",
         "Based on the hypothesis..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4172,6 +4984,10 @@
         "The legitimate winner was...",
         "He had legitimate reasons to...",
         "A legitimate business must..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4186,6 +5002,10 @@
         "Ambiguous instructions can...",
         "The ambiguous statement led to...",
         "When something is ambiguous..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4200,6 +5020,10 @@
         "While contemplating the question...",
         "He often contemplates...",
         "It's worth contemplating whether..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4214,6 +5038,10 @@
         "He was diligent in his efforts to...",
         "Diligent work habits include...",
         "Being diligent means..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4228,6 +5056,10 @@
         "Change is inevitable because...",
         "The inevitable result was...",
         "We knew it was inevitable when..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4242,6 +5074,10 @@
         "After scrutinizing the evidence...",
         "Experts scrutinize data to...",
         "When you scrutinize something..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4256,6 +5092,10 @@
         "Compassion is important because...",
         "Acts of compassion include...",
         "I felt compassion when..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     },
     {
@@ -4270,6 +5110,10 @@
         "To enhance my skills, I...",
         "Technology can enhance learning by...",
         "We can enhance the experience by..."
+      ],
+      "level": "medium",
+      "tags": [
+        "sentence-builder-middle-school"
       ]
     }
   ],
