@@ -381,6 +381,24 @@
             color: var(--text-muted);
             margin: 0;
         }
+        .category-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            background: var(--border-color);
+            color: var(--text-muted);
+        }
+        .category-badge.category-reading     { background: #dbeafe; color: #1d4ed8; }
+        .category-badge.category-vocabulary  { background: #fef9c3; color: #854d0e; }
+        .category-badge.category-social      { background: #fce7f3; color: #9d174d; }
+        .category-badge.category-grammar     { background: #dcfce7; color: #166534; }
+        .category-badge.category-articulation { background: #ede9fe; color: #5b21b6; }
+        .category-badge.category-fluency     { background: #ffedd5; color: #9a3412; }
     </style>
 </head>
 
@@ -407,13 +425,6 @@
             </div>
         </div>
 
-        <div id="featuredSection">
-            <h3 class="section-title">✨ Featured & New</h3>
-            <div class="featured-row" id="featuredContainer">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-
         <h3 class="section-title" id="gridTitle">All Activities</h3>
         <div class="activities-grid" id="activitiesGrid">
             <!-- Populated by JS -->
@@ -421,1042 +432,68 @@
     </main>
 
     <script>
-        // Data block injected from original file
-        const activities = [
-            {
-                category: 'new-system',
-                title: '✨ New Activity System',
-                items: [
-                    {
-                        title: 'Word Definitions (New)',
-                        file: 'activity-loader.html?id=definitions',
-                        icon: '🎯',
-                        description: 'Match words to their meanings (uses new engine).',
-                        tags: ['New System', 'Vocabulary']
-                    },
-                    {
-                        title: 'Context Clues (New)',
-                        file: 'activity-loader.html?id=context-clues',
-                        icon: '🔍',
-                        description: 'Use clues to find meaning (uses new engine).',
-                        tags: ['New System', 'Context Clues']
-                    },
-                    {
-                        title: 'Sentence Breakdown & Paraphrasing',
-                        file: 'activities/grammar/sentence-breakdown-paraphrasing.html',
-                        icon: '🧩',
-                        description: 'Break sentences into parts and paraphrase them (New V2 Template).',
-                        tags: ['Syntax', 'Paraphrasing', 'V2 Template']
-                    }
-                ]
-            },
-            {
-                category: 'articulation',
-                title: 'Articulation & Phonology',
-                items: [
-                    {
-                        title: 'Articulation Practice - Drag & Drop',
-                        file: 'activities/articulation/articulation-practice.html',
-                        icon: '🎯',
-                        description: 'Drag words into sentences to practice target blends.',
-                        tags: ['Blends', 'Drag & Drop', 'Sentences']
-                    },
-                    {
-                        title: 'Articulation Practice - Sequential',
-                        file: 'activities/articulation/articulation-practice-sequential.html',
-                        icon: '🔄',
-                        description: 'Pick words one at a time to build sentences with target sounds.',
-                        tags: ['Blends', 'Sequential', 'Word Choice']
-                    },
-                    {
-                        title: 'Articulation Word Practice',
-                        file: 'activities/articulation/articulation-word-practice.html',
-                        icon: '🧠',
-                        description: 'Cycle through randomized word cards after previewing each blend/position.',
-                        tags: ['Word Level', 'Preview', 'Articulation']
-                    },
-                    {
-                        title: 'Articulation Sentence Creator',
-                        file: 'activities/articulation/articulation-make-your-own-sentence.html',
-                        icon: '✍️',
-                        description: 'Students choose a word and type their own sentence using it.',
-                        tags: ['Sentence Writing', 'Word Level', 'Articulation']
-                    },
-                    {
-                        title: 'Articulation Story Builder',
-                        file: 'activities/articulation/articulation-story-builder.html',
-                        icon: '📝',
-                        description: 'Select 2-4 target words and craft multi-sentence stories.',
-                        tags: ['Story Writing', 'Multi-Sentence', 'Creative']
-                    },
-                    {
-                        title: 'Articulation Paragraph Check-In',
-                        file: 'activities/articulation/articulation-paragraph-check-in.html',
-                        icon: '📄',
-                        description: 'Read one paragraph at a time, toggle target highlights, then self-rate each target word.',
-                        tags: ['Paragraph', 'Self-Rating', 'Highlights']
-                    },
-                    {
-                        title: 'Vocalic R Practice',
-                        file: 'activities/articulation/vocalic-r-practice.html',
-                        icon: '🗣️',
-                        description: 'Comprehensive practice for vocalic R sounds (ar, or, er, etc.).',
-                        tags: ['Vocalic R', 'R Sounds', 'Word Lists']
-                    },
-                    {
-                        title: 'Final L Blend Stories',
-                        file: 'activities/articulation/final-l-blend-stories-interactive.html',
-                        icon: '🔤',
-                        description: 'Interactive stories targeting final L blends.',
-                        tags: ['Blends', 'Reading', 'Articulation']
-                    }
-                ]
-            },
-            {
-                category: 'fluency',
-                title: 'Fluency & Speech Flow',
-                items: [
-                    {
-                        title: 'Fluency Therapy Session',
-                        file: 'activities/fluency/fluency-therapy-session-activity.html',
-                        icon: '🎯',
-                        description: 'Complete fluency session with gentle onset practice and mindset work.',
-                        tags: ['Fluency', 'Gentle Onset', 'Self-Awareness']
-                    },
-                    {
-                        title: 'Thanksgiving Fluency Prompts',
-                        file: 'activities/fluency/fluency-thanksgiving.html',
-                        icon: '🦃',
-                        description: 'Pick a Thanksgiving question, choose level, and read the prompt for practice.',
-                        tags: ['Fluency', 'Thanksgiving', 'Speaking']
-                    },
-                    {
-                        title: 'Winter Fluency Prompts',
-                        file: 'activities/fluency/fluency-winter.html',
-                        icon: '❄️',
-                        description: 'Pick a winter question, choose level, and read the prompt for practice.',
-                        tags: ['Fluency', 'Winter', 'Speaking']
-                    },
-                    {
-                        title: 'Spring Fluency Prompts',
-                        file: 'activities/fluency/fluency-spring.html',
-                        icon: '🌸',
-                        description: 'Pick a spring question, choose level, and read the prompt for practice.',
-                        tags: ['Fluency', 'Spring', 'Speaking']
-                    },
-                    {
-                        title: 'Winter Conversation Starters – Fluency',
-                        file: 'activities/fluency/fluency-winter-conversation-starters.html',
-                        icon: '🧊',
-                        description: '15 HS-friendly winter starters with stems, follow-up chips, and complexity picks for structured fluency practice.',
-                        tags: ['Fluency', 'Winter', 'Conversation']
-                    },
-                    {
-                        title: 'Thanksgiving Conversation – Fluency + Articulation',
-                        file: 'activities/fluency/thanksgiving-conversation-fluency-artic.html',
-                        icon: '🗣️',
-                        description: 'Paired conversation prompts: one student uses a fluency strategy while the other self-corrects articulation.',
-                        tags: ['Fluency', 'Articulation', 'Conversation']
-                    },
-                    {
-                        title: 'Fight-or-Flight & Stuttering',
-                        file: 'activities/fluency/stuttering-fight-flight-activity.html',
-                        icon: '🛡️',
-                        description: 'Simple explainer plus fill-in boxes for difficult, scary, embarrassing, and exhausting parts of stuttering.',
-                        tags: ['Fluency', 'Education', 'Self-Reflection']
-                    },
-                    {
-                        title: 'Share Your Stutter',
-                        file: 'activities/fluency/share-your-stutter-activity.html',
-                        icon: '🗣️',
-                        description: 'Build a short stutter-sharing script and practice starters and activities.',
-                        tags: ['Fluency', 'Self-Advocacy', 'Communication']
-                    }
-                ]
-            },
-            {
-                category: 'grammar',
-                title: 'Grammar & Morphology',
-                items: [
-                    {
-                        title: 'Add an Adjective',
-                        file: 'add-an-adjective.html',
-                        icon: '🖍️',
-                        description: 'Add a descriptive word to complete sentences about pictures.',
-                        tags: ['Adjectives', 'Grammar', 'Sentence Building']
-                    },
-                    {
-                        title: 'Past Tense Hybrid',
-                        file: 'activities/grammar/past-tense-hybrid.html',
-                        icon: '⏮️',
-                        description: 'Practice regular and irregular past tense verb forms.',
-                        tags: ['Past Tense', 'Grammar', 'Verbs']
-                    },
-                    {
-                        title: 'Plural Nouns Practice',
-                        file: 'activities/grammar/plural-nouns-practice.html',
-                        icon: '📦',
-                        description: 'Form regular and irregular plural nouns with scaffolds.',
-                        tags: ['Plurals', 'Grammar', 'Nouns']
-                    },
-                    {
-                        title: 'Plural Noun Fill-In Stories',
-                        file: 'activities/grammar/plural-noun-stories.html',
-                        icon: '📝',
-                        description: 'Fill in the blanks with correct plural nouns (choices + hints).',
-                        tags: ['Plurals', 'Grammar', 'Stories']
-                    },
-                    {
-                        title: 'Identifying Plural Nouns',
-                        file: 'activities/grammar/identifying-plural-nouns.html',
-                        icon: '📝',
-                        description: 'Find the correct plural form of the bolded noun (Hints & Choices).',
-                        tags: ['Plurals', 'Grammar', 'Nouns']
-                    },
-                    {
-                        title: 'Understanding Negation',
-                        file: 'activities/grammar/understanding-negation.html',
-                        icon: '❌',
-                        description: 'Identify the correct image that matches the negated sentence.',
-                        tags: ['Negation', 'Grammar', 'Visual Choices']
-                    }
-                ]
-            },
-            {
-                category: 'vocabulary',
-                title: 'Vocabulary & Word Relationships',
-                items: [
-                    {
-                        title: 'Sorting Categories',
-                        file: 'activities/vocabulary/sorting-categories.html',
-                        icon: '🗂️',
-                        description: 'Sort various picture sets into their correct categories via drag-and-drop.',
-                        tags: ['Vocabulary', 'Sorting', 'Categories']
-                    },
-                    {
-                        title: 'Sorting Functions: Spring',
-                        file: 'activities/vocabulary/sorting-functions-spring.html',
-                        icon: '🌸',
-                        description: 'Sort spring-themed picture sets according to their functions via drag-and-drop.',
-                        tags: ['Vocabulary', 'Sorting', 'Functions', 'Spring']
-                    },
-                    {
-                        title: 'Flexible Image Viewer',
-                        file: 'activities/vocabulary/image-viewer.html',
-                        icon: '🖼️',
-                        description: 'Select words from categories and display them in customizable grid layouts for naming and receptive ID.',
-                        tags: ['Vocabulary', 'Images', 'Labeling', 'Receptive']
-                    },
-                    {
-                        title: 'Describing Objects',
-                        file: 'describing-objects.html',
-                        icon: '📦',
-                        description: 'Describe objects by identifying their category, function, and attributes.',
-                        tags: ['Vocabulary', 'Attributes', 'Sentence Building']
-                    },
-                    {
-                        title: 'Identifying Antonyms',
-                        file: 'activities/vocabulary/identifying-antonyms.html',
-                        icon: '↔️',
-                        description: 'Identify the antonym for the vocabulary word in context (Hints & Choices).',
-                        tags: ['Vocabulary', 'Antonyms', 'Context']
-                    },
-                    {
-                        title: 'Identifying Synonyms',
-                        file: 'activities/vocabulary/identifying-synonyms.html',
-                        icon: '🔗',
-                        description: 'Identify the synonym for the vocabulary word in context (Hints & Choices).',
-                        tags: ['Vocabulary', 'Synonyms', 'Context']
-                    },
-                    {
-                        title: 'Word Definition Activity',
-                        file: 'activities/vocabulary/word-definition-activity.html',
-                        icon: '📖',
-                        description: 'Learn and practice word meanings and definitions.',
-                        tags: ['Vocabulary', 'Definitions', 'Word Knowledge']
-                    },
-                    {
-                        title: 'Definition Attribute Builder',
-                        file: 'activities/vocabulary/definition-attribute-builder.html',
-                        icon: '🧩',
-                        description: 'Define words by naming their category and key attributes.',
-                        tags: ['Vocabulary', 'Categories', 'Attributes']
-                    },
-                    {
-                        title: 'Category & Function Definition',
-                        file: 'activities/vocabulary/category-function-definition.html',
-                        icon: '📝',
-                        description: 'Drag and drop words to define nouns by category and function.',
-                        tags: ['Vocabulary', 'Definitions', 'Drag & Drop']
-                    },
-                    {
-                        title: 'Analogies Activity',
-                        file: 'activities/vocabulary/analogies-activity.html',
-                        icon: '🔗',
-                        description: 'Practice understanding and completing analogies.',
-                        tags: ['Analogies', 'Reasoning', 'Vocabulary']
-                    },
-                    {
-                        title: 'Prefix Practice',
-                        file: 'activities/vocabulary/prefix-practice-progressive.html',
-                        icon: '🧪',
-                        description: 'Prefix practice with progressive help for sorting, matching, and completing sentences.',
-                        tags: ['Prefixes', 'Vocabulary', 'Progressive Help']
-                    },
-                    {
-                        title: 'Multiple Meaning Words',
-                        file: 'activities/vocabulary/multiple-meaning-words.html',
-                        icon: '🔀',
-                        description: 'Explore words with multiple meanings.',
-                        tags: ['Vocabulary', 'Multiple Meanings', 'Homonyms']
-                    },
-                    {
-                        title: 'Multiple Meaning Words - Advanced',
-                        file: 'activities/vocabulary/multiple-meaning-advanced.html',
-                        icon: '🔤',
-                        description: 'Generate both definitions and write sentences for multiple meaning words.',
-                        tags: ['Vocabulary', 'Multiple Meanings', 'Sentence Writing']
-                    },
-                    {
-                        title: 'Fall Nouns - Category & Function',
-                        file: 'activities/vocabulary/fall-nouns-category-function-expanded.html',
-                        icon: '🍂',
-                        description: 'Categorize fall-themed nouns and describe their functions.',
-                        tags: ['Nouns', 'Categories', 'Fall Theme']
-                    },
-                    {
-                        title: 'Fall Antonym Practice',
-                        file: 'activities/vocabulary/fall-antonym-practice.html',
-                        icon: '↔️',
-                        description: 'Practice opposites with fall vocabulary.',
-                        tags: ['Antonyms', 'Opposites', 'Fall Theme']
-                    },
-                    {
-                        title: 'Winter Vocabulary - Category & Attributes',
-                        file: 'activities/vocabulary/winter-vocabulary-category-function.html',
-                        icon: '❄️',
-                        description: 'Classify winter words by category, function, and two attributes with progressive clues.',
-                        tags: ['Vocabulary', 'Winter', 'Categories', 'Attributes']
-                    },
-                    {
-                        title: 'Winter Category & Function - Basic',
-                        file: 'activities/vocabulary/winter-category-function-basic.html',
-                        icon: '🧊',
-                        description: 'Simple winter nouns with category, function, and two attributes plus clue-first choices.',
-                        tags: ['Vocabulary', 'Winter', 'Categories', 'Attributes']
-                    },
-                    {
-                        title: 'Context Clues Activity',
-                        file: 'activities/vocabulary/context-clues-activity-enhanced.html',
-                        icon: '🔍',
-                        description: 'Use context to figure out unknown words. Choose easy, medium, or hard and filter by clue type (definition, synonym, antonym, example, inference).',
-                        tags: ['Context Clues', 'Reading', 'Inference']
-                    },
-                    {
-                        title: 'Context Clues Step-by-Step',
-                        file: 'activities/vocabulary/context-clues-step-by-step.html',
-                        icon: '🕵️',
-                        description: 'Step-by-step scaffolding for using synonym and antonym context clues.',
-                        tags: ['Context Clues', 'Vocabulary', 'Scaffolding']
-                    },
-                    {
-                        title: 'Vocabulary Scaffold Activity',
-                        file: 'activities/vocabulary/vocabulary-scaffold-activity.html',
-                        icon: '🧱',
-                        description: 'Deep practice with emotional vocabulary using three levels of scaffolding.',
-                        tags: ['Vocabulary', 'Scaffolding', 'Emotions']
-                    },
-                    {
-                        title: 'Context Clues – Thanksgiving',
-                        file: 'activities/vocabulary/context-clues-thanksgiving.html',
-                        icon: '🦃',
-                        description: 'Thanksgiving sentences with hints, extra help, and shuffled choices.',
-                        tags: ['Context Clues', 'Thanksgiving', 'Vocabulary']
-                    },
-                    {
-                        title: 'Context Clues – Winter (Progressive)',
-                        file: 'activities/vocabulary/winter-context-clues-progressive.html',
-                        icon: '❄️',
-                        description: 'Winter context-clue sentences with clue-first unlock and shuffled choices.',
-                        tags: ['Context Clues', 'Winter', 'Vocabulary']
-                    },
-                    {
-                        title: 'Winter Context Clues - Interactive',
-                        file: 'activities/vocabulary/winter-context-clues-interactive.html',
-                        icon: '❄️',
-                        description: 'Read short winter stories, answer questions, and reveal the meaning of target words.',
-                        tags: ['Context Clues', 'Winter', 'Interactive']
-                    },
-                    {
-                        title: 'Winter Figurative Language - One at a Time',
-                        file: 'activities/vocabulary/winter-figurative-language-single.html',
-                        icon: '✨',
-                        description: 'One figurative sentence per screen with hint, supports, and neutral feedback.',
-                        tags: ['Figurative Language', 'Winter', 'Context']
-                    },
-                    {
-                        title: 'Synonyms – Thanksgiving',
-                        file: 'activities/vocabulary/synonyms-thanksgiving.html',
-                        icon: '🥧',
-                        description: 'Find the synonym in Thanksgiving sentences with hint tiers.',
-                        tags: ['Synonyms', 'Thanksgiving', 'Vocabulary']
-                    }
-                ]
-            },
-            {
-                category: 'syntax',
-                title: 'Sentence Building & Syntax',
-                items: [
-                    {
-                        title: 'Sentence Builder - Elementary',
-                        file: 'activities/grammar/sentence-builder-elementary.html',
-                        icon: '✏️',
-                        description: 'Build sentences with simpler words and helpful hints.',
-                        tags: ['Sentence Writing', 'Elementary', 'Vocabulary']
-                    },
-                    {
-                        title: 'Sentence Builder - Middle School',
-                        file: 'activities/grammar/sentence-builder-middle-school.html',
-                        icon: '✍️',
-                        description: 'Create sentences using vocabulary words with a progressive help system.',
-                        tags: ['Sentence Writing', 'Middle School', 'Vocabulary']
-                    },
-                    {
-                        title: 'Complex Sentence Summary Builder',
-                        file: 'activities/grammar/complex-sentence-summary-builder.html',
-                        icon: '🔨',
-                        description: 'Create complex sentences and short summaries from prompts.',
-                        tags: ['Sentence Structure', 'Complex Sentences', 'Writing']
-                    },
-                    {
-                        title: 'Winter Subject-Action-Object Builder',
-                        file: 'activities/grammar/winter-subject-action-object-builder.html',
-                        icon: '❄️✏️',
-                        description: 'Use winter story images to build WHO-DOING-WHERE sentences with large-text scaffolds.',
-                        tags: ['Sentence Writing', 'Winter', 'Visual Support']
-                    },
-                    {
-                        title: 'Winter Compare & Contrast Drag-and-Drop',
-                        file: 'activities/reading/winter-compare-contrast-drag.html',
-                        icon: '🧊↔️',
-                        description: 'Drag facts into Item A, Item B, or Both for common winter things.',
-                        tags: ['Compare/Contrast', 'Winter', 'Sorting']
-                    }
-                ]
-            },
-            {
-                category: 'reading',
-                title: 'Reading Comprehension',
-                items: [
-                    {
-                        title: 'Spring Break Reading',
-                        file: 'activities/reading/spring-break-reading.html',
-                        icon: '🌸',
-                        description: 'Read spring break stories and answer literal and inferential questions.',
-                        tags: ['Reading', 'Spring Break', 'Comprehension']
-                    },
-                    {
-                        title: 'What Is the Author Trying to Do?',
-                        file: 'activities/reading/author-purpose-msg.html',
-                        icon: '📝',
-                        description: 'Read short passages and identify the author’s purpose using sentence frames.',
-                        tags: ['Author Purpose', 'Reading', 'Writing']
-                    },
-                    {
-                        title: 'Fall Stories - Expanded & Leveled',
-                        file: 'activities/reading/fall-stories-expanded-and-leveled.html',
-                        icon: '🍂',
-                        description: 'Fall-themed passages at multiple reading levels.',
-                        tags: ['Fall Theme', 'Multiple Levels', 'Comprehension']
-                    },
-                    {
-                        title: 'Multi-Level Reading Comprehension',
-                        file: 'activities/reading/multi-level-reading-comp.html',
-                        icon: '📖',
-                        description: 'Tiered passages with levelled questions and built-in clue buttons for each set.',
-                        tags: ['Multiple Levels', 'Comprehension', 'Progressive Hints']
-                    },
-                    {
-                        title: 'Fall Reading - Simple',
-                        file: 'activities/reading/fall-reading-simple.html',
-                        icon: '🍁',
-                        description: 'Simplified fall stories for beginning readers.',
-                        tags: ['Fall Theme', 'Beginning Level', 'Simple']
-                    },
-                    {
-                        title: 'Story Retelling Pit Crew',
-                        file: 'activities/reading/hs-story-retelling-focus.html',
-                        icon: '🏁',
-                        description: 'Sonic-themed retelling stories with progressive scaffolds and memory checks.',
-                        tags: ['High School', 'Retelling', 'Supports']
-                    },
-                    {
-                        title: 'Short Stories with Pronouns & Details',
-                        file: 'activities/reading/short-stories-pronouns-details.html',
-                        icon: '📝',
-                        description: 'Stories focusing on pronoun usage and detail recall.',
-                        tags: ['Pronouns', 'Details', 'Grammar']
-                    },
-                    {
-                        title: 'Main Idea & Key Details Lab',
-                        file: 'activities/reading/main-idea-key-details.html',
-                        icon: '💡',
-                        description: 'Pick the main idea and two key details for each short passage.',
-                        tags: ['Main Idea', 'Details', 'Reading']
-                    },
-                    {
-                        title: 'Main Idea Mini Stories',
-                        file: 'activities/reading/main-idea-short-stories.html',
-                        icon: '🧠',
-                        description: 'Six quick stories with randomized main idea choices for each.',
-                        tags: ['Main Idea', 'Multiple Choice', 'Simple Language']
-                    },
-                    {
-                        title: 'Thanksgiving Nonfiction Summary Organizer',
-                        file: 'activities/reading/thanksgiving-nonfiction-summary-organizer.html',
-                        icon: '🦃',
-                        description: 'Five two-paragraph Thanksgiving texts with scaffolded graphic organizers for summaries.',
-                        tags: ['Summary', 'Thanksgiving', 'Reading']
-                    },
-                    {
-                        title: 'Thanksgiving Literal Stories - Progressive Clues',
-                        file: 'activities/reading/thanksgiving-literal-comprehension-progressive.html',
-                        icon: '🦃',
-                        description: '10 Thanksgiving stories with clue-first literal questions and randomized answer choices.',
-                        tags: ['Thanksgiving', 'Literal', 'Progressive Hints']
-                    },
-                    {
-                        title: 'Late Fall & Winter Reading - Progressive Hints',
-                        file: 'activities/reading/late-fall-winter-reading-progressive.html',
-                        icon: '❄️',
-                        description: 'Eight late-fall passages with clue-first questions and a scaffolded summary builder.',
-                        tags: ['Seasonal', 'Literal', 'Summary']
-                    },
-                    {
-                        title: 'Winter Story Questions - Progressive Hints',
-                        file: 'activities/reading/winter-short-story-comprehension-progressive.html',
-                        icon: '🧊',
-                        description: 'Ten winter stories with five prompts each, plus clue-first and choice reveals for every question.',
-                        tags: ['Seasonal', 'Story Grammar', 'Progressive Hints']
-                    },
-                    {
-                        title: 'Snowy Day Reading - Literal & Inferential Tabs',
-                        file: 'activities/reading/winter-short-story-comprehension-tabs.html',
-                        icon: '⛄️',
-                        description: 'Ten snowy mini-stories with tabbed literal and inferential questions plus progressive clues.',
-                        tags: ['Seasonal', 'Literal', 'Inferential', 'Progressive Hints']
-                    },
-                    {
-                        title: 'Snowy Day Reading - Complex Tabs',
-                        file: 'activities/reading/winter-short-story-comprehension-tabs-complex.html',
-                        icon: '🌨️',
-                        description: 'More detailed winter scenes with literal and inferential tabs, images, and progressive hints.',
-                        tags: ['Seasonal', 'Literal', 'Inferential', 'Progressive Hints']
-                    },
-                    {
-                        title: 'Spring Comics Reading Comprehension',
-                        file: 'activities/reading/spring-comics-reading.html',
-                        icon: '🌸',
-                        description: 'Ten spring-themed comic stories with literal and inferential questions, hints, and multiple-choice answers.',
-                        tags: ['Seasonal', 'Literal', 'Inferential', 'Reading', 'Comics']
-                    },
-                    {
-                        title: 'Late Winter & Early Spring Reading',
-                        file: 'activities/reading/late-winter-early-spring-reading.html',
-                        icon: '🌱',
-                        description: 'Ten stories transitioning from winter to spring with literal & inferential tabs, images, and hints.',
-                        tags: ['Seasonal', 'Literal', 'Inferential', 'Reading']
-                    },
-                    {
-                        title: 'Winter Short Stories Collection',
-                        file: 'activities/reading/winter-short-stories.html',
-                        icon: '❄️',
-                        description: 'Ten winter short stories with literal and inferential questions.',
-                        tags: ['Winter', 'Reading', 'Literal', 'Inferential']
-                    },
-                    {
-                        title: 'Blend Story Reader',
-                        file: 'activities/articulation/blend-story-sound-reader.html',
-                        icon: '🔊',
-                        description: 'One-at-a-time paragraphs organized by initial /r/ blends and final /l/ blends with quick target word lists.',
-                        tags: ['Phonology', 'Blends', 'Reading']
-                    },
-                    {
-                        title: 'Purpose, Theme, Main Idea + Sentence Builder',
-                        file: 'activities/reading/author-theme-mainidea-sentence-builder.html',
-                        icon: '📝',
-                        description: 'Lower-MS passages with author purpose, theme, main idea, and a scaffolded complex sentence builder.',
-                        tags: ['Author Purpose', 'Theme', 'Main Idea', 'Writing']
-                    }
-                ]
-            },
-            {
-                category: 'inference',
-                title: 'Inference & Critical Thinking',
-                items: [
-                    {
-                        title: 'Fall Reading - Inference',
-                        file: 'activities/reading/fall-reading-comprehension-infer.html',
-                        icon: '🍁',
-                        description: 'Fall-themed stories paired with inference questions.',
-                        tags: ['Fall Theme', 'Inference', 'Comprehension']
-                    },
-                    {
-                        title: 'Thanksgiving Inferences',
-                        file: 'activities/reading/inference-thanksgiving.html',
-                        icon: '🦃',
-                        description: 'Six Thanksgiving scenarios with inference prompts and hints.',
-                        tags: ['Inference', 'Thanksgiving', 'Context Clues']
-                    },
-                    {
-                        title: 'Making & Justifying Inferences',
-                        file: 'activities/reading/making-inferences.html',
-                        icon: '📝',
-                        description: 'Read stories, make inferences, and highlight the supporting evidence.',
-                        tags: ['Inference', 'Evidence', 'Highlighting']
-                    },
-                    {
-                        title: 'Thanksgiving Inferences – Easy',
-                        file: 'activities/reading/inference-thanksgiving-simple.html',
-                        icon: '🧸',
-                        description: 'Simple stories with hints and revealed choices for each inference question.',
-                        tags: ['Inference', 'Thanksgiving', 'Easy']
-                    },
-                    {
-                        title: 'Stories with Inference & Compare',
-                        file: 'activities/reading/stories-inference-compare.html',
-                        icon: '📊',
-                        description: 'Read stories and practice comparing while making inferences.',
-                        tags: ['Inference', 'Comparison', 'Analysis']
-                    },
-                    {
-                        title: 'Compare & Contrast - Double Bubble',
-                        file: 'activities/reading/double-bubble-compare-contrast-fall-edition.html',
-                        icon: '🎭',
-                        description: 'Visual comparison activities using double bubble maps.',
-                        tags: ['Comparison', 'Critical Thinking', 'Organizer']
-                    },
-                    {
-                        title: 'Thanksgiving Compare & Contrast',
-                        file: 'activities/reading/compare-contrast-thanksgiving.html',
-                        icon: '🦃',
-                        description: 'Thanksgiving-themed double bubble sorting with writing frames.',
-                        tags: ['Comparison', 'Organizer', 'Seasonal']
-                    },
-                    {
-                        title: 'Seasonal Compare & Contrast Pairs',
-                        file: 'activities/reading/compare-contrast-seasonal-pairs.html',
-                        icon: '🧤',
-                        description: 'Rotate through fall/winter word pairs, add hints, and capture similarities and differences.',
-                        tags: ['Comparison', 'Seasonal', 'Organizer']
-                    },
-                    {
-                        title: 'Compare & Contrast Builder',
-                        file: 'activities/reading/compare-contrast-builder.html',
-                        icon: '⚖️',
-                        description: 'Select noun pairs, fill the organizer, and craft contrast sentences.',
-                        tags: ['Comparison', 'Sentence Frames', 'Organizer']
-                    }
-                ]
-            },
-            {
-                category: 'writing',
-                title: 'Writing & Storytelling',
-                items: [
-                    {
-                        title: 'Simple Story Prompts',
-                        file: 'activities/reading/simple-story-prompts-activity.html',
-                        icon: '✍️',
-                        description: 'Create stories from visual and written prompts.',
-                        tags: ['Writing', 'Creativity', 'Story Creation']
-                    },
-                    {
-                        title: 'Story Prompts - Expanded',
-                        file: 'activities/reading/story-prompts-expanded.html',
-                        icon: '📖',
-                        description: 'Expanded story prompts with multiple topics and categories.',
-                        tags: ['Writing', 'Story Creation', 'Topics']
-                    },
-                    {
-                        title: 'Story Retelling Worksheet',
-                        file: 'activities/reading/story-retelling-worksheet.html',
-                        icon: '📋',
-                        description: 'Structured retelling with story elements.',
-                        tags: ['Retelling', 'Story Elements', 'Organization']
-                    },
-                    {
-                        title: 'Interactive Descriptor Stories',
-                        file: 'activities/vocabulary/interactive-descriptor-stories.html',
-                        icon: '🌟',
-                        description: 'Build stories using descriptive language prompts.',
-                        tags: ['Descriptors', 'Adjectives', 'Creative Writing']
-                    },
-                    {
-                        title: 'Interactive Descriptor Stories – Thanksgiving',
-                        file: 'activities/vocabulary/interactive-descriptor-stories-thanksgiving.html',
-                        icon: '🦃',
-                        description: 'Thanksgiving stories with descriptor blanks plus “I need help” prompts.',
-                        tags: ['Descriptors', 'Thanksgiving', 'Writing']
-                    }
-                ]
-            },
-            {
-                category: 'pragmatics',
-                title: 'Pragmatics & Conversation',
-                items: [
-                    {
-                        title: 'Relevant Social Q&A',
-                        file: 'activities/social/relevant-social-q-and-a.html',
-                        icon: '💬',
-                        description: 'Practice answering common social questions appropriately.',
-                        tags: ['Social Skills', 'Questions', 'Conversation']
-                    },
-                    {
-                        title: 'Conversation Response Practice',
-                        file: 'activities/social/conversation-response-practice.html',
-                        icon: '🗨️',
-                        description: 'Develop appropriate conversational responses.',
-                        tags: ['Conversation', 'Turn-Taking', 'Responses']
-                    },
-                    {
-                        title: 'Conversation Response – Thanksgiving',
-                        file: 'activities/social/conversation-response-thanksgiving.html',
-                        icon: '🦃',
-                        description: 'Thanksgiving conversation scenarios with response choices and self-response box.',
-                        tags: ['Conversation', 'Thanksgiving', 'Social Skills']
-                    },
-                    {
-                        title: 'Conversation Starter Practice',
-                        file: 'activities/social/conversation-starter-practice.html',
-                        icon: '🗣️',
-                        description: 'Plan multiple ways to open a conversation with scaffolds and hints.',
-                        tags: ['Conversation', 'Initiation', 'Starters']
-                    },
-                    {
-                        title: 'Communication Breakdown Practice',
-                        file: 'activities/social/communication-breakdown-practice.html',
-                        icon: '🔄',
-                        description: 'Learn to repair communication when misunderstandings occur.',
-                        tags: ['Communication', 'Problem Solving', 'Repair']
-                    },
-                    {
-                        title: 'Communication Breakdown Spotter',
-                        file: 'activities/social/communication-breakdown-causes.html',
-                        icon: '🧭',
-                        description: 'Decide if a breakdown happened, then tag the cause across 10 scenarios.',
-                        tags: ['Communication', 'Listening', 'Analysis']
-                    },
-                    {
-                        title: 'Conversation Initiation + Starters',
-                        file: 'activities/social/conversation-initiation-starters.html',
-                        icon: '🚀',
-                        description: 'Create two openers per scenario, predict responses, and pull from built-in sentence starters.',
-                        tags: ['Conversation', 'Initiation', 'Perspective']
-                    },
-                    {
-                        title: 'Labeling Emotions with Clear Speech',
-                        file: 'activities/social/labeling-emotions-speech-strategies.html',
-                        icon: '🎙️',
-                        description: 'Read 10 scenarios, label emotions in two prompts each, and use clues/choices to practice clear sentences.',
-                        tags: ['Emotions', 'Articulation', 'Sentence Practice']
-                    },
-                    {
-                        title: 'Initiate Conversations - Predict Response',
-                        file: 'activities/social/initiate-conversations-predict-response.html',
-                        icon: '💭',
-                        description: 'Practice starting conversations and predicting responses.',
-                        tags: ['Initiation', 'Prediction', 'Social']
-                    },
-                    {
-                        title: 'Question & Response Practice',
-                        file: 'activities/social/question-response-practice.html',
-                        icon: '❓',
-                        description: 'Practice asking and answering socially appropriate questions.',
-                        tags: ['Questions', 'Responses', 'Turn-Taking']
-                    },
-                    {
-                        title: 'Helpful or Hurtful? Response Judge',
-                        file: 'activities/social/helpful-hurtful-response-judge.html',
-                        icon: '⚖️',
-                        description: 'Judge if a response helps or hurts in 10 social conflicts and explain why.',
-                        tags: ['Social', 'Reasoning', 'Perspective']
-                    }
-                ]
-            },
-            {
-                category: 'social',
-                title: 'Social Problem Solving & Perspective Taking',
-                items: [
-                    {
-                        title: 'Helpful or Hurtful? Scenarios',
-                        file: 'activities/social/helpful-hurtful-scenarios.html',
-                        icon: '⚖️',
-                        description: 'Sort responses to 12 social scenarios into helpful or hurtful categories.',
-                        tags: ['Social', 'Perspective', 'Reactions']
-                    },
-                    {
-                        title: 'Understanding Both Perspectives',
-                        file: 'activities/social/understanding-both-perspectives.html',
-                        icon: '🧠',
-                        description: 'Analyze scenarios from different viewpoints: thoughts, feelings, and bigger picture.',
-                        tags: ['Perspective', 'Social Skills', 'Conflict']
-                    },
-                    {
-                        title: 'Social Problem Solving',
-                        file: 'activities/social/social-problem-solving.html',
-                        icon: '🤔',
-                        description: 'Work through social scenarios and choose the best solutions.',
-                        tags: ['Problem Solving', 'Social Scenarios', 'Critical Thinking']
-                    },
-                    {
-                        title: 'Thanksgiving Social Problem Scenarios',
-                        file: 'activities/social/thanksgiving-social-problem-scenarios.html',
-                        icon: '🦃',
-                        description: 'Ten Thanksgiving situations where students spot the social problem or subtle conflict.',
-                        tags: ['Problem ID', 'Social Skills', 'Thanksgiving']
-                    },
-                    {
-                        title: 'Hidden Problem Spotter',
-                        file: 'activities/social/high-school-subtle-problem-identifier.html',
-                        icon: '🕵️',
-                        description: 'Identify the subtle problem inside edgy social scenarios and log your thinking.',
-                        tags: ['High School', 'Problem ID', 'Self-Regulation']
-                    },
-                    {
-                        title: 'Identify the Social Problem (Stories)',
-                        file: 'activities/social/social-problem-solving-identify-problem.html',
-                        icon: '🧩',
-                        description: 'Identify the main social problem in slice-of-life stories with a progressive hint system.',
-                        tags: ['Social', 'Problem ID', 'Stories']
-                    },
-                    {
-                        title: 'Behavior Repair Lab',
-                        file: 'activities/social/inappropriate-behavior-solution-practice.html',
-                        icon: '🧠',
-                        description: 'Read inappropriate reactions and plan better solutions across three difficulty tiers.',
-                        tags: ['Problem Solving', 'Self-Regulation', 'Repair']
-                    },
-                    {
-                        title: 'HS Social Solutions + Repair',
-                        file: 'activities/social/high-school-social-solution-repair.html',
-                        icon: '🎯',
-                        description: 'Solve high school social situations and plan repair strategies.',
-                        tags: ['High School', 'Problem Solving', 'Repair']
-                    },
-                    {
-                        title: 'Social Response Evaluator',
-                        file: 'activities/social/social-response-evaluator.html',
-                        icon: '⚖️',
-                        description: 'Judge whether responses help or hurt a conflict and justify why.',
-                        tags: ['Social Thinking', 'Judgment', 'Justification']
-                    },
-                    {
-                        title: 'High School Social Conflict Reflection',
-                        file: 'activities/social/high-school-social-conflict-reflection.html',
-                        icon: '🤝',
-                        description: 'Reflect on and resolve high school social conflicts.',
-                        tags: ['High School', 'Conflict', 'Social Skills']
-                    },
-                    {
-                        title: 'Social Story Practice',
-                        file: 'activities/social/social-story-practice.html',
-                        icon: '📱',
-                        description: 'Work through guided social stories and responses.',
-                        tags: ['Social Stories', 'Scenarios', 'Guidance']
-                    },
-                    {
-                        title: 'Perspective & Inference Pairs',
-                        file: 'activities/reading/perspective-pair-inference.html',
-                        icon: '👁️',
-                        description: 'Practice taking another person\'s perspective and inferring feelings.',
-                        tags: ['Perspective', 'Inference', 'Social Thinking']
-                    },
-                    {
-                        title: 'Social Perspective Taking - Progressive Hints',
-                        file: 'activities/reading/social-perspective-progressive.html',
-                        icon: '🧭',
-                        description: 'Eight social scenarios with clue-first perspective prompts and select-all answer feedback.',
-                        tags: ['Perspective', 'Feelings', 'Progressive Hints']
-                    },
-                    {
-                        title: 'Starting Conversations',
-                        file: 'activities/social/social-thinking-starting-conversations.html',
-                        icon: '💬',
-                        description: 'Practice different ways to start a conversation in tricky social situations.',
-                        tags: ['Conversation', 'Social Skills', 'Initiation']
-                    },
-                    {
-                        title: 'Finding the Message Glitch',
-                        file: 'activities/reading/finding-message-glitch.html',
-                        icon: '🧩',
-                        description: 'Analyze communication breakdowns by identifying Speaker, Listener, Environment, or Message glitches.',
-                        tags: ['Communication', 'Breakdowns', 'Problem Solving']
-                    }
-                ]
-            },
-            {
-                category: 'executive',
-                title: 'Executive Function & Directions',
-                items: [
-                    {
-                        title: 'Direction Strategy Coach',
-                        file: 'activities/grammar/direction-strategy-coach.html',
-                        icon: '🧭',
-                        description: 'Pull key details from written directions and pick strategies to follow them.',
-                        tags: ['Following Directions', 'Strategy', 'Planning']
-                    }
-                ]
-            }
-        ];
+        // ── Constants ────────────────────────────────────────────────────────
+        const CATEGORIES = ['articulation', 'fluency', 'grammar', 'reading', 'social', 'vocabulary'];
+        const CATEGORY_LABELS = {
+            articulation: 'Articulation',
+            fluency:      'Fluency',
+            grammar:      'Grammar',
+            reading:      'Reading',
+            social:       'Social',
+            vocabulary:   'Vocabulary',
+        };
+        const CATEGORY_EMOJIS = {
+            articulation: '🗣️',
+            fluency:      '🌊',
+            grammar:      '✏️',
+            reading:      '📖',
+            social:       '🤝',
+            vocabulary:   '📚',
+        };
 
-        // State
+        // ── State ─────────────────────────────────────────────────────────────
+        let allActivities = [];
         let currentFilter = 'all';
         let searchQuery = '';
-        let allItems = [];
 
-        // Flatten items for easy filtering and searching
-        function flattenActivities() {
-            allItems = [];
-            activities.forEach(category => {
-                category.items.forEach(item => {
-                    if (item.levels) {
-                        item.levels.forEach(level => {
-                            let mixedTags = [...(item.tags || [])];
-                            if (level.badge) mixedTags.push(level.badge);
-                            allItems.push({
-                                ...level,
-                                categoryId: category.category,
-                                categoryTitle: category.title,
-                                icon: item.icon,
-                                tags: mixedTags,
-                                fullTitle: `${item.title}: ${level.title}`
-                            });
-                        });
-                    } else {
-                        allItems.push({
-                            ...item,
-                            categoryId: category.category,
-                            categoryTitle: category.title,
-                            fullTitle: item.title
-                        });
-                    }
-                });
-            });
-        }
-
-        function initSidebar() {
+        // ── Render ────────────────────────────────────────────────────────────
+        function renderSidebar() {
             const nav = document.getElementById('sidebarNav');
-
-            // All items count
+            const total = allActivities.length;
             nav.innerHTML = `
                 <div class="nav-item active" data-id="all">
                     <span>🌟 All Activities</span>
-                    <span class="count">${allItems.length}</span>
+                    <span class="count">${total}</span>
                 </div>
+                ${CATEGORIES.map(cat => {
+                    const count = allActivities.filter(a => a.category === cat).length;
+                    if (count === 0) return '';
+                    return `<div class="nav-item" data-id="${cat}">
+                        <span>${CATEGORY_EMOJIS[cat] || ''} ${CATEGORY_LABELS[cat] || cat}</span>
+                        <span class="count">${count}</span>
+                    </div>`;
+                }).join('')}
             `;
 
-            activities.forEach(category => {
-                // Count items in category
-                let count = 0;
-                category.items.forEach(item => {
-                    if (item.levels) count += item.levels.length;
-                    else count++;
-                });
-
-                // determine category icon
-                let icon = '📁';
-                if (category.category === 'new-system') icon = '✨';
-                if (category.category === 'articulation') icon = '🎯';
-                if (category.category === 'fluency') icon = '🌊';
-                if (category.category === 'grammar') icon = '🧩';
-                if (category.category === 'vocabulary') icon = '📖';
-                if (category.category === 'syntax') icon = '🏗️';
-                if (category.category === 'reading') icon = '📚';
-                if (category.category === 'inference') icon = '🔎';
-                if (category.category === 'writing') icon = '✍️';
-                if (category.category === 'pragmatics') icon = '💬';
-                if (category.category === 'social') icon = '��';
-                if (category.category === 'executive') icon = '🧠';
-
-                nav.innerHTML += `
-                    <div class="nav-item" data-id="${category.category}" data-title="${category.title}">
-                        <span>${icon} ${category.title.split(' & ')[0]}</span>
-                        <span class="count">${count}</span>
-                    </div>
-                `;
-            });
-
-            // Add click listeners
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            nav.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    nav.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
                     item.classList.add('active');
                     currentFilter = item.dataset.id;
-
-                    const catTitle = item.dataset.title || 'All Activities';
-                    document.getElementById('pageTitle').textContent = currentFilter === 'all' ? 'Browse Activities' : catTitle;
-
-                    // Hide featured row if filtering
-                    document.getElementById('featuredSection').style.display = (currentFilter === 'all' && searchQuery === '') ? 'block' : 'none';
-
-                    document.getElementById('gridTitle').textContent = (currentFilter === 'all' && searchQuery === '') ? 'All Activities' : catTitle;
-
+                    document.getElementById('gridTitle').textContent =
+                        currentFilter === 'all' ? 'All Activities' : CATEGORY_LABELS[currentFilter] || currentFilter;
                     renderGrid();
                 });
             });
-        }
-
-        function renderFeatured() {
-            const container = document.getElementById('featuredContainer');
-
-            // Just picking a few specific ones to be "Featured" for the demo
-            const featuredItems = allItems.filter(i =>
-                (i.tags && i.tags.includes('New System')) ||
-                i.title.includes('Interactive') ||
-                i.title.includes('Builder')
-            ).slice(0, 3);
-
-            // Give them some vibrant gradient variations
-            const gradients = [
-                'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)',
-                'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-            ];
-
-            container.innerHTML = featuredItems.map((item, index) => `
-                <a href="${item.file || '#'}" target="_blank" class="featured-card" style="background: ${gradients[index % gradients.length]}">
-                    <span class="featured-tag">${item.categoryTitle.split(' & ')[0]}</span>
-                    <h4 class="featured-title">${item.icon} ${item.fullTitle}</h4>
-                    <p class="featured-desc">${item.description}</p>
-                </a>
-            `).join('');
-        }
-
-        function getTagClass(tag) {
-            const t = tag.toLowerCase();
-            if (t.includes('new')) return 'tag new-system';
-            if (t.includes('winter')) return 'tag winter';
-            if (t.includes('fall') || t.includes('thanksgiving')) return 'tag thanksgiving';
-            return 'tag';
         }
 
         function renderGrid() {
             const container = document.getElementById('activitiesGrid');
             const searchLower = searchQuery.trim().toLowerCase();
 
-            const filtered = allItems.filter(item => {
-                // Category filter
-                if (currentFilter !== 'all' && item.categoryId !== currentFilter) return false;
-
-                // Search filter
-                if (searchLower) {
-                    const matchesSearch =
-                        item.fullTitle.toLowerCase().includes(searchLower) ||
-                        (item.description && item.description.toLowerCase().includes(searchLower)) ||
-                        (item.tags && item.tags.some(t => t.toLowerCase().includes(searchLower)));
-                    if (!matchesSearch) return false;
-                }
-
+            const filtered = allActivities.filter(item => {
+                if (currentFilter !== 'all' && item.category !== currentFilter) return false;
+                if (searchLower && !item.title.toLowerCase().includes(searchLower)) return false;
                 return true;
             });
 
@@ -1472,39 +509,52 @@
             }
 
             container.innerHTML = filtered.map(item => `
-                <a href="${item.file || '#'}" target="_blank" class="card">
+                <a href="${item.sourceFile}" class="card">
                     <div class="card-header">
-                        <div class="card-icon">${item.icon || '📄'}</div>
                         <div>
-                            <h4 class="card-title">${item.fullTitle}</h4>
-                            <p class="card-desc">${item.description}</p>
+                            <span class="category-badge category-${item.category}">${CATEGORY_LABELS[item.category] || item.category}</span>
+                            <h4 class="card-title">${item.title}</h4>
                         </div>
                     </div>
                     <div class="card-tags">
-                        ${(item.tags || []).slice(0, 3).map(tag => `<span class="${getTagClass(tag)}">${tag}</span>`).join('')}
+                        <span class="tag">${item.type === 'tool' ? 'Interactive Tool' : 'Activity'}</span>
                     </div>
                 </a>
             `).join('');
         }
 
-        // Initialize
-        flattenActivities();
-        initSidebar();
-        renderFeatured();
-        renderGrid();
+        function showError() {
+            document.getElementById('activitiesGrid').innerHTML = `
+                <div class="empty-state" style="grid-column: 1/-1">
+                    <div class="empty-state-icon">⚠️</div>
+                    <h3>Activities require a local server</h3>
+                    <p>Run: <code>npx http-server</code> then open <code>http://localhost:8080</code></p>
+                </div>
+            `;
+        }
 
-        // Search listener
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            searchQuery = e.target.value;
+        // ── Bootstrap ─────────────────────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('data/activity-index.json')
+                .then(r => {
+                    if (!r.ok) throw new Error('fetch failed');
+                    return r.json();
+                })
+                .then(data => {
+                    allActivities = data.activities || [];
+                    renderSidebar();
+                    renderGrid();
+                })
+                .catch(() => showError());
 
-            // Hide featured if searching
-            document.getElementById('featuredSection').style.display = (currentFilter === 'all' && searchQuery === '') ? 'block' : 'none';
-            document.getElementById('gridTitle').textContent = searchQuery ? 'Search Results' :
-                (currentFilter === 'all' ? 'All Activities' : document.querySelector('.nav-item.active').dataset.title);
-
-            renderGrid();
+            document.getElementById('searchInput').addEventListener('input', e => {
+                searchQuery = e.target.value;
+                document.getElementById('gridTitle').textContent =
+                    searchQuery ? 'Search Results' :
+                    (currentFilter === 'all' ? 'All Activities' : CATEGORY_LABELS[currentFilter] || currentFilter);
+                renderGrid();
+            });
         });
-
     </script>
 </body>
 
