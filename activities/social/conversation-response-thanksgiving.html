@@ -6,6 +6,311 @@
     <title>Conversation Response Practice – Thanksgiving</title>
     <script src="../../data/social.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --w: 920px;
+            --accent: #c2410c;
+            --accent2: #f59e0b;
+            --bg: #fff8ed;
+            --card: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --border: #e5e7eb;
+            --shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #fff5e5, #ffe8cc 55%, #fffaf3);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(120deg, #f97316, #fb923c, #fbbf24);
+            border-bottom: 3px solid #ea580c;
+            box-shadow: 0 10px 24px rgba(249, 115, 22, 0.18);
+            padding: 22px 18px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .bar {
+            max-width: var(--w);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #c2410c;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover { transform: translateY(-1px); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        main {
+            max-width: var(--w);
+            margin: 26px auto 50px;
+            padding: 0 18px;
+        }
+
+        .scenario-selector {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .scenario-selector h2 {
+            margin: 0 0 16px;
+            color: var(--accent);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .scenario-btn {
+            background: linear-gradient(135deg, #fffaf5, #fff);
+            border: 2px solid #f97316;
+            color: #9a3412;
+            border-radius: 12px;
+            padding: 14px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .scenario-btn:hover {
+            border-color: #ea580c;
+            background: #fff1e0;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .scenario-btn.active {
+            border-color: #c2410c;
+            background: #f97316;
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(249, 115, 22, 0.2);
+        }
+
+        .scenario-btn strong { display: block; font-weight: 800; margin-bottom: 6px; }
+        .scenario-btn span { display: block; color: #6b7280; font-size: 13px; }
+
+        .activity-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .scenario-display {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: #fff;
+            padding: 22px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 24px rgba(249, 115, 22, 0.25);
+        }
+
+        .scenario-display h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .scenario-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .response-section {
+            margin-bottom: 26px;
+            background: #fffaf5;
+            border: 1px solid #fcd34d;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .response-section h4 {
+            margin: 0 0 8px;
+            color: #9a3412;
+            font-size: 16px;
+        }
+
+        .response-type-badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: #3730a3;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            padding: 4px 10px;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .response-section p {
+            margin: 0 0 10px;
+            color: var(--muted);
+        }
+
+        .textarea {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            min-height: 90px;
+            background: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .option-btn {
+            border: 2px solid #fcd34d;
+            background: #fff;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: left;
+            cursor: default;
+            font-weight: 700;
+            color: #9a3412;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .option-btn:hover { border-color: #f97316; background: #fff7ed; }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            color: #fff;
+            transition: all 0.15s ease;
+        }
+
+        .prev { background: #6b7280; }
+        .next { background: #c2410c; }
+
+        .prev:hover { background: #4b5563; }
+        .next:hover { background: #9a3412; }
+
+        .hint-system {
+            margin-top: 10px;
+        }
+
+        .hint-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .hint-btn {
+            padding: 8px 12px;
+            border: 1px solid #fcd34d;
+            background: #fff7ed;
+            color: #9a3412;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all 0.15s ease;
+        }
+
+        .hint-btn:hover { background: #fde68a; border-color: #f59e0b; }
+
+        .hint-content {
+            display: none;
+            background: #fffaf5;
+            border: 1px solid #fcd34d;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 6px;
+            color: #7c2d12;
+            font-size: 14px;
+        }
+
+        @media (max-width: 640px) {
+            .bar { flex-direction: column; align-items: flex-start; }
+            .nav-row { flex-direction: column; }
+        }
+    </style>
 </head>
 <body class="category-social">
     <header>

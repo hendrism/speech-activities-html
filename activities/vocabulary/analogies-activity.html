@@ -7,6 +7,440 @@
     <script src="../../data/vocabulary.js"></script>
     <script src="../../js/data-loader.js"></script>
     <script src="../../js/utils.js"></script>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .nav-bar {
+            background: #4a5568;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #48bb78;
+            color: white;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .analogy-page {
+            display: none;
+        }
+
+        .analogy-page.active {
+            display: block;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .full-analogy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .analogy-pair {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .analogy-pair .word {
+            margin: 0 10px;
+            color: #2d3748;
+        }
+
+        .analogy-pair .arrow {
+            color: #667eea;
+            font-size: 30px;
+            margin: 0 10px;
+        }
+
+        .analogy-pair .blank {
+            color: #e53e3e;
+            font-style: italic;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            min-width: 80px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .separator {
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .analogy-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 10px 0;
+            background: #f7fafc;
+            border-radius: 10px;
+            border: 3px solid #cbd5e0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .analogy-row.first-pair {
+            border-color: #9f7aea;
+            background: #faf5ff;
+        }
+
+        .analogy-row.second-pair {
+            border-color: #667eea;
+            background: #ebf4ff;
+        }
+
+        .word {
+            margin: 0 15px;
+            color: #2d3748;
+        }
+
+        .arrow {
+            color: #667eea;
+            font-size: 36px;
+            margin: 0 20px;
+        }
+
+        .blank {
+            color: #e53e3e;
+            font-style: italic;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            font-size: 32px;
+            min-width: 100px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .step-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .step-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .relationship-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .relationship-btn {
+            padding: 15px;
+            background: #f7fafc;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .relationship-btn:hover {
+            background: #e2e8f0;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .relationship-btn.selected {
+            background: #d6bcfa;
+            border-color: #9f7aea;
+            color: #44337a;
+        }
+
+        .relationship-btn.correct {
+            background: #c6f6d5;
+            border-color: #48bb78;
+            color: #22543d;
+        }
+
+        .relationship-btn.incorrect {
+            background: #fed7d7;
+            border-color: #e53e3e;
+            color: #742a2a;
+        }
+
+        .step-content {
+            margin-top: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .example-box {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .example-text {
+            color: #234e52;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .example-explanation {
+            color: #2c7a7b;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .instruction-box {
+            background: #ebf8ff;
+            border: 2px solid #4299e1;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .instruction-text {
+            color: #2c5282;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-check {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-check:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+        }
+
+        .btn-help {
+            background: #ed8936;
+            color: white;
+        }
+
+        .btn-help:hover {
+            background: #dd6b20;
+            transform: translateY(-2px);
+        }
+
+        .btn-more-help {
+            background: #4299e1;
+            color: white;
+            display: none;
+        }
+
+        .btn-more-help:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        .hint-box {
+            background: #fef5e7;
+            border-left: 4px solid #ed8936;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .hint-box.show {
+            display: block;
+        }
+
+        .hint-text {
+            color: #744210;
+            font-size: 16px;
+        }
+
+        .choices {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .choices.show {
+            display: block;
+        }
+
+        .choice-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #e2e8f0;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .choice-btn:hover {
+            background: #cbd5e0;
+            transform: translateX(5px);
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #c6f6d5;
+            color: #22543d;
+            border-left: 4px solid #48bb78;
+        }
+
+        .feedback.incorrect {
+            background: #fed7d7;
+            color: #742a2a;
+            border-left: 4px solid #e53e3e;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 20px;
+            }
+
+            .analogy-text {
+                font-size: 20px;
+            }
+
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body class="category-vocabulary">
     <div class="container">

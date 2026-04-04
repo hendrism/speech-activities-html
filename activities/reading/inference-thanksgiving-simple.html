@@ -6,6 +6,158 @@
     <title>Thanksgiving Inferences – Easy</title>
     <script src="../../data/stories.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --accent: #f97316;
+            --accent-2: #0f766e;
+            --muted: #475569;
+            --bg: #f7f2ea;
+            --card: #ffffff;
+            --radius: 14px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #f97316 0%, #facc15 100%);
+            min-height: 100vh;
+            padding-bottom: 48px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 { margin: 0 0 6px; color: var(--accent); font-size: 28px; }
+        .badge { display: inline-block; background: var(--accent-2); color: white; padding: 8px 16px; border-radius: 18px; font-weight: 700; }
+
+        .container { max-width: 900px; margin: 24px auto; padding: 0 20px; }
+
+        .info-box {
+            background: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 14px;
+        }
+
+        .info-box h3 { margin: 0 0 8px; color: var(--accent); }
+        .info-box p { margin: 0; color: var(--muted); }
+
+        .story-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 16px;
+        }
+
+        .pill {
+            background: white;
+            border: 2px solid #e2e8f0;
+            color: var(--accent);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill:hover { border-color: var(--accent); }
+        .pill.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 18px;
+        }
+
+        .story-title { margin: 0 0 6px; color: var(--accent-2); font-size: 18px; }
+        .story-text { margin: 0 0 12px; line-height: 1.6; color: #0f172a; }
+
+        .question-card {
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .question-card h4 { margin: 0 0 6px; color: #0f172a; font-size: 16px; }
+
+        textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            padding: 10px;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 8px;
+        }
+
+        textarea:focus { outline: none; border-color: var(--accent); }
+
+        .helper-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            border: 2px solid #f59e0b;
+            background: white;
+            color: #b45309;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn:hover { background: #f59e0b; color: white; }
+
+        .hint-box {
+            display: none;
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        .options { display: none; margin-bottom: 6px; }
+        .option {
+            display: block;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .option:hover { border-color: var(--accent); transform: translateX(4px); }
+        .option.correct { background: #dcfce7; border-color: #22c55e; }
+        .option.incorrect { background: #fee2e2; border-color: #ef4444; }
+        .option.disabled { pointer-events: none; opacity: 0.8; }
+    </style>
 </head>
 <body class="category-reading">
     <header>

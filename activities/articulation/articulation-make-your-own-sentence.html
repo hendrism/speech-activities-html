@@ -5,6 +5,299 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articulation Sentence Creator</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --asc-bg: #f8fafc;
+            --asc-surface: #ffffff;
+            --asc-border: #e2e8f0;
+            --asc-ink: #0f172a;
+            --asc-muted: #475569;
+            --asc-primary: #2563eb;
+            --asc-primary-dark: #1d4ed8;
+            --asc-noun: #2563eb;
+            --asc-verb: #059669;
+            --asc-adjective: #8b5cf6;
+            --asc-warning: #b91c1c;
+            --asc-success: #047857;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: clamp(16px, 3vw, 32px);
+        }
+
+        .asc-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .asc-card {
+            background: var(--asc-surface);
+            border-radius: 24px;
+            padding: clamp(24px, 3vw, 36px);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+        }
+
+        .asc-header h1 {
+            font-size: clamp(28px, 3vw, 40px);
+            color: var(--asc-ink);
+            margin-bottom: 12px;
+        }
+
+        .asc-header p {
+            color: var(--asc-muted);
+            max-width: 720px;
+        }
+
+        .asc-category-grid {
+            display: grid;
+            gap: 8px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        }
+
+        .asc-category-btn {
+            border: 1px solid var(--asc-border);
+            border-radius: 10px;
+            padding: 7px 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: rgba(148, 163, 184, 0.12);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .asc-category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(37, 99, 235, 0.18);
+        }
+
+        .asc-category-btn.selected {
+            background: var(--asc-primary);
+            color: white;
+            border-color: transparent;
+        }
+
+        .asc-blend-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .asc-blend-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .asc-secondary-btn,
+        .asc-primary-btn,
+        .asc-tertiary-btn {
+            border-radius: 999px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .asc-primary-btn {
+            background: var(--asc-primary);
+            color: white;
+        }
+
+        .asc-secondary-btn {
+            background: rgba(37, 99, 235, 0.12);
+            color: var(--asc-ink);
+        }
+
+        .asc-tertiary-btn {
+            background: transparent;
+            color: var(--asc-muted);
+        }
+
+        .asc-primary-btn:disabled {
+            background: rgba(148, 163, 184, 0.4);
+            cursor: not-allowed;
+        }
+
+        .asc-button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .asc-word-groups {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .asc-word-group {
+            background: rgba(148, 163, 184, 0.12);
+            border-radius: 18px;
+            padding: 16px;
+            border: 1px solid var(--asc-border);
+        }
+
+        .asc-word-group h3 {
+            margin-bottom: 12px;
+            color: var(--asc-ink);
+            font-size: 18px;
+        }
+
+        .asc-word-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .asc-word-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            background: rgba(148, 163, 184, 0.18);
+            border-radius: 12px;
+            padding: 8px 12px;
+            color: var(--asc-muted);
+            font-weight: 500;
+        }
+
+        .asc-word-pos {
+            font-weight: 600;
+            color: var(--asc-ink);
+        }
+
+        .asc-summary-chips {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .asc-chip {
+            border-radius: 999px;
+            padding: 10px 16px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .asc-chip.noun {
+            background: var(--asc-noun);
+        }
+
+        .asc-chip.verb {
+            background: var(--asc-verb);
+        }
+
+        .asc-chip.adjective {
+            background: var(--asc-adjective);
+        }
+
+        .asc-practice-card {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .asc-word-display {
+            text-align: center;
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 800;
+            color: var(--asc-ink);
+        }
+
+        .asc-word-meta {
+            text-align: center;
+            font-size: 18px;
+            color: var(--asc-muted);
+        }
+
+        .asc-textarea {
+            width: 100%;
+            min-height: 140px;
+            padding: 16px;
+            border-radius: 18px;
+            border: 2px solid var(--asc-border);
+            font-size: 18px;
+            resize: vertical;
+            outline: none;
+            transition: border 0.2s ease;
+        }
+
+        .asc-textarea:focus {
+            border-color: var(--asc-primary);
+        }
+
+        .asc-feedback {
+            font-weight: 600;
+        }
+
+        .asc-feedback.success {
+            color: var(--asc-success);
+        }
+
+        .asc-feedback.error {
+            color: var(--asc-warning);
+        }
+
+        .asc-history {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .asc-history-item {
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 16px;
+            padding: 12px 16px;
+        }
+
+        .asc-history-word {
+            font-weight: 700;
+            color: var(--asc-ink);
+        }
+
+        .asc-history-sentence {
+            margin-top: 6px;
+            color: var(--asc-muted);
+        }
+
+        .asc-warning {
+            color: var(--asc-warning);
+            font-weight: 600;
+        }
+
+        @media (max-width: 720px) {
+            .asc-word-display {
+                font-size: clamp(36px, 9vw, 48px);
+            }
+
+            .asc-button-group {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 
 <body class="category-articulation">

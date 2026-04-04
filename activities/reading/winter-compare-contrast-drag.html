@@ -6,6 +6,167 @@
     <title>Winter Compare & Contrast Drag-and-Drop</title>
     <script src="../../data/stories.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --sky: #38bdf8;
+            --frost: #e2e8f0;
+            --ink: #0f172a;
+            --snow: #f8fafc;
+            --spruce: #0f766e;
+            --warm: #fbbf24;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #e0f2fe, #f8fafc 60%);
+            color: var(--ink);
+            padding: 18px 12px 48px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin: 0 0 10px;
+            color: var(--spruce);
+        }
+        .intro {
+            max-width: 1100px;
+            margin: 0 auto 14px;
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+        }
+        .set {
+            max-width: 1100px;
+            margin: 0 auto 14px;
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        }
+        .set h2 {
+            margin: 0 0 10px;
+            color: var(--spruce);
+        }
+        .nav {
+            max-width: 1100px;
+            margin: 0 auto 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .nav button {
+            border: 1px solid var(--frost);
+            background: white;
+            border-radius: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--ink);
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+            transition: all 0.2s ease;
+        }
+        .nav button.active {
+            background: linear-gradient(135deg, #e0f2fe, #fef9c3);
+            border-color: var(--sky);
+            color: #92400e;
+        }
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+        .drop {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            min-height: 90px;
+            padding: 10px;
+            background: var(--snow);
+        }
+        .drop h3 {
+            margin: 0 0 6px;
+            font-size: 1rem;
+            color: #334155;
+        }
+        .images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .img-card {
+            background: var(--snow);
+            border: 1px solid var(--frost);
+            border-radius: 10px;
+            padding: 6px;
+            text-align: center;
+        }
+        .img-card img {
+            max-width: 100%;
+            max-height: 140px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .placeholder-img {
+            color: #94a3b8;
+            font-weight: 700;
+            padding: 12px 8px;
+        }
+        .placeholder {
+            color: #94a3b8;
+            font-weight: 700;
+        }
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .chip {
+            border: 1px solid var(--frost);
+            background: #ecfeff;
+            color: var(--ink);
+            padding: 10px 12px;
+            border-radius: 999px;
+            font-weight: 800;
+            cursor: grab;
+            font-size: 18px;
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+        }
+        .chip:active {
+            cursor: grabbing;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 16px;
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1);
+            transition: all 0.15s ease;
+        }
+        .btn-primary { background: var(--spruce); color: white; }
+        .btn-secondary { background: #fef9c3; color: #92400e; border: 1px solid #facc15; }
+        .feedback {
+            margin-top: 8px;
+            font-weight: 800;
+        }
+        .correct { color: #15803d; }
+        .incorrect { color: #b91c1c; }
+        @media (max-width: 820px) {
+            .chip { width: 100%; text-align: center; }
+        }
+    </style>
 </head>
 <body class="category-reading">
     <h1>Winter Compare & Contrast</h1>

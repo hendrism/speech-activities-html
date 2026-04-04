@@ -6,6 +6,198 @@
     <title>Winter Subject-Action-Object Builder</title>
   <script src="../../data/grammar.js"></script>
   <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --sky: #38bdf8;
+            --spruce: #0f766e;
+            --ink: #0f172a;
+            --frost: #e2e8f0;
+            --snow: #f8fafc;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #e0f2fe, #f8fafc 65%);
+            color: var(--ink);
+            padding: 18px 12px 48px;
+        }
+        h1 {
+            text-align: center;
+            margin: 0 0 10px;
+            color: var(--spruce);
+        }
+        .intro {
+            max-width: 1080px;
+            margin: 0 auto 14px;
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+            line-height: 1.6;
+        }
+        .nav {
+            max-width: 1080px;
+            margin: 0 auto 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px;
+        }
+        .nav button {
+            border: 1px solid var(--frost);
+            background: white;
+            border-radius: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--ink);
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+        .nav button.active {
+            background: linear-gradient(135deg, #e0f2fe, #fef9c3);
+            border-color: var(--sky);
+            color: #92400e;
+        }
+        .shell {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+        }
+        .top {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 14px;
+            align-items: start;
+        }
+        .image-wrap {
+            background: var(--snow);
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+        .image-wrap img {
+            max-width: 100%;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+        .sentence-box {
+            margin: 10px 0 0;
+            padding: 14px;
+            background: #e0f2fe;
+            border: 2px solid #bae6fd;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.5;
+            color: var(--ink);
+        }
+        .title {
+            margin: 0 0 6px;
+            font-size: 1.05rem;
+            color: var(--spruce);
+        }
+        .inputs {
+            background: var(--snow);
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 12px;
+        }
+        .input-row {
+            margin-bottom: 12px;
+        }
+        label {
+            font-weight: 800;
+            display: block;
+            margin-bottom: 4px;
+            color: #334155;
+        }
+        .big-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            font-size: 20px;
+            font-family: inherit;
+            background: white;
+        }
+        .helpers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .chip {
+            border: 1px solid var(--frost);
+            background: #ecfeff;
+            color: var(--ink);
+            padding: 8px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.15s ease;
+        }
+        .chip:hover {
+            border-color: var(--sky);
+            transform: translateY(-1px);
+        }
+        .hidden { display: none; }
+        .toggle-btn {
+            border: 1px solid var(--frost);
+            background: white;
+            color: var(--ink);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+        .toggle-btn:hover {
+            border-color: var(--sky);
+        }
+        .sentence-box {
+            margin-top: 12px;
+            padding: 14px;
+            background: #e0f2fe;
+            border: 2px solid #bae6fd;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.5;
+            color: var(--ink);
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 16px;
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1);
+            transition: all 0.15s ease;
+        }
+        .btn-primary { background: var(--spruce); color: white; }
+        .btn-secondary { background: #fef9c3; color: #92400e; border: 1px solid #facc15; }
+        .btn:hover { transform: translateY(-1px); }
+        @media (max-width: 900px) {
+            .top { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body class="category-grammar">
     <h1>Winter Subject-Action-Object Builder</h1>

@@ -12,6 +12,296 @@ Tags: Communication, Problem Solving, Repair
     <title>Communication Breakdown Repair Lab</title>
     <script src="../../data/social.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --ink: #0f172a;
+            --bg: #eef2ff;
+            --surface: #ffffff;
+            --accent: #2563eb;
+            --muted: #475569;
+            --soft: #e0e7ff;
+            --border: #c7d2fe;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4338ca, #2563eb);
+            color: white;
+            padding: 32px 20px 40px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(67, 56, 202, 0.35);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 12px auto 0;
+            max-width: 700px;
+            font-size: 17px;
+            opacity: 0.95;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
+
+        aside {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid var(--border);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        aside h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        .scenario-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .scenario-btn {
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: var(--soft);
+            color: var(--ink);
+            text-align: left;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+
+        .scenario-btn span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .scenario-btn.active {
+            border-color: var(--accent);
+            background: #dbeafe;
+            transform: translateX(4px);
+        }
+
+        .work-area {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 26px;
+            border: 2px solid var(--border);
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .scenario-info {
+            background: #f8fafc;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            padding: 18px 20px;
+        }
+
+        .scenario-info h2 {
+            margin: 8px 0 6px;
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .scenario-info p {
+            margin: 0;
+        }
+
+        .scenario-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .scenario-meta span {
+            background: #e0e7ff;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .step-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 18px 20px;
+            background: #ffffff;
+        }
+
+        .step-card h3 {
+            margin: 0 0 6px;
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .hint {
+            margin: 0 0 12px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .chip-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            border-radius: 999px;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            background: #f5f5ff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.15s ease;
+        }
+
+        .chip.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .move-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .move {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.15s ease, background 0.15s ease;
+        }
+
+        .move input {
+            margin-top: 3px;
+            accent-color: var(--accent);
+        }
+
+        .move.active {
+            background: #eff6ff;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #d1d9e6;
+            padding: 14px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .coach-card {
+            border: 1px dashed var(--border);
+            background: #f8fbff;
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .coach-card button {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 18px;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .coach-example {
+            margin: 12px 0 0;
+            display: none;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .controls button {
+            flex: 1;
+            border: none;
+            border-radius: 14px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #e0e7ff;
+            color: #312e81;
+            transition: background 0.15s ease;
+        }
+
+        .controls button.primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                order: 2;
+            }
+        }
+    </style>
 </head>
 <body class="category-social">
     <header>

@@ -5,6 +5,66 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Final /l/ Consonant Blend Stories</title>
   <link rel="stylesheet" href="../../css/styles.css">
+<style>
+    :root{
+      --bg:#0b0d12;/* deep slate */
+      --card:#111827;/* neutral panel */
+      --text:#e5e7eb;/* light gray */
+      --muted:#9ca3af;/* muted */
+      --accent:#22d3ee;/* cyan */
+      --accent-2:#a78bfa;/* violet */
+      --ring: 0 0 0 .12rem var(--accent);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(34,211,238,.12), transparent 50%),
+                  radial-gradient(1200px 800px at 120% 10%, rgba(167,139,250,.10), transparent 50%),
+                  var(--bg);
+      line-height:1.6;
+    }
+    .container{max-width:900px;margin: clamp(1rem,3vw,2rem) auto;padding: clamp(1rem,3vw,2rem)}
+    header h1{margin:0 0 .25rem 0;font-weight:800;letter-spacing:.2px}
+    header p{margin:0;color:var(--muted)}
+
+    .controls{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin:1rem 0 1.25rem 0}
+    .controls .spacer{flex:1}
+
+    .select, .btn, .checkbox, .text{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:var(--text);padding:.6rem .8rem;border-radius:.75rem}
+    .select:focus-within, .btn:focus-visible{outline:none;box-shadow:var(--ring)}
+    select{appearance:none;border:none;background:transparent;color:inherit;font:inherit;padding-right:1.6rem}
+    .select{position:relative}
+    .select:after{content:"▾";position:absolute;right:.6rem;pointer-events:none;color:var(--muted)}
+
+    .btn{cursor:pointer;user-select:none}
+    .btn[disabled]{opacity:.5;cursor:not-allowed}
+    .btn.primary{background:linear-gradient(90deg, rgba(34,211,238,.18), rgba(167,139,250,.18));border-color:rgba(255,255,255,.14)}
+
+    .badge{font-variant-numeric: tabular-nums;border:1px dashed rgba(255,255,255,.15);padding:.45rem .65rem;border-radius:.65rem;color:var(--muted)}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);backdrop-filter: blur(8px);
+          border-radius:1rem;padding:1.25rem 1.25rem 1rem 1.25rem;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .card h2{margin:.25rem 0 .25rem 0;font-size:1.35rem}
+    .card p{margin:.75rem 0;font-size:1.04rem}
+
+    .questions{margin-top:1rem;border-top:1px dashed rgba(255,255,255,.1);padding-top:1rem} .questions textarea{width:100%;min-height:3.25rem;margin:.4rem 0 .8rem 0;padding:.6rem .7rem;border-radius:.6rem;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:var(--text);resize:vertical} .questions textarea:focus{outline:none;box-shadow:var(--ring)} .questions label{display:block;font-size:.95rem;color:var(--muted);margin-top:.25rem} .questions ol{margin:.25rem 0 .5rem 1.2rem} .questions li{margin-bottom:.25rem}
+    .questions h3{margin:.25rem 0 .5rem 0;color:var(--muted);font-weight:600;letter-spacing:.3px}
+    .questions ol{margin:.25rem 0 .5rem 1.2rem}
+
+    mark.blend{background:#ffe083;color:#1b1f23;padding:.1rem .2rem;border-radius:.25rem;box-shadow:0 0 0 .08rem rgba(0,0,0,.12)}
+
+    .footer{display:flex;gap:.6rem;align-items:center;margin-top:1rem;color:var(--muted);font-size:.95rem}
+
+    @media (prefers-color-scheme: light){
+      :root{--bg:#eef2ff;--card:#ffffff;--text:#0b1324;--muted:#4b5563}
+      body{background: radial-gradient(1200px 800px at 10% -10%, rgba(34,211,238,.16), transparent 45%),
+                    radial-gradient(1200px 800px at 120% 10%, rgba(167,139,250,.14), transparent 45%),
+                    var(--bg)}
+    }
+  </style>
 </head>
 <body class="category-articulation final-l-blend-stories">
   <div class="container">

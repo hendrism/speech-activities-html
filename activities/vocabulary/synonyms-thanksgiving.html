@@ -7,6 +7,273 @@
     <script src="../../data/vocabulary.js"></script>
     <script src="../../js/data-loader.js"></script>
     <script src="../../js/utils.js"></script>
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 3px solid #16a34a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            color: #16a34a;
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 28px auto;
+            padding: 0 20px;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 { color: #16a34a; margin-bottom: 10px; font-size: 18px; }
+        .info-box p { line-height: 1.6; color: #1f2937; }
+
+        .word-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 18px;
+        }
+
+        .nav-pill {
+            background: white;
+            border: 2px solid #e5e7eb;
+            color: #16a34a;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-pill:hover { border-color: #16a34a; }
+        .nav-pill.active {
+            background: #16a34a;
+            color: white;
+            border-color: #16a34a;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #16a34a, #f59e0b);
+            transition: width 0.3s ease;
+        }
+
+        .sentence-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sentence-number {
+            background: #16a34a;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .clue-type {
+            background: #ecfeff;
+            color: #0f172a;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 2px solid #16a34a;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .sentence-display {
+            background: #f9fafb;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            border-left: 4px solid #16a34a;
+        }
+
+        .sentence-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #1f2937;
+        }
+
+        .word { font-weight: 700; color: #16a34a; background: #dcfce7; padding: 2px 6px; border-radius: 4px; }
+
+        .question-text { font-size: 17px; font-weight: 700; color: #1f2937; margin: 10px 0; }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 12px;
+        }
+
+        .answer-input:focus { outline: none; border-color: #16a34a; }
+
+        .helper {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .hint-btn {
+            background: white;
+            border: 2px solid #f59e0b;
+            color: #b45309;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hint-btn:hover { background: #f59e0b; color: white; }
+
+        .hint-content {
+            display: none;
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            color: #92400e;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .options-wrap { display: none; }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .option {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option:hover { border-color: #16a34a; transform: translateX(4px); }
+        .option input { margin: 0; cursor: pointer; }
+        .option span { flex: 1; font-size: 15px; color: #1f2937; }
+
+        .option.correct { background: #dcfce7; border-color: #22c55e; }
+        .option.incorrect { background: #fee2e2; border-color: #ef4444; }
+        .option.disabled { pointer-events: none; opacity: 0.75; }
+
+        .feedback {
+            display: none;
+            padding: 14px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .feedback.show { display: block; }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .prev-btn { background: white; border: 2px solid #e5e7eb; color: #6b7280; }
+        .prev-btn:hover:not(:disabled) { border-color: #16a34a; color: #16a34a; }
+        .prev-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .next-btn { background: #16a34a; color: white; }
+        .next-btn:hover:not(:disabled) { background: #15803d; }
+        .next-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
 </head>
 <body class="category-vocabulary">
     <header>

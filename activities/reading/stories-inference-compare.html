@@ -12,6 +12,535 @@ Tags: Inference, Comparison, Analysis
 <title>Reading Comprehension - Inference & Compare/Contrast</title>
     <script src="../../data/stories.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+  :root {
+    --w: 1200px;
+    --accent: #2563eb;
+    --bg: #f8fafc;
+    --ink: #0f172a;
+    --ok: #059669;
+    --err: #dc2626;
+    --warning: #f59e0b;
+    --purple: #8b5cf6;
+    --orange: #ea580c;
+    --gray: #64748b;
+    --green: #10b981;
+    --blue: #0ea5e9;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--ink); 
+    margin: 0; 
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  header { 
+    background: white; 
+    border-bottom: 3px solid #e2e8f0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .bar { 
+    max-width: var(--w); 
+    margin: 0 auto; 
+    padding: 20px; 
+    display: grid; 
+    grid-template-columns: 1fr auto; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar h1 { 
+    font-size: 24px; 
+    margin: 0; 
+    color: var(--accent);
+    font-weight: 700;
+  }
+  
+  .controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+  }
+  
+  main { 
+    max-width: var(--w); 
+    margin: 30px auto; 
+    padding: 0 20px; 
+  }
+  
+  .story-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .story-btn {
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .story-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  .activity-container {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .story-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .story-title {
+    color: var(--accent);
+    font-size: 28px;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  
+  .activity-toggle {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .toggle-btn {
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+  
+  .toggle-btn.active {
+    background: var(--purple);
+    color: white;
+    border-color: var(--purple);
+  }
+  
+  .story-text {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  
+  .story-text p {
+    margin: 0 0 20px;
+  }
+  
+  .story-text p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .activity-section {
+    display: none;
+  }
+  
+  .activity-section.active {
+    display: block;
+  }
+
+  /* Inference Activity */
+  .inference-activity {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .inference-question {
+    background: #f0f9ff;
+    border: 2px solid var(--blue);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .question-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .question-prompt {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--ink);
+  }
+  
+  .inference-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+  }
+  
+  .help-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .help-box {
+    background: #fef3c7;
+    border: 2px solid var(--warning);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 15px;
+    display: none;
+  }
+  
+  .help-box.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .help-box h4 {
+    color: #92400e;
+    margin: 0 0 10px;
+    font-size: 16px;
+  }
+  
+  .multiple-choice {
+    display: none;
+    margin-top: 20px;
+  }
+  
+  .multiple-choice.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .choice-option {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .choice-option:hover {
+    border-color: var(--purple);
+    background: #f8fafc;
+  }
+  
+  .choice-option.selected {
+    border-color: var(--blue);
+    background: #eff6ff;
+  }
+  
+  .choice-option.correct {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .choice-option.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+
+  /* Compare/Contrast Activity */
+  .compare-activity {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .items-bank {
+    background: #fffbeb;
+    border: 3px dashed var(--warning);
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 500px;
+  }
+  
+  .items-bank h3 {
+    color: #92400e;
+    margin: 0 0 16px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .comparison-zones {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .similarities-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+  .differences-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .drop-zone {
+    min-height: 200px;
+    border: 3px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .drop-zone h3 {
+    text-align: center;
+    margin: 0 0 12px;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .similarities-zone {
+    background: #f0fdf4;
+    border-color: var(--green);
+  }
+  
+  .similarities-zone h3 {
+    background: var(--green);
+    color: white;
+  }
+  
+  .item1-zone {
+    background: #eff6ff;
+    border-color: var(--blue);
+  }
+  
+  .item1-zone h3 {
+    background: var(--blue);
+    color: white;
+  }
+  
+  .item2-zone {
+    background: #faf5ff;
+    border-color: var(--purple);
+  }
+  
+  .item2-zone h3 {
+    background: var(--purple);
+    color: white;
+  }
+  
+  .drop-zone.drag-over {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .similarities-zone.drag-over {
+    border-color: #15803d;
+    background: #dcfce7;
+  }
+  
+  .item1-zone.drag-over {
+    border-color: #0284c7;
+    background: #dbeafe;
+  }
+  
+  .item2-zone.drag-over {
+    border-color: #9333ea;
+    background: #f3e8ff;
+  }
+  
+  .draggable-item {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: move;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .draggable-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .draggable-item.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+  }
+  
+  .draggable-item.placed {
+    border-color: var(--ok);
+    background: #f0fdf4;
+  }
+  
+  .draggable-item.incorrect {
+    border-color: var(--err);
+    background: #fef2f2;
+  }
+
+  button {
+    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+  }
+  
+  button.primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  
+  button.primary:hover {
+    background: #1d4ed8;
+  }
+  
+  button.success {
+    background: var(--ok);
+    color: white;
+    border-color: var(--ok);
+  }
+  
+  button.warning {
+    background: var(--warning);
+    color: white;
+    border-color: var(--warning);
+  }
+
+  button.small {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .feedback {
+    background: #f8fafc;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+  }
+  
+  .feedback.show {
+    display: block;
+  }
+  
+  .feedback.success {
+    background: #f0fdf4;
+    border-color: var(--ok);
+    color: #065f46;
+  }
+  
+  .feedback.error {
+    background: #fef2f2;
+    border-color: var(--err);
+    color: #991b1b;
+  }
+
+  .empty-zone-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gray);
+    font-style: italic;
+    text-align: center;
+    pointer-events: none;
+    font-size: 13px;
+  }
+  
+  .zone-content {
+    min-height: 150px;
+    position: relative;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @media (max-width: 768px) {
+    .compare-activity {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .differences-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .items-bank {
+      order: -1;
+    }
+    
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+    }
+    
+    .controls {
+      justify-content: center;
+    }
+    
+    .help-section {
+      flex-direction: column;
+    }
+  }
+</style>
 </head>
 
 <body class="category-reading">

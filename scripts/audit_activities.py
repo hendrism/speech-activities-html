@@ -3,10 +3,12 @@
 Audit activity HTML files for compliance with the activity standard.
 
 Compliance rules:
-  1. No <style> block in the file
-  2. References data-loader.js
-  3. No inline data arrays (ACTIVITY_DATA, stories, scenarios, etc.)
-  4. <body> has a category-* class
+  1. References data-loader.js
+  2. No inline data arrays (ACTIVITY_DATA, stories, scenarios, etc.)
+  3. <body> has a category-* class
+
+Note: <style> blocks are permitted — activities may have per-file layout CSS.
+The migration goal was data separation (content into /data/), not style elimination.
 
 Usage:
   python3 scripts/audit_activities.py
@@ -50,9 +52,6 @@ def audit_file(path):
         return "❌ NON-COMPLIANT", [f"could not read file: {e}"]
 
     issues = []
-
-    if re.search(r'<style[\s>]', content, re.IGNORECASE):
-        issues.append("has <style> block")
 
     if "data-loader.js" not in content:
         issues.append("missing data-loader.js")

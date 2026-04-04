@@ -7,6 +7,241 @@
     <title>Understanding Negation</title>
   <script src="../../data/grammar.js"></script>
   <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            /* Core Colors from your design system */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
+
+            /* Text Sizing Variables */
+            --base-size: 16px;
+            --story-size: 1.5rem;
+            --header-size: 1.5rem;
+        }
+
+        body.text-large {
+            --base-size: 20px;
+            --story-size: 2rem;
+            --header-size: 1.8rem;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 60px;
+            font-size: var(--base-size);
+            line-height: 1.5;
+            transition: font-size 0.3s ease;
+        }
+
+        /* Header & Navigation */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* Pagination Controls */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pagination-info {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Content Areas */
+        .sentence-display {
+            font-size: var(--story-size);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #e0e7ff;
+            border-radius: 0.5rem;
+            border: 2px solid #c7d2fe;
+        }
+
+        /* Image Choices */
+        .choices-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .choice-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .image-button {
+            width: 100%;
+            height: 300px;
+            background-color: var(--bg);
+            border: 4px solid var(--border);
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 1rem;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-button:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-button img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 0.5rem;
+        }
+
+        .image-button.correct {
+            border-color: var(--success);
+            background-color: var(--success-bg);
+        }
+
+        .image-button.incorrect {
+            border-color: var(--error);
+            background-color: var(--error-bg);
+            opacity: 0.7;
+        }
+
+        .image-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+            background: var(--border);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* Feedback Display */
+        .feedback-message {
+            font-size: 1.25rem;
+            font-weight: bold;
+            min-height: 2rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feedback-message.show {
+            opacity: 1;
+        }
+
+        .feedback-message.success {
+            color: var(--success);
+            background-color: var(--success-bg);
+        }
+
+        .feedback-message.error {
+            color: var(--error);
+            background-color: var(--error-bg);
+        }
+
+        @media (max-width: 600px) {
+            .choices-container {
+                flex-direction: column;
+            }
+
+            .image-button {
+                height: 250px;
+            }
+        }
+    </style>
 </head>
 
 <body class="category-grammar">

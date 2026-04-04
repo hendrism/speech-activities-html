@@ -10,6 +10,180 @@
 
     <!-- Shared design system -->
     <link rel="stylesheet" href="../../css/styles.css">
+<style>
+        body {
+            background: #f8fafc;
+        }
+
+        .activity-header {
+            text-align: center;
+            color: var(--text-main);
+            margin-bottom: var(--space-6);
+        }
+
+        .activity-header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+
+        .scenario-box {
+            background-color: var(--surface-100);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-4);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .draggable-responses {
+            display: flex;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .response-card {
+            background-color: var(--color-white);
+            border: 2px solid var(--border-color);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-md);
+            cursor: grab;
+            user-select: none;
+            font-size: var(--font-size-lg);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+            max-width: 45%;
+            text-align: center;
+        }
+
+        .response-card:active {
+            cursor: grabbing;
+            transform: scale(0.98);
+        }
+
+        .response-card.dragging {
+            opacity: 0.5;
+        }
+
+        .sorting-area {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        .drop-zone {
+            flex: 1;
+            min-height: 150px;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--color-off-white);
+            transition: background-color 0.2s;
+        }
+
+        .drop-zone.drag-over {
+            background-color: var(--surface-100);
+        }
+
+        .helpful-zone {
+            background-color: var(--color-success, #22c55e);
+            border: 2px solid #16a34a;
+        }
+
+        .helpful-zone.drag-over {
+            background-color: #16a34a;
+            border-color: #15803d;
+        }
+
+        .hurtful-zone {
+            background-color: var(--color-error, #ef4444);
+            border: 2px solid #dc2626;
+        }
+
+        .hurtful-zone.drag-over {
+            background-color: #dc2626;
+            border-color: #b91c1c;
+        }
+
+        .zone-title {
+            font-weight: 700;
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-4);
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Container for dropped items */
+        .dropped-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            width: 100%;
+        }
+
+        .dropped-items .response-card {
+            max-width: 100%;
+            cursor: pointer;
+            /* Can optionally click to put back, or just allow dragging back */
+        }
+
+        /* Sidebar Navigation styling */
+        .nav-pills {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .nav-pill {
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
+            background-color: transparent;
+            color: var(--text-main);
+            font-size: var(--font-size-md);
+            text-align: left;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .nav-pill:hover {
+            background-color: var(--surface-100);
+        }
+
+        .nav-pill.active {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            font-weight: 600;
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .layout-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .scenario-sidebar {
+            width: 280px;
+            background-color: white;
+            border-right: 1px solid var(--border-color);
+            padding: var(--space-6) var(--space-4);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: var(--space-6) var(--space-4);
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body class="category-social">

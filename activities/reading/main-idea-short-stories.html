@@ -6,6 +6,237 @@
     <title>Main Idea Mini Stories</title>
     <script src="../../data/stories.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --ink: #0f172a;
+            --paper: #f8fafc;
+            --card: #ffffff;
+            --accent: #2563eb;
+            --accent-soft: #bfdbfe;
+            --good: #10b981;
+            --oops: #f97316;
+            --stretch: #7c3aed;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #bfdbfe, #dde5ff);
+            padding: 48px 20px 36px 20px;
+            text-align: center;
+            box-shadow: inset 0 -6px 0 rgba(15, 23, 42, 0.08);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.6rem;
+            color: var(--ink);
+        }
+
+        header p {
+            max-width: 760px;
+            margin: 12px auto 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .story-nav {
+            position: sticky;
+            top: 0;
+            z-index: 25;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--accent-soft);
+            box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
+        }
+
+        .nav-grid {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 14px 16px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            border: 2px solid var(--accent);
+            border-radius: 999px;
+            padding: 10px 18px;
+            background: transparent;
+            color: var(--ink);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .nav-btn:hover {
+            background: #eef2ff;
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.active {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .nav-btn.stretch {
+            border-color: var(--stretch);
+        }
+
+        .nav-btn.stretch.active {
+            background: var(--stretch);
+            box-shadow: 0 6px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        main {
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 0 20px;
+            min-height: 60vh;
+        }
+
+        .story-card {
+            display: none;
+            background: var(--card);
+            border: 3px solid var(--accent-soft);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
+            scroll-margin-top: 140px;
+        }
+
+        .story-card.active {
+            display: block;
+        }
+
+        .story-label {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .story-label.stretch {
+            color: var(--stretch);
+        }
+
+        .story-title {
+            margin: 0 0 16px;
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+
+        .story-text {
+            background: #eff6ff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 22px;
+            font-size: 1.05rem;
+        }
+
+        .question {
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .choice-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        button.choice {
+            border: 2px solid var(--accent);
+            background: #fff;
+            border-radius: 18px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        button.choice:hover:not([data-locked="true"]) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+        }
+
+        button.choice.correct {
+            border-color: var(--good);
+            background: #ecfdf5;
+        }
+
+        button.choice.incorrect {
+            border-color: var(--oops);
+            background: #fff7ed;
+        }
+
+        .feedback {
+            margin-top: 16px;
+            font-weight: 600;
+            min-height: 1.2em;
+        }
+
+        .feedback.good {
+            color: var(--good);
+        }
+
+        .feedback.try-again {
+            color: var(--oops);
+        }
+
+        .story-controls {
+            margin-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .pager {
+            border: 2px solid #c7d7fe;
+            background: #e0e7ff;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .pager:hover {
+            background: #c7d2fe;
+        }
+
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .story-card {
+                padding: 24px;
+            }
+
+            .nav-grid {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+        }
+    </style>
 </head>
 <body class="category-reading">
     <header>

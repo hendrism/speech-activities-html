@@ -6,6 +6,262 @@
     <title>Thanksgiving Nonfiction Summary Organizer</title>
     <script src="../../data/stories.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --bg: #f5f5f5;
+            --card: #ffffff;
+            --ink: #111827;
+            --muted: #4b5563;
+            --accent: #2563eb;
+            --border: #e5e7eb;
+            --radius: 14px;
+            --max-width: 980px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 22px 18px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        header p {
+            margin: 10px auto 0;
+            max-width: 720px;
+            font-size: 16px;
+            color: var(--muted);
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 24px auto 0;
+            padding: 0 18px 40px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            padding: 20px;
+        }
+
+        .intro h2 {
+            margin: 0 0 12px;
+            color: var(--ink);
+            font-size: 20px;
+        }
+
+        .intro ul {
+            margin: 8px 0 0;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        .nav-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--ink);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .nav-btn:hover {
+            background: #eef2ff;
+            border-color: #d1d5db;
+        }
+
+        .nav-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #1d4ed8;
+        }
+
+        .passage-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .passage-header h2 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--ink);
+        }
+
+        .text-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 17px;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .text-box p {
+            margin: 0 0 12px;
+        }
+
+        .organizer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 14px;
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .panel h3 {
+            margin: 0 0 10px;
+            color: var(--ink);
+            font-size: 17px;
+        }
+
+        .panel p {
+            margin: 0 0 8px;
+            color: var(--muted);
+        }
+
+        .choice-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .choice {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 10px;
+        }
+
+        .fields {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 700;
+            color: var(--ink);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #fff;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        textarea { resize: vertical; min-height: 70px; }
+
+        .clue-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 8px 0 6px;
+        }
+
+        .clue {
+            background: #eef2ff;
+            color: #1d4ed8;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 6px;
+        }
+
+        .checklist label {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .summary-frame {
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 12px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .summary-frame span {
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .summary-box {
+            min-height: 140px;
+        }
+
+        .summary-wide {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 700px) {
+            header h1 { font-size: 22px; }
+            .passage-header { gap: 8px; }
+            .organizer { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body class="category-reading">
     <header>

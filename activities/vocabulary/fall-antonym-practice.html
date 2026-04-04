@@ -13,6 +13,350 @@ Tags: Antonyms, Opposites, Fall Theme
     <script src="../../data/vocabulary.js"></script>
     <script src="../../js/data-loader.js"></script>
     <script src="../../js/utils.js"></script>
+<style>
+  :root {
+    --leaf-orange: #f97316;
+    --leaf-brown: #92400e;
+    --autumn-cream: #fff7ed;
+    --sky: #2563eb;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(180deg, #f8fafc 0%, #dbeafe 35%, #fee2ce 100%);
+  color: #1f2937;
+    line-height: 1.6;
+    font-size: 18px;
+  }
+
+header {
+  background: white;
+  padding: 24px 16px;
+  text-align: center;
+  border-bottom: 4px solid rgba(249, 115, 22, 0.25);
+  box-shadow: 0 10px 25px rgba(30, 64, 175, 0.08);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 30px;
+    color: var(--leaf-orange);
+    letter-spacing: 0.5px;
+  }
+
+  header p {
+    margin: 8px auto 0;
+    max-width: 640px;
+    color: #475569;
+    font-weight: 500;
+  }
+
+main {
+  max-width: 960px;
+  margin: 40px auto 60px;
+  padding: 0 20px 40px;
+}
+
+  .level-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 18px;
+    border: 2px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 14px 28px rgba(249, 115, 22, 0.12);
+  }
+
+  .level-nav button {
+    border-radius: 999px;
+    border: 2px solid transparent;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    background: white;
+    color: #1f2937;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .level-nav button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
+    border-color: rgba(249, 115, 22, 0.35);
+  }
+
+  .level-nav button.active {
+    background: var(--leaf-orange);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 12px 22px rgba(249, 115, 22, 0.28);
+  }
+
+  .word-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    border: 2px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 16px 36px rgba(148, 163, 184, 0.12);
+  }
+
+  .word-nav button {
+    border-radius: 999px;
+    border: 2px solid transparent;
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    background: white;
+    color: #1f2937;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .word-nav button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
+    border-color: rgba(37, 99, 235, 0.25);
+  }
+
+  .word-nav button.active {
+    background: var(--leaf-orange);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 12px 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 3px solid rgba(249, 115, 22, 0.25);
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 24px 50px rgba(30, 64, 175, 0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 12px 12px auto auto;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, rgba(249, 115, 22, 0.15), transparent 70%),
+                radial-gradient(circle at 70% 70%, rgba(234, 179, 8, 0.18), transparent 65%);
+    z-index: 0;
+    opacity: 0.8;
+  }
+
+  .meta {
+    font-size: 15px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .word-display {
+    position: relative;
+    z-index: 1;
+    background: var(--autumn-cream);
+    border: 2px solid rgba(234, 88, 12, 0.35);
+    border-radius: 18px;
+    padding: 22px 24px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--leaf-brown);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .word-display span.label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #475569;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 110px;
+    border-radius: 18px;
+    border: 2px solid rgba(148, 163, 184, 0.7);
+    padding: 18px;
+    font-size: 18px;
+    font-family: inherit;
+    background: rgba(248, 250, 252, 0.95);
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  textarea:focus {
+    border-color: var(--sky);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 22px 0 12px;
+  }
+
+  button {
+    border-radius: 999px;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  button.primary {
+    background: var(--leaf-orange);
+    color: white;
+    box-shadow: 0 12px 24px rgba(249, 115, 22, 0.25);
+  }
+
+  button.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(249, 115, 22, 0.35);
+  }
+
+  button.secondary {
+    background: white;
+    color: #1f2937;
+    border: 2px solid rgba(148, 163, 184, 0.6);
+  }
+
+  button.secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
+    border-color: rgba(14, 116, 144, 0.5);
+  }
+
+  .help-panel,
+  .choices-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px dashed rgba(14, 116, 144, 0.4);
+    border-radius: 18px;
+    padding: 18px 20px;
+    margin-top: 16px;
+    display: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .help-panel.visible,
+  .choices-panel.visible {
+    display: block;
+  }
+
+  .help-panel strong {
+    display: block;
+    color: #0f766e;
+    margin-bottom: 6px;
+  }
+
+  .choices-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .choices-panel button.choice {
+    width: 100%;
+    text-align: left;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid rgba(148, 163, 184, 0.6);
+    background: rgba(248, 250, 252, 0.9);
+    color: #1f2937;
+  }
+
+  .choices-panel button.choice:hover {
+    border-color: var(--sky);
+    background: rgba(219, 234, 254, 0.8);
+  }
+
+  .feedback {
+    margin-top: 20px;
+    border-radius: 16px;
+    padding: 16px 18px;
+    font-weight: 600;
+    display: none;
+  }
+
+  .feedback.visible {
+    display: block;
+  }
+
+  .feedback.success {
+    background: rgba(74, 222, 128, 0.12);
+    border: 2px solid rgba(22, 163, 74, 0.25);
+    color: #166534;
+  }
+
+  .feedback.error {
+    background: rgba(252, 165, 165, 0.12);
+    border: 2px solid rgba(220, 38, 38, 0.25);
+    color: #b91c1c;
+  }
+
+  .progress {
+    margin-top: 26px;
+    font-size: 16px;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  @media (max-width: 720px) {
+    header h1 {
+      font-size: 24px;
+    }
+    .card {
+      padding: 24px;
+      border-radius: 20px;
+    }
+    .word-display {
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 24px;
+    }
+    textarea {
+      min-height: 140px;
+    }
+  }
+
+  .sentence {
+    margin: 0 0 18px;
+    font-size: 20px;
+    color: #334155;
+    background: rgba(255, 255, 255, 0.72);
+    border-left: 4px solid rgba(37, 99, 235, 0.2);
+    padding: 14px 18px;
+    border-radius: 14px;
+  }
+
+</style>
 </head>
 <body class="category-vocabulary">
   <header>

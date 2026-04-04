@@ -7,6 +7,340 @@
     <title>Understanding Both Perspectives</title>
     <script src="../../data/social.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            /* Core Colors */
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-bg: #eef2ff;
+
+            --secondary: #db2777;
+            /* Pink/Magenta for "Other" perspective */
+            --secondary-light: #f472b6;
+            --secondary-bg: #fce7f3;
+
+            --neutral: #059669;
+            /* Green for Bigger Picture */
+            --neutral-bg: #d1fae5;
+
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+
+            /* Spacing */
+            --radius: 1rem;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 80px;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-title {
+            color: var(--primary);
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-scroller {
+            background: white;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-item {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Scenario Card */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .scenario-header {
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .scenario-label {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .scenario-title {
+            font-size: 1.75rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .scenario-text {
+            font-size: 1.125rem;
+            color: var(--text-main);
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Sections */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .section-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .part-a-header {
+            background: var(--primary-bg);
+            color: var(--primary);
+        }
+
+        .part-b-header {
+            background: var(--secondary-bg);
+            color: var(--secondary);
+        }
+
+        .part-c-header {
+            background: var(--neutral-bg);
+            color: var(--neutral);
+        }
+
+        .question-group {
+            margin-bottom: 2rem;
+        }
+
+        .question-label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        /* Inputs */
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            box-sizing: border-box;
+        }
+
+        /* Feeling Tags */
+        .feelings-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feeling-tag {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 500;
+            background: white;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .feeling-tag:hover {
+            border-color: var(--primary-light);
+            background: var(--bg);
+        }
+
+        .feeling-tag.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Yes/No Toggle */
+        .toggle-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .toggle-btn.yes.selected {
+            background: var(--neutral);
+            color: white;
+            border-color: var(--neutral);
+        }
+
+        .toggle-btn.no.selected {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            color: var(--text-main);
+        }
+
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* Print styles */
+        @media print {
+
+            .nav-scroller,
+            .main-header,
+            .nav-controls {
+                display: none;
+            }
+
+            .card {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+
+            body {
+                background: white;
+            }
+        }
+    </style>
 </head>
 
 <body class="category-social">

@@ -6,6 +6,296 @@
     <title>Social Perspective Taking - Progressive Hints</title>
     <script src="../../data/stories.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --navy: #0f172a;
+            --teal: #0ea5e9;
+            --gold: #f59e0b;
+            --sand: #f8fafc;
+            --ink: #111827;
+            --cream: #fff7ed;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: radial-gradient(circle at 15% 20%, #fef3c7, #e0f2fe 50%, #f8fafc);
+            color: var(--ink);
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: white;
+            border-bottom: 3px solid #fcd34d;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        }
+        .bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .bar h1 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--navy);
+            letter-spacing: 0.3px;
+        }
+        .bar-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .reset-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            background: #fff1e6;
+            color: #b45309;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid #fcd34d;
+            transition: all 0.2s ease;
+        }
+        .reset-btn:hover {
+            background: #fef3c7;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 20px 40px;
+        }
+        .intro {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 16px 18px;
+            line-height: 1.6;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+        }
+        .nav-bar {
+            position: sticky;
+            top: 70px;
+            background: #0f172a;
+            border: 1px solid #1f2937;
+            border-radius: 14px;
+            padding: 10px;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.3);
+            display: flex;
+            gap: 8px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            z-index: 15;
+        }
+        .nav-btn {
+            border: none;
+            background: rgba(148, 163, 184, 0.18);
+            color: #e2e8f0;
+            padding: 9px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .nav-btn:hover {
+            background: rgba(226, 232, 240, 0.2);
+            transform: translateY(-1px);
+        }
+        .nav-btn.active {
+            background: #38bdf8;
+            color: #0f172a;
+            box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+        }
+        .scenario-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        .scenario-title {
+            margin: 0;
+            color: var(--navy);
+        }
+        .scenario-tag {
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+        .scenario-text {
+            margin: 14px 0 12px;
+            line-height: 1.7;
+            background: var(--sand);
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px dashed #e5e7eb;
+        }
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+        }
+        .prompt-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px;
+            background: #f8fafc;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .prompt-title {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--navy);
+        }
+        .prompt-text {
+            font-weight: 700;
+        }
+        .help-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .btn-hint {
+            background: var(--teal);
+            color: white;
+        }
+        .btn-choices {
+            background: var(--gold);
+            color: #3b2600;
+        }
+        .btn-check {
+            background: var(--navy);
+            color: white;
+        }
+        .btn:disabled {
+            background: #cbd5e1;
+            color: #475569;
+            cursor: not-allowed;
+        }
+        .hint-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0f4a6e;
+        }
+        .hint {
+            display: none;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 10px;
+            padding: 10px;
+            color: #92400e;
+            margin-top: 6px;
+        }
+        .choices {
+            display: none;
+            margin-top: 6px;
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            border-radius: 10px;
+            background: white;
+        }
+        .choices .helper {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+        .response-box {
+            width: 100%;
+            min-height: 76px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: white;
+            box-sizing: border-box;
+        }
+        .support-box {
+            margin-top: 10px;
+            padding: 12px;
+            border: 2px solid #fcd34d;
+            border-radius: 12px;
+            background: #fff7ed;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sub-label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 4px 0 4px;
+        }
+        .choice-row {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            padding: 8px;
+            border-radius: 10px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .choice-row.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+        }
+        .choice-row.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .feedback {
+            display: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 700;
+        }
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .feedback.partial {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+        @media (max-width: 640px) {
+            .nav-bar {
+                position: static;
+            }
+        }
+    </style>
 </head>
 <body class="category-reading">
     <header>

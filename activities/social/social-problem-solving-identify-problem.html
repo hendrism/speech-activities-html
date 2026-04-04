@@ -7,6 +7,359 @@
     <title>Social Problem Solving: Identify the Problem</title>
     <script src="../../data/social.js"></script>
     <script src="../../js/data-loader.js"></script>
+<style>
+        :root {
+            --w: 900px;
+            --accent: #8b5cf6;
+            --secondary: #6366f1;
+            --bg: #f8fafc;
+            --ink: #0f172a;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
+            --hint-bg: #fff7ed;
+            --hint-border: #fed7aa;
+            --hint-text: #9a3412;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        header {
+            background: var(--card);
+            border-bottom: 3px solid var(--accent);
+            padding: 16px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 32px;
+        }
+
+        .header-content {
+            max-width: var(--w);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .main-container {
+            max-width: var(--w);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Top Navigation */
+        .story-nav {
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .nav-header {
+            background: #f1f5f9;
+            padding: 8px 16px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        .story-list {
+            list-style: none;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 8px;
+            gap: 8px;
+            scrollbar-width: thin;
+        }
+
+        /* Customize scrollbar for webkit */
+        .story-list::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .story-list::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .story-list::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .story-btn {
+            text-align: center;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--ink);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-width: max-content;
+        }
+
+        .story-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: #f8fafc;
+        }
+
+        .story-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Remove sidebar specific styles */
+        .story-btn span {
+            display: inline-block;
+        }
+
+        .story-status {
+            font-size: 1rem;
+        }
+
+        /* Activity Area */
+        .activity-card {
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .story-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .story-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .story-text {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 32px;
+            color: #334155;
+        }
+
+        .question-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        /* Progressive Steps */
+        .input-area {
+            margin-bottom: 24px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #7c3aed;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid var(--border);
+            color: #475569;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Hint Box */
+        .hint-box {
+            background: var(--hint-bg);
+            border: 1px solid var(--hint-border);
+            color: var(--hint-text);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hint-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Choices */
+        .choices-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .choice-btn {
+            text-align: left;
+            padding: 16px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--secondary);
+            background: #f5f3ff;
+        }
+
+        .choice-btn.correct {
+            border-color: var(--success);
+            background: var(--success-bg);
+            color: #064e3b;
+            pointer-events: none;
+        }
+
+        .choice-btn.incorrect {
+            border-color: var(--error);
+            background: var(--error-bg);
+            color: #7f1d1d;
+        }
+
+        .feedback-msg {
+            margin-top: 16px;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback-correct {
+            background: var(--success-bg);
+            color: #064e3b;
+        }
+
+        .feedback-incorrect {
+            background: var(--error-bg);
+            color: #7f1d1d;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .story-nav {
+                margin-bottom: 20px;
+            }
+
+            .story-list {
+                max-height: 200px;
+            }
+        }
+    </style>
 </head>
 
 <body class="category-social">
