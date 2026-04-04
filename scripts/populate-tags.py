@@ -63,7 +63,7 @@ TITLE_TAG_MAP = [
     (["sentence"],                  "sentence-building"),
     (["fluency"],                   "fluency"),
     (["social"],                    "social-skills"),
-    (["problem", "solving"],        "problem-solving"),
+    (["problem solving"],            "problem-solving"),
 ]
 
 
@@ -269,7 +269,7 @@ def process_file(category: str) -> None:
     # Regenerate JS wrapper
     regen_js_wrapper(category, data)
 
-    skip_label = "already tagged" if file_skipped else "already tagged"
+    skip_label = "already tagged"
     print(
         f"{category}.json: {file_updated} items updated, "
         f"{file_skipped} skipped ({skip_label}), {file_errors} errors"

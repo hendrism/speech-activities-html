@@ -26,7 +26,7 @@ window.ActivityData.social = {
       ],
       "level": "medium",
       "tags": [
-        "problem-solving"
+        "communication-breakdown-causes"
       ]
     },
     {
