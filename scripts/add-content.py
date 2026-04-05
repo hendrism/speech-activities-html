@@ -155,14 +155,14 @@ def gen_id_context_clues(arr: list, level: str) -> str:
     return f"cc-{level}-{n:03d}"
 
 
-def gen_id_stories(arr: list) -> str:
-    """Next story-{N} after max numeric value across all story IDs."""
+def gen_id_stories(arr: list) -> int:
+    """Next integer ID after max numeric value across all story IDs."""
     max_n = 0
     for item in arr:
         n = _extract_suffix_num(item.get("id", 0))
         if n > max_n:
             max_n = n
-    return f"story-{max_n + 1}"
+    return max_n + 1
 
 
 def _slug_from_source(source_file: str) -> str:
@@ -512,8 +512,13 @@ def main() -> None:
     arr.append(new_item)
 
     tmp_path = json_path.with_suffix(".tmp")
-    tmp_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    tmp_path.replace(json_path)
+    try:
+        tmp_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        tmp_path.replace(json_path)
+    except Exception:
+        if tmp_path.exists():
+            tmp_path.unlink()
+        raise
 
     # Step 7: Regenerate JS wrapper
     regen_js_wrapper(cat, data)
