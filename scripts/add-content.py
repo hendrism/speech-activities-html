@@ -7,7 +7,6 @@ Usage:
 """
 
 import json
-import os
 import pathlib
 import re
 import sys
@@ -156,20 +155,19 @@ def gen_id_context_clues(arr: list, level: str) -> str:
     return f"cc-{level}-{n:03d}"
 
 
-def gen_id_stories(arr: list) -> int:
-    """Next integer after max numeric value across all story IDs."""
+def gen_id_stories(arr: list) -> str:
+    """Next story-{N} after max numeric value across all story IDs."""
     max_n = 0
     for item in arr:
         n = _extract_suffix_num(item.get("id", 0))
         if n > max_n:
             max_n = n
-    return max_n + 1
+    return f"story-{max_n + 1}"
 
 
 def _slug_from_source(source_file: str) -> str:
     """Get slug from sourceFile stem (filename without .html)."""
-    stem = os.path.splitext(os.path.basename(source_file))[0]
-    return stem
+    return pathlib.Path(source_file).stem
 
 
 def gen_id_per_slug(arr: list, prefix_base: str, source_file: str) -> str:
@@ -226,6 +224,7 @@ def collect_word_definition(arr: list) -> dict:
     category = prompt("category", required=False)
     category_hint = prompt("categoryHint", required=False)
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_word_def(arr)
 
@@ -234,6 +233,7 @@ def collect_word_definition(arr: list) -> dict:
         item["category"] = category
     if category_hint:
         item["categoryHint"] = category_hint
+    item["level"] = item_level
     item["tags"] = tags
     return item
 
@@ -269,15 +269,26 @@ def collect_story(arr: list) -> dict:
     title = prompt("title")
     source_file = prompt_source_file()
 
+    print("  text (enter the story body, blank line to finish):")
+    lines = []
+    while True:
+        line = input("    ")
+        if not line:
+            break
+        lines.append(line)
+    story_text = " ".join(lines)
+
     print("\n  -- Optional fields --")
     season = prompt("season", required=False)
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_stories(arr)
 
-    item = {"id": new_id, "sourceFile": source_file, "title": title}
+    item = {"id": new_id, "sourceFile": source_file, "title": title, "text": story_text}
     if season:
         item["season"] = season
+    item["level"] = item_level
     item["tags"] = tags
     return item
 
@@ -287,10 +298,11 @@ def collect_scenario(arr: list) -> dict:
     title = prompt("title")
     source_file = prompt_source_file()
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_per_slug(arr, "social", source_file)
 
-    item = {"id": new_id, "sourceFile": source_file, "title": title, "tags": tags}
+    item = {"id": new_id, "sourceFile": source_file, "title": title, "level": item_level, "tags": tags}
     return item
 
 
@@ -299,10 +311,11 @@ def collect_problem_story(arr: list) -> dict:
     title = prompt("title")
     text = prompt("text")
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_problem_story(arr)
 
-    item = {"id": new_id, "title": title, "text": text, "tags": tags}
+    item = {"id": new_id, "title": title, "text": text, "level": item_level, "tags": tags}
     return item
 
 
@@ -311,10 +324,11 @@ def collect_reflection_story(arr: list) -> dict:
     title = prompt("title")
     topic = prompt("topic")
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_reflection_story(title)
 
-    item = {"id": new_id, "title": title, "topic": topic, "tags": tags}
+    item = {"id": new_id, "title": title, "topic": topic, "level": item_level, "tags": tags}
     return item
 
 
@@ -326,12 +340,14 @@ def collect_grammar_item(arr: list) -> dict:
     print("\n  -- Optional fields --")
     focus = prompt("focus", required=False)
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_per_slug(arr, "grammar", source_file)
 
     item = {"id": new_id, "sourceFile": source_file, "title": title}
     if focus:
         item["focus"] = focus
+    item["level"] = item_level
     item["tags"] = tags
     return item
 
@@ -346,6 +362,7 @@ def collect_fluency_starter(arr: list) -> dict:
     frame_phrase = prompt("frames.phrase", required=False)
     frame_sentence = prompt("frames.sentence", required=False)
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_per_slug(arr, "fluency", source_file)
 
@@ -361,6 +378,7 @@ def collect_fluency_starter(arr: list) -> dict:
     if frames:
         item["frames"] = frames
 
+    item["level"] = item_level
     item["tags"] = tags
     return item
 
@@ -371,10 +389,11 @@ def collect_paragraph_passage(arr: list) -> dict:
     text = prompt_multiline("text")
     target_sound = prompt("targetSound")
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_passage(arr)
 
-    item = {"id": new_id, "title": title, "text": text, "targetSound": target_sound, "tags": tags}
+    item = {"id": new_id, "title": title, "text": text, "targetSound": target_sound, "level": item_level, "tags": tags}
     return item
 
 
@@ -383,10 +402,11 @@ def collect_lblend_story(arr: list) -> dict:
     title = prompt("title")
     text = prompt_multiline("text")
 
+    item_level = prompt_level()
     tags = prompt_tags()
     new_id = gen_id_lblend_story(arr)
 
-    item = {"id": new_id, "title": title, "text": text, "tags": tags}
+    item = {"id": new_id, "title": title, "text": text, "level": item_level, "tags": tags}
     return item
 
 
@@ -477,23 +497,29 @@ def main() -> None:
 
     # Step 5: Confirm
     confirm = input("\nWrite? [Y/n]: ").strip().lower()
-    if confirm in ("n", "no"):
+    if confirm not in ("", "y", "yes"):
         print("Aborted.")
         sys.exit(0)
 
-    # Step 6: Write
+    # Duplicate ID check
+    existing_ids = {itm.get("id") for itm in arr}
+    if new_item.get("id") in existing_ids:
+        print(f"ERROR: ID '{new_item['id']}' already exists in {arr_key}. Aborting.")
+        sys.exit(1)
+
+    # Step 6: Write (atomic)
     original_count = len(arr)
     arr.append(new_item)
 
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-        f.write("\n")
+    tmp_path = json_path.with_suffix(".tmp")
+    tmp_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    tmp_path.replace(json_path)
 
     # Step 7: Regenerate JS wrapper
     regen_js_wrapper(cat, data)
 
     new_count = len(arr)
-    print(f"\n✓ Added to data/{cat}.json ({original_count} → {new_count} items). Wrapper regenerated.")
+    print(f"\nAdded to data/{cat}.json ({original_count} → {new_count} items). Wrapper regenerated.")
 
 
 if __name__ == "__main__":
