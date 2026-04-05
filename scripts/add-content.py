@@ -70,8 +70,9 @@ def prompt_tags() -> list:
         for t in raw.split(","):
             t = t.strip()
             if t:
-                # Convert internal spaces to hyphens
-                t = re.sub(r"\s+", "-", t)
+                # Normalize: strip, lowercase, convert internal spaces to hyphens
+                t = t.lower()
+                t = re.sub(r"\s+", "-", t.strip())
                 tags.append(t)
         if not tags:
             print("    ! At least one tag is required.")
