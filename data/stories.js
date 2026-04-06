@@ -27408,6 +27408,16 @@ window.ActivityData.stories = {
       "tags": [
         "winter"
       ]
+    },
+    {
+      "id": 41,
+      "sourceFile": "activities/stories/test.html",
+      "title": "Test",
+      "text": "This is a test story. This is the middle of test story. This is the end ofof test story",
+      "level": "medium",
+      "tags": [
+        "spring"
+      ]
     }
   ],
   "author-purpose-msg": [
@@ -55474,5 +55484,99 @@ window.ActivityData.stories = {
         }
       ]
     }
-  ]
+  ],
+  "_template-test-tabs": {
+    "_meta": {
+      "title": "Template Test — Tabs Mode",
+      "displayMode": "tabs",
+      "level": "easy",
+      "tags": [
+        "test"
+      ]
+    },
+    "stories": [
+      {
+        "id": 1,
+        "title": "The Red House",
+        "text": "There was a little red house at the end of a winding road. A girl named Maya lived there with her cat, Pepper. Every morning, Maya fed Pepper and then walked to school.",
+        "questions": [
+          {
+            "type": "open",
+            "text": "Where did Maya live?"
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What was the cat's name?",
+            "options": [
+              "Mittens",
+              "Pepper",
+              "Shadow",
+              "Luna"
+            ],
+            "answer": 1
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "The Blue Sky",
+        "text": "On a clear day, the sky above the town was a deep, bright blue. Clouds floated slowly past like cotton balls. People stopped on the sidewalk just to look up.",
+        "questions": [
+          {
+            "type": "inference",
+            "text": "Why do you think people stopped to look up?"
+          },
+          {
+            "type": "open",
+            "text": "What does the sky look like on a clear day?"
+          }
+        ]
+      }
+    ]
+  },
+  "_template-test-progressive": {
+    "_meta": {
+      "title": "Template Test — Progressive Mode",
+      "displayMode": "progressive",
+      "level": "medium",
+      "tags": [
+        "test"
+      ]
+    },
+    "stories": [
+      {
+        "id": 1,
+        "title": "The Old Bridge",
+        "text": "The bridge had stood for over a hundred years. Its wooden planks creaked under every footstep. One morning, a boy named Sam crossed it holding a basket of bread for his grandmother.",
+        "questions": [
+          {
+            "type": "open",
+            "text": "How old was the bridge?"
+          },
+          {
+            "type": "inference",
+            "text": "Where was Sam going?"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "The Market",
+        "text": "Sam's grandmother lived near the market. She sold fresh flowers every Tuesday. When Sam arrived, she hugged him tight and opened the basket with a smile.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What did grandmother sell?",
+            "options": [
+              "Bread",
+              "Vegetables",
+              "Flowers",
+              "Fruit"
+            ],
+            "answer": 2
+          }
+        ]
+      }
+    ]
+  }
 };
