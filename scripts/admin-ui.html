@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity Builder</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f0f4f8; color: #1e293b; }
+  .header { background: #2563eb; color: white; padding: 16px 24px; font-size: 1.25rem; font-weight: 700; }
+  .step-bar { display: flex; background: #1d4ed8; padding: 0 24px; }
+  .step-tab { padding: 10px 20px; color: rgba(255,255,255,0.6); cursor: default; font-size: 0.875rem; border-bottom: 3px solid transparent; }
+  .step-tab.active { color: white; border-bottom-color: white; }
+  .content { max-width: 860px; margin: 24px auto; padding: 0 16px; }
+  .card { background: white; border-radius: 12px; padding: 28px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .card h2 { font-size: 1.1rem; margin-bottom: 18px; color: #1e40af; }
+  label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 6px; color: #374151; }
+  input[type=text], textarea { width: 100%; padding: 9px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; font-family: inherit; margin-bottom: 16px; }
+  textarea { resize: vertical; min-height: 120px; }
+  input[type=text]:focus, textarea:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+  .radio-group { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .radio-option { flex: 1; min-width: 120px; }
+  .radio-option input { display: none; }
+  .radio-option label { display: block; text-align: center; padding: 10px; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; font-size: 0.875rem; font-weight: 500; transition: all 0.15s; }
+  .radio-option input:checked + label { border-color: #2563eb; background: #eff6ff; color: #1d4ed8; }
+  .btn { padding: 10px 20px; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: #2563eb; color: white; }
+  .btn-secondary { background: #e5e7eb; color: #374151; }
+  .btn-danger { background: #fef2f2; color: #dc2626; border: 1px solid #fca5a5; }
+  .btn-sm { padding: 6px 12px; font-size: 0.8rem; }
+  .btn-green { background: #16a34a; color: white; }
+  .story-block { border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .story-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .story-header h3 { font-size: 1rem; color: #374151; }
+  .question-block { background: #f8fafc; border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+  .question-type-toggle { display: flex; gap: 8px; margin-bottom: 10px; }
+  .type-btn { padding: 5px 12px; border: 1px solid #d1d5db; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; }
+  .type-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
+  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .correct-selector { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .correct-btn { padding: 4px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; }
+  .correct-btn.selected { background: #16a34a; color: white; border-color: #16a34a; }
+  .image-picker-btn { padding: 8px 14px; border: 1px dashed #2563eb; background: #eff6ff; color: #1d4ed8; border-radius: 8px; cursor: pointer; font-size: 0.875rem; margin-bottom: 12px; width: 100%; text-align: left; }
+  .image-preview { max-height: 120px; border-radius: 8px; margin-bottom: 12px; display: none; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; overflow-y: auto; }
+  .modal-overlay.open { display: block; }
+  .modal { background: white; border-radius: 12px; margin: 40px auto; max-width: 700px; padding: 24px; }
+  .modal h3 { margin-bottom: 16px; }
+  .folder-section h4 { font-size: 0.875rem; color: #6b7280; margin: 12px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+  .image-thumb { aspect-ratio: 1; object-fit: cover; border-radius: 6px; cursor: pointer; border: 3px solid transparent; transition: border-color 0.15s; width: 100%; }
+  .image-thumb:hover { border-color: #2563eb; }
+  #preview-frame { width: 100%; height: 600px; border: none; border-radius: 10px; }
+  .actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px; }
+  .error-msg { color: #dc2626; font-size: 0.875rem; margin-top: 8px; }
+  .success-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 20px; }
+  .success-box h3 { color: #16a34a; margin-bottom: 10px; }
+  .hidden { display: none !important; }
+  .key-field { font-family: monospace; background: #f8fafc; }
+  .hint { font-size: 0.8rem; color: #6b7280; margin-top: -12px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<div class="header">Reading Activity Builder</div>
+<div class="step-bar">
+  <div class="step-tab active" id="tab-1">1. Basics</div>
+  <div class="step-tab" id="tab-2">2. Stories</div>
+  <div class="step-tab" id="tab-3">3. Preview</div>
+  <div class="step-tab" id="tab-4">4. Save</div>
+</div>
+
+<!-- Step 1: Basics -->
+<div class="content" id="step-1">
+  <div class="card">
+    <h2>Activity Details</h2>
+    <label>Title</label>
+    <input type="text" id="title" placeholder="e.g. Winter Reading — Inference" oninput="updateKey()">
+
+    <label>Level</label>
+    <div class="radio-group">
+      <div class="radio-option"><input type="radio" name="level" id="l-easy" value="easy" checked><label for="l-easy">Easy</label></div>
+      <div class="radio-option"><input type="radio" name="level" id="l-medium" value="medium"><label for="l-medium">Medium</label></div>
+      <div class="radio-option"><input type="radio" name="level" id="l-hard" value="hard"><label for="l-hard">Hard</label></div>
+    </div>
+
+    <label>Tags (comma-separated)</label>
+    <input type="text" id="tags" placeholder="e.g. winter, inference, reading">
+
+    <label>Display Mode</label>
+    <div class="radio-group">
+      <div class="radio-option"><input type="radio" name="mode" id="m-tabs" value="tabs" checked><label for="m-tabs">Tabs<br><small style="font-weight:400;color:#6b7280">Click between stories</small></label></div>
+      <div class="radio-option"><input type="radio" name="mode" id="m-prog" value="progressive"><label for="m-prog">Progressive<br><small style="font-weight:400;color:#6b7280">One at a time</small></label></div>
+      <div class="radio-option"><input type="radio" name="mode" id="m-single" value="single"><label for="m-single">Single<br><small style="font-weight:400;color:#6b7280">One story only</small></label></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="goToStep(2)">Next: Add Stories →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Step 2: Stories -->
+<div class="content hidden" id="step-2">
+  <div id="stories-container"></div>
+  <button class="btn btn-secondary" onclick="addStory()">+ Add Story</button>
+  <div class="actions" style="margin-top:16px;">
+    <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+    <button class="btn btn-primary" onclick="goToPreview()">Preview →</button>
+  </div>
+</div>
+
+<!-- Step 3: Preview -->
+<div class="content hidden" id="step-3">
+  <div class="card">
+    <h2>Preview</h2>
+    <p style="color:#6b7280; margin-bottom:16px; font-size:0.875rem;">This is exactly how the activity will appear. Click tabs, answer questions.</p>
+    <iframe id="preview-frame" src="about:blank"></iframe>
+  </div>
+  <div class="actions">
+    <button class="btn btn-secondary" onclick="goToStep(2)">← Back to Edit</button>
+    <button class="btn btn-primary" onclick="goToStep(4)">Save Activity →</button>
+  </div>
+</div>
+
+<!-- Step 4: Save -->
+<div class="content hidden" id="step-4">
+  <div class="card" id="save-form">
+    <h2>Save Activity</h2>
+    <label>Activity Key</label>
+    <input type="text" id="activity-key" class="key-field" placeholder="e.g. winter-reading-inference">
+    <p class="hint">Auto-generated from title. Lowercase letters, numbers, and hyphens only. Must be unique.</p>
+    <div id="save-error" class="error-msg hidden"></div>
+    <div class="actions">
+      <button class="btn btn-secondary" onclick="goToStep(3)">← Back to Preview</button>
+      <button class="btn btn-green" onclick="saveActivity()">Save Activity</button>
+    </div>
+  </div>
+  <div class="success-box hidden" id="save-success">
+    <h3>Activity Saved!</h3>
+    <p id="success-msg"></p>
+    <div class="actions" style="margin-top:16px;">
+      <a id="activity-link" href="#" target="_blank" class="btn btn-primary">Open Activity</a>
+      <button class="btn btn-secondary" onclick="startOver()">Create Another</button>
+    </div>
+  </div>
+</div>
+
+<!-- Image Picker Modal -->
+<div class="modal-overlay" id="image-modal">
+  <div class="modal">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <h3>Choose an Image</h3>
+      <button class="btn btn-secondary btn-sm" onclick="closeImageModal()">✕ Close</button>
+    </div>
+    <div id="image-browser">Loading images…</div>
+  </div>
+</div>
+
+<script>
+const stories = [];
+let imageCallback = null;
+let allImages = null;
+
+function goToStep(n) {
+  [1,2,3,4].forEach(i => {
+    document.getElementById('step-' + i).classList.toggle('hidden', i !== n);
+    document.getElementById('tab-' + i).classList.toggle('active', i === n);
+  });
+}
+
+function updateKey() {
+  const title = document.getElementById('title').value;
+  let key = title.toLowerCase()
+    .replace(/['\u2019]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  document.getElementById('activity-key').value = key;
+}
+
+// ── Stories ──────────────────────────────────────────────────────
+function addStory() {
+  const idx = stories.length;
+  stories.push({ title: '', text: '', imageUrl: '', questions: [] });
+  renderStoryBlock(idx);
+}
+
+function renderStoryBlock(idx) {
+  const container = document.getElementById('stories-container');
+  const div = document.createElement('div');
+  div.className = 'story-block';
+  div.id = 'story-' + idx;
+  div.innerHTML = `
+    <div class="story-header">
+      <h3>Story ${idx + 1}</h3>
+      <button class="btn btn-danger btn-sm" onclick="removeStory(${idx})">Remove</button>
+    </div>
+    <label>Story Title</label>
+    <input type="text" id="s${idx}-title" placeholder="e.g. The Old Bridge" oninput="stories[${idx}].title=this.value">
+    <label>Story Text</label>
+    <textarea id="s${idx}-text" placeholder="Paste the full story here…" oninput="stories[${idx}].text=this.value"></textarea>
+    <label>Image (optional)</label>
+    <img id="s${idx}-img-preview" class="image-preview">
+    <button class="image-picker-btn" onclick="openImageModal(${idx})">📷 Browse Images</button>
+    <input type="text" id="s${idx}-imageUrl" placeholder="Or paste image path e.g. /images/fall/apple.jpg"
+      oninput="stories[${idx}].imageUrl=this.value; showImgPreview(${idx})">
+    <label>Questions</label>
+    <div id="s${idx}-questions"></div>
+    <button class="btn btn-secondary btn-sm" onclick="addQuestion(${idx})">+ Add Question</button>`;
+  container.appendChild(div);
+}
+
+function removeStory(idx) {
+  stories.splice(idx, 1);
+  document.getElementById('stories-container').innerHTML = '';
+  stories.forEach((s, i) => {
+    renderStoryBlock(i);
+    document.getElementById('s'+i+'-title').value = s.title;
+    document.getElementById('s'+i+'-text').value = s.text;
+    document.getElementById('s'+i+'-imageUrl').value = s.imageUrl;
+    showImgPreview(i);
+    s.questions.forEach((_, qi) => renderQuestionBlock(i, qi));
+  });
+}
+
+function showImgPreview(si) {
+  const url = stories[si].imageUrl;
+  const img = document.getElementById('s' + si + '-img-preview');
+  img.src = url || '';
+  img.style.display = url ? 'block' : 'none';
+}
+
+// ── Questions ────────────────────────────────────────────────────
+function addQuestion(si) {
+  const qi = stories[si].questions.length;
+  stories[si].questions.push({ type: 'open', text: '', options: ['','','',''], answer: 0 });
+  renderQuestionBlock(si, qi);
+}
+
+function renderQuestionBlock(si, qi) {
+  const container = document.getElementById('s' + si + '-questions');
+  const div = document.createElement('div');
+  div.className = 'question-block';
+  div.id = 'q-' + si + '-' + qi;
+  div.innerHTML = buildQuestionHtml(si, qi, stories[si].questions[qi].type);
+  container.appendChild(div);
+}
+
+function buildQuestionHtml(si, qi, type) {
+  const typeBtns = ['open','inference','multiple-choice'].map(t =>
+    `<button class="type-btn ${type===t?'active':''}" onclick="setQuestionType(${si},${qi},'${t}')">${t}</button>`
+  ).join('');
+
+  let extra = '';
+  if (type === 'multiple-choice') {
+    const q = stories[si].questions[qi];
+    extra = `
+      <div class="options-grid">
+        ${[0,1,2,3].map(oi => `<input type="text" placeholder="Option ${oi+1}"
+          id="q-${si}-${qi}-opt${oi}" oninput="stories[${si}].questions[${qi}].options[${oi}]=this.value"
+          value="${escAttr(q.options[oi] || '')}">`).join('')}
+      </div>
+      <div style="font-size:0.8rem;font-weight:600;margin:6px 0 4px;">Correct Answer:</div>
+      <div class="correct-selector">
+        ${[0,1,2,3].map(oi => `<button class="correct-btn ${q.answer===oi?'selected':''}"
+          id="correct-${si}-${qi}-${oi}" onclick="setCorrect(${si},${qi},${oi})">${oi+1}</button>`).join('')}
+      </div>`;
+  }
+
+  return `
+    <div class="question-type-toggle">${typeBtns}</div>
+    <input type="text" placeholder="Question text…"
+      id="q-${si}-${qi}-text" value="${escAttr(stories[si].questions[qi].text || '')}"
+      oninput="stories[${si}].questions[${qi}].text=this.value">
+    ${extra}
+    <button class="btn btn-danger btn-sm" style="margin-top:6px;" onclick="removeQuestion(${si},${qi})">Remove</button>`;
+}
+
+function escAttr(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function setQuestionType(si, qi, type) {
+  const oldText = stories[si].questions[qi].text;
+  stories[si].questions[qi].type = type;
+  const block = document.getElementById('q-' + si + '-' + qi);
+  block.innerHTML = buildQuestionHtml(si, qi, type);
+  stories[si].questions[qi].text = oldText;
+  const textInput = document.getElementById('q-' + si + '-' + qi + '-text');
+  if (textInput) textInput.value = oldText;
+}
+
+function setCorrect(si, qi, answer) {
+  stories[si].questions[qi].answer = answer;
+  [0,1,2,3].forEach(oi => {
+    const btn = document.getElementById(`correct-${si}-${qi}-${oi}`);
+    if (btn) btn.classList.toggle('selected', oi === answer);
+  });
+}
+
+function removeQuestion(si, qi) {
+  stories[si].questions.splice(qi, 1);
+  document.getElementById('s' + si + '-questions').innerHTML = '';
+  stories[si].questions.forEach((_, newQi) => renderQuestionBlock(si, newQi));
+}
+
+// ── Image picker ──────────────────────────────────────────────────
+async function openImageModal(si) {
+  imageCallback = (url) => {
+    stories[si].imageUrl = url;
+    document.getElementById('s' + si + '-imageUrl').value = url;
+    showImgPreview(si);
+    closeImageModal();
+  };
+  document.getElementById('image-modal').classList.add('open');
+  if (allImages) return;
+  const res = await fetch('/api/images');
+  allImages = await res.json();
+  const browser = document.getElementById('image-browser');
+  if (!Object.keys(allImages).length) {
+    browser.innerHTML = '<p style="color:#6b7280;">No images found in /images/ folder.</p>';
+    return;
+  }
+  browser.innerHTML = Object.entries(allImages).map(([folder, files]) => `
+    <div class="folder-section">
+      <h4>${folder}</h4>
+      <div class="image-grid">
+        ${files.map(f => `<img src="${f}" class="image-thumb" onclick="imageCallback('${f.replace(/'/g,"\\'")}')" title="${f}">`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function closeImageModal() {
+  document.getElementById('image-modal').classList.remove('open');
+  imageCallback = null;
+}
+
+// ── Build config ──────────────────────────────────────────────────
+function buildConfig() {
+  const level = document.querySelector('input[name=level]:checked')?.value || 'easy';
+  const mode  = document.querySelector('input[name=mode]:checked')?.value || 'tabs';
+  const tags  = document.getElementById('tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const title = document.getElementById('title').value.trim();
+
+  return {
+    _meta: { title, displayMode: mode, level, tags },
+    stories: stories.map((s, i) => {
+      const obj = {
+        id: i + 1,
+        title: s.title || ('Story ' + (i + 1)),
+        text: s.text,
+        questions: s.questions.map(q => {
+          const out = { type: q.type, text: q.text };
+          if (q.type === 'multiple-choice') {
+            out.options = q.options.filter(Boolean).length >= 2 ? q.options.filter(Boolean) : q.options.slice(0,4);
+            out.answer = q.answer;
+          }
+          return out;
+        })
+      };
+      if (s.imageUrl) obj.imageUrl = s.imageUrl;
+      return obj;
+    })
+  };
+}
+
+// ── Preview ───────────────────────────────────────────────────────
+async function goToPreview() {
+  const config = buildConfig();
+  await fetch('/api/preview', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(config)
+  });
+  goToStep(3);
+  document.getElementById('preview-frame').src =
+    'http://localhost:8090/activities/reading/index.html?activity=_preview&t=' + Date.now();
+}
+
+// ── Save ──────────────────────────────────────────────────────────
+async function saveActivity() {
+  const key = document.getElementById('activity-key').value.trim();
+  const errEl = document.getElementById('save-error');
+  errEl.classList.add('hidden');
+
+  if (!key) {
+    errEl.textContent = 'Please enter an activity key.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  if (!/^[a-z0-9][a-z0-9-]*[a-z0-9]$/.test(key)) {
+    errEl.textContent = 'Key must use only lowercase letters, numbers, and hyphens, and cannot start or end with a hyphen.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  const config = buildConfig();
+  const res = await fetch('/api/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ key, config })
+  });
+  const data = await res.json();
+
+  if (!res.ok) {
+    errEl.textContent = data.error || 'Save failed.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  const url = `http://localhost:8090/activities/reading/index.html?activity=${key}`;
+  document.getElementById('success-msg').innerHTML =
+    `Activity "<strong>${escAttr(config._meta.title)}</strong>" saved as key <code>${escAttr(key)}</code>.`;
+  document.getElementById('activity-link').href = url;
+  document.getElementById('save-form').classList.add('hidden');
+  document.getElementById('save-success').classList.remove('hidden');
+}
+
+function startOver() {
+  stories.length = 0;
+  document.getElementById('stories-container').innerHTML = '';
+  document.getElementById('title').value = '';
+  document.getElementById('tags').value = '';
+  document.getElementById('activity-key').value = '';
+  document.getElementById('save-form').classList.remove('hidden');
+  document.getElementById('save-success').classList.add('hidden');
+  goToStep(1);
+}
+
+// Init with one empty story
+addStory();
+</script>
+</body>
+</html>
