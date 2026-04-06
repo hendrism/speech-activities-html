@@ -17,6 +17,7 @@ import pathlib
 import re
 import sys
 import urllib.parse
+import threading
 import webbrowser
 
 REPO_ROOT  = pathlib.Path(__file__).resolve().parent.parent
@@ -48,7 +49,9 @@ def regen_stories_js(data: dict) -> None:
         + json.dumps(data, indent=2, ensure_ascii=False)
         + ";\n"
     )
-    (DATA_DIR / "stories.js").write_text(js, encoding="utf-8")
+    tmp = DATA_DIR / "stories.tmp.js"
+    tmp.write_text(js, encoding="utf-8")
+    tmp.replace(DATA_DIR / "stories.js")
 
 
 def load_activity_index() -> dict:
@@ -124,8 +127,14 @@ class AdminHandler(http.server.BaseHTTPRequestHandler):
         parsed = urllib.parse.urlparse(self.path)
         path   = parsed.path
 
-        length = int(self.headers.get("Content-Length", 0))
-        body   = json.loads(self.rfile.read(length) or b"{}")
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body   = json.loads(self.rfile.read(length) or b"{}")
+            if not isinstance(body, dict):
+                raise ValueError("Request body must be a JSON object")
+        except (ValueError, json.JSONDecodeError) as e:
+            self._error(400, f"Invalid request body: {e}")
+            return
 
         if path == "/api/preview":
             self._handle_preview(body)
@@ -146,7 +155,7 @@ class AdminHandler(http.server.BaseHTTPRequestHandler):
         key    = body.get("key", "").strip()
         config = body.get("config")
 
-        if not key or not config:
+        if not key or not config or not isinstance(config, dict):
             self._error(400, "Missing key or config")
             return
         if not re.match(r"^[a-z0-9][a-z0-9-]*[a-z0-9]$", key):
@@ -184,7 +193,10 @@ class AdminHandler(http.server.BaseHTTPRequestHandler):
 
     def _serve_static(self, url_path: str) -> None:
         safe = url_path.lstrip("/").replace("..", "")
-        file_path = REPO_ROOT / safe
+        file_path = (REPO_ROOT / safe).resolve()
+        if not file_path.is_relative_to(REPO_ROOT.resolve()):
+            self._error(403, "Forbidden")
+            return
         if file_path.is_dir():
             file_path = file_path / "index.html"
         if not file_path.exists() or not file_path.is_file():
@@ -232,7 +244,6 @@ def main():
 
     server = http.server.HTTPServer(("localhost", PORT), AdminHandler)
 
-    import threading
     threading.Timer(0.5, lambda: webbrowser.open(f"http://localhost:{PORT}/admin")).start()
 
     try:
