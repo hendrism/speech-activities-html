@@ -61,3 +61,22 @@ These activities often run offline in schools, so avoid external CDNs or fontsâ€
 - [ ] New content items added to the correct `/data/{category}.json`
 - [ ] Page opens in browser with no console errors
 - [ ] All interactive controls work
+
+## Creating New Reading Activities (Admin Builder)
+
+The recommended way to create new reading activities is the browser-based builder:
+
+```bash
+python3 scripts/admin.py
+```
+
+This opens `http://localhost:8090/admin` and walks you through:
+1. Activity title, level, tags, and display mode
+2. Adding stories with text, images, and questions
+3. Previewing the activity before saving
+4. Saving â€” automatically writes to `data/stories.json` and `data/activity-index.json`
+
+New activities render via the shared template at:
+`activities/reading/index.html?activity=<your-key>`
+
+The template supports three display modes (`tabs`, `progressive`, `single`) and three question types (`open`, `inference`, `multiple-choice`).
