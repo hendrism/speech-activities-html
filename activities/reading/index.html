@@ -28,6 +28,8 @@
     <script src="../../js/data-loader.js"></script>
     <script src="../../js/utils.js"></script>
     <script>
+        const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
         // ── Load activity config ──────────────────────────────────────
         const params      = new URLSearchParams(window.location.search);
         const activityKey = params.get('activity');
@@ -41,7 +43,7 @@
                         ⚠️ This activity key is not compatible with the reading template.
                     </p>
                     <p class="text-muted">Old activities use their own HTML files.
-                        Key received: <code>${activityKey}</code></p>
+                        Key received: <code>${esc(activityKey)}</code></p>
                 </div>`;
             document.getElementById('activity-title').textContent = 'Activity Not Found';
             document.getElementById('prev-btn').style.display = 'none';
@@ -50,6 +52,17 @@
         }
 
         const { _meta, stories } = config;
+
+        // Guard: stories array must be non-empty
+        if (!Array.isArray(stories) || stories.length === 0) {
+            document.getElementById('card').innerHTML = `
+                <div class="text-center" style="padding: var(--space-8);">
+                    <p style="font-size: var(--font-size-lg);">⚠️ This activity has no stories.</p>
+                </div>`;
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+            throw new Error('Reading template: empty stories array for key: ' + activityKey);
+        }
 
         // ── Header ────────────────────────────────────────────────────
         document.title = _meta.title + ' — Speech Therapy';
@@ -61,29 +74,29 @@
         let currentIndex = 0;
 
         // ── Question rendering ────────────────────────────────────────
-        function renderQuestion(q, qi) {
+        function renderQuestion(q) {
             if (q.type === 'multiple-choice') {
                 const opts = q.options.map((opt, oi) => `
                     <button class="btn btn-secondary"
                         style="width:100%; text-align:left; margin-bottom:var(--space-2);"
-                        onclick="checkChoice(this, ${oi}, ${q.answer}, '${qi}')">
-                        ${opt}
+                        onclick="checkChoice(this, ${oi}, ${q.answer})">
+                        ${esc(opt)}
                     </button>`).join('');
                 return `
-                    <div class="question" style="margin-bottom:var(--space-6);" data-qi="${qi}">
-                        <p style="font-weight:600; margin-bottom:var(--space-3);">${q.text}</p>
+                    <div class="question" style="margin-bottom:var(--space-6);">
+                        <p style="font-weight:600; margin-bottom:var(--space-3);">${esc(q.text)}</p>
                         <div class="mc-options">${opts}</div>
                     </div>`;
             }
             const prefix = q.type === 'inference' ? '💭 ' : '';
             return `
                 <div class="question" style="margin-bottom:var(--space-6);">
-                    <p style="font-weight:600;">${prefix}${q.text}</p>
+                    <p style="font-weight:600;">${prefix}${esc(q.text)}</p>
                 </div>`;
         }
 
-        function checkChoice(btn, selected, correct, qi) {
-            const container = document.querySelector('[data-qi="' + qi + '"] .mc-options');
+        function checkChoice(btn, selected, correct) {
+            const container = btn.closest('.question')?.querySelector('.mc-options');
             if (!container) return;
             container.querySelectorAll('button').forEach((b, i) => {
                 b.disabled = true;
@@ -96,16 +109,14 @@
         function renderStory(idx) {
             const story = stories[idx];
             const imgHtml = story.imageUrl
-                ? `<img src="${story.imageUrl}" alt="${story.title}"
+                ? `<img src="${esc(story.imageUrl)}" alt="${esc(story.title)}"
                        style="max-width:100%; border-radius:var(--radius-md); margin-bottom:var(--space-4);">`
                 : '';
-            const questionsHtml = (story.questions || [])
-                .map((q, qi) => renderQuestion(q, idx + '-' + qi))
-                .join('');
+            const questionsHtml = (story.questions || []).map(renderQuestion).join('');
             document.getElementById('card').innerHTML = `
-                <h2 style="margin-bottom:var(--space-4);">${story.title}</h2>
+                <h2 style="margin-bottom:var(--space-4);">${esc(story.title)}</h2>
                 ${imgHtml}
-                <p style="font-size:var(--font-size-base); line-height:1.7; margin-bottom:var(--space-6);">${story.text}</p>
+                <p style="font-size:var(--font-size-base); line-height:1.7; margin-bottom:var(--space-6);">${esc(story.text)}</p>
                 <div class="questions">${questionsHtml}</div>`;
         }
 
@@ -121,8 +132,8 @@
         function syncNavButtons() {
             document.getElementById('prev-btn').disabled = currentIndex === 0;
             const nextBtn = document.getElementById('next-btn');
-            nextBtn.disabled = currentIndex === stories.length - 1;
             nextBtn.textContent = currentIndex === stories.length - 1 ? 'Done ✓' : 'Next →';
+            nextBtn.disabled = false;
         }
 
         // ── Display mode init ─────────────────────────────────────────
@@ -146,6 +157,15 @@
             document.getElementById('nav-pills').style.display = 'none';
             renderStory(0);
             syncNavButtons();
+
+        } else {
+            document.getElementById('card').innerHTML = `
+                <div class="text-center" style="padding: var(--space-8);">
+                    <p style="font-size: var(--font-size-lg);">⚠️ Unknown display mode: <code>${esc(displayMode)}</code></p>
+                    <p class="text-muted mt-4">Check the _meta.displayMode value in the activity config.</p>
+                </div>`;
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
         }
     </script>
 </body>
