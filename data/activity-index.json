@@ -5,7 +5,8 @@
     "types": {
       "content-driven": "Data was extracted to /data/*.json — single source of truth",
       "json-loader": "Activity loads from an external JSON file at runtime",
-      "tool": "Interactive engine — user generates content at runtime, nothing to extract"
+      "tool": "Interactive engine — user generates content at runtime, nothing to extract",
+      "template-driven": "Shared template rendered from data config"
     }
   },
   "activities": [
