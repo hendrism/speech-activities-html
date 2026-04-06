@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Activity — Speech Therapy</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body class="category-reading">
+
+    <div class="activity-header">
+        <h1 id="activity-title">Loading…</h1>
+        <p id="activity-meta"></p>
+    </div>
+
+    <div class="container">
+        <div class="nav-pills" id="nav-pills"></div>
+
+        <div class="card" id="card"></div>
+
+        <div class="flex-between mt-4">
+            <button class="btn btn-secondary" id="prev-btn" onclick="prevStory()">← Previous</button>
+            <button class="btn btn-primary"   id="next-btn" onclick="nextStory()">Next →</button>
+        </div>
+    </div>
+
+    <script src="../../data/stories.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script>
+        // ── Load activity config ──────────────────────────────────────
+        const params      = new URLSearchParams(window.location.search);
+        const activityKey = params.get('activity');
+        const config      = DataLoader.get('stories', activityKey);
+
+        // Guard: config must be an object with _meta (not an old array-based key)
+        if (!config || Array.isArray(config) || !config._meta) {
+            document.getElementById('card').innerHTML = `
+                <div class="text-center" style="padding: var(--space-8);">
+                    <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-4);">
+                        ⚠️ This activity key is not compatible with the reading template.
+                    </p>
+                    <p class="text-muted">Old activities use their own HTML files.
+                        Key received: <code>${activityKey}</code></p>
+                </div>`;
+            document.getElementById('activity-title').textContent = 'Activity Not Found';
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+            throw new Error('Reading template: invalid config for key: ' + activityKey);
+        }
+
+        const { _meta, stories } = config;
+
+        // ── Header ────────────────────────────────────────────────────
+        document.title = _meta.title + ' — Speech Therapy';
+        document.getElementById('activity-title').textContent = _meta.title;
+        document.getElementById('activity-meta').textContent =
+            (_meta.level || '') + (_meta.tags && _meta.tags.length ? ' · ' + _meta.tags.join(', ') : '');
+
+        // ── State ─────────────────────────────────────────────────────
+        let currentIndex = 0;
+
+        // ── Question rendering ────────────────────────────────────────
+        function renderQuestion(q, qi) {
+            if (q.type === 'multiple-choice') {
+                const opts = q.options.map((opt, oi) => `
+                    <button class="btn btn-secondary"
+                        style="width:100%; text-align:left; margin-bottom:var(--space-2);"
+                        onclick="checkChoice(this, ${oi}, ${q.answer}, '${qi}')">
+                        ${opt}
+                    </button>`).join('');
+                return `
+                    <div class="question" style="margin-bottom:var(--space-6);" data-qi="${qi}">
+                        <p style="font-weight:600; margin-bottom:var(--space-3);">${q.text}</p>
+                        <div class="mc-options">${opts}</div>
+                    </div>`;
+            }
+            const prefix = q.type === 'inference' ? '💭 ' : '';
+            return `
+                <div class="question" style="margin-bottom:var(--space-6);">
+                    <p style="font-weight:600;">${prefix}${q.text}</p>
+                </div>`;
+        }
+
+        function checkChoice(btn, selected, correct, qi) {
+            const container = document.querySelector('[data-qi="' + qi + '"] .mc-options');
+            if (!container) return;
+            container.querySelectorAll('button').forEach((b, i) => {
+                b.disabled = true;
+                if (i === correct) b.style.background = '#22c55e';
+                else if (i === selected && selected !== correct) b.style.background = '#ef4444';
+            });
+        }
+
+        // ── Story rendering ───────────────────────────────────────────
+        function renderStory(idx) {
+            const story = stories[idx];
+            const imgHtml = story.imageUrl
+                ? `<img src="${story.imageUrl}" alt="${story.title}"
+                       style="max-width:100%; border-radius:var(--radius-md); margin-bottom:var(--space-4);">`
+                : '';
+            const questionsHtml = (story.questions || [])
+                .map((q, qi) => renderQuestion(q, idx + '-' + qi))
+                .join('');
+            document.getElementById('card').innerHTML = `
+                <h2 style="margin-bottom:var(--space-4);">${story.title}</h2>
+                ${imgHtml}
+                <p style="font-size:var(--font-size-base); line-height:1.7; margin-bottom:var(--space-6);">${story.text}</p>
+                <div class="questions">${questionsHtml}</div>`;
+        }
+
+        // ── Navigation ────────────────────────────────────────────────
+        function prevStory() {
+            if (currentIndex > 0) { currentIndex--; renderStory(currentIndex); syncNavButtons(); }
+        }
+
+        function nextStory() {
+            if (currentIndex < stories.length - 1) { currentIndex++; renderStory(currentIndex); syncNavButtons(); }
+        }
+
+        function syncNavButtons() {
+            document.getElementById('prev-btn').disabled = currentIndex === 0;
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = currentIndex === stories.length - 1;
+            nextBtn.textContent = currentIndex === stories.length - 1 ? 'Done ✓' : 'Next →';
+        }
+
+        // ── Display mode init ─────────────────────────────────────────
+        const displayMode = _meta.displayMode || 'tabs';
+
+        if (displayMode === 'single') {
+            renderStory(0);
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+
+        } else if (displayMode === 'tabs') {
+            renderNavPills('nav-pills', stories, (idx) => {
+                currentIndex = idx;
+                renderStory(idx);
+            }, { labelFn: (item, i) => item.title || ('Story ' + (i + 1)) });
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+            renderStory(0);
+
+        } else if (displayMode === 'progressive') {
+            document.getElementById('nav-pills').style.display = 'none';
+            renderStory(0);
+            syncNavButtons();
+        }
+    </script>
+</body>
+</html>
