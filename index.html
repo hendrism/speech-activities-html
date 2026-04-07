@@ -296,6 +296,29 @@
         .category-badge.category-grammar     { background: #dcfce7; color: #166534; }
         .category-badge.category-articulation { background: #ede9fe; color: #5b21b6; }
         .category-badge.category-fluency     { background: #ffedd5; color: #9a3412; }
+
+        /* --- Star / Favorites --- */
+        .star-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            line-height: 1;
+            padding: 2px;
+            color: #94a3b8;
+        }
+        .card:hover .star-btn {
+            opacity: 1;
+        }
+        .star-btn.favorited {
+            color: #f59e0b;
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -348,24 +371,43 @@
             vocabulary:   '📚',
         };
 
+        // ── Favorites persistence ─────────────────────────────────────────────
+        function loadFavorites() {
+            try {
+                return new Set(JSON.parse(localStorage.getItem('speechhub_favorites') || '[]'));
+            } catch { return new Set(); }
+        }
+        function saveFavorites() {
+            try {
+                localStorage.setItem('speechhub_favorites', JSON.stringify([...favorites]));
+            } catch { /* silent */ }
+        }
+
         // ── State ─────────────────────────────────────────────────────────────
         let allActivities = [];
         let currentFilter = 'all';
         let searchQuery = '';
+        let favorites = loadFavorites();
 
         // ── Render ────────────────────────────────────────────────────────────
         function renderSidebar() {
             const nav = document.getElementById('sidebarNav');
             const total = allActivities.length;
+            const favCount = favorites.size;
             nav.innerHTML = `
-                <div class="nav-item active" data-id="all">
+                ${favCount > 0 ? `
+                <div class="nav-item${currentFilter === 'favorites' ? ' active' : ''}" data-id="favorites">
+                    <span>⭐ Favorites</span>
+                    <span class="count">${favCount}</span>
+                </div>` : ''}
+                <div class="nav-item${currentFilter === 'all' ? ' active' : ''}" data-id="all">
                     <span>🌟 All Activities</span>
                     <span class="count">${total}</span>
                 </div>
                 ${CATEGORIES.map(cat => {
                     const count = allActivities.filter(a => a.category === cat).length;
                     if (count === 0) return '';
-                    return `<div class="nav-item" data-id="${cat}">
+                    return `<div class="nav-item${currentFilter === cat ? ' active' : ''}" data-id="${cat}">
                         <span>${CATEGORY_EMOJIS[cat] || ''} ${CATEGORY_LABELS[cat] || cat}</span>
                         <span class="count">${count}</span>
                     </div>`;
@@ -374,14 +416,42 @@
 
             nav.querySelectorAll('.nav-item').forEach(item => {
                 item.addEventListener('click', () => {
-                    nav.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                    item.classList.add('active');
                     currentFilter = item.dataset.id;
-                    document.getElementById('gridTitle').textContent =
-                        currentFilter === 'all' ? 'All Activities' : CATEGORY_LABELS[currentFilter] || currentFilter;
+                    const title = currentFilter === 'all' ? 'All Activities'
+                        : currentFilter === 'favorites' ? 'Favorites'
+                        : CATEGORY_LABELS[currentFilter] || currentFilter;
+                    document.getElementById('gridTitle').textContent = title;
+                    renderSidebar();
                     renderGrid();
                 });
             });
+        }
+
+        function toggleFavorite(id) {
+            if (favorites.has(id)) {
+                favorites.delete(id);
+            } else {
+                favorites.add(id);
+            }
+            saveFavorites();
+            // If we're on the favorites view and just removed the last one, switch to all
+            if (currentFilter === 'favorites' && favorites.size === 0) {
+                currentFilter = 'all';
+                document.getElementById('gridTitle').textContent = 'All Activities';
+                renderSidebar();
+                renderGrid();
+                return;
+            }
+            renderSidebar();
+            // Update star visuals in place without full grid rerender
+            document.querySelectorAll('.star-btn').forEach(btn => {
+                const isFav = favorites.has(btn.dataset.id);
+                btn.textContent = isFav ? '★' : '☆';
+                btn.classList.toggle('favorited', isFav);
+                btn.setAttribute('aria-label', isFav ? 'Remove from favorites' : 'Add to favorites');
+            });
+            // If on favorites view, rerender grid so unfavorited cards disappear
+            if (currentFilter === 'favorites') renderGrid();
         }
 
         function renderGrid() {
@@ -389,9 +459,8 @@
             const searchLower = searchQuery.trim().toLowerCase();
 
             const filtered = allActivities.filter(item => {
-                if (currentFilter !== 'all' && item.category !== currentFilter) return false;
-                // Search on title only — activity-index.json has no description field.
-                // If description is added to the index schema, extend this predicate.
+                if (currentFilter === 'favorites' && !favorites.has(item.id)) return false;
+                if (currentFilter !== 'all' && currentFilter !== 'favorites' && item.category !== currentFilter) return false;
                 if (searchLower && !item.title.toLowerCase().includes(searchLower)) return false;
                 return true;
             });
@@ -407,8 +476,14 @@
                 return;
             }
 
-            container.innerHTML = filtered.map(item => `
-                <a href="${item.sourceFile}" class="card">
+            container.innerHTML = filtered.map(item => {
+                const isFav = favorites.has(item.id);
+                return `
+                <a href="${item.sourceFile}" class="card" target="_blank" rel="noopener noreferrer">
+                    <button class="star-btn${isFav ? ' favorited' : ''}" data-id="${item.id}"
+                        aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}"
+                        title="${isFav ? 'Remove from favorites' : 'Add to favorites'}"
+                    >${isFav ? '★' : '☆'}</button>
                     <div class="card-header">
                         <div>
                             <span class="category-badge category-${item.category}">${CATEGORY_LABELS[item.category] || item.category}</span>
@@ -418,8 +493,16 @@
                     <div class="card-tags">
                         <span class="tag">${item.type === 'tool' ? 'Interactive Tool' : 'Activity'}</span>
                     </div>
-                </a>
-            `).join('');
+                </a>`;
+            }).join('');
+
+            container.querySelectorAll('.star-btn').forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleFavorite(btn.dataset.id);
+                });
+            });
         }
 
         function showError() {

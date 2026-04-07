@@ -384,21 +384,21 @@
     {
       "id": "fall-reading-comprehension-infer",
       "category": "reading",
-      "title": "Fall Reading Stories",
+      "title": "Fall Reading – Inference Focus",
       "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
       "type": "content-driven"
     },
     {
       "id": "fall-reading-simple",
       "category": "reading",
-      "title": "Fall Reading Stories",
+      "title": "Fall Reading – Simple Level",
       "sourceFile": "activities/reading/fall-reading-simple.html",
       "type": "content-driven"
     },
     {
       "id": "fall-stories-expanded-and-leveled",
       "category": "reading",
-      "title": "Fall Reading Stories",
+      "title": "Fall Reading – Expanded & Leveled",
       "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
       "type": "content-driven"
     },
@@ -412,7 +412,7 @@
     {
       "id": "hs-story-retelling-final",
       "category": "reading",
-      "title": "Story Retelling & Story Grammar Practice",
+      "title": "Story Retelling & Grammar Practice – Final",
       "sourceFile": "activities/reading/hs-story-retelling-final.html",
       "type": "tool"
     },
@@ -426,7 +426,7 @@
     {
       "id": "hs-story-retelling",
       "category": "reading",
-      "title": "Story Retelling & Story Grammar Practice",
+      "title": "Story Retelling & Grammar Practice",
       "sourceFile": "activities/reading/hs-story-retelling.html",
       "type": "tool"
     },
@@ -461,7 +461,7 @@
     {
       "id": "late-winter-early-spring-reading",
       "category": "reading",
-      "title": "Reading Comprehension Activity",
+      "title": "Late Winter / Early Spring Reading",
       "sourceFile": "activities/reading/late-winter-early-spring-reading.html",
       "type": "content-driven"
     },
@@ -510,7 +510,7 @@
     {
       "id": "simple-story-prompts-activity",
       "category": "reading",
-      "title": "Simple Story Prompts - Speech Therapy Activity",
+      "title": "Simple Story Prompts",
       "sourceFile": "activities/reading/simple-story-prompts-activity.html",
       "type": "tool"
     },
@@ -531,7 +531,7 @@
     {
       "id": "story-prompts-expanded",
       "category": "reading",
-      "title": "Story Prompts - Speech Therapy Activity",
+      "title": "Story Prompts",
       "sourceFile": "activities/reading/story-prompts-expanded.html",
       "type": "tool"
     },
