@@ -410,32 +410,11 @@
       "type": "tool"
     },
     {
-      "id": "hs-story-retelling-final",
-      "category": "reading",
-      "title": "Story Retelling & Grammar Practice – Final",
-      "sourceFile": "activities/reading/hs-story-retelling-final.html",
-      "type": "tool"
-    },
-    {
       "id": "hs-story-retelling-focus",
       "category": "reading",
       "title": "High School Story Retelling - Focus Friendly Edition",
       "sourceFile": "activities/reading/hs-story-retelling-focus.html",
       "type": "content-driven"
-    },
-    {
-      "id": "hs-story-retelling",
-      "category": "reading",
-      "title": "Story Retelling & Grammar Practice",
-      "sourceFile": "activities/reading/hs-story-retelling.html",
-      "type": "tool"
-    },
-    {
-      "id": "inference-activity",
-      "category": "reading",
-      "title": "Making Inferences Activity",
-      "sourceFile": "activities/reading/inference-activity.html",
-      "type": "tool"
     },
     {
       "id": "inference-thanksgiving-simple",
@@ -505,6 +484,20 @@
       "category": "reading",
       "title": "Pronoun Practice & Reading Comprehension",
       "sourceFile": "activities/reading/short-stories-pronouns-details.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "spring-break-reading",
+      "category": "reading",
+      "title": "Spring Break Reading",
+      "sourceFile": "activities/reading/spring-break-reading.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "spring-comics-reading",
+      "category": "reading",
+      "title": "Spring Comics Reading",
+      "sourceFile": "activities/reading/spring-comics-reading.html",
       "type": "content-driven"
     },
     {
