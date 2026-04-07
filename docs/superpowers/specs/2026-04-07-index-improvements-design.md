@@ -38,33 +38,37 @@ No other files change for this feature.
 ### Storage
 - Key: `speechhub_favorites` in `localStorage`
 - Value: JSON array of activity ID strings, e.g. `["late-winter-early-spring-reading", "fluency-winter"]`
-- Read on page load; written on every star toggle
+- All reads and writes are wrapped in `try/catch`; if localStorage is unavailable, favorites silently degrade (star toggling still works in-memory for the session, but nothing is persisted)
+- Read on page load into a `Set`; written on every star toggle
 
 ### State
 Add `favorites` (a `Set`) to the existing JS state block alongside `allActivities`, `currentFilter`, `searchQuery`.
 
 ### Sidebar
-- Add a `⭐ Favorites` nav item above the existing "🌟 All Activities" item
+- Add a `⭐ Favorites` nav item **below "🌟 All Activities" and above the first category** item
 - Hidden (`display: none`) when `favorites.size === 0`
 - Shows count badge like other nav items
-- Clicking it sets `currentFilter = 'favorites'` and rerenders the grid
+- Clicking it sets `currentFilter = 'favorites'`, updates `gridTitle` to `"Favorites"`, and rerenders the grid
+- The active highlight logic already applies via `data-id` matching — add `'favorites'` as a recognized value
 
 ### Card star button
 - Positioned top-right of each card, `position: absolute`
 - Renders as `☆` (unfilled) by default; `★` (filled, gold) when favorited
 - Visible on card hover via CSS (`.card:hover .star-btn { opacity: 1 }`)
-- Always visible (opacity 1) when activity is already favorited
-- `pointer-events` on the button stop click from propagating to the `<a>` tag (prevent navigation)
-- Clicking toggles ID in the favorites Set, persists to localStorage, rerenders sidebar + star state
+- Always visible (opacity 1) when activity is already favorited (`.star-btn.favorited { opacity: 1 }`)
+- `e.preventDefault()` on the button click stops navigation; `e.stopPropagation()` stops the event from reaching the `<a>` tag
+- Clicking toggles ID in the favorites Set, persists to localStorage (with try/catch), then calls both `renderSidebar()` and updates the clicked star's visual state in place (no full grid rerender needed)
 
 ### Grid filtering
 - When `currentFilter === 'favorites'`, filter `allActivities` by `favorites.has(item.id)`
-- If favorites filter is active and all favorites are removed, auto-switch back to `'all'`
+- Search (`searchQuery`) is **additive**: both the favorites filter and the search term apply simultaneously (i.e., show favorites that also match the search string)
+- `gridTitle` is set to `"Favorites"` when `currentFilter === 'favorites'`; the existing search override ("Search Results") still takes precedence when `searchQuery` is non-empty
+- If the favorites filter is active and the last favorite is removed: set `currentFilter = 'all'`, call `renderSidebar()` (to clear the active state on the Favorites nav item and restore active state to "All Activities"), then call `renderGrid()`
 
 ### CSS additions (inline in index.html `<style>` block)
-- `.star-btn` — absolute positioned button, no background/border, cursor pointer
-- `.card:hover .star-btn` — opacity 1
-- `.star-btn.favorited` — gold color, opacity 1 always
+- `.star-btn` — `position: absolute; top: 12px; right: 12px;` button, no background/border, font-size ~1.2rem, opacity 0, cursor pointer, transition opacity
+- `.card:hover .star-btn` — `opacity: 1`
+- `.star-btn.favorited` — gold color (`#f59e0b`), `opacity: 1`
 
 ---
 
