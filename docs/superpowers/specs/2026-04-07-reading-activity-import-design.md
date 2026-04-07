@@ -60,6 +60,8 @@ The skill outputs a JSON object in the exact format expected by `data/stories.js
 ### Input format the skill accepts
 The skill is flexible (Claude handles variations), but the canonical format is:
 
+Multi-paragraph story text is joined with `\n\n` (double newline) as the paragraph separator, consistent with how existing stories are stored in `data/stories.json`.
+
 ```
 1. Story Title
 
@@ -128,8 +130,10 @@ Before jumping to preview, the Import tab checks:
 - Valid JSON (parseable)
 - Has `_meta.title` (non-empty string)
 - Has `stories` array with at least one story
-- Each story has `title`, `text`, and `questions` array
-- Each question has `type`, `text`, `options` (array ≥ 2), and `answer` (valid index)
+- Each story has `title`, `text`, and `questions` array (`imageUrl` is optional and its absence is not an error)
+- Each question has `type`, `text`, `options` (array ≥ 2), and `answer` (valid index into `options`)
+
+Additionally, after deriving the key from `_meta.title`, validate that it matches `^[a-z0-9][a-z0-9-]*[a-z0-9]$`. If it does not (e.g. a single-character title or a title consisting entirely of punctuation), show an inline error on the Import tab asking the user to adjust the activity title in their JSON before retrying. Do not call `/api/save` with an invalid key — the server will reject it with a 400.
 
 If validation fails, show a specific error message inline. Do not jump to preview.
 
@@ -139,10 +143,10 @@ On success, the tab:
 2. Calls the existing `/api/preview` endpoint
 3. Advances to Step 3 (Preview tab)
 
-The existing Step 4 (Save) works without any modification.
+The existing Step 4 (Save) works without any modification. After the Import tab writes the derived key into the `activity-key` field, the user can navigate to Step 4 and manually edit the key before saving — the same as the normal flow. Key collision (server 409) is already handled by the existing Step 4 error display.
 
 ### Key derivation
-Activity key is auto-derived from `_meta.title` using the existing `titleToKey()` function already in `admin-ui.html`.
+The activity key is derived from `_meta.title` using the same transformation logic as the existing `updateKey()` handler in `admin-ui.html` (lowercase, strip apostrophes, replace non-alphanumeric with hyphens, collapse repeated hyphens). Because `updateKey()` is a DOM event handler rather than a reusable function, the implementation must extract this logic into a standalone `titleToKey(str)` helper and call it from both the existing handler and the new Import tab. The derived key must be written into `document.getElementById('activity-key')` so that the Step 4 Save button can read it; without this, the save step will fail with "Please enter an activity key."
 
 ---
 
@@ -160,4 +164,4 @@ Activity key is auto-derived from `_meta.title` using the existing `titleToKey()
 | `~/.claude/plugins/anthropic-skills/skills/import-reading-activity.md` | New skill |
 | `scripts/admin-ui.html` | Add Import tab + JS validation + state wiring |
 | `scripts/admin.py` | No changes |
-| `AGENTS.md` | Add note about `/import-reading-activity` skill to the "Creating New Reading Activities" section |
+| `AGENTS.md` | In the "Creating New Reading Activities" section, add a note before the `python3 scripts/admin.py` step: "If you already have formatted activity text, run `/import-reading-activity` in Claude Code to convert it to JSON first, then use the admin builder's Import tab to load and save it." |
