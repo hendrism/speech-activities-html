@@ -65,10 +65,28 @@
 
 <div class="header">Reading Activity Builder</div>
 <div class="step-bar">
-  <div class="step-tab active" id="tab-1">1. Basics</div>
+  <div class="step-tab active" id="tab-0">Import</div>
+  <div class="step-tab" id="tab-1">1. Basics</div>
   <div class="step-tab" id="tab-2">2. Stories</div>
   <div class="step-tab" id="tab-3">3. Preview</div>
   <div class="step-tab" id="tab-4">4. Save</div>
+</div>
+
+<!-- Step 0: Import JSON -->
+<div class="content" id="step-0">
+  <div class="card">
+    <h2>Import from Claude</h2>
+    <p style="color:#6b7280; font-size:0.875rem; margin-bottom:16px;">
+      Run <code>/import-reading-activity</code> in Claude Code, paste your activity text, and copy the JSON output here.
+    </p>
+    <label>Paste JSON from Claude</label>
+    <textarea id="import-json" style="min-height:280px; font-family:monospace; font-size:0.8rem;" placeholder='{ "_meta": { "title": "...", ... }, "stories": [...] }'></textarea>
+    <div id="import-error" class="error-msg hidden"></div>
+    <div class="actions">
+      <button class="btn btn-secondary" onclick="goToStep(1)">Use form instead →</button>
+      <button class="btn btn-primary" onclick="loadImport()">Load &amp; Preview →</button>
+    </div>
+  </div>
 </div>
 
 <!-- Step 1: Basics -->
@@ -164,21 +182,137 @@ let imageCallback = null;
 let allImages = null;
 
 function goToStep(n) {
-  [1,2,3,4].forEach(i => {
+  [0,1,2,3,4].forEach(i => {
     document.getElementById('step-' + i).classList.toggle('hidden', i !== n);
     document.getElementById('tab-' + i).classList.toggle('active', i === n);
   });
 }
 
-function updateKey() {
-  const title = document.getElementById('title').value;
-  let key = title.toLowerCase()
+function titleToKey(title) {
+  return title.toLowerCase()
     .replace(/['\u2019]/g, '')
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
+}
+
+function updateKey() {
+  document.getElementById('activity-key').value =
+    titleToKey(document.getElementById('title').value);
+}
+
+// ── Import ────────────────────────────────────────────────────────
+function loadImport() {
+  const errEl = document.getElementById('import-error');
+  errEl.classList.add('hidden');
+
+  let config;
+  try {
+    config = JSON.parse(document.getElementById('import-json').value.trim());
+  } catch (e) {
+    errEl.textContent = 'Invalid JSON: ' + e.message;
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  // Validate structure
+  const title = config._meta?.title?.trim();
+  if (!title) {
+    errEl.textContent = 'Missing _meta.title — make sure your JSON has a title field.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  if (!Array.isArray(config.stories) || config.stories.length === 0) {
+    errEl.textContent = 'No stories found — JSON must have a "stories" array with at least one entry.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  for (let si = 0; si < config.stories.length; si++) {
+    const s = config.stories[si];
+    if (!s.title || !s.text) {
+      errEl.textContent = `Story ${si + 1} is missing a title or text.`;
+      errEl.classList.remove('hidden');
+      return;
+    }
+    if (!Array.isArray(s.questions) || s.questions.length === 0) {
+      errEl.textContent = `Story ${si + 1} has no questions.`;
+      errEl.classList.remove('hidden');
+      return;
+    }
+    for (let qi = 0; qi < s.questions.length; qi++) {
+      const q = s.questions[qi];
+      if (!q.text) {
+        errEl.textContent = `Story ${si + 1}, question ${qi + 1} is missing text.`;
+        errEl.classList.remove('hidden');
+        return;
+      }
+      if (q.type === 'multiple-choice') {
+        if (!Array.isArray(q.options) || q.options.length < 2) {
+          errEl.textContent = `Story ${si + 1}, question ${qi + 1} needs at least 2 options.`;
+          errEl.classList.remove('hidden');
+          return;
+        }
+        if (typeof q.answer !== 'number' || q.answer < 0 || q.answer >= q.options.length) {
+          errEl.textContent = `Story ${si + 1}, question ${qi + 1} has an invalid answer index.`;
+          errEl.classList.remove('hidden');
+          return;
+        }
+      }
+    }
+  }
+
+  // Validate derived key
+  const key = titleToKey(title);
+  if (!/^[a-z0-9][a-z0-9-]*[a-z0-9]$/.test(key)) {
+    errEl.textContent = `Activity title "${title}" produces an invalid key "${key}". Edit the title in your JSON to use a longer, simpler name.`;
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  // Populate form state from config
+  document.getElementById('title').value = title;
   document.getElementById('activity-key').value = key;
+  document.getElementById('tags').value = (config._meta.tags || []).join(', ');
+
+  const level = config._meta.level || 'easy';
+  const levelEl = document.querySelector(`input[name=level][value="${level}"]`);
+  if (levelEl) levelEl.checked = true;
+
+  const mode = config._meta.displayMode || 'tabs';
+  const modeEl = document.querySelector(`input[name=mode][value="${mode}"]`);
+  if (modeEl) modeEl.checked = true;
+
+  // Populate stories array
+  stories.length = 0;
+  document.getElementById('stories-container').innerHTML = '';
+  config.stories.forEach((s, i) => {
+    stories.push({
+      title: s.title || '',
+      text: s.text || '',
+      imageUrl: s.imageUrl || '',
+      questions: (s.questions || []).map(q => ({
+        type: q.type || 'multiple-choice',
+        text: q.text || '',
+        options: q.options ? [...q.options, '', '', ''].slice(0, 4) : ['', '', '', ''],
+        answer: q.answer ?? 0
+      }))
+    });
+  });
+
+  // Send to preview
+  fetch('/api/preview', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(config)
+  }).then(() => {
+    goToStep(3);
+    document.getElementById('preview-frame').src =
+      'http://localhost:8090/activities/reading/index.html?activity=_preview&t=' + Date.now();
+  }).catch(err => {
+    errEl.textContent = 'Preview request failed: ' + err.message;
+    errEl.classList.remove('hidden');
+  });
 }
 
 // ── Stories ──────────────────────────────────────────────────────
@@ -425,12 +559,15 @@ function startOver() {
   document.getElementById('title').value = '';
   document.getElementById('tags').value = '';
   document.getElementById('activity-key').value = '';
+  document.getElementById('import-json').value = '';
+  document.getElementById('import-error').classList.add('hidden');
   document.getElementById('save-form').classList.remove('hidden');
   document.getElementById('save-success').classList.add('hidden');
-  goToStep(1);
+  goToStep(0);
 }
 
-// Init with one empty story
+// Init on Import tab
+goToStep(0);
 addStory();
 </script>
 </body>

@@ -70,6 +70,11 @@ The recommended way to create new reading activities is the browser-based builde
 python3 scripts/admin.py
 ```
 
+**If you already have formatted activity text** (stories, questions, answers), use the import workflow instead of filling in the form manually:
+1. Run `/import-reading-activity` in Claude Code and paste your text
+2. Copy the JSON output Claude produces
+3. In the admin builder, click the **Import** tab, paste the JSON, and click **Load & Preview**
+
 This opens `http://localhost:8090/admin` and walks you through:
 1. Activity title, level, tags, and display mode
 2. Adding stories with text, images, and questions
