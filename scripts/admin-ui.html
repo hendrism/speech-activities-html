@@ -283,7 +283,7 @@ function loadImport() {
   const modeEl = document.querySelector(`input[name=mode][value="${mode}"]`);
   if (modeEl) modeEl.checked = true;
 
-  // Populate stories array
+  // Populate stories array and render form blocks so "Back to Edit" works
   stories.length = 0;
   document.getElementById('stories-container').innerHTML = '';
   config.stories.forEach((s, i) => {
@@ -298,6 +298,12 @@ function loadImport() {
         answer: q.answer ?? 0
       }))
     });
+    renderStoryBlock(i);
+    document.getElementById('s'+i+'-title').value = stories[i].title;
+    document.getElementById('s'+i+'-text').value = stories[i].text;
+    document.getElementById('s'+i+'-imageUrl').value = stories[i].imageUrl;
+    showImgPreview(i);
+    stories[i].questions.forEach((_, qi) => renderQuestionBlock(i, qi));
   });
 
   // Send to preview
