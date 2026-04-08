@@ -402,7 +402,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-001",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Early to Class",
       "text": "You get to class early and notice a girl you know a little bit from middle school sitting alone and looking at her phone.",
       "starters": [
@@ -419,7 +419,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-002",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "The Hoodie",
       "text": "You see a classmate wearing a hoodie from a show you like. You’ve never talked to her before.",
       "starters": [
@@ -436,7 +436,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-003",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "New Math Partner",
       "text": "Your math teacher assigns partners, and you’re paired with someone you haven’t worked with before.",
       "starters": [
@@ -453,7 +453,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-004",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Lunch Movie Talk",
       "text": "During lunch, you sit near a group who are talking about a new movie. You’ve seen it too.",
       "starters": [
@@ -470,7 +470,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-005",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Sketchbook Curiosity",
       "text": "While waiting for dismissal, you notice a classmate flipping through a sketchbook.",
       "starters": [
@@ -487,7 +487,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-006",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Field Trip Line",
       "text": "You’re lining up to get onto a bus for a field trip. The girl in front of you looks a little bored and is tapping her foot.",
       "starters": [
@@ -504,7 +504,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-007",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "After-School Club",
       "text": "You overhear two students talking about an after-school club you’ve been thinking about joining.",
       "starters": [
@@ -521,7 +521,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-008",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Colorful Pens",
       "text": "You walk into English class and notice someone organizing a stack of colorful pens and highlighters.",
       "starters": [
@@ -538,7 +538,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-009",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Book in the Hallway",
       "text": "You’re in the hallway and see a girl from your science class carrying a book you’ve read before.",
       "starters": [
@@ -555,7 +555,7 @@
     },
     {
       "id": "social-conversation-initiation-starters-010",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Forgotten Water Bottle",
       "text": "Before gym, another student is tying her shoes and mutters something about forgetting her water bottle.",
       "starters": [
@@ -1724,7 +1724,7 @@
     },
     {
       "id": 1,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Chem Lab Make-Up",
       "text": "You missed Monday's chemistry lab because of a doctor's appointment. After class you need to start a conversation with your teacher to ask about making it up. Think of two different ways you could begin that conversation.",
       "hints": {
@@ -1818,7 +1818,7 @@
     },
     {
       "id": 2,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Check on Friend After Club Meeting",
       "text": "Yesterday at art club you noticed your friend Maya pack up early and she looked upset. Today you want to start a conversation to see how she’s doing. Create two different openers you could use.",
       "hints": {
@@ -1912,7 +1912,7 @@
     },
     {
       "id": 3,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Shift Swap at the Smoothie Shop",
       "text": "You need to talk to your shift manager Ray about switching your Friday closing shift because you have the SAT early Saturday morning. Plan two different ways to start that conversation.",
       "hints": {
@@ -2006,7 +2006,7 @@
     },
     {
       "id": 4,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Plan the Group Project",
       "text": "Your history group presentation is due next week and no one has coordinated yet. You want to start a conversation with your group today to get organized. Brainstorm two different conversation starters.",
       "hints": {
@@ -2100,7 +2100,7 @@
     },
     {
       "id": 5,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Counselor Schedule Question",
       "text": "You want to talk to your school counselor Ms. Rivera about switching from concert band to AP Statistics next semester. Plan two different ways to open that conversation during your appointment.",
       "hints": {
@@ -2194,7 +2194,7 @@
     },
     {
       "id": 6,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Clear Up a Text Misunderstanding",
       "text": "Last night you sent a sarcastic text to your friend Avery and they replied with \"whatever\" and stopped answering. Before first period you want to start a conversation to clear things up. Plan two openers.",
       "hints": {
@@ -2288,7 +2288,7 @@
     },
     {
       "id": 7,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Welcome the New Club Member",
       "text": "A new student just joined robotics club and is sitting alone setting up their laptop. You want to start a conversation so they feel included. Create two different openers.",
       "hints": {
@@ -2382,7 +2382,7 @@
     },
     {
       "id": 8,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Ask Art Teacher for Extra Studio Time",
       "text": "You have a big art project due next week and need more time in the studio to finish the details. After class you want to ask Ms. Lin if you can stay after school tomorrow to work on it. Create two conversation starters.",
       "hints": {
@@ -2476,7 +2476,7 @@
     },
     {
       "id": 9,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Ask a Neighbor About Carpooling",
       "text": "Your neighbor Alex drives to school at the same time you do. You want to start a conversation about carpooling on the mornings your parents work early. Plan two different openers.",
       "hints": {
@@ -2570,7 +2570,7 @@
     },
     {
       "id": 10,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Talk About a Grade Dip",
       "text": "Your English grade dropped after the last essay and you want to ask Ms. Chen how to improve before the quarter ends. Plan two different ways to start that conversation after class.",
       "hints": {
@@ -2664,7 +2664,7 @@
     },
     {
       "id": 11,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Join a Lunch Table Conversation",
       "text": "At lunch you see a few classmates from English discussing weekend plans. You want to join the conversation without feeling awkward. Create two different conversation starters.",
       "hints": {
@@ -2758,7 +2758,7 @@
     },
     {
       "id": 12,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Invite a Friend to a Study Session",
       "text": "There’s a biology quiz on Friday and you’d feel better studying with a friend. You want to invite your friend Avery to review together after school in the library. Create two different openers.",
       "hints": {
@@ -2852,7 +2852,7 @@
     },
     {
       "id": 13,
-      "sourceFile": "activities/social/conversation-starter-practice.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Check on a Friend Who Left the Group Chat",
       "text": "Your friend Lina muted the group chat after a confusing conversation last night. You want to send a private message to check in and clear the air. Draft two different conversation starters.",
       "hints": {
@@ -4392,7 +4392,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-001",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Returning Borrowed Item",
       "difficulty": "easy",
       "description": "You borrowed a book from a classmate last week for a project. You're done with it and need to return it to them. You see them in the hallway between classes.",
@@ -4403,7 +4403,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-002",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Homework Question",
       "difficulty": "easy",
       "description": "You're confused about the homework assignment that was just given. The student sitting next to you seems to understand it. Class just ended and you're both packing up.",
@@ -4414,7 +4414,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-003",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Complimenting Something Specific",
       "difficulty": "easy",
       "description": "Someone in your art class just finished a drawing that's really impressive. You've worked near them before but haven't talked much. The class is ending and people are cleaning up.",
@@ -4425,7 +4425,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-004",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Group Project Start",
       "difficulty": "easy",
       "description": "You've just been assigned to work with two other students on a science project. The teacher gives you 10 minutes to exchange contact information and pick a meeting time. You need to figure out when to meet.",
@@ -4436,7 +4436,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-005",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Asking to Sit",
       "difficulty": "easy",
       "description": "The cafeteria is crowded and most tables are full. There's one seat open at a table where some classmates from your English class are sitting. You know their names but don't really talk to them.",
@@ -4447,7 +4447,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-006",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Library Encounter",
       "difficulty": "medium",
       "description": "You're at the library studying for a test when you see someone from your math class looking at the same textbook chapter. You've sat near each other but haven't talked. You figured out a good way to remember one of the formulas.",
@@ -4458,7 +4458,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-007",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Teacher Office Hours",
       "difficulty": "medium",
       "description": "You need to ask your teacher a question about an assignment. You go to their office hours and there's one other student already there talking to the teacher. The other student finishes and leaves. Now it's your turn.",
@@ -4469,7 +4469,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-008",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Club Information",
       "difficulty": "medium",
       "description": "There's a club (art, robotics, gaming, etc.) you're interested in joining. You see someone wearing the club t-shirt in your biology class. You want to know when they meet and what they do.",
@@ -4480,7 +4480,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-009",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Shared Interest",
       "difficulty": "medium",
       "description": "You're walking through the hallway and notice someone wearing a shirt from a book series/game/show you really like. You've seen them around but never talked to them. They're standing at their locker.",
@@ -4491,7 +4491,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-010",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Project Partner Question",
       "difficulty": "medium",
       "description": "You're working on a long-term project with a partner. You've been working mostly independently but need to check something with them about your part. You see them before class starts.",
@@ -4502,7 +4502,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-011",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Someone Initiates",
       "difficulty": "medium",
       "description": "You're sitting in the common area reading a book. Someone you don't know well sits down near you and says 'Hey, how's it going?' You need to respond and maybe continue the conversation.",
@@ -4513,7 +4513,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-012",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Counselor Meeting",
       "difficulty": "medium",
       "description": "You have a scheduled meeting with your guidance counselor to talk about your class schedule for next semester. You're not sure what to say after the basic greeting. You need to explain what classes you're interested in.",
@@ -4524,7 +4524,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-013",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Awkward Silence",
       "difficulty": "hard",
       "description": "You're working on a partner assignment with someone you don't know well. You've been working silently for 10 minutes and it's starting to feel weird. You still have 20 minutes left to work together.",
@@ -4535,7 +4535,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-014",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Following Up",
       "difficulty": "hard",
       "description": "Last week you had a nice conversation with someone about a video game you both play. You see them again in the hallway. You're not sure if you should say hi, and if you do, what to say beyond 'hi.'",
@@ -4546,7 +4546,7 @@
     },
     {
       "id": "social-initiate-conversations-predict-response-015",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "name": "Joining Discussion",
       "difficulty": "hard",
       "description": "You're early to class and a few students are talking about a topic you know a lot about (a game, book series, scientific topic, etc.). You want to add something to the conversation but you're not part of the group and they haven't noticed you.",
@@ -5855,7 +5855,7 @@
     },
     {
       "id": 1,
-      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Scenario 1: Wrong Project",
       "text": "You sit down with your group and realize they are talking about a different project than the one you thought you were doing. They start planning without you. You can't just sit there and say nothing.",
       "hint": "Think about: Telling them you might be confused, or asking what project they're talking about.",
@@ -5872,7 +5872,7 @@
     },
     {
       "id": 2,
-      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Scenario 2: Someone Is in Your Seat",
       "text": "You come into class and someone is sitting in your usual seat with their stuff spread out. You need that seat.",
       "hint": "You might ask politely, or explain that you usually sit there.",
@@ -5889,7 +5889,7 @@
     },
     {
       "id": 3,
-      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Scenario 3: Confusing Directions",
       "text": "The teacher finishes explaining an assignment, but you don't understand what to do. Everyone else starts working.",
       "hint": "You could ask the teacher, or you could ask someone nearby.",
@@ -5906,7 +5906,7 @@
     },
     {
       "id": 4,
-      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Scenario 4: Partner Isn't Working",
       "text": "You're paired with someone, but they're just on their phone and not starting the work.",
       "hint": "You might remind them you're partners, or ask how to split the work.",
@@ -5923,7 +5923,7 @@
     },
     {
       "id": 5,
-      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Scenario 5: You Didn't Hear Them",
       "text": "Someone says something to you, but you didn't hear or didn't understand. They are waiting for an answer.",
       "hint": "You can ask them to repeat it, or say you didn't hear.",
@@ -5940,7 +5940,7 @@
     },
     {
       "id": 6,
-      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Scenario 6: You Need to Borrow a Charger",
       "text": "Your Chromebook is almost dead. Someone across the room has a charger.",
       "hint": "You might ask politely, or explain your computer is dying.",
@@ -5957,7 +5957,7 @@
     },
     {
       "id": 7,
-      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "title": "Scenario 7: You're Not in a Group",
       "text": "In PE or another class, groups are forming. Everyone seems to be in a group except you.",
       "hint": "You might ask to join a group, or ask the teacher what to do.",
