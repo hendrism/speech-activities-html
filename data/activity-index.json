@@ -110,24 +110,10 @@
       "type": "tool"
     },
     {
-      "id": "social-problem-solving-identify-problem",
-      "category": "social",
-      "title": "Social Problem Solving: Identify the Problem",
-      "sourceFile": "activities/social/social-problem-solving-identify-problem.html",
-      "type": "tool"
-    },
-    {
       "id": "social-problem-solving",
       "category": "social",
       "title": "Social Problem Solving - Interactive Activity",
       "sourceFile": "activities/social/social-problem-solving.html",
-      "type": "content-driven"
-    },
-    {
-      "id": "social-response-evaluator",
-      "category": "social",
-      "title": "Social Response Evaluator",
-      "sourceFile": "activities/social/social-response-evaluator.html",
       "type": "content-driven"
     },
     {
