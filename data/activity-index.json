@@ -25,10 +25,10 @@
       "type": "content-driven"
     },
     {
-      "id": "conversation-initiation-starters",
+      "id": "conversation-initiation",
       "category": "social",
-      "title": "Conversation Initiation & Perspective-Taking",
-      "sourceFile": "activities/social/conversation-initiation-starters.html",
+      "title": "Conversation Initiation Practice",
+      "sourceFile": "activities/social/conversation-initiation.html",
       "type": "content-driven"
     },
     {
@@ -43,14 +43,8 @@
       "category": "social",
       "title": "Conversation Response Practice – Thanksgiving",
       "sourceFile": "activities/social/conversation-response-thanksgiving.html",
-      "type": "content-driven"
-    },
-    {
-      "id": "conversation-starter-practice",
-      "category": "social",
-      "title": "Conversation Starter Practice - Interactive Activity",
-      "sourceFile": "activities/social/conversation-starter-practice.html",
-      "type": "content-driven"
+      "type": "content-driven",
+      "seasonal": true
     },
     {
       "id": "helpful-hurtful-response-judge",
@@ -92,13 +86,6 @@
       "category": "social",
       "title": "Inappropriate Behavior Solution Practice",
       "sourceFile": "activities/social/inappropriate-behavior-solution-practice.html",
-      "type": "content-driven"
-    },
-    {
-      "id": "initiate-conversations-predict-response",
-      "category": "social",
-      "title": "Conversation Practice Scenarios",
-      "sourceFile": "activities/social/initiate-conversations-predict-response.html",
       "type": "content-driven"
     },
     {
@@ -151,18 +138,12 @@
       "type": "tool"
     },
     {
-      "id": "social-thinking-starting-conversations",
-      "category": "social",
-      "title": "Starting Conversations - Social Thinking",
-      "sourceFile": "activities/social/social-thinking-starting-conversations.html",
-      "type": "content-driven"
-    },
-    {
       "id": "thanksgiving-social-problem-scenarios",
       "category": "social",
       "title": "Thanksgiving Social Problem Scenarios",
       "sourceFile": "activities/social/thanksgiving-social-problem-scenarios.html",
-      "type": "content-driven"
+      "type": "content-driven",
+      "seasonal": true
     },
     {
       "id": "understanding-both-perspectives",
@@ -849,6 +830,20 @@
       "title": "Vocalic /r/ Word Practice",
       "sourceFile": "activities/articulation/vocalic-r-practice.html",
       "type": "tool"
+    },
+    {
+      "id": "spring-informational-texts",
+      "category": "reading",
+      "title": "Spring Informational Texts",
+      "sourceFile": "activities/reading/index.html?activity=spring-informational-texts",
+      "type": "template-driven"
+    },
+    {
+      "id": "spring-informational-texts-update",
+      "category": "reading",
+      "title": "Spring Informational Texts",
+      "sourceFile": "activities/reading/index.html?activity=spring-informational-texts-update",
+      "type": "template-driven"
     }
   ]
 }
