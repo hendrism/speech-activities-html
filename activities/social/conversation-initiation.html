@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Conversation Initiation Practice</title>
+    <script src="../../data/social.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <style>
+        :root {
+            --accent: #7c3aed;
+            --accent-light: #ede9fe;
+            --bg: #f5f4fb;
+            --card: #ffffff;
+            --ink: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+
+        header { background: var(--card); border-bottom: 4px solid var(--accent); position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+        .bar { max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .bar h1 { margin: 0; font-size: 22px; color: var(--accent); }
+        .tags { display: flex; gap: 8px; }
+        .tag { background: var(--accent-light); color: var(--accent); padding: 5px 12px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+
+        .layout { max-width: 1200px; margin: 0 auto; padding: 0 24px 48px; display: flex; gap: 24px; align-items: flex-start; }
+
+        .sidebar { width: 220px; flex-shrink: 0; position: sticky; top: 74px; display: flex; flex-direction: column; gap: 20px; padding-top: 28px; }
+        .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 8px; }
+
+        .mode-btns { display: flex; flex-direction: column; gap: 6px; }
+        .mode-btn { width: 100%; text-align: left; background: #f1f5f9; color: var(--muted); border: 2px solid var(--border); border-radius: 10px; padding: 10px 14px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .15s; }
+        .mode-btn.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+        .mode-btn:hover:not(.active) { border-color: #c4b5fd; }
+
+        .scenario-list { display: flex; flex-direction: column; gap: 5px; max-height: 58vh; overflow-y: auto; }
+        .scenario-btn { width: 100%; text-align: left; background: #f8fafc; color: var(--muted); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer; transition: all .15s; }
+        .scenario-btn.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); font-weight: 600; }
+        .scenario-btn:hover:not(.active) { border-color: #c4b5fd; color: var(--ink); }
+
+        .main-panel { flex: 1; min-width: 0; padding-top: 28px; display: flex; flex-direction: column; gap: 18px; }
+
+        .scenario-card { background: var(--accent-light); border-radius: 16px; padding: 22px; border: 1px solid #ddd6fe; }
+        .scenario-card .s-title { font-weight: 700; font-size: 16px; color: var(--accent); margin-bottom: 8px; }
+        .scenario-card .s-text { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 0; }
+
+        .panel-card { background: var(--card); border-radius: 16px; padding: 22px; border: 2px solid var(--border); display: flex; flex-direction: column; gap: 16px; }
+        .panel-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+
+        textarea { width: 100%; min-height: 90px; border-radius: 10px; border: 2px solid var(--border); padding: 12px; font-family: inherit; font-size: 15px; resize: vertical; transition: border-color .15s; }
+        textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(124,58,237,.15); }
+
+        .chips-row { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip { background: #f1f5f9; color: var(--ink); border: 1px solid var(--border); border-radius: 999px; padding: 6px 13px; font-size: 13px; cursor: pointer; transition: all .15s; }
+        .chip:hover { background: var(--accent-light); border-color: #c4b5fd; color: var(--accent); }
+
+        .step-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+        .combined-box { background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 10px; padding: 14px; font-size: 15px; line-height: 1.6; color: #166534; }
+
+        .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+        .btn-primary { background: var(--accent); color: white; border: none; border-radius: 10px; padding: 11px 20px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity .15s; }
+        .btn-primary:hover { opacity: .88; }
+        .btn-secondary { background: var(--accent-light); color: var(--accent); border: 2px solid #c4b5fd; border-radius: 10px; padding: 9px 18px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+        .exchange-row { display: flex; gap: 12px; align-items: flex-start; }
+        .exchange-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; }
+        .remove-btn { flex-shrink: 0; background: #fee2e2; color: #dc2626; border: none; border-radius: 8px; padding: 8px 12px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 22px; }
+        .remove-btn:hover { background: #fecaca; }
+
+        @media (max-width: 820px) {
+            .layout { flex-direction: column; }
+            .sidebar { width: 100%; position: static; }
+            .step-inputs { grid-template-columns: 1fr; }
+            .exchange-cols { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="category-social">
+    <header>
+        <div class="bar">
+            <h1>Conversation Initiation Practice</h1>
+            <div class="tags">
+                <span class="tag">social skills</span>
+                <span class="tag">conversation</span>
+            </div>
+        </div>
+    </header>
+    <div class="layout">
+        <aside class="sidebar">
+            <div>
+                <div class="section-label">Mode</div>
+                <div class="mode-btns" id="modeBtns">
+                    <button class="mode-btn active" data-mode="quick">⚡ Quick</button>
+                    <button class="mode-btn" data-mode="guided">🧱 Guided</button>
+                    <button class="mode-btn" data-mode="multi">💬 Multi-Exchange</button>
+                </div>
+            </div>
+            <div>
+                <div class="section-label">Scenarios</div>
+                <div class="scenario-list" id="scenarioList"></div>
+            </div>
+        </aside>
+        <main class="main-panel" id="mainPanel"></main>
+    </div>
+    <script>
+        var scenarios = DataLoader.filter('social', 'scenarios', function(s) {
+            return s.sourceFile === 'activities/social/conversation-initiation.html';
+        });
+        var globalStarters = DataLoader.get('social', 'conversationStarters') || [];
+
+        var currentMode = 'quick';
+        var currentIndex = 0;
+
+        function sTitle(s) { return s.title || s.name || ''; }
+        function sText(s) { return s.text || s.description || ''; }
+
+        function renderSidebar() {
+            document.querySelectorAll('.mode-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.dataset.mode === currentMode);
+            });
+            var list = document.getElementById('scenarioList');
+            list.innerHTML = '';
+            scenarios.forEach(function(s, i) {
+                var btn = document.createElement('button');
+                btn.className = 'scenario-btn' + (i === currentIndex ? ' active' : '');
+                btn.textContent = sTitle(s);
+                btn.addEventListener('click', function() { currentIndex = i; renderAll(); });
+                list.appendChild(btn);
+            });
+        }
+
+        function renderMain() {
+            var s = scenarios[currentIndex];
+            var panel = document.getElementById('mainPanel');
+            var scenarioHtml = '<div class="scenario-card">'
+                + '<div class="s-title">' + sTitle(s) + '</div>'
+                + '<p class="s-text">' + sText(s) + '</p>'
+                + '</div>';
+            if (currentMode === 'quick') panel.innerHTML = scenarioHtml + quickHtml(s);
+            else if (currentMode === 'guided') panel.innerHTML = scenarioHtml + guidedHtml();
+            else panel.innerHTML = scenarioHtml + multiHtml();
+            bindEvents();
+        }
+
+        function quickHtml(s) {
+            var chips = (s.starters && s.starters.length) ? s.starters : globalStarters;
+            var chipHtml = chips.map(function(c) {
+                return '<button class="chip">' + c + '</button>';
+            }).join('');
+            return '<div class="panel-card">'
+                + '<div><div class="panel-label">Starter chips</div>'
+                + '<div class="chips-row">' + chipHtml + '</div></div>'
+                + '<div><div class="panel-label">Conversation Starter</div>'
+                + '<textarea id="starterInput" placeholder="Write a conversation starter..."></textarea></div>'
+                + '<div><div class="panel-label">Predicted Response</div>'
+                + '<textarea placeholder="How might they respond?"></textarea></div>'
+                + '</div>';
+        }
+
+        function guidedHtml() {
+            return '<div class="panel-card">'
+                + '<div class="step-inputs">'
+                + '<div><div class="panel-label">Step 1 — Greeting</div>'
+                + '<textarea id="greetInput" placeholder="e.g. Hey, Hi, Excuse me..."></textarea></div>'
+                + '<div><div class="panel-label">Step 2 — Topic</div>'
+                + '<textarea id="topicInput" placeholder="What do you bring up?"></textarea></div>'
+                + '<div><div class="panel-label">Step 3 — Question</div>'
+                + '<textarea id="questionInput" placeholder="What question keeps it going?"></textarea></div>'
+                + '</div>'
+                + '<div class="btn-row"><button class="btn-primary" id="buildBtn">Build it \u2192</button></div>'
+                + '<div id="combinedSection" style="display:none">'
+                + '<div class="panel-label">Combined starter</div>'
+                + '<div class="combined-box" id="combinedBox"></div></div>'
+                + '<div><div class="panel-label">Predicted Response</div>'
+                + '<textarea placeholder="How might they respond?"></textarea></div>'
+                + '</div>';
+        }
+
+        function multiHtml() {
+            return '<div class="panel-card">'
+                + '<div id="exchangeList">' + exchangeRowHtml('Your opening...', 'How they might reply...', false) + '</div>'
+                + '<div class="btn-row">'
+                + '<button class="btn-secondary" id="addTurnBtn">+ Add another turn</button></div>'
+                + '</div>';
+        }
+
+        function exchangeRowHtml(p1, p2, removable) {
+            var removeBtn = removable
+                ? '<button class="remove-btn" onclick="this.closest(\'.exchange-row\').remove()">\u2715</button>'
+                : '';
+            return '<div class="exchange-row">'
+                + '<div class="exchange-cols">'
+                + '<div><div class="panel-label">What I\'ll say</div>'
+                + '<textarea placeholder="' + p1 + '"></textarea></div>'
+                + '<div><div class="panel-label">Predicted response</div>'
+                + '<textarea placeholder="' + p2 + '"></textarea></div>'
+                + '</div>' + removeBtn + '</div>';
+        }
+
+        function bindEvents() {
+            document.querySelectorAll('.chip').forEach(function(chip) {
+                chip.addEventListener('click', function() {
+                    var ta = document.getElementById('starterInput');
+                    if (ta) { ta.value += (ta.value ? ' ' : '') + chip.textContent; ta.focus(); }
+                });
+            });
+            var buildBtn = document.getElementById('buildBtn');
+            if (buildBtn) {
+                buildBtn.addEventListener('click', function() {
+                    var g = document.getElementById('greetInput').value.trim();
+                    var t = document.getElementById('topicInput').value.trim();
+                    var q = document.getElementById('questionInput').value.trim();
+                    var parts = [g, t, q].filter(Boolean);
+                    if (parts.length) {
+                        document.getElementById('combinedBox').textContent = parts.join(' ');
+                        document.getElementById('combinedSection').style.display = 'block';
+                    }
+                });
+            }
+            var addBtn = document.getElementById('addTurnBtn');
+            if (addBtn) {
+                addBtn.addEventListener('click', function() {
+                    var wrap = document.createElement('div');
+                    wrap.innerHTML = exchangeRowHtml('Your next turn...', 'Their reply...', true);
+                    document.getElementById('exchangeList').appendChild(wrap.firstChild);
+                });
+            }
+        }
+
+        function renderAll() { renderSidebar(); renderMain(); }
+
+        document.getElementById('modeBtns').addEventListener('click', function(e) {
+            var btn = e.target.closest('.mode-btn');
+            if (!btn) return;
+            currentMode = btn.dataset.mode;
+            renderAll();
+        });
+
+        renderAll();
+    </script>
+</body>
+</html>
