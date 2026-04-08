@@ -5592,7 +5592,7 @@ window.ActivityData.social = {
     },
     {
       "id": 1,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Group Project Credit",
       "tag": "Academics",
       "conflict": "Your classmate Liam helped for the first five minutes of a group project, then scrolled on his phone. On presentation day he loudly tells the class he deserves extra credit because he “planned everything.”",
@@ -5614,7 +5614,7 @@ window.ActivityData.social = {
     },
     {
       "id": 2,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Lunch Table Rumor",
       "tag": "Friends",
       "conflict": "During lunch two friends laugh about a rumor involving you. You ask if it’s true. They shrug and keep whispering.",
@@ -5636,7 +5636,7 @@ window.ActivityData.social = {
     },
     {
       "id": 3,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Text Reply Delay",
       "tag": "Communication",
       "conflict": "Your friend sent you a long text asking for help, but you were busy and forgot to answer for six hours. They follow up with “???”",
@@ -5658,7 +5658,7 @@ window.ActivityData.social = {
     },
     {
       "id": 4,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Game Strategy Disagreement",
       "tag": "Teamwork",
       "conflict": "You’re the captain for an esports match. Teammate Avery suggests a strategy you think will fail.",
@@ -5680,7 +5680,7 @@ window.ActivityData.social = {
     },
     {
       "id": 5,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Shared Locker Mix-Up",
       "tag": "School Life",
       "conflict": "You and your friend share a locker. They borrowed your calculator and forgot to put it back before math class.",
@@ -5702,7 +5702,7 @@ window.ActivityData.social = {
     },
     {
       "id": 6,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Teacher Feedback",
       "tag": "Authority",
       "conflict": "Your teacher privately mentions that you’ve been interrupting others in class discussions.",
@@ -5724,7 +5724,7 @@ window.ActivityData.social = {
     },
     {
       "id": 7,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Sibling Borrowing Clothes",
       "tag": "Home",
       "conflict": "Your sibling borrowed your favorite hoodie without asking and spilled food on it.",
@@ -5746,7 +5746,7 @@ window.ActivityData.social = {
     },
     {
       "id": 8,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Study Group Leader",
       "tag": "Collaboration",
       "conflict": "You organized a study group, but one member arrives late and hasn’t read the material.",
@@ -5768,7 +5768,7 @@ window.ActivityData.social = {
     },
     {
       "id": 9,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "New Student Partner",
       "tag": "School Life",
       "conflict": "A new student joins your art class and seems nervous about an upcoming partner project. The teacher assigns you together.",
@@ -5790,7 +5790,7 @@ window.ActivityData.social = {
     },
     {
       "id": 10,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Canceled Plans",
       "tag": "Friends",
       "conflict": "You and your friend planned to hang out after school, but they text an hour before saying they’re exhausted and want to reschedule.",
@@ -5812,7 +5812,7 @@ window.ActivityData.social = {
     },
     {
       "id": 11,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Teacher Email",
       "tag": "Communication",
       "conflict": "You need extra time on a history assignment because your laptop crashed, and you have to email your teacher about it.",
@@ -5834,7 +5834,7 @@ window.ActivityData.social = {
     },
     {
       "id": 12,
-      "sourceFile": "activities/social/social-response-evaluator.html",
+      "sourceFile": "activities/social/helpful-hurtful-response-judge.html",
       "title": "Group Chat Overload",
       "tag": "Digital Life",
       "conflict": "Your group chat blew up with 200 messages while you were studying. Friends seem annoyed you didn’t respond.",
