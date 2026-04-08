@@ -361,6 +361,55 @@
             filter: brightness(0.98);
         }
 
+        .mode-selector {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .mode-tab {
+            flex: 1;
+            padding: 9px 14px;
+            border-radius: 10px;
+            border: 2px solid var(--border);
+            background: #f8fafc;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .15s;
+        }
+        .mode-tab.active {
+            background: #dcfce7;
+            color: #065f46;
+            border-color: #86efac;
+        }
+        .eval-response-card {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .eval-response-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--ink);
+        }
+        .eval-response-num {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            color: #c2410c;
+            margin-bottom: 4px;
+        }
+        .revise-area { display: none; margin-top: 6px; }
+        .revise-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; color: var(--muted); }
+        .revise-toggle:hover { border-color: #94a3b8; color: var(--ink); }
+
         @media (max-width: 980px) {
             body {
                 padding: 12px;
@@ -380,6 +429,10 @@
         <div class="shell">
             <div class="layout">
                 <aside class="sidebar">
+                    <div class="mode-selector">
+                        <button class="mode-tab active" id="modeJudge" data-mode="judge">Judge</button>
+                        <button class="mode-tab" id="modeEval" data-mode="evaluator">Evaluator</button>
+                    </div>
                     <h2>Scenarios</h2>
                     <div class="progress"><span id="progressCount">0/20 logged</span><span id="progressHint">Pick helpful/hurtful to log.</span></div>
                     <div class="scenario-list" id="scenarioList"></div>
@@ -419,162 +472,267 @@
         </div>
     </main>
     <script>
-        const scenarios = DataLoader.filter('social', 'scenarios', function(s) { return s.sourceFile === 'activities/social/helpful-hurtful-response-judge.html'; });
+        var allScenarios = DataLoader.filter('social', 'scenarios', function(s) {
+            return s.sourceFile === 'activities/social/helpful-hurtful-response-judge.html';
+        });
+        var judgeScenarios = allScenarios.filter(function(s) { return s.response && !s.responses; });
+        var evaluatorScenarios = allScenarios.filter(function(s) { return Array.isArray(s.responses); });
 
-        const responses = scenarios.map(() => ({
-            verdict: null,
-            why: ""
-        }));
+        var judgeResponses = judgeScenarios.map(function() { return { verdict: null, why: '' }; });
+        var evalResponses = evaluatorScenarios.map(function(s) {
+            return s.responses.map(function() { return { verdict: null, why: '', revision: '' }; });
+        });
 
-        let activeIndex = 0;
+        var currentMode = 'judge';
+        var activeIndex = 0;
+        var evalActiveIndex = 0;
 
-        const scenarioList = document.getElementById("scenarioList");
-        const scenarioNumber = document.getElementById("scenarioNumber");
-        const scenarioTitle = document.getElementById("scenarioTitle");
-        const scenarioText = document.getElementById("scenarioText");
-        const responseText = document.getElementById("responseText");
-        const helpfulBtn = document.getElementById("helpfulBtn");
-        const hurtfulBtn = document.getElementById("hurtfulBtn");
-        const whyText = document.getElementById("whyText");
-        const progressCount = document.getElementById("progressCount");
-        const progressHint = document.getElementById("progressHint");
-        const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
-        const hintBtn = document.getElementById("hintBtn");
-        const hintText = document.getElementById("hintText");
-        const hintChips = document.getElementById("hintChips");
+        var scenarioList = document.getElementById('scenarioList');
+        var progressCount = document.getElementById('progressCount');
+        var progressHint = document.getElementById('progressHint');
+        var workspace = document.querySelector('.workspace');
 
-        const hintOptions = [
-            "Tone was respectful vs blaming",
-            "Takes responsibility or offers to fix",
-            "Blames or insults the other person",
-            "Invites dialogue or shuts it down",
-            "Clarifies intentions instead of assuming",
-            "Validates feelings or dismisses them",
-            "Offers a next step to solve it",
-            "Escalates conflict or cools it down",
-            "Acknowledges mistake/apologizes",
-            "Makes assumptions without asking"
+        var hintOptions = [
+            'Tone was respectful vs blaming',
+            'Takes responsibility or offers to fix',
+            'Blames or insults the other person',
+            'Invites dialogue or shuts it down',
+            'Clarifies intentions instead of assuming',
+            'Validates feelings or dismisses them',
+            'Offers a next step to solve it',
+            'Escalates conflict or cools it down',
+            'Acknowledges mistake/apologizes',
+            'Makes assumptions without asking'
         ];
 
-        let hintsShown = false;
+        // ── Mode switching ──────────────────────────────────────────────
+        document.getElementById('modeJudge').addEventListener('click', function() { switchMode('judge'); });
+        document.getElementById('modeEval').addEventListener('click', function() { switchMode('evaluator'); });
 
+        function switchMode(mode) {
+            currentMode = mode;
+            document.getElementById('modeJudge').classList.toggle('active', mode === 'judge');
+            document.getElementById('modeEval').classList.toggle('active', mode === 'evaluator');
+            renderScenarioList();
+            if (mode === 'judge') loadScenario(activeIndex);
+            else loadEvalScenario(evalActiveIndex);
+            updateProgress();
+        }
+
+        // ── Shared scenario list ────────────────────────────────────────
         function renderScenarioList() {
-            scenarioList.innerHTML = "";
-            scenarios.forEach((scenario, index) => {
-                const btn = document.createElement("button");
-                btn.className = "scenario-btn" + (index === activeIndex ? " active" : "");
-                const strong = document.createElement("strong");
-                strong.textContent = `${index + 1}. ${scenario.title}`;
-                const subtitle = document.createElement("span");
-                subtitle.textContent = "Helpful or hurtful? Then justify.";
-                const status = document.createElement("span");
-                status.className = "status-pill";
-                if (responses[index].verdict) {
-                    status.textContent = "Logged";
-                    status.classList.add("done");
-                } else {
-                    status.textContent = "—";
-                }
+            scenarioList.innerHTML = '';
+            var pool = currentMode === 'judge' ? judgeScenarios : evaluatorScenarios;
+            var idx = currentMode === 'judge' ? activeIndex : evalActiveIndex;
+            pool.forEach(function(scenario, index) {
+                var btn = document.createElement('button');
+                btn.className = 'scenario-btn' + (index === idx ? ' active' : '');
+                var strong = document.createElement('strong');
+                strong.textContent = (index + 1) + '. ' + scenario.title;
+                var subtitle = document.createElement('span');
+                subtitle.textContent = currentMode === 'judge' ? 'Helpful or hurtful? Then justify.' : 'Rate each response.';
+                var status = document.createElement('span');
+                status.className = 'status-pill';
+                var logged = currentMode === 'judge'
+                    ? judgeResponses[index].verdict !== null
+                    : evalResponses[index] && evalResponses[index].some(function(r) { return r.verdict !== null; });
+                status.textContent = logged ? 'Logged' : '\u2014';
+                if (logged) status.classList.add('done');
                 btn.appendChild(strong);
                 btn.appendChild(subtitle);
                 btn.appendChild(status);
-                btn.addEventListener("click", () => loadScenario(index));
+                btn.addEventListener('click', function() {
+                    if (currentMode === 'judge') { activeIndex = index; loadScenario(index); }
+                    else { evalActiveIndex = index; loadEvalScenario(index); }
+                });
                 scenarioList.appendChild(btn);
             });
         }
 
-        function loadScenario(index) {
-            activeIndex = index;
-            const scenario = scenarios[index];
-            scenarioNumber.textContent = `Scenario ${index + 1}`;
-            scenarioTitle.textContent = scenario.title;
-            scenarioText.textContent = scenario.scenario;
-            responseText.textContent = scenario.response;
-            whyText.value = responses[index].why;
-            updateVerdictUI();
-            renderScenarioList();
-            updateProgress();
-            resetHints();
-        }
-
-        function setVerdict(verdict) {
-            responses[activeIndex].verdict = verdict;
-            updateVerdictUI();
-            updateProgress();
-            renderScenarioList();
-        }
-
-        function updateVerdictUI() {
-            const verdict = responses[activeIndex].verdict;
-            helpfulBtn.classList.toggle("active", verdict === "helpful");
-            hurtfulBtn.classList.toggle("active", verdict === "hurtful");
-            helpfulBtn.setAttribute("aria-pressed", verdict === "helpful");
-            hurtfulBtn.setAttribute("aria-pressed", verdict === "hurtful");
-            whyText.placeholder = verdict === "hurtful" ? "This response might make things worse because…" : "This response is helpful because…";
-        }
-
         function updateProgress() {
-            const logged = responses.filter(r => r.verdict !== null).length;
-            progressCount.textContent = `${logged}/${scenarios.length} logged`;
-            const withReasons = responses.filter(r => r.verdict && r.why.trim()).length;
-            progressHint.textContent = withReasons ? `${withReasons} with explanations` : "Pick helpful/hurtful to log.";
-        }
-
-        function resetHints() {
-            hintsShown = false;
-            hintText.textContent = "Need ideas? Look at tone, accountability, and impact.";
-            hintChips.style.display = "none";
-        }
-
-        function showHints() {
-            if (!hintsShown) {
-                hintChips.innerHTML = "";
-                hintOptions.forEach(text => {
-                    const chip = document.createElement("button");
-                    chip.type = "button";
-                    chip.className = "hint-chip";
-                    chip.textContent = text;
-                    chip.addEventListener("click", () => insertHint(text));
-                    hintChips.appendChild(chip);
-                });
-                hintChips.style.display = "flex";
-                hintText.textContent = "Pick a clue to add to your explanation.";
-                hintsShown = true;
+            if (currentMode === 'judge') {
+                var logged = judgeResponses.filter(function(r) { return r.verdict !== null; }).length;
+                progressCount.textContent = logged + '/' + judgeScenarios.length + ' logged';
+                var withReasons = judgeResponses.filter(function(r) { return r.verdict && r.why.trim(); }).length;
+                progressHint.textContent = withReasons ? withReasons + ' with explanations' : 'Pick helpful/hurtful to log.';
             } else {
-                hintChips.style.display = hintChips.style.display === "none" ? "flex" : "none";
+                var rated = evalResponses.filter(function(arr) {
+                    return arr.some(function(r) { return r.verdict !== null; });
+                }).length;
+                progressCount.textContent = rated + '/' + evaluatorScenarios.length + ' rated';
+                progressHint.textContent = 'Rate each response helpful or not.';
             }
         }
 
-        function insertHint(text) {
-            const current = whyText.value.trim();
-            whyText.value = current ? `${whyText.value} ${text}.` : `${text}.`;
-            responses[activeIndex].why = whyText.value;
-            updateProgress();
+        // ── Judge mode ─────────────────────────────────────────────────
+        function loadScenario(index) {
+            activeIndex = index;
+            var scenario = judgeScenarios[index];
+            var resp = judgeResponses[index];
+            workspace.innerHTML = judgeWorkspaceHtml(scenario, index, resp);
+            bindJudgeEvents(index);
             renderScenarioList();
-            whyText.focus();
+            updateProgress();
         }
 
-        helpfulBtn.addEventListener("click", () => setVerdict("helpful"));
-        hurtfulBtn.addEventListener("click", () => setVerdict("hurtful"));
-        hintBtn.addEventListener("click", showHints);
+        function judgeWorkspaceHtml(scenario, index, resp) {
+            var verdict = resp.verdict;
+            var helpfulActive = verdict === 'helpful' ? ' active' : '';
+            var hurtfulActive = verdict === 'hurtful' ? ' active' : '';
+            var placeholder = verdict === 'hurtful'
+                ? 'This response might make things worse because\u2026'
+                : 'This response is helpful because\u2026';
+            return '<div class="scenario-top">'
+                + '<span class="badge">Scenario ' + (index + 1) + '</span>'
+                + '<h2 class="scenario-title">' + scenario.title + '</h2></div>'
+                + '<div class="scenario-card">' + scenario.scenario + '</div>'
+                + '<div class="response-card"><h3>Response to evaluate</h3>'
+                + '<p style="margin:4px 0 0">' + scenario.response + '</p></div>'
+                + '<div class="question-card">'
+                + '<label>Was this response helpful or hurtful?</label>'
+                + '<div class="toggle-row">'
+                + '<button class="toggle-btn helpful' + helpfulActive + '" id="helpfulBtn" aria-pressed="' + (verdict === 'helpful') + '">Helpful</button>'
+                + '<button class="toggle-btn hurtful' + hurtfulActive + '" id="hurtfulBtn" aria-pressed="' + (verdict === 'hurtful') + '">Hurtful</button>'
+                + '</div>'
+                + '<div class="hint-bar"><div class="hint-header">'
+                + '<button class="hint-btn" id="hintBtn">Show hints</button>'
+                + '<span class="hint-text" id="hintText">Need ideas? Look at tone, accountability, and impact.</span>'
+                + '</div><div class="hint-chips" id="hintChips"></div></div>'
+                + '<label>Why?</label>'
+                + '<textarea id="whyText" placeholder="' + placeholder + '">' + resp.why + '</textarea>'
+                + '</div>'
+                + '<div class="controls">'
+                + '<button class="btn" id="prevBtn">Previous</button>'
+                + '<button class="btn primary" id="nextBtn">Next scenario</button>'
+                + '</div>';
+        }
 
-        whyText.addEventListener("input", (e) => {
-            responses[activeIndex].why = e.target.value;
-            updateProgress();
+        function bindJudgeEvents(index) {
+            var hintsShown = false;
+            document.getElementById('helpfulBtn').addEventListener('click', function() {
+                judgeResponses[index].verdict = 'helpful';
+                loadScenario(index);
+            });
+            document.getElementById('hurtfulBtn').addEventListener('click', function() {
+                judgeResponses[index].verdict = 'hurtful';
+                loadScenario(index);
+            });
+            document.getElementById('whyText').addEventListener('input', function(e) {
+                judgeResponses[index].why = e.target.value;
+                updateProgress();
+                renderScenarioList();
+            });
+            document.getElementById('hintBtn').addEventListener('click', function() {
+                var chips = document.getElementById('hintChips');
+                var text = document.getElementById('hintText');
+                if (!hintsShown) {
+                    chips.innerHTML = '';
+                    hintOptions.forEach(function(t) {
+                        var chip = document.createElement('button');
+                        chip.type = 'button';
+                        chip.className = 'hint-chip';
+                        chip.textContent = t;
+                        chip.addEventListener('click', function() {
+                            var ta = document.getElementById('whyText');
+                            ta.value = ta.value.trim() ? ta.value + ' ' + t + '.' : t + '.';
+                            judgeResponses[index].why = ta.value;
+                            updateProgress(); renderScenarioList(); ta.focus();
+                        });
+                        chips.appendChild(chip);
+                    });
+                    chips.style.display = 'flex';
+                    text.textContent = 'Pick a clue to add to your explanation.';
+                    hintsShown = true;
+                } else {
+                    chips.style.display = chips.style.display === 'none' ? 'flex' : 'none';
+                }
+            });
+            document.getElementById('prevBtn').addEventListener('click', function() {
+                loadScenario(activeIndex === 0 ? judgeScenarios.length - 1 : activeIndex - 1);
+            });
+            document.getElementById('nextBtn').addEventListener('click', function() {
+                loadScenario(activeIndex === judgeScenarios.length - 1 ? 0 : activeIndex + 1);
+            });
+        }
+
+        // ── Evaluator mode ─────────────────────────────────────────────
+        function loadEvalScenario(index) {
+            evalActiveIndex = index;
+            var scenario = evaluatorScenarios[index];
+            var resps = evalResponses[index];
+            workspace.innerHTML = evalWorkspaceHtml(scenario, index, resps);
+            bindEvalEvents(index);
             renderScenarioList();
-        });
+            updateProgress();
+        }
 
-        prevBtn.addEventListener("click", () => {
-            const newIndex = activeIndex === 0 ? scenarios.length - 1 : activeIndex - 1;
-            loadScenario(newIndex);
-        });
+        function evalWorkspaceHtml(scenario, index, resps) {
+            var responseCards = scenario.responses.map(function(r, ri) {
+                var resp = resps[ri];
+                var helpfulActive = resp.verdict === 'helpful' ? ' active' : '';
+                var notHelpfulActive = resp.verdict === 'not-helpful' ? ' active' : '';
+                return '<div class="eval-response-card">'
+                    + '<div class="eval-response-num">Response ' + (ri + 1) + '</div>'
+                    + '<div class="eval-response-text">' + r.text + '</div>'
+                    + '<div class="toggle-row">'
+                    + '<button class="toggle-btn helpful' + helpfulActive + '" data-ri="' + ri + '" data-v="helpful">Helpful</button>'
+                    + '<button class="toggle-btn hurtful' + notHelpfulActive + '" data-ri="' + ri + '" data-v="not-helpful">Not Helpful</button>'
+                    + '</div>'
+                    + '<label>Why?</label>'
+                    + '<textarea class="eval-why" data-ri="' + ri + '" placeholder="Explain your rating...">' + resp.why + '</textarea>'
+                    + '<button class="revise-toggle" data-ri="' + ri + '">Revise this response \u25be</button>'
+                    + '<div class="revise-area" id="revise-' + ri + '">'
+                    + '<textarea class="eval-revise" data-ri="' + ri + '" placeholder="How would you rewrite this response?">' + resp.revision + '</textarea>'
+                    + '</div></div>';
+            }).join('');
 
-        nextBtn.addEventListener("click", () => {
-            const newIndex = activeIndex === scenarios.length - 1 ? 0 : activeIndex + 1;
-            loadScenario(newIndex);
-        });
+            return '<div class="scenario-top">'
+                + '<span class="badge">Scenario ' + (index + 1) + '</span>'
+                + '<h2 class="scenario-title">' + scenario.title + '</h2></div>'
+                + '<div class="scenario-card">' + scenario.conflict + '</div>'
+                + responseCards
+                + '<div class="controls">'
+                + '<button class="btn" id="evalPrevBtn">Previous</button>'
+                + '<button class="btn primary" id="evalNextBtn">Next scenario</button>'
+                + '</div>';
+        }
 
+        function bindEvalEvents(index) {
+            workspace.querySelectorAll('.toggle-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var ri = parseInt(btn.dataset.ri);
+                    evalResponses[index][ri].verdict = btn.dataset.v;
+                    loadEvalScenario(index);
+                });
+            });
+            workspace.querySelectorAll('.eval-why').forEach(function(ta) {
+                ta.addEventListener('input', function() {
+                    evalResponses[index][parseInt(ta.dataset.ri)].why = ta.value;
+                    updateProgress(); renderScenarioList();
+                });
+            });
+            workspace.querySelectorAll('.eval-revise').forEach(function(ta) {
+                ta.addEventListener('input', function() {
+                    evalResponses[index][parseInt(ta.dataset.ri)].revision = ta.value;
+                });
+            });
+            workspace.querySelectorAll('.revise-toggle').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var area = document.getElementById('revise-' + btn.dataset.ri);
+                    var open = area.style.display === 'block';
+                    area.style.display = open ? 'none' : 'block';
+                    btn.textContent = (open ? 'Revise this response \u25be' : 'Revise this response \u25b4');
+                });
+            });
+            document.getElementById('evalPrevBtn').addEventListener('click', function() {
+                loadEvalScenario(evalActiveIndex === 0 ? evaluatorScenarios.length - 1 : evalActiveIndex - 1);
+            });
+            document.getElementById('evalNextBtn').addEventListener('click', function() {
+                loadEvalScenario(evalActiveIndex === evaluatorScenarios.length - 1 ? 0 : evalActiveIndex + 1);
+            });
+        }
+
+        // ── Init ───────────────────────────────────────────────────────
         renderScenarioList();
         loadScenario(0);
         updateProgress();
