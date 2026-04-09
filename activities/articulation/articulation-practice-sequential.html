@@ -688,7 +688,7 @@
                 const blendsData = {};
                 if (cat.groups) {
                     cat.groups.forEach(group => {
-                        const key = group.blend || group.position;
+                        const key = group.blend || group.position || group.vocalicType;
                         if (key && group.words && group.words.length > 0) {
                             blendsData[key] = group.words.map((w, i) => ({
                                 ...w,
