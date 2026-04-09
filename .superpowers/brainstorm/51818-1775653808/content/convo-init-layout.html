@@ -1,0 +1,105 @@
+<h2>Merged Conversation Initiation — How should modes be organized?</h2>
+<p class="subtitle">The 4 current activities have different scaffolding levels. How should the clinician switch between them?</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Tab bar at the top</h3>
+      <p>Three tabs always visible: <strong>Quick</strong> (write a starter + predict) / <strong>Guided</strong> (step-by-step builder) / <strong>Multi-Exchange</strong> (add multiple back-and-forth turns). Clinician clicks a tab to switch modes. Scenario selector sits below the tabs.</p>
+      <div class="mockup" style="margin-top:12px">
+        <div class="mockup-header">Preview</div>
+        <div class="mockup-body" style="padding:0">
+          <div style="background:#1e40af;color:white;padding:12px 16px;font-weight:700;font-size:15px">Conversation Initiation Practice</div>
+          <div style="display:flex;border-bottom:2px solid #e2e8f0">
+            <div style="padding:10px 18px;font-weight:700;font-size:13px;border-bottom:3px solid #2563eb;color:#2563eb">Quick</div>
+            <div style="padding:10px 18px;font-size:13px;color:#64748b">Guided</div>
+            <div style="padding:10px 18px;font-size:13px;color:#64748b">Multi-Exchange</div>
+          </div>
+          <div style="padding:12px 16px;background:#f8fafc;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #e2e8f0">
+            <span style="background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;padding:5px 10px;border-radius:8px;font-size:12px;font-weight:600">At the library</span>
+            <span style="background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0;padding:5px 10px;border-radius:8px;font-size:12px">Before class</span>
+            <span style="background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0;padding:5px 10px;border-radius:8px;font-size:12px">At lunch</span>
+          </div>
+          <div style="padding:16px">
+            <div style="background:#e0edff;border-radius:10px;padding:14px;font-size:13px;margin-bottom:12px"><strong>Scenario:</strong> You see a classmate you recognize at the library. You'd like to start a conversation but don't know them well.</div>
+            <div style="background:white;border:2px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:8px">
+              <div style="font-size:12px;font-weight:600;color:#64748b;margin-bottom:6px">CONVERSATION STARTER</div>
+              <div style="height:40px;background:#f8fafc;border-radius:6px"></div>
+            </div>
+            <div style="background:white;border:2px solid #e2e8f0;border-radius:10px;padding:12px">
+              <div style="font-size:12px;font-weight:600;color:#64748b;margin-bottom:6px">PREDICTED RESPONSE</div>
+              <div style="height:40px;background:#f8fafc;border-radius:6px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Mode picker on load</h3>
+      <p>Activity opens with a full-screen mode picker — clinician chooses the scaffolding level before starting. Once chosen, the activity runs in that mode. A small "Change mode" button in the header lets them switch mid-session if needed.</p>
+      <div class="mockup" style="margin-top:12px">
+        <div class="mockup-header">Preview (opening screen)</div>
+        <div class="mockup-body">
+          <div style="font-weight:700;font-size:15px;margin-bottom:4px;color:#0f172a">Conversation Initiation Practice</div>
+          <div style="font-size:13px;color:#64748b;margin-bottom:16px">Choose a mode to match your student's support level</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+            <div style="background:#eff6ff;border:2px solid #2563eb;border-radius:12px;padding:14px;text-align:center">
+              <div style="font-size:20px;margin-bottom:6px">⚡</div>
+              <div style="font-weight:700;font-size:13px;color:#1e40af">Quick</div>
+              <div style="font-size:12px;color:#3730a3;margin-top:4px">Write a starter + predict the response</div>
+            </div>
+            <div style="background:#f0fdf4;border:2px solid #16a34a;border-radius:12px;padding:14px;text-align:center">
+              <div style="font-size:20px;margin-bottom:6px">🧱</div>
+              <div style="font-weight:700;font-size:13px;color:#15803d">Guided</div>
+              <div style="font-size:12px;color:#166534;margin-top:4px">Build a starter step-by-step</div>
+            </div>
+            <div style="background:#fdf4ff;border:2px solid #a855f7;border-radius:12px;padding:14px;text-align:center">
+              <div style="font-size:20px;margin-bottom:6px">💬</div>
+              <div style="font-weight:700;font-size:13px;color:#7e22ce">Multi-Exchange</div>
+              <div style="font-size:12px;color:#6b21a8;margin-top:4px">Practice a full back-and-forth</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Sidebar with mode + scenario</h3>
+      <p>Left sidebar contains both the mode selector (radio buttons or small tabs) and the scenario list. Main panel shows the activity. Everything visible at once — clinician can see where they are and switch without leaving the activity.</p>
+      <div class="mockup" style="margin-top:12px">
+        <div class="mockup-header">Preview</div>
+        <div class="mockup-body" style="padding:0;display:flex;min-height:200px">
+          <div style="width:160px;background:#f1f5f9;border-right:1px solid #e2e8f0;padding:12px;flex-shrink:0">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#64748b;margin-bottom:8px">Mode</div>
+            <div style="background:#eff6ff;color:#2563eb;border-radius:7px;padding:7px 10px;font-size:12px;font-weight:700;margin-bottom:4px">⚡ Quick</div>
+            <div style="color:#64748b;border-radius:7px;padding:7px 10px;font-size:12px;margin-bottom:4px">🧱 Guided</div>
+            <div style="color:#64748b;border-radius:7px;padding:7px 10px;font-size:12px;margin-bottom:12px">💬 Multi</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#64748b;margin-bottom:8px">Scenarios</div>
+            <div style="background:#eff6ff;color:#2563eb;border-radius:7px;padding:7px 10px;font-size:12px;font-weight:600;margin-bottom:4px">At the library</div>
+            <div style="color:#64748b;border-radius:7px;padding:7px 10px;font-size:12px;margin-bottom:4px">Before class</div>
+            <div style="color:#64748b;border-radius:7px;padding:7px 10px;font-size:12px">At lunch</div>
+          </div>
+          <div style="flex:1;padding:14px">
+            <div style="background:#e0edff;border-radius:8px;padding:10px;font-size:12px;margin-bottom:10px">You see a classmate at the library you'd like to talk to...</div>
+            <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;padding:10px;margin-bottom:8px">
+              <div style="font-size:11px;font-weight:600;color:#64748b;margin-bottom:5px">STARTER</div>
+              <div style="height:32px;background:#f8fafc;border-radius:5px"></div>
+            </div>
+            <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;padding:10px">
+              <div style="font-size:11px;font-weight:600;color:#64748b;margin-bottom:5px">PREDICTED RESPONSE</div>
+              <div style="height:32px;background:#f8fafc;border-radius:5px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

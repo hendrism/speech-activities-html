@@ -1885,5 +1885,320 @@ window.ActivityData.vocabulary = {
         "vocabulary"
       ]
     }
+  ],
+  "sortingFunctionsSpring": [
+    {
+      "categories": ["You wear it", "You carry it"],
+      "items": [
+        { "folder": "clothing", "img": "raincoat.png", "name": "Raincoat" },
+        { "folder": "clothing", "img": "rain-boots.png", "name": "Rain Boots" },
+        { "folder": "clothing", "img": "jacket.png", "name": "Light Jacket" },
+        { "folder": "objects", "img": "umbrella.png", "name": "Umbrella" },
+        { "folder": "objects", "img": "basket.png", "name": "Basket" },
+        { "folder": "objects", "img": "backpack.png", "name": "Backpack" }
+      ]
+    },
+    {
+      "categories": ["You plant it", "You pick it"],
+      "items": [
+        { "folder": "plants", "img": "seeds.png", "name": "Seeds" },
+        { "folder": "plants", "img": "seedling.png", "name": "Seedling" },
+        { "folder": "plants", "img": "sapling.png", "name": "Sapling" },
+        { "folder": "plants", "img": "tulip.png", "name": "Flower" },
+        { "folder": "food", "img": "strawberry.png", "name": "Strawberry" },
+        { "folder": "food", "img": "tomato.png", "name": "Tomato" }
+      ]
+    },
+    {
+      "categories": ["It flies", "It hops"],
+      "items": [
+        { "folder": "animals", "img": "butterfly.png", "name": "Butterfly" },
+        { "folder": "animals", "img": "bee.png", "name": "Bee" },
+        { "folder": "animals", "img": "robin.png", "name": "Robin" },
+        { "folder": "animals", "img": "frog.png", "name": "Frog" },
+        { "folder": "animals", "img": "rabbit.png", "name": "Rabbit" },
+        { "folder": "animals", "img": "grasshopper.png", "name": "Grasshopper" }
+      ]
+    },
+    {
+      "categories": ["Use it in the garden", "Use it in the house"],
+      "items": [
+        { "folder": "objects", "img": "watering-can.png", "name": "Watering Can" },
+        { "folder": "objects", "img": "shovel.png", "name": "Shovel" },
+        { "folder": "objects", "img": "rake.png", "name": "Rake" },
+        { "folder": "objects", "img": "vase.png", "name": "Vase" },
+        { "folder": "objects", "img": "broom.png", "name": "Broom" },
+        { "folder": "objects", "img": "duster.png", "name": "Duster" }
+      ]
+    },
+    {
+      "categories": ["It blooms", "It melts"],
+      "items": [
+        { "folder": "plants", "img": "tulip.png", "name": "Tulip" },
+        { "folder": "plants", "img": "daffodil.png", "name": "Daffodil" },
+        { "folder": "plants", "img": "daisy.png", "name": "Daisy" },
+        { "folder": "objects", "img": "snowman.png", "name": "Snowman" },
+        { "folder": "nature", "img": "icicle.png", "name": "Icicle" },
+        { "folder": "nature", "img": "snow.png", "name": "Snow" }
+      ]
+    },
+    {
+      "categories": ["You ride it", "You fly it"],
+      "items": [
+        { "folder": "objects", "img": "bike.png", "name": "Bicycle" },
+        { "folder": "objects", "img": "scooter.png", "name": "Scooter" },
+        { "folder": "objects", "img": "skateboard.png", "name": "Skateboard" },
+        { "folder": "objects", "img": "kite.png", "name": "Kite" },
+        { "folder": "objects", "img": "paper_airplane.png", "name": "Paper Airplane" },
+        { "folder": "objects", "img": "drone.png", "name": "Drone" }
+      ]
+    },
+    {
+      "categories": ["Wear in the rain", "Wear in the sun"],
+      "items": [
+        { "folder": "clothing", "img": "raincoat.png", "name": "Raincoat" },
+        { "folder": "clothing", "img": "rain-boots.png", "name": "Rain Boots" },
+        { "folder": "clothing", "img": "poncho.png", "name": "Poncho" },
+        { "folder": "clothing", "img": "sunglasses.png", "name": "Sunglasses" },
+        { "folder": "clothing", "img": "sun_hat.png", "name": "Sun Hat" },
+        { "folder": "clothing", "img": "t-shirt.png", "name": "T-Shirt" }
+      ]
+    },
+    {
+      "categories": ["Builds a nest", "Digs a hole"],
+      "items": [
+        { "folder": "animals", "img": "robin.png", "name": "Robin" },
+        { "folder": "animals", "img": "wasp.png", "name": "Wasp" },
+        { "folder": "animals", "img": "cardinal.png", "name": "Cardinal" },
+        { "folder": "animals", "img": "ant.png", "name": "Ant" },
+        { "folder": "animals", "img": "earthworm.png", "name": "Worm" },
+        { "folder": "animals", "img": "groundhog.png", "name": "Groundhog" }
+      ]
+    },
+    {
+      "categories": ["Lives in the ground", "Lives above ground"],
+      "items": [
+        { "folder": "animals", "img": "earthworm.png", "name": "Earthworm" },
+        { "folder": "animals", "img": "mole.png", "name": "Mole" },
+        { "folder": "animals", "img": "larvae.png", "name": "Grub" },
+        { "folder": "animals", "img": "robin.png", "name": "Robin" },
+        { "folder": "animals", "img": "butterfly.png", "name": "Butterfly" },
+        { "folder": "animals", "img": "chipmunk.png", "name": "Chipmunk" }
+      ]
+    },
+    {
+      "categories": ["Used for gardening", "Used for outdoor fun"],
+      "items": [
+        { "folder": "objects", "img": "trowel.png", "name": "Trowel" },
+        { "folder": "objects", "img": "watering-can.png", "name": "Watering Can" },
+        { "folder": "clothing", "img": "garden-gloves.png", "name": "Garden Gloves" },
+        { "folder": "objects", "img": "kite.png", "name": "Kite" },
+        { "folder": "objects", "img": "jump-rope.png", "name": "Jump Rope" },
+        { "folder": "objects", "img": "chalk.png", "name": "Sidewalk Chalk" }
+      ]
+    }
+  ],
+  "sortingCategories": [
+    {
+      "categories": ["Spring Clothes", "Winter Clothes"],
+      "items": [
+        { "folder": "clothing", "img": "rain-boots.png", "name": "Rain Boots" },
+        { "folder": "clothing", "img": "shorts.png", "name": "Shorts" },
+        { "folder": "clothing", "img": "jacket.png", "name": "Winter Coat" },
+        { "folder": "clothing", "img": "scarf.png", "name": "Scarf" },
+        { "folder": "clothing", "img": "t-shirt.png", "name": "T-Shirt" },
+        { "folder": "clothing", "img": "winter-boots.png", "name": "Snow Boots" }
+      ]
+    },
+    {
+      "categories": ["Insects", "Birds"],
+      "items": [
+        { "folder": "animals", "img": "butterfly.png", "name": "Butterfly" },
+        { "folder": "animals", "img": "robin.png", "name": "Robin" },
+        { "folder": "animals", "img": "bumblebee.png", "name": "Bee" },
+        { "folder": "animals", "img": "sparrow.png", "name": "Sparrow" },
+        { "folder": "animals", "img": "ant.png", "name": "Ant" },
+        { "folder": "animals", "img": "blue-jay.png", "name": "Blue Jay" }
+      ]
+    },
+    {
+      "categories": ["Things That Grow", "Do Not Grow"],
+      "items": [
+        { "folder": "plants", "img": "rose.png", "name": "Flower" },
+        { "folder": "plants", "img": "tree.png", "name": "Tree" },
+        { "folder": "nature", "img": "rock.png", "name": "Rock" },
+        { "folder": "nature", "img": "grass.png", "name": "Grass" },
+        { "folder": "objects", "img": "bench.png", "name": "Bench" },
+        { "folder": "nature", "img": "cloud.png", "name": "Cloud" }
+      ]
+    },
+    {
+      "categories": ["Rainy Day", "Sunny Day"],
+      "items": [
+        { "folder": "objects", "img": "umbrella.png", "name": "Umbrella" },
+        { "folder": "clothing", "img": "sunglasses.png", "name": "Sunglasses" },
+        { "folder": "nature", "img": "puddle.png", "name": "Puddle" },
+        { "folder": "objects", "img": "beach-ball.png", "name": "Beach Ball" },
+        { "folder": "clothing", "img": "raincoat.png", "name": "Raincoat" },
+        { "folder": "objects", "img": "kite.png", "name": "Kite" }
+      ]
+    },
+    {
+      "categories": ["Baby Animals", "Adult Animals"],
+      "items": [
+        { "folder": "animals", "img": "chick.png", "name": "Chick" },
+        { "folder": "animals", "img": "puppy.png", "name": "Puppy" },
+        { "folder": "animals", "img": "duckling.png", "name": "Duckling" },
+        { "folder": "animals", "img": "lamb.png", "name": "Lamb" },
+        { "folder": "animals", "img": "chicken.png", "name": "Hen" },
+        { "folder": "animals", "img": "beagle.png", "name": "Dog" }
+      ]
+    },
+    {
+      "categories": ["Insects", "Birds", "Mammals"],
+      "items": [
+        { "folder": "animals", "img": "bee.png", "name": "Bee" },
+        { "folder": "animals", "img": "robin2.png", "name": "Robin" },
+        { "folder": "animals", "img": "squirrel.png", "name": "Squirrel" },
+        { "folder": "animals", "img": "butterfly2.png", "name": "Butterfly" },
+        { "folder": "animals", "img": "crow.png", "name": "Crow" },
+        { "folder": "animals", "img": "rabbit.png", "name": "Rabbit" }
+      ]
+    },
+    {
+      "categories": ["Wear", "Play", "Eat"],
+      "items": [
+        { "folder": "clothing", "img": "sandals.png", "name": "Sandals" },
+        { "folder": "food", "img": "apple.png", "name": "Apple" },
+        { "folder": "objects", "img": "jump-rope.png", "name": "Jump Rope" },
+        { "folder": "clothing", "img": "windbreaker.png", "name": "Jacket" },
+        { "folder": "food", "img": "ice-cream-cone.png", "name": "Ice Cream" },
+        { "folder": "objects", "img": "soccer-ball.png", "name": "Soccer Ball" }
+      ]
+    },
+    {
+      "categories": ["Farm", "Zoo", "Pets"],
+      "items": [
+        { "folder": "animals", "img": "cow.png", "name": "Cow" },
+        { "folder": "animals", "img": "lion.png", "name": "Lion" },
+        { "folder": "animals", "img": "golden-retriever.png", "name": "Dog" },
+        { "folder": "animals", "img": "pig.png", "name": "Pig" },
+        { "folder": "animals", "img": "elephant.png", "name": "Elephant" },
+        { "folder": "animals", "img": "cat.png", "name": "Cat" }
+      ]
+    },
+    {
+      "categories": ["Weather", "Plants", "Animals"],
+      "items": [
+        { "folder": "nature", "img": "rain-cloud.png", "name": "Rain" },
+        { "folder": "plants", "img": "rose2.png", "name": "Flower" },
+        { "folder": "animals", "img": "frog.png", "name": "Frog" },
+        { "folder": "nature", "img": "sun.png", "name": "Sun" },
+        { "folder": "plants", "img": "tree2.png", "name": "Tree" },
+        { "folder": "animals", "img": "bluebird.png", "name": "Bird" }
+      ]
+    },
+    {
+      "categories": ["Sky", "Ground", "Water"],
+      "items": [
+        { "folder": "nature", "img": "cloud2.png", "name": "Cloud" },
+        { "folder": "nature", "img": "grass2.png", "name": "Grass" },
+        { "folder": "animals", "img": "fish.png", "name": "Fish" },
+        { "folder": "objects", "img": "airplane.png", "name": "Airplane" },
+        { "folder": "nature", "img": "rock2.png", "name": "Rock" },
+        { "folder": "animals", "img": "duck.png", "name": "Duck" }
+      ]
+    }
+  ],
+  "identifyingSynonyms": [
+    { "id": 1, "word": "Huge", "sentence": "The huge elephant walked slowly through the tall grass.", "hint": "The elephant was very big. What's another word for huge?", "choices": ["tiny", "giant", "loud", "fast"], "correct": "giant" },
+    { "id": 2, "word": "Quick", "sentence": "The quick fox jumped over the sleeping dog.", "hint": "The fox moved very fast. What's another word for quick?", "choices": ["slow", "lazy", "speedy", "heavy"], "correct": "speedy" },
+    { "id": 3, "word": "Speak", "sentence": "The teacher asked the student to speak louder.", "hint": "To use your voice to say words. What's another word for speak?", "choices": ["listen", "talk", "run", "jump"], "correct": "talk" },
+    { "id": 4, "word": "Glad", "sentence": "She was glad when her best friend came to visit.", "hint": "She felt really good about her friend visiting. What's another word for glad?", "choices": ["sad", "angry", "happy", "tired"], "correct": "happy" },
+    { "id": 5, "word": "Tidy", "sentence": "He kept his bedroom very tidy and put all his toys away.", "hint": "Everything was in its right place. What's another word for tidy?", "choices": ["messy", "dirty", "neat", "dark"], "correct": "neat" },
+    { "id": 6, "word": "Begin", "sentence": "The movie will begin in five minutes.", "hint": "The movie is about to start. What's another word for begin?", "choices": ["end", "stop", "start", "pause"], "correct": "start" },
+    { "id": 7, "word": "Quiet", "sentence": "The library was so quiet you could hear a pin drop.", "hint": "There was hardly any noise. What's another word for quiet?", "choices": ["loud", "silent", "busy", "crowded"], "correct": "silent" },
+    { "id": 8, "word": "Simple", "sentence": "The instructions for the game were very simple.", "hint": "The instructions were not hard to understand. What's another word for simple?", "choices": ["hard", "easy", "confusing", "long"], "correct": "easy" },
+    { "id": 9, "word": "Sick", "sentence": "He stayed home from school because he was sick.", "hint": "He wasn't feeling well. What's another word for sick?", "choices": ["healthy", "ill", "strong", "brave"], "correct": "ill" },
+    { "id": 10, "word": "Smart", "sentence": "The smart student figured out the puzzle quickly.", "hint": "The student was very brainy. What's another word for smart?", "choices": ["silly", "clever", "lazy", "clumsy"], "correct": "clever" },
+    { "id": 11, "word": "True", "sentence": "The story he told us was completely true.", "hint": "It was a fact and not a lie. What's another word for true?", "choices": ["false", "wrong", "correct", "fake"], "correct": "correct" },
+    { "id": 12, "word": "Sleepy", "sentence": "The puppy was sleepy after playing all day.", "hint": "The puppy needed a nap. What's another word for sleepy?", "choices": ["awake", "energetic", "tired", "hungry"], "correct": "tired" },
+    { "id": 13, "word": "Cold", "sentence": "It was a very cold morning in December.", "hint": "The temperature was very low. What's another word for cold?", "choices": ["hot", "warm", "chilly", "sunny"], "correct": "chilly" },
+    { "id": 14, "word": "Shout", "sentence": "Please do not shout in the hallway.", "hint": "To use a very loud voice. What's another word for shout?", "choices": ["whisper", "yell", "sing", "cry"], "correct": "yell" },
+    { "id": 15, "word": "Leap", "sentence": "The frog can leap from one lily pad to another.", "hint": "To push yourself off the ground. What's another word for leap?", "choices": ["walk", "crawl", "jump", "swim"], "correct": "jump" },
+    { "id": 16, "word": "Beautiful", "sentence": "The sunset over the ocean was beautiful.", "hint": "It was wonderful to look at. What's another word for beautiful?", "choices": ["ugly", "pretty", "plain", "scary"], "correct": "pretty" },
+    { "id": 17, "word": "Angry", "sentence": "The man was angry when he lost his keys.", "hint": "He was very upset. What's another word for angry?", "choices": ["calm", "mad", "glad", "bored"], "correct": "mad" },
+    { "id": 18, "word": "End", "sentence": "At the end of the book, everyone lived happily ever after.", "hint": "The final part of the story. What's another word for end?", "choices": ["start", "beginning", "middle", "finish"], "correct": "finish" },
+    { "id": 19, "word": "Scary", "sentence": "The haunted house was too scary for the little kids.", "hint": "It made them feel afraid. What's another word for scary?", "choices": ["funny", "frightening", "boring", "silly"], "correct": "frightening" },
+    { "id": 20, "word": "Rich", "sentence": "The king was very rich and lived in a huge castle.", "hint": "He had a lot of money and treasure. What's another word for rich?", "choices": ["poor", "wealthy", "sick", "kind"], "correct": "wealthy" },
+    { "id": 21, "word": "Funny", "sentence": "The clown at the circus was very funny.", "hint": "He made everyone laugh. What's another word for funny?", "choices": ["serious", "hilarious", "sad", "boring"], "correct": "hilarious" },
+    { "id": 22, "word": "Hot", "sentence": "The soup was too hot to eat right away.", "hint": "It was boiling and needed to cool down. What's another word for hot?", "choices": ["cold", "freezing", "scorching", "icy"], "correct": "scorching" },
+    { "id": 23, "word": "Safe", "sentence": "She felt safe when her parents were around.", "hint": "She felt protected from danger. What's another word for safe?", "choices": ["dangerous", "secure", "scared", "lost"], "correct": "secure" },
+    { "id": 24, "word": "Below", "sentence": "The fish swam below the surface of the water.", "hint": "The fish was underneath the top of the water. What's another word for below?", "choices": ["above", "under", "beside", "over"], "correct": "under" },
+    { "id": 25, "word": "Center", "sentence": "The teacher placed the block in the center of the circle.", "hint": "It was right in the very middle of the circle. What's another word for center?", "choices": ["edge", "middle", "top", "bottom"], "correct": "middle" },
+    { "id": 26, "word": "Big", "sentence": "They saw a big dog in the park.", "hint": "The dog was large in size. What's another word for big?", "choices": ["small", "tiny", "large", "short"], "correct": "large" },
+    { "id": 27, "word": "Small", "sentence": "She picked up a small stone.", "hint": "The stone was little. What's another word for small?", "choices": ["huge", "little", "tall", "wide"], "correct": "little" },
+    { "id": 28, "word": "Run", "sentence": "He likes to run around the field.", "hint": "To move quickly with your legs. What's another word for run?", "choices": ["walk", "jog", "sit", "stand"], "correct": "jog" },
+    { "id": 29, "word": "Look", "sentence": "Please look at the board.", "hint": "To use your eyes to see. What's another word for look?", "choices": ["listen", "watch", "eat", "touch"], "correct": "watch" },
+    { "id": 30, "word": "Help", "sentence": "Can you help me carry this box?", "hint": "To give support or assistance. What's another word for help?", "choices": ["ignore", "assist", "drop", "leave"], "correct": "assist" },
+    { "id": 31, "word": "Fast", "sentence": "The car was very fast on the highway.", "hint": "It moved quickly. What's another word for fast?", "choices": ["slow", "rapid", "quiet", "heavy"], "correct": "rapid" },
+    { "id": 32, "word": "Hard", "sentence": "The test was hard for many students.", "hint": "It was difficult. What's another word for hard?", "choices": ["easy", "simple", "difficult", "short"], "correct": "difficult" },
+    { "id": 33, "word": "Make", "sentence": "She will make a cake for the party.", "hint": "To create something. What's another word for make?", "choices": ["destroy", "build", "break", "lose"], "correct": "build" },
+    { "id": 34, "word": "Show", "sentence": "He will show his project to the class.", "hint": "To let others see. What's another word for show?", "choices": ["hide", "display", "cover", "lose"], "correct": "display" },
+    { "id": 35, "word": "Ask", "sentence": "She will ask a question in class.", "hint": "To request information. What's another word for ask?", "choices": ["answer", "inquire", "tell", "hide"], "correct": "inquire" },
+    { "id": 36, "word": "Think", "sentence": "I think about my answer carefully.", "hint": "To use your mind. What's another word for think?", "choices": ["forget", "consider", "drop", "run"], "correct": "consider" },
+    { "id": 37, "word": "Start", "sentence": "We will start the game soon.", "hint": "To begin something. What's another word for start?", "choices": ["end", "finish", "begin", "stop"], "correct": "begin" },
+    { "id": 38, "word": "End", "sentence": "The movie will end at 9 PM.", "hint": "The last part. What's another word for end?", "choices": ["start", "middle", "finish", "pause"], "correct": "finish" },
+    { "id": 39, "word": "Brave", "sentence": "The brave firefighter saved the cat.", "hint": "Not afraid to face danger. What's another word for brave?", "choices": ["scared", "fearful", "courageous", "weak"], "correct": "courageous" },
+    { "id": 40, "word": "Calm", "sentence": "She stayed calm during the storm.", "hint": "She was peaceful and not upset. What's another word for calm?", "choices": ["angry", "peaceful", "loud", "wild"], "correct": "peaceful" },
+    { "id": 41, "word": "Bright", "sentence": "The bright light hurt my eyes.", "hint": "Very strong light. What's another word for bright?", "choices": ["dark", "dim", "brilliant", "loud"], "correct": "brilliant" },
+    { "id": 42, "word": "Dark", "sentence": "The room was dark at night.", "hint": "There was very little light. What's another word for dark?", "choices": ["bright", "light", "dim", "hot"], "correct": "dim" },
+    { "id": 43, "word": "Strong", "sentence": "He is strong and can lift heavy boxes.", "hint": "He has a lot of power. What's another word for strong?", "choices": ["weak", "powerful", "slow", "thin"], "correct": "powerful" },
+    { "id": 44, "word": "Weak", "sentence": "The kitten felt weak after being sick.", "hint": "It did not have much strength. What's another word for weak?", "choices": ["strong", "fragile", "fast", "loud"], "correct": "fragile" },
+    { "id": 45, "word": "Happy", "sentence": "He felt happy when he saw his friends.", "hint": "He felt good and joyful. What's another word for happy?", "choices": ["sad", "joyful", "angry", "tired"], "correct": "joyful" },
+    { "id": 46, "word": "Sad", "sentence": "She felt sad when the game ended.", "hint": "She felt unhappy. What's another word for sad?", "choices": ["happy", "excited", "unhappy", "funny"], "correct": "unhappy" },
+    { "id": 47, "word": "Important", "sentence": "It is important to finish your homework.", "hint": "It really matters. What's another word for important?", "choices": ["useless", "valuable", "boring", "easy"], "correct": "valuable" },
+    { "id": 48, "word": "Easy", "sentence": "The puzzle was easy to solve.", "hint": "It was not hard. What's another word for easy?", "choices": ["hard", "simple", "long", "slow"], "correct": "simple" },
+    { "id": 49, "word": "Different", "sentence": "The two answers were different.", "hint": "They were not the same. What's another word for different?", "choices": ["same", "distinct", "alike", "equal"], "correct": "distinct" },
+    { "id": 50, "word": "Same", "sentence": "They wore the same shirt to school.", "hint": "It looked alike. What's another word for same?", "choices": ["different", "identical", "separate", "new"], "correct": "identical" }
+  ],
+  "synonymsThanksgiving": [
+    { "word": "platter", "type": "Object", "sentence": "Mom set the turkey on a silver <span class='word'>platter</span> and carried the big tray to the table.", "hint": "Think of another word for a big serving dish.", "correct": "tray", "distractors": ["bowl", "cup"] },
+    { "word": "carve", "type": "Action", "sentence": "Dad began to <span class='word'>carve</span> the turkey; the knife moved back and forth making thin pieces.", "hint": "He is cutting thin pieces off the turkey.", "correct": "cut", "distractors": ["stir", "boil"] },
+    { "word": "drizzle", "type": "Action", "sentence": "She used a spoon to <span class='word'>drizzle</span> gravy over the potatoes in a thin stream.", "hint": "It means to pour in a thin, light stream.", "correct": "pour lightly", "distractors": ["freeze solid", "pile high"] },
+    { "word": "crowded", "type": "Description", "sentence": "The kitchen was <span class='word'>crowded</span> with cousins standing shoulder to shoulder.", "hint": "It means the space is very full.", "correct": "full", "distractors": ["empty", "quiet"] },
+    { "word": "crumbs", "type": "Object", "sentence": "Bread <span class='word'>crumbs</span> sprinkled the counter after we cut the loaf.", "hint": "They are very small pieces of bread.", "correct": "small pieces", "distractors": ["whole loaf", "big slice"] },
+    { "word": "march", "type": "Action", "sentence": "During the parade, the band will <span class='word'>march</span> down the street, walking in step together.", "hint": "They walk in an even, steady way.", "correct": "walk in step", "distractors": ["sit and rest", "drive fast"] },
+    { "word": "scoop", "type": "Action", "sentence": "Use the big spoon to <span class='word'>scoop</span> mashed potatoes into the bowl and make a soft mound.", "hint": "It means to lift and take out with a spoon.", "correct": "spoon out", "distractors": ["spill out", "burn"] },
+    { "word": "sip", "type": "Action", "sentence": "He took a <span class='word'>sip</span> of hot cider and felt the warmth on his tongue.", "hint": "It's a little drink.", "correct": "small drink", "distractors": ["big bite", "loud shout"] },
+    { "word": "slice", "type": "Object", "sentence": "I saved you a <span class='word'>slice</span> of pumpkin pie on a plate by the fridge.", "hint": "It is one piece cut from the whole pie.", "correct": "piece", "distractors": ["whole pie", "crumb"] },
+    { "word": "glow", "type": "Description", "sentence": "The candles gave a soft <span class='word'>glow</span> on the table, a gentle light in the room.", "hint": "It's a gentle light.", "correct": "soft light", "distractors": ["loud sound", "heavy weight"] }
+  ],
+  "identifyingAntonyms": [
+    { "id": 1, "word": "Ancient", "sentence": "The ancient tree in the park has been standing for hundreds of years.", "hint": "The tree has been there a very long time — what's the opposite of that?", "choices": ["old", "modern", "historic", "metallic"], "correct": "modern" },
+    { "id": 2, "word": "Generous", "sentence": "Maya was generous and shared her snacks with everyone at lunch.", "hint": "Maya shared everything — what would someone do who is the opposite of that?", "choices": ["kind", "selfish", "helpful", "clumsy"], "correct": "selfish" },
+    { "id": 3, "word": "Narrow", "sentence": "The narrow path through the woods was barely wide enough for two people.", "hint": "The path was very narrow. What's the opposite — what would make it easier to walk through?", "choices": ["wide", "thin", "bumpy", "small"], "correct": "wide" },
+    { "id": 4, "word": "Polite", "sentence": "Jamal was polite and said \"thank you\" after the teacher handed him his paper.", "hint": "Jamal had great manners. What word means the opposite of having good manners?", "choices": ["friendly", "rude", "cheerful", "salty"], "correct": "rude" },
+    { "id": 5, "word": "Difficult", "sentence": "The math problem looked difficult at first, but she decided to try it anyway.", "hint": "The problem seemed very hard. What's the opposite of difficult?", "choices": ["easy", "tricky", "fragile", "hard"], "correct": "easy" },
+    { "id": 6, "word": "Silent", "sentence": "The house was completely silent after everyone went to bed.", "hint": "The house was completely silent. What would it be like if it were the opposite?", "choices": ["noisy", "calm", "wooden", "quiet"], "correct": "noisy" },
+    { "id": 7, "word": "Careful", "sentence": "Be careful when you carry that glass bowl so it doesn't slip.", "hint": "Being careful means taking your time and paying attention. What's the opposite kind of behavior?", "choices": ["reckless", "gentle", "cautious", "damp"], "correct": "reckless" },
+    { "id": 8, "word": "Shallow", "sentence": "The water near the shore was shallow enough for us to see the sand.", "hint": "The water was very shallow near the shore. What's the opposite — water you couldn't see the bottom of?", "choices": ["clear", "deep", "narrow", "striped"], "correct": "deep" },
+    { "id": 9, "word": "Brave", "sentence": "The brave firefighter ran into the building to help the family inside.", "hint": "The firefighter showed a lot of courage. What feeling would be the opposite of brave?", "choices": ["bold", "scared", "strong", "fluffy"], "correct": "scared" },
+    { "id": 10, "word": "Smooth", "sentence": "The table felt smooth after Dad sanded it down.", "hint": "The table felt very smooth. What's the opposite — what might it have felt like before Dad sanded it?", "choices": ["flat", "rough", "soft", "hollow"], "correct": "rough" },
+    { "id": 11, "word": "Crowded", "sentence": "The cafeteria was crowded on pizza day.", "hint": "The cafeteria was packed with students. What would it look like if it were the opposite of crowded?", "choices": ["empty", "busy", "loud", "curved"], "correct": "empty" },
+    { "id": 12, "word": "Simple", "sentence": "The instructions were simple and easy to follow.", "hint": "These instructions were very simple and easy. What's the opposite of simple?", "choices": ["plain", "complex", "clear", "distant"], "correct": "complex" },
+    { "id": 13, "word": "Lazy", "sentence": "He felt lazy on Saturday morning and stayed in his pajamas.", "hint": "He didn't want to do anything all morning. What's the opposite of feeling lazy?", "choices": ["bored", "hardworking", "tired", "sparkly"], "correct": "hardworking" },
+    { "id": 14, "word": "Strong", "sentence": "The rope was strong enough to hold the heavy box.", "hint": "The rope was very strong. What's the opposite — a rope that might snap or break?", "choices": ["weak", "sturdy", "healthy", "frozen"], "correct": "weak" },
+    { "id": 15, "word": "Bright", "sentence": "The bright sun made it hard to see without sunglasses.", "hint": "The sun was extremely bright that day. What's the opposite of bright light?", "choices": ["shiny", "dull", "colorful", "circular"], "correct": "dull" },
+    { "id": 16, "word": "Healthy", "sentence": "She eats healthy foods and tries to exercise every day.", "hint": "She takes great care of her body. What's the opposite of being healthy?", "choices": ["fit", "sick", "active", "rectangular"], "correct": "sick" },
+    { "id": 17, "word": "Early", "sentence": "We arrived early so we could get good seats.", "hint": "They arrived before the event started. What's the opposite of arriving early?", "choices": ["late", "quick", "speedy", "tropical"], "correct": "late" },
+    { "id": 18, "word": "Cheap", "sentence": "The toy was cheap, but it broke after one day.", "hint": "This toy didn't cost much money at all. What's the opposite of cheap?", "choices": ["expensive", "low", "affordable", "crunchy"], "correct": "expensive" },
+    { "id": 19, "word": "Honest", "sentence": "He was honest about breaking the window and told the truth.", "hint": "He told the truth even when it was hard. What's the opposite of being honest?", "choices": ["truthful", "dishonest", "fair", "wobbly"], "correct": "dishonest" },
+    { "id": 20, "word": "Soft", "sentence": "The kitten's fur felt soft when I picked her up.", "hint": "The fur felt very soft. What's the opposite of soft — what might a rock or floor feel like?", "choices": ["hard", "smooth", "warm", "tangled"], "correct": "hard" },
+    { "id": 21, "word": "Fast", "sentence": "The dog ran so fast that we could barely keep up.", "hint": "The dog was running incredibly fast. What's the opposite of fast?", "choices": ["sudden", "slow", "quick", "squiggly"], "correct": "slow" },
+    { "id": 22, "word": "Clean", "sentence": "Please wash your hands before dinner so they are clean.", "hint": "Washing makes your hands clean. What's the opposite of clean hands?", "choices": ["dirty", "tidy", "neat", "transparent"], "correct": "dirty" },
+    { "id": 23, "word": "Kind", "sentence": "It was kind of her to help the new student find his classroom.", "hint": "She did something really kind for someone else. What's the opposite of being kind to someone?", "choices": ["mean", "polite", "caring", "magnetic"], "correct": "mean" },
+    { "id": 24, "word": "Reckless", "sentence": "Driving too fast on an icy road is reckless.", "hint": "Driving recklessly means ignoring danger. What's the opposite — someone who pays close attention to safety?", "choices": ["bold", "careful", "brave", "hollow"], "correct": "careful" },
+    { "id": 25, "word": "Fresh", "sentence": "The bread tasted fresh because it had just come out of the oven.", "hint": "The bread was fresh out of the oven. What's the opposite of fresh — bread that's been sitting out for days?", "choices": ["stale", "new", "clean", "bumpy"], "correct": "stale" }
   ]
 };

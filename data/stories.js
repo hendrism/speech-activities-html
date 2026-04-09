@@ -55474,5 +55474,662 @@ window.ActivityData.stories = {
         }
       ]
     }
-  ]
+  ],
+  "spring-informational-texts": {
+    "_meta": {
+      "title": "Spring Informational Texts",
+      "displayMode": "tabs",
+      "level": "easy",
+      "tags": [
+        "spring",
+        "reading",
+        "informational"
+      ]
+    },
+    "stories": [
+      {
+        "id": 1,
+        "title": "Caterpillar to Butterfly",
+        "text": "A caterpillar crawls on a leaf in spring.\nIt eats leaves every day.\nThen it makes a chrysalis around its body.\nIt stays inside for many days.\nAfter that, it comes out as a butterfly.\nThe butterfly can fly in the sky.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What does the caterpillar eat?",
+            "options": [
+              "Leaves",
+              "Rocks",
+              "Water"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What does it make around its body?",
+            "options": [
+              "A web",
+              "A chrysalis",
+              "A nest"
+            ],
+            "answer": 1
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why does it stay inside?",
+            "options": [
+              "To grow and change",
+              "To sleep forever",
+              "To hide food"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "How is the butterfly different?",
+            "options": [
+              "It is smaller",
+              "It cannot move",
+              "It can fly"
+            ],
+            "answer": 2
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/caterpillar.png"
+      }
+    ]
+  },
+  "spring-informational-texts-update": {
+    "_meta": {
+      "title": "Spring Informational Texts",
+      "displayMode": "tabs",
+      "level": "easy",
+      "tags": [
+        "spring",
+        "reading",
+        "science",
+        "nature"
+      ]
+    },
+    "stories": [
+      {
+        "id": 1,
+        "title": "Caterpillar to Butterfly",
+        "text": "A caterpillar crawls on a leaf in spring.\nIt eats leaves every day.\nThen it makes a chrysalis around its body.\nIt stays inside for many days.\nAfter that, it comes out as a butterfly.\nThe butterfly can fly in the sky.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What does the caterpillar eat?",
+            "options": [
+              "Leaves",
+              "Rocks",
+              "Water"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What does it make around its body?",
+            "options": [
+              "A web",
+              "A chrysalis",
+              "A nest"
+            ],
+            "answer": 1
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why does it stay inside?",
+            "options": [
+              "To grow and change",
+              "To sleep forever",
+              "To hide food"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "How is the butterfly different?",
+            "options": [
+              "It can fly",
+              "It is smaller",
+              "It cannot move"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why is spring a good time?",
+            "options": [
+              "More leaves to eat",
+              "It is colder",
+              "No food"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/caterpillar.png"
+      },
+      {
+        "id": 2,
+        "title": "Plant Growing",
+        "text": "A seed is in the dirt in spring.\nRain falls and the sun shines.\nThe seed grows roots and a sprout.\nThe sprout pushes out of the dirt.\nIt grows leaves.\nSoon, it becomes a small plant.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "Where is the seed?",
+            "options": [
+              "In dirt",
+              "In sky",
+              "In water"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What helps it grow?",
+            "options": [
+              "Wind",
+              "Rain and sun",
+              "Snow"
+            ],
+            "answer": 1
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why does it push up?",
+            "options": [
+              "To get sunlight",
+              "To hide",
+              "To sleep"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What if no rain?",
+            "options": [
+              "Grows faster",
+              "May not grow well",
+              "Turns into tree"
+            ],
+            "answer": 1
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why grow leaves?",
+            "options": [
+              "To make food",
+              "To make noise",
+              "To catch bugs"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/plant_grow.png"
+      },
+      {
+        "id": 3,
+        "title": "Bird Builds a Nest",
+        "text": "A bird looks for a place to build a nest.\nIt finds a tree in spring.\nThe bird gathers sticks and grass.\nIt puts them together to make a nest.\nThen it lays eggs in the nest.\nThe bird sits on the eggs to keep them warm.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What does the bird gather?",
+            "options": [
+              "Sticks and grass",
+              "Water",
+              "Sand"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Where is the nest?",
+            "options": [
+              "In a tree",
+              "In water",
+              "Underground"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why does the bird sit on the eggs?",
+            "options": [
+              "To keep them warm",
+              "To hide them",
+              "To play"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why use sticks and grass?",
+            "options": [
+              "To build the nest",
+              "To eat",
+              "To fly"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What will happen next?",
+            "options": [
+              "Eggs hatch into birds",
+              "Eggs turn to rocks",
+              "Eggs disappear"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/bird-nest.png"
+      },
+      {
+        "id": 4,
+        "title": "Frog Life Cycle",
+        "text": "A frog lays eggs in water in spring.\nThe eggs hatch into tadpoles.\nTadpoles swim and grow legs.\nThey slowly change into frogs.\nThe frogs can jump and live on land.\nThey can also swim in water.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "Where are the eggs?",
+            "options": [
+              "In water",
+              "In trees",
+              "In dirt"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What do tadpoles grow?",
+            "options": [
+              "Wings",
+              "Legs",
+              "Fur"
+            ],
+            "answer": 1
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why do they grow legs?",
+            "options": [
+              "To move on land",
+              "To fly",
+              "To sleep"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "How are frogs different from tadpoles?",
+            "options": [
+              "Frogs can jump",
+              "Frogs are smaller",
+              "Frogs cannot move"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why live in water and land?",
+            "options": [
+              "To find food and stay safe",
+              "To hide forever",
+              "To sleep all day"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/frog-life-cycle.png"
+      },
+      {
+        "id": 5,
+        "title": "Flower Blooming",
+        "text": "A small bud grows on a plant.\nThe sun shines and the rain falls.\nThe bud gets bigger each day.\nThen it opens into a flower.\nThe flower has bright petals.\nBees come to visit the flower.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What grows first?",
+            "options": [
+              "A bud",
+              "A tree",
+              "A rock"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What visits the flower?",
+            "options": [
+              "Bees",
+              "Fish",
+              "Dogs"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why does the bud open?",
+            "options": [
+              "It grows into a flower",
+              "It breaks",
+              "It sleeps"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why do bees visit?",
+            "options": [
+              "To get nectar",
+              "To rest",
+              "To hide"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why are flowers important?",
+            "options": [
+              "Help plants make seeds",
+              "Make noise",
+              "Stop rain"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/flower_bloom.png"
+      },
+      {
+        "id": 6,
+        "title": "Bee Collects Nectar",
+        "text": "A bee flies in a garden.\nIt lands on a flower.\nThe bee drinks nectar from the flower.\nThen it flies to another flower.\nThe bee carries pollen on its body.\nThis helps flowers grow seeds.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What does the bee drink?",
+            "options": [
+              "Nectar",
+              "Water",
+              "Juice"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Where does it land?",
+            "options": [
+              "Flower",
+              "Tree",
+              "Rock"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why go to many flowers?",
+            "options": [
+              "To collect nectar",
+              "To sleep",
+              "To hide"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What does pollen do?",
+            "options": [
+              "Helps make seeds",
+              "Makes noise",
+              "Stops growth"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why are bees important?",
+            "options": [
+              "Help plants grow",
+              "Make storms",
+              "Eat leaves"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/bee-flowers.png"
+      },
+      {
+        "id": 7,
+        "title": "Rainy Spring Day",
+        "text": "Clouds fill the sky in spring.\nRain starts to fall.\nWater goes into the ground.\nPlants drink the water.\nPuddles form on the ground.\nThe rain helps things grow.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What falls from the sky?",
+            "options": [
+              "Rain",
+              "Sand",
+              "Leaves"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What forms on the ground?",
+            "options": [
+              "Puddles",
+              "Rocks",
+              "Snow"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why do plants need rain?",
+            "options": [
+              "To grow",
+              "To sleep",
+              "To hide"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Where does the water go?",
+            "options": [
+              "Into the ground",
+              "Into the sky",
+              "Into trees only"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What happens if no rain?",
+            "options": [
+              "Plants may not grow well",
+              "Plants grow faster",
+              "Nothing changes"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/rainy-day.png"
+      },
+      {
+        "id": 8,
+        "title": "Tree Grows Leaves",
+        "text": "A tree has bare branches in winter.\nSpring comes and the weather gets warm.\nSmall buds grow on the branches.\nThe buds open into green leaves.\nThe leaves get bigger each day.\nThe tree is full and green.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What grows on branches?",
+            "options": [
+              "Buds",
+              "Rocks",
+              "Water"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What do buds become?",
+            "options": [
+              "Leaves",
+              "Flowers only",
+              "Sticks"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why do leaves grow in spring?",
+            "options": [
+              "Warmer weather helps them grow",
+              "It is cold",
+              "No sunlight"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "How is the tree different now?",
+            "options": [
+              "It has leaves",
+              "It is smaller",
+              "It has no branches"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why are leaves important?",
+            "options": [
+              "Help tree make food",
+              "Make noise",
+              "Stop wind"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/tree-leaves.png"
+      },
+      {
+        "id": 9,
+        "title": "Ladybug in the Garden",
+        "text": "A ladybug crawls on a plant.\nIt looks for small bugs to eat.\nThe ladybug finds aphids on leaves.\nIt eats the aphids.\nThis helps the plant stay healthy.\nThe ladybug keeps moving to find more food.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "What does the ladybug eat?",
+            "options": [
+              "Aphids",
+              "Leaves",
+              "Water"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Where does it crawl?",
+            "options": [
+              "Plant",
+              "Sky",
+              "Rock"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why is the ladybug helpful?",
+            "options": [
+              "It eats harmful bugs",
+              "It makes noise",
+              "It grows plants"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why keep moving?",
+            "options": [
+              "To find more food",
+              "To sleep",
+              "To hide"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What happens if no ladybugs?",
+            "options": [
+              "More harmful bugs on plants",
+              "Plants grow faster",
+              "Nothing changes"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/ladybug.png"
+      },
+      {
+        "id": 10,
+        "title": "Picking Flowers",
+        "text": "A child walks in a field in spring.\nThey see many colorful flowers.\nThe child picks a few flowers.\nThey put the flowers in a small bundle.\nThen they bring them home.\nThe flowers make the room bright.",
+        "questions": [
+          {
+            "type": "multiple-choice",
+            "text": "Where is the child?",
+            "options": [
+              "Field",
+              "House",
+              "Water"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "What do they pick?",
+            "options": [
+              "Flowers",
+              "Rocks",
+              "Sticks"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why bring flowers home?",
+            "options": [
+              "To decorate",
+              "To throw away",
+              "To hide"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "How do flowers change the room?",
+            "options": [
+              "Make it bright",
+              "Make it dark",
+              "Make it cold"
+            ],
+            "answer": 0
+          },
+          {
+            "type": "multiple-choice",
+            "text": "Why do people like flowers?",
+            "options": [
+              "They look nice and colorful",
+              "They are loud",
+              "They move fast"
+            ],
+            "answer": 0
+          }
+        ],
+        "imageUrl": "/images/spring-info-texts-images/picking-flowers.png"
+      }
+    ]
+  }
 };

@@ -459,6 +459,7 @@
             const searchLower = searchQuery.trim().toLowerCase();
 
             const filtered = allActivities.filter(item => {
+                if (item.seasonal) return false;
                 if (currentFilter === 'favorites' && !favorites.has(item.id)) return false;
                 if (currentFilter !== 'all' && currentFilter !== 'favorites' && item.category !== currentFilter) return false;
                 if (searchLower && !item.title.toLowerCase().includes(searchLower)) return false;

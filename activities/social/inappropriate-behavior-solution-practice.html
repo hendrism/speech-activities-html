@@ -385,6 +385,36 @@
             color: #0369a1;
         }
 
+        .scenario-list {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .scenario-pick-btn {
+            background: #f1f5f9;
+            color: var(--muted);
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .scenario-pick-btn.active {
+            background: #e0f2fe;
+            color: var(--accent-dark);
+            border-color: var(--accent);
+        }
+
+        .scenario-pick-btn:hover:not(.active) {
+            border-color: #7dd3fc;
+            color: var(--ink);
+        }
+
         @media (max-width: 720px) {
             .bar {
                 flex-direction: column;
@@ -408,6 +438,7 @@
                 <button class="difficulty-btn" data-level="medium">Medium challenge</button>
                 <button class="difficulty-btn" data-level="stretch">Medium-high stretch</button>
             </div>
+            <div class="scenario-list" id="scenarioList"></div>
             <div class="scenario-head">
                 <div>
                     <p id="scenarioCounter">Scenario 1 of 4</p>
@@ -470,6 +501,22 @@
             return scenarios.filter(s => s.difficulty === level);
         }
 
+        function renderScenarioList(level) {
+            const list = document.getElementById('scenarioList');
+            list.innerHTML = '';
+            getPool(level).forEach(s => {
+                const btn = document.createElement('button');
+                btn.className = 'scenario-pick-btn';
+                btn.textContent = s.title;
+                btn.dataset.id = s.id;
+                btn.addEventListener('click', () => {
+                    currentScenarioId = s.id;
+                    renderScenario(s);
+                });
+                list.appendChild(btn);
+            });
+        }
+
         function pickScenario(level) {
             const pool = getPool(level);
             if (!pool.length) return null;
@@ -499,6 +546,9 @@
             const pool = getPool(data.difficulty);
             const position = pool.findIndex(item => item.id === data.id) + 1;
             scenarioCounter.textContent = `Scenario ${position} of ${pool.length}`;
+            document.querySelectorAll('.scenario-pick-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.id === data.id);
+            });
         }
 
         difficultyButtons.forEach(btn => {
@@ -507,6 +557,7 @@
                 if (level === currentDifficulty) return;
                 currentDifficulty = level;
                 difficultyButtons.forEach(b => b.classList.toggle("active", b.dataset.level === level));
+                renderScenarioList(level);
                 pickScenario(level);
             });
         });
@@ -537,6 +588,7 @@
         });
 
         // Initialize first simple scenario
+        renderScenarioList(currentDifficulty);
         pickScenario(currentDifficulty);
     </script>
 </body>

@@ -6360,6 +6360,108 @@ window.ActivityData.grammar = {
       "under the streetlights."
     ]
   },
+  "springSAOScenes": [
+    {
+      "title": "Wind Blows Hat",
+      "image": "../../images/actions/blows-hat.png",
+      "alt": "Wind blowing a hat off someone's head"
+    },
+    {
+      "title": "Broken Car",
+      "image": "../../images/actions/break-car.png",
+      "alt": "Someone with a broken down car"
+    },
+    {
+      "title": "Chasing a Hat",
+      "image": "../../images/actions/chase-hat.png",
+      "alt": "A person chasing their hat in the wind"
+    },
+    {
+      "title": "Dropping Books",
+      "image": "../../images/actions/drop-books.png",
+      "alt": "A person dropping a stack of books"
+    },
+    {
+      "title": "Dropping Ice Cream",
+      "image": "../../images/actions/drop-icecream.png",
+      "alt": "A child dropping an ice cream cone"
+    },
+    {
+      "title": "Eating a Sandwich",
+      "image": "../../images/actions/eat-sandwich.png",
+      "alt": "Someone eating a sandwich"
+    },
+    {
+      "title": "Flying Away",
+      "image": "../../images/actions/fly-away.png",
+      "alt": "Something flying away in the wind"
+    },
+    {
+      "title": "Flying a Kite",
+      "image": "../../images/actions/fly-kite.png",
+      "alt": "A child flying a kite"
+    },
+    {
+      "title": "Helping a Friend",
+      "image": "../../images/actions/help-girl.png",
+      "alt": "One person helping another"
+    },
+    {
+      "title": "Jumping in a Puddle",
+      "image": "../../images/actions/jump-puddle.png",
+      "alt": "A child jumping in a puddle"
+    },
+    {
+      "title": "Kicking a Ball",
+      "image": "../../images/actions/kick-ball.png",
+      "alt": "Someone kicking a ball"
+    },
+    {
+      "title": "Playing with a Car",
+      "image": "../../images/actions/play-car.png",
+      "alt": "A child playing with a toy car"
+    },
+    {
+      "title": "Sharing a Ball",
+      "image": "../../images/actions/share-ball.png",
+      "alt": "Children sharing a ball"
+    },
+    {
+      "title": "Taking a Cookie",
+      "image": "../../images/actions/take-cookie.png",
+      "alt": "Someone taking a cookie"
+    },
+    {
+      "title": "Taking a Sandwich",
+      "image": "../../images/actions/take-sandwich.png",
+      "alt": "Someone taking a sandwich"
+    },
+    {
+      "title": "Watering Flowers",
+      "image": "../../images/actions/water-flowers.png",
+      "alt": "Someone watering flowers"
+    }
+  ],
+  "springSAOChips": {
+    "who": [
+      "The girl",
+      "The boy",
+      "The children",
+      "The family"
+    ],
+    "action": [
+      "is playing",
+      "is picking",
+      "is running",
+      "is watching"
+    ],
+    "detail": [
+      "in the garden.",
+      "at the park.",
+      "near the flowers.",
+      "in the rain."
+    ]
+  },
   "negation": [
     {
       "id": 1,
