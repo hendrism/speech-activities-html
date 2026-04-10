@@ -254,6 +254,36 @@
             font-weight: 600;
         }
 
+        .awp-word-image-container {
+            width: 100%;
+            max-width: 300px;
+            height: 250px;
+            margin: 0 auto 10px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(148, 163, 184, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(148, 163, 184, 0.3);
+        }
+
+        .awp-word-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .awp-img-placeholder {
+            color: var(--awp-muted);
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         @media (max-width: 720px) {
             .awp-word-display {
                 font-size: clamp(36px, 9vw, 48px);
@@ -261,6 +291,10 @@
 
             .awp-button-group {
                 justify-content: center;
+            }
+
+            .awp-word-image-container {
+                height: 200px;
             }
         }
     </style>
@@ -379,6 +413,19 @@
             loadingWordLists: false,
             loadErrors: []
         };
+
+        const imageCatalog = {};
+        fetch('../../data/vocabulary-images.json')
+            .then(res => res.json())
+            .then(data => {
+                Object.entries(data).forEach(([path, info]) => {
+                    if (info && info.name) {
+                        imageCatalog[info.name.toLowerCase()] = path;
+                    }
+                });
+                render(); // Re-render in case practice view is waiting for an image
+            })
+            .catch(err => console.error('Could not load image catalog:', err));
 
         function shuffleArray(array) {
             const copy = [...array];
@@ -717,11 +764,19 @@
             const practicedSet = new Set(state.practicedWords);
             const remainingCount = state.deck.filter((word) => !practicedSet.has(word.id)).length;
 
+            const imagePath = imageCatalog[currentWord.text.toLowerCase()];
+            const imageHtml = imagePath 
+                ? `<img src="../../images/${imagePath}" alt="${currentWord.text}" class="awp-word-img" onerror="this.outerHTML='<div class=\\'awp-img-placeholder\\'><span>🖼️</span><span>Image failed to load</span></div>'">`
+                : `<div class="awp-img-placeholder"><span style="font-size: 2rem;">🌅</span><span>No image yet</span></div>`;
+
             return `
                 <section class="awp-card">
                     <div class="awp-practice-card">
                         <div class="awp-progress">
                             Word ${progress} · Remaining: ${remainingCount}
+                        </div>
+                        <div class="awp-word-image-container">
+                            ${imageHtml}
                         </div>
                         <div class="awp-word-display">${currentWord.text}</div>
                         <div class="awp-word-meta">

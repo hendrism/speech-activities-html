@@ -844,6 +844,13 @@
       "title": "Spring Informational Texts",
       "sourceFile": "activities/reading/index.html?activity=spring-informational-texts-update",
       "type": "template-driven"
+    },
+    {
+      "id": "picture-preference-choices",
+      "category": "vocabulary",
+      "title": "Picture Choices Practice",
+      "sourceFile": "activities/vocabulary/picture-preference-choices.html",
+      "type": "content-driven"
     }
   ]
 }
