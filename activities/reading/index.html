@@ -74,6 +74,17 @@
         let currentIndex = 0;
 
         // ── Question rendering ────────────────────────────────────────
+        function toggleAnswers(btn) {
+            const container = btn.closest('.question').querySelector('.mc-options');
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                btn.textContent = 'Hide Answers';
+            } else {
+                container.style.display = 'none';
+                btn.textContent = 'Show Answers';
+            }
+        }
+
         function renderQuestion(q) {
             if (q.type === 'multiple-choice') {
                 const opts = q.options.map((opt, oi) => `
@@ -85,7 +96,8 @@
                 return `
                     <div class="question" style="margin-bottom:var(--space-6);">
                         <p style="font-weight:600; margin-bottom:var(--space-3);">${esc(q.text)}</p>
-                        <div class="mc-options">${opts}</div>
+                        <button class="btn btn-secondary" style="margin-bottom:var(--space-3); font-size:0.85em; padding:var(--space-2) var(--space-4);" onclick="toggleAnswers(this)">Show Answers</button>
+                        <div class="mc-options" style="display:none;">${opts}</div>
                     </div>`;
             }
             const prefix = q.type === 'inference' ? '💭 ' : '';
