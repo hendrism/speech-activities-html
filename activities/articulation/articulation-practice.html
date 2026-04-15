@@ -224,15 +224,9 @@
         }
 
         .content-layout {
-            display: grid;
-            grid-template-columns: 300px 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 25px;
-        }
-
-        @media (max-width: 1024px) {
-            .content-layout {
-                grid-template-columns: 1fr;
-            }
         }
 
         .word-bank-section h3 {
@@ -580,10 +574,10 @@
             selectedBlends: [],
             availableWords: [],
             sentences: [],
-            currentPage: 1,
             currentSentenceIndex: 0,
             draggedWord: null,
-            isComplete: false
+            isComplete: false,
+            currentDisplayedWords: null
         };
 
         // Functions
@@ -611,7 +605,9 @@
                 ...sent,
                 filledWord: null
             }));
+            state.currentSentenceIndex = 0;
             state.isComplete = false;
+            state.currentDisplayedWords = null;
         }
 
         function startActivity() {
@@ -628,10 +624,10 @@
                 selectedBlends: [],
                 availableWords: [],
                 sentences: [],
-                currentPage: 1,
                 currentSentenceIndex: 0,
                 draggedWord: null,
-                isComplete: false
+                isComplete: false,
+                currentDisplayedWords: null
             };
             render();
         }
@@ -701,41 +697,20 @@
             render();
         }
 
-        function getCurrentPageSentences() {
-            return state.sentences.filter(s => s.page === state.currentPage);
-        }
-
-        function handlePageChange(page) {
-            state.currentPage = page;
-            const firstIndexOfPage = state.sentences.findIndex(s => s.page === page);
-            if (firstIndexOfPage !== -1) {
-                state.currentSentenceIndex = firstIndexOfPage;
-            }
-            render();
-        }
-
         function handleNextSentence() {
-            const pageSentences = getCurrentPageSentences();
-            const firstIndexOfPage = state.sentences.findIndex(s => s.page === state.currentPage);
-            const currentIndexInPage = state.currentSentenceIndex - firstIndexOfPage;
-
-            if (currentIndexInPage < pageSentences.length - 1) {
+            if (state.currentSentenceIndex < state.sentences.length - 1) {
                 state.currentSentenceIndex++;
+                state.currentDisplayedWords = null;
                 render();
             }
         }
 
         function handlePrevSentence() {
-            const firstIndexOfPage = state.sentences.findIndex(s => s.page === state.currentPage);
-            if (state.currentSentenceIndex > firstIndexOfPage) {
+            if (state.currentSentenceIndex > 0) {
                 state.currentSentenceIndex--;
+                state.currentDisplayedWords = null;
                 render();
             }
-        }
-
-        function isPageComplete(page) {
-            const pageSentences = state.sentences.filter(s => s.page === page);
-            return pageSentences.every(s => s.filledWord !== null);
         }
 
         // Phoneme group structure for sound selection
@@ -848,9 +823,16 @@
                 ? `${articulationWordData[state.selectedCategory].name}: ${state.selectedBlends.map(b => `/${b}/`).join(', ')}`
                 : 'Mixed Sounds';
 
-            const pageSentences = getCurrentPageSentences();
-            const firstIndexOfPage = state.sentences.findIndex(s => s.page === state.currentPage);
-            const currentIndexInPage = state.currentSentenceIndex - firstIndexOfPage;
+            const currentSentence = state.sentences[state.currentSentenceIndex];
+            const currentPos = currentSentence.blank.pos;
+
+            if (!state.currentDisplayedWords) {
+                const candidates = state.availableWords.filter(w => w.pos === currentPos);
+                const shuffled = [...candidates].sort(() => Math.random() - 0.5);
+                state.currentDisplayedWords = shuffled.slice(0, 15).map(w => w.id);
+            }
+
+            const wordsToDisplay = state.availableWords.filter(w => state.currentDisplayedWords.includes(w.id));
 
             return `
                 <div class="activity-header">
@@ -867,15 +849,15 @@
 
                 <div class="main-content">
                     <div class="instructions">
-                        <p>📝 Drag words from the word bank into the sentences. Words must match the part of speech (noun, verb, or adjective).</p>
+                        <p>📝 Drag a word from the word bank into the sentence.</p>
                         <p><strong>After filling all sentences, read them out loud to practice your sounds!</strong></p>
                     </div>
 
                     <div class="content-layout">
                         <div class="word-bank-section">
                             <h3>Word Bank</h3>
-                            ${['noun', 'verb', 'adjective'].map(pos => {
-                const words = state.availableWords.filter(w => w.pos === pos);
+                            ${[currentPos].map(pos => {
+                const words = wordsToDisplay;
                 const labels = { noun: '🔵 Nouns', verb: '🟢 Verbs', adjective: '🟣 Adjectives' };
                 return `
                                     <div class="word-bank-group">
@@ -897,34 +879,19 @@
                         </div>
 
                         <div class="sentences-section">
-                            <div class="pagination-controls">
-                                <button
-                                    onclick="handlePageChange(1)"
-                                    class="page-btn ${state.currentPage === 1 ? 'active' : ''}"
-                                >
-                                    Page 1 ${isPageComplete(1) ? '✓' : ''}
-                                </button>
-                                <button
-                                    onclick="handlePageChange(2)"
-                                    class="page-btn ${state.currentPage === 2 ? 'active' : ''}"
-                                >
-                                    Page 2 ${isPageComplete(2) ? '✓' : ''}
-                                </button>
-                            </div>
-
                             <div class="sentence-controls">
-                                <h3>Fill in the Blanks (${currentIndexInPage + 1} / ${pageSentences.length})</h3>
+                                <h3>Fill in the Blanks (${state.currentSentenceIndex + 1} / ${state.sentences.length})</h3>
                                 <div class="nav-buttons">
                                     <button
                                         onclick="handlePrevSentence()"
-                                        ${state.currentSentenceIndex === firstIndexOfPage ? 'disabled' : ''}
+                                        ${state.currentSentenceIndex === 0 ? 'disabled' : ''}
                                         class="nav-btn"
                                     >
                                         ← Previous
                                     </button>
                                     <button
                                         onclick="handleNextSentence()"
-                                        ${currentIndexInPage === pageSentences.length - 1 ? 'disabled' : ''}
+                                        ${state.currentSentenceIndex === state.sentences.length - 1 ? 'disabled' : ''}
                                         class="nav-btn"
                                     >
                                         Next →
@@ -933,37 +900,31 @@
                             </div>
 
                             <div class="sentences-list">
-                                ${pageSentences.map((sentence, pageIndex) => {
-                const globalIndex = state.sentences.findIndex(s => s.id === sentence.id);
-                const isCurrent = globalIndex === state.currentSentenceIndex;
-                return `
-                                        <div class="sentence-row ${isCurrent ? 'current-sentence' : 'dimmed'}">
-                                            <span class="sentence-number">${pageIndex + 1}.</span>
-                                            <div class="sentence-content">
-                                                <span class="sentence-text">${sentence.template}</span>
-                                                <div
-                                                    class="sentence-blank ${sentence.blank.pos} ${sentence.filledWord ? 'filled' : ''}"
-                                                    ondragover="event.preventDefault()"
-                                                    ondragenter="event.currentTarget.classList.add('drag-over')"
-                                                    ondragleave="event.currentTarget.classList.remove('drag-over')"
-                                                    ondrop="event.preventDefault(); event.currentTarget.classList.remove('drag-over'); handleDrop(${JSON.stringify(sentence).replace(/"/g, '&quot;')}, event.currentTarget)"
-                                                    onclick="handleRemoveWord(${JSON.stringify(sentence).replace(/"/g, '&quot;')})"
-                                                >
-                                                    ${sentence.filledWord
-                        ? `<span class="filled-word">${sentence.filledWord.text}</span>`
-                        : `<span class="blank-label">${sentence.blank.pos}</span>`
-                    }
-                                                </div>
-                                                <span class="sentence-text">${sentence.ending}</span>
-                                            </div>
+                                <div class="sentence-row current-sentence">
+                                    <span class="sentence-number">${state.currentSentenceIndex + 1}.</span>
+                                    <div class="sentence-content">
+                                        <span class="sentence-text">${currentSentence.template}</span>
+                                        <div
+                                            class="sentence-blank ${currentSentence.blank.pos} ${currentSentence.filledWord ? 'filled' : ''}"
+                                            ondragover="event.preventDefault()"
+                                            ondragenter="event.currentTarget.classList.add('drag-over')"
+                                            ondragleave="event.currentTarget.classList.remove('drag-over')"
+                                            ondrop="event.preventDefault(); event.currentTarget.classList.remove('drag-over'); handleDrop(${JSON.stringify(currentSentence).replace(/"/g, '&quot;')}, event.currentTarget)"
+                                            onclick="handleRemoveWord(${JSON.stringify(currentSentence).replace(/"/g, '&quot;')})"
+                                        >
+                                            ${currentSentence.filledWord
+                                                ? `<span class="filled-word">${currentSentence.filledWord.text}</span>`
+                                                : `<span class="blank-label">${currentSentence.blank.pos}</span>`
+                                            }
                                         </div>
-                                    `;
-            }).join('')}
+                                        <span class="sentence-text">${currentSentence.ending}</span>
+                                    </div>
+                                </div>
                             </div>
 
                             ${state.isComplete ? `
                                 <div class="completion-message">
-                                    <p>🎉 Great job! Now read all your sentences out loud to practice your sounds!</p>
+                                    <p>🎉 Great job! You filled all the sentences!</p>
                                 </div>
                             ` : ''}
                         </div>
