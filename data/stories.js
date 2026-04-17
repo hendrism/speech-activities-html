@@ -26,7 +26,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/author-purpose-msg.html",
       "season": null,
       "title": "Game Recommendation",
-      "text": "“Sky Builders” is a fun game where you design your own floating city. The controls are easy to learn and the game looks great. You can also play with friends online. It is one of the best games I’ve played this year.",
+      "text": "\u201cSky Builders\u201d is a fun game where you design your own floating city. The controls are easy to learn and the game looks great. You can also play with friends online. It is one of the best games I\u2019ve played this year.",
       "level": "medium",
       "tags": [
         "author-purpose-msg"
@@ -128,7 +128,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/author-theme-mainidea-sentence-builder.html",
       "season": null,
       "title": "Travel Delay",
-      "text": "Olivia’s family waited at the airport when their flight was delayed two hours. They used the time to call grandparents, play a card game, and check the flight app for updates. Even though they were tired, they stayed patient and took short walks so the trip would start smoothly once they boarded.",
+      "text": "Olivia\u2019s family waited at the airport when their flight was delayed two hours. They used the time to call grandparents, play a card game, and check the flight app for updates. Even though they were tired, they stayed patient and took short walks so the trip would start smoothly once they boarded.",
       "type": "Inform / Explain",
       "level": "medium",
       "tags": [
@@ -6707,7 +6707,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
       "season": "fall",
       "title": "Saved Pie",
-      "text": "Marisol put the last slice of pie in the fridge. She wrote a note that said, “For Dad” and taped it to the plate. Her dad was working late and would come home after dinner. She wanted him to have a treat. She closed the fridge door and smiled.",
+      "text": "Marisol put the last slice of pie in the fridge. She wrote a note that said, \u201cFor Dad\u201d and taped it to the plate. Her dad was working late and would come home after dinner. She wanted him to have a treat. She closed the fridge door and smiled.",
       "questions": [
         {
           "prompt": "Why did Marisol leave a note?",
@@ -6740,7 +6740,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
       "season": "fall",
       "title": "Parade Spot",
-      "text": "Carlos’s family brought folding chairs and a blanket to the parade. They arrived an hour early and sat near the street. The band would start soon, and Carlos wanted to see the balloons. His sister held a small flag. They ate muffins while they waited.",
+      "text": "Carlos\u2019s family brought folding chairs and a blanket to the parade. They arrived an hour early and sat near the street. The band would start soon, and Carlos wanted to see the balloons. His sister held a small flag. They ate muffins while they waited.",
       "questions": [
         {
           "prompt": "Why did they arrive early?",
@@ -6806,7 +6806,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
       "season": "fall",
       "title": "Airport Delay",
-      "text": "At the airport, Mom opened a bag of snacks when the screen said “Delayed.” The kids played a card game while they waited. They sat by the window and watched planes take off. A voice said the new time was one hour later. The kids yawned but kept playing.",
+      "text": "At the airport, Mom opened a bag of snacks when the screen said \u201cDelayed.\u201d The kids played a card game while they waited. They sat by the window and watched planes take off. A voice said the new time was one hour later. The kids yawned but kept playing.",
       "questions": [
         {
           "prompt": "Why did Mom share snacks?",
@@ -6872,7 +6872,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
       "season": "fall",
       "title": "Thankful Notes",
-      "text": "Sophie wrote short notes that said “Thank you” and put them by each plate. Her brother helped fold the paper. After setting the table, they waited for their family to sit down. Sophie hoped everyone would read their note.",
+      "text": "Sophie wrote short notes that said \u201cThank you\u201d and put them by each plate. Her brother helped fold the paper. After setting the table, they waited for their family to sit down. Sophie hoped everyone would read their note.",
       "questions": [
         {
           "prompt": "Why did Sophie put notes by each plate?",
@@ -6905,7 +6905,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
       "season": "fall",
       "title": "Extra Chair",
-      "text": "Aunt Maya brought an extra folding chair when she came in. She said, “Our cousin will be here too.” Dad moved things so the chair could fit at the table. Everyone scooted over to make space.",
+      "text": "Aunt Maya brought an extra folding chair when she came in. She said, \u201cOur cousin will be here too.\u201d Dad moved things so the chair could fit at the table. Everyone scooted over to make space.",
       "questions": [
         {
           "prompt": "Why did they add another chair?",
@@ -6971,7 +6971,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
       "season": "fall",
       "title": "Cold Walk",
-      "text": "After dinner, Lina and her grandpa took a short walk. They wore hats and gloves because the wind was strong. When Lina shivered, Grandpa said, “Let’s head back and make cocoa.” They hurried toward the warm house.",
+      "text": "After dinner, Lina and her grandpa took a short walk. They wore hats and gloves because the wind was strong. When Lina shivered, Grandpa said, \u201cLet\u2019s head back and make cocoa.\u201d They hurried toward the warm house.",
       "questions": [
         {
           "prompt": "Why did they wear hats and gloves?",
@@ -7025,7 +7025,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving.html",
       "season": "fall",
       "title": "Two Plates, No Table",
-      "text": "Lina balanced two steaming plates on her knees while a football game played quietly in the corner of her laptop. The radiator hissed, and the window showed a rainy city street below. She sent a photo of the meal to her parents back home and typed, “Miss you, but we’re making our own little tradition.” Her roommate clinked a mug of apple cider against hers.",
+      "text": "Lina balanced two steaming plates on her knees while a football game played quietly in the corner of her laptop. The radiator hissed, and the window showed a rainy city street below. She sent a photo of the meal to her parents back home and typed, \u201cMiss you, but we\u2019re making our own little tradition.\u201d Her roommate clinked a mug of apple cider against hers.",
       "questions": [
         {
           "prompt": "Where are Lina and her roommate celebrating?",
@@ -7050,11 +7050,11 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving.html",
       "season": "fall",
       "title": "The Early Morning Trip",
-      "text": "Before the sun rose, Jamal pulled on his scout uniform and met his troop at the community center. They loaded boxes of canned goods and bags of potatoes into a van. At their second stop, an elderly man smiled and said, “You saved me a bus ride.” Jamal’s hands were cold, but he felt proud as he handed over a frozen turkey and a recipe booklet.",
+      "text": "Before the sun rose, Jamal pulled on his scout uniform and met his troop at the community center. They loaded boxes of canned goods and bags of potatoes into a van. At their second stop, an elderly man smiled and said, \u201cYou saved me a bus ride.\u201d Jamal\u2019s hands were cold, but he felt proud as he handed over a frozen turkey and a recipe booklet.",
       "questions": [
         {
           "prompt": "What are the scouts doing around the holiday?",
-          "hint": "Think about the food items and who they’re visiting."
+          "hint": "Think about the food items and who they\u2019re visiting."
         },
         {
           "prompt": "Why did the elderly man feel relieved?",
@@ -7071,7 +7071,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving.html",
       "season": "fall",
       "title": "The Outdoor Table",
-      "text": "Anya’s family pushed two picnic tables together under the big oak tree. They added quilts as tablecloths and filled mason jars with leaves and cranberries. When everyone sat down, they kept their coats on. Steam rose from the dishes, and a gust of wind blew paper name cards across the grass, making everyone laugh as they chased them.",
+      "text": "Anya\u2019s family pushed two picnic tables together under the big oak tree. They added quilts as tablecloths and filled mason jars with leaves and cranberries. When everyone sat down, they kept their coats on. Steam rose from the dishes, and a gust of wind blew paper name cards across the grass, making everyone laugh as they chased them.",
       "questions": [
         {
           "prompt": "Why are they wearing coats while eating?",
@@ -7096,7 +7096,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving.html",
       "season": "fall",
       "title": "The Last-Minute Store Run",
-      "text": "Ava stared at the nearly empty baking aisle. Only one small can of pumpkin remained, dented on the side. She grabbed it, paid, and hurried home. When she walked in, her aunt sighed in relief and slid a pie crust toward her. “You saved dessert,” her aunt said, handing Ava a cinnamon jar that was already open on the counter.",
+      "text": "Ava stared at the nearly empty baking aisle. Only one small can of pumpkin remained, dented on the side. She grabbed it, paid, and hurried home. When she walked in, her aunt sighed in relief and slid a pie crust toward her. \u201cYou saved dessert,\u201d her aunt said, handing Ava a cinnamon jar that was already open on the counter.",
       "questions": [
         {
           "prompt": "Why was the store almost out of pumpkin?",
@@ -7117,14 +7117,14 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving.html",
       "season": "fall",
       "title": "A Different Main Dish",
-      "text": "Rae set a platter of golden roasted vegetables in the center of the table. Next to it was a stuffed acorn squash that smelled like garlic and herbs. When Uncle Ben arrived with a foil-covered pan, he whispered, “My surprise ham is in the car, should I bring it?” Rae smiled and pointed to a note on the fridge: “Plant-based Thanksgiving this year—please join us!”",
+      "text": "Rae set a platter of golden roasted vegetables in the center of the table. Next to it was a stuffed acorn squash that smelled like garlic and herbs. When Uncle Ben arrived with a foil-covered pan, he whispered, \u201cMy surprise ham is in the car, should I bring it?\u201d Rae smiled and pointed to a note on the fridge: \u201cPlant-based Thanksgiving this year\u2014please join us!\u201d",
       "questions": [
         {
           "prompt": "Why did Uncle Ben whisper about his ham?",
           "hint": "Look at the meal theme written on the fridge."
         },
         {
-          "prompt": "What is different about this family’s main course?",
+          "prompt": "What is different about this family\u2019s main course?",
           "hint": "Notice what is on the table instead of meat."
         }
       ],
@@ -7138,7 +7138,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving.html",
       "season": "fall",
       "title": "Two Houses, One Pie",
-      "text": "Jay measured sugar while his mom rolled out pie dough. He packed paper plates and plastic forks into a tote bag, then wrapped the cooled pie in foil. At noon he slid everything into the back seat next to his backpack.\n\nOn the drive he checked the clock and said, “If the parade ends on time, we’ll make it before the football game starts.” His mom reminded him to save half the pie for the evening stop. Jay laughed and said, “I know—two Thanksgivings means two slices.”",
+      "text": "Jay measured sugar while his mom rolled out pie dough. He packed paper plates and plastic forks into a tote bag, then wrapped the cooled pie in foil. At noon he slid everything into the back seat next to his backpack.\n\nOn the drive he checked the clock and said, \u201cIf the parade ends on time, we\u2019ll make it before the football game starts.\u201d His mom reminded him to save half the pie for the evening stop. Jay laughed and said, \u201cI know\u2014two Thanksgivings means two slices.\u201d",
       "questions": [
         {
           "prompt": "Why did Jay pack plates and forks with the pie?",
@@ -7163,7 +7163,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving.html",
       "season": "fall",
       "title": "String Lights in the Gym",
-      "text": "Maya unlocked the school gym and flipped on the stage lights. She dragged cafeteria tables into long rows and taped paper leaves to the ends. Her backpack held extension cords and a box of string lights she bought with her weekend pay.\n\nBy late afternoon, classmates arrived with foil pans and slow cookers. Coach Lopez carried a stack of plates and said, “This is for everyone who couldn’t travel.” As music played softly, Maya dimmed the bright gym lights so the string lights made the room feel like a cozy dining room.",
+      "text": "Maya unlocked the school gym and flipped on the stage lights. She dragged cafeteria tables into long rows and taped paper leaves to the ends. Her backpack held extension cords and a box of string lights she bought with her weekend pay.\n\nBy late afternoon, classmates arrived with foil pans and slow cookers. Coach Lopez carried a stack of plates and said, \u201cThis is for everyone who couldn\u2019t travel.\u201d As music played softly, Maya dimmed the bright gym lights so the string lights made the room feel like a cozy dining room.",
       "questions": [
         {
           "prompt": "Why are they eating in the school gym?",
@@ -7174,8 +7174,8 @@ window.ActivityData.stories = {
           "hint": "She wanted the big gym to feel warm and homey."
         },
         {
-          "prompt": "What does the coach’s comment tell you?",
-          "hint": "This meal is meant to include people who couldn’t go home."
+          "prompt": "What does the coach\u2019s comment tell you?",
+          "hint": "This meal is meant to include people who couldn\u2019t go home."
         }
       ],
       "level": "medium",
@@ -7188,7 +7188,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/inference-thanksgiving.html",
       "season": "fall",
       "title": "Gate B16 Thanksgiving",
-      "text": "Tessa and her brother sat at Gate B16 with backpacks at their feet. Their dad pulled leftovers from a cooler and handed out plastic forks. A text popped up from Aunt Kim: “Flight still on time? Save room for stuffing!” Tessa snapped a photo of their mini airport picnic and wrote back, “We’re bringing some!”\n\nAn announcement crackled: the flight was delayed forty-five minutes. Their dad checked his watch and sighed, then joked, “First Thanksgiving in the sky?” Tessa tightened her scarf and said, “As long as we land before dessert.”",
+      "text": "Tessa and her brother sat at Gate B16 with backpacks at their feet. Their dad pulled leftovers from a cooler and handed out plastic forks. A text popped up from Aunt Kim: \u201cFlight still on time? Save room for stuffing!\u201d Tessa snapped a photo of their mini airport picnic and wrote back, \u201cWe\u2019re bringing some!\u201d\n\nAn announcement crackled: the flight was delayed forty-five minutes. Their dad checked his watch and sighed, then joked, \u201cFirst Thanksgiving in the sky?\u201d Tessa tightened her scarf and said, \u201cAs long as we land before dessert.\u201d",
       "questions": [
         {
           "prompt": "Why do they have a cooler at the airport?",
@@ -7199,7 +7199,7 @@ window.ActivityData.stories = {
           "hint": "They want to arrive in time for Thanksgiving dinner."
         },
         {
-          "prompt": "What does the dad’s joke about the sky mean?",
+          "prompt": "What does the dad\u2019s joke about the sky mean?",
           "hint": "They might be eating part of the meal on the plane if the delay lasts."
         }
       ],
@@ -8063,7 +8063,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "When did Mia build the snowman?",
-                "clue": "Not today — look for a time word.",
+                "clue": "Not today \u2014 look for a time word.",
                 "choices": [
                   {
                     "text": "This morning",
@@ -8335,12 +8335,12 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "Last week, Mia built the best snowman on her street. She gave him a crooked carrot nose and wrapped her favorite blue scarf around his neck. But as February turned warmer, the snow started to melt a little more each day. One morning, Mia walked outside and found nothing but a puddle, a carrot, and a soggy scarf sitting in the mud. Her stomach sank — it felt like losing a friend. But then she noticed something tiny and green pushing up through the cold dirt near the fence. A flower was starting to grow. Mia picked up her scarf and smiled. Maybe something new could be just as special.",
+          "text": "Last week, Mia built the best snowman on her street. She gave him a crooked carrot nose and wrapped her favorite blue scarf around his neck. But as February turned warmer, the snow started to melt a little more each day. One morning, Mia walked outside and found nothing but a puddle, a carrot, and a soggy scarf sitting in the mud. Her stomach sank \u2014 it felt like losing a friend. But then she noticed something tiny and green pushing up through the cold dirt near the fence. A flower was starting to grow. Mia picked up her scarf and smiled. Maybe something new could be just as special.",
           "questions": {
             "literal": [
               {
                 "prompt": "What did Mia find where the snowman used to be?",
-                "clue": "Three things were left behind — what were they?",
+                "clue": "Three things were left behind \u2014 what were they?",
                 "choices": [
                   {
                     "text": "A hat, a scarf, and a stick",
@@ -8384,7 +8384,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What did Mia do with her scarf at the end of the story?",
-                "clue": "She found it in the mud — what did she do with it?",
+                "clue": "She found it in the mud \u2014 what did she do with it?",
                 "choices": [
                   {
                     "text": "Left it in the mud",
@@ -8452,7 +8452,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "What does 'her stomach sank' tell you about how Mia felt?",
-                "clue": "Think about what that expression means — is it a happy or sad feeling?",
+                "clue": "Think about what that expression means \u2014 is it a happy or sad feeling?",
                 "choices": [
                   {
                     "text": "She was hungry for breakfast",
@@ -8588,7 +8588,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"She gave him a crooked carrot nose.\" What does crooked mean?",
-                "clue": "Consider how you would stick a carrot into a snowman's face — would it always go in perfectly straight?",
+                "clue": "Consider how you would stick a carrot into a snowman's face \u2014 would it always go in perfectly straight?",
                 "choices": [
                   {
                     "text": "Very long",
@@ -9037,7 +9037,7 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "Max had been stuck inside all winter, so the moment his owner opened the back door, he shot outside like a rocket. The snow was melting fast, and the yard had turned into a muddy mess. Max ran back and forth across the wet ground, completely happy. When he finally came to the door, all four paws were caked in dark mud. His owner shook her head and pointed back at the yard. She grabbed an old plastic tub from the garage, filled it with lukewarm water, and gave Max a bath right there outside. Max whined the whole time, but when it was over he was clean — and already eyeing the muddy yard again.",
+          "text": "Max had been stuck inside all winter, so the moment his owner opened the back door, he shot outside like a rocket. The snow was melting fast, and the yard had turned into a muddy mess. Max ran back and forth across the wet ground, completely happy. When he finally came to the door, all four paws were caked in dark mud. His owner shook her head and pointed back at the yard. She grabbed an old plastic tub from the garage, filled it with lukewarm water, and gave Max a bath right there outside. Max whined the whole time, but when it was over he was clean \u2014 and already eyeing the muddy yard again.",
           "questions": {
             "literal": [
               {
@@ -9145,7 +9145,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Nobody — he had been alone",
+                    "text": "Nobody \u2014 he had been alone",
                     "isCorrect": false
                   }
                 ]
@@ -9220,7 +9220,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why did the owner shake her head and point back at the yard instead of letting Max in?",
-                "clue": "She didn't say anything — but think about what she saw.",
+                "clue": "She didn't say anything \u2014 but think about what she saw.",
                 "choices": [
                   {
                     "text": "She wanted Max to keep playing outside",
@@ -9290,7 +9290,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"Max had been cooped up inside all winter.\" What does cooped up mean?",
-                "clue": "Consider how Max acted the moment the door opened — what does that tell you about how he had been feeling?",
+                "clue": "Consider how Max acted the moment the door opened \u2014 what does that tell you about how he had been feeling?",
                 "choices": [
                   {
                     "text": "Sick and resting inside",
@@ -9312,7 +9312,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"All four paws were caked in dark mud.\" What does caked mean?",
-                "clue": "Consider what mud looks like when it dries on something — is it a little bit or a lot?",
+                "clue": "Consider what mud looks like when it dries on something \u2014 is it a little bit or a lot?",
                 "choices": [
                   {
                     "text": "Lightly dusted with mud",
@@ -9579,7 +9579,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "How do you think the girl felt about winter ending?",
-                "clue": "She was excited about spring — what does that tell you?",
+                "clue": "She was excited about spring \u2014 what does that tell you?",
                 "choices": [
                   {
                     "text": "She was sad winter was ending",
@@ -9669,7 +9669,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What do you think Dani will do next February?",
-                "clue": "The story says she does this every year — what does that tell you?",
+                "clue": "The story says she does this every year \u2014 what does that tell you?",
                 "choices": [
                   {
                     "text": "Forget about the robin because it happens every year",
@@ -9761,7 +9761,7 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "Every February, Dani watched the backyard like she was waiting for something. And she was. The first robin of the season was her personal sign that winter was finally loosening its grip. On a Tuesday morning, with frost still clinging to the grass and a few stubborn patches of snow in the corners of the yard, she spotted it — a plump little bird with a rust-red chest, hopping across the muddy ground and jabbing its beak into the soil. Dani pressed her face against the cold glass. She knew robins came back when the ground started to thaw, when worms began moving closer to the surface. Seeing that bird meant the cold wasn't going to last forever. She grabbed her notebook and wrote down the date, just like she did every year.",
+          "text": "Every February, Dani watched the backyard like she was waiting for something. And she was. The first robin of the season was her personal sign that winter was finally loosening its grip. On a Tuesday morning, with frost still clinging to the grass and a few stubborn patches of snow in the corners of the yard, she spotted it \u2014 a plump little bird with a rust-red chest, hopping across the muddy ground and jabbing its beak into the soil. Dani pressed her face against the cold glass. She knew robins came back when the ground started to thaw, when worms began moving closer to the surface. Seeing that bird meant the cold wasn't going to last forever. She grabbed her notebook and wrote down the date, just like she did every year.",
           "questions": {
             "literal": [
               {
@@ -9878,7 +9878,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "What does 'winter was finally loosening its grip' mean?",
-                "clue": "Picture someone who is holding something tightly — what happens when they loosen their grip?",
+                "clue": "Picture someone who is holding something tightly \u2014 what happens when they loosen their grip?",
                 "choices": [
                   {
                     "text": "Winter was getting stronger and colder",
@@ -9900,7 +9900,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why do you think Dani writes down the date every year when she sees the first robin?",
-                "clue": "She has done this for years — what does the date mean to her?",
+                "clue": "She has done this for years \u2014 what does the date mean to her?",
                 "choices": [
                   {
                     "text": "She is writing a report about birds for school",
@@ -9929,7 +9929,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Relieved and happy — the long cold winter was finally ending",
+                    "text": "Relieved and happy \u2014 the long cold winter was finally ending",
                     "isCorrect": true
                   },
                   {
@@ -9990,7 +9990,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What do you think Dani will do next February?",
-                "clue": "The story says she does this every year — what does that tell you?",
+                "clue": "The story says she does this every year \u2014 what does that tell you?",
                 "choices": [
                   {
                     "text": "Forget about the robin because it happens every year",
@@ -10014,7 +10014,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"A few stubborn patches of snow in the corners of the yard.\" What does stubborn mean here?",
-                "clue": "Consider the fact that most of the snow had already melted — why was this snow still there?",
+                "clue": "Consider the fact that most of the snow had already melted \u2014 why was this snow still there?",
                 "choices": [
                   {
                     "text": "Very heavy and deep",
@@ -10281,7 +10281,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "How do you think Jake felt about the snow melting away?",
-                "clue": "He knew the snow would be gone soon — how might that feel?",
+                "clue": "He knew the snow would be gone soon \u2014 how might that feel?",
                 "choices": [
                   {
                     "text": "Happy that winter was over",
@@ -10358,7 +10358,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "The snow was wet and soft — a sign of warmer weather",
+                    "text": "The snow was wet and soft \u2014 a sign of warmer weather",
                     "isCorrect": true
                   },
                   {
@@ -10371,7 +10371,7 @@ window.ActivityData.stories = {
             "prediction": [
               {
                 "prompt": "What will he likely do when the snow is completely gone?",
-                "clue": "Consider how Jake felt about winter ending — did he seem excited about spring or was he sad to let go?",
+                "clue": "Consider how Jake felt about winter ending \u2014 did he seem excited about spring or was he sad to let go?",
                 "choices": [
                   {
                     "text": "Stay inside until summer arrives",
@@ -10485,7 +10485,7 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "Jake woke up and checked the yard before he even had breakfast. There was still snow on the ground, but just barely — thin patches of it clinging to the shady corners of the yard. He pulled on his boots and went outside. The snow was wet and heavy, not the dry fluffy kind from January. He packed a handful together and the snowball started falling apart before he even drew his arm back. Jake looked at it for a second. He knew this was probably the last snow of the year. He threw it anyway, right at the old oak tree, and watched the wet clump splatter against the bark. Then he stood there for a minute, listening to the dripping sound of snow melting off the roof.",
+          "text": "Jake woke up and checked the yard before he even had breakfast. There was still snow on the ground, but just barely \u2014 thin patches of it clinging to the shady corners of the yard. He pulled on his boots and went outside. The snow was wet and heavy, not the dry fluffy kind from January. He packed a handful together and the snowball started falling apart before he even drew his arm back. Jake looked at it for a second. He knew this was probably the last snow of the year. He threw it anyway, right at the old oak tree, and watched the wet clump splatter against the bark. Then he stood there for a minute, listening to the dripping sound of snow melting off the roof.",
           "questions": {
             "literal": [
               {
@@ -10602,7 +10602,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "Why were the snow patches only in the shady corners of the yard?",
-                "clue": "Think about what melts snow — and what would block it.",
+                "clue": "Think about what melts snow \u2014 and what would block it.",
                 "choices": [
                   {
                     "text": "The wind had pushed all the snow to the corners",
@@ -10646,7 +10646,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does the image of Jake standing quietly, listening to snow drip off the roof, suggest about how he felt?",
-                "clue": "He is not doing anything — just standing and listening. What kind of feeling makes you do that?",
+                "clue": "He is not doing anything \u2014 just standing and listening. What kind of feeling makes you do that?",
                 "choices": [
                   {
                     "text": "He was bored and had nothing to do",
@@ -10692,7 +10692,7 @@ window.ActivityData.stories = {
             "prediction": [
               {
                 "prompt": "What will he likely do when the snow is completely gone?",
-                "clue": "Consider how Jake felt about winter ending — did he seem excited about spring or was he sad to let go?",
+                "clue": "Consider how Jake felt about winter ending \u2014 did he seem excited about spring or was he sad to let go?",
                 "choices": [
                   {
                     "text": "Stay inside until summer arrives",
@@ -10738,7 +10738,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"There was still snow on the ground, but just barely.\" What does barely mean?",
-                "clue": "Consider how much snow Jake found — was there a lot or almost none?",
+                "clue": "Consider how much snow Jake found \u2014 was there a lot or almost none?",
                 "choices": [
                   {
                     "text": "Completely gone",
@@ -11027,7 +11027,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does it tell you about Lily that she laughed and kept walking?",
-                "clue": "She did not get upset — she kept going.",
+                "clue": "She did not get upset \u2014 she kept going.",
                 "choices": [
                   {
                     "text": "She did not care about her muddy sock",
@@ -11117,7 +11117,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What do you think Lily will tell her family when she gets home?",
-                "clue": "Consider how Lily reacted when her boot came off — what does that tell you about her personality?",
+                "clue": "Consider how Lily reacted when her boot came off \u2014 what does that tell you about her personality?",
                 "choices": [
                   {
                     "text": "Be too embarrassed to tell anyone",
@@ -11209,12 +11209,12 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "Lily took the shortcut home even though she knew the path through the field got muddy this time of year. The snow had been melting for days, and the ground was soft and soggy in a way that pulled at her boots with every step. She was halfway across when her left boot sank deep into a thick patch of mud and stopped moving. Lily kept walking — and her foot slid right out, leaving her standing with one boot on and one sock planted in cold wet mud. She looked down at her sock, then back at her boot still standing upright in the mud like it had decided to stay. Lily burst out laughing. She reached back, yanked the boot free with a loud sucking sound, and squished the rest of the way home.",
+          "text": "Lily took the shortcut home even though she knew the path through the field got muddy this time of year. The snow had been melting for days, and the ground was soft and soggy in a way that pulled at her boots with every step. She was halfway across when her left boot sank deep into a thick patch of mud and stopped moving. Lily kept walking \u2014 and her foot slid right out, leaving her standing with one boot on and one sock planted in cold wet mud. She looked down at her sock, then back at her boot still standing upright in the mud like it had decided to stay. Lily burst out laughing. She reached back, yanked the boot free with a loud sucking sound, and squished the rest of the way home.",
           "questions": {
             "literal": [
               {
                 "prompt": "Where was Lily walking when her boot got stuck?",
-                "clue": "She chose a specific route — not the normal way.",
+                "clue": "She chose a specific route \u2014 not the normal way.",
                 "choices": [
                   {
                     "text": "Down the main road",
@@ -11258,7 +11258,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "When Lily's boot got stuck, what did she do next?",
-                "clue": "She kept moving — even without the boot.",
+                "clue": "She kept moving \u2014 even without the boot.",
                 "choices": [
                   {
                     "text": "Stopped and waited for someone to help her",
@@ -11370,7 +11370,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why did Lily take the shortcut even though she knew it would be muddy?",
-                "clue": "She knew — but she went anyway. What does that suggest?",
+                "clue": "She knew \u2014 but she went anyway. What does that suggest?",
                 "choices": [
                   {
                     "text": "She forgot it was muddy this time of year",
@@ -11438,7 +11438,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What do you think Lily will tell her family when she gets home?",
-                "clue": "Consider how Lily reacted when her boot came off — what does that tell you about her personality?",
+                "clue": "Consider how Lily reacted when her boot came off \u2014 what does that tell you about her personality?",
                 "choices": [
                   {
                     "text": "Be too embarrassed to tell anyone",
@@ -11808,7 +11808,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Maybe — she might be curious again even though she knows what could happen",
+                    "text": "Maybe \u2014 she might be curious again even though she knows what could happen",
                     "isCorrect": true
                   },
                   {
@@ -11938,7 +11938,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "How did Anna first test the ice?",
-                "clue": "She was cautious — she did not jump on it.",
+                "clue": "She was cautious \u2014 she did not jump on it.",
                 "choices": [
                   {
                     "text": "Tapped it with her hand",
@@ -12035,7 +12035,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "She was too curious to resist — she had to see for herself",
+                    "text": "She was too curious to resist \u2014 she had to see for herself",
                     "isCorrect": true
                   },
                   {
@@ -12049,15 +12049,15 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "What does the last line — 'It had seemed worth testing at the time' — tell you about how Anna felt about what happened?",
-                "clue": "She is not panicking or upset — think about the tone of those words.",
+                "prompt": "What does the last line \u2014 'It had seemed worth testing at the time' \u2014 tell you about how Anna felt about what happened?",
+                "clue": "She is not panicking or upset \u2014 think about the tone of those words.",
                 "choices": [
                   {
                     "text": "She was very angry at herself for being careless",
                     "isCorrect": false
                   },
                   {
-                    "text": "She accepted the outcome with a bit of humor — she knew the risk and took it",
+                    "text": "She accepted the outcome with a bit of humor \u2014 she knew the risk and took it",
                     "isCorrect": true
                   },
                   {
@@ -12072,7 +12072,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why did the puddle have ice on top but still have liquid water underneath?",
-                "clue": "Think about how freezing works — does cold air freeze all the way down at once?",
+                "clue": "Think about how freezing works \u2014 does cold air freeze all the way down at once?",
                 "choices": [
                   {
                     "text": "The puddle was too deep to freeze all the way through in one night",
@@ -12129,7 +12129,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Maybe — she might be curious again even though she knows what could happen",
+                    "text": "Maybe \u2014 she might be curious again even though she knows what could happen",
                     "isCorrect": true
                   },
                   {
@@ -12164,7 +12164,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"She could see the water still liquid underneath.\" What does liquid mean?",
-                "clue": "Consider the two forms water can take in winter — what is the opposite of ice?",
+                "clue": "Consider the two forms water can take in winter \u2014 what is the opposite of ice?",
                 "choices": [
                   {
                     "text": "Warm and steamy",
@@ -12186,7 +12186,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"Her sneaker was soaked through.\" What does soaked mean?",
-                "clue": "Consider what happened when cold water rushed over her shoe — how much water got in?",
+                "clue": "Consider what happened when cold water rushed over her shoe \u2014 how much water got in?",
                 "choices": [
                   {
                     "text": "A little damp on the outside",
@@ -12400,7 +12400,7 @@ window.ActivityData.stories = {
                     "isCorrect": true
                   },
                   {
-                    "text": "Nothing — he did not feel it",
+                    "text": "Nothing \u2014 he did not feel it",
                     "isCorrect": false
                   }
                 ]
@@ -12409,7 +12409,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "How do you think Tom felt sitting in the warm sunshine?",
-                "clue": "He did not want to go back inside — what does that tell you?",
+                "clue": "He did not want to go back inside \u2014 what does that tell you?",
                 "choices": [
                   {
                     "text": "Cold and uncomfortable",
@@ -12521,7 +12521,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What will Tom likely do when spring fully arrives?",
-                "clue": "Consider what Tom seemed to love most — was it doing things outside, or just being outside?",
+                "clue": "Consider what Tom seemed to love most \u2014 was it doing things outside, or just being outside?",
                 "choices": [
                   {
                     "text": "Spend as much time outside as possible now that it is warm",
@@ -12613,7 +12613,7 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "It was one of those late February days that felt like a promise. Tom stepped outside after lunch without even grabbing his coat — something he had not been able to do in months. The sun was low but warm on his face, and the air smelled different, almost like wet dirt and something green trying to wake up. He sat down on the front steps and just stayed there. Water dripped steadily from the edge of the roof where the snow was letting go. A chickadee called from somewhere in the bare oak tree above him. Tom was not doing anything in particular — just sitting, listening, feeling the warmth. It was not quite spring, but it was not really winter anymore either.",
+          "text": "It was one of those late February days that felt like a promise. Tom stepped outside after lunch without even grabbing his coat \u2014 something he had not been able to do in months. The sun was low but warm on his face, and the air smelled different, almost like wet dirt and something green trying to wake up. He sat down on the front steps and just stayed there. Water dripped steadily from the edge of the roof where the snow was letting go. A chickadee called from somewhere in the bare oak tree above him. Tom was not doing anything in particular \u2014 just sitting, listening, feeling the warmth. It was not quite spring, but it was not really winter anymore either.",
           "questions": {
             "literal": [
               {
@@ -12773,8 +12773,8 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "What does the last line — 'It was not quite spring, but it was not really winter anymore either' — tell you about how Tom felt?",
-                "clue": "He is not quite one thing or another — like the season itself.",
+                "prompt": "What does the last line \u2014 'It was not quite spring, but it was not really winter anymore either' \u2014 tell you about how Tom felt?",
+                "clue": "He is not quite one thing or another \u2014 like the season itself.",
                 "choices": [
                   {
                     "text": "He was confused about what season it was",
@@ -12785,7 +12785,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "He was suspended in a moment between seasons — peaceful and a little uncertain",
+                    "text": "He was suspended in a moment between seasons \u2014 peaceful and a little uncertain",
                     "isCorrect": true
                   },
                   {
@@ -12842,7 +12842,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What will Tom likely do when spring fully arrives?",
-                "clue": "Consider what Tom seemed to love most — was it doing things outside, or just being outside?",
+                "clue": "Consider what Tom seemed to love most \u2014 was it doing things outside, or just being outside?",
                 "choices": [
                   {
                     "text": "Spend as much time outside as possible now that it is warm",
@@ -12888,7 +12888,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"Tom was not doing anything in particular.\" What does in particular mean?",
-                "clue": "Consider what Tom was actually doing — was he focused on one specific thing or just existing outside?",
+                "clue": "Consider what Tom was actually doing \u2014 was he focused on one specific thing or just existing outside?",
                 "choices": [
                   {
                     "text": "Was doing something very important",
@@ -13094,7 +13094,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Never — seeds only grow inside",
+                    "text": "Never \u2014 seeds only grow inside",
                     "isCorrect": false
                   },
                   {
@@ -13315,7 +13315,7 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "Maria had been watching the snow melt for weeks, and she was done waiting for spring. She dug through the shelves in the garage until she found what she was looking for — a crinkled seed packet with a picture of sunflowers on the front, left over from last summer. The ground outside was still frozen a few inches down, too cold to plant anything real yet. But Maria had a plan. She filled six small plastic cups with potting soil, pressed two seeds into each one, and lined them up on the sunniest windowsill in the kitchen. Her mom looked at the row of cups and raised an eyebrow. Maria just shrugged. By the time the ground was ready outside, her seedlings would already have a head start.",
+          "text": "Maria had been watching the snow melt for weeks, and she was done waiting for spring. She dug through the shelves in the garage until she found what she was looking for \u2014 a crinkled seed packet with a picture of sunflowers on the front, left over from last summer. The ground outside was still frozen a few inches down, too cold to plant anything real yet. But Maria had a plan. She filled six small plastic cups with potting soil, pressed two seeds into each one, and lined them up on the sunniest windowsill in the kitchen. Her mom looked at the row of cups and raised an eyebrow. Maria just shrugged. By the time the ground was ready outside, her seedlings would already have a head start.",
           "questions": {
             "literal": [
               {
@@ -13386,14 +13386,14 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "How did Maria's mom react when she saw the row of cups?",
-                "clue": "She did not say anything — but her face showed her feeling.",
+                "clue": "She did not say anything \u2014 but her face showed her feeling.",
                 "choices": [
                   {
                     "text": "She smiled and praised Maria's idea",
                     "isCorrect": false
                   },
                   {
-                    "text": "She raised an eyebrow — skeptical or surprised",
+                    "text": "She raised an eyebrow \u2014 skeptical or surprised",
                     "isCorrect": true
                   },
                   {
@@ -13454,7 +13454,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why do you think Maria just shrugged when her mom raised an eyebrow?",
-                "clue": "She did not try to explain or defend herself — she just shrugged.",
+                "clue": "She did not try to explain or defend herself \u2014 she just shrugged.",
                 "choices": [
                   {
                     "text": "She was not sure her plan would work",
@@ -13498,7 +13498,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does Maria mean when she says her seedlings would 'already have a head start'?",
-                "clue": "Think about a race — what does it mean to start before the others?",
+                "clue": "Think about a race \u2014 what does it mean to start before the others?",
                 "choices": [
                   {
                     "text": "Her plants would grow faster than plants started from seed outdoors",
@@ -13813,7 +13813,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "How do you think Sam felt when he saw the sign and knew he could not skate?",
-                "clue": "He had been skating there all winter — it was his favorite activity.",
+                "clue": "He had been skating there all winter \u2014 it was his favorite activity.",
                 "choices": [
                   {
                     "text": "Happy that the season was over",
@@ -13879,7 +13879,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does it tell you about Sam that he followed the sign and went home?",
-                "clue": "It was not easy — he loved skating there.",
+                "clue": "It was not easy \u2014 he loved skating there.",
                 "choices": [
                   {
                     "text": "He was afraid of the water",
@@ -14017,7 +14017,7 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "All winter, the pond at the end of Sam's street had been solid enough to skate on. He had been out there almost every weekend since December, sometimes with friends, sometimes just by himself. But when he showed up on a Saturday in late February, things looked different. The ice was no longer smooth and white — it had taken on a gray glassy look, and he could see thin cracks running out from the edges. A handwritten sign zip-tied to the fence read: DO NOT WALK ON ICE. Sam stood at the edge for a while, his skates over his shoulder. He pressed the toe of his boot against the very edge of the ice and felt it give slightly, like it was sighing. He stepped back. He stayed another few minutes just looking at the pond, at the gray sky reflected in the patches of open water near the middle, and then turned and headed home. The season was over.",
+          "text": "All winter, the pond at the end of Sam's street had been solid enough to skate on. He had been out there almost every weekend since December, sometimes with friends, sometimes just by himself. But when he showed up on a Saturday in late February, things looked different. The ice was no longer smooth and white \u2014 it had taken on a gray glassy look, and he could see thin cracks running out from the edges. A handwritten sign zip-tied to the fence read: DO NOT WALK ON ICE. Sam stood at the edge for a while, his skates over his shoulder. He pressed the toe of his boot against the very edge of the ice and felt it give slightly, like it was sighing. He stepped back. He stayed another few minutes just looking at the pond, at the gray sky reflected in the patches of open water near the middle, and then turned and headed home. The season was over.",
           "questions": {
             "literal": [
               {
@@ -14177,7 +14177,7 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "What does the last line — 'The season was over' — tell you about how Sam felt?",
+                "prompt": "What does the last line \u2014 'The season was over' \u2014 tell you about how Sam felt?",
                 "clue": "It is only four words. Think about how a very short, plain sentence can carry emotion.",
                 "choices": [
                   {
@@ -14189,7 +14189,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Sam felt a quiet sadness — winter skating was done and he would miss it",
+                    "text": "Sam felt a quiet sadness \u2014 winter skating was done and he would miss it",
                     "isCorrect": true
                   },
                   {
@@ -14200,14 +14200,14 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does it mean that the ice 'gave slightly, like it was sighing'?",
-                "clue": "Think about what that gentle movement — and that word 'sighing' — suggests.",
+                "clue": "Think about what that gentle movement \u2014 and that word 'sighing' \u2014 suggests.",
                 "choices": [
                   {
                     "text": "The ice was perfectly safe but just barely",
                     "isCorrect": false
                   },
                   {
-                    "text": "The ice was weak and bending under pressure — it was no longer solid",
+                    "text": "The ice was weak and bending under pressure \u2014 it was no longer solid",
                     "isCorrect": true
                   },
                   {
@@ -14292,7 +14292,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"The ice had taken on a gray glassy look.\" What does glassy mean?",
-                "clue": "Consider what a window or pane of glass looks like — smooth, clear, a little shiny.",
+                "clue": "Consider what a window or pane of glass looks like \u2014 smooth, clear, a little shiny.",
                 "choices": [
                   {
                     "text": "Broken into sharp pieces",
@@ -14314,7 +14314,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"The gray sky reflected in the patches of open water.\" What does reflected mean?",
-                "clue": "Consider what you see when you look into still water — what does the surface show you?",
+                "clue": "Consider what you see when you look into still water \u2014 what does the surface show you?",
                 "choices": [
                   {
                     "text": "The sky was casting shadows on the water",
@@ -14627,7 +14627,7 @@ window.ActivityData.stories = {
             "prediction": [
               {
                 "prompt": "What will she likely do the next time she looks at the tree?",
-                "clue": "Consider the kind of person Maya seems to be — she noticed something small that others might miss.",
+                "clue": "Consider the kind of person Maya seems to be \u2014 she noticed something small that others might miss.",
                 "choices": [
                   {
                     "text": "Forget about the buds now that the rain has stopped",
@@ -14649,7 +14649,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What Will the yard likely look like in two or three weeks?",
-                "clue": "Consider all the changes that were already happening — the warm rain, the melting snow, the buds on the tree.",
+                "clue": "Consider all the changes that were already happening \u2014 the warm rain, the melting snow, the buds on the tree.",
                 "choices": [
                   {
                     "text": "The yard will be covered in snow again after one more cold spell",
@@ -14741,7 +14741,7 @@ window.ActivityData.stories = {
           }
         },
         "complex": {
-          "text": "The rain that started on Tuesday was different from the cold stinging kind that had fallen in January. This rain was warm — not warm like summer, but warm enough that Maya did not reach for her coat when she stepped onto the porch to watch it. The snow in the yard was disappearing fast, collapsing in on itself and spreading into wide shallow puddles across the sidewalk and driveway. Maya could hear it — the constant dripping and rushing of water moving everywhere at once, finding every low spot in the yard. The bare branches of the oak tree were glistening, and she noticed something she had not seen in months: the very tips of the branches had tiny swollen buds on them. They had not opened yet, but they were there. Maya pulled her sleeves over her hands and leaned against the porch railing. Winter was not gone, but it was leaving.",
+          "text": "The rain that started on Tuesday was different from the cold stinging kind that had fallen in January. This rain was warm \u2014 not warm like summer, but warm enough that Maya did not reach for her coat when she stepped onto the porch to watch it. The snow in the yard was disappearing fast, collapsing in on itself and spreading into wide shallow puddles across the sidewalk and driveway. Maya could hear it \u2014 the constant dripping and rushing of water moving everywhere at once, finding every low spot in the yard. The bare branches of the oak tree were glistening, and she noticed something she had not seen in months: the very tips of the branches had tiny swollen buds on them. They had not opened yet, but they were there. Maya pulled her sleeves over her hands and leaned against the porch railing. Winter was not gone, but it was leaving.",
           "questions": {
             "literal": [
               {
@@ -14753,7 +14753,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "This rain was warm — warm enough that Maya did not reach for her coat",
+                    "text": "This rain was warm \u2014 warm enough that Maya did not reach for her coat",
                     "isCorrect": true
                   },
                   {
@@ -14768,7 +14768,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What did Maya notice on the tips of the oak tree's branches?",
-                "clue": "She had not seen these in months — they were very small.",
+                "clue": "She had not seen these in months \u2014 they were very small.",
                 "choices": [
                   {
                     "text": "Small birds sitting in a row",
@@ -14901,8 +14901,8 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "What does the last line — 'Winter was not gone, but it was leaving' — tell you about the moment Maya was experiencing?",
-                "clue": "Neither winter nor spring — what is that in-between feeling like?",
+                "prompt": "What does the last line \u2014 'Winter was not gone, but it was leaving' \u2014 tell you about the moment Maya was experiencing?",
+                "clue": "Neither winter nor spring \u2014 what is that in-between feeling like?",
                 "choices": [
                   {
                     "text": "Winter was almost completely over and spring had already begun",
@@ -14913,7 +14913,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "The season was in transition — something was ending and something was about to begin",
+                    "text": "The season was in transition \u2014 something was ending and something was about to begin",
                     "isCorrect": true
                   },
                   {
@@ -14924,7 +14924,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why was the snow 'collapsing in on itself' instead of melting evenly from the top?",
-                "clue": "Think about where the warmth was coming from — air above, or something else?",
+                "clue": "Think about where the warmth was coming from \u2014 air above, or something else?",
                 "choices": [
                   {
                     "text": "The rain was hitting it so hard it was breaking apart",
@@ -14948,7 +14948,7 @@ window.ActivityData.stories = {
             "prediction": [
               {
                 "prompt": "What will she likely do the next time she looks at the tree?",
-                "clue": "Consider the kind of person Maya seems to be — she noticed something small that others might miss.",
+                "clue": "Consider the kind of person Maya seems to be \u2014 she noticed something small that others might miss.",
                 "choices": [
                   {
                     "text": "Forget about the buds now that the rain has stopped",
@@ -14970,7 +14970,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What Will the yard likely look like in two or three weeks?",
-                "clue": "Consider all the changes that were already happening — the warm rain, the melting snow, the buds on the tree.",
+                "clue": "Consider all the changes that were already happening \u2014 the warm rain, the melting snow, the buds on the tree.",
                 "choices": [
                   {
                     "text": "The yard will be covered in snow again after one more cold spell",
@@ -15016,7 +15016,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"The very tips of the branches had tiny swollen buds on them.\" What does swollen mean?",
-                "clue": "Consider what a bud looks like just before it is about to open — is it flat or puffed out?",
+                "clue": "Consider what a bud looks like just before it is about to open \u2014 is it flat or puffed out?",
                 "choices": [
                   {
                     "text": "Dried out and shriveled",
@@ -15167,14 +15167,14 @@ window.ActivityData.stories = {
       "options": [
         "Fifth graders created a weekly podcast to share school news.",
         "Students wrote scripts on Tuesdays to practice fluent reading.",
-        "Maya edited the audio in the library’s media lab each Thursday.",
+        "Maya edited the audio in the library\u2019s media lab each Thursday.",
         "The team mailed compact discs to every home each Monday.",
         "Teachers banned the students from interviewing classmates."
       ],
       "mainIdea": "Fifth graders created a weekly podcast to share school news.",
       "details": [
         "Students wrote scripts on Tuesdays to practice fluent reading.",
-        "Maya edited the audio in the library’s media lab each Thursday."
+        "Maya edited the audio in the library\u2019s media lab each Thursday."
       ],
       "level": "medium",
       "tags": [
@@ -15232,7 +15232,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/main-idea-key-details.html",
       "season": null,
       "title": "Library Book Swap Festival",
-      "passage": "The public library hosted a weekend book swap so readers could trade stories without spending money. Student helpers labeled tables by genre, which kept fantasy paperbacks far from biographies. Before setting down a donation, each guest filled out a colorful review card so the next reader would know what made the book memorable. Families lingered for cocoa, then left with stacks of “new-to-me” titles tucked under their arms.",
+      "passage": "The public library hosted a weekend book swap so readers could trade stories without spending money. Student helpers labeled tables by genre, which kept fantasy paperbacks far from biographies. Before setting down a donation, each guest filled out a colorful review card so the next reader would know what made the book memorable. Families lingered for cocoa, then left with stacks of \u201cnew-to-me\u201d titles tucked under their arms.",
       "options": [
         "The library hosted a book swap so readers could trade favorites.",
         "Student helpers labeled genre tables to keep the swap organized.",
@@ -15255,7 +15255,7 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/main-idea-key-details.html",
       "season": null,
       "title": "Weather Station Morning Crew",
-      "passage": "Each dawn, a sixth-grade crew hustled to the school garden to run its new weather station. Two students clipped temperature, humidity, and wind readings before the first bell, checking the sensors twice for accuracy. Another pair uploaded the numbers to a hallway display and added a short forecast to the principal’s daily email. Their routine meant teachers could plan recess and science experiments using fresh data gathered by their own students.",
+      "passage": "Each dawn, a sixth-grade crew hustled to the school garden to run its new weather station. Two students clipped temperature, humidity, and wind readings before the first bell, checking the sensors twice for accuracy. Another pair uploaded the numbers to a hallway display and added a short forecast to the principal\u2019s daily email. Their routine meant teachers could plan recess and science experiments using fresh data gathered by their own students.",
       "options": [
         "Sixth graders ran a morning weather station and shared data with the school.",
         "Two students measured temperature, humidity, and wind before the first bell.",
@@ -15714,11 +15714,11 @@ window.ActivityData.stories = {
       "sourceFile": "activities/reading/main-idea-short-stories.html",
       "season": null,
       "level": "Stretch Story",
-      "title": "Repair Café Updates",
-      "text": "During the repair café, Theo interviews neighbors about their broken gadgets, matches them with the right mentor, and posts timing updates on the chalkboard so visitors know when their turn is coming.",
+      "title": "Repair Caf\u00e9 Updates",
+      "text": "During the repair caf\u00e9, Theo interviews neighbors about their broken gadgets, matches them with the right mentor, and posts timing updates on the chalkboard so visitors know when their turn is coming.",
       "options": [
         {
-          "text": "Theo keeps the repair café organized by guiding visitors and mentors.",
+          "text": "Theo keeps the repair caf\u00e9 organized by guiding visitors and mentors.",
           "correct": true
         },
         {
@@ -15740,7 +15740,7 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Jonah's Quiz",
       "difficulty": "Easier",
-      "html": "When the teacher handed back the quizzes, <span id='s1_1'>Jonah flipped his paper face down on his desk. He didn’t look at it right away.</span> While other students compared scores, Jonah traced the edge of his notebook with his finger. When his friend leaned over and asked how he did, Jonah said, “It’s whatever.” He shoved the paper into his backpack as soon as the bell rang.",
+      "html": "When the teacher handed back the quizzes, <span id='s1_1'>Jonah flipped his paper face down on his desk. He didn\u2019t look at it right away.</span> While other students compared scores, Jonah traced the edge of his notebook with his finger. When his friend leaned over and asked how he did, Jonah said, \u201cIt\u2019s whatever.\u201d He shoved the paper into his backpack as soon as the bell rang.",
       "q1": {
         "text": "Question 1: What can you infer about Jonah?",
         "hint": "Pay attention to Jonah's body language and how he treats the paper.",
@@ -15758,7 +15758,7 @@ window.ActivityData.stories = {
             "correct": false
           },
           {
-            "text": "He didn’t finish the quiz",
+            "text": "He didn\u2019t finish the quiz",
             "correct": false
           }
         ]
@@ -15812,7 +15812,7 @@ window.ActivityData.stories = {
             "correct": true
           },
           {
-            "text": "She doesn’t like walking",
+            "text": "She doesn\u2019t like walking",
             "correct": false
           },
           {
@@ -15862,7 +15862,7 @@ window.ActivityData.stories = {
         "hint": "Look at Caleb's actions while the movie was playing.",
         "choices": [
           {
-            "text": "He didn’t enjoy the movie very much",
+            "text": "He didn\u2019t enjoy the movie very much",
             "correct": true
           },
           {
@@ -15933,7 +15933,7 @@ window.ActivityData.stories = {
             "correct": false
           },
           {
-            "text": "She doesn’t like texting",
+            "text": "She doesn\u2019t like texting",
             "correct": false
           }
         ]
@@ -15973,13 +15973,13 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Luis Quietly",
       "difficulty": "Moderate",
-      "html": "<span id='s5_1'>When the substitute teacher called his name incorrectly, Luis didn’t say anything. A few students whispered and laughed.</span> Luis kept his head down and focused on copying notes. For the rest of class, he didn’t raise his hand. When the bell rang, he left quickly.",
+      "html": "<span id='s5_1'>When the substitute teacher called his name incorrectly, Luis didn\u2019t say anything. A few students whispered and laughed.</span> Luis kept his head down and focused on copying notes. For the rest of class, he didn\u2019t raise his hand. When the bell rang, he left quickly.",
       "q1": {
         "text": "Question 1: What can you infer about why Luis stayed quiet?",
         "hint": "Think about how he reacted to the other students laughing.",
         "choices": [
           {
-            "text": "He didn’t know the answers",
+            "text": "He didn\u2019t know the answers",
             "correct": false
           },
           {
@@ -15987,7 +15987,7 @@ window.ActivityData.stories = {
             "correct": true
           },
           {
-            "text": "He didn’t like the substitute teacher",
+            "text": "He didn\u2019t like the substitute teacher",
             "correct": false
           },
           {
@@ -16031,13 +16031,13 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Samantha's Fundraiser",
       "difficulty": "Harder",
-      "html": "Samantha volunteered to help plan the fundraiser. <span id='s6_1'>She arrived early and stayed late, making sure everything was set up.</span> At the end, <span id='s6_2'>the organizer thanked the group but didn’t mention Samantha.</span> She clapped along anyway. When the next fundraiser was announced, Samantha didn’t sign up.",
+      "html": "Samantha volunteered to help plan the fundraiser. <span id='s6_1'>She arrived early and stayed late, making sure everything was set up.</span> At the end, <span id='s6_2'>the organizer thanked the group but didn\u2019t mention Samantha.</span> She clapped along anyway. When the next fundraiser was announced, Samantha didn\u2019t sign up.",
       "q1": {
-        "text": "Question 1: What can you infer about Samantha’s decision?",
+        "text": "Question 1: What can you infer about Samantha\u2019s decision?",
         "hint": "How was Samantha treated despite her hard work?",
         "choices": [
           {
-            "text": "She didn’t like the fundraiser",
+            "text": "She didn\u2019t like the fundraiser",
             "correct": false
           },
           {
@@ -16091,7 +16091,7 @@ window.ActivityData.stories = {
       "difficulty": "Harder",
       "html": "Every time his friends joked about his height, Ryan laughed with them. <span id='s7_1'>Later that night, he practiced comebacks in his room.</span> The next day, the jokes happened again. Ryan laughed, but he crossed his arms and looked away. He changed the subject as soon as he could.",
       "q1": {
-        "text": "Question 1: What can you infer about Ryan’s true feelings?",
+        "text": "Question 1: What can you infer about Ryan\u2019s true feelings?",
         "hint": "Does his reaction in public match what he does in private?",
         "choices": [
           {
@@ -16147,13 +16147,13 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Jordan's Practice",
       "difficulty": "Harder",
-      "html": "During practice, the coach gave detailed feedback to several players. <span id='s8_1'>When it was Jordan’s turn, the coach just said, “Keep working.”</span> Jordan stayed after practice to run drills by himself. As he left, he watched the others talking and laughing with the coach. He tightened his grip on his bag and walked away.",
+      "html": "During practice, the coach gave detailed feedback to several players. <span id='s8_1'>When it was Jordan\u2019s turn, the coach just said, \u201cKeep working.\u201d</span> Jordan stayed after practice to run drills by himself. As he left, he watched the others talking and laughing with the coach. He tightened his grip on his bag and walked away.",
       "q1": {
         "text": "Question 1: What can you infer about Jordan?",
         "hint": "Compare the feedback Jordan got vs. the other players.",
         "choices": [
           {
-            "text": "He doesn’t like his teammates",
+            "text": "He doesn\u2019t like his teammates",
             "correct": false
           },
           {
@@ -16161,7 +16161,7 @@ window.ActivityData.stories = {
             "correct": true
           },
           {
-            "text": "He doesn’t want feedback",
+            "text": "He doesn\u2019t want feedback",
             "correct": false
           },
           {
@@ -16205,7 +16205,7 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Lucas's Chat",
       "difficulty": "Very Challenging",
-      "html": "At first, Lucas replied right away in the group chat. When messages went unanswered, he sent another joke or meme. <span id='s9_1'>Over time, he stopped doing that. He still read the messages, but he didn’t respond.</span> When someone asked if he was okay, Lucas said he was just busy.",
+      "html": "At first, Lucas replied right away in the group chat. When messages went unanswered, he sent another joke or meme. <span id='s9_1'>Over time, he stopped doing that. He still read the messages, but he didn\u2019t respond.</span> When someone asked if he was okay, Lucas said he was just busy.",
       "q1": {
         "text": "Question 1: What can you infer about why Lucas changed his behavior?",
         "hint": "Look at the pattern of his messages and the group's response.",
@@ -16263,13 +16263,13 @@ window.ActivityData.stories = {
       "season": null,
       "title": "Nina's Plans",
       "difficulty": "Very Challenging",
-      "html": "People often described Nina as “easygoing.” She usually went along with group plans. When she suggested doing something different one day, the group went quiet. <span id='s10_1'>Someone laughed and said, “That’s not like you.” Nina smiled and didn’t bring it up again.</span>",
+      "html": "People often described Nina as \u201ceasygoing.\u201d She usually went along with group plans. When she suggested doing something different one day, the group went quiet. <span id='s10_1'>Someone laughed and said, \u201cThat\u2019s not like you.\u201d Nina smiled and didn\u2019t bring it up again.</span>",
       "q1": {
-        "text": "Question 1: What can you infer about Nina’s role in the group?",
+        "text": "Question 1: What can you infer about Nina\u2019s role in the group?",
         "hint": "What happens when Nina tries to be different from her usual self?",
         "choices": [
           {
-            "text": "She doesn’t care about plans",
+            "text": "She doesn\u2019t care about plans",
             "correct": false
           },
           {
@@ -16298,7 +16298,7 @@ window.ActivityData.stories = {
             "correct": false
           },
           {
-            "text": "Someone said, “That’s not like you” and she didn’t repeat her idea",
+            "text": "Someone said, \u201cThat\u2019s not like you\u201d and she didn\u2019t repeat her idea",
             "correct": true,
             "highlights": [
               "s10_1"
@@ -16665,7 +16665,7 @@ window.ActivityData.stories = {
         ]
       },
       "middle": {
-        "text": "Maya had been studying piano for three years but had never performed before a substantial audience. When announcements mentioned auditions for the annual school talent show, Maya experienced both excitement and anxiety about this challenging opportunity.\n\nMaya was working on a classical piece called \"Für Elise\" by Beethoven that required considerable skill. She realized she needed intensive practice to feel confident performing it publicly. For three weeks, Maya dedicated herself to rehearsing the piece daily for at least an hour after school.\n\nHer piano instructor suggested performing for gradually larger groups to build her confidence. Maya followed this advice systematically, playing first for her family, then her best friend, and eventually her entire piano class.\n\nOn audition day, Maya approached the piano with composure despite her nervousness. She delivered a polished performance with only one minor technical mistake. The judges responded positively throughout, and when results were announced a week later, Maya was delighted to discover her name among the selected performers.",
+        "text": "Maya had been studying piano for three years but had never performed before a substantial audience. When announcements mentioned auditions for the annual school talent show, Maya experienced both excitement and anxiety about this challenging opportunity.\n\nMaya was working on a classical piece called \"F\u00fcr Elise\" by Beethoven that required considerable skill. She realized she needed intensive practice to feel confident performing it publicly. For three weeks, Maya dedicated herself to rehearsing the piece daily for at least an hour after school.\n\nHer piano instructor suggested performing for gradually larger groups to build her confidence. Maya followed this advice systematically, playing first for her family, then her best friend, and eventually her entire piano class.\n\nOn audition day, Maya approached the piano with composure despite her nervousness. She delivered a polished performance with only one minor technical mistake. The judges responded positively throughout, and when results were announced a week later, Maya was delighted to discover her name among the selected performers.",
         "mainIdea": {
           "question": "What is the main idea of this story?",
           "choices": [
@@ -16721,7 +16721,7 @@ window.ActivityData.stories = {
         ]
       },
       "complex": {
-        "text": "Maya had been pursuing classical piano instruction for three years but had never undertaken a performance before a substantial audience. When administrative announcements publicized auditions for the institution's prestigious annual talent exhibition, Maya experienced simultaneous exhilaration and trepidation regarding this unprecedented opportunity.\n\nMaya had been mastering Beethoven's intricate composition \"Für Elise,\" recognizing that additional intensive preparation would be essential for confident public presentation. She embarked upon a rigorous three-week practice regimen, dedicating no fewer than sixty minutes daily to perfecting the piece's technical complexities and musical interpretation.\n\nHer instructor recommended graduated exposure to progressively larger audiences to ameliorate performance anxiety. Maya methodically implemented this strategy, beginning with intimate family presentations, advancing to individual peer demonstrations, and culminating with performances before her complete piano ensemble.\n\nOn the decisive audition date, Maya approached the instrument with remarkable poise despite experiencing considerable nervous tension. She delivered a compelling interpretation with merely one inconsequential technical imperfection. The adjudicating panel maintained visibly appreciative engagement throughout her presentation, and upon publication of results one week subsequently, Maya experienced profound satisfaction discovering her selection among the distinguished performers.",
+        "text": "Maya had been pursuing classical piano instruction for three years but had never undertaken a performance before a substantial audience. When administrative announcements publicized auditions for the institution's prestigious annual talent exhibition, Maya experienced simultaneous exhilaration and trepidation regarding this unprecedented opportunity.\n\nMaya had been mastering Beethoven's intricate composition \"F\u00fcr Elise,\" recognizing that additional intensive preparation would be essential for confident public presentation. She embarked upon a rigorous three-week practice regimen, dedicating no fewer than sixty minutes daily to perfecting the piece's technical complexities and musical interpretation.\n\nHer instructor recommended graduated exposure to progressively larger audiences to ameliorate performance anxiety. Maya methodically implemented this strategy, beginning with intimate family presentations, advancing to individual peer demonstrations, and culminating with performances before her complete piano ensemble.\n\nOn the decisive audition date, Maya approached the instrument with remarkable poise despite experiencing considerable nervous tension. She delivered a compelling interpretation with merely one inconsequential technical imperfection. The adjudicating panel maintained visibly appreciative engagement throughout her presentation, and upon publication of results one week subsequently, Maya experienced profound satisfaction discovering her selection among the distinguished performers.",
         "mainIdea": {
           "question": "What is the main idea of this story?",
           "choices": [
@@ -19985,7 +19985,7 @@ window.ActivityData.stories = {
       "title": "Thanksgiving Kitchen Safety",
       "paragraphs": [
         "Cooking large holiday meals requires careful food safety. Raw turkey can contain bacteria, so it should stay separate from vegetables and be kept in the refrigerator until cooking time. Clean cutting boards and washing hands reduce the spread of germs.",
-        "A food thermometer checks that turkey reaches a safe temperature of 165°F. Leftovers should be cooled in shallow containers and placed in the fridge within two hours. Following these steps lowers the chance of foodborne illness during Thanksgiving."
+        "A food thermometer checks that turkey reaches a safe temperature of 165\u00b0F. Leftovers should be cooled in shallow containers and placed in the fridge within two hours. Following these steps lowers the chance of foodborne illness during Thanksgiving."
       ],
       "mainIdeaOptions": [
         "Simple food safety steps, like separation and proper cooking, keep Thanksgiving meals safe to eat.",
@@ -19993,7 +19993,7 @@ window.ActivityData.stories = {
         "Leftovers can stay on the counter all day without risk."
       ],
       "clueWords": [
-        "165°F",
+        "165\u00b0F",
         "separate",
         "refrigerate",
         "leftovers"
@@ -24138,7 +24138,7 @@ window.ActivityData.stories = {
               ]
             },
             {
-              "prompt": "What does Sam’s reaction to the cold burst show?",
+              "prompt": "What does Sam\u2019s reaction to the cold burst show?",
               "clue": "He keeps walking with steady steps.",
               "choices": [
                 {
@@ -24236,7 +24236,7 @@ window.ActivityData.stories = {
               ]
             },
             {
-              "prompt": "What happened to Ben’s hands as the bus started?",
+              "prompt": "What happened to Ben\u2019s hands as the bus started?",
               "clue": "The heated air affected them.",
               "choices": [
                 {
@@ -24296,7 +24296,7 @@ window.ActivityData.stories = {
               ]
             },
             {
-              "prompt": "How did the heated air change Ben’s comfort?",
+              "prompt": "How did the heated air change Ben\u2019s comfort?",
               "clue": "Think about his hands.",
               "choices": [
                 {
@@ -24349,7 +24349,7 @@ window.ActivityData.stories = {
       "text": [
         "A small bird landed on the fence outside the classroom window, shaking snow from its feathers.",
         "It hopped from one spot to another, looking for food hidden beneath the frozen ground.",
-        "The students watched quietly because they didn’t want to scare it away.",
+        "The students watched quietly because they didn\u2019t want to scare it away.",
         "After a moment, the bird lifted its wings and flew off toward a nearby tree."
       ],
       "questionSets": [
@@ -24570,7 +24570,7 @@ window.ActivityData.stories = {
               ]
             },
             {
-              "prompt": "What spread through Maya’s fingers?",
+              "prompt": "What spread through Maya\u2019s fingers?",
               "clue": "It came from the cup.",
               "choices": [
                 {
@@ -25051,7 +25051,7 @@ window.ActivityData.stories = {
       "image": "../../images/winter_stories/story8.png",
       "alt": "Student holding a scarf while wind blows",
       "text": [
-        "A strong winter wind blew across the parking lot, pushing against Tia’s hood as she tried to walk.",
+        "A strong winter wind blew across the parking lot, pushing against Tia\u2019s hood as she tried to walk.",
         "She held her scarf close to her mouth because the air felt sharp and cold.",
         "Every few steps, the wind made her take a smaller stride.",
         "When she finally reached the building, she felt immediate relief as the warm air wrapped around her."
@@ -25062,7 +25062,7 @@ window.ActivityData.stories = {
           "label": "Literal",
           "questions": [
             {
-              "prompt": "What pushed against Tia’s hood?",
+              "prompt": "What pushed against Tia\u2019s hood?",
               "clue": "It was moving across the parking lot.",
               "choices": [
                 {
@@ -25227,7 +25227,7 @@ window.ActivityData.stories = {
       "image": "../../images/winter_stories/story9.png",
       "alt": "Hand catching a snowflake on a glove",
       "text": [
-        "Snowflakes drifted down during dismissal, landing softly on Jay’s jacket and hair.",
+        "Snowflakes drifted down during dismissal, landing softly on Jay\u2019s jacket and hair.",
         "He held out his glove to catch a few, watching how each one melted into a tiny drop of water.",
         "The quiet snowfall made everything feel slower and more peaceful.",
         "Jay took a deep breath and walked to the bus line, enjoying the winter moment."
@@ -27419,7 +27419,7 @@ window.ActivityData.stories = {
     {
       "id": 2,
       "title": "Game Recommendation",
-      "text": "“Sky Builders” is a fun game where you design your own floating city. The controls are easy to learn and the game looks great. You can also play with friends online. It is one of the best games I’ve played this year."
+      "text": "\u201cSky Builders\u201d is a fun game where you design your own floating city. The controls are easy to learn and the game looks great. You can also play with friends online. It is one of the best games I\u2019ve played this year."
     },
     {
       "id": 3,
@@ -27469,7 +27469,7 @@ window.ActivityData.stories = {
     {
       "id": "travel",
       "title": "Travel Delay",
-      "text": "Olivia’s family waited at the airport when their flight was delayed two hours. They used the time to call grandparents, play a card game, and check the flight app for updates. Even though they were tired, they stayed patient and took short walks so the trip would start smoothly once they boarded.",
+      "text": "Olivia\u2019s family waited at the airport when their flight was delayed two hours. They used the time to call grandparents, play a card game, and check the flight app for updates. Even though they were tired, they stayed patient and took short walks so the trip would start smoothly once they boarded.",
       "type": "Inform / Explain"
     },
     {
@@ -29899,7 +29899,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Saved Pie",
-      "text": "Marisol put the last slice of pie in the fridge. She wrote a note that said, “For Dad” and taped it to the plate. Her dad was working late and would come home after dinner. She wanted him to have a treat. She closed the fridge door and smiled.",
+      "text": "Marisol put the last slice of pie in the fridge. She wrote a note that said, \u201cFor Dad\u201d and taped it to the plate. Her dad was working late and would come home after dinner. She wanted him to have a treat. She closed the fridge door and smiled.",
       "questions": [
         {
           "prompt": "Why did Marisol leave a note?",
@@ -29925,7 +29925,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Parade Spot",
-      "text": "Carlos’s family brought folding chairs and a blanket to the parade. They arrived an hour early and sat near the street. The band would start soon, and Carlos wanted to see the balloons. His sister held a small flag. They ate muffins while they waited.",
+      "text": "Carlos\u2019s family brought folding chairs and a blanket to the parade. They arrived an hour early and sat near the street. The band would start soon, and Carlos wanted to see the balloons. His sister held a small flag. They ate muffins while they waited.",
       "questions": [
         {
           "prompt": "Why did they arrive early?",
@@ -29977,7 +29977,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Airport Delay",
-      "text": "At the airport, Mom opened a bag of snacks when the screen said “Delayed.” The kids played a card game while they waited. They sat by the window and watched planes take off. A voice said the new time was one hour later. The kids yawned but kept playing.",
+      "text": "At the airport, Mom opened a bag of snacks when the screen said \u201cDelayed.\u201d The kids played a card game while they waited. They sat by the window and watched planes take off. A voice said the new time was one hour later. The kids yawned but kept playing.",
       "questions": [
         {
           "prompt": "Why did Mom share snacks?",
@@ -30029,7 +30029,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Thankful Notes",
-      "text": "Sophie wrote short notes that said “Thank you” and put them by each plate. Her brother helped fold the paper. After setting the table, they waited for their family to sit down. Sophie hoped everyone would read their note.",
+      "text": "Sophie wrote short notes that said \u201cThank you\u201d and put them by each plate. Her brother helped fold the paper. After setting the table, they waited for their family to sit down. Sophie hoped everyone would read their note.",
       "questions": [
         {
           "prompt": "Why did Sophie put notes by each plate?",
@@ -30055,7 +30055,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Extra Chair",
-      "text": "Aunt Maya brought an extra folding chair when she came in. She said, “Our cousin will be here too.” Dad moved things so the chair could fit at the table. Everyone scooted over to make space.",
+      "text": "Aunt Maya brought an extra folding chair when she came in. She said, \u201cOur cousin will be here too.\u201d Dad moved things so the chair could fit at the table. Everyone scooted over to make space.",
       "questions": [
         {
           "prompt": "Why did they add another chair?",
@@ -30107,7 +30107,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Cold Walk",
-      "text": "After dinner, Lina and her grandpa took a short walk. They wore hats and gloves because the wind was strong. When Lina shivered, Grandpa said, “Let’s head back and make cocoa.” They hurried toward the warm house.",
+      "text": "After dinner, Lina and her grandpa took a short walk. They wore hats and gloves because the wind was strong. When Lina shivered, Grandpa said, \u201cLet\u2019s head back and make cocoa.\u201d They hurried toward the warm house.",
       "questions": [
         {
           "prompt": "Why did they wear hats and gloves?",
@@ -30149,7 +30149,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Two Plates, No Table",
-      "text": "Lina balanced two steaming plates on her knees while a football game played quietly in the corner of her laptop. The radiator hissed, and the window showed a rainy city street below. She sent a photo of the meal to her parents back home and typed, “Miss you, but we’re making our own little tradition.” Her roommate clinked a mug of apple cider against hers.",
+      "text": "Lina balanced two steaming plates on her knees while a football game played quietly in the corner of her laptop. The radiator hissed, and the window showed a rainy city street below. She sent a photo of the meal to her parents back home and typed, \u201cMiss you, but we\u2019re making our own little tradition.\u201d Her roommate clinked a mug of apple cider against hers.",
       "questions": [
         {
           "prompt": "Where are Lina and her roommate celebrating?",
@@ -30167,11 +30167,11 @@ window.ActivityData.stories = {
     },
     {
       "title": "The Early Morning Trip",
-      "text": "Before the sun rose, Jamal pulled on his scout uniform and met his troop at the community center. They loaded boxes of canned goods and bags of potatoes into a van. At their second stop, an elderly man smiled and said, “You saved me a bus ride.” Jamal’s hands were cold, but he felt proud as he handed over a frozen turkey and a recipe booklet.",
+      "text": "Before the sun rose, Jamal pulled on his scout uniform and met his troop at the community center. They loaded boxes of canned goods and bags of potatoes into a van. At their second stop, an elderly man smiled and said, \u201cYou saved me a bus ride.\u201d Jamal\u2019s hands were cold, but he felt proud as he handed over a frozen turkey and a recipe booklet.",
       "questions": [
         {
           "prompt": "What are the scouts doing around the holiday?",
-          "hint": "Think about the food items and who they’re visiting."
+          "hint": "Think about the food items and who they\u2019re visiting."
         },
         {
           "prompt": "Why did the elderly man feel relieved?",
@@ -30181,7 +30181,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "The Outdoor Table",
-      "text": "Anya’s family pushed two picnic tables together under the big oak tree. They added quilts as tablecloths and filled mason jars with leaves and cranberries. When everyone sat down, they kept their coats on. Steam rose from the dishes, and a gust of wind blew paper name cards across the grass, making everyone laugh as they chased them.",
+      "text": "Anya\u2019s family pushed two picnic tables together under the big oak tree. They added quilts as tablecloths and filled mason jars with leaves and cranberries. When everyone sat down, they kept their coats on. Steam rose from the dishes, and a gust of wind blew paper name cards across the grass, making everyone laugh as they chased them.",
       "questions": [
         {
           "prompt": "Why are they wearing coats while eating?",
@@ -30199,7 +30199,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "The Last-Minute Store Run",
-      "text": "Ava stared at the nearly empty baking aisle. Only one small can of pumpkin remained, dented on the side. She grabbed it, paid, and hurried home. When she walked in, her aunt sighed in relief and slid a pie crust toward her. “You saved dessert,” her aunt said, handing Ava a cinnamon jar that was already open on the counter.",
+      "text": "Ava stared at the nearly empty baking aisle. Only one small can of pumpkin remained, dented on the side. She grabbed it, paid, and hurried home. When she walked in, her aunt sighed in relief and slid a pie crust toward her. \u201cYou saved dessert,\u201d her aunt said, handing Ava a cinnamon jar that was already open on the counter.",
       "questions": [
         {
           "prompt": "Why was the store almost out of pumpkin?",
@@ -30213,21 +30213,21 @@ window.ActivityData.stories = {
     },
     {
       "title": "A Different Main Dish",
-      "text": "Rae set a platter of golden roasted vegetables in the center of the table. Next to it was a stuffed acorn squash that smelled like garlic and herbs. When Uncle Ben arrived with a foil-covered pan, he whispered, “My surprise ham is in the car, should I bring it?” Rae smiled and pointed to a note on the fridge: “Plant-based Thanksgiving this year—please join us!”",
+      "text": "Rae set a platter of golden roasted vegetables in the center of the table. Next to it was a stuffed acorn squash that smelled like garlic and herbs. When Uncle Ben arrived with a foil-covered pan, he whispered, \u201cMy surprise ham is in the car, should I bring it?\u201d Rae smiled and pointed to a note on the fridge: \u201cPlant-based Thanksgiving this year\u2014please join us!\u201d",
       "questions": [
         {
           "prompt": "Why did Uncle Ben whisper about his ham?",
           "hint": "Look at the meal theme written on the fridge."
         },
         {
-          "prompt": "What is different about this family’s main course?",
+          "prompt": "What is different about this family\u2019s main course?",
           "hint": "Notice what is on the table instead of meat."
         }
       ]
     },
     {
       "title": "Two Houses, One Pie",
-      "text": "Jay measured sugar while his mom rolled out pie dough. He packed paper plates and plastic forks into a tote bag, then wrapped the cooled pie in foil. At noon he slid everything into the back seat next to his backpack.\n\nOn the drive he checked the clock and said, “If the parade ends on time, we’ll make it before the football game starts.” His mom reminded him to save half the pie for the evening stop. Jay laughed and said, “I know—two Thanksgivings means two slices.”",
+      "text": "Jay measured sugar while his mom rolled out pie dough. He packed paper plates and plastic forks into a tote bag, then wrapped the cooled pie in foil. At noon he slid everything into the back seat next to his backpack.\n\nOn the drive he checked the clock and said, \u201cIf the parade ends on time, we\u2019ll make it before the football game starts.\u201d His mom reminded him to save half the pie for the evening stop. Jay laughed and said, \u201cI know\u2014two Thanksgivings means two slices.\u201d",
       "questions": [
         {
           "prompt": "Why did Jay pack plates and forks with the pie?",
@@ -30245,7 +30245,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "String Lights in the Gym",
-      "text": "Maya unlocked the school gym and flipped on the stage lights. She dragged cafeteria tables into long rows and taped paper leaves to the ends. Her backpack held extension cords and a box of string lights she bought with her weekend pay.\n\nBy late afternoon, classmates arrived with foil pans and slow cookers. Coach Lopez carried a stack of plates and said, “This is for everyone who couldn’t travel.” As music played softly, Maya dimmed the bright gym lights so the string lights made the room feel like a cozy dining room.",
+      "text": "Maya unlocked the school gym and flipped on the stage lights. She dragged cafeteria tables into long rows and taped paper leaves to the ends. Her backpack held extension cords and a box of string lights she bought with her weekend pay.\n\nBy late afternoon, classmates arrived with foil pans and slow cookers. Coach Lopez carried a stack of plates and said, \u201cThis is for everyone who couldn\u2019t travel.\u201d As music played softly, Maya dimmed the bright gym lights so the string lights made the room feel like a cozy dining room.",
       "questions": [
         {
           "prompt": "Why are they eating in the school gym?",
@@ -30256,14 +30256,14 @@ window.ActivityData.stories = {
           "hint": "She wanted the big gym to feel warm and homey."
         },
         {
-          "prompt": "What does the coach’s comment tell you?",
-          "hint": "This meal is meant to include people who couldn’t go home."
+          "prompt": "What does the coach\u2019s comment tell you?",
+          "hint": "This meal is meant to include people who couldn\u2019t go home."
         }
       ]
     },
     {
       "title": "Gate B16 Thanksgiving",
-      "text": "Tessa and her brother sat at Gate B16 with backpacks at their feet. Their dad pulled leftovers from a cooler and handed out plastic forks. A text popped up from Aunt Kim: “Flight still on time? Save room for stuffing!” Tessa snapped a photo of their mini airport picnic and wrote back, “We’re bringing some!”\n\nAn announcement crackled: the flight was delayed forty-five minutes. Their dad checked his watch and sighed, then joked, “First Thanksgiving in the sky?” Tessa tightened her scarf and said, “As long as we land before dessert.”",
+      "text": "Tessa and her brother sat at Gate B16 with backpacks at their feet. Their dad pulled leftovers from a cooler and handed out plastic forks. A text popped up from Aunt Kim: \u201cFlight still on time? Save room for stuffing!\u201d Tessa snapped a photo of their mini airport picnic and wrote back, \u201cWe\u2019re bringing some!\u201d\n\nAn announcement crackled: the flight was delayed forty-five minutes. Their dad checked his watch and sighed, then joked, \u201cFirst Thanksgiving in the sky?\u201d Tessa tightened her scarf and said, \u201cAs long as we land before dessert.\u201d",
       "questions": [
         {
           "prompt": "Why do they have a cooler at the airport?",
@@ -30274,7 +30274,7 @@ window.ActivityData.stories = {
           "hint": "They want to arrive in time for Thanksgiving dinner."
         },
         {
-          "prompt": "What does the dad’s joke about the sky mean?",
+          "prompt": "What does the dad\u2019s joke about the sky mean?",
           "hint": "They might be eating part of the meal on the plane if the delay lasts."
         }
       ]
@@ -31078,7 +31078,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "When did Mia build the snowman?",
-                "clue": "Not today — look for a time word.",
+                "clue": "Not today \u2014 look for a time word.",
                 "choices": [
                   {
                     "text": "This morning",
@@ -31361,13 +31361,13 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "Last week, Mia built the best snowman on her street. She gave him a crooked carrot nose and wrapped her favorite blue scarf around his neck. But as February turned warmer, the snow started to melt a little more each day. One morning, Mia walked outside and found nothing but a puddle, a carrot, and a soggy scarf sitting in the mud. Her stomach sank — it felt like losing a friend. But then she noticed something tiny and green pushing up through the cold dirt near the fence. A flower was starting to grow. Mia picked up her scarf and smiled. Maybe something new could be just as special."
+            "Last week, Mia built the best snowman on her street. She gave him a crooked carrot nose and wrapped her favorite blue scarf around his neck. But as February turned warmer, the snow started to melt a little more each day. One morning, Mia walked outside and found nothing but a puddle, a carrot, and a soggy scarf sitting in the mud. Her stomach sank \u2014 it felt like losing a friend. But then she noticed something tiny and green pushing up through the cold dirt near the fence. A flower was starting to grow. Mia picked up her scarf and smiled. Maybe something new could be just as special."
           ],
           "questions": {
             "literal": [
               {
                 "prompt": "What did Mia find where the snowman used to be?",
-                "clue": "Three things were left behind — what were they?",
+                "clue": "Three things were left behind \u2014 what were they?",
                 "choices": [
                   {
                     "text": "A hat, a scarf, and a stick",
@@ -31411,7 +31411,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What did Mia do with her scarf at the end of the story?",
-                "clue": "She found it in the mud — what did she do with it?",
+                "clue": "She found it in the mud \u2014 what did she do with it?",
                 "choices": [
                   {
                     "text": "Left it in the mud",
@@ -31479,7 +31479,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "What does 'her stomach sank' tell you about how Mia felt?",
-                "clue": "Think about what that expression means — is it a happy or sad feeling?",
+                "clue": "Think about what that expression means \u2014 is it a happy or sad feeling?",
                 "choices": [
                   {
                     "text": "She was hungry for breakfast",
@@ -31615,7 +31615,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"She gave him a crooked carrot nose.\" What does crooked mean?",
-                "clue": "Consider how you would stick a carrot into a snowman's face — would it always go in perfectly straight?",
+                "clue": "Consider how you would stick a carrot into a snowman's face \u2014 would it always go in perfectly straight?",
                 "choices": [
                   {
                     "text": "Very long",
@@ -32081,7 +32081,7 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "Max had been stuck inside all winter, so the moment his owner opened the back door, he shot outside like a rocket. The snow was melting fast, and the yard had turned into a muddy mess. Max ran back and forth across the wet ground, completely happy. When he finally came to the door, all four paws were caked in dark mud. His owner shook her head and pointed back at the yard. She grabbed an old plastic tub from the garage, filled it with lukewarm water, and gave Max a bath right there outside. Max whined the whole time, but when it was over he was clean — and already eyeing the muddy yard again."
+            "Max had been stuck inside all winter, so the moment his owner opened the back door, he shot outside like a rocket. The snow was melting fast, and the yard had turned into a muddy mess. Max ran back and forth across the wet ground, completely happy. When he finally came to the door, all four paws were caked in dark mud. His owner shook her head and pointed back at the yard. She grabbed an old plastic tub from the garage, filled it with lukewarm water, and gave Max a bath right there outside. Max whined the whole time, but when it was over he was clean \u2014 and already eyeing the muddy yard again."
           ],
           "questions": {
             "literal": [
@@ -32190,7 +32190,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Nobody — he had been alone",
+                    "text": "Nobody \u2014 he had been alone",
                     "isCorrect": false
                   }
                 ]
@@ -32265,7 +32265,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why did the owner shake her head and point back at the yard instead of letting Max in?",
-                "clue": "She didn't say anything — but think about what she saw.",
+                "clue": "She didn't say anything \u2014 but think about what she saw.",
                 "choices": [
                   {
                     "text": "She wanted Max to keep playing outside",
@@ -32335,7 +32335,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"Max had been cooped up inside all winter.\" What does cooped up mean?",
-                "clue": "Consider how Max acted the moment the door opened — what does that tell you about how he had been feeling?",
+                "clue": "Consider how Max acted the moment the door opened \u2014 what does that tell you about how he had been feeling?",
                 "choices": [
                   {
                     "text": "Sick and resting inside",
@@ -32357,7 +32357,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"All four paws were caked in dark mud.\" What does caked mean?",
-                "clue": "Consider what mud looks like when it dries on something — is it a little bit or a lot?",
+                "clue": "Consider what mud looks like when it dries on something \u2014 is it a little bit or a lot?",
                 "choices": [
                   {
                     "text": "Lightly dusted with mud",
@@ -32630,7 +32630,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "How do you think the girl felt about winter ending?",
-                "clue": "She was excited about spring — what does that tell you?",
+                "clue": "She was excited about spring \u2014 what does that tell you?",
                 "choices": [
                   {
                     "text": "She was sad winter was ending",
@@ -32720,7 +32720,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What do you think Dani will do next February?",
-                "clue": "The story says she does this every year — what does that tell you?",
+                "clue": "The story says she does this every year \u2014 what does that tell you?",
                 "choices": [
                   {
                     "text": "Forget about the robin because it happens every year",
@@ -32823,7 +32823,7 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "Every February, Dani watched the backyard like she was waiting for something. And she was. The first robin of the season was her personal sign that winter was finally loosening its grip. On a Tuesday morning, with frost still clinging to the grass and a few stubborn patches of snow in the corners of the yard, she spotted it — a plump little bird with a rust-red chest, hopping across the muddy ground and jabbing its beak into the soil. Dani pressed her face against the cold glass. She knew robins came back when the ground started to thaw, when worms began moving closer to the surface. Seeing that bird meant the cold wasn't going to last forever. She grabbed her notebook and wrote down the date, just like she did every year."
+            "Every February, Dani watched the backyard like she was waiting for something. And she was. The first robin of the season was her personal sign that winter was finally loosening its grip. On a Tuesday morning, with frost still clinging to the grass and a few stubborn patches of snow in the corners of the yard, she spotted it \u2014 a plump little bird with a rust-red chest, hopping across the muddy ground and jabbing its beak into the soil. Dani pressed her face against the cold glass. She knew robins came back when the ground started to thaw, when worms began moving closer to the surface. Seeing that bird meant the cold wasn't going to last forever. She grabbed her notebook and wrote down the date, just like she did every year."
           ],
           "questions": {
             "literal": [
@@ -32941,7 +32941,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "What does 'winter was finally loosening its grip' mean?",
-                "clue": "Picture someone who is holding something tightly — what happens when they loosen their grip?",
+                "clue": "Picture someone who is holding something tightly \u2014 what happens when they loosen their grip?",
                 "choices": [
                   {
                     "text": "Winter was getting stronger and colder",
@@ -32963,7 +32963,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why do you think Dani writes down the date every year when she sees the first robin?",
-                "clue": "She has done this for years — what does the date mean to her?",
+                "clue": "She has done this for years \u2014 what does the date mean to her?",
                 "choices": [
                   {
                     "text": "She is writing a report about birds for school",
@@ -32992,7 +32992,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Relieved and happy — the long cold winter was finally ending",
+                    "text": "Relieved and happy \u2014 the long cold winter was finally ending",
                     "isCorrect": true
                   },
                   {
@@ -33053,7 +33053,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What do you think Dani will do next February?",
-                "clue": "The story says she does this every year — what does that tell you?",
+                "clue": "The story says she does this every year \u2014 what does that tell you?",
                 "choices": [
                   {
                     "text": "Forget about the robin because it happens every year",
@@ -33077,7 +33077,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"A few stubborn patches of snow in the corners of the yard.\" What does stubborn mean here?",
-                "clue": "Consider the fact that most of the snow had already melted — why was this snow still there?",
+                "clue": "Consider the fact that most of the snow had already melted \u2014 why was this snow still there?",
                 "choices": [
                   {
                     "text": "Very heavy and deep",
@@ -33350,7 +33350,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "How do you think Jake felt about the snow melting away?",
-                "clue": "He knew the snow would be gone soon — how might that feel?",
+                "clue": "He knew the snow would be gone soon \u2014 how might that feel?",
                 "choices": [
                   {
                     "text": "Happy that winter was over",
@@ -33427,7 +33427,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "The snow was wet and soft — a sign of warmer weather",
+                    "text": "The snow was wet and soft \u2014 a sign of warmer weather",
                     "isCorrect": true
                   },
                   {
@@ -33440,7 +33440,7 @@ window.ActivityData.stories = {
             "prediction": [
               {
                 "prompt": "What will he likely do when the snow is completely gone?",
-                "clue": "Consider how Jake felt about winter ending — did he seem excited about spring or was he sad to let go?",
+                "clue": "Consider how Jake felt about winter ending \u2014 did he seem excited about spring or was he sad to let go?",
                 "choices": [
                   {
                     "text": "Stay inside until summer arrives",
@@ -33565,7 +33565,7 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "Jake woke up and checked the yard before he even had breakfast. There was still snow on the ground, but just barely — thin patches of it clinging to the shady corners of the yard. He pulled on his boots and went outside. The snow was wet and heavy, not the dry fluffy kind from January. He packed a handful together and the snowball started falling apart before he even drew his arm back. Jake looked at it for a second. He knew this was probably the last snow of the year. He threw it anyway, right at the old oak tree, and watched the wet clump splatter against the bark. Then he stood there for a minute, listening to the dripping sound of snow melting off the roof."
+            "Jake woke up and checked the yard before he even had breakfast. There was still snow on the ground, but just barely \u2014 thin patches of it clinging to the shady corners of the yard. He pulled on his boots and went outside. The snow was wet and heavy, not the dry fluffy kind from January. He packed a handful together and the snowball started falling apart before he even drew his arm back. Jake looked at it for a second. He knew this was probably the last snow of the year. He threw it anyway, right at the old oak tree, and watched the wet clump splatter against the bark. Then he stood there for a minute, listening to the dripping sound of snow melting off the roof."
           ],
           "questions": {
             "literal": [
@@ -33683,7 +33683,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "Why were the snow patches only in the shady corners of the yard?",
-                "clue": "Think about what melts snow — and what would block it.",
+                "clue": "Think about what melts snow \u2014 and what would block it.",
                 "choices": [
                   {
                     "text": "The wind had pushed all the snow to the corners",
@@ -33727,7 +33727,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does the image of Jake standing quietly, listening to snow drip off the roof, suggest about how he felt?",
-                "clue": "He is not doing anything — just standing and listening. What kind of feeling makes you do that?",
+                "clue": "He is not doing anything \u2014 just standing and listening. What kind of feeling makes you do that?",
                 "choices": [
                   {
                     "text": "He was bored and had nothing to do",
@@ -33773,7 +33773,7 @@ window.ActivityData.stories = {
             "prediction": [
               {
                 "prompt": "What will he likely do when the snow is completely gone?",
-                "clue": "Consider how Jake felt about winter ending — did he seem excited about spring or was he sad to let go?",
+                "clue": "Consider how Jake felt about winter ending \u2014 did he seem excited about spring or was he sad to let go?",
                 "choices": [
                   {
                     "text": "Stay inside until summer arrives",
@@ -33819,7 +33819,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"There was still snow on the ground, but just barely.\" What does barely mean?",
-                "clue": "Consider how much snow Jake found — was there a lot or almost none?",
+                "clue": "Consider how much snow Jake found \u2014 was there a lot or almost none?",
                 "choices": [
                   {
                     "text": "Completely gone",
@@ -34114,7 +34114,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does it tell you about Lily that she laughed and kept walking?",
-                "clue": "She did not get upset — she kept going.",
+                "clue": "She did not get upset \u2014 she kept going.",
                 "choices": [
                   {
                     "text": "She did not care about her muddy sock",
@@ -34204,7 +34204,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What do you think Lily will tell her family when she gets home?",
-                "clue": "Consider how Lily reacted when her boot came off — what does that tell you about her personality?",
+                "clue": "Consider how Lily reacted when her boot came off \u2014 what does that tell you about her personality?",
                 "choices": [
                   {
                     "text": "Be too embarrassed to tell anyone",
@@ -34307,13 +34307,13 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "Lily took the shortcut home even though she knew the path through the field got muddy this time of year. The snow had been melting for days, and the ground was soft and soggy in a way that pulled at her boots with every step. She was halfway across when her left boot sank deep into a thick patch of mud and stopped moving. Lily kept walking — and her foot slid right out, leaving her standing with one boot on and one sock planted in cold wet mud. She looked down at her sock, then back at her boot still standing upright in the mud like it had decided to stay. Lily burst out laughing. She reached back, yanked the boot free with a loud sucking sound, and squished the rest of the way home."
+            "Lily took the shortcut home even though she knew the path through the field got muddy this time of year. The snow had been melting for days, and the ground was soft and soggy in a way that pulled at her boots with every step. She was halfway across when her left boot sank deep into a thick patch of mud and stopped moving. Lily kept walking \u2014 and her foot slid right out, leaving her standing with one boot on and one sock planted in cold wet mud. She looked down at her sock, then back at her boot still standing upright in the mud like it had decided to stay. Lily burst out laughing. She reached back, yanked the boot free with a loud sucking sound, and squished the rest of the way home."
           ],
           "questions": {
             "literal": [
               {
                 "prompt": "Where was Lily walking when her boot got stuck?",
-                "clue": "She chose a specific route — not the normal way.",
+                "clue": "She chose a specific route \u2014 not the normal way.",
                 "choices": [
                   {
                     "text": "Down the main road",
@@ -34357,7 +34357,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "When Lily's boot got stuck, what did she do next?",
-                "clue": "She kept moving — even without the boot.",
+                "clue": "She kept moving \u2014 even without the boot.",
                 "choices": [
                   {
                     "text": "Stopped and waited for someone to help her",
@@ -34469,7 +34469,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why did Lily take the shortcut even though she knew it would be muddy?",
-                "clue": "She knew — but she went anyway. What does that suggest?",
+                "clue": "She knew \u2014 but she went anyway. What does that suggest?",
                 "choices": [
                   {
                     "text": "She forgot it was muddy this time of year",
@@ -34537,7 +34537,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What do you think Lily will tell her family when she gets home?",
-                "clue": "Consider how Lily reacted when her boot came off — what does that tell you about her personality?",
+                "clue": "Consider how Lily reacted when her boot came off \u2014 what does that tell you about her personality?",
                 "choices": [
                   {
                     "text": "Be too embarrassed to tell anyone",
@@ -34913,7 +34913,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Maybe — she might be curious again even though she knows what could happen",
+                    "text": "Maybe \u2014 she might be curious again even though she knows what could happen",
                     "isCorrect": true
                   },
                   {
@@ -35055,7 +35055,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "How did Anna first test the ice?",
-                "clue": "She was cautious — she did not jump on it.",
+                "clue": "She was cautious \u2014 she did not jump on it.",
                 "choices": [
                   {
                     "text": "Tapped it with her hand",
@@ -35152,7 +35152,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "She was too curious to resist — she had to see for herself",
+                    "text": "She was too curious to resist \u2014 she had to see for herself",
                     "isCorrect": true
                   },
                   {
@@ -35166,15 +35166,15 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "What does the last line — 'It had seemed worth testing at the time' — tell you about how Anna felt about what happened?",
-                "clue": "She is not panicking or upset — think about the tone of those words.",
+                "prompt": "What does the last line \u2014 'It had seemed worth testing at the time' \u2014 tell you about how Anna felt about what happened?",
+                "clue": "She is not panicking or upset \u2014 think about the tone of those words.",
                 "choices": [
                   {
                     "text": "She was very angry at herself for being careless",
                     "isCorrect": false
                   },
                   {
-                    "text": "She accepted the outcome with a bit of humor — she knew the risk and took it",
+                    "text": "She accepted the outcome with a bit of humor \u2014 she knew the risk and took it",
                     "isCorrect": true
                   },
                   {
@@ -35189,7 +35189,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why did the puddle have ice on top but still have liquid water underneath?",
-                "clue": "Think about how freezing works — does cold air freeze all the way down at once?",
+                "clue": "Think about how freezing works \u2014 does cold air freeze all the way down at once?",
                 "choices": [
                   {
                     "text": "The puddle was too deep to freeze all the way through in one night",
@@ -35246,7 +35246,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Maybe — she might be curious again even though she knows what could happen",
+                    "text": "Maybe \u2014 she might be curious again even though she knows what could happen",
                     "isCorrect": true
                   },
                   {
@@ -35281,7 +35281,7 @@ window.ActivityData.stories = {
             "vocabulary": [
               {
                 "prompt": "\"She could see the water still liquid underneath.\" What does liquid mean?",
-                "clue": "Consider the two forms water can take in winter — what is the opposite of ice?",
+                "clue": "Consider the two forms water can take in winter \u2014 what is the opposite of ice?",
                 "choices": [
                   {
                     "text": "Warm and steamy",
@@ -35303,7 +35303,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"Her sneaker was soaked through.\" What does soaked mean?",
-                "clue": "Consider what happened when cold water rushed over her shoe — how much water got in?",
+                "clue": "Consider what happened when cold water rushed over her shoe \u2014 how much water got in?",
                 "choices": [
                   {
                     "text": "A little damp on the outside",
@@ -35523,7 +35523,7 @@ window.ActivityData.stories = {
                     "isCorrect": true
                   },
                   {
-                    "text": "Nothing — he did not feel it",
+                    "text": "Nothing \u2014 he did not feel it",
                     "isCorrect": false
                   }
                 ]
@@ -35532,7 +35532,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "How do you think Tom felt sitting in the warm sunshine?",
-                "clue": "He did not want to go back inside — what does that tell you?",
+                "clue": "He did not want to go back inside \u2014 what does that tell you?",
                 "choices": [
                   {
                     "text": "Cold and uncomfortable",
@@ -35644,7 +35644,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What will Tom likely do when spring fully arrives?",
-                "clue": "Consider what Tom seemed to love most — was it doing things outside, or just being outside?",
+                "clue": "Consider what Tom seemed to love most \u2014 was it doing things outside, or just being outside?",
                 "choices": [
                   {
                     "text": "Spend as much time outside as possible now that it is warm",
@@ -35747,7 +35747,7 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "It was one of those late February days that felt like a promise. Tom stepped outside after lunch without even grabbing his coat — something he had not been able to do in months. The sun was low but warm on his face, and the air smelled different, almost like wet dirt and something green trying to wake up. He sat down on the front steps and just stayed there. Water dripped steadily from the edge of the roof where the snow was letting go. A chickadee called from somewhere in the bare oak tree above him. Tom was not doing anything in particular — just sitting, listening, feeling the warmth. It was not quite spring, but it was not really winter anymore either."
+            "It was one of those late February days that felt like a promise. Tom stepped outside after lunch without even grabbing his coat \u2014 something he had not been able to do in months. The sun was low but warm on his face, and the air smelled different, almost like wet dirt and something green trying to wake up. He sat down on the front steps and just stayed there. Water dripped steadily from the edge of the roof where the snow was letting go. A chickadee called from somewhere in the bare oak tree above him. Tom was not doing anything in particular \u2014 just sitting, listening, feeling the warmth. It was not quite spring, but it was not really winter anymore either."
           ],
           "questions": {
             "literal": [
@@ -35908,8 +35908,8 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "What does the last line — 'It was not quite spring, but it was not really winter anymore either' — tell you about how Tom felt?",
-                "clue": "He is not quite one thing or another — like the season itself.",
+                "prompt": "What does the last line \u2014 'It was not quite spring, but it was not really winter anymore either' \u2014 tell you about how Tom felt?",
+                "clue": "He is not quite one thing or another \u2014 like the season itself.",
                 "choices": [
                   {
                     "text": "He was confused about what season it was",
@@ -35920,7 +35920,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "He was suspended in a moment between seasons — peaceful and a little uncertain",
+                    "text": "He was suspended in a moment between seasons \u2014 peaceful and a little uncertain",
                     "isCorrect": true
                   },
                   {
@@ -35977,7 +35977,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What will Tom likely do when spring fully arrives?",
-                "clue": "Consider what Tom seemed to love most — was it doing things outside, or just being outside?",
+                "clue": "Consider what Tom seemed to love most \u2014 was it doing things outside, or just being outside?",
                 "choices": [
                   {
                     "text": "Spend as much time outside as possible now that it is warm",
@@ -36023,7 +36023,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"Tom was not doing anything in particular.\" What does in particular mean?",
-                "clue": "Consider what Tom was actually doing — was he focused on one specific thing or just existing outside?",
+                "clue": "Consider what Tom was actually doing \u2014 was he focused on one specific thing or just existing outside?",
                 "choices": [
                   {
                     "text": "Was doing something very important",
@@ -36235,7 +36235,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Never — seeds only grow inside",
+                    "text": "Never \u2014 seeds only grow inside",
                     "isCorrect": false
                   },
                   {
@@ -36467,7 +36467,7 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "Maria had been watching the snow melt for weeks, and she was done waiting for spring. She dug through the shelves in the garage until she found what she was looking for — a crinkled seed packet with a picture of sunflowers on the front, left over from last summer. The ground outside was still frozen a few inches down, too cold to plant anything real yet. But Maria had a plan. She filled six small plastic cups with potting soil, pressed two seeds into each one, and lined them up on the sunniest windowsill in the kitchen. Her mom looked at the row of cups and raised an eyebrow. Maria just shrugged. By the time the ground was ready outside, her seedlings would already have a head start."
+            "Maria had been watching the snow melt for weeks, and she was done waiting for spring. She dug through the shelves in the garage until she found what she was looking for \u2014 a crinkled seed packet with a picture of sunflowers on the front, left over from last summer. The ground outside was still frozen a few inches down, too cold to plant anything real yet. But Maria had a plan. She filled six small plastic cups with potting soil, pressed two seeds into each one, and lined them up on the sunniest windowsill in the kitchen. Her mom looked at the row of cups and raised an eyebrow. Maria just shrugged. By the time the ground was ready outside, her seedlings would already have a head start."
           ],
           "questions": {
             "literal": [
@@ -36539,14 +36539,14 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "How did Maria's mom react when she saw the row of cups?",
-                "clue": "She did not say anything — but her face showed her feeling.",
+                "clue": "She did not say anything \u2014 but her face showed her feeling.",
                 "choices": [
                   {
                     "text": "She smiled and praised Maria's idea",
                     "isCorrect": false
                   },
                   {
-                    "text": "She raised an eyebrow — skeptical or surprised",
+                    "text": "She raised an eyebrow \u2014 skeptical or surprised",
                     "isCorrect": true
                   },
                   {
@@ -36607,7 +36607,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why do you think Maria just shrugged when her mom raised an eyebrow?",
-                "clue": "She did not try to explain or defend herself — she just shrugged.",
+                "clue": "She did not try to explain or defend herself \u2014 she just shrugged.",
                 "choices": [
                   {
                     "text": "She was not sure her plan would work",
@@ -36651,7 +36651,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does Maria mean when she says her seedlings would 'already have a head start'?",
-                "clue": "Think about a race — what does it mean to start before the others?",
+                "clue": "Think about a race \u2014 what does it mean to start before the others?",
                 "choices": [
                   {
                     "text": "Her plants would grow faster than plants started from seed outdoors",
@@ -36972,7 +36972,7 @@ window.ActivityData.stories = {
             "inferential": [
               {
                 "prompt": "How do you think Sam felt when he saw the sign and knew he could not skate?",
-                "clue": "He had been skating there all winter — it was his favorite activity.",
+                "clue": "He had been skating there all winter \u2014 it was his favorite activity.",
                 "choices": [
                   {
                     "text": "Happy that the season was over",
@@ -37038,7 +37038,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does it tell you about Sam that he followed the sign and went home?",
-                "clue": "It was not easy — he loved skating there.",
+                "clue": "It was not easy \u2014 he loved skating there.",
                 "choices": [
                   {
                     "text": "He was afraid of the water",
@@ -37187,7 +37187,7 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "All winter, the pond at the end of Sam's street had been solid enough to skate on. He had been out there almost every weekend since December, sometimes with friends, sometimes just by himself. But when he showed up on a Saturday in late February, things looked different. The ice was no longer smooth and white — it had taken on a gray glassy look, and he could see thin cracks running out from the edges. A handwritten sign zip-tied to the fence read: DO NOT WALK ON ICE. Sam stood at the edge for a while, his skates over his shoulder. He pressed the toe of his boot against the very edge of the ice and felt it give slightly, like it was sighing. He stepped back. He stayed another few minutes just looking at the pond, at the gray sky reflected in the patches of open water near the middle, and then turned and headed home. The season was over."
+            "All winter, the pond at the end of Sam's street had been solid enough to skate on. He had been out there almost every weekend since December, sometimes with friends, sometimes just by himself. But when he showed up on a Saturday in late February, things looked different. The ice was no longer smooth and white \u2014 it had taken on a gray glassy look, and he could see thin cracks running out from the edges. A handwritten sign zip-tied to the fence read: DO NOT WALK ON ICE. Sam stood at the edge for a while, his skates over his shoulder. He pressed the toe of his boot against the very edge of the ice and felt it give slightly, like it was sighing. He stepped back. He stayed another few minutes just looking at the pond, at the gray sky reflected in the patches of open water near the middle, and then turned and headed home. The season was over."
           ],
           "questions": {
             "literal": [
@@ -37348,7 +37348,7 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "What does the last line — 'The season was over' — tell you about how Sam felt?",
+                "prompt": "What does the last line \u2014 'The season was over' \u2014 tell you about how Sam felt?",
                 "clue": "It is only four words. Think about how a very short, plain sentence can carry emotion.",
                 "choices": [
                   {
@@ -37360,7 +37360,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Sam felt a quiet sadness — winter skating was done and he would miss it",
+                    "text": "Sam felt a quiet sadness \u2014 winter skating was done and he would miss it",
                     "isCorrect": true
                   },
                   {
@@ -37371,14 +37371,14 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What does it mean that the ice 'gave slightly, like it was sighing'?",
-                "clue": "Think about what that gentle movement — and that word 'sighing' — suggests.",
+                "clue": "Think about what that gentle movement \u2014 and that word 'sighing' \u2014 suggests.",
                 "choices": [
                   {
                     "text": "The ice was perfectly safe but just barely",
                     "isCorrect": false
                   },
                   {
-                    "text": "The ice was weak and bending under pressure — it was no longer solid",
+                    "text": "The ice was weak and bending under pressure \u2014 it was no longer solid",
                     "isCorrect": true
                   },
                   {
@@ -37463,7 +37463,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"The ice had taken on a gray glassy look.\" What does glassy mean?",
-                "clue": "Consider what a window or pane of glass looks like — smooth, clear, a little shiny.",
+                "clue": "Consider what a window or pane of glass looks like \u2014 smooth, clear, a little shiny.",
                 "choices": [
                   {
                     "text": "Broken into sharp pieces",
@@ -37485,7 +37485,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"The gray sky reflected in the patches of open water.\" What does reflected mean?",
-                "clue": "Consider what you see when you look into still water — what does the surface show you?",
+                "clue": "Consider what you see when you look into still water \u2014 what does the surface show you?",
                 "choices": [
                   {
                     "text": "The sky was casting shadows on the water",
@@ -37804,7 +37804,7 @@ window.ActivityData.stories = {
             "prediction": [
               {
                 "prompt": "What will she likely do the next time she looks at the tree?",
-                "clue": "Consider the kind of person Maya seems to be — she noticed something small that others might miss.",
+                "clue": "Consider the kind of person Maya seems to be \u2014 she noticed something small that others might miss.",
                 "choices": [
                   {
                     "text": "Forget about the buds now that the rain has stopped",
@@ -37826,7 +37826,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What Will the yard likely look like in two or three weeks?",
-                "clue": "Consider all the changes that were already happening — the warm rain, the melting snow, the buds on the tree.",
+                "clue": "Consider all the changes that were already happening \u2014 the warm rain, the melting snow, the buds on the tree.",
                 "choices": [
                   {
                     "text": "The yard will be covered in snow again after one more cold spell",
@@ -37929,7 +37929,7 @@ window.ActivityData.stories = {
         },
         "complex": {
           "text": [
-            "The rain that started on Tuesday was different from the cold stinging kind that had fallen in January. This rain was warm — not warm like summer, but warm enough that Maya did not reach for her coat when she stepped onto the porch to watch it. The snow in the yard was disappearing fast, collapsing in on itself and spreading into wide shallow puddles across the sidewalk and driveway. Maya could hear it — the constant dripping and rushing of water moving everywhere at once, finding every low spot in the yard. The bare branches of the oak tree were glistening, and she noticed something she had not seen in months: the very tips of the branches had tiny swollen buds on them. They had not opened yet, but they were there. Maya pulled her sleeves over her hands and leaned against the porch railing. Winter was not gone, but it was leaving."
+            "The rain that started on Tuesday was different from the cold stinging kind that had fallen in January. This rain was warm \u2014 not warm like summer, but warm enough that Maya did not reach for her coat when she stepped onto the porch to watch it. The snow in the yard was disappearing fast, collapsing in on itself and spreading into wide shallow puddles across the sidewalk and driveway. Maya could hear it \u2014 the constant dripping and rushing of water moving everywhere at once, finding every low spot in the yard. The bare branches of the oak tree were glistening, and she noticed something she had not seen in months: the very tips of the branches had tiny swollen buds on them. They had not opened yet, but they were there. Maya pulled her sleeves over her hands and leaned against the porch railing. Winter was not gone, but it was leaving."
           ],
           "questions": {
             "literal": [
@@ -37942,7 +37942,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "This rain was warm — warm enough that Maya did not reach for her coat",
+                    "text": "This rain was warm \u2014 warm enough that Maya did not reach for her coat",
                     "isCorrect": true
                   },
                   {
@@ -37957,7 +37957,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What did Maya notice on the tips of the oak tree's branches?",
-                "clue": "She had not seen these in months — they were very small.",
+                "clue": "She had not seen these in months \u2014 they were very small.",
                 "choices": [
                   {
                     "text": "Small birds sitting in a row",
@@ -38090,8 +38090,8 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "What does the last line — 'Winter was not gone, but it was leaving' — tell you about the moment Maya was experiencing?",
-                "clue": "Neither winter nor spring — what is that in-between feeling like?",
+                "prompt": "What does the last line \u2014 'Winter was not gone, but it was leaving' \u2014 tell you about the moment Maya was experiencing?",
+                "clue": "Neither winter nor spring \u2014 what is that in-between feeling like?",
                 "choices": [
                   {
                     "text": "Winter was almost completely over and spring had already begun",
@@ -38102,7 +38102,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "The season was in transition — something was ending and something was about to begin",
+                    "text": "The season was in transition \u2014 something was ending and something was about to begin",
                     "isCorrect": true
                   },
                   {
@@ -38113,7 +38113,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "Why was the snow 'collapsing in on itself' instead of melting evenly from the top?",
-                "clue": "Think about where the warmth was coming from — air above, or something else?",
+                "clue": "Think about where the warmth was coming from \u2014 air above, or something else?",
                 "choices": [
                   {
                     "text": "The rain was hitting it so hard it was breaking apart",
@@ -38137,7 +38137,7 @@ window.ActivityData.stories = {
             "prediction": [
               {
                 "prompt": "What will she likely do the next time she looks at the tree?",
-                "clue": "Consider the kind of person Maya seems to be — she noticed something small that others might miss.",
+                "clue": "Consider the kind of person Maya seems to be \u2014 she noticed something small that others might miss.",
                 "choices": [
                   {
                     "text": "Forget about the buds now that the rain has stopped",
@@ -38159,7 +38159,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "What Will the yard likely look like in two or three weeks?",
-                "clue": "Consider all the changes that were already happening — the warm rain, the melting snow, the buds on the tree.",
+                "clue": "Consider all the changes that were already happening \u2014 the warm rain, the melting snow, the buds on the tree.",
                 "choices": [
                   {
                     "text": "The yard will be covered in snow again after one more cold spell",
@@ -38205,7 +38205,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "\"The very tips of the branches had tiny swollen buds on them.\" What does swollen mean?",
-                "clue": "Consider what a bud looks like just before it is about to open — is it flat or puffed out?",
+                "clue": "Consider what a bud looks like just before it is about to open \u2014 is it flat or puffed out?",
                 "choices": [
                   {
                     "text": "Dried out and shriveled",
@@ -38354,14 +38354,14 @@ window.ActivityData.stories = {
       "options": [
         "Fifth graders created a weekly podcast to share school news.",
         "Students wrote scripts on Tuesdays to practice fluent reading.",
-        "Maya edited the audio in the library’s media lab each Thursday.",
+        "Maya edited the audio in the library\u2019s media lab each Thursday.",
         "The team mailed compact discs to every home each Monday.",
         "Teachers banned the students from interviewing classmates."
       ],
       "mainIdea": "Fifth graders created a weekly podcast to share school news.",
       "details": [
         "Students wrote scripts on Tuesdays to practice fluent reading.",
-        "Maya edited the audio in the library’s media lab each Thursday."
+        "Maya edited the audio in the library\u2019s media lab each Thursday."
       ]
     },
     {
@@ -38398,7 +38398,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Library Book Swap Festival",
-      "passage": "The public library hosted a weekend book swap so readers could trade stories without spending money. Student helpers labeled tables by genre, which kept fantasy paperbacks far from biographies. Before setting down a donation, each guest filled out a colorful review card so the next reader would know what made the book memorable. Families lingered for cocoa, then left with stacks of “new-to-me” titles tucked under their arms.",
+      "passage": "The public library hosted a weekend book swap so readers could trade stories without spending money. Student helpers labeled tables by genre, which kept fantasy paperbacks far from biographies. Before setting down a donation, each guest filled out a colorful review card so the next reader would know what made the book memorable. Families lingered for cocoa, then left with stacks of \u201cnew-to-me\u201d titles tucked under their arms.",
       "options": [
         "The library hosted a book swap so readers could trade favorites.",
         "Student helpers labeled genre tables to keep the swap organized.",
@@ -38414,7 +38414,7 @@ window.ActivityData.stories = {
     },
     {
       "title": "Weather Station Morning Crew",
-      "passage": "Each dawn, a sixth-grade crew hustled to the school garden to run its new weather station. Two students clipped temperature, humidity, and wind readings before the first bell, checking the sensors twice for accuracy. Another pair uploaded the numbers to a hallway display and added a short forecast to the principal’s daily email. Their routine meant teachers could plan recess and science experiments using fresh data gathered by their own students.",
+      "passage": "Each dawn, a sixth-grade crew hustled to the school garden to run its new weather station. Two students clipped temperature, humidity, and wind readings before the first bell, checking the sensors twice for accuracy. Another pair uploaded the numbers to a hallway display and added a short forecast to the principal\u2019s daily email. Their routine meant teachers could plan recess and science experiments using fresh data gathered by their own students.",
       "options": [
         "Sixth graders ran a morning weather station and shared data with the school.",
         "Two students measured temperature, humidity, and wind before the first bell.",
@@ -38753,11 +38753,11 @@ window.ActivityData.stories = {
     },
     {
       "level": "Stretch Story",
-      "title": "Repair Café Updates",
-      "text": "During the repair café, Theo interviews neighbors about their broken gadgets, matches them with the right mentor, and posts timing updates on the chalkboard so visitors know when their turn is coming.",
+      "title": "Repair Caf\u00e9 Updates",
+      "text": "During the repair caf\u00e9, Theo interviews neighbors about their broken gadgets, matches them with the right mentor, and posts timing updates on the chalkboard so visitors know when their turn is coming.",
       "options": [
         {
-          "text": "Theo keeps the repair café organized by guiding visitors and mentors.",
+          "text": "Theo keeps the repair caf\u00e9 organized by guiding visitors and mentors.",
           "correct": true
         },
         {
@@ -38776,7 +38776,7 @@ window.ActivityData.stories = {
       "id": 1,
       "title": "Jonah's Quiz",
       "difficulty": "Easier",
-      "html": "When the teacher handed back the quizzes, <span id='s1_1'>Jonah flipped his paper face down on his desk. He didn’t look at it right away.</span> While other students compared scores, Jonah traced the edge of his notebook with his finger. When his friend leaned over and asked how he did, Jonah said, “It’s whatever.” He shoved the paper into his backpack as soon as the bell rang.",
+      "html": "When the teacher handed back the quizzes, <span id='s1_1'>Jonah flipped his paper face down on his desk. He didn\u2019t look at it right away.</span> While other students compared scores, Jonah traced the edge of his notebook with his finger. When his friend leaned over and asked how he did, Jonah said, \u201cIt\u2019s whatever.\u201d He shoved the paper into his backpack as soon as the bell rang.",
       "q1": {
         "text": "Question 1: What can you infer about Jonah?",
         "hint": "Pay attention to Jonah's body language and how he treats the paper.",
@@ -38794,7 +38794,7 @@ window.ActivityData.stories = {
             "correct": false
           },
           {
-            "text": "He didn’t finish the quiz",
+            "text": "He didn\u2019t finish the quiz",
             "correct": false
           }
         ]
@@ -38842,7 +38842,7 @@ window.ActivityData.stories = {
             "correct": true
           },
           {
-            "text": "She doesn’t like walking",
+            "text": "She doesn\u2019t like walking",
             "correct": false
           },
           {
@@ -38886,7 +38886,7 @@ window.ActivityData.stories = {
         "hint": "Look at Caleb's actions while the movie was playing.",
         "choices": [
           {
-            "text": "He didn’t enjoy the movie very much",
+            "text": "He didn\u2019t enjoy the movie very much",
             "correct": true
           },
           {
@@ -38951,7 +38951,7 @@ window.ActivityData.stories = {
             "correct": false
           },
           {
-            "text": "She doesn’t like texting",
+            "text": "She doesn\u2019t like texting",
             "correct": false
           }
         ]
@@ -38985,13 +38985,13 @@ window.ActivityData.stories = {
       "id": 5,
       "title": "Luis Quietly",
       "difficulty": "Moderate",
-      "html": "<span id='s5_1'>When the substitute teacher called his name incorrectly, Luis didn’t say anything. A few students whispered and laughed.</span> Luis kept his head down and focused on copying notes. For the rest of class, he didn’t raise his hand. When the bell rang, he left quickly.",
+      "html": "<span id='s5_1'>When the substitute teacher called his name incorrectly, Luis didn\u2019t say anything. A few students whispered and laughed.</span> Luis kept his head down and focused on copying notes. For the rest of class, he didn\u2019t raise his hand. When the bell rang, he left quickly.",
       "q1": {
         "text": "Question 1: What can you infer about why Luis stayed quiet?",
         "hint": "Think about how he reacted to the other students laughing.",
         "choices": [
           {
-            "text": "He didn’t know the answers",
+            "text": "He didn\u2019t know the answers",
             "correct": false
           },
           {
@@ -38999,7 +38999,7 @@ window.ActivityData.stories = {
             "correct": true
           },
           {
-            "text": "He didn’t like the substitute teacher",
+            "text": "He didn\u2019t like the substitute teacher",
             "correct": false
           },
           {
@@ -39037,13 +39037,13 @@ window.ActivityData.stories = {
       "id": 6,
       "title": "Samantha's Fundraiser",
       "difficulty": "Harder",
-      "html": "Samantha volunteered to help plan the fundraiser. <span id='s6_1'>She arrived early and stayed late, making sure everything was set up.</span> At the end, <span id='s6_2'>the organizer thanked the group but didn’t mention Samantha.</span> She clapped along anyway. When the next fundraiser was announced, Samantha didn’t sign up.",
+      "html": "Samantha volunteered to help plan the fundraiser. <span id='s6_1'>She arrived early and stayed late, making sure everything was set up.</span> At the end, <span id='s6_2'>the organizer thanked the group but didn\u2019t mention Samantha.</span> She clapped along anyway. When the next fundraiser was announced, Samantha didn\u2019t sign up.",
       "q1": {
-        "text": "Question 1: What can you infer about Samantha’s decision?",
+        "text": "Question 1: What can you infer about Samantha\u2019s decision?",
         "hint": "How was Samantha treated despite her hard work?",
         "choices": [
           {
-            "text": "She didn’t like the fundraiser",
+            "text": "She didn\u2019t like the fundraiser",
             "correct": false
           },
           {
@@ -39091,7 +39091,7 @@ window.ActivityData.stories = {
       "difficulty": "Harder",
       "html": "Every time his friends joked about his height, Ryan laughed with them. <span id='s7_1'>Later that night, he practiced comebacks in his room.</span> The next day, the jokes happened again. Ryan laughed, but he crossed his arms and looked away. He changed the subject as soon as he could.",
       "q1": {
-        "text": "Question 1: What can you infer about Ryan’s true feelings?",
+        "text": "Question 1: What can you infer about Ryan\u2019s true feelings?",
         "hint": "Does his reaction in public match what he does in private?",
         "choices": [
           {
@@ -39141,13 +39141,13 @@ window.ActivityData.stories = {
       "id": 8,
       "title": "Jordan's Practice",
       "difficulty": "Harder",
-      "html": "During practice, the coach gave detailed feedback to several players. <span id='s8_1'>When it was Jordan’s turn, the coach just said, “Keep working.”</span> Jordan stayed after practice to run drills by himself. As he left, he watched the others talking and laughing with the coach. He tightened his grip on his bag and walked away.",
+      "html": "During practice, the coach gave detailed feedback to several players. <span id='s8_1'>When it was Jordan\u2019s turn, the coach just said, \u201cKeep working.\u201d</span> Jordan stayed after practice to run drills by himself. As he left, he watched the others talking and laughing with the coach. He tightened his grip on his bag and walked away.",
       "q1": {
         "text": "Question 1: What can you infer about Jordan?",
         "hint": "Compare the feedback Jordan got vs. the other players.",
         "choices": [
           {
-            "text": "He doesn’t like his teammates",
+            "text": "He doesn\u2019t like his teammates",
             "correct": false
           },
           {
@@ -39155,7 +39155,7 @@ window.ActivityData.stories = {
             "correct": true
           },
           {
-            "text": "He doesn’t want feedback",
+            "text": "He doesn\u2019t want feedback",
             "correct": false
           },
           {
@@ -39193,7 +39193,7 @@ window.ActivityData.stories = {
       "id": 9,
       "title": "Lucas's Chat",
       "difficulty": "Very Challenging",
-      "html": "At first, Lucas replied right away in the group chat. When messages went unanswered, he sent another joke or meme. <span id='s9_1'>Over time, he stopped doing that. He still read the messages, but he didn’t respond.</span> When someone asked if he was okay, Lucas said he was just busy.",
+      "html": "At first, Lucas replied right away in the group chat. When messages went unanswered, he sent another joke or meme. <span id='s9_1'>Over time, he stopped doing that. He still read the messages, but he didn\u2019t respond.</span> When someone asked if he was okay, Lucas said he was just busy.",
       "q1": {
         "text": "Question 1: What can you infer about why Lucas changed his behavior?",
         "hint": "Look at the pattern of his messages and the group's response.",
@@ -39245,13 +39245,13 @@ window.ActivityData.stories = {
       "id": 10,
       "title": "Nina's Plans",
       "difficulty": "Very Challenging",
-      "html": "People often described Nina as “easygoing.” She usually went along with group plans. When she suggested doing something different one day, the group went quiet. <span id='s10_1'>Someone laughed and said, “That’s not like you.” Nina smiled and didn’t bring it up again.</span>",
+      "html": "People often described Nina as \u201ceasygoing.\u201d She usually went along with group plans. When she suggested doing something different one day, the group went quiet. <span id='s10_1'>Someone laughed and said, \u201cThat\u2019s not like you.\u201d Nina smiled and didn\u2019t bring it up again.</span>",
       "q1": {
-        "text": "Question 1: What can you infer about Nina’s role in the group?",
+        "text": "Question 1: What can you infer about Nina\u2019s role in the group?",
         "hint": "What happens when Nina tries to be different from her usual self?",
         "choices": [
           {
-            "text": "She doesn’t care about plans",
+            "text": "She doesn\u2019t care about plans",
             "correct": false
           },
           {
@@ -39280,7 +39280,7 @@ window.ActivityData.stories = {
             "correct": false
           },
           {
-            "text": "Someone said, “That’s not like you” and she didn’t repeat her idea",
+            "text": "Someone said, \u201cThat\u2019s not like you\u201d and she didn\u2019t repeat her idea",
             "correct": true,
             "highlights": [
               "s10_1"
@@ -40172,25 +40172,25 @@ window.ActivityData.stories = {
   "perspective-pair-inference": [
     {
       "title": "Scenario 1: Science Lab Partners",
-      "context": "Science Class • Lab Stations • Midweek",
+      "context": "Science Class \u2022 Lab Stations \u2022 Midweek",
       "text": "Maya and Devin are assigned to mix chemicals for a lab. Devin reads the instructions twice before moving. Maya drums her fingers on the counter and glances at the clock. When Devin finally pours, Maya nudges the beaker a little faster than the instructions say.",
       "clues": [
         "Different pacing: Maya rushes, Devin double-checks.",
-        "Maya’s body language shows impatience (finger drumming, glancing at the clock).",
-        "Devin’s careful reading may signal nerves or fear of mistakes."
+        "Maya\u2019s body language shows impatience (finger drumming, glancing at the clock).",
+        "Devin\u2019s careful reading may signal nerves or fear of mistakes."
       ],
       "personA": "Maya",
       "personAHint": "What might Maya be feeling or thinking? Use evidence from the scene.",
       "personB": "Devin",
-      "personBHint": "What clues tell you about Devin’s thoughts or feelings?"
+      "personBHint": "What clues tell you about Devin\u2019s thoughts or feelings?"
     },
     {
       "title": "Scenario 2: Lunch Table Invite",
-      "context": "Cafeteria • Busy Friday • Friends",
-      "text": "Jordan spots Lucia sitting with two classmates from art club. Jordan waves and walks over. Lucia smiles but slides her backpack onto the empty seat beside her. “Hey! We were just talking about the art show,” Lucia says, glancing at her friends.",
+      "context": "Cafeteria \u2022 Busy Friday \u2022 Friends",
+      "text": "Jordan spots Lucia sitting with two classmates from art club. Jordan waves and walks over. Lucia smiles but slides her backpack onto the empty seat beside her. \u201cHey! We were just talking about the art show,\u201d Lucia says, glancing at her friends.",
       "clues": [
         "Backpack blocking the seat while still greeting politely.",
-        "Lucia mentions the art show and glances at friends—maybe worried about including someone new.",
+        "Lucia mentions the art show and glances at friends\u2014maybe worried about including someone new.",
         "Jordan approached confidently, expecting to join."
       ],
       "personA": "Jordan",
@@ -40200,39 +40200,39 @@ window.ActivityData.stories = {
     },
     {
       "title": "Scenario 3: Group Text Silence",
-      "context": "Evening • Group Chat • Project Planning",
-      "text": "Alana posts, “Let’s meet Sunday at 2? I can bring the posters.” Ten minutes go by with no responses. Marcus reacts with a thumbs-up. Dana types, “I’ll try to make it,” but doesn’t add more. The typing bubbles appear and disappear a few times, but no one else replies.",
+      "context": "Evening \u2022 Group Chat \u2022 Project Planning",
+      "text": "Alana posts, \u201cLet\u2019s meet Sunday at 2? I can bring the posters.\u201d Ten minutes go by with no responses. Marcus reacts with a thumbs-up. Dana types, \u201cI\u2019ll try to make it,\u201d but doesn\u2019t add more. The typing bubbles appear and disappear a few times, but no one else replies.",
       "clues": [
         "Delay in responses shows hesitation.",
-        "Marcus only reacts with an emoji—minimal effort.",
-        "Dana’s “I’ll try” and stopping typing may show uncertainty or schedule conflict."
+        "Marcus only reacts with an emoji\u2014minimal effort.",
+        "Dana\u2019s \u201cI\u2019ll try\u201d and stopping typing may show uncertainty or schedule conflict."
       ],
       "personA": "Alana",
       "personAHint": "How might Alana feel after getting limited feedback?",
       "personB": "Dana",
-      "personBHint": "What might Dana’s response mean about her perspective?"
+      "personBHint": "What might Dana\u2019s response mean about her perspective?"
     },
     {
       "title": "Scenario 4: Theater Audition Results",
-      "context": "Auditorium • After School • Cast List Posted",
-      "text": "Sam scans the cast list and whispers, “I got a lead!” Priya stands a few steps back, holding her script and scanning the list twice. She smiles at Sam and says, “Congrats!” but her voice sounds quieter. Priya folds her script and tucks it into her bag without eye contact.",
+      "context": "Auditorium \u2022 After School \u2022 Cast List Posted",
+      "text": "Sam scans the cast list and whispers, \u201cI got a lead!\u201d Priya stands a few steps back, holding her script and scanning the list twice. She smiles at Sam and says, \u201cCongrats!\u201d but her voice sounds quieter. Priya folds her script and tucks it into her bag without eye contact.",
       "clues": [
-        "Sam’s excitement vs. Priya’s quiet congratulations.",
-        "Priya re-checks the list and avoids eye contact—possible disappointment.",
+        "Sam\u2019s excitement vs. Priya\u2019s quiet congratulations.",
+        "Priya re-checks the list and avoids eye contact\u2014possible disappointment.",
         "Putting the script away hints at giving up or needing a break."
       ],
       "personA": "Sam",
-      "personAHint": "What might Sam assume about Priya’s reaction?",
+      "personAHint": "What might Sam assume about Priya\u2019s reaction?",
       "personB": "Priya",
-      "personBHint": "What clues suggest Priya’s thoughts or feelings?"
+      "personBHint": "What clues suggest Priya\u2019s thoughts or feelings?"
     },
     {
       "title": "Scenario 5: Part-Time Job Rush",
-      "context": "Coffee Shop • Saturday Morning • Busy Line",
-      "text": "Elise takes orders at the register. Mateo, a new hire, makes drinks. A customer orders a complicated drink. Elise calls it out clearly, but Mateo hesitates, glancing at the manual. Elise says, “We've got a long line of people waiting—Mateo, can you speed up?” Mateo bites his lip and nods without looking up.",
+      "context": "Coffee Shop \u2022 Saturday Morning \u2022 Busy Line",
+      "text": "Elise takes orders at the register. Mateo, a new hire, makes drinks. A customer orders a complicated drink. Elise calls it out clearly, but Mateo hesitates, glancing at the manual. Elise says, \u201cWe've got a long line of people waiting\u2014Mateo, can you speed up?\u201d Mateo bites his lip and nods without looking up.",
       "clues": [
-        "Elise’s urgency about line length.",
-        "Mateo is new and referencing the manual—signs of learning or nervousness.",
+        "Elise\u2019s urgency about line length.",
+        "Mateo is new and referencing the manual\u2014signs of learning or nervousness.",
         "Biting a lip and not making eye contact may show pressure or embarrassment."
       ],
       "personA": "Elise",
@@ -40242,73 +40242,73 @@ window.ActivityData.stories = {
     },
     {
       "title": "Scenario 6: Family Move Announcement",
-      "context": "Living Room • Evening • Family Meeting",
-      "text": "Dad says, “We might move to another city next year.” Older sister Jaya crosses her arms and stares at her plate. Younger brother Eli leans forward and asks, “Will I still go to the same school?” Dad replies, “We’re not sure yet,” and Jaya’s jaw tightens.",
+      "context": "Living Room \u2022 Evening \u2022 Family Meeting",
+      "text": "Dad says, \u201cWe might move to another city next year.\u201d Older sister Jaya crosses her arms and stares at her plate. Younger brother Eli leans forward and asks, \u201cWill I still go to the same school?\u201d Dad replies, \u201cWe\u2019re not sure yet,\u201d and Jaya\u2019s jaw tightens.",
       "clues": [
-        "Jaya’s closed posture vs. Eli leaning forward with questions.",
+        "Jaya\u2019s closed posture vs. Eli leaning forward with questions.",
         "Uncertainty about school and friends.",
-        "Dad’s answer doesn’t reassure either child."
+        "Dad\u2019s answer doesn\u2019t reassure either child."
       ],
       "personA": "Jaya",
-      "personAHint": "What might Jaya’s body language tell you?",
+      "personAHint": "What might Jaya\u2019s body language tell you?",
       "personB": "Eli",
-      "personBHint": "What does Eli’s question show about his perspective?"
+      "personBHint": "What does Eli\u2019s question show about his perspective?"
     },
     {
       "title": "Scenario 7: Group Presentation Prep",
-      "context": "Library • After School • Shared Slides",
-      "text": "Nora and Ben are both editing slides for their group presentation. Ben rearranges the order without asking. Nora  switches it back, saying, “I liked it better before.” Ben sighs and opens a new document to work separately.",
+      "context": "Library \u2022 After School \u2022 Shared Slides",
+      "text": "Nora and Ben are both editing slides for their group presentation. Ben rearranges the order without asking. Nora  switches it back, saying, \u201cI liked it better before.\u201d Ben sighs and opens a new document to work separately.",
       "clues": [
         "Changing slides without asking vs. switching back immediately.",
         "Nora uses a polite phrase but not much explanation.",
-        "Ben’s sigh and separate document show frustration or desire for control."
+        "Ben\u2019s sigh and separate document show frustration or desire for control."
       ],
       "personA": "Nora",
       "personAHint": "What might Nora be thinking about the slide order?",
       "personB": "Ben",
-      "personBHint": "What clues show Ben’s feelings after Nora’s response?"
+      "personBHint": "What clues show Ben\u2019s feelings after Nora\u2019s response?"
     },
     {
       "title": "Scenario 8: Gaming Night Plans",
-      "context": "Online Chat • Evening • Weekend Plans",
-      "text": "Three friends are planning a gaming night. Kaylee says, “Can we start at 9? I have a family dinner.” Omar replies with a thumbs-up emoji. Jalen writes, “9 is kind of late. I have to wake up early.” Omar keeps sending memes instead of replying to Jalen.",
+      "context": "Online Chat \u2022 Evening \u2022 Weekend Plans",
+      "text": "Three friends are planning a gaming night. Kaylee says, \u201cCan we start at 9? I have a family dinner.\u201d Omar replies with a thumbs-up emoji. Jalen writes, \u201c9 is kind of late. I have to wake up early.\u201d Omar keeps sending memes instead of replying to Jalen.",
       "clues": [
-        "Omar’s thumbs-up but no words—low effort.",
+        "Omar\u2019s thumbs-up but no words\u2014low effort.",
         "Jalen expresses a real concern; no one addresses it.",
-        "Kaylee’s family dinner creates a schedule puzzle."
+        "Kaylee\u2019s family dinner creates a schedule puzzle."
       ],
       "personA": "Kaylee",
       "personAHint": "What might Kaylee think when she sees the reactions?",
       "personB": "Jalen",
-      "personBHint": "What does Jalen’s comment show about his needs?"
+      "personBHint": "What does Jalen\u2019s comment show about his needs?"
     },
     {
       "title": "Scenario 9: Art Critique Day",
-      "context": "Art Studio • Afternoon • Peer Feedback",
-      "text": "During critiques, Lila shows her painting. Marcus studies it and says, “The colors are interesting.” Lila waits for more feedback and asks, “Anything else?” Marcus shrugs, “Not really.” Lila thanks him, then quietly takes out a notebook and writes something.",
+      "context": "Art Studio \u2022 Afternoon \u2022 Peer Feedback",
+      "text": "During critiques, Lila shows her painting. Marcus studies it and says, \u201cThe colors are interesting.\u201d Lila waits for more feedback and asks, \u201cAnything else?\u201d Marcus shrugs, \u201cNot really.\u201d Lila thanks him, then quietly takes out a notebook and writes something.",
       "clues": [
-        "Marcus’s vague comment (“interesting,” “not really”).",
+        "Marcus\u2019s vague comment (\u201cinteresting,\u201d \u201cnot really\u201d).",
         "Lila expected more detailed feedback.",
         "Writing something afterward could show processing or disappointment."
       ],
       "personA": "Lila",
-      "personAHint": "What might Lila be thinking after Marcus’s reply?",
+      "personAHint": "What might Lila be thinking after Marcus\u2019s reply?",
       "personB": "Marcus",
       "personBHint": "Why might Marcus give such a short answer?"
     },
     {
       "title": "Scenario 10: Bus Ride Apology",
-      "context": "Bus • Morning • On the Way to School",
-      "text": "Yesterday, Ava and Noah argued about who saved seats. Today, Noah sits down next to Ava and says, “Hey, sorry about yesterday. I was in a mood.” Ava nods slowly and turns toward the window. Noah waits a few seconds, then asks, “So, we good?”",
+      "context": "Bus \u2022 Morning \u2022 On the Way to School",
+      "text": "Yesterday, Ava and Noah argued about who saved seats. Today, Noah sits down next to Ava and says, \u201cHey, sorry about yesterday. I was in a mood.\u201d Ava nods slowly and turns toward the window. Noah waits a few seconds, then asks, \u201cSo, we good?\u201d",
       "clues": [
         "Noah apologizes first and checks in.",
-        "Ava nods but doesn’t speak; turns away.",
-        "Noah’s follow-up question shows uncertainty."
+        "Ava nods but doesn\u2019t speak; turns away.",
+        "Noah\u2019s follow-up question shows uncertainty."
       ],
       "personA": "Noah",
-      "personAHint": "How might Noah feel while waiting for Ava’s reaction?",
+      "personAHint": "How might Noah feel while waiting for Ava\u2019s reaction?",
       "personB": "Ava",
-      "personBHint": "What does Ava’s body language suggest about her perspective?"
+      "personBHint": "What does Ava\u2019s body language suggest about her perspective?"
     }
   ],
   "short-stories-pronouns-details": [
@@ -41410,7 +41410,7 @@ window.ActivityData.stories = {
       "id": "scenario-4",
       "title": "Unexpected Compliment",
       "tag": "Classroom",
-      "scenario": "A quiet student answers a question well in class after rarely speaking up. Another student turns around with a surprised look and says, “Hey, that was actually a really good answer,” loud enough for a few nearby classmates to hear.",
+      "scenario": "A quiet student answers a question well in class after rarely speaking up. Another student turns around with a surprised look and says, \u201cHey, that was actually a really good answer,\u201d loud enough for a few nearby classmates to hear.",
       "prompts": [
         {
           "label": "Prompt A",
@@ -41442,7 +41442,7 @@ window.ActivityData.stories = {
         },
         {
           "label": "Prompt B",
-          "question": "What might the other student’s intent be?",
+          "question": "What might the other student\u2019s intent be?",
           "hints": [
             "Focus on why someone might comment after hearing a good answer.",
             "They could be impressed, friendly, or trying to encourage more participation."
@@ -41592,18 +41592,18 @@ window.ActivityData.stories = {
       "id": "scenario-7",
       "title": "Sharing a Win",
       "tag": "Celebrations",
-      "scenario": "A student gets a good grade on a test and proudly shows the paper to a friend in the hallway. The friend glances at it, shrugs, and says, “Cool, I guess,” without much expression before looking back at their phone.",
+      "scenario": "A student gets a good grade on a test and proudly shows the paper to a friend in the hallway. The friend glances at it, shrugs, and says, \u201cCool, I guess,\u201d without much expression before looking back at their phone.",
       "prompts": [
         {
           "label": "Prompt A",
           "question": "How might the student who got the good grade feel?",
           "hints": [
             "Think about sharing good news and getting a flat reaction.",
-            "They might feel proud of the grade but disappointed by the friend’s response."
+            "They might feel proud of the grade but disappointed by the friend\u2019s response."
           ],
           "choices": [
             "They might feel let down because they wanted a bigger reaction.",
-            "They might feel proud but confused by their friend’s response.",
+            "They might feel proud but confused by their friend\u2019s response.",
             "The friend might be tired or thinking about something else.",
             "The friend might actually be happy for them but not show emotion.",
             "The friend might be struggling with their own grade and feel a little down."
@@ -41621,7 +41621,7 @@ window.ActivityData.stories = {
           ],
           "choices": [
             "They might feel let down because they wanted a bigger reaction.",
-            "They might feel proud but confused by their friend’s response.",
+            "They might feel proud but confused by their friend\u2019s response.",
             "The friend might be tired or thinking about something else.",
             "The friend might actually be happy for them but not show emotion.",
             "The friend might be struggling with their own grade and feel a little down."
@@ -41711,7 +41711,7 @@ window.ActivityData.stories = {
     {
       "id": "story-1",
       "title": "Story 1: The Rainy Day",
-      "emoji": "🌸",
+      "emoji": "\ud83c\udf38",
       "versions": {
         "level1": {
           "text": [
@@ -41882,7 +41882,7 @@ window.ActivityData.stories = {
             "literal": [
               {
                 "prompt": "1. Who woke up early?",
-                "clue": "A boy’s name",
+                "clue": "A boy\u2019s name",
                 "choices": [
                   {
                     "text": "Liam",
@@ -42035,7 +42035,7 @@ window.ActivityData.stories = {
     {
       "id": "story-2",
       "title": "Story 2: The Park Trip",
-      "emoji": "🌷",
+      "emoji": "\ud83c\udf37",
       "versions": {
         "level1": {
           "text": [
@@ -42359,7 +42359,7 @@ window.ActivityData.stories = {
     {
       "id": "story-3",
       "title": "Story 3: The Beach Day",
-      "emoji": "🌼",
+      "emoji": "\ud83c\udf3c",
       "versions": {
         "level1": {
           "text": [
@@ -42683,7 +42683,7 @@ window.ActivityData.stories = {
     {
       "id": "story-4",
       "title": "Story 4: Visiting Grandma",
-      "emoji": "🌸",
+      "emoji": "\ud83c\udf38",
       "versions": {
         "level1": {
           "text": [
@@ -43007,7 +43007,7 @@ window.ActivityData.stories = {
     {
       "id": "story-5",
       "title": "Story 5: The Picnic",
-      "emoji": "🌷",
+      "emoji": "\ud83c\udf37",
       "versions": {
         "level1": {
           "text": [
@@ -43177,7 +43177,7 @@ window.ActivityData.stories = {
           "questions": {
             "literal": [
               {
-                "prompt": "1. What did Noah’s family plan?",
+                "prompt": "1. What did Noah\u2019s family plan?",
                 "clue": "Eating outside",
                 "choices": [
                   {
@@ -43331,7 +43331,7 @@ window.ActivityData.stories = {
     {
       "id": "story-6",
       "title": "Story 6: The Bike Ride",
-      "emoji": "🌼",
+      "emoji": "\ud83c\udf3c",
       "versions": {
         "level1": {
           "text": [
@@ -43655,7 +43655,7 @@ window.ActivityData.stories = {
     {
       "id": "story-7",
       "title": "Story 7: The Garden",
-      "emoji": "🌸",
+      "emoji": "\ud83c\udf38",
       "versions": {
         "level1": {
           "text": [
@@ -43899,7 +43899,7 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "5. Why did Leo’s dad show him what to do?",
+                "prompt": "5. Why did Leo\u2019s dad show him what to do?",
                 "clue": "Learning",
                 "choices": [
                   {
@@ -43979,7 +43979,7 @@ window.ActivityData.stories = {
     {
       "id": "story-8",
       "title": "Story 8: The Zoo Trip",
-      "emoji": "🌷",
+      "emoji": "\ud83c\udf37",
       "versions": {
         "level1": {
           "text": [
@@ -44303,7 +44303,7 @@ window.ActivityData.stories = {
     {
       "id": "story-9",
       "title": "Story 9: The Rain Boots",
-      "emoji": "🌼",
+      "emoji": "\ud83c\udf3c",
       "versions": {
         "level1": {
           "text": [
@@ -44627,7 +44627,7 @@ window.ActivityData.stories = {
     {
       "id": "story-10",
       "title": "Story 10: The Kite",
-      "emoji": "🌸",
+      "emoji": "\ud83c\udf38",
       "versions": {
         "level1": {
           "text": [
@@ -48307,7 +48307,7 @@ window.ActivityData.stories = {
       "title": "Thanksgiving Kitchen Safety",
       "paragraphs": [
         "Cooking large holiday meals requires careful food safety. Raw turkey can contain bacteria, so it should stay separate from vegetables and be kept in the refrigerator until cooking time. Clean cutting boards and washing hands reduce the spread of germs.",
-        "A food thermometer checks that turkey reaches a safe temperature of 165°F. Leftovers should be cooled in shallow containers and placed in the fridge within two hours. Following these steps lowers the chance of foodborne illness during Thanksgiving."
+        "A food thermometer checks that turkey reaches a safe temperature of 165\u00b0F. Leftovers should be cooled in shallow containers and placed in the fridge within two hours. Following these steps lowers the chance of foodborne illness during Thanksgiving."
       ],
       "mainIdeaOptions": [
         "Simple food safety steps, like separation and proper cooking, keep Thanksgiving meals safe to eat.",
@@ -48315,7 +48315,7 @@ window.ActivityData.stories = {
         "Leftovers can stay on the counter all day without risk."
       ],
       "clueWords": [
-        "165°F",
+        "165\u00b0F",
         "separate",
         "refrigerate",
         "leftovers"
@@ -52313,7 +52313,7 @@ window.ActivityData.stories = {
               ]
             },
             {
-              "prompt": "What does Sam’s reaction to the cold burst show?",
+              "prompt": "What does Sam\u2019s reaction to the cold burst show?",
               "clue": "He keeps walking with steady steps.",
               "choices": [
                 {
@@ -52405,7 +52405,7 @@ window.ActivityData.stories = {
               ]
             },
             {
-              "prompt": "What happened to Ben’s hands as the bus started?",
+              "prompt": "What happened to Ben\u2019s hands as the bus started?",
               "clue": "The heated air affected them.",
               "choices": [
                 {
@@ -52465,7 +52465,7 @@ window.ActivityData.stories = {
               ]
             },
             {
-              "prompt": "How did the heated air change Ben’s comfort?",
+              "prompt": "How did the heated air change Ben\u2019s comfort?",
               "clue": "Think about his hands.",
               "choices": [
                 {
@@ -52512,7 +52512,7 @@ window.ActivityData.stories = {
       "text": [
         "A small bird landed on the fence outside the classroom window, shaking snow from its feathers.",
         "It hopped from one spot to another, looking for food hidden beneath the frozen ground.",
-        "The students watched quietly because they didn’t want to scare it away.",
+        "The students watched quietly because they didn\u2019t want to scare it away.",
         "After a moment, the bird lifted its wings and flew off toward a nearby tree."
       ],
       "questionSets": [
@@ -52727,7 +52727,7 @@ window.ActivityData.stories = {
               ]
             },
             {
-              "prompt": "What spread through Maya’s fingers?",
+              "prompt": "What spread through Maya\u2019s fingers?",
               "clue": "It came from the cup.",
               "choices": [
                 {
@@ -53190,7 +53190,7 @@ window.ActivityData.stories = {
       "image": "../../images/winter_stories/story8.png",
       "alt": "Student holding a scarf while wind blows",
       "text": [
-        "A strong winter wind blew across the parking lot, pushing against Tia’s hood as she tried to walk.",
+        "A strong winter wind blew across the parking lot, pushing against Tia\u2019s hood as she tried to walk.",
         "She held her scarf close to her mouth because the air felt sharp and cold.",
         "Every few steps, the wind made her take a smaller stride.",
         "When she finally reached the building, she felt immediate relief as the warm air wrapped around her."
@@ -53201,7 +53201,7 @@ window.ActivityData.stories = {
           "label": "Literal",
           "questions": [
             {
-              "prompt": "What pushed against Tia’s hood?",
+              "prompt": "What pushed against Tia\u2019s hood?",
               "clue": "It was moving across the parking lot.",
               "choices": [
                 {
@@ -53360,7 +53360,7 @@ window.ActivityData.stories = {
       "image": "../../images/winter_stories/story9.png",
       "alt": "Hand catching a snowflake on a glove",
       "text": [
-        "Snowflakes drifted down during dismissal, landing softly on Jay’s jacket and hair.",
+        "Snowflakes drifted down during dismissal, landing softly on Jay\u2019s jacket and hair.",
         "He held out his glove to catch a few, watching how each one melted into a tiny drop of water.",
         "The quiet snowfall made everything feel slower and more peaceful.",
         "Jay took a deep breath and walked to the bus line, enjoying the winter moment."
@@ -55567,7 +55567,7 @@ window.ActivityData.stories = {
           },
           {
             "type": "multiple-choice",
-            "text": "What does it make around its body?",
+            "text": "What does the caterpillar make around its body?",
             "options": [
               "A web",
               "A chrysalis",
@@ -55577,7 +55577,7 @@ window.ActivityData.stories = {
           },
           {
             "type": "multiple-choice",
-            "text": "Why does it stay inside?",
+            "text": "Why does the caterpillar stay inside the chrysalis?",
             "options": [
               "To grow and change",
               "To sleep forever",
@@ -55587,7 +55587,7 @@ window.ActivityData.stories = {
           },
           {
             "type": "multiple-choice",
-            "text": "How is the butterfly different?",
+            "text": "How is the butterfly different from the caterpillar?",
             "options": [
               "It can fly",
               "It is smaller",
@@ -55597,11 +55597,11 @@ window.ActivityData.stories = {
           },
           {
             "type": "multiple-choice",
-            "text": "Why is spring a good time?",
+            "text": "Why is spring a good time for a caterpillar?",
             "options": [
-              "More leaves to eat",
-              "It is colder",
-              "No food"
+              "There are more fresh leaves to eat",
+              "It is usually colder",
+              "There is no food"
             ],
             "answer": 0
           }
@@ -55615,51 +55615,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "Where is the seed?",
+            "text": "Where is the seed planted?",
             "options": [
-              "In dirt",
-              "In sky",
+              "In the dirt",
+              "In the sky",
               "In water"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What helps it grow?",
+            "text": "What two things help the seed grow?",
             "options": [
-              "Wind",
-              "Rain and sun",
-              "Snow"
+              "Wind and ice",
+              "Rain and the sun",
+              "Snow and rocks"
             ],
             "answer": 1
           },
           {
             "type": "multiple-choice",
-            "text": "Why does it push up?",
+            "text": "Why does the sprout push out of the dirt?",
             "options": [
               "To get sunlight",
-              "To hide",
-              "To sleep"
+              "To stay hidden",
+              "To go to sleep"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What if no rain?",
+            "text": "What might happen to the seed if there is no rain?",
             "options": [
-              "Grows faster",
-              "May not grow well",
-              "Turns into tree"
+              "It will sprout instantly",
+              "It may not grow very well",
+              "It is guaranteed to turn into a huge tree"
             ],
             "answer": 1
           },
           {
             "type": "multiple-choice",
-            "text": "Why grow leaves?",
+            "text": "Why does the plant need to grow leaves?",
             "options": [
-              "To make food",
-              "To make noise",
-              "To catch bugs"
+              "To make food for itself",
+              "To make lots of noise",
+              "To catch tiny bugs"
             ],
             "answer": 0
           }
@@ -55673,51 +55673,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "What does the bird gather?",
+            "text": "What does the bird gather to build its nest?",
             "options": [
               "Sticks and grass",
-              "Water",
-              "Sand"
+              "Water and mud",
+              "Sand and rocks"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Where is the nest?",
+            "text": "Where does the bird usually build the nest?",
             "options": [
-              "In a tree",
-              "In water",
-              "Underground"
+              "In the branches of a tree",
+              "Deep in the water",
+              "Far underground"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why does the bird sit on the eggs?",
+            "text": "Why does the mother bird sit on her eggs?",
             "options": [
               "To keep them warm",
-              "To hide them",
-              "To play"
+              "To hide from other animals",
+              "To play with them"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why use sticks and grass?",
+            "text": "Why does the bird use items like sticks and grass?",
             "options": [
-              "To build the nest",
-              "To eat",
-              "To fly"
+              "They are the perfect strong materials for building a nest",
+              "Because the baby birds will eat them",
+              "To help the mother fly faster"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What will happen next?",
+            "text": "What will happen next to the warm eggs?",
             "options": [
-              "Eggs hatch into birds",
-              "Eggs turn to rocks",
-              "Eggs disappear"
+              "They will hatch into baby birds",
+              "They will slowly turn into rocks",
+              "They will magically disappear"
             ],
             "answer": 0
           }
@@ -55731,51 +55731,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "Where are the eggs?",
+            "text": "Where does a frog prefer to lay its eggs?",
             "options": [
-              "In water",
-              "In trees",
-              "In dirt"
+              "In the water",
+              "In the trees",
+              "In the dry dirt"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What do tadpoles grow?",
+            "text": "What new body part do the tadpoles grow?",
             "options": [
-              "Wings",
-              "Legs",
-              "Fur"
+              "Feathery wings",
+              "Strong legs",
+              "Thick fur"
             ],
             "answer": 1
           },
           {
             "type": "multiple-choice",
-            "text": "Why do they grow legs?",
+            "text": "Why do the tadpoles need to grow their legs?",
             "options": [
-              "To move on land",
-              "To fly",
-              "To sleep"
+              "To help them move around on land",
+              "To help them fly high in the sky",
+              "To help them sleep peacefully"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "How are frogs different from tadpoles?",
+            "text": "How is an adult frog different from a baby tadpole?",
             "options": [
-              "Frogs can jump",
-              "Frogs are smaller",
-              "Frogs cannot move"
+              "A frog can jump on the land",
+              "A frog is much smaller",
+              "A frog is completely unable to move"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why live in water and land?",
+            "text": "Why are frogs so amazing at living in water and on land?",
             "options": [
-              "To find food and stay safe",
-              "To hide forever",
-              "To sleep all day"
+              "To find extra food and stay nice and safe",
+              "To hide forever underwater",
+              "To sleep all day on the muddy banks"
             ],
             "answer": 0
           }
@@ -55789,51 +55789,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "What grows first?",
+            "text": "What part of the flower starts to grow first?",
             "options": [
-              "A bud",
-              "A tree",
-              "A rock"
+              "A small tight bud",
+              "A gigantic tree",
+              "A shiny rock"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What visits the flower?",
+            "text": "What kind of helpful bugs like to visit the flower?",
             "options": [
               "Bees",
-              "Fish",
-              "Dogs"
+              "Small fish",
+              "Neighborhood dogs"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why does the bud open?",
+            "text": "What exactly happens to the bud as it gets bigger?",
             "options": [
-              "It grows into a flower",
-              "It breaks",
-              "It sleeps"
+              "It slowly opens up into a blooming flower",
+              "It breaks in half",
+              "It goes fast asleep"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why do bees visit?",
+            "text": "Why do bees spend so much time visiting flowers?",
             "options": [
-              "To get nectar",
-              "To rest",
-              "To hide"
+              "To collect sweet nectar",
+              "To take a relaxing rest",
+              "To hide away from birds"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why are flowers important?",
+            "text": "Why are fully grown flowers important for the entire plant?",
             "options": [
-              "Help plants make seeds",
-              "Make noise",
-              "Stop rain"
+              "They help the plant make new seeds",
+              "They make a tremendous amount of noise",
+              "They physically stop the rain from falling"
             ],
             "answer": 0
           }
@@ -55847,51 +55847,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "What does the bee drink?",
+            "text": "What does the hard-working bee drink from the flower?",
             "options": [
-              "Nectar",
-              "Water",
-              "Juice"
+              "Sweet nectar",
+              "Plain water",
+              "Fruity juice"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Where does it land?",
+            "text": "Where does the flying bee land when searching for food?",
             "options": [
-              "Flower",
-              "Tree",
-              "Rock"
+              "On a colorful flower",
+              "On a large oak tree",
+              "On an oddly shaped rock"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why go to many flowers?",
+            "text": "Why does the bee need to visit so many different flowers?",
             "options": [
-              "To collect nectar",
-              "To sleep",
-              "To hide"
+              "To collect as much nectar as it possibly can",
+              "To go to sleep early",
+              "To successfully hide from serious danger"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What does pollen do?",
+            "text": "How does the transferred pollen help out the flower?",
             "options": [
-              "Helps make seeds",
-              "Makes noise",
-              "Stops growth"
+              "It helps the flower make brand new seeds",
+              "It produces a lot of noise",
+              "It halts the flower from continuing to grow"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why are bees important?",
+            "text": "Why are busy bees so critically important for a successful garden?",
             "options": [
-              "Help plants grow",
-              "Make storms",
-              "Eat leaves"
+              "They help plants steadily grow and produce plenty of seeds",
+              "They alone create severe rain storms",
+              "They eat absolutely all of the bad leaves"
             ],
             "answer": 0
           }
@@ -55905,51 +55905,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "What falls from the sky?",
+            "text": "What falls from the spring sky during a rain storm?",
             "options": [
-              "Rain",
-              "Sand",
-              "Leaves"
+              "Wet rain",
+              "Dry sand",
+              "Loose leaves"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What forms on the ground?",
+            "text": "What begins to happen when rainwater heavily collects on the ground?",
             "options": [
-              "Puddles",
-              "Rocks",
-              "Snow"
+              "Large puddles begin to form",
+              "Underground rocks start to grow",
+              "Cold snow slowly builds up"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why do plants need rain?",
+            "text": "Why do the delicate plants in the garden need so much rain?",
             "options": [
-              "To grow",
-              "To sleep",
-              "To hide"
+              "To help them drink water and securely grow",
+              "To help them fall asleep at night",
+              "To hide themselves underneath the muddy soil"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Where does the water go?",
+            "text": "Where does the fresh rainwater go after it falls out of the sky?",
             "options": [
-              "Into the ground",
-              "Into the sky",
-              "Into trees only"
+              "It thoroughly soaks right into the ground",
+              "It travels straight back up into the clouds",
+              "It exclusively goes onto the trees"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What happens if no rain?",
+            "text": "What might quickly happen if a garden doesn't get enough rain?",
             "options": [
-              "Plants may not grow well",
-              "Plants grow faster",
-              "Nothing changes"
+              "The beautiful plants may not grow particularly well",
+              "The little plants will absolutely flourish and grow much faster",
+              "The garden will predictably remain exactly the same"
             ],
             "answer": 0
           }
@@ -55963,51 +55963,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "What grows on branches?",
+            "text": "What begins to slowly grow on the previously bare branches in spring?",
             "options": [
-              "Buds",
-              "Rocks",
-              "Water"
+              "Small round buds",
+              "Perfectly smooth rocks",
+              "Freezing cold water droplets"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What do buds become?",
+            "text": "What do the very small buds eventually become over time?",
             "options": [
-              "Leaves",
-              "Flowers only",
-              "Sticks"
+              "Bright green leaves",
+              "Exclusively flowers",
+              "Bare dead sticks"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why do leaves grow in spring?",
+            "text": "Why exactly do the leaves start growing so rapidly in the spring?",
             "options": [
-              "Warmer weather helps them grow",
-              "It is cold",
-              "No sunlight"
+              "The increasingly warmer weather consistently helps them to grow",
+              "Because the harsh winter is always incredibly cold",
+              "Because there is absolutely zero sunlight available"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "How is the tree different now?",
+            "text": "How does the tree actually look different immediately after the tiny buds open?",
             "options": [
-              "It has leaves",
-              "It is smaller",
-              "It has no branches"
+              "It suddenly becomes full of spectacular green leaves",
+              "It looks a considerable amount smaller",
+              "It unfortunately has absolutely no branches left whatsoever"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why are leaves important?",
+            "text": "Why exactly are the green leaves exceptionally important for the entire tree?",
             "options": [
-              "Help tree make food",
-              "Make noise",
-              "Stop wind"
+              "They critically help the large tree naturally make its very own food",
+              "They make an excessive and quite unnecessary amount of noise",
+              "They functionally stop the extremely heavy wind from blowing"
             ],
             "answer": 0
           }
@@ -56021,51 +56021,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "What does the ladybug eat?",
+            "text": "What specifically does the ladybug search for to eat?",
             "options": [
-              "Aphids",
-              "Leaves",
-              "Water"
+              "Tiny bugs known as aphids",
+              "Sturdy green leaves from trees",
+              "Puddles of muddy water"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Where does it crawl?",
+            "text": "Where does the small ladybug tirelessly look for fresh food?",
             "options": [
-              "Plant",
-              "Sky",
-              "Rock"
+              "On the surface of the plants",
+              "High up directly in the bright sky",
+              "Underneath incredibly heavy mossy rocks"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why is the ladybug helpful?",
+            "text": "How does intensely eating numerous aphids actively help the ladybug be useful?",
             "options": [
-              "It eats harmful bugs",
-              "It makes noise",
-              "It grows plants"
+              "It is keeping the beautiful plant exceedingly healthy",
+              "It is making a phenomenally loud noise",
+              "It is rapidly growing the many plants to be much taller"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why keep moving?",
+            "text": "Why exactly does the ladybug have to constantly keep moving around the garden?",
             "options": [
-              "To find more food",
-              "To sleep",
-              "To hide"
+              "To consistently locate even more tiny bugs to eat",
+              "To safely lay down entirely and go straight to sleep",
+              "To effectively ensure it can keep itself entirely hidden away at all times"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What happens if no ladybugs?",
+            "text": "What critical thing would most likely happen overall if there were zero ladybugs in the garden?",
             "options": [
-              "More harmful bugs on plants",
-              "Plants grow faster",
-              "Nothing changes"
+              "There would be substantially more harmful bugs severely damaging the delicate plants",
+              "The many garden plants would magically grow much faster",
+              "Absolutely nothing noticeable would change in the garden"
             ],
             "answer": 0
           }
@@ -56079,51 +56079,51 @@ window.ActivityData.stories = {
         "questions": [
           {
             "type": "multiple-choice",
-            "text": "Where is the child?",
+            "text": "Where is the young child pleasantly walking to discover the pretty flowers?",
             "options": [
-              "Field",
-              "House",
-              "Water"
+              "In a wide open grassy field",
+              "Inside of the cozy house",
+              "Neck deep in a cold stream set of water"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "What do they pick?",
+            "text": "What item exactly does the happy child safely pick up right from the cool ground?",
             "options": [
-              "Flowers",
-              "Rocks",
-              "Sticks"
+              "Wonderfully colorful blooming flowers",
+              "Extremely large and unpleasantly heavy rocks",
+              "Multiple short and incredibly easily broken sticks"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why bring flowers home?",
+            "text": "What precisely does the content child eagerly plan to do with the freshly picked beautiful flowers?",
             "options": [
-              "To decorate",
-              "To throw away",
-              "To hide"
+              "Bring them directly home to nicely decorate their own room",
+              "Sadly throw them away right into the nearby available trash",
+              "Carefully keep them completely hidden away outside in the distant surrounding field"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "How do flowers change the room?",
+            "text": "How exactly do the stunningly colorful flowers physically change the space inside of the quiet room?",
             "options": [
-              "Make it bright",
-              "Make it dark",
-              "Make it cold"
+              "They easily make the entire room feel significantly bright and wonderfully cheerful",
+              "They suddenly make the entire room drastically dark and extremely gloomy",
+              "They sadly make the entire room consistently cold and remarkably freezing"
             ],
             "answer": 0
           },
           {
             "type": "multiple-choice",
-            "text": "Why do people like flowers?",
+            "text": "For what great reason do so endlessly many different people really enjoy picking vibrant flowers?",
             "options": [
-              "They look nice and colorful",
-              "They are loud",
-              "They move fast"
+              "Because they typically look so incredibly nice and very vibrantly colorful",
+              "Because they are easily observed to be as loud as mighty roaring thunder",
+              "Because they can reliably move quite remarkably and alarmingly fast"
             ],
             "answer": 0
           }
