@@ -508,28 +508,57 @@
     <script src="../../js/data-loader.js"></script>
     <script src="../../js/utils.js"></script>
   <script>
-        // Sentence templates
         const sentenceTemplates = [
-            { id: 1, page: 1, template: 'The boy saw a big', blank: { pos: 'noun' }, ending: 'in the yard.' },
-            { id: 2, page: 1, template: 'I like to', blank: { pos: 'verb' }, ending: 'at the park.' },
-            { id: 3, page: 1, template: 'The', blank: { pos: 'adjective' }, ending: 'cat sat on the mat.' },
-            { id: 4, page: 1, template: 'Mom put the', blank: { pos: 'noun' }, ending: 'on the table.' },
-            { id: 5, page: 1, template: 'Can you', blank: { pos: 'verb' }, ending: 'very fast?' },
-            { id: 6, page: 1, template: 'I found a', blank: { pos: 'adjective' }, ending: 'rock by the river.' },
-            { id: 7, page: 1, template: 'The dog wanted to', blank: { pos: 'verb' }, ending: 'all day long.' },
-            { id: 8, page: 1, template: 'We went to the', blank: { pos: 'noun' }, ending: 'to buy some candy.' },
-            { id: 9, page: 1, template: 'My dad is very', blank: { pos: 'adjective' }, ending: 'and helps me lift things.' },
-            { id: 10, page: 1, template: 'Look at the', blank: { pos: 'noun' }, ending: 'crawling on the wall!' },
-            { id: 11, page: 2, template: 'She found a', blank: { pos: 'adjective' }, ending: 'toy in the box.' },
-            { id: 12, page: 2, template: 'We need to', blank: { pos: 'verb' }, ending: 'before we go.' },
-            { id: 13, page: 2, template: 'The', blank: { pos: 'noun' }, ending: 'made a lot of noise.' },
-            { id: 14, page: 2, template: 'That was a', blank: { pos: 'adjective' }, ending: 'story you told us.' },
-            { id: 15, page: 2, template: 'Please', blank: { pos: 'verb' }, ending: 'to what I say.' },
-            { id: 16, page: 2, template: 'I saw a colorful', blank: { pos: 'noun' }, ending: 'flying in the sky.' },
-            { id: 17, page: 2, template: 'He likes to', blank: { pos: 'verb' }, ending: 'with his friends.' },
-            { id: 18, page: 2, template: 'The teacher gave us a', blank: { pos: 'adjective' }, ending: 'book to read.' },
-            { id: 19, page: 2, template: 'My sister dropped her', blank: { pos: 'noun' }, ending: 'on the floor.' },
-            { id: 20, page: 2, template: 'They want to', blank: { pos: 'verb' }, ending: 'something new today.' }
+            { id: 1, template: 'The boy saw a big', blank: { pos: 'noun' }, ending: 'in the yard.' },
+            { id: 2, template: 'I like to', blank: { pos: 'verb' }, ending: 'at the park.' },
+            { id: 3, template: 'The', blank: { pos: 'adjective' }, ending: 'cat sat on the mat.' },
+            { id: 4, template: 'Mom put the', blank: { pos: 'noun' }, ending: 'on the table.' },
+            { id: 5, template: 'Can you', blank: { pos: 'verb' }, ending: 'very fast?' },
+            { id: 6, template: 'I found a', blank: { pos: 'adjective' }, ending: 'rock by the river.' },
+            { id: 7, template: 'The dog wanted to', blank: { pos: 'verb' }, ending: 'all day long.' },
+            { id: 8, template: 'We went to the', blank: { pos: 'noun' }, ending: 'to buy some candy.' },
+            { id: 9, template: 'My dad is very', blank: { pos: 'adjective' }, ending: 'and helps me lift things.' },
+            { id: 10, template: 'Look at the', blank: { pos: 'noun' }, ending: 'crawling on the wall!' },
+            { id: 11, template: 'She found a', blank: { pos: 'adjective' }, ending: 'toy in the box.' },
+            { id: 12, template: 'We need to', blank: { pos: 'verb' }, ending: 'before we go.' },
+            { id: 13, template: 'The', blank: { pos: 'noun' }, ending: 'made a lot of noise.' },
+            { id: 14, template: 'That was a', blank: { pos: 'adjective' }, ending: 'story you told us.' },
+            { id: 15, template: 'Please', blank: { pos: 'verb' }, ending: 'to what I say.' },
+            { id: 16, template: 'I saw a colorful', blank: { pos: 'noun' }, ending: 'flying in the sky.' },
+            { id: 17, template: 'He likes to', blank: { pos: 'verb' }, ending: 'with his friends.' },
+            { id: 18, template: 'The teacher gave us a', blank: { pos: 'adjective' }, ending: 'book to read.' },
+            { id: 19, template: 'My sister dropped her', blank: { pos: 'noun' }, ending: 'on the floor.' },
+            { id: 20, template: 'They want to', blank: { pos: 'verb' }, ending: 'something new today.' },
+            { id: 21, template: 'What a', blank: { pos: 'adjective' }, ending: 'day to go outside!' },
+            { id: 22, template: 'The little', blank: { pos: 'noun' }, ending: 'ran across the street.' },
+            { id: 23, template: 'Don\'t forget to bring your', blank: { pos: 'noun' }, ending: 'to school.' },
+            { id: 24, template: 'It\'s fun to', blank: { pos: 'verb' }, ending: 'in the swimming pool.' },
+            { id: 25, template: 'Make sure to', blank: { pos: 'verb' }, ending: 'your hands before dinner.' },
+            { id: 26, template: 'The turtle was very', blank: { pos: 'adjective' }, ending: 'when it walked.' },
+            { id: 27, template: 'He threw the', blank: { pos: 'noun' }, ending: 'over the fence.' },
+            { id: 28, template: 'Are you going to', blank: { pos: 'verb' }, ending: 'with us later?' },
+            { id: 29, template: 'My new shoes are so', blank: { pos: 'adjective' }, ending: 'and shiny.' },
+            { id: 30, template: 'She painted a picture of a', blank: { pos: 'noun' }, ending: 'on the canvas.' },
+            { id: 31, template: 'The wizard lived in a', blank: { pos: 'adjective' }, ending: 'castle.' },
+            { id: 32, template: 'My mom baked a', blank: { pos: 'adjective' }, ending: 'cake for my birthday.' },
+            { id: 33, template: 'The baby laughed at the', blank: { pos: 'adjective' }, ending: 'clown.' },
+            { id: 34, template: 'It is important to eat a', blank: { pos: 'adjective' }, ending: 'breakfast.' },
+            { id: 35, template: 'The knight rode a', blank: { pos: 'adjective' }, ending: 'horse into battle.' },
+            { id: 36, template: 'We watched a', blank: { pos: 'adjective' }, ending: 'movie on TV.' },
+            { id: 37, template: 'She wore a', blank: { pos: 'adjective' }, ending: 'dress to the party.' },
+            { id: 38, template: 'A tiny', blank: { pos: 'noun' }, ending: 'jumped out of the grass.' },
+            { id: 39, template: 'Did you see the', blank: { pos: 'noun' }, ending: 'at the zoo?' },
+            { id: 40, template: 'The pirate found a buried', blank: { pos: 'noun' }, ending: 'on the island.' },
+            { id: 41, template: 'He left his', blank: { pos: 'noun' }, ending: 'on the bus.' },
+            { id: 42, template: 'They built a tall', blank: { pos: 'noun' }, ending: 'out of blocks.' },
+            { id: 43, template: 'I had a sandwich and a', blank: { pos: 'noun' }, ending: 'for lunch.' },
+            { id: 44, template: 'Can you hand me that', blank: { pos: 'noun' }, ending: 'over there?' },
+            { id: 45, template: 'I love to', blank: { pos: 'verb' }, ending: 'in the mountains.' },
+            { id: 46, template: 'We should', blank: { pos: 'verb' }, ending: 'a song together.' },
+            { id: 47, template: 'Do you want to', blank: { pos: 'verb' }, ending: 'a game with me?' },
+            { id: 48, template: 'She tried to', blank: { pos: 'verb' }, ending: 'over the puddle.' },
+            { id: 49, template: 'He likes to', blank: { pos: 'verb' }, ending: 'his bicycle to the store.' },
+            { id: 50, template: 'They had to', blank: { pos: 'verb' }, ending: 'because it was raining.' }
         ];
 
         // Load word data synchronously from articulation.js via DataLoader
@@ -598,10 +627,11 @@
 
         function initializeActivity() {
             const words = getSelectedWords();
-            const shuffled = [...words].sort(() => Math.random() - 0.5);
-            state.availableWords = shuffled;
+            const shuffledWords = [...words].sort(() => Math.random() - 0.5);
+            state.availableWords = shuffledWords;
 
-            state.sentences = sentenceTemplates.map(sent => ({
+            const shuffledSentences = [...sentenceTemplates].sort(() => Math.random() - 0.5);
+            state.sentences = shuffledSentences.map(sent => ({
                 ...sent,
                 filledWord: null
             }));
@@ -711,6 +741,11 @@
                 state.currentDisplayedWords = null;
                 render();
             }
+        }
+
+        function regenerateWordBank() {
+            state.currentDisplayedWords = null;
+            render();
         }
 
         // Phoneme group structure for sound selection
@@ -832,7 +867,9 @@
                 state.currentDisplayedWords = shuffled.slice(0, 15).map(w => w.id);
             }
 
-            const wordsToDisplay = state.availableWords.filter(w => state.currentDisplayedWords.includes(w.id));
+            const wordsToDisplay = state.currentDisplayedWords
+                .map(id => state.availableWords.find(w => w.id === id))
+                .filter(Boolean);
 
             return `
                 <div class="activity-header">
@@ -855,7 +892,10 @@
 
                     <div class="content-layout">
                         <div class="word-bank-section">
-                            <h3>Word Bank</h3>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h3 style="margin: 0;">Word Bank</h3>
+                                <button onclick="regenerateWordBank()" style="padding: 5px 10px; background: #f0f4ff; border: 1px solid #667eea; border-radius: 5px; color: #667eea; cursor: pointer; font-size: 0.9em; font-weight: bold; transition: all 0.2s ease;">🔄 Get New Words</button>
+                            </div>
                             ${[currentPos].map(pos => {
                 const words = wordsToDisplay;
                 const labels = { noun: '🔵 Nouns', verb: '🟢 Verbs', adjective: '🟣 Adjectives' };
