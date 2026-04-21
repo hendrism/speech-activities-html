@@ -56673,7 +56673,7 @@ window.ActivityData.stories = {
   "earth-day-reading": [
     {
       "id": "story-1",
-      "title": "Story 1: The Plastic Bottle (Final Version)",
+      "title": "Story 1: The Plastic Bottle",
       "emoji": "\ud83c\udf0e",
       "image": "images/earth-day-stories/1-waterbottle.jpg",
       "versions": {
