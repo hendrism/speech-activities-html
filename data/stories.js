@@ -56784,7 +56784,7 @@ window.ActivityData.stories = {
                 "clue": "He started thinking",
                 "choices": [
                   {
-                    "text": "Fix mistake",
+                    "text": "Fix it",
                     "isCorrect": true
                   },
                   {
@@ -56820,7 +56820,7 @@ window.ActivityData.stories = {
                 "clue": "He wanted to fix it",
                 "choices": [
                   {
-                    "text": "Help Earth",
+                    "text": "Help the Earth",
                     "isCorrect": true
                   },
                   {
@@ -56838,7 +56838,7 @@ window.ActivityData.stories = {
                 "clue": "Middle of story",
                 "choices": [
                   {
-                    "text": "Dropped bottle",
+                    "text": "Dropped the bottle",
                     "isCorrect": true
                   },
                   {
@@ -57031,7 +57031,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Go play",
+                    "text": "Run away",
                     "isCorrect": false
                   }
                 ]
@@ -57397,7 +57397,7 @@ window.ActivityData.stories = {
                     "isCorrect": true
                   },
                   {
-                    "text": "Go sleep",
+                    "text": "Go to sleep",
                     "isCorrect": false
                   },
                   {
@@ -57596,7 +57596,7 @@ window.ActivityData.stories = {
                 "clue": "Think about keeping Earth clean",
                 "choices": [
                   {
-                    "text": "Help Earth",
+                    "text": "Help the Earth",
                     "isCorrect": true
                   },
                   {
@@ -57799,7 +57799,7 @@ window.ActivityData.stories = {
                 "clue": "Think about fixing a mistake",
                 "choices": [
                   {
-                    "text": "Fix mistake",
+                    "text": "Fix it",
                     "isCorrect": true
                   },
                   {
@@ -57835,7 +57835,7 @@ window.ActivityData.stories = {
                 "clue": "Think about keeping the area clean",
                 "choices": [
                   {
-                    "text": "Clean area",
+                    "text": "Keep it clean",
                     "isCorrect": true
                   },
                   {
@@ -58249,7 +58249,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted play",
+                    "text": "Wanted to play",
                     "isCorrect": false
                   }
                 ]
@@ -58299,7 +58299,7 @@ window.ActivityData.stories = {
       "id": "story-9",
       "title": "Story 9: Turning Off Electronics",
       "emoji": "\u26a1",
-      "image": "",
+      "image": "images/earth-day-stories/9-tv-on.jpg",
       "versions": {
         "default": {
           "text": [
@@ -58452,7 +58452,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted play",
+                    "text": "Wanted to play",
                     "isCorrect": false
                   }
                 ]
@@ -58611,7 +58611,7 @@ window.ActivityData.stories = {
                 "clue": "Think about using it again",
                 "choices": [
                   {
-                    "text": "Use again",
+                    "text": "Use it again",
                     "isCorrect": true
                   },
                   {
@@ -58626,7 +58626,7 @@ window.ActivityData.stories = {
               },
               {
                 "prompt": "2. How did Mia feel?",
-                "clue": "Helping the Earth",
+                "clue": "Think about helping the Earth",
                 "choices": [
                   {
                     "text": "Good",
@@ -58655,7 +58655,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted play",
+                    "text": "Wanted to play",
                     "isCorrect": false
                   }
                 ]

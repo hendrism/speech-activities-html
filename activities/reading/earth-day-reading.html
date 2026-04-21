@@ -23,6 +23,11 @@
             box-sizing: border-box;
         }
 
+        html {
+            font-size: var(--body-font-size, 16px);
+            transition: font-size 0.2s ease;
+        }
+
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -253,14 +258,80 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Text & Image Controls */
+        .controls-bar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .icon-btn {
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 8px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--midnight);
+            box-shadow: 0 4px 6px rgba(15, 23, 42, 0.05);
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            border-color: var(--sky);
+            transform: translateY(-1px);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(15, 23, 42, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            backdrop-filter: blur(4px);
+        }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .emoji-content {
+            font-size: 15vw !important;
+            border: none !important;
+            background: transparent !important;
+        }
+        .zoomable {
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .zoomable:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 
 <body class="category-reading">
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" style="display:none;" alt="Enlarged view">
+        <div id="lightbox-emoji" class="emoji-wrapper emoji-content" style="display:none;"></div>
+    </div>
+
     <div class="page">
         <h1>Earth Day Reading Activities</h1>
         <div class="intro">
             Read the Earth Day stories and answer the questions. Switch between Literal and Inferential questions, use hints, and check your answers with multiple-choice options.
+        </div>
+
+        <div class="controls-bar">
+            <button class="icon-btn" onclick="changeTextSize(-1)" title="Make text smaller">A -</button>
+            <button class="icon-btn" onclick="changeTextSize(1)" title="Make text larger">A +</button>
         </div>
 
         <div class="nav-bar" id="story-nav"></div>
@@ -322,8 +393,8 @@
                         <div class="story-text">
                             ${textParagraphs}
                         </div>
-                        <div class="emoji-wrapper">
-                            ${story.image ? `<img src="../../${story.image}" alt="${story.title}" class="story-image" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">` : story.emoji}
+                        <div class="emoji-wrapper zoomable" onclick="openLightbox(${story.image ? `'../../${story.image}', null` : `null, '${story.emoji}'`})">
+                            ${story.image ? `<img src="../../${story.image}" alt="${story.title}" class="story-image" style="max-width: 100%; height: auto; border-radius: 12px;">` : story.emoji}
                         </div>
                     </div>
                     
@@ -411,6 +482,37 @@
             } else {
                 btn.classList.add('incorrect');
             }
+        };
+
+        // Text Resizing
+        let baseFontSize = 16;
+        window.changeTextSize = function (step) {
+            baseFontSize += step * 2;
+            if (baseFontSize < 12) baseFontSize = 12;
+            if (baseFontSize > 32) baseFontSize = 32;
+            document.documentElement.style.setProperty('--body-font-size', baseFontSize + 'px');
+        };
+
+        // Lightbox Functions
+        window.openLightbox = function (imgSrc, emoji) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            const lbEmoji = document.getElementById('lightbox-emoji');
+            
+            lb.style.display = 'flex';
+            if (imgSrc) {
+                lbImg.src = imgSrc;
+                lbImg.style.display = 'block';
+                lbEmoji.style.display = 'none';
+            } else {
+                lbEmoji.textContent = emoji;
+                lbEmoji.style.display = 'flex';
+                lbImg.style.display = 'none';
+            }
+        };
+
+        window.closeLightbox = function () {
+            document.getElementById('lightbox').style.display = 'none';
         };
 
         // Initialize Page

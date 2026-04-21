@@ -56783,7 +56783,7 @@
                 "clue": "He started thinking",
                 "choices": [
                   {
-                    "text": "Fix mistake",
+                    "text": "Fix it",
                     "isCorrect": true
                   },
                   {
@@ -56819,7 +56819,7 @@
                 "clue": "He wanted to fix it",
                 "choices": [
                   {
-                    "text": "Help Earth",
+                    "text": "Help the Earth",
                     "isCorrect": true
                   },
                   {
@@ -56837,7 +56837,7 @@
                 "clue": "Middle of story",
                 "choices": [
                   {
-                    "text": "Dropped bottle",
+                    "text": "Dropped the bottle",
                     "isCorrect": true
                   },
                   {
@@ -57030,7 +57030,7 @@
                     "isCorrect": false
                   },
                   {
-                    "text": "Go play",
+                    "text": "Run away",
                     "isCorrect": false
                   }
                 ]
@@ -57396,7 +57396,7 @@
                     "isCorrect": true
                   },
                   {
-                    "text": "Go sleep",
+                    "text": "Go to sleep",
                     "isCorrect": false
                   },
                   {
@@ -57595,7 +57595,7 @@
                 "clue": "Think about keeping Earth clean",
                 "choices": [
                   {
-                    "text": "Help Earth",
+                    "text": "Help the Earth",
                     "isCorrect": true
                   },
                   {
@@ -57798,7 +57798,7 @@
                 "clue": "Think about fixing a mistake",
                 "choices": [
                   {
-                    "text": "Fix mistake",
+                    "text": "Fix it",
                     "isCorrect": true
                   },
                   {
@@ -57834,7 +57834,7 @@
                 "clue": "Think about keeping the area clean",
                 "choices": [
                   {
-                    "text": "Clean area",
+                    "text": "Keep it clean",
                     "isCorrect": true
                   },
                   {
@@ -58248,7 +58248,7 @@
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted play",
+                    "text": "Wanted to play",
                     "isCorrect": false
                   }
                 ]
@@ -58298,7 +58298,7 @@
       "id": "story-9",
       "title": "Story 9: Turning Off Electronics",
       "emoji": "\u26a1",
-      "image": "",
+      "image": "images/earth-day-stories/9-tv-on.jpg",
       "versions": {
         "default": {
           "text": [
@@ -58451,7 +58451,7 @@
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted play",
+                    "text": "Wanted to play",
                     "isCorrect": false
                   }
                 ]
@@ -58610,7 +58610,7 @@
                 "clue": "Think about using it again",
                 "choices": [
                   {
-                    "text": "Use again",
+                    "text": "Use it again",
                     "isCorrect": true
                   },
                   {
@@ -58625,7 +58625,7 @@
               },
               {
                 "prompt": "2. How did Mia feel?",
-                "clue": "Helping the Earth",
+                "clue": "Think about helping the Earth",
                 "choices": [
                   {
                     "text": "Good",
@@ -58654,7 +58654,7 @@
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted play",
+                    "text": "Wanted to play",
                     "isCorrect": false
                   }
                 ]
