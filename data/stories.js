@@ -56784,15 +56784,15 @@ window.ActivityData.stories = {
                 "clue": "He started thinking",
                 "choices": [
                   {
-                    "text": "Fix it",
+                    "text": "To fix it",
                     "isCorrect": true
                   },
                   {
-                    "text": "Get lost",
+                    "text": "To get lost",
                     "isCorrect": false
                   },
                   {
-                    "text": "Take a break",
+                    "text": "To take a break",
                     "isCorrect": false
                   }
                 ]
@@ -56820,15 +56820,15 @@ window.ActivityData.stories = {
                 "clue": "He wanted to fix it",
                 "choices": [
                   {
-                    "text": "Help the Earth",
+                    "text": "To help the Earth",
                     "isCorrect": true
                   },
                   {
-                    "text": "Play around",
+                    "text": "To play around",
                     "isCorrect": false
                   },
                   {
-                    "text": "Hide it",
+                    "text": "To hide it",
                     "isCorrect": false
                   }
                 ]
@@ -56838,11 +56838,11 @@ window.ActivityData.stories = {
                 "clue": "Middle of story",
                 "choices": [
                   {
-                    "text": "Dropped the bottle",
+                    "text": "He dropped the plastic bottle",
                     "isCorrect": true
                   },
                   {
-                    "text": "Walking",
+                    "text": "Walking around",
                     "isCorrect": false
                   },
                   {
@@ -56860,7 +56860,7 @@ window.ActivityData.stories = {
                     "isCorrect": true
                   },
                   {
-                    "text": "Drop trash",
+                    "text": "Drop the trash",
                     "isCorrect": false
                   },
                   {
@@ -56949,7 +56949,7 @@ window.ActivityData.stories = {
                 "clue": "She needed water",
                 "choices": [
                   {
-                    "text": "No water",
+                    "text": "There was no water",
                     "isCorrect": true
                   },
                   {
@@ -56987,15 +56987,15 @@ window.ActivityData.stories = {
                 "clue": "Think about what trees need",
                 "choices": [
                   {
-                    "text": "Help tree grow",
+                    "text": "To help the tree grow",
                     "isCorrect": true
                   },
                   {
-                    "text": "Wash hands",
+                    "text": "To wash hands",
                     "isCorrect": false
                   },
                   {
-                    "text": "Drink water",
+                    "text": "To drink water",
                     "isCorrect": false
                   }
                 ]
@@ -57023,15 +57023,15 @@ window.ActivityData.stories = {
                 "clue": "Think about why friends help",
                 "choices": [
                   {
-                    "text": "Help Maya",
+                    "text": "To help Maya",
                     "isCorrect": true
                   },
                   {
-                    "text": "Play around",
+                    "text": "To play around",
                     "isCorrect": false
                   },
                   {
-                    "text": "Run away",
+                    "text": "To run away",
                     "isCorrect": false
                   }
                 ]
@@ -57041,15 +57041,15 @@ window.ActivityData.stories = {
                 "clue": "Think about what went wrong",
                 "choices": [
                   {
-                    "text": "No water",
+                    "text": "There was no water",
                     "isCorrect": true
                   },
                   {
-                    "text": "Digging",
+                    "text": "She was digging",
                     "isCorrect": false
                   },
                   {
-                    "text": "Walking",
+                    "text": "Walking around",
                     "isCorrect": false
                   }
                 ]
@@ -57186,19 +57186,19 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "1. Why turn off water?",
+                "prompt": "1. Why should we turn off the water?",
                 "clue": "Think about why water matters",
                 "choices": [
                   {
-                    "text": "Save water",
+                    "text": "To save water",
                     "isCorrect": true
                   },
                   {
-                    "text": "Make noise",
+                    "text": "To make noise",
                     "isCorrect": false
                   },
                   {
-                    "text": "Play around",
+                    "text": "To play around",
                     "isCorrect": false
                   }
                 ]
@@ -57226,15 +57226,15 @@ window.ActivityData.stories = {
                 "clue": "Think about why she told him",
                 "choices": [
                   {
-                    "text": "Show mistake",
+                    "text": "To show mistake",
                     "isCorrect": true
                   },
                   {
-                    "text": "Yell at him",
+                    "text": "To yell at him",
                     "isCorrect": false
                   },
                   {
-                    "text": "Walk away",
+                    "text": "To walk away",
                     "isCorrect": false
                   }
                 ]
@@ -57244,15 +57244,15 @@ window.ActivityData.stories = {
                 "clue": "Think about what went wrong",
                 "choices": [
                   {
-                    "text": "Water running",
+                    "text": "The water was left running",
                     "isCorrect": true
                   },
                   {
-                    "text": "Washing",
+                    "text": "He was washing",
                     "isCorrect": false
                   },
                   {
-                    "text": "Sink",
+                    "text": "The sink overflowed",
                     "isCorrect": false
                   }
                 ]
@@ -57262,7 +57262,7 @@ window.ActivityData.stories = {
                 "clue": "Think about the sink",
                 "choices": [
                   {
-                    "text": "Turn off water",
+                    "text": "Turn off the water",
                     "isCorrect": true
                   },
                   {
@@ -57355,15 +57355,15 @@ window.ActivityData.stories = {
                 "clue": "Wasting",
                 "choices": [
                   {
-                    "text": "Light on",
+                    "text": "The light was left on",
                     "isCorrect": true
                   },
                   {
-                    "text": "Sitting",
+                    "text": "She was sitting",
                     "isCorrect": false
                   },
                   {
-                    "text": "Talking",
+                    "text": "She was talking",
                     "isCorrect": false
                   }
                 ]
@@ -57389,19 +57389,19 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "1. Why turn off lights?",
+                "prompt": "1. Why should we turn off the lights?",
                 "clue": "Think about using less power",
                 "choices": [
                   {
-                    "text": "Save energy",
+                    "text": "To save energy",
                     "isCorrect": true
                   },
                   {
-                    "text": "Go to sleep",
+                    "text": "To go to sleep",
                     "isCorrect": false
                   },
                   {
-                    "text": "Play around",
+                    "text": "To play around",
                     "isCorrect": false
                   }
                 ]
@@ -57429,15 +57429,15 @@ window.ActivityData.stories = {
                 "clue": "Think about why her dad spoke up",
                 "choices": [
                   {
-                    "text": "Help Emma",
+                    "text": "To help Emma",
                     "isCorrect": true
                   },
                   {
-                    "text": "Yell at her",
+                    "text": "To yell at her",
                     "isCorrect": false
                   },
                   {
-                    "text": "Walk away",
+                    "text": "To walk away",
                     "isCorrect": false
                   }
                 ]
@@ -57447,15 +57447,15 @@ window.ActivityData.stories = {
                 "clue": "Think about what went wrong",
                 "choices": [
                   {
-                    "text": "Light on",
+                    "text": "The light was left on",
                     "isCorrect": true
                   },
                   {
-                    "text": "Walking",
+                    "text": "Walking around",
                     "isCorrect": false
                   },
                   {
-                    "text": "Talking",
+                    "text": "She was talking",
                     "isCorrect": false
                   }
                 ]
@@ -57465,7 +57465,7 @@ window.ActivityData.stories = {
                 "clue": "Think about the light",
                 "choices": [
                   {
-                    "text": "Turn off light",
+                    "text": "Turn off the light",
                     "isCorrect": true
                   },
                   {
@@ -57592,19 +57592,19 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "1. Why sort trash?",
+                "prompt": "1. Why should we sort the trash?",
                 "clue": "Think about keeping Earth clean",
                 "choices": [
                   {
-                    "text": "Help the Earth",
+                    "text": "To help the Earth",
                     "isCorrect": true
                   },
                   {
-                    "text": "Play around",
+                    "text": "To play around",
                     "isCorrect": false
                   },
                   {
-                    "text": "Hide trash",
+                    "text": "To hide the trash",
                     "isCorrect": false
                   }
                 ]
@@ -57632,15 +57632,15 @@ window.ActivityData.stories = {
                 "clue": "Think about why teachers help",
                 "choices": [
                   {
-                    "text": "Teach Ben",
+                    "text": "To teach Ben",
                     "isCorrect": true
                   },
                   {
-                    "text": "Walk away",
+                    "text": "To walk away",
                     "isCorrect": false
                   },
                   {
-                    "text": "Watch only",
+                    "text": "To watch only",
                     "isCorrect": false
                   }
                 ]
@@ -57650,15 +57650,15 @@ window.ActivityData.stories = {
                 "clue": "Think about what Ben did wrong first",
                 "choices": [
                   {
-                    "text": "Mixed trash",
+                    "text": "The trash was mixed up",
                     "isCorrect": true
                   },
                   {
-                    "text": "Sorting",
+                    "text": "He was sorting trash",
                     "isCorrect": false
                   },
                   {
-                    "text": "Walking",
+                    "text": "Walking around",
                     "isCorrect": false
                   }
                 ]
@@ -57668,7 +57668,7 @@ window.ActivityData.stories = {
                 "clue": "Think about the bins",
                 "choices": [
                   {
-                    "text": "Sort trash",
+                    "text": "Sort the trash",
                     "isCorrect": true
                   },
                   {
@@ -57795,19 +57795,19 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "1. Why go back?",
+                "prompt": "1. Why did she go back?",
                 "clue": "Think about fixing a mistake",
                 "choices": [
                   {
-                    "text": "Fix it",
+                    "text": "To fix it",
                     "isCorrect": true
                   },
                   {
-                    "text": "Play around",
+                    "text": "To play around",
                     "isCorrect": false
                   },
                   {
-                    "text": "Run away",
+                    "text": "To run away",
                     "isCorrect": false
                   }
                 ]
@@ -57831,19 +57831,19 @@ window.ActivityData.stories = {
                 ]
               },
               {
-                "prompt": "3. Why pick up trash?",
+                "prompt": "3. Why should we pick up the trash?",
                 "clue": "Think about keeping the area clean",
                 "choices": [
                   {
-                    "text": "Keep it clean",
+                    "text": "To keep it clean",
                     "isCorrect": true
                   },
                   {
-                    "text": "Hide it",
+                    "text": "To hide it",
                     "isCorrect": false
                   },
                   {
-                    "text": "Throw it",
+                    "text": "To throw it",
                     "isCorrect": false
                   }
                 ]
@@ -57853,15 +57853,15 @@ window.ActivityData.stories = {
                 "clue": "Think about the problem at the beginning",
                 "choices": [
                   {
-                    "text": "Trash on ground",
+                    "text": "Trash was on the ground",
                     "isCorrect": true
                   },
                   {
-                    "text": "Walking",
+                    "text": "Walking around",
                     "isCorrect": false
                   },
                   {
-                    "text": "Talking",
+                    "text": "She was talking",
                     "isCorrect": false
                   }
                 ]
@@ -57879,7 +57879,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Walk past",
+                    "text": "Walk past it",
                     "isCorrect": false
                   }
                 ]
@@ -57998,19 +57998,19 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "1. Why use fewer towels?",
+                "prompt": "1. Why should we use fewer towels?",
                 "clue": "Think about saving supplies",
                 "choices": [
                   {
-                    "text": "Save paper",
+                    "text": "To save paper",
                     "isCorrect": true
                   },
                   {
-                    "text": "Make mess",
+                    "text": "To make a mess",
                     "isCorrect": false
                   },
                   {
-                    "text": "Waste more",
+                    "text": "To waste more",
                     "isCorrect": false
                   }
                 ]
@@ -58038,15 +58038,15 @@ window.ActivityData.stories = {
                 "clue": "Think about teaching",
                 "choices": [
                   {
-                    "text": "Teach Lily",
+                    "text": "To teach Lily",
                     "isCorrect": true
                   },
                   {
-                    "text": "Walk away",
+                    "text": "To walk away",
                     "isCorrect": false
                   },
                   {
-                    "text": "Ignore it",
+                    "text": "To ignore it",
                     "isCorrect": false
                   }
                 ]
@@ -58056,7 +58056,7 @@ window.ActivityData.stories = {
                 "clue": "Think about what went wrong",
                 "choices": [
                   {
-                    "text": "Too many towels",
+                    "text": "Used too many paper towels",
                     "isCorrect": true
                   },
                   {
@@ -58078,7 +58078,7 @@ window.ActivityData.stories = {
                     "isCorrect": true
                   },
                   {
-                    "text": "Use many",
+                    "text": "Use too many",
                     "isCorrect": false
                   },
                   {
@@ -58201,19 +58201,19 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "1. Why turn off water?",
+                "prompt": "1. Why should we turn off the water?",
                 "clue": "Think about saving water",
                 "choices": [
                   {
-                    "text": "Save water",
+                    "text": "To save water",
                     "isCorrect": true
                   },
                   {
-                    "text": "Make noise",
+                    "text": "To make noise",
                     "isCorrect": false
                   },
                   {
-                    "text": "Play around",
+                    "text": "To play around",
                     "isCorrect": false
                   }
                 ]
@@ -58241,15 +58241,15 @@ window.ActivityData.stories = {
                 "clue": "Think about what he saw",
                 "choices": [
                   {
-                    "text": "Saw waste",
+                    "text": "Because he saw waste",
                     "isCorrect": true
                   },
                   {
-                    "text": "Got tired",
+                    "text": "Because he got tired",
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted to play",
+                    "text": "Because he wanted to play",
                     "isCorrect": false
                   }
                 ]
@@ -58259,7 +58259,7 @@ window.ActivityData.stories = {
                 "clue": "Think about what went wrong",
                 "choices": [
                   {
-                    "text": "Water running",
+                    "text": "The water was left running",
                     "isCorrect": true
                   },
                   {
@@ -58277,7 +58277,7 @@ window.ActivityData.stories = {
                 "clue": "Think about the sink",
                 "choices": [
                   {
-                    "text": "Turn off water",
+                    "text": "Turn off the water",
                     "isCorrect": true
                   },
                   {
@@ -58370,7 +58370,7 @@ window.ActivityData.stories = {
                 "clue": "Still on",
                 "choices": [
                   {
-                    "text": "Left TV on",
+                    "text": "The TV was left on",
                     "isCorrect": true
                   },
                   {
@@ -58404,19 +58404,19 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "1. Why turn off the TV?",
+                "prompt": "1. Why should we turn off the TV?",
                 "clue": "Think about saving energy",
                 "choices": [
                   {
-                    "text": "Save energy",
+                    "text": "To save energy",
                     "isCorrect": true
                   },
                   {
-                    "text": "Make noise",
+                    "text": "To make noise",
                     "isCorrect": false
                   },
                   {
-                    "text": "Play around",
+                    "text": "To play around",
                     "isCorrect": false
                   }
                 ]
@@ -58444,15 +58444,15 @@ window.ActivityData.stories = {
                 "clue": "Think about the empty room",
                 "choices": [
                   {
-                    "text": "Saw it on",
+                    "text": "Because he saw it on",
                     "isCorrect": true
                   },
                   {
-                    "text": "Got bored",
+                    "text": "Because he got bored",
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted to play",
+                    "text": "Because he wanted to play",
                     "isCorrect": false
                   }
                 ]
@@ -58480,7 +58480,7 @@ window.ActivityData.stories = {
                 "clue": "Think about the TV",
                 "choices": [
                   {
-                    "text": "Turn off TV",
+                    "text": "Turn off the TV",
                     "isCorrect": true
                   },
                   {
@@ -58573,7 +58573,7 @@ window.ActivityData.stories = {
                 "clue": "Too many",
                 "choices": [
                   {
-                    "text": "Too many bags",
+                    "text": "Used too many plastic bags",
                     "isCorrect": true
                   },
                   {
@@ -58607,19 +58607,19 @@ window.ActivityData.stories = {
             ],
             "inferential": [
               {
-                "prompt": "1. Why use a reusable bag?",
+                "prompt": "1. Why should we use a reusable bag?",
                 "clue": "Think about using it again",
                 "choices": [
                   {
-                    "text": "Use it again",
+                    "text": "To use it again",
                     "isCorrect": true
                   },
                   {
-                    "text": "Throw away",
+                    "text": "To throw it away",
                     "isCorrect": false
                   },
                   {
-                    "text": "Make mess",
+                    "text": "To make a mess",
                     "isCorrect": false
                   }
                 ]
@@ -58647,15 +58647,15 @@ window.ActivityData.stories = {
                 "clue": "Think about the bags at home",
                 "choices": [
                   {
-                    "text": "Saw too many",
+                    "text": "Because she saw too many",
                     "isCorrect": true
                   },
                   {
-                    "text": "Forgot bags",
+                    "text": "Because she forgot bags",
                     "isCorrect": false
                   },
                   {
-                    "text": "Wanted to play",
+                    "text": "Because he wanted to play",
                     "isCorrect": false
                   }
                 ]
@@ -58665,7 +58665,7 @@ window.ActivityData.stories = {
                 "clue": "Think about what went wrong",
                 "choices": [
                   {
-                    "text": "Too many bags",
+                    "text": "Used too many plastic bags",
                     "isCorrect": true
                   },
                   {
@@ -58673,7 +58673,7 @@ window.ActivityData.stories = {
                     "isCorrect": false
                   },
                   {
-                    "text": "Walking",
+                    "text": "Walking around",
                     "isCorrect": false
                   }
                 ]
@@ -58687,7 +58687,7 @@ window.ActivityData.stories = {
                     "isCorrect": true
                   },
                   {
-                    "text": "Use plastic",
+                    "text": "Use plastic bags",
                     "isCorrect": false
                   },
                   {
