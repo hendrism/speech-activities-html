@@ -3,9 +3,9 @@
     "description": "Index of all HTML activity files with type classification",
     "generatedAt": "2026-02-27T20:10:51.930Z",
     "types": {
-      "content-driven": "Data was extracted to /data/*.json — single source of truth",
+      "content-driven": "Data was extracted to /data/*.json \u2014 single source of truth",
       "json-loader": "Activity loads from an external JSON file at runtime",
-      "tool": "Interactive engine — user generates content at runtime, nothing to extract",
+      "tool": "Interactive engine \u2014 user generates content at runtime, nothing to extract",
       "template-driven": "Shared template rendered from data config"
     }
   },
@@ -41,7 +41,7 @@
     {
       "id": "conversation-response-thanksgiving",
       "category": "social",
-      "title": "Conversation Response Practice – Thanksgiving",
+      "title": "Conversation Response Practice \u2013 Thanksgiving",
       "sourceFile": "activities/social/conversation-response-thanksgiving.html",
       "type": "content-driven",
       "seasonal": true
@@ -56,7 +56,7 @@
     {
       "id": "helpful-hurtful-scenarios",
       "category": "social",
-      "title": "Helpful vs Hurtful Responses — Speech Therapy",
+      "title": "Helpful vs Hurtful Responses \u2014 Speech Therapy",
       "sourceFile": "activities/social/helpful-hurtful-scenarios.html",
       "type": "content-driven"
     },
@@ -162,7 +162,7 @@
     {
       "id": "fluency-winter-conversation-starters",
       "category": "fluency",
-      "title": "Winter Conversation Starters – Fluency",
+      "title": "Winter Conversation Starters \u2013 Fluency",
       "sourceFile": "activities/fluency/fluency-winter-conversation-starters.html",
       "type": "content-driven"
     },
@@ -351,28 +351,28 @@
     {
       "id": "double-bubble-compare-contrast-fall-edition",
       "category": "reading",
-      "title": "Double Bubble Compare & Contrast – Fall Edition",
+      "title": "Double Bubble Compare & Contrast \u2013 Fall Edition",
       "sourceFile": "activities/reading/double-bubble-compare-contrast-fall-edition.html",
       "type": "tool"
     },
     {
       "id": "fall-reading-comprehension-infer",
       "category": "reading",
-      "title": "Fall Reading – Inference Focus",
+      "title": "Fall Reading \u2013 Inference Focus",
       "sourceFile": "activities/reading/fall-reading-comprehension-infer.html",
       "type": "content-driven"
     },
     {
       "id": "fall-reading-simple",
       "category": "reading",
-      "title": "Fall Reading – Simple Level",
+      "title": "Fall Reading \u2013 Simple Level",
       "sourceFile": "activities/reading/fall-reading-simple.html",
       "type": "content-driven"
     },
     {
       "id": "fall-stories-expanded-and-leveled",
       "category": "reading",
-      "title": "Fall Reading – Expanded & Leveled",
+      "title": "Fall Reading \u2013 Expanded & Leveled",
       "sourceFile": "activities/reading/fall-stories-expanded-and-leveled.html",
       "type": "content-driven"
     },
@@ -393,7 +393,7 @@
     {
       "id": "inference-thanksgiving-simple",
       "category": "reading",
-      "title": "Thanksgiving Inferences – Easy",
+      "title": "Thanksgiving Inferences \u2013 Easy",
       "sourceFile": "activities/reading/inference-thanksgiving-simple.html",
       "type": "content-driven"
     },
@@ -603,7 +603,7 @@
     {
       "id": "context-clues-thanksgiving",
       "category": "vocabulary",
-      "title": "Context Clues – Thanksgiving",
+      "title": "Context Clues \u2013 Thanksgiving",
       "sourceFile": "activities/vocabulary/context-clues-thanksgiving.html",
       "type": "tool"
     },
@@ -701,7 +701,7 @@
     {
       "id": "synonyms-thanksgiving",
       "category": "vocabulary",
-      "title": "Synonyms – Thanksgiving Edition",
+      "title": "Synonyms \u2013 Thanksgiving Edition",
       "sourceFile": "activities/vocabulary/synonyms-thanksgiving.html",
       "type": "tool"
     },
@@ -857,6 +857,13 @@
       "category": "vocabulary",
       "title": "Picture Choices Practice",
       "sourceFile": "activities/vocabulary/picture-preference-choices.html",
+      "type": "content-driven"
+    },
+    {
+      "id": "earth-day-reading",
+      "category": "reading",
+      "title": "Earth Day Reading Activities",
+      "sourceFile": "activities/reading/earth-day-reading.html",
       "type": "content-driven"
     }
   ]

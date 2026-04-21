@@ -56668,5 +56668,2037 @@
         "imageUrl": "/images/spring-info-texts-images/ladybug.png"
       }
     ]
-  }
+  },
+  "earth-day-reading": [
+    {
+      "id": "story-1",
+      "title": "Story 1: The Plastic Bottle (Final Version)",
+      "emoji": "\ud83c\udf0e",
+      "image": "images/earth-day-stories/1-waterbottle.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Liam walked in the park with a plastic bottle.",
+            "He finished his drink.",
+            "He dropped the bottle on the ground and walked away.",
+            "Then he stopped and looked back.",
+            "Liam picked up the bottle and put it in a recycling bin."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The boy in the park",
+                "choices": [
+                  {
+                    "text": "Liam",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Jake",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "A teacher",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. Where is Liam?",
+                "clue": "Outside with trees",
+                "choices": [
+                  {
+                    "text": "Park",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "School",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Store",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What does Liam have?",
+                "clue": "You drink from it",
+                "choices": [
+                  {
+                    "text": "Bottle",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Book",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Ball",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What did Liam do first with the bottle?",
+                "clue": "Not the right choice",
+                "choices": [
+                  {
+                    "text": "Dropped it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Recycled it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Kept it",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. Where did Liam put the bottle at the end?",
+                "clue": "The right place for plastic",
+                "choices": [
+                  {
+                    "text": "Recycling bin",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ground",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Somewhere else",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why did Liam stop?",
+                "clue": "He started thinking",
+                "choices": [
+                  {
+                    "text": "Fix mistake",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Get lost",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Take a break",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Liam feel at the end?",
+                "clue": "After fixing a mistake",
+                "choices": [
+                  {
+                    "text": "Proud",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mad",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sleepy",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did Liam go back?",
+                "clue": "He wanted to fix it",
+                "choices": [
+                  {
+                    "text": "Help Earth",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Play around",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Hide it",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Middle of story",
+                "choices": [
+                  {
+                    "text": "Dropped bottle",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Walking",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Drinking",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Liam do next time?",
+                "clue": "He learned",
+                "choices": [
+                  {
+                    "text": "Recycle first",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Drop trash",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-2",
+      "title": "Story 2: Planting a Tree",
+      "emoji": "\ud83c\udf31",
+      "image": "images/earth-day-stories/2-plant-tree.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Maya and her class went outside to plant a tree.",
+            "Maya dug a hole in the grass.",
+            "She tried to water the tree, but her watering can was empty.",
+            "Her friend brought water and helped her.",
+            "They watered the tree together."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The girl planting",
+                "choices": [
+                  {
+                    "text": "Maya",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Anna",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Teacher",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. Where are they?",
+                "clue": "Outside",
+                "choices": [
+                  {
+                    "text": "Outside",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Home",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Store",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What are they planting?",
+                "clue": "It grows tall",
+                "choices": [
+                  {
+                    "text": "Tree",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Flower",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Grass",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What was the problem?",
+                "clue": "She needed water",
+                "choices": [
+                  {
+                    "text": "No water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "No shovel",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "No tree",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did they do at the end?",
+                "clue": "Helped the tree",
+                "choices": [
+                  {
+                    "text": "Watered it",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Left it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Moved it",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why did Maya need water?",
+                "clue": "Think about what trees need",
+                "choices": [
+                  {
+                    "text": "Help tree grow",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Wash hands",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Drink water",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Maya feel?",
+                "clue": "Think about her empty watering can",
+                "choices": [
+                  {
+                    "text": "Worried",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Happy",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sleepy",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did her friend help?",
+                "clue": "Think about why friends help",
+                "choices": [
+                  {
+                    "text": "Help Maya",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Play around",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Go play",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about what went wrong",
+                "choices": [
+                  {
+                    "text": "No water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Digging",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walking",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Maya do next time?",
+                "clue": "Think about the water",
+                "choices": [
+                  {
+                    "text": "Bring water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Forget again",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wait there",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-3",
+      "title": "Story 3: The Running Water",
+      "emoji": "\ud83d\udca7",
+      "image": "images/earth-day-stories/3-running-water.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Noah washed his hands at the sink.",
+            "He left the water running and walked away.",
+            "His sister saw the water still on.",
+            "She turned it off and told Noah.",
+            "Noah turned it off next time."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The boy",
+                "choices": [
+                  {
+                    "text": "Noah",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Jake",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sam",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. Where is Noah?",
+                "clue": "With a sink",
+                "choices": [
+                  {
+                    "text": "Bathroom",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Park",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Bus",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What did Noah do?",
+                "clue": "With water",
+                "choices": [
+                  {
+                    "text": "Washed hands",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ate",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Read",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What was the problem?",
+                "clue": "Water still on",
+                "choices": [
+                  {
+                    "text": "Left water on",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Closed door",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Dropped soap",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did his sister do?",
+                "clue": "Fixed it",
+                "choices": [
+                  {
+                    "text": "Turned it off",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Walked away",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Watched only",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why turn off water?",
+                "clue": "Think about why water matters",
+                "choices": [
+                  {
+                    "text": "Save water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Make noise",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Play around",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Noah feel?",
+                "clue": "Think about forgetting the water",
+                "choices": [
+                  {
+                    "text": "Bad",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Excited",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Hungry",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did Noah's sister tell him?",
+                "clue": "Think about why she told him",
+                "choices": [
+                  {
+                    "text": "Show mistake",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yell at him",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about what went wrong",
+                "choices": [
+                  {
+                    "text": "Water running",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Washing",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sink",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Noah do next time?",
+                "clue": "Think about the sink",
+                "choices": [
+                  {
+                    "text": "Turn off water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Leave it on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-4",
+      "title": "Story 4: The Light Left On",
+      "emoji": "\u26a1",
+      "image": "images/earth-day-stories/4-light-on.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Emma left her room with the light on.",
+            "She went to the kitchen.",
+            "Her dad saw the empty room.",
+            "He told Emma to turn it off.",
+            "Emma turned off the light."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The girl",
+                "choices": [
+                  {
+                    "text": "Emma",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Lily",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Mom",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. Where was the light?",
+                "clue": "Her room",
+                "choices": [
+                  {
+                    "text": "Bedroom",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Kitchen",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Yard",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What was left on?",
+                "clue": "Bright",
+                "choices": [
+                  {
+                    "text": "Light",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "TV",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Door",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What was the problem?",
+                "clue": "Wasting",
+                "choices": [
+                  {
+                    "text": "Light on",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Sitting",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Talking",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did Emma do?",
+                "clue": "Fixed it",
+                "choices": [
+                  {
+                    "text": "Turned it off",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Left it on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Closed door",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why turn off lights?",
+                "clue": "Think about using less power",
+                "choices": [
+                  {
+                    "text": "Save energy",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Go sleep",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Play around",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Emma feel?",
+                "clue": "Think about leaving the light on",
+                "choices": [
+                  {
+                    "text": "Bad",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Happy",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Calm",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did Emma's dad tell her?",
+                "clue": "Think about why her dad spoke up",
+                "choices": [
+                  {
+                    "text": "Help Emma",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Yell at her",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about what went wrong",
+                "choices": [
+                  {
+                    "text": "Light on",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Walking",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Talking",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Emma do next time?",
+                "clue": "Think about the light",
+                "choices": [
+                  {
+                    "text": "Turn off light",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Leave it on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-5",
+      "title": "Story 5: Sorting Trash",
+      "emoji": "\ud83d\uddd1\ufe0f",
+      "image": "images/earth-day-stories/5-sort-trash.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Ben threw all his trash in one bin.",
+            "His teacher showed him different bins.",
+            "He learned about recycling and trash.",
+            "Ben sorted the trash the right way.",
+            "He felt proud."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The boy",
+                "choices": [
+                  {
+                    "text": "Ben",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Tom",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sam",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. What did Ben do first?",
+                "clue": "Not correct",
+                "choices": [
+                  {
+                    "text": "Mixed trash",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Sorted",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Cleaned",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Who helped him?",
+                "clue": "At school",
+                "choices": [
+                  {
+                    "text": "Teacher",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Friend",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Parent",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What did he learn?",
+                "clue": "Bins",
+                "choices": [
+                  {
+                    "text": "Sorting trash",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Running",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Reading",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did he do at the end?",
+                "clue": "Correct way",
+                "choices": [
+                  {
+                    "text": "Sorted trash",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Left it mixed",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Dropped it in",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why sort trash?",
+                "clue": "Think about keeping Earth clean",
+                "choices": [
+                  {
+                    "text": "Help Earth",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Play around",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Hide trash",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Ben feel?",
+                "clue": "Think about how he felt after fixing it",
+                "choices": [
+                  {
+                    "text": "Proud",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mad",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tired",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did Ben's teacher help?",
+                "clue": "Think about why teachers help",
+                "choices": [
+                  {
+                    "text": "Teach Ben",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Watch only",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about what Ben did wrong first",
+                "choices": [
+                  {
+                    "text": "Mixed trash",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Sorting",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walking",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Ben do next time?",
+                "clue": "Think about the bins",
+                "choices": [
+                  {
+                    "text": "Sort trash",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mix it up",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-6",
+      "title": "Story 6: Picking Up Trash",
+      "emoji": "\ud83c\udf3c",
+      "image": "images/earth-day-stories/6-pickup-trash.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Sara saw trash on the ground.",
+            "She walked past it at first.",
+            "Then she stopped and went back.",
+            "She picked up the trash.",
+            "She put it in a bin."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The girl",
+                "choices": [
+                  {
+                    "text": "Sara",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mia",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Anna",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. What did Sara see?",
+                "clue": "On ground",
+                "choices": [
+                  {
+                    "text": "Trash",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Toy",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Book",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What did she do first?",
+                "clue": "Did not help",
+                "choices": [
+                  {
+                    "text": "Walked past",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Picked up",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Ran",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What did she do next?",
+                "clue": "Changed mind",
+                "choices": [
+                  {
+                    "text": "Went back",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Left",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sat",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did she do at the end?",
+                "clue": "Right choice",
+                "choices": [
+                  {
+                    "text": "Threw it away",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Dropped it back",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Hid it away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why go back?",
+                "clue": "Think about fixing a mistake",
+                "choices": [
+                  {
+                    "text": "Fix mistake",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Play around",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Run away",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Sara feel?",
+                "clue": "Think about how she felt after helping",
+                "choices": [
+                  {
+                    "text": "Good",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mad",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tired",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why pick up trash?",
+                "clue": "Think about keeping the area clean",
+                "choices": [
+                  {
+                    "text": "Clean area",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Hide it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Throw it",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about the problem at the beginning",
+                "choices": [
+                  {
+                    "text": "Trash on ground",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Walking",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Talking",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Sara do next time?",
+                "clue": "Think about the trash",
+                "choices": [
+                  {
+                    "text": "Pick it up",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ignore it",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk past",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-7",
+      "title": "Story 7: Saving Paper Towels",
+      "emoji": "\ud83c\udf3c",
+      "image": "images/earth-day-stories/7-paper-towels.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Lily washed her hands at school.",
+            "She used many paper towels to dry them.",
+            "She saw the trash can filling up.",
+            "Her teacher showed her how to use just one towel.",
+            "Lily used fewer paper towels next time."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The girl at school",
+                "choices": [
+                  {
+                    "text": "Lily",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Emma",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sara",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. Where is Lily?",
+                "clue": "Learning place",
+                "choices": [
+                  {
+                    "text": "School",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Park",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Home",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What did Lily use?",
+                "clue": "To dry hands",
+                "choices": [
+                  {
+                    "text": "Paper towels",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Napkins",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Cloth",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What was the problem?",
+                "clue": "Too many used",
+                "choices": [
+                  {
+                    "text": "Used too many",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Used one",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Used none",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did Lily do at the end?",
+                "clue": "Better choice",
+                "choices": [
+                  {
+                    "text": "Used one towel",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Used many",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Left them",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why use fewer towels?",
+                "clue": "Think about saving supplies",
+                "choices": [
+                  {
+                    "text": "Save paper",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Make mess",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Waste more",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Lily feel?",
+                "clue": "After learning",
+                "choices": [
+                  {
+                    "text": "Good",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mad",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tired",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did the teacher help?",
+                "clue": "Think about teaching",
+                "choices": [
+                  {
+                    "text": "Teach Lily",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Ignore it",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about what went wrong",
+                "choices": [
+                  {
+                    "text": "Too many towels",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Washing hands",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Drying hands",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Lily do next time?",
+                "clue": "Think about the towels",
+                "choices": [
+                  {
+                    "text": "Use one towel",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Use many",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-8",
+      "title": "Story 8: Brushing Teeth (Saving Water)",
+      "emoji": "\ud83d\udca7",
+      "image": "images/earth-day-stories/8-brush-teeth.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Ethan brushed his teeth at the sink.",
+            "He left the water running the whole time.",
+            "He saw the water going down the drain.",
+            "He turned off the water while brushing.",
+            "Ethan used less water next time."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The boy brushing",
+                "choices": [
+                  {
+                    "text": "Ethan",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Noah",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Jake",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. Where is Ethan?",
+                "clue": "With a sink",
+                "choices": [
+                  {
+                    "text": "Bathroom",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Kitchen",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Park",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What did Ethan do?",
+                "clue": "Morning routine",
+                "choices": [
+                  {
+                    "text": "Brushed teeth",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Washed hands",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Ate food",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What was the problem?",
+                "clue": "Water still on",
+                "choices": [
+                  {
+                    "text": "Left water on",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Turned it off",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Closed door",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did Ethan do at the end?",
+                "clue": "Better choice",
+                "choices": [
+                  {
+                    "text": "Turned it off",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Left it on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walked away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why turn off water?",
+                "clue": "Think about saving water",
+                "choices": [
+                  {
+                    "text": "Save water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Make noise",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Play around",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Ethan feel?",
+                "clue": "After fixing it",
+                "choices": [
+                  {
+                    "text": "Good",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mad",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tired",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did Ethan change?",
+                "clue": "Think about what he saw",
+                "choices": [
+                  {
+                    "text": "Saw waste",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Got tired",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wanted play",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about what went wrong",
+                "choices": [
+                  {
+                    "text": "Water running",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Brushing teeth",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Standing still",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Ethan do next time?",
+                "clue": "Think about the sink",
+                "choices": [
+                  {
+                    "text": "Turn off water",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Leave it on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-9",
+      "title": "Story 9: Turning Off Electronics",
+      "emoji": "\u26a1",
+      "image": "",
+      "versions": {
+        "default": {
+          "text": [
+            "Ryan finished watching TV in the living room.",
+            "He left the TV on and walked away.",
+            "He saw the empty room with the TV still on.",
+            "He went back and turned it off.",
+            "Ryan turned it off next time."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The boy at home",
+                "choices": [
+                  {
+                    "text": "Ryan",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ethan",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Leo",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. Where is Ryan?",
+                "clue": "Room with a TV",
+                "choices": [
+                  {
+                    "text": "Living room",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Kitchen",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "School",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What did Ryan use?",
+                "clue": "To watch shows",
+                "choices": [
+                  {
+                    "text": "TV",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Phone",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Book",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What was the problem?",
+                "clue": "Still on",
+                "choices": [
+                  {
+                    "text": "Left TV on",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Turned it off",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Closed door",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did Ryan do at the end?",
+                "clue": "Better choice",
+                "choices": [
+                  {
+                    "text": "Turned it off",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Left it on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walked away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why turn off the TV?",
+                "clue": "Think about saving energy",
+                "choices": [
+                  {
+                    "text": "Save energy",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Make noise",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Play around",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Ryan feel?",
+                "clue": "After fixing it",
+                "choices": [
+                  {
+                    "text": "Good",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mad",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Tired",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did Ryan go back?",
+                "clue": "Think about the empty room",
+                "choices": [
+                  {
+                    "text": "Saw it on",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Got bored",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wanted play",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about what went wrong",
+                "choices": [
+                  {
+                    "text": "TV left on",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Watching TV",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sitting down",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Ryan do next time?",
+                "clue": "Think about the TV",
+                "choices": [
+                  {
+                    "text": "Turn off TV",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Leave it on",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "story-10",
+      "title": "Story 10: Reusable Bag at the Store",
+      "emoji": "\ud83d\udecd\ufe0f",
+      "image": "images/earth-day-stories/10-plastic-bag.jpg",
+      "versions": {
+        "default": {
+          "text": [
+            "Mia went to the store with her mom.",
+            "They used many plastic bags to carry food.",
+            "Mia saw the bags piling up at home.",
+            "Her mom brought a reusable bag next time.",
+            "Mia used the reusable bag at the store."
+          ],
+          "questions": {
+            "literal": [
+              {
+                "prompt": "1. Who is in the story?",
+                "clue": "The girl at the store",
+                "choices": [
+                  {
+                    "text": "Mia",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Ava",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Lily",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. Where is Mia?",
+                "clue": "Buying food",
+                "choices": [
+                  {
+                    "text": "Store",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "School",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Park",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. What did they use first?",
+                "clue": "Many bags",
+                "choices": [
+                  {
+                    "text": "Plastic bags",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Boxes",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Baskets",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What was the problem?",
+                "clue": "Too many",
+                "choices": [
+                  {
+                    "text": "Too many bags",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "No bags",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "One bag",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What did Mia use next time?",
+                "clue": "Use again",
+                "choices": [
+                  {
+                    "text": "Reusable bag",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Plastic bags",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Paper bag",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ],
+            "inferential": [
+              {
+                "prompt": "1. Why use a reusable bag?",
+                "clue": "Think about using it again",
+                "choices": [
+                  {
+                    "text": "Use again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Throw away",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Make mess",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "2. How did Mia feel?",
+                "clue": "Helping the Earth",
+                "choices": [
+                  {
+                    "text": "Good",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Mad",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Sleepy",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "3. Why did her mom bring it?",
+                "clue": "Think about the bags at home",
+                "choices": [
+                  {
+                    "text": "Saw too many",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Forgot bags",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Wanted play",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "4. What is the problem?",
+                "clue": "Think about what went wrong",
+                "choices": [
+                  {
+                    "text": "Too many bags",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Buying food",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walking",
+                    "isCorrect": false
+                  }
+                ]
+              },
+              {
+                "prompt": "5. What will Mia do next time?",
+                "clue": "Think about the bag",
+                "choices": [
+                  {
+                    "text": "Use it again",
+                    "isCorrect": true
+                  },
+                  {
+                    "text": "Use plastic",
+                    "isCorrect": false
+                  },
+                  {
+                    "text": "Walk away",
+                    "isCorrect": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

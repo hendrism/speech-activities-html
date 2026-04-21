@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth Day Reading Activities</title>
+    <script src="../../data/stories.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <style>
+        :root {
+            --midnight: #0f172a;
+            --frost: #e2e8f0;
+            --sky: #38bdf8;
+            --sun: #fbbf24;
+            --snow: #f8fafc;
+            --spruce: #0b6e4f;
+            --earth-green: #22c55e;
+            --earth-blue: #0ea5e9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #f0fdf4, #e0f2fe 45%, #f8fafc);
+            color: var(--midnight);
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 18px 40px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0 0 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .intro {
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .nav-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+            position: sticky;
+            top: 0;
+            background: rgba(240, 253, 244, 0.92);
+            padding: 8px 0 12px;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+
+        .nav-btn {
+            border: 1px solid var(--frost);
+            background: white;
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--midnight);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.07);
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--earth-green);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #dcfce7, #e0f2fe);
+            border-color: var(--earth-green);
+            color: #166534;
+        }
+
+        .story-card {
+            background: white;
+            border: 1px solid var(--frost);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+            margin-top: 12px;
+        }
+
+        .story-top {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 14px;
+            align-items: start;
+        }
+
+        .story-text {
+            background: var(--snow);
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 12px;
+            line-height: 1.6;
+        }
+
+        .story-text p {
+            margin: 0 0 8px;
+            font-size: 1.1rem;
+        }
+
+        .emoji-wrapper {
+            background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 10px, #f0fdf4 10px, #f0fdf4 20px);
+            border: 2px dashed #bbf7d0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            font-size: 80px;
+        }
+
+        .question-tabs {
+            display: inline-flex;
+            gap: 8px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            padding: 6px;
+            margin: 20px 0 12px;
+        }
+
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 9px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #475569;
+            transition: all 0.15s ease;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--midnight);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--frost);
+        }
+
+        .questions {
+            display: grid;
+            gap: 12px;
+        }
+
+        .question-card {
+            border: 1px solid var(--frost);
+            border-radius: 12px;
+            padding: 12px;
+            background: #f8fafc;
+        }
+
+        .question-prompt {
+            font-weight: 700;
+            margin: 6px 0 10px;
+            font-size: 1.05rem;
+        }
+
+        .help-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .btn-clue {
+            background: var(--earth-blue);
+            color: white;
+        }
+
+        .btn-choices {
+            background: var(--earth-green);
+            color: white;
+        }
+
+        .btn:hover {
+            filter: brightness(0.95);
+            transform: translateY(-1px);
+        }
+
+        .clue {
+            display: none;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: #f0fdfa;
+            border: 1px solid #99f6e4;
+            color: #0f172a;
+        }
+
+        .choices-wrap {
+            display: none;
+            margin-top: 8px;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .choice-btn {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px 12px;
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
+            text-align: left;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--earth-blue);
+            transform: translateY(-1px);
+        }
+
+        .choice-btn.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .choice-btn.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+
+        @media (max-width: 820px) {
+            .story-top {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="category-reading">
+    <div class="page">
+        <h1>Earth Day Reading Activities</h1>
+        <div class="intro">
+            Read the Earth Day stories and answer the questions. Switch between Literal and Inferential questions, use hints, and check your answers with multiple-choice options.
+        </div>
+
+        <div class="nav-bar" id="story-nav"></div>
+        <div id="story-container"></div>
+    </div>
+
+    <script>
+        const stories = DataLoader.get('stories', 'earth-day-reading') || [];
+
+        let currentStoryId = stories.length > 0 ? stories[0].id : null;
+        let currentQuestionType = 'literal';
+
+        // Shuffle function for randomizing answer choices
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function init() {
+            if (!currentStoryId) {
+                document.getElementById('story-container').innerHTML = '<p>No stories found.</p>';
+                return;
+            }
+            renderNav();
+            renderStory();
+        }
+
+        function renderNav() {
+            const nav = document.getElementById('story-nav');
+            nav.innerHTML = '';
+            stories.forEach((story, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `nav-btn ${story.id === currentStoryId ? 'active' : ''}`;
+                btn.textContent = `Story ${idx + 1}`;
+                btn.onclick = () => {
+                    currentStoryId = story.id;
+                    renderNav();
+                    renderStory();
+                };
+                nav.appendChild(btn);
+            });
+        }
+
+        function renderStory() {
+            const container = document.getElementById('story-container');
+            const story = stories.find(s => s.id === currentStoryId);
+            if (!story) return;
+
+            const textParagraphs = story.versions.default.text.map(p => `<p>${p}</p>`).join('');
+
+            container.innerHTML = `
+                <div class="story-card">
+                    <h2 style="margin-top:0;">${story.title}</h2>
+                    <div class="story-top">
+                        <div class="story-text">
+                            ${textParagraphs}
+                        </div>
+                        <div class="emoji-wrapper">
+                            ${story.image ? `<img src="../../${story.image}" alt="${story.title}" class="story-image" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">` : story.emoji}
+                        </div>
+                    </div>
+                    
+                    <div class="question-tabs">
+                        <button class="tab-btn ${currentQuestionType === 'literal' ? 'active' : ''}" onclick="setQuestionType('literal')">Literal Questions</button>
+                        <button class="tab-btn ${currentQuestionType === 'inferential' ? 'active' : ''}" onclick="setQuestionType('inferential')">Inferential Questions</button>
+                    </div>
+
+                    <div class="questions" id="questions-container">
+                        ${renderQuestions(story.versions.default.questions[currentQuestionType])}
+                    </div>
+                </div>
+            `;
+        }
+
+        window.setQuestionType = function (type) {
+            currentQuestionType = type;
+            renderStory();
+        };
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag])
+            );
+        }
+
+        function renderQuestions(questions) {
+            if (!questions || !questions.length) {
+                return '<p style="color:#475569; padding: 12px;">No questions available.</p>';
+            }
+
+            return questions.map((q, idx) => {
+                let choicesHtml = '';
+                if (q.choices && q.choices.length > 0) {
+                    const shuffledChoices = shuffleArray(q.choices);
+                    choicesHtml = `
+                    <div class="choices-wrap" style="display:none;">
+                        ${shuffledChoices.map((c, cIdx) => `
+                            <button class="choice-btn" 
+                                    data-correct="${c.isCorrect}" 
+                                    onclick="checkAnswer(this, ${c.isCorrect})">
+                                ${String.fromCharCode(65 + cIdx)}. ${escapeHTML(c.text)}
+                            </button>
+                        `).join('')}
+                    </div>`;
+                }
+
+                return `
+                <div class="question-card">
+                    <div class="question-prompt">${escapeHTML(q.prompt)}</div>
+                    <div class="help-row">
+                        <button class="btn btn-clue" onclick="toggleClue(this)">I need a hint</button>
+                        ${q.choices && q.choices.length > 0 ? `<button class="btn btn-choices" onclick="toggleChoices(this)">Show choices</button>` : ''}
+                    </div>
+                    <div class="clue">💡 ${escapeHTML(q.clue)}</div>
+                    ${choicesHtml}
+                </div>`;
+            }).join('');
+        }
+
+        window.toggleClue = function (btn) {
+            const clue = btn.parentElement.nextElementSibling;
+            clue.style.display = clue.style.display === 'block' ? 'none' : 'block';
+            btn.textContent = clue.style.display === 'block' ? 'Hide hint' : 'I need a hint';
+        };
+
+        window.toggleChoices = function (btn) {
+            const choices = btn.parentElement.nextElementSibling.nextElementSibling;
+            choices.style.display = choices.style.display === 'grid' ? 'none' : 'grid';
+            btn.textContent = choices.style.display === 'grid' ? 'Hide choices' : 'Show choices';
+        };
+
+        window.checkAnswer = function (btn, isCorrect) {
+            if (isCorrect) {
+                btn.classList.add('correct');
+                btn.classList.remove('incorrect');
+                const siblings = btn.parentElement.querySelectorAll('.choice-btn');
+                siblings.forEach(s => s.disabled = true);
+            } else {
+                btn.classList.add('incorrect');
+            }
+        };
+
+        // Initialize Page
+        init();
+    </script>
+</body>
+
+</html>
