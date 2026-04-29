@@ -11,6 +11,20 @@
   },
   "activities": [
     {
+      "id": "add-an-adjective",
+      "category": "grammar",
+      "title": "Add an Adjective",
+      "sourceFile": "activities/grammar/add-an-adjective.html",
+      "type": "tool"
+    },
+    {
+      "id": "describing-objects",
+      "category": "vocabulary",
+      "title": "Describing Objects",
+      "sourceFile": "activities/vocabulary/describing-objects.html",
+      "type": "tool"
+    },
+    {
       "id": "communication-breakdown-causes",
       "category": "social",
       "title": "Communication Breakdown Spotter",

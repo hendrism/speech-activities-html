@@ -1,0 +1,101 @@
+Story_Index,Story_Title,Q_Type,Q_Index,Prompt,Hint,Choice_1,Choice_2,Choice_3,Correct_Choice
+0,Story 1: The Plastic Bottle,literal,0,1. Who is in the story?,The boy in the park,Liam,Jake,A teacher,1
+0,Story 1: The Plastic Bottle,literal,1,2. Where is Liam?,Outside with trees,Park,School,Store,1
+0,Story 1: The Plastic Bottle,literal,2,3. What does Liam have?,You drink from it,Bottle,Book,Ball,1
+0,Story 1: The Plastic Bottle,literal,3,4. What did Liam do first with the bottle?,Not the right choice,Dropped it,Recycled it,Kept it,1
+0,Story 1: The Plastic Bottle,literal,4,5. Where did Liam put the bottle at the end?,The right place for plastic,Recycling bin,Ground,Somewhere else,1
+0,Story 1: The Plastic Bottle,inferential,0,1. Why did Liam stop?,He started thinking,To fix it,To get lost,To take a break,1
+0,Story 1: The Plastic Bottle,inferential,1,2. How did Liam feel at the end?,After fixing a mistake,Proud,Mad,Sleepy,1
+0,Story 1: The Plastic Bottle,inferential,2,3. Why did Liam go back?,He wanted to fix it,To help the Earth,To play around,To hide it,1
+0,Story 1: The Plastic Bottle,inferential,3,4. What is the problem?,Middle of story,He dropped the plastic bottle,Walking around,Drinking,1
+0,Story 1: The Plastic Bottle,inferential,4,5. What will Liam do next time?,He learned,Recycle first,Drop the trash,Walk away,1
+1,Story 2: Planting a Tree,literal,0,1. Who is in the story?,The girl planting,Maya,Anna,Teacher,1
+1,Story 2: Planting a Tree,literal,1,2. Where are they?,Outside,Outside,Home,Store,1
+1,Story 2: Planting a Tree,literal,2,3. What are they planting?,It grows tall,Tree,Flower,Grass,1
+1,Story 2: Planting a Tree,literal,3,4. What was the problem?,She needed water,There was no water,No shovel,No tree,1
+1,Story 2: Planting a Tree,literal,4,5. What did they do at the end?,Helped the tree,Watered it,Left it,Moved it,1
+1,Story 2: Planting a Tree,inferential,0,1. Why did Maya need water?,Think about what trees need,To help the tree grow,To wash hands,To drink water,1
+1,Story 2: Planting a Tree,inferential,1,2. How did Maya feel?,Think about her empty watering can,Worried,Happy,Sleepy,1
+1,Story 2: Planting a Tree,inferential,2,3. Why did her friend help?,Think about why friends help,To help Maya,To play around,To run away,1
+1,Story 2: Planting a Tree,inferential,3,4. What is the problem?,Think about what went wrong,There was no water,She was digging,Walking around,1
+1,Story 2: Planting a Tree,inferential,4,5. What will Maya do next time?,Think about the water,Bring water,Forget again,Wait there,1
+2,Story 3: The Running Water,literal,0,1. Who is in the story?,The boy,Noah,Jake,Sam,1
+2,Story 3: The Running Water,literal,1,2. Where is Noah?,With a sink,Bathroom,Park,Bus,1
+2,Story 3: The Running Water,literal,2,3. What did Noah do?,With water,Washed hands,Ate,Read,1
+2,Story 3: The Running Water,literal,3,4. What was the problem?,Water still on,Left water on,Closed door,Dropped soap,1
+2,Story 3: The Running Water,literal,4,5. What did his sister do?,Fixed it,Turned it off,Walked away,Watched only,1
+2,Story 3: The Running Water,inferential,0,1. Why should we turn off the water?,Think about why water matters,To save water,To make noise,To play around,1
+2,Story 3: The Running Water,inferential,1,2. How did Noah feel?,Think about forgetting the water,Bad,Excited,Hungry,1
+2,Story 3: The Running Water,inferential,2,3. Why did Noah's sister tell him?,Think about why she told him,To show mistake,To yell at him,To walk away,1
+2,Story 3: The Running Water,inferential,3,4. What is the problem?,Think about what went wrong,The water was left running,He was washing,The sink overflowed,1
+2,Story 3: The Running Water,inferential,4,5. What will Noah do next time?,Think about the sink,Turn off the water,Leave it on,Walk away,1
+3,Story 4: The Light Left On,literal,0,1. Who is in the story?,The girl,Emma,Lily,Mom,1
+3,Story 4: The Light Left On,literal,1,2. Where was the light?,Her room,Bedroom,Kitchen,Yard,1
+3,Story 4: The Light Left On,literal,2,3. What was left on?,Bright,Light,TV,Door,1
+3,Story 4: The Light Left On,literal,3,4. What was the problem?,Wasting,The light was left on,She was sitting,She was talking,1
+3,Story 4: The Light Left On,literal,4,5. What did Emma do?,Fixed it,Turned it off,Left it on,Closed door,1
+3,Story 4: The Light Left On,inferential,0,1. Why should we turn off the lights?,Think about using less power,To save energy,To go to sleep,To play around,1
+3,Story 4: The Light Left On,inferential,1,2. How did Emma feel?,Think about leaving the light on,Bad,Happy,Calm,1
+3,Story 4: The Light Left On,inferential,2,3. Why did Emma's dad tell her?,Think about why her dad spoke up,To help Emma,To yell at her,To walk away,1
+3,Story 4: The Light Left On,inferential,3,4. What is the problem?,Think about what went wrong,The light was left on,Walking around,She was talking,1
+3,Story 4: The Light Left On,inferential,4,5. What will Emma do next time?,Think about the light,Turn off the light,Leave it on,Walk away,1
+4,Story 5: Sorting Trash,literal,0,1. Who is in the story?,The boy,Ben,Tom,Sam,1
+4,Story 5: Sorting Trash,literal,1,2. What did Ben do first?,Not correct,Mixed trash,Sorted,Cleaned,1
+4,Story 5: Sorting Trash,literal,2,3. Who helped him?,At school,Teacher,Friend,Parent,1
+4,Story 5: Sorting Trash,literal,3,4. What did he learn?,Bins,Sorting trash,Running,Reading,1
+4,Story 5: Sorting Trash,literal,4,5. What did he do at the end?,Correct way,Sorted trash,Left it mixed,Dropped it in,1
+4,Story 5: Sorting Trash,inferential,0,1. Why should we sort the trash?,Think about keeping Earth clean,To help the Earth,To play around,To hide the trash,1
+4,Story 5: Sorting Trash,inferential,1,2. How did Ben feel?,Think about how he felt after fixing it,Proud,Mad,Tired,1
+4,Story 5: Sorting Trash,inferential,2,3. Why did Ben's teacher help?,Think about why teachers help,To teach Ben,To walk away,To watch only,1
+4,Story 5: Sorting Trash,inferential,3,4. What is the problem?,Think about what Ben did wrong first,The trash was mixed up,He was sorting trash,Walking around,1
+4,Story 5: Sorting Trash,inferential,4,5. What will Ben do next time?,Think about the bins,Sort the trash,Mix it up,Walk away,1
+5,Story 6: Picking Up Trash,literal,0,1. Who is in the story?,The girl,Sara,Mia,Anna,1
+5,Story 6: Picking Up Trash,literal,1,2. What did Sara see?,On ground,Trash,Toy,Book,1
+5,Story 6: Picking Up Trash,literal,2,3. What did she do first?,Did not help,Walked past,Picked up,Ran,1
+5,Story 6: Picking Up Trash,literal,3,4. What did she do next?,Changed mind,Went back,Left,Sat,1
+5,Story 6: Picking Up Trash,literal,4,5. What did she do at the end?,Right choice,Threw it away,Dropped it back,Hid it away,1
+5,Story 6: Picking Up Trash,inferential,0,1. Why did she go back?,Think about fixing a mistake,To fix it,To play around,To run away,1
+5,Story 6: Picking Up Trash,inferential,1,2. How did Sara feel?,Think about how she felt after helping,Good,Mad,Tired,1
+5,Story 6: Picking Up Trash,inferential,2,3. Why should we pick up the trash?,Think about keeping the area clean,To keep it clean,To hide it,To throw it,1
+5,Story 6: Picking Up Trash,inferential,3,4. What is the problem?,Think about the problem at the beginning,Trash was on the ground,Walking around,She was talking,1
+5,Story 6: Picking Up Trash,inferential,4,5. What will Sara do next time?,Think about the trash,Pick it up,Ignore it,Walk past it,1
+6,Story 7: Saving Paper Towels,literal,0,1. Who is in the story?,The girl at school,Lily,Emma,Sara,1
+6,Story 7: Saving Paper Towels,literal,1,2. Where is Lily?,Learning place,School,Park,Home,1
+6,Story 7: Saving Paper Towels,literal,2,3. What did Lily use?,To dry hands,Paper towels,Napkins,Cloth,1
+6,Story 7: Saving Paper Towels,literal,3,4. What was the problem?,Too many used,Used too many,Used one,Used none,1
+6,Story 7: Saving Paper Towels,literal,4,5. What did Lily do at the end?,Better choice,Used one towel,Used many,Left them,1
+6,Story 7: Saving Paper Towels,inferential,0,1. Why should we use fewer towels?,Think about saving supplies,To save paper,To make a mess,To waste more,1
+6,Story 7: Saving Paper Towels,inferential,1,2. How did Lily feel?,After learning,Good,Mad,Tired,1
+6,Story 7: Saving Paper Towels,inferential,2,3. Why did the teacher help?,Think about teaching,To teach Lily,To walk away,To ignore it,1
+6,Story 7: Saving Paper Towels,inferential,3,4. What is the problem?,Think about what went wrong,Used too many paper towels,Washing hands,Drying hands,1
+6,Story 7: Saving Paper Towels,inferential,4,5. What will Lily do next time?,Think about the towels,Use one towel,Use too many,Walk away,1
+7,Story 8: Brushing Teeth (Saving Water),literal,0,1. Who is in the story?,The boy brushing,Ethan,Noah,Jake,1
+7,Story 8: Brushing Teeth (Saving Water),literal,1,2. Where is Ethan?,With a sink,Bathroom,Kitchen,Park,1
+7,Story 8: Brushing Teeth (Saving Water),literal,2,3. What did Ethan do?,Morning routine,Brushed teeth,Washed hands,Ate food,1
+7,Story 8: Brushing Teeth (Saving Water),literal,3,4. What was the problem?,Water still on,Left water on,Turned it off,Closed door,1
+7,Story 8: Brushing Teeth (Saving Water),literal,4,5. What did Ethan do at the end?,Better choice,Turned it off,Left it on,Walked away,1
+7,Story 8: Brushing Teeth (Saving Water),inferential,0,1. Why should we turn off the water?,Think about saving water,To save water,To make noise,To play around,1
+7,Story 8: Brushing Teeth (Saving Water),inferential,1,2. How did Ethan feel?,After fixing it,Good,Mad,Tired,1
+7,Story 8: Brushing Teeth (Saving Water),inferential,2,3. Why did Ethan change?,Think about what he saw,Because he saw waste,Because he got tired,Because he wanted to play,1
+7,Story 8: Brushing Teeth (Saving Water),inferential,3,4. What is the problem?,Think about what went wrong,The water was left running,Brushing teeth,Standing still,1
+7,Story 8: Brushing Teeth (Saving Water),inferential,4,5. What will Ethan do next time?,Think about the sink,Turn off the water,Leave it on,Walk away,1
+8,Story 9: Turning Off Electronics,literal,0,1. Who is in the story?,The boy at home,Ryan,Ethan,Leo,1
+8,Story 9: Turning Off Electronics,literal,1,2. Where is Ryan?,Room with a TV,Living room,Kitchen,School,1
+8,Story 9: Turning Off Electronics,literal,2,3. What did Ryan use?,To watch shows,TV,Phone,Book,1
+8,Story 9: Turning Off Electronics,literal,3,4. What was the problem?,Still on,The TV was left on,Turned it off,Closed door,1
+8,Story 9: Turning Off Electronics,literal,4,5. What did Ryan do at the end?,Better choice,Turned it off,Left it on,Walked away,1
+8,Story 9: Turning Off Electronics,inferential,0,1. Why should we turn off the TV?,Think about saving energy,To save energy,To make noise,To play around,1
+8,Story 9: Turning Off Electronics,inferential,1,2. How did Ryan feel?,After fixing it,Good,Mad,Tired,1
+8,Story 9: Turning Off Electronics,inferential,2,3. Why did Ryan go back?,Think about the empty room,Because he saw it on,Because he got bored,Because he wanted to play,1
+8,Story 9: Turning Off Electronics,inferential,3,4. What is the problem?,Think about what went wrong,TV left on,Watching TV,Sitting down,1
+8,Story 9: Turning Off Electronics,inferential,4,5. What will Ryan do next time?,Think about the TV,Turn off the TV,Leave it on,Walk away,1
+9,Story 10: Reusable Bag at the Store,literal,0,1. Who is in the story?,The girl at the store,Mia,Ava,Lily,1
+9,Story 10: Reusable Bag at the Store,literal,1,2. Where is Mia?,Buying food,Store,School,Park,1
+9,Story 10: Reusable Bag at the Store,literal,2,3. What did they use first?,Many bags,Plastic bags,Boxes,Baskets,1
+9,Story 10: Reusable Bag at the Store,literal,3,4. What was the problem?,Too many,Used too many plastic bags,No bags,One bag,1
+9,Story 10: Reusable Bag at the Store,literal,4,5. What did Mia use next time?,Use again,Reusable bag,Plastic bags,Paper bag,1
+9,Story 10: Reusable Bag at the Store,inferential,0,1. Why should we use a reusable bag?,Think about using it again,To use it again,To throw it away,To make a mess,1
+9,Story 10: Reusable Bag at the Store,inferential,1,2. How did Mia feel?,Think about helping the Earth,Good,Mad,Sleepy,1
+9,Story 10: Reusable Bag at the Store,inferential,2,3. Why did her mom bring it?,Think about the bags at home,Because she saw too many,Because she forgot bags,Because he wanted to play,1
+9,Story 10: Reusable Bag at the Store,inferential,3,4. What is the problem?,Think about what went wrong,Used too many plastic bags,Buying food,Walking around,1
+9,Story 10: Reusable Bag at the Store,inferential,4,5. What will Mia do next time?,Think about the bag,Use it again,Use plastic bags,Walk away,1
