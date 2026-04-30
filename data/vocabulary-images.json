@@ -4,114 +4,127 @@
     "tags": [
       "animal",
       "bird",
-      "spring",
       "flies",
-      "nest"
+      "nest",
+      "real",
+      "spring"
     ]
   },
   "animals/bee.png": {
     "name": "Bee",
     "tags": [
       "animal",
+      "flies",
       "insect",
-      "spring",
-      "flies"
+      "real",
+      "spring"
     ]
   },
   "clothing/raincoat.png": {
     "name": "Raincoat",
     "tags": [
       "clothing",
-      "spring",
-      "rain"
+      "rain",
+      "real",
+      "spring"
     ]
   },
   "clothing/rain-boots.png": {
     "name": "Rain boots",
     "tags": [
       "clothing",
-      "spring",
-      "rain"
+      "rain",
+      "real",
+      "spring"
     ]
   },
   "plants/daffodil.png": {
     "name": "Daffodil",
     "tags": [
-      "plant",
+      "blooms",
       "flower",
-      "spring",
-      "blooms"
+      "plant",
+      "real",
+      "spring"
     ]
   },
   "plants/tulip.png": {
     "name": "Tulip",
     "tags": [
-      "plant",
+      "blooms",
       "flower",
-      "spring",
-      "blooms"
+      "plant",
+      "real",
+      "spring"
     ]
   },
   "plants/daisy.png": {
     "name": "Daisy",
     "tags": [
-      "plant",
+      "blooms",
       "flower",
-      "spring",
-      "blooms"
+      "plant",
+      "real",
+      "spring"
     ]
   },
   "objects/umbrella.png": {
     "name": "Umbrella",
     "tags": [
       "object",
-      "spring",
-      "rain"
+      "rain",
+      "real",
+      "spring"
     ]
   },
   "animals/rabbit.png": {
     "name": "Rabbit",
     "tags": [
       "animal",
+      "hops",
       "mammal",
-      "spring",
-      "hops"
+      "real",
+      "spring"
     ]
   },
   "animals/frog.png": {
     "name": "Frog",
     "tags": [
-      "animal",
       "amphibian",
-      "spring",
-      "hops"
+      "animal",
+      "hops",
+      "real",
+      "spring"
     ]
   },
   "objects/kite.png": {
     "name": "Kite",
     "tags": [
+      "flies",
       "object",
-      "toy",
+      "real",
       "spring",
-      "flies"
+      "toy"
     ]
   },
   "animals/earthworm.png": {
     "name": "Earthworm",
     "tags": [
       "animal",
+      "ground",
       "insect",
-      "spring",
-      "ground"
+      "real",
+      "spring"
     ]
   },
   "animals/butterfly.png": {
     "name": "Butterfly",
     "tags": [
       "animal",
+      "flies",
       "insect",
-      "spring",
-      "flies"
+      "real",
+      "spring"
     ]
   },
   "clothing/sunglasses.png": {
@@ -157,9 +170,10 @@
   "plants/seeds.png": {
     "name": "Seeds",
     "tags": [
+      "garden",
       "plant",
-      "spring",
-      "garden"
+      "real",
+      "spring"
     ]
   },
   "food/strawberry.png": {
@@ -167,6 +181,7 @@
     "tags": [
       "food",
       "fruit",
+      "real",
       "spring",
       "summer"
     ]
@@ -515,6 +530,7 @@
     "name": "Swing",
     "tags": [
       "object",
+      "real",
       "spring"
     ]
   },
@@ -522,6 +538,7 @@
     "name": "Rain Boots",
     "tags": [
       "object",
+      "real",
       "spring"
     ]
   },
@@ -529,6 +546,7 @@
     "name": "Baseball Glove",
     "tags": [
       "object",
+      "real",
       "spring"
     ]
   },
@@ -536,6 +554,7 @@
     "name": "Picnicbasket",
     "tags": [
       "object",
+      "real",
       "spring"
     ]
   },
@@ -543,6 +562,7 @@
     "name": "Flower",
     "tags": [
       "object",
+      "real",
       "spring"
     ]
   },
@@ -550,6 +570,7 @@
     "name": "Water Bottle",
     "tags": [
       "object",
+      "real",
       "spring"
     ]
   },
@@ -557,6 +578,7 @@
     "name": "Bird Nest",
     "tags": [
       "object",
+      "real",
       "spring"
     ]
   },

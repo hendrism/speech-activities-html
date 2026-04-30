@@ -152,6 +152,8 @@ class AdminHandler(http.server.BaseHTTPRequestHandler):
             self._handle_save(body)
         elif path == "/api/vocabulary/tags":
             self._handle_update_tags(body)
+        elif path == "/api/vocabulary/tags/bulk":
+            self._handle_bulk_update_tags(body)
         elif path == "/api/open-in-finder":
             self._handle_open_in_finder(body)
         else:
@@ -219,6 +221,35 @@ class AdminHandler(http.server.BaseHTTPRequestHandler):
         data[key]["tags"] = sorted(list(set(tags)))
         save_vocabulary(data)
         self._json({"ok": True, "tags": data[key]["tags"]})
+
+    def _handle_bulk_update_tags(self, body: dict) -> None:
+        keys = body.get("keys")
+        tags_to_add = body.get("tags_to_add")
+        if not isinstance(keys, list) or not isinstance(tags_to_add, list):
+            self._error(400, "Missing keys or tags_to_add lists")
+            return
+            
+        data = load_vocabulary()
+        updated_any = False
+        
+        for key in keys:
+            if key not in data:
+                name = key.split("/")[-1].rsplit(".", 1)[0].replace("-", " ").replace("_", " ").title()
+                data[key] = {"name": name, "tags": []}
+            
+            current_tags = set(data[key].get("tags", []))
+            before_len = len(current_tags)
+            for new_tag in tags_to_add:
+                current_tags.add(new_tag)
+            
+            if len(current_tags) > before_len:
+                data[key]["tags"] = sorted(list(current_tags))
+                updated_any = True
+                
+        if updated_any:
+            save_vocabulary(data)
+            
+        self._json({"ok": True})
 
     def _handle_open_in_finder(self, body: dict) -> None:
         key = body.get("key")

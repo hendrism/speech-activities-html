@@ -598,7 +598,7 @@
                 const word = state.vocabularyData[key];
                 const category = key.split('/')[0];
                 const matchCat = !hasCategory || state.selectedCategories.has(category);
-                const matchTag = !hasTag || (word.tags && word.tags.some(t => state.selectedTags.has(t)));
+                const matchTag = !hasTag || (word.tags && Array.from(state.selectedTags).every(t => word.tags.includes(t)));
                 return matchCat && matchTag;
             });
         }

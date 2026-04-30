@@ -117,12 +117,18 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            position: relative;
         }
 
         .image-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .image-card.selected {
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
         }
 
         .img-container {
@@ -206,6 +212,67 @@
             color: var(--text);
             width: 100px;
         }
+
+        .bulk-actions {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: #e0f2fe;
+            border-radius: 8px;
+            border: 1px solid #bae6fd;
+        }
+
+        .bulk-actions.active {
+            display: flex;
+        }
+
+        .bulk-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .bulk-btn.secondary {
+            background: #94a3b8;
+        }
+
+        .card-checkbox {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .card-checkbox input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .img-container {
+            position: relative;
+            height: 160px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
     </style>
 </head>
 <body>
@@ -219,9 +286,18 @@
                 <option value="name-desc">Sort Z-A</option>
                 <option value="path">Sort by Path</option>
             </select>
+            <button id="selectionModeBtn" class="bulk-btn secondary" style="padding: 10px 16px; font-size: 15px;" onclick="toggleSelectionMode()">Selection Mode</button>
         </div>
         <div class="tags-container" id="tagsContainer">
             <!-- Tags rendered here -->
+        </div>
+        <div class="bulk-actions" id="bulkActions">
+            <span id="bulkCount" style="font-weight: 600; font-size: 14px; color: #0284c7;">0 selected</span>
+            <button class="bulk-btn secondary" onclick="selectAllVisible()">Select All Visible</button>
+            <div style="flex: 1;"></div>
+            <input type="text" id="bulkTagInput" class="search-input" style="padding: 6px 12px; min-width: 150px; flex: none;" placeholder="Tag selected...">
+            <button class="bulk-btn" onclick="applyBulkTag()">Add Tag</button>
+            <button class="bulk-btn secondary" onclick="clearSelection()">Clear</button>
         </div>
         <div class="stats" id="stats">
             Loading...
@@ -238,6 +314,8 @@
         let selectedTags = new Set();
         let searchQuery = '';
         let sortBy = 'name-asc';
+        let selectedImages = new Set();
+        let selectionMode = false;
 
         async function init() {
             try {
@@ -400,22 +478,130 @@
             }
         }
 
-        function renderGrid() {
-            const grid = document.getElementById('grid');
-            const stats = document.getElementById('stats');
+        function toggleSelectionMode() {
+            selectionMode = !selectionMode;
+            if (!selectionMode) {
+                clearSelection();
+            }
             
+            const btn = document.getElementById('selectionModeBtn');
+            if (selectionMode) {
+                btn.style.background = 'var(--primary)';
+                btn.style.color = 'white';
+                btn.textContent = 'Exit Selection Mode';
+                document.getElementById('bulkActions').classList.add('active'); // show it even if 0 selected
+            } else {
+                btn.style.background = '#94a3b8';
+                btn.textContent = 'Selection Mode';
+                updateBulkUI(); // hide it
+            }
+            
+            renderGrid();
+        }
+
+        function handleCardClick(e, key) {
+            if (selectionMode) {
+                // If they clicked the checkbox directly, don't double toggle
+                if (e.target.tagName !== 'INPUT') {
+                    toggleSelect(e, key);
+                }
+            } else {
+                if (e.target.closest('.img-container')) {
+                    openInFinder(key);
+                }
+            }
+        }
+
+        function toggleSelect(e, key) {
+            if (e) e.stopPropagation();
+            if (selectedImages.has(key)) {
+                selectedImages.delete(key);
+            } else {
+                selectedImages.add(key);
+            }
+            updateBulkUI();
+            
+            const card = e ? e.currentTarget.closest('.image-card') : null;
+            if (card) {
+                card.classList.toggle('selected', selectedImages.has(key));
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                if (checkbox) checkbox.checked = selectedImages.has(key);
+            } else {
+                renderGrid();
+            }
+        }
+
+        function updateBulkUI() {
+            const bulkContainer = document.getElementById('bulkActions');
+            const bulkCount = document.getElementById('bulkCount');
+            bulkCount.textContent = `${selectedImages.size} selected`;
+            
+            if (selectionMode || selectedImages.size > 0) {
+                bulkContainer.classList.add('active');
+            } else {
+                bulkContainer.classList.remove('active');
+            }
+        }
+
+        function clearSelection() {
+            selectedImages.clear();
+            updateBulkUI();
+            renderGrid();
+        }
+        
+        function selectAllVisible() {
+            if (!selectionMode) toggleSelectionMode();
+            const keys = getFilteredKeys();
+            keys.forEach(k => selectedImages.add(k));
+            updateBulkUI();
+            renderGrid();
+        }
+
+        async function applyBulkTag() {
+            const input = document.getElementById('bulkTagInput');
+            const newTag = input.value.trim().toLowerCase();
+            if (!newTag || selectedImages.size === 0) return;
+            
+            const keysArray = Array.from(selectedImages);
+            
+            try {
+                const res = await fetch('/api/vocabulary/tags/bulk', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ keys: keysArray, tags_to_add: [newTag] })
+                });
+                
+                if (!res.ok) throw new Error('API error');
+                
+                // Update local state
+                keysArray.forEach(key => {
+                    if (!imageData[key]) return;
+                    const currentTags = imageData[key].tags || [];
+                    if (!currentTags.includes(newTag)) {
+                        imageData[key].tags = [...currentTags, newTag].sort();
+                    }
+                });
+                
+                if (!allTags.includes(newTag)) {
+                    allTags.push(newTag);
+                    allTags.sort();
+                    renderTags();
+                }
+                
+                input.value = '';
+                clearSelection();
+            } catch (err) {
+                alert('Could not bulk tag. Make sure you have restarted the Python admin server (python3 scripts/admin.py) to load the new bulk tagging code.');
+            }
+        }
+
+        function getFilteredKeys() {
             let keys = Object.keys(imageData);
-            
-            // Filter
             keys = keys.filter(key => {
                 const item = imageData[key];
-                
-                // Text search
                 const textMatch = !searchQuery || 
                                  item.name.toLowerCase().includes(searchQuery) || 
                                  key.toLowerCase().includes(searchQuery);
-                                 
-                // Tag search (must have ALL selected tags)
                 let tagMatch = true;
                 if (selectedTags.size > 0) {
                     if (!item.tags) {
@@ -429,11 +615,9 @@
                         }
                     }
                 }
-                
                 return textMatch && tagMatch;
             });
             
-            // Sort
             keys.sort((a, b) => {
                 if (sortBy === 'name-asc') {
                     return imageData[a].name.localeCompare(imageData[b].name);
@@ -443,6 +627,14 @@
                     return a.localeCompare(b);
                 }
             });
+            return keys;
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('grid');
+            const stats = document.getElementById('stats');
+            
+            const keys = getFilteredKeys();
             
             stats.textContent = `Showing ${keys.length} of ${Object.keys(imageData).length} images`;
             
@@ -450,10 +642,15 @@
                 const item = imageData[key];
                 const tagsHtml = item.tags ? item.tags.map(t => `<span class="card-tag" onclick="removeTag('${key}', '${t}')" title="Click to remove">${t}</span>`).join('') : '';
                 const newBadge = item.isNew ? '<span style="background: #fef08a; color: #854d0e; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 6px;">NEW</span>' : '';
+                const isSelected = selectedImages.has(key);
                 
                 return `
-                    <div class="image-card">
-                        <div class="img-container" onclick="openInFinder('${key}')" style="cursor: pointer;" title="Click to reveal in Finder">
+                    <div class="image-card ${isSelected ? 'selected' : ''}" onclick="handleCardClick(event, '${key}')">
+                        <div class="img-container" style="cursor: ${selectionMode ? 'pointer' : 'zoom-in'};" title="${selectionMode ? 'Click to toggle selection' : 'Click to reveal in Finder'}">
+                            ${selectionMode ? `
+                            <div class="card-checkbox">
+                                <input type="checkbox" ${isSelected ? 'checked' : ''} onclick="event.stopPropagation(); toggleSelect(event, '${key}')">
+                            </div>` : ''}
                             <img src="images/${key}" alt="${item.name}" loading="lazy">
                         </div>
                         <div class="card-content">
@@ -461,7 +658,7 @@
                             <div class="card-path">${key}</div>
                             <div class="card-tags">
                                 ${tagsHtml}
-                                <input type="text" class="add-tag-input" placeholder="+ tag" onkeypress="handleTagInput(event, '${key}')">
+                                ${selectionMode ? '' : `<input type="text" class="add-tag-input" placeholder="+ tag" onkeypress="handleTagInput(event, '${key}')">`}
                             </div>
                         </div>
                     </div>
