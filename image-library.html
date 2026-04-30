@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Library Viewer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --primary: #3b82f6;
+            --primary-light: #eff6ff;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 24px auto;
+            padding: 24px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .tag-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 13px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .tag-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tag-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .stats {
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .image-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .image-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .img-container {
+            height: 160px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .card-content {
+            padding: 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .card-path {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: monospace;
+            word-break: break-all;
+            margin-bottom: 12px;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: auto;
+        }
+
+        .card-tag {
+            background: #e0e7ff;
+            color: #4338ca;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .card-tag:hover {
+            background: #fca5a5;
+            color: #7f1d1d;
+            text-decoration: line-through;
+        }
+
+        .add-tag-input {
+            border: 1px dashed var(--border);
+            background: transparent;
+            padding: 2px 6px;
+            font-size: 11px;
+            border-radius: 4px;
+            width: 70px;
+            outline: none;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .add-tag-input:focus {
+            border-color: var(--primary);
+            color: var(--text);
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🖼️ Image Library Browser</h1>
+        <div class="controls">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by name or path...">
+            <select id="sortSelect" class="search-input" style="flex: 0; min-width: auto;">
+                <option value="name-asc">Sort A-Z</option>
+                <option value="name-desc">Sort Z-A</option>
+                <option value="path">Sort by Path</option>
+            </select>
+        </div>
+        <div class="tags-container" id="tagsContainer">
+            <!-- Tags rendered here -->
+        </div>
+        <div class="stats" id="stats">
+            Loading...
+        </div>
+    </header>
+
+    <main id="grid">
+        <!-- Cards rendered here -->
+    </main>
+
+    <script>
+        let imageData = {};
+        let allTags = [];
+        let selectedTags = new Set();
+        let searchQuery = '';
+        let sortBy = 'name-asc';
+
+        async function init() {
+            try {
+                const res = await fetch('data/vocabulary-images.json');
+                imageData = await res.json();
+                
+                // Try to fetch new images from admin server
+                try {
+                    const imgRes = await fetch('/api/images');
+                    if (imgRes.ok) {
+                        const allImages = await imgRes.json();
+                        for (const category in allImages) {
+                            for (const path of allImages[category]) {
+                                // path is like "/images/animals/bee.png"
+                                const key = path.replace(/^\\/?images\\//, '');
+                                if (!imageData[key]) {
+                                    // Auto-create a local entry for display
+                                    const filename = key.split('/').pop();
+                                    const name = filename.split('.')[0]
+                                        .replace(/[-_]/g, ' ')
+                                        .replace(/\\b\\w/g, c => c.toUpperCase());
+                                    
+                                    imageData[key] = {
+                                        name: name,
+                                        tags: [],
+                                        isNew: true
+                                    };
+                                }
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.log('Admin API not running, cannot discover new images.');
+                }
+                
+                const tagSet = new Set();
+                Object.values(imageData).forEach(item => {
+                    if (item.tags) {
+                        item.tags.forEach(t => tagSet.add(t));
+                    }
+                });
+                allTags = Array.from(tagSet).sort();
+                
+                renderTags();
+                setupListeners();
+                renderGrid();
+            } catch (err) {
+                document.getElementById('stats').textContent = 'Error loading data/vocabulary-images.json';
+                console.error(err);
+            }
+        }
+
+        function setupListeners() {
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                renderGrid();
+            });
+
+            document.getElementById('sortSelect').addEventListener('change', (e) => {
+                sortBy = e.target.value;
+                renderGrid();
+            });
+        }
+
+        function toggleTag(tag) {
+            if (selectedTags.has(tag)) {
+                selectedTags.delete(tag);
+            } else {
+                selectedTags.add(tag);
+            }
+            renderTags();
+            renderGrid();
+        }
+
+        function renderTags() {
+            const container = document.getElementById('tagsContainer');
+            container.innerHTML = allTags.map(tag => `
+                <button class="tag-btn ${selectedTags.has(tag) ? 'active' : ''}" onclick="toggleTag('${tag}')">
+                    ${tag}
+                </button>
+            `).join('');
+        }
+
+        async function openInFinder(key) {
+            try {
+                const res = await fetch('/api/open-in-finder', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ key })
+                });
+                if (!res.ok) {
+                    throw new Error('API not available. Are you running the admin server?');
+                }
+            } catch (err) {
+                alert('Could not open in Finder. Make sure you are accessing this via the python admin server (python3 scripts/admin.py) on port 8090.');
+            }
+        }
+
+        async function handleTagInput(e, key) {
+            if (e.key === 'Enter') {
+                const newTag = e.target.value.trim().toLowerCase();
+                if (!newTag) return;
+                
+                const currentTags = imageData[key].tags || [];
+                if (currentTags.includes(newTag)) {
+                    e.target.value = '';
+                    return;
+                }
+                
+                const updatedTags = [...currentTags, newTag];
+                
+                try {
+                    const res = await fetch('/api/vocabulary/tags', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ key, tags: updatedTags })
+                    });
+                    
+                    if (!res.ok) {
+                        throw new Error('Failed to update tags.');
+                    }
+                    
+                    const data = await res.json();
+                    
+                    // Update local state
+                    imageData[key].tags = data.tags;
+                    
+                    if (!allTags.includes(newTag)) {
+                        allTags.push(newTag);
+                        allTags.sort();
+                        renderTags();
+                    }
+                    
+                    renderGrid(); // Re-render to show new tag
+                } catch (err) {
+                    alert('Could not update tags. Make sure you are accessing this via the python admin server (python3 scripts/admin.py) on port 8090.');
+                }
+            }
+        }
+        
+        async function removeTag(key, tagToRemove) {
+            const currentTags = imageData[key].tags || [];
+            const updatedTags = currentTags.filter(t => t !== tagToRemove);
+            
+            try {
+                const res = await fetch('/api/vocabulary/tags', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ key, tags: updatedTags })
+                });
+                
+                if (!res.ok) throw new Error('API error');
+                
+                const data = await res.json();
+                imageData[key].tags = data.tags;
+                renderGrid();
+            } catch (err) {
+                alert('Could not remove tag. Make sure you are accessing this via the python admin server (python3 scripts/admin.py) on port 8090.');
+            }
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('grid');
+            const stats = document.getElementById('stats');
+            
+            let keys = Object.keys(imageData);
+            
+            // Filter
+            keys = keys.filter(key => {
+                const item = imageData[key];
+                
+                // Text search
+                const textMatch = !searchQuery || 
+                                 item.name.toLowerCase().includes(searchQuery) || 
+                                 key.toLowerCase().includes(searchQuery);
+                                 
+                // Tag search (must have ALL selected tags)
+                let tagMatch = true;
+                if (selectedTags.size > 0) {
+                    if (!item.tags) {
+                        tagMatch = false;
+                    } else {
+                        for (const tag of selectedTags) {
+                            if (!item.tags.includes(tag)) {
+                                tagMatch = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                return textMatch && tagMatch;
+            });
+            
+            // Sort
+            keys.sort((a, b) => {
+                if (sortBy === 'name-asc') {
+                    return imageData[a].name.localeCompare(imageData[b].name);
+                } else if (sortBy === 'name-desc') {
+                    return imageData[b].name.localeCompare(imageData[a].name);
+                } else {
+                    return a.localeCompare(b);
+                }
+            });
+            
+            stats.textContent = `Showing ${keys.length} of ${Object.keys(imageData).length} images`;
+            
+            grid.innerHTML = keys.map(key => {
+                const item = imageData[key];
+                const tagsHtml = item.tags ? item.tags.map(t => `<span class="card-tag" onclick="removeTag('${key}', '${t}')" title="Click to remove">${t}</span>`).join('') : '';
+                const newBadge = item.isNew ? '<span style="background: #fef08a; color: #854d0e; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 6px;">NEW</span>' : '';
+                
+                return `
+                    <div class="image-card">
+                        <div class="img-container" onclick="openInFinder('${key}')" style="cursor: pointer;" title="Click to reveal in Finder">
+                            <img src="images/${key}" alt="${item.name}" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">${item.name}${newBadge}</div>
+                            <div class="card-path">${key}</div>
+                            <div class="card-tags">
+                                ${tagsHtml}
+                                <input type="text" class="add-tag-input" placeholder="+ tag" onkeypress="handleTagInput(event, '${key}')">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        init();
+    </script>
+</body>
+</html>

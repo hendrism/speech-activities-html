@@ -212,6 +212,54 @@
             text-overflow: ellipsis;
         }
 
+        /* Tag Filters */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tag-btn {
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 6px 12px;
+            background: var(--bg-color);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-muted);
+            text-transform: lowercase;
+        }
+
+        .tag-btn:hover {
+            border-color: var(--primary-light);
+            background: rgba(209, 250, 229, 0.5);
+        }
+
+        .tag-btn.selected {
+            background: var(--primary-light);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sort-select {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--surface-color);
+            color: var(--text-main);
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+        }
+
         /* Buttons */
         .btn-group {
             display: flex;
@@ -446,10 +494,13 @@
         mode: 'setup', // 'setup', 'viewer'
         vocabularyData: {},
         categories: {}, // { categoryName: [imageKeys...] }
+        allTags: [],
         selectedCategories: new Set(),
+        selectedTags: new Set(),
         selectedLayout: 1, // 1, 2, 3, or 4
         selectedWords: new Set(), // Set of imageKeys
         showWords: false, // Default to hidden words
+        sortBy: 'name-asc', // 'name-asc', 'name-desc', 'category'
         
         // Viewer State
         deck: [], // Shuffled array of arrays (chunks)
@@ -469,13 +520,19 @@
             state.vocabularyData = data;
             
             // Group by category (first folder in path)
+            const tagsSet = new Set();
             for (const [key, info] of Object.entries(data)) {
                 const category = key.split('/')[0];
                 if (!state.categories[category]) {
                     state.categories[category] = [];
                 }
                 state.categories[category].push(key);
+                
+                if (info.tags) {
+                    info.tags.forEach(t => tagsSet.add(t));
+                }
             }
+            state.allTags = Array.from(tagsSet).sort();
             
             // Sort categories and words alphabetically
             for (const cat in state.categories) {
@@ -497,13 +554,23 @@
     function toggleCategory(category) {
         if (state.selectedCategories.has(category)) {
             state.selectedCategories.delete(category);
-            // Optional: Remove words belonging to this category from selection
-            if (state.categories[category]) {
-                state.categories[category].forEach(key => state.selectedWords.delete(key));
-            }
         } else {
             state.selectedCategories.add(category);
         }
+        render();
+    }
+
+    function toggleTag(tag) {
+        if (state.selectedTags.has(tag)) {
+            state.selectedTags.delete(tag);
+        } else {
+            state.selectedTags.add(tag);
+        }
+        render();
+    }
+
+    function updateSort(val) {
+        state.sortBy = val;
         render();
     }
 
@@ -521,12 +588,47 @@
         render();
     }
 
-    function selectAllWords() {
-        if (state.selectedCategories.size === 0) return;
-        state.selectedCategories.forEach(cat => {
-            state.categories[cat].forEach(key => {
-                state.selectedWords.add(key);
+    function getFilteredWords() {
+        const hasCategory = state.selectedCategories.size > 0;
+        const hasTag = state.selectedTags.size > 0;
+        
+        let filteredKeys = Object.keys(state.vocabularyData);
+        if (hasCategory || hasTag) {
+            filteredKeys = filteredKeys.filter(key => {
+                const word = state.vocabularyData[key];
+                const category = key.split('/')[0];
+                const matchCat = !hasCategory || state.selectedCategories.has(category);
+                const matchTag = !hasTag || (word.tags && word.tags.some(t => state.selectedTags.has(t)));
+                return matchCat && matchTag;
             });
+        }
+        
+        return filteredKeys.sort((a, b) => {
+            const wordA = state.vocabularyData[a];
+            const wordB = state.vocabularyData[b];
+            
+            if (state.sortBy === 'name-asc') {
+                return wordA.name.localeCompare(wordB.name);
+            } else if (state.sortBy === 'name-desc') {
+                return wordB.name.localeCompare(wordA.name);
+            } else if (state.sortBy === 'category') {
+                const catA = a.split('/')[0];
+                const catB = b.split('/')[0];
+                if (catA === catB) {
+                    return wordA.name.localeCompare(wordB.name);
+                }
+                return catA.localeCompare(catB);
+            }
+            return 0;
+        });
+    }
+
+    function selectAllWords() {
+        const filteredWords = getFilteredWords();
+        if (filteredWords.length === 0) return;
+        
+        filteredWords.forEach(key => {
+            state.selectedWords.add(key);
         });
         render();
     }
@@ -641,9 +743,11 @@
     function renderSetup() {
         const categories = Object.keys(state.categories).sort();
         
-        let categoryHtml = `
+        let filtersHtml = `
             <section class="card">
-                <h2>1. Select Category</h2>
+                <h2>1. Filter Images</h2>
+                
+                <h3 style="font-size: 1rem; margin-bottom: 8px; color: var(--text-muted);">By Category</h3>
                 <div class="category-grid">
                     ${categories.map(cat => `
                         <button class="category-btn ${state.selectedCategories.has(cat) ? 'selected' : ''}" 
@@ -652,47 +756,57 @@
                         </button>
                     `).join('')}
                 </div>
+
+                <h3 style="font-size: 1rem; margin-bottom: 8px; margin-top: 16px; color: var(--text-muted);">By Tag</h3>
+                <div class="tags-container">
+                    ${state.allTags.map(tag => `
+                        <button class="tag-btn ${state.selectedTags.has(tag) ? 'selected' : ''}" 
+                                onclick="toggleTag('${tag}')">
+                            ${tag}
+                        </button>
+                    `).join('')}
+                </div>
             </section>
         `;
 
-        let wordsHtml = '';
-        if (state.selectedCategories.size > 0) {
-            let combinedWords = [];
-            state.selectedCategories.forEach(cat => {
-                combinedWords = combinedWords.concat(state.categories[cat]);
-            });
-            // Sort combined words alphabetically
-            combinedWords.sort((a,b) => state.vocabularyData[a].name.localeCompare(state.vocabularyData[b].name));
-            
-            const isAllSelected = combinedWords.length > 0 && combinedWords.every(w => state.selectedWords.has(w));
-            
-            wordsHtml = `
-                <section class="card">
-                    <div class="setup-actions">
+        const combinedWords = getFilteredWords();
+        
+        let wordsHtml = `
+            <section class="card">
+                <div class="setup-actions">
+                    <div class="filters-header" style="flex-grow: 1;">
                         <h2>2. Select Words <span class="badge">${state.selectedWords.size} selected</span></h2>
+                    </div>
+                    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                        <select class="sort-select" onchange="updateSort(this.value)">
+                            <option value="name-asc" ${state.sortBy === 'name-asc' ? 'selected' : ''}>Sort: Name (A-Z)</option>
+                            <option value="name-desc" ${state.sortBy === 'name-desc' ? 'selected' : ''}>Sort: Name (Z-A)</option>
+                            <option value="category" ${state.sortBy === 'category' ? 'selected' : ''}>Sort: Category</option>
+                        </select>
                         <div class="btn-group">
-                            <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;" onclick="selectAllWords()">Select All</button>
-                            <button class="btn btn-tertiary" style="padding: 8px 16px; font-size: 0.9rem;" onclick="clearAllWords()">Clear</button>
+                            <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;" onclick="selectAllWords()">Select All Match</button>
+                            <button class="btn btn-tertiary" style="padding: 8px 16px; font-size: 0.9rem;" onclick="clearAllWords()">Clear All</button>
                         </div>
                     </div>
-                    <div class="word-grid">
-                        ${combinedWords.map(key => {
-                            const word = state.vocabularyData[key];
-                            const isChecked = state.selectedWords.has(key);
-                            return `
-                                <label class="word-option">
-                                    <input type="checkbox" onchange="toggleWord('${key}')" ${isChecked ? 'checked' : ''}>
-                                    <div style="display:flex; flex-direction:column; overflow:hidden;">
-                                        <span class="word-name">${word.name}</span>
-                                        ${word.tags ? `<span class="word-tags">${word.tags.join(', ')}</span>` : ''}
-                                    </div>
-                                </label>
-                            `;
-                        }).join('')}
-                    </div>
-                </section>
-            `;
-        }
+                </div>
+                <div class="word-grid">
+                    ${combinedWords.map(key => {
+                        const word = state.vocabularyData[key];
+                        const isChecked = state.selectedWords.has(key);
+                        return `
+                            <label class="word-option">
+                                <input type="checkbox" onchange="toggleWord('${key}')" ${isChecked ? 'checked' : ''}>
+                                <div style="display:flex; flex-direction:column; overflow:hidden;">
+                                    <span class="word-name">${word.name}</span>
+                                    ${word.tags ? `<span class="word-tags">${word.tags.join(', ')}</span>` : ''}
+                                </div>
+                            </label>
+                        `;
+                    }).join('')}
+                    ${combinedWords.length === 0 ? '<p style="color: var(--text-muted); padding: 12px;">No images match the selected filters.</p>' : ''}
+                </div>
+            </section>
+        `;
 
         let layoutHtml = '';
         if (state.selectedWords.size > 0) {
@@ -729,9 +843,9 @@
         return `
             <div class="card header">
                 <h1>🖼️ Flexible Image Viewer</h1>
-                <p>Select a category, choose your target words, and pick how many images you want to display on screen at the same time. This is perfect for labeling, identification, or categorization tasks.</p>
+                <p>Filter by categories or tags, choose your target words, and pick how many images you want to display on screen at the same time.</p>
             </div>
-            ${categoryHtml}
+            ${filtersHtml}
             ${wordsHtml}
             ${layoutHtml}
         `;

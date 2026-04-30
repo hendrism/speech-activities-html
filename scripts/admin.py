@@ -65,6 +65,16 @@ def save_activity_index(data: dict) -> None:
     tmp.replace(DATA_DIR / "activity-index.json")
 
 
+def load_vocabulary() -> dict:
+    return json.loads((DATA_DIR / "vocabulary-images.json").read_text(encoding="utf-8"))
+
+
+def save_vocabulary(data: dict) -> None:
+    tmp = DATA_DIR / "vocabulary-images.tmp"
+    tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    tmp.replace(DATA_DIR / "vocabulary-images.json")
+
+
 def title_to_key(title: str) -> str:
     """Convert a title to a kebab-case key."""
     key = title.strip().lower()
@@ -140,6 +150,10 @@ class AdminHandler(http.server.BaseHTTPRequestHandler):
             self._handle_preview(body)
         elif path == "/api/save":
             self._handle_save(body)
+        elif path == "/api/vocabulary/tags":
+            self._handle_update_tags(body)
+        elif path == "/api/open-in-finder":
+            self._handle_open_in_finder(body)
         else:
             self._error(404, "Not found")
 
@@ -188,6 +202,38 @@ class AdminHandler(http.server.BaseHTTPRequestHandler):
         save_activity_index(index)
 
         self._json({"ok": True, "key": key})
+
+    def _handle_update_tags(self, body: dict) -> None:
+        key = body.get("key")
+        tags = body.get("tags")
+        if not key or not isinstance(tags, list):
+            self._error(400, "Missing key or tags")
+            return
+        
+        data = load_vocabulary()
+        if key not in data:
+            # Auto-create entry for new images
+            name = key.split("/")[-1].rsplit(".", 1)[0].replace("-", " ").replace("_", " ").title()
+            data[key] = {"name": name, "tags": []}
+        
+        data[key]["tags"] = sorted(list(set(tags)))
+        save_vocabulary(data)
+        self._json({"ok": True, "tags": data[key]["tags"]})
+
+    def _handle_open_in_finder(self, body: dict) -> None:
+        key = body.get("key")
+        if not key:
+            self._error(400, "Missing key")
+            return
+        
+        path = (IMAGES_DIR / key).resolve()
+        if not path.is_relative_to(IMAGES_DIR.resolve()) or not path.exists():
+            self._error(404, "File not found")
+            return
+            
+        import subprocess
+        subprocess.run(['open', '-R', str(path)])
+        self._json({"ok": True})
 
     # ── Static file serving ───────────────────────────────────────────
 
