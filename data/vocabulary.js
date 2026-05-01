@@ -3957,5 +3957,157 @@ window.ActivityData.vocabulary = {
         }
       ]
     }
+  ],
+  "bugSorting": [
+    {
+      "id": "bug-sort-001",
+      "label": "Ant",
+      "imageUrl": "images/animals/ant.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-002",
+      "label": "Bee",
+      "imageUrl": "images/animals/bee.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-003",
+      "label": "Beetle",
+      "imageUrl": "images/animals/beetle.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-004",
+      "label": "Butterfly",
+      "imageUrl": "images/animals/butterfly.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-005",
+      "label": "Caterpillar",
+      "imageUrl": "images/animals/caterpillar.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-006",
+      "label": "Dragonfly",
+      "imageUrl": "images/animals/dragonfly.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-007",
+      "label": "Firefly",
+      "imageUrl": "images/animals/firefly.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-008",
+      "label": "Fly",
+      "imageUrl": "images/animals/fly.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-009",
+      "label": "Grasshopper",
+      "imageUrl": "images/animals/grasshopper.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-010",
+      "label": "Ladybug",
+      "imageUrl": "images/animals/ladybug.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-011",
+      "label": "Mosquito",
+      "imageUrl": "images/animals/mosquito.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-012",
+      "label": "Moth",
+      "imageUrl": "images/animals/moth.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-013",
+      "label": "Spider",
+      "imageUrl": "images/animals/spider.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-014",
+      "label": "Wasp",
+      "imageUrl": "images/animals/wasp.png",
+      "category": "bug"
+    },
+    {
+      "id": "bug-sort-015",
+      "label": "Beagle",
+      "imageUrl": "images/animals/beagle.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-016",
+      "label": "Cat",
+      "imageUrl": "images/animals/cat.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-017",
+      "label": "Cow",
+      "imageUrl": "images/animals/cow.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-018",
+      "label": "Duck",
+      "imageUrl": "images/animals/duck.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-019",
+      "label": "Elephant",
+      "imageUrl": "images/animals/elephant.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-020",
+      "label": "Fish",
+      "imageUrl": "images/animals/fish.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-021",
+      "label": "Frog",
+      "imageUrl": "images/animals/frog.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-022",
+      "label": "Lion",
+      "imageUrl": "images/animals/lion.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-023",
+      "label": "Pig",
+      "imageUrl": "images/animals/pig.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-024",
+      "label": "Rabbit",
+      "imageUrl": "images/animals/rabbit.png",
+      "category": "not-bug"
+    },
+    {
+      "id": "bug-sort-025",
+      "label": "Squirrel",
+      "imageUrl": "images/animals/squirrel.png",
+      "category": "not-bug"
+    }
   ]
 };

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug or Not a Bug — Speech Therapy</title>
+
+    <!-- Shared design system (colors, spacing, buttons, cards) -->
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="category-vocabulary">
+
+    <!-- ── Header ─────────────────────────────────────── -->
+    <div class="activity-header">
+        <h1>🎯 Bug or Not a Bug?</h1>
+        <p>Drag the picture to the correct group, or click the picture and then click a box!</p>
+    </div>
+
+    <!-- ── Main Area ──────────────────────────────────── -->
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-label" id="progress-label"></div>
+
+        <div class="drop-zones-container">
+            <div class="drop-zone" id="zone-bug" data-target="bug" onclick="handleZoneClick('bug')">
+                <span class="drop-zone-icon">🐛</span>
+                <span class="drop-zone-title">Bug</span>
+                <div class="dropped-items-grid" id="dropped-bug"></div>
+            </div>
+            
+            <div class="drop-zone" id="zone-not-bug" data-target="not-bug" onclick="handleZoneClick('not-bug')">
+                <span class="drop-zone-icon">🐕</span>
+                <span class="drop-zone-title">Not a Bug</span>
+                <div class="dropped-items-grid" id="dropped-not-bug"></div>
+            </div>
+        </div>
+
+        <div class="draggable-item-container" id="draggable-container">
+            <!-- Dynamic content injected by renderCard() -->
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <div class="flex-between mt-4">
+            <button class="btn btn-secondary" id="prev-btn" onclick="prevItem()">← Skip</button>
+            <button class="btn btn-primary"   id="next-btn" onclick="nextItem()">Next →</button>
+        </div>
+    </div>
+
+    <!-- ── Scripts ─────────────────────────────────────── -->
+    <script src="../../data/vocabulary.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <script src="../../js/utils.js"></script>
+
+    <script>
+        // ── Load data ─────────────────────────────────────────────
+        const items = DataLoader.get('vocabulary', 'bugSorting');
+
+        // ── State ─────────────────────────────────────────────────
+        const state = {
+            items:        shuffleArray([...items]),
+            currentIndex: 0,
+            answered:     false,
+        };
+
+        let selectedElement = null;
+
+        // ── Render ────────────────────────────────────────────────
+        function renderCard() {
+            if (state.currentIndex >= state.items.length) {
+                showDoneScreen();
+                return;
+            }
+
+            const item = state.items[state.currentIndex];
+            const container = document.getElementById('draggable-container');
+            state.answered = false;
+            hideFeedback('feedback');
+
+            updateProgress('progress-fill', state.currentIndex + 1, state.items.length, 'progress-label');
+
+            container.innerHTML = `
+                <div class="draggable-item" draggable="true" id="current-item" 
+                     ondragstart="drag(event)" ondragend="dragEnd(event)"
+                     onclick="selectItem(event)">
+                    <img src="../../${item.imageUrl}" alt="${item.label}">
+                </div>
+            `;
+            selectedElement = null;
+        }
+
+        // ── Drag & Drop Handlers ──────────────────────────────────
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+            ev.target.classList.add('dragging');
+        }
+
+        function dragEnd(ev) {
+            ev.target.classList.remove('dragging');
+        }
+
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            zone.addEventListener('dragover', function(ev) {
+                ev.preventDefault(); // Necessary to allow dropping
+                this.classList.add('drag-over');
+            });
+            
+            zone.addEventListener('dragleave', function(ev) {
+                this.classList.remove('drag-over');
+            });
+
+            zone.addEventListener('drop', function(ev) {
+                ev.preventDefault();
+                this.classList.remove('drag-over');
+                handleDrop(this.dataset.target);
+            });
+        });
+
+        // ── Click Handlers (Alternative to Drag) ──────────────────
+        function selectItem(ev) {
+            const el = document.getElementById('current-item');
+            if (!el) return;
+            
+            if (el.classList.contains('dragging')) {
+                el.classList.remove('dragging');
+                selectedElement = null;
+            } else {
+                el.classList.add('dragging');
+                selectedElement = el;
+            }
+        }
+
+        function handleZoneClick(target) {
+            if (selectedElement || document.getElementById('current-item')?.classList.contains('dragging')) {
+                handleDrop(target);
+            }
+        }
+
+        // ── Answer Logic ──────────────────────────────────────────
+        function handleDrop(target) {
+            if (state.answered) return;
+            
+            const item = state.items[state.currentIndex];
+            const isCorrect = item.category === target;
+            
+            if (isCorrect) {
+                state.answered = true;
+                showFeedback('feedback', true);
+                
+                const currentEl = document.getElementById('current-item');
+                if (currentEl) currentEl.style.display = 'none';
+                
+                // Add mini version to the drop zone
+                const miniItem = document.createElement('div');
+                miniItem.className = 'dropped-item';
+                miniItem.innerHTML = `<img src="../../${item.imageUrl}" alt="${item.label}">`;
+                document.getElementById(`dropped-${target}`).appendChild(miniItem);
+
+                // Auto-advance after delay
+                setTimeout(() => {
+                    nextItem();
+                }, 1000);
+            } else {
+                showFeedback('feedback', false);
+                const el = document.getElementById('current-item');
+                if (el) {
+                    el.classList.remove('dragging');
+                    selectedElement = null;
+                }
+            }
+        }
+
+        // ── Navigation ────────────────────────────────────────────
+        function showDoneScreen() {
+            document.getElementById('draggable-container').innerHTML = `
+                <div class="text-center" style="width: 100%;">
+                    <p style="font-size: var(--font-size-2xl);">🎉 All done!</p>
+                    <p class="text-muted mt-4">Great work sorting!</p>
+                    <button class="btn btn-primary mt-4" onclick="restart()">Start Over</button>
+                </div>`;
+            hideFeedback('feedback');
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+        }
+
+        function nextItem() {
+            if (state.currentIndex < state.items.length) {
+                state.currentIndex++;
+                renderCard();
+            }
+        }
+
+        function prevItem() {
+            if (state.currentIndex < state.items.length) {
+                state.currentIndex++; // skip
+                renderCard();
+            }
+        }
+
+        function restart() {
+            state.items = shuffleArray([...items]);
+            state.currentIndex = 0;
+            document.getElementById('dropped-bug').innerHTML = '';
+            document.getElementById('dropped-not-bug').innerHTML = '';
+            document.getElementById('prev-btn').style.display = 'inline-flex';
+            document.getElementById('next-btn').style.display = 'inline-flex';
+            renderCard();
+        }
+
+        // ── Init ──────────────────────────────────────────────────
+        renderCard();
+    </script>
+</body>
+</html>
