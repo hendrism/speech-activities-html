@@ -295,13 +295,14 @@
             <span id="bulkCount" style="font-weight: 600; font-size: 14px; color: #0284c7;">0 selected</span>
             <button class="bulk-btn secondary" onclick="selectAllVisible()">Select All Visible</button>
             <div style="flex: 1;"></div>
-            <input type="text" id="bulkTagInput" class="search-input" style="padding: 6px 12px; min-width: 150px; flex: none;" placeholder="Tag selected...">
+            <input type="text" id="bulkTagInput" class="search-input" style="padding: 6px 12px; min-width: 150px; flex: none;" placeholder="Tag selected..." list="available-tags" onkeypress="if(event.key === 'Enter') applyBulkTag()">
             <button class="bulk-btn" onclick="applyBulkTag()">Add Tag</button>
             <button class="bulk-btn secondary" onclick="clearSelection()">Clear</button>
         </div>
         <div class="stats" id="stats">
             Loading...
         </div>
+        <datalist id="available-tags"></datalist>
     </header>
 
     <main id="grid">
@@ -398,6 +399,11 @@
                     ${tag}
                 </button>
             `).join('');
+
+            const datalist = document.getElementById('available-tags');
+            if (datalist) {
+                datalist.innerHTML = allTags.map(tag => `<option value="${tag}">`).join('');
+            }
         }
 
         async function openInFinder(key) {
@@ -417,16 +423,21 @@
 
         async function handleTagInput(e, key) {
             if (e.key === 'Enter') {
-                const newTag = e.target.value.trim().toLowerCase();
-                if (!newTag) return;
+                const newTagRaw = e.target.value.trim().toLowerCase();
+                if (!newTagRaw) return;
+                
+                const tagsToAdd = newTagRaw.split(',').map(t => t.trim()).filter(t => t);
+                if (tagsToAdd.length === 0) return;
                 
                 const currentTags = imageData[key].tags || [];
-                if (currentTags.includes(newTag)) {
+                
+                const newTagsFiltered = tagsToAdd.filter(t => !currentTags.includes(t));
+                if (newTagsFiltered.length === 0) {
                     e.target.value = '';
                     return;
                 }
                 
-                const updatedTags = [...currentTags, newTag];
+                const updatedTags = [...currentTags, ...newTagsFiltered].sort();
                 
                 try {
                     const res = await fetch('/api/vocabulary/tags', {
@@ -444,8 +455,15 @@
                     // Update local state
                     imageData[key].tags = data.tags;
                     
-                    if (!allTags.includes(newTag)) {
-                        allTags.push(newTag);
+                    let tagsChanged = false;
+                    newTagsFiltered.forEach(t => {
+                        if (!allTags.includes(t)) {
+                            allTags.push(t);
+                            tagsChanged = true;
+                        }
+                    });
+                    
+                    if (tagsChanged) {
                         allTags.sort();
                         renderTags();
                     }
@@ -559,8 +577,11 @@
 
         async function applyBulkTag() {
             const input = document.getElementById('bulkTagInput');
-            const newTag = input.value.trim().toLowerCase();
-            if (!newTag || selectedImages.size === 0) return;
+            const newTagRaw = input.value.trim().toLowerCase();
+            if (!newTagRaw || selectedImages.size === 0) return;
+            
+            const tagsToAdd = newTagRaw.split(',').map(t => t.trim()).filter(t => t);
+            if (tagsToAdd.length === 0) return;
             
             const keysArray = Array.from(selectedImages);
             
@@ -568,28 +589,38 @@
                 const res = await fetch('/api/vocabulary/tags/bulk', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ keys: keysArray, tags_to_add: [newTag] })
+                    body: JSON.stringify({ keys: keysArray, tags_to_add: tagsToAdd })
                 });
                 
                 if (!res.ok) throw new Error('API error');
                 
                 // Update local state
+                let tagsChanged = false;
                 keysArray.forEach(key => {
                     if (!imageData[key]) return;
                     const currentTags = imageData[key].tags || [];
-                    if (!currentTags.includes(newTag)) {
-                        imageData[key].tags = [...currentTags, newTag].sort();
+                    
+                    const newTagsFiltered = tagsToAdd.filter(t => !currentTags.includes(t));
+                    if (newTagsFiltered.length > 0) {
+                        imageData[key].tags = [...currentTags, ...newTagsFiltered].sort();
                     }
                 });
                 
-                if (!allTags.includes(newTag)) {
-                    allTags.push(newTag);
+                tagsToAdd.forEach(t => {
+                    if (!allTags.includes(t)) {
+                        allTags.push(t);
+                        tagsChanged = true;
+                    }
+                });
+                
+                if (tagsChanged) {
                     allTags.sort();
                     renderTags();
                 }
                 
                 input.value = '';
-                clearSelection();
+                // Keep selection active so user can add more tags if desired
+                renderGrid();
             } catch (err) {
                 alert('Could not bulk tag. Make sure you have restarted the Python admin server (python3 scripts/admin.py) to load the new bulk tagging code.');
             }
@@ -658,7 +689,7 @@
                             <div class="card-path">${key}</div>
                             <div class="card-tags">
                                 ${tagsHtml}
-                                ${selectionMode ? '' : `<input type="text" class="add-tag-input" placeholder="+ tag" onkeypress="handleTagInput(event, '${key}')">`}
+                                ${selectionMode ? '' : `<input type="text" class="add-tag-input" placeholder="+ tag" list="available-tags" onkeypress="handleTagInput(event, '${key}')">`}
                             </div>
                         </div>
                     </div>

@@ -440,13 +440,6 @@
       "mammal"
     ]
   },
-  "clothing/raincoat.jpg": {
-    "name": "Raincoat",
-    "tags": [
-      "clothing",
-      "wet"
-    ]
-  },
   "nature/snow.jpg": {
     "name": "Snow",
     "tags": [
@@ -804,6 +797,104 @@
       "action",
       "verb",
       "spring"
+    ]
+  },
+  "animals/ant.png": {
+    "name": "Ant",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/bumblebee.png": {
+    "name": "Bumblebee",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/grasshopper.png": {
+    "name": "Grasshopper",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/larvae.png": {
+    "name": "Larvae",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/wasp.png": {
+    "name": "Wasp",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/fly.png": {
+    "name": "Fly",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/ladybug.png": {
+    "name": "Ladybug",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/mosquito.png": {
+    "name": "Mosquito",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/spider.png": {
+    "name": "Spider",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/beetle.png": {
+    "name": "Beetle",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/caterpillar.png": {
+    "name": "Caterpillar",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/dragonfly.png": {
+    "name": "Dragonfly",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/firefly.png": {
+    "name": "Firefly",
+    "tags": [
+      "insect",
+      "real"
+    ]
+  },
+  "animals/moth.png": {
+    "name": "Moth",
+    "tags": [
+      "insect",
+      "real"
     ]
   }
 }
