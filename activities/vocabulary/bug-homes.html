@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Homes — Speech Therapy</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="category-vocabulary">
+    <div class="activity-header">
+        <h1>🐛 Where do they live?</h1>
+        <p>Choose the correct home for each bug</p>
+    </div>
+
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-label" id="progress-label"></div>
+
+        <div class="nav-pills" id="nav-pills"></div>
+
+        <div class="card" id="card">
+            <!-- Dynamic content injected by renderCard() -->
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <div class="flex-between mt-4">
+            <button class="btn btn-secondary" id="prev-btn" onclick="prevItem()">← Previous</button>
+            <button class="btn btn-primary"   id="next-btn" onclick="nextItem()">Next →</button>
+        </div>
+    </div>
+
+    <script src="../../data/vocabulary.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <script src="../../js/utils.js"></script>
+
+    <script>
+        const items = DataLoader.get('vocabulary', 'bugHomes');
+
+        const state = {
+            items: shuffleArray(items),
+            currentIndex: 0,
+            answered: false,
+        };
+
+        function renderCard() {
+            const item = state.items[state.currentIndex];
+            const card = document.getElementById('card');
+            state.answered = false;
+            hideFeedback('feedback');
+
+            updateProgress('progress-fill', state.currentIndex + 1, state.items.length, 'progress-label');
+            setNavActive('nav-pills', state.currentIndex);
+
+            const options = [
+                { name: item.correctHome, image: item.correctHomeImage, isCorrect: true },
+                { name: item.incorrectHome, image: item.incorrectHomeImage, isCorrect: false }
+            ];
+            const shuffledOptions = shuffleArray(options);
+
+            let optionsHtml = '';
+            shuffledOptions.forEach((opt, idx) => {
+                optionsHtml += `
+                    <button class="option-btn" id="opt-${idx}" onclick="checkAnswer(${idx}, ${opt.isCorrect})" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2);">
+                        <img src="../../${opt.image}" alt="${opt.name}" style="max-height: 120px; border-radius: var(--radius-md); object-fit: cover;" onerror="this.src='../../images/places/placeholder.png'; this.onerror=null;">
+                        <span style="font-size: var(--font-size-lg); font-weight: 500;">${opt.name}</span>
+                    </button>
+                `;
+            });
+
+            card.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="../../${item.bugImage}" alt="${item.bug}" style="max-width: 200px; max-height: 200px; border-radius: var(--radius-md);" onerror="this.src='../../images/animals/placeholder.png'; this.onerror=null;">
+                    <p style="font-size: var(--font-size-xl); font-weight: 600; margin: var(--space-4) 0; text-align: center;">Where does the ${item.bug.toLowerCase()} live?</p>
+                </div>
+                <div class="options-grid" id="options" style="grid-template-columns: 1fr 1fr;">
+                    ${optionsHtml}
+                </div>
+            `;
+        }
+
+        function checkAnswer(idx, isCorrect) {
+            if (state.answered) return;
+            state.answered = true;
+            
+            const btn = document.getElementById(`opt-${idx}`);
+            if (isCorrect) {
+                btn.classList.add('correct');
+                showFeedback('feedback', true);
+            } else {
+                btn.classList.add('incorrect');
+                // Highlight correct one
+                const btns = document.querySelectorAll('.option-btn');
+                btns.forEach(b => {
+                    if (b.onclick.toString().includes('true')) {
+                        b.classList.add('correct');
+                    }
+                });
+                showFeedback('feedback', false);
+            }
+        }
+
+        function nextItem() {
+            if (state.currentIndex < state.items.length - 1) {
+                state.currentIndex++;
+                renderCard();
+            } else {
+                document.getElementById('card').innerHTML = `
+                    <div class="text-center" style="padding: var(--space-6);">
+                        <p style="font-size: var(--font-size-2xl);">🎉 All done!</p>
+                        <p class="text-muted mt-4">Great work finding homes for all the bugs.</p>
+                        <button class="btn btn-primary mt-4" onclick="restart()">Play Again</button>
+                    </div>`;
+                hideFeedback('feedback');
+            }
+        }
+
+        function prevItem() {
+            if (state.currentIndex > 0) { state.currentIndex--; renderCard(); }
+        }
+
+        function restart() {
+            state.items = shuffleArray(items);
+            state.currentIndex = 0;
+            renderCard();
+        }
+
+        renderNavPills('nav-pills', state.items, (idx) => {
+            state.currentIndex = idx;
+            renderCard();
+        }, { labelFn: (item, i) => `${i + 1}` });
+
+        renderCard();
+    </script>
+</body>
+</html>

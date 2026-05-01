@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Index of all HTML activity files with type classification",
-    "generatedAt": "2026-05-01T14:10:06.147Z",
+    "generatedAt": "2026-05-01T14:28:54.106Z",
     "types": {
       "content-driven": "Data was extracted to /data/*.json — single source of truth",
       "json-loader": "Activity loads from an external JSON file at runtime",
@@ -623,6 +623,13 @@
       "category": "vocabulary",
       "title": "Analogies Activity",
       "sourceFile": "activities/vocabulary/analogies-activity.html",
+      "type": "tool"
+    },
+    {
+      "id": "bug-homes",
+      "category": "vocabulary",
+      "title": "Bug Homes — Speech Therapy",
+      "sourceFile": "activities/vocabulary/bug-homes.html",
       "type": "tool"
     },
     {
