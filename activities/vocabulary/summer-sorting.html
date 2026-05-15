@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Sorting</title>
+    <script src="../../data/vocabulary.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <script src="../../js/utils.js"></script>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-light: #7dd3fc;
+            --primary-dark: #0369a1;
+            --secondary: #f59e0b;
+            --secondary-light: #fde68a;
+            --background: #fffbf0;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        body {
+            font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+        }
+
+        .level-indicator {
+            background: var(--surface);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            max-height: calc(100vh - 150px);
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            background: #fff7ed;
+            font-weight: 700;
+            color: #92400e;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #fed7aa;
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-item:hover {
+            background: #f0f9ff;
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background: #e0f2fe;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .activity-card {
+            background: var(--surface);
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease-out;
+            flex: 1;
+            min-height: 600px;
+        }
+
+        .instruction-banner {
+            background: #fef9c3;
+            color: #854d0e;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #fde68a;
+        }
+
+        .set-title {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .drop-zones-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .drop-zone {
+            flex: 1;
+            background: #f0f9ff;
+            border: 2px dashed var(--primary-light);
+            border-radius: var(--radius-md);
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s;
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--primary);
+            background: #e0f2fe;
+        }
+
+        .drop-zone-header {
+            background: var(--secondary);
+            color: white;
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: 700;
+            border-top-left-radius: var(--radius-md);
+            border-top-right-radius: var(--radius-md);
+            font-size: 1.2rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        }
+
+        .drop-zone-content {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-content: flex-start;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .source-pool {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            min-height: 180px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            align-content: center;
+            transition: all 0.2s;
+        }
+
+        .source-pool.drag-over {
+            border-color: var(--primary);
+            background: #f0f9ff;
+        }
+
+        .draggable-item {
+            width: var(--item-size, 130px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: grab;
+            transition: transform 0.2s, width 0.2s;
+        }
+
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+
+        .draggable-item:hover {
+            transform: scale(1.05);
+        }
+
+        .item-image {
+            width: var(--img-size, 100px);
+            height: var(--img-size, 100px);
+            object-fit: contain;
+            background: white;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            padding: 0.25rem;
+            box-shadow: var(--shadow-sm);
+            pointer-events: none;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        .item-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--text-main);
+            pointer-events: none;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="category-vocabulary">
+
+    <div class="header">
+        <div class="app-title">
+            <span>☀️</span> Summer Sorting
+        </div>
+        <div class="level-indicator">
+            Set <span id="current-item-num">1</span> of 5
+        </div>
+    </div>
+
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="sidebar-header">Category Sets</div>
+            <ul class="sidebar-list" id="sidebar-list"></ul>
+        </div>
+
+        <div class="activity-card" id="activity-card">
+            <div class="instruction-banner">
+                ☀️ Sort the items by dragging them into the correct category box.
+            </div>
+
+            <h2 class="set-title" id="set-title">Set Title</h2>
+
+            <div class="drop-zones-container" id="drop-zones-container"></div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                <h3 style="color: var(--text-muted); font-size: 1rem; margin: 0;">Items to Sort:</h3>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <label for="size-slider" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Image Size:</label>
+                    <input type="range" id="size-slider" min="80" max="250" value="100" oninput="updateImageSize(this.value)">
+                </div>
+            </div>
+            <div class="source-pool" id="source-pool" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <button class="nav-btn" id="prev-btn" onclick="prevItem()">← Previous Set</button>
+        <button class="nav-btn" id="next-btn" onclick="nextItem()">Next Set →</button>
+    </div>
+
+    <script>
+        const activityData = DataLoader.get("vocabulary", "summerSortingCategories");
+
+        let currentIndex = 0;
+
+        function init() {
+            renderSidebar();
+            loadItem(0);
+        }
+
+        function renderSidebar() {
+            const list = document.getElementById('sidebar-list');
+            list.innerHTML = activityData.map((item, index) => `
+                <li class="sidebar-item ${index === currentIndex ? 'active' : ''}"
+                    onclick="loadItem(${index})">
+                    ${item.categories.join(' / ')}
+                </li>
+            `).join('');
+        }
+
+        function updateSidebar() {
+            document.querySelectorAll('.sidebar-item').forEach((item, index) => {
+                item.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function shuffle(array) {
+            let i = array.length, j;
+            while (i !== 0) {
+                j = Math.floor(Math.random() * i--);
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function loadItem(index) {
+            currentIndex = index;
+            const data = activityData[index];
+
+            document.getElementById('current-item-num').innerText = index + 1;
+            document.getElementById('set-title').innerText = `Set ${index + 1}: ${data.categories.join(' / ')}`;
+
+            document.getElementById('drop-zones-container').innerHTML = data.categories.map(cat => `
+                <div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+                    <div class="drop-zone-header">${cat}</div>
+                    <div class="drop-zone-content"></div>
+                </div>
+            `).join('');
+
+            const sourcePool = document.getElementById('source-pool');
+            sourcePool.innerHTML = shuffle([...data.items]).map((item, i) => `
+                <div class="draggable-item" draggable="true" ondragstart="drag(event)" id="drag-item-${i}">
+                    <img src="../../images/${item.folder}/${item.img}" alt="${item.name}" class="item-image" draggable="false">
+                    <span class="item-label">${item.name}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('prev-btn').disabled = currentIndex === 0;
+            document.getElementById('next-btn').disabled = currentIndex === activityData.length - 1;
+
+            updateSidebar();
+        }
+
+        function updateImageSize(value) {
+            document.documentElement.style.setProperty('--img-size', `${value}px`);
+            document.documentElement.style.setProperty('--item-size', `${parseInt(value) + 30}px`);
+        }
+
+        function prevItem() { if (currentIndex > 0) loadItem(currentIndex - 1); }
+        function nextItem() { if (currentIndex < activityData.length - 1) loadItem(currentIndex + 1); }
+
+        function allowDrop(ev) { ev.preventDefault(); }
+
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); }
+
+        function dragEnter(ev) {
+            ev.preventDefault();
+            let t = ev.target;
+            while (t && !t.classList.contains('drop-zone') && !t.classList.contains('source-pool')) t = t.parentElement;
+            if (t) t.classList.add('drag-over');
+        }
+
+        function dragLeave(ev) {
+            let t = ev.target;
+            while (t && !t.classList.contains('drop-zone') && !t.classList.contains('source-pool')) t = t.parentElement;
+            if (t) t.classList.remove('drag-over');
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const el = document.getElementById(ev.dataTransfer.getData("text"));
+            let t = ev.target;
+            while (t && !t.classList.contains('drop-zone') && !t.classList.contains('source-pool')) t = t.parentElement;
+            if (!t) return;
+            t.classList.remove('drag-over');
+            if (t.classList.contains('drop-zone')) {
+                t.querySelector('.drop-zone-content').appendChild(el);
+            } else {
+                t.appendChild(el);
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

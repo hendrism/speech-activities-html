@@ -896,5 +896,197 @@
       "insect",
       "real"
     ]
+  },
+  "animal-homes/anthill.png": {
+    "name": "Anthill",
+    "tags": [
+      "insect",
+      "nature",
+      "real"
+    ]
+  },
+  "animal-homes/beehive.png": {
+    "name": "Beehive",
+    "tags": [
+      "insect",
+      "nature",
+      "real"
+    ]
+  },
+  "animal-homes/dirt.png": {
+    "name": "Dirt",
+    "tags": [
+      "insect",
+      "nature",
+      "real"
+    ]
+  },
+  "animal-homes/garbage-can.png": {
+    "name": "Garbage Can",
+    "tags": [
+      "insect",
+      "nature",
+      "real"
+    ]
+  },
+  "animal-homes/leaf.png": {
+    "name": "Leaf",
+    "tags": [
+      "insect",
+      "nature",
+      "real"
+    ]
+  },
+  "animal-homes/spiderweb.png": {
+    "name": "Spiderweb",
+    "tags": [
+      "insect",
+      "nature",
+      "real"
+    ]
+  },
+  "animal-homes/wasp-nest.png": {
+    "name": "Wasp Nest",
+    "tags": [
+      "insect",
+      "nature",
+      "real"
+    ]
+  },
+  "summer-images/adjectives/hot.png": {
+    "name": "Hot",
+    "tags": ["adjective", "summer", "weather"]
+  },
+  "summer-images/objects/bathing-suit-woman.png": {
+    "name": "Bathing Suit",
+    "tags": ["object", "summer", "clothing", "beach"]
+  },
+  "summer-images/objects/beach-ball.png": {
+    "name": "Beach Ball",
+    "tags": ["object", "summer", "beach", "toy"]
+  },
+  "summer-images/objects/beach-towel.png": {
+    "name": "Beach Towel",
+    "tags": ["object", "summer", "beach"]
+  },
+  "summer-images/objects/bicycle.png": {
+    "name": "Bicycle",
+    "tags": ["object", "summer", "outdoor"]
+  },
+  "summer-images/objects/cooler.png": {
+    "name": "Cooler",
+    "tags": ["object", "summer", "food", "outdoor"]
+  },
+  "summer-images/objects/fishing-pole.png": {
+    "name": "Fishing Pole",
+    "tags": ["object", "summer", "outdoor"]
+  },
+  "summer-images/objects/flip-flops.png": {
+    "name": "Flip Flops",
+    "tags": ["object", "summer", "clothing", "beach"]
+  },
+  "summer-images/objects/ice-cream-cone.png": {
+    "name": "Ice Cream Cone",
+    "tags": ["object", "summer", "food"]
+  },
+  "summer-images/objects/kite.png": {
+    "name": "Kite",
+    "tags": ["object", "summer", "outdoor", "toy"]
+  },
+  "summer-images/objects/lemonade.png": {
+    "name": "Lemonade",
+    "tags": ["object", "summer", "food", "drink"]
+  },
+  "summer-images/objects/pool-noodle.png": {
+    "name": "Pool Noodle",
+    "tags": ["object", "summer", "pool", "toy"]
+  },
+  "summer-images/objects/popsicle.png": {
+    "name": "Popsicle",
+    "tags": ["object", "summer", "food"]
+  },
+  "summer-images/objects/sand-bucket.png": {
+    "name": "Sand Bucket",
+    "tags": ["object", "summer", "beach", "toy"]
+  },
+  "summer-images/objects/sand-shovel.png": {
+    "name": "Sand Shovel",
+    "tags": ["object", "summer", "beach", "toy"]
+  },
+  "summer-images/objects/sun-hat.png": {
+    "name": "Sun Hat",
+    "tags": ["object", "summer", "clothing", "beach"]
+  },
+  "summer-images/objects/sunglasses.png": {
+    "name": "Sunglasses",
+    "tags": ["object", "summer", "clothing", "beach"]
+  },
+  "summer-images/objects/sunscreen.png": {
+    "name": "Sunscreen",
+    "tags": ["object", "summer", "beach"]
+  },
+  "summer-images/objects/watermelon.png": {
+    "name": "Watermelon",
+    "tags": ["object", "summer", "food"]
+  },
+  "summer-images/places/beach.png": {
+    "name": "Beach",
+    "tags": ["place", "summer", "outdoor"]
+  },
+  "summer-images/places/campground.png": {
+    "name": "Campground",
+    "tags": ["place", "summer", "outdoor"]
+  },
+  "summer-images/places/garden.png": {
+    "name": "Garden",
+    "tags": ["place", "summer", "outdoor"]
+  },
+  "summer-images/places/ice-cream-shop.png": {
+    "name": "Ice Cream Shop",
+    "tags": ["place", "summer", "food"]
+  },
+  "summer-images/places/lake.png": {
+    "name": "Lake",
+    "tags": ["place", "summer", "outdoor", "water"]
+  },
+  "summer-images/places/picnic.png": {
+    "name": "Picnic",
+    "tags": ["place", "summer", "outdoor", "food"]
+  },
+  "summer-images/places/playground.png": {
+    "name": "Playground",
+    "tags": ["place", "summer", "outdoor"]
+  },
+  "summer-images/places/pool.png": {
+    "name": "Pool",
+    "tags": ["place", "summer", "water"]
+  },
+  "summer-images/places/water-park.png": {
+    "name": "Water Park",
+    "tags": ["place", "summer", "water"]
+  },
+  "summer-images/verbs/dive.png": {
+    "name": "Dive",
+    "tags": ["verb", "summer", "water"]
+  },
+  "summer-images/verbs/fishing.png": {
+    "name": "Fishing",
+    "tags": ["verb", "summer", "outdoor"]
+  },
+  "summer-images/verbs/grilling.png": {
+    "name": "Grilling",
+    "tags": ["verb", "summer", "food", "outdoor"]
+  },
+  "summer-images/verbs/relax.png": {
+    "name": "Relax",
+    "tags": ["verb", "summer"]
+  },
+  "summer-images/verbs/surf.png": {
+    "name": "Surf",
+    "tags": ["verb", "summer", "water", "beach"]
+  },
+  "summer-images/verbs/swim.png": {
+    "name": "Swim",
+    "tags": ["verb", "summer", "water"]
   }
 }

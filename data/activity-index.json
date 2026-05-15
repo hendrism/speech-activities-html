@@ -773,6 +773,13 @@
       "type": "tool"
     },
     {
+      "id": "summer-sorting",
+      "category": "vocabulary",
+      "title": "Summer Sorting",
+      "sourceFile": "activities/vocabulary/summer-sorting.html",
+      "type": "tool"
+    },
+    {
       "id": "sorting-functions-spring",
       "category": "vocabulary",
       "title": "Sorting Functions: Spring",
@@ -833,6 +840,13 @@
       "category": "vocabulary",
       "title": "Winter Vocabulary - Context Clues",
       "sourceFile": "activities/vocabulary/winter-vocabulary-context-clues.html",
+      "type": "tool"
+    },
+    {
+      "id": "bug-stories",
+      "category": "vocabulary",
+      "title": "Bug Stories",
+      "sourceFile": "activities/vocabulary/bug-stories.html",
       "type": "tool"
     },
     {

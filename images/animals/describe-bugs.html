@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Investigators</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --secondary: #a5d6a7;
+            --accent: #fff176;
+            --error: #ef5350;
+            --text: #1a1a1a;
+            --bg: #f9fdf9;
+            --font-main: 'Lexend', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        #main-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .bug-card {
+            background: white;
+            border: 4px solid var(--primary);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .bug-card:hover { 
+            transform: translateY(-3px);
+            background-color: #f1f8e9;
+        }
+
+        .bug-card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .activity-container {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 850px) {
+            .split-layout { grid-template-columns: 1fr; }
+        }
+
+        .passage-box {
+            font-size: 1.6rem;
+            background: #fffde7;
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 8px solid var(--accent);
+            margin-top: 20px;
+        }
+
+        .highlight {
+            background-color: #fff176;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 2px solid #fbc02d;
+        }
+
+        .bug-image {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 20px;
+            display: block;
+            margin: 0 auto;
+            border: 4px solid var(--secondary);
+        }
+
+        .question-box {
+            background: #f1f8e9;
+            padding: 25px;
+            border-radius: 25px;
+            border: 3px solid var(--primary);
+        }
+
+        .choice-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            margin: 12px 0;
+            font-size: 1.2rem;
+            font-family: var(--font-main);
+            background: white;
+            border: 3px solid var(--secondary);
+            border-radius: 15px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .choice-btn:hover { 
+            background: var(--secondary);
+            color: white;
+        }
+
+        .badge-area {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            border: 2px solid #90caf9;
+            animation: pop 0.4s ease-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        .helper-mode {
+            color: #d32f2f;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 15px;
+            display: none;
+            text-align: center;
+        }
+
+        /* Expanding Sentence Frame Styles */
+        .sentence-frame {
+            font-size: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            line-height: 2.2;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .frame-input {
+            border: none;
+            border-bottom: 3px solid var(--primary);
+            font-family: var(--font-main);
+            font-size: 1.4rem;
+            min-width: 80px;
+            max-width: 300px;
+            text-align: center;
+            background: #f9f9f9;
+            padding: 2px 10px;
+            outline: none;
+            transition: border-color 0.2s;
+            /* Modern browsers auto-expand */
+            field-sizing: content; 
+        }
+
+        .frame-input:focus {
+            border-bottom-color: var(--accent);
+            background: #fffde7;
+        }
+
+        .result-sentence {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px dashed var(--primary);
+            font-size: 1.6rem;
+            margin-top: 20px;
+            text-align: center;
+            animation: pop 0.5s ease;
+        }
+
+        .back-btn {
+            background: #546e7a;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            margin-bottom: 20px;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h1 style="text-align:center;">Bug Investigators 🔍</h1>
+    
+    <div id="main-menu"></div>
+
+    <div id="activity-page" class="activity-container">
+        <button class="back-btn" onclick="showMenu()">⬅ Go Back</button>
+        
+        <div class="split-layout">
+            <div class="left-side">
+                <img id="display-img" src="" alt="Bug" class="bug-image" onerror="this.src='https://via.placeholder.com/350x250?text=Bug+Image'">
+                <div id="passage" class="passage-box"></div>
+                <div id="helper-text" class="helper-mode">🌟 Look at the yellow words! 🌟</div>
+            </div>
+
+            <div class="right-side">
+                <div id="question-container" class="question-box">
+                    <h3 id="question-text">Question</h3>
+                    <div id="choices"></div>
+                </div>
+
+                <div id="final-synthesis" class="hidden">
+                    <div class="question-box">
+                        <h3 style="margin-top:0">Final Mission: Complete the Sentence</h3>
+                        <p style="font-size: 1rem; color: #555; margin-bottom: 10px;">Type clues in the boxes. They grow as you type!</p>
+                        <div class="sentence-frame">
+                            <span id="frame-start">A bug is</span>
+                            <input type="text" id="input-1" class="frame-input" placeholder="..." oninput="handleInput(this)">
+                            <span>and</span>
+                            <input type="text" id="input-2" class="frame-input" placeholder="..." oninput="handleInput(this)">
+                            <span>.</span>
+                        </div>
+                        <button class="choice-btn" style="background: var(--primary); color: white; text-align: center; margin-top:20px;" onclick="checkSentence()">Show my full sentence! ⭐</button>
+                    </div>
+                    <div id="full-sentence-display" class="result-sentence hidden"></div>
+                </div>
+
+                <div class="badge-area" id="badge-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const bugData = {
+        ant: { name: "Ant", start: "An Ant is", passage: ["Ants are very strong.", "They live in big families called colonies.", "They work together to find food."], steps: [{q:"Are ants strong?", a:["Yes, very strong", "No, they are weak"], correct:0, badge:"💪 Strong"}, {q:"Where do they live?", a:["In a house", "In a colony"], correct:1, badge:"🏠 Colony"}, {q:"What do they find?", a:["Food", "Toys"], correct:0, badge:"🍎 Finds Food"}] },
+        bee: { name: "Bee", start: "A Bee is", passage: ["Bees have yellow and black stripes.", "They fly to flowers to get nectar.", "Bees make sweet honey for us."], steps: [{q:"What colors are bees?", a:["Red", "Yellow and Black"], correct:1, badge:"🐝 Striped"}, {q:"Where do they fly?", a:["To flowers", "To the moon"], correct:0, badge:"🌸 Flowers"}, {q:"What do they make?", a:["Honey", "Pizza"], correct:0, badge:"🍯 Honey"}] },
+        butterfly: { name: "Butterfly", start: "A Butterfly is", passage: ["Butterflies have colorful wings.", "They start as little caterpillars.", "They fly when it is sunny."], steps: [{q:"What do they have?", a:["Pretty wings", "Big teeth"], correct:0, badge:"🦋 Pretty Wings"}, {q:"What were they first?", a:["Birds", "Caterpillars"], correct:1, badge:"🐛 Caterpillar"}] },
+        caterpillar: { name: "Caterpillar", start: "A Caterpillar is", passage: ["Caterpillars are long and wiggly.", "They eat lots of green leaves.", "They grow up to be butterflies."], steps: [{q:"Are they wiggly?", a:["Yes", "No"], correct:0, badge:"🐛 Wiggly"}, {q:"What do they eat?", a:["Pizza", "Leaves"], correct:1, badge:"🍃 Eats Leaves"}] },
+        dragonfly: { name: "Dragonfly", start: "A Dragonfly is", passage: ["Dragonflies fly very fast.", "They have four thin wings.", "They live near the water."], steps: [{q:"Do they fly fast?", a:["Yes", "No"], correct:0, badge:"⚡ Fast"}, {q:"How many wings?", a:["Two", "Four"], correct:1, badge:"🦋 4 Wings"}] },
+        earthworm: { name: "Earthworm", start: "An Earthworm is", passage: ["Earthworms live under the dirt.", "They help the soil stay healthy.", "They do not have any legs."], steps: [{q:"Where do they live?", a:["In the dirt", "In a tree"], correct:0, badge:"🕳️ In Dirt"}, {q:"Do they have legs?", a:["Yes", "No"], correct:1, badge:"🚫 No Legs"}] },
+        firefly: { name: "Firefly", start: "A Firefly is", passage: ["Fireflies light up at night.", "They use their light to talk.", "Some people call them lightning bugs."], steps: [{q:"When do they glow?", a:["Day", "Night"], correct:1, badge:"✨ Glows"}, {q:"What do they use to talk?", a:["Light", "Telephones"], correct:0, badge:"💡 Light Talk"}] },
+        housefly: { name: "House fly", start: "A House fly is", passage: ["House flies have two wings.", "They can walk on the ceiling.", "They like to eat yummy scraps."], steps: [{q:"Where can they walk?", a:["On the ceiling", "On the moon"], correct:0, badge:"🏠 Walks on Walls"}, {q:"How many wings?", a:["Two", "Six"], correct:0, badge:"🪰 2 Wings"}] },
+        grasshopper: { name: "Grasshopper", start: "A Grasshopper is", passage: ["Grasshoppers can jump very high.", "They are usually green or brown.", "They make music with their legs."], steps: [{q:"What can they do?", a:["Jump high", "Swim fast"], correct:0, badge:"🦘 Jumps High"}, {q:"What color are they?", a:["Purple", "Green or Brown"], correct:1, badge:"🍃 Green/Brown"}] },
+        ladybug: { name: "Ladybug", start: "A Ladybug is", passage: ["Ladybugs are red with black spots.", "They are round and small.", "They help protect the garden."], steps: [{q:"What color are they?", a:["Red and black", "Pink"], correct:0, badge:"🐞 Red/Black"}, {q:"Are they big?", a:["Yes", "No, small"], correct:1, badge:"🔘 Small"}] },
+        moth: { name: "Moth", start: "A Moth is", passage: ["Moths like to fly near lamps.", "They have fuzzy bodies.", "Most moths fly at night."], steps: [{q:"Do they have fuzzy bodies?", a:["Yes", "No"], correct:0, badge:"☁️ Fuzzy"}, {q:"What do they like?", a:["Ice cream", "Light from lamps"], correct:1, badge:"💡 Likes Light"}] },
+        spider: { name: "Spider", start: "A Spider is", passage: ["Spiders have eight long legs.", "They spin webs to catch bugs.", "Spiders are not actually insects."], steps: [{q:"How many legs?", a:["Six", "Eight"], correct:1, badge:"🕷️ 8 Legs"}, {q:"What do they spin?", a:["Webs", "Yarn"], correct:0, badge: "🕸️ Spins Webs"}] }
+    };
+
+    const bugList = ["ant", "bee", "butterfly", "caterpillar", "dragonfly", "earthworm", "firefly", "housefly", "grasshopper", "ladybug", "moth", "spider"];
+
+    let currentBugKey = null;
+    let currentStep = 0;
+
+    // Helper to auto-expand input width for older browsers
+    function handleInput(el) {
+        if (!CSS.supports('field-sizing', 'content')) {
+            el.style.width = '0';
+            el.style.width = (el.scrollWidth + 10) + 'px';
+        }
+    }
+
+    function initMenu() {
+        const menu = document.getElementById('main-menu');
+        menu.innerHTML = '';
+        bugList.forEach(bug => {
+            const card = document.createElement('div');
+            card.className = 'bug-card';
+            const name = bug === 'housefly' ? 'House Fly' : bug;
+            card.innerHTML = `<h3>${name}</h3><p>Start Clue Search</p>`;
+            card.onclick = () => startActivity(bug);
+            menu.appendChild(card);
+        });
+    }
+
+    function startActivity(bugKey) {
+        currentBugKey = bugKey;
+        const data = bugData[bugKey];
+        currentStep = 0;
+        
+        document.getElementById('main-menu').style.display = 'none';
+        document.getElementById('activity-page').style.display = 'block';
+        document.getElementById('display-img').src = `${bugKey}.png`;
+        document.getElementById('badge-container').innerHTML = '';
+        document.getElementById('final-synthesis').classList.add('hidden');
+        document.getElementById('full-sentence-display').classList.add('hidden');
+        document.getElementById('question-container').classList.remove('hidden');
+        
+        const i1 = document.getElementById('input-1');
+        const i2 = document.getElementById('input-2');
+        i1.value = '';
+        i2.value = '';
+        i1.style.width = '80px'; // Reset width
+        i2.style.width = '80px';
+        
+        document.getElementById('frame-start').innerText = data.start;
+        
+        renderPassage(data);
+        renderQuestion(data);
+    }
+
+    function renderPassage(data) {
+        const container = document.getElementById('passage');
+        container.innerHTML = data.passage.map((s, i) => `<span id="sent-${i}">${s} </span>`).join('');
+    }
+
+    function renderQuestion(data) {
+        const step = data.steps[currentStep];
+        document.getElementById('question-text').innerText = step.q;
+        const choicesDiv = document.getElementById('choices');
+        choicesDiv.innerHTML = '';
+        document.getElementById('helper-text').style.display = 'none';
+        
+        data.passage.forEach((_, i) => {
+            const el = document.getElementById(`sent-${i}`);
+            if(el) el.classList.remove('highlight');
+        });
+
+        step.a.forEach((choice, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'choice-btn';
+            btn.innerText = choice;
+            btn.onclick = () => checkAnswer(index, data);
+            choicesDiv.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(index, data) {
+        const step = data.steps[currentStep];
+        if (index === step.correct) {
+            const badge = document.createElement('div');
+            badge.className = 'badge';
+            badge.innerText = step.badge;
+            document.getElementById('badge-container').appendChild(badge);
+            
+            currentStep++;
+            if (currentStep < data.steps.length) {
+                renderQuestion(data);
+            } else {
+                showFinal();
+            }
+        } else {
+            document.getElementById('helper-text').style.display = 'block';
+            const hintSent = document.getElementById(`sent-${currentStep}`);
+            if (hintSent) hintSent.classList.add('highlight');
+        }
+    }
+
+    function showFinal() {
+        document.getElementById('question-container').classList.add('hidden');
+        document.getElementById('final-synthesis').classList.remove('hidden');
+    }
+
+    function checkSentence() {
+        const d1 = document.getElementById('input-1').value;
+        const d2 = document.getElementById('input-2').value;
+        const start = bugData[currentBugKey].start;
+        
+        if(!d1 || !d2) {
+            const msg = document.createElement('div');
+            msg.innerText = "Please fill in both boxes first! 😊";
+            msg.style.color = "red";
+            msg.style.marginTop = "10px";
+            document.getElementById('final-synthesis').appendChild(msg);
+            setTimeout(() => msg.remove(), 2000);
+            return;
+        }
+
+        const display = document.getElementById('full-sentence-display');
+        display.innerHTML = `<strong>Great Work Investigator!</strong><br>${start} <span style="color:var(--primary)">${d1}</span> and <span style="color:var(--primary)">${d2}</span>.`;
+        display.classList.remove('hidden');
+        display.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showMenu() {
+        document.getElementById('main-menu').style.display = 'grid';
+        document.getElementById('activity-page').style.display = 'none';
+        window.scrollTo(0,0);
+    }
+
+    initMenu();
+</script>
+
+</body>
+</html>

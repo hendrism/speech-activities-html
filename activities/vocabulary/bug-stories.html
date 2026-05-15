@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Stories — Speech Therapy</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="category-vocabulary bs-activity">
+    <div class="activity-header">
+        <h1>📖 Bug Stories</h1>
+        <p>Read the story and answer the questions!</p>
+    </div>
+
+    <div class="bs-layout">
+        <div class="bs-sidebar">
+            <div class="nav-pills" id="nav-pills"></div>
+        </div>
+
+        <div class="bs-main">
+            <div class="bs-scroll">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-label" id="progress-label"></div>
+
+                <div class="card" id="card">
+                    <!-- Dynamic content injected by renderCard() -->
+                </div>
+            </div>
+
+            <div class="bs-bottom">
+                <div class="feedback" id="feedback"></div>
+                <div class="flex-between mt-4">
+                    <button class="btn btn-secondary" id="prev-btn" onclick="prevItem()">← Previous</button>
+                    <button class="btn btn-primary"   id="next-btn" onclick="nextItem()">Next →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../data/vocabulary.js"></script>
+    <script src="../../js/data-loader.js"></script>
+    <script src="../../js/utils.js"></script>
+
+    <script>
+        const stories = DataLoader.get('vocabulary', 'bugStories');
+
+        const state = {
+            stories: stories,
+            storyIndex: 0,
+            questionIndex: 0,
+            answered: false,
+        };
+
+        function renderCard() {
+            const story = state.stories[state.storyIndex];
+            const question = story.questions[state.questionIndex];
+            const card = document.getElementById('card');
+
+            state.answered = false;
+            hideFeedback('feedback');
+            document.getElementById('next-btn').style.display = 'none';
+
+            updateProgress('progress-fill', state.storyIndex + 1, state.stories.length, 'progress-label');
+            setNavActive('nav-pills', state.storyIndex);
+
+            const shuffledOptions = shuffleArray([...question.options]);
+
+            let optionsHtml = '';
+            shuffledOptions.forEach((opt, idx) => {
+                const optName = opt.name.replace(/'/g, "\\'");
+                const correctName = question.correctAnswer.replace(/'/g, "\\'");
+
+                optionsHtml += `
+                    <button class="option-btn" id="opt-${idx}" onclick="checkAnswer(${idx}, '${optName}', '${correctName}')" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); padding: var(--space-4);">
+                        <img src="../../${opt.image}" alt="${opt.name}" style="max-height: 120px; border-radius: var(--radius-md); object-fit: cover;" onerror="this.style.display='none'; this.onerror=null;">
+                        <span style="font-size: var(--font-size-lg); font-weight: 500;">${opt.name}</span>
+                    </button>
+                `;
+            });
+
+            card.innerHTML = `
+                <div class="story-container">
+                    <img src="../../${story.storyImage}" alt="Story Image" class="story-image" onerror="this.style.display='none'; this.onerror=null;">
+                </div>
+
+                <div style="padding: var(--space-2) 0;">
+                    <p style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--space-5); text-align: center; color: var(--primary-color);">
+                        Question ${state.questionIndex + 1} of ${story.questions.length}: ${question.prompt}
+                    </p>
+                    <div class="options-grid" id="options" style="grid-template-columns: repeat(3, 1fr);">
+                        ${optionsHtml}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('prev-btn').style.visibility = (state.storyIndex === 0 && state.questionIndex === 0) ? 'hidden' : 'visible';
+        }
+
+        function checkAnswer(idx, selectedName, correctName) {
+            if (state.answered) return;
+
+            const btn = document.getElementById(`opt-${idx}`);
+            if (selectedName === correctName) {
+                state.answered = true;
+                btn.classList.add('correct');
+                showFeedback('feedback', true);
+
+                const nextBtn = document.getElementById('next-btn');
+                nextBtn.style.display = 'block';
+
+                const story = state.stories[state.storyIndex];
+                if (state.questionIndex < story.questions.length - 1) {
+                    nextBtn.innerText = 'Next Question →';
+                } else if (state.storyIndex < state.stories.length - 1) {
+                    nextBtn.innerText = 'Next Story →';
+                } else {
+                    nextBtn.innerText = 'Finish Activity →';
+                }
+            } else {
+                btn.classList.add('incorrect');
+                setTimeout(() => {
+                    btn.classList.add('fade-out');
+                }, 400);
+            }
+        }
+
+        function nextItem() {
+            const story = state.stories[state.storyIndex];
+
+            if (state.questionIndex < story.questions.length - 1) {
+                state.questionIndex++;
+                renderCard();
+            } else if (state.storyIndex < state.stories.length - 1) {
+                state.storyIndex++;
+                state.questionIndex = 0;
+                renderCard();
+            } else {
+                document.getElementById('card').innerHTML = `
+                    <div class="text-center" style="padding: var(--space-6);">
+                        <p style="font-size: var(--font-size-3xl);">🎉 All done!</p>
+                        <p class="text-muted mt-4" style="font-size: var(--font-size-xl);">Great reading! You finished all the bug stories.</p>
+                        <button class="btn btn-primary mt-6" onclick="restart()">Play Again</button>
+                    </div>`;
+                hideFeedback('feedback');
+                document.getElementById('next-btn').style.display = 'none';
+                document.getElementById('prev-btn').style.display = 'none';
+            }
+        }
+
+        function prevItem() {
+            if (state.questionIndex > 0) {
+                state.questionIndex--;
+                renderCard();
+            } else if (state.storyIndex > 0) {
+                state.storyIndex--;
+                state.questionIndex = state.stories[state.storyIndex].questions.length - 1;
+                renderCard();
+            }
+        }
+
+        function restart() {
+            state.storyIndex = 0;
+            state.questionIndex = 0;
+            document.getElementById('prev-btn').style.display = 'block';
+            renderCard();
+        }
+
+        renderNavPills('nav-pills', state.stories, (idx) => {
+            state.storyIndex = idx;
+            state.questionIndex = 0;
+            renderCard();
+        }, { labelFn: (item) => item.bug });
+
+        renderCard();
+    </script>
+</body>
+</html>

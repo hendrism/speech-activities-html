@@ -4209,6 +4209,402 @@ window.ActivityData.vocabulary = {
       "correctHomeImage": "images/plants/daisy.png",
       "incorrectHome": "Spiderweb",
       "incorrectHomeImage": "images/animal-homes/spiderweb.png"
+    }  ],
+  "bugStories": [
+    {
+      "id": "bug-story-1",
+      "bug": "Ant",
+      "home": "Anthill",
+      "story": "The ant crawls on an anthill. It builds the anthill. The ant stays there.",
+      "storyImage": "images/bug-stories/ant-anthill.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Ant",
+          "correctImage": "images/animals/ant.png",
+          "options": [
+            {"name": "Ant", "image": "images/animals/ant.png"},
+            {"name": "Bee", "image": "images/animals/bee.png"},
+            {"name": "Fly", "image": "images/animals/fly.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Anthill",
+          "correctImage": "images/animal-homes/anthill.png",
+          "options": [
+            {"name": "Anthill", "image": "images/animal-homes/anthill.png"},
+            {"name": "Spiderweb", "image": "images/animal-homes/spiderweb.png"},
+            {"name": "Garbage Can", "image": "images/animal-homes/garbage-can.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-2",
+      "bug": "Bee",
+      "home": "Beehive",
+      "story": "The bee flies to a beehive. It makes honey in the beehive. The bee stays there.",
+      "storyImage": "images/bug-stories/bee-beehive.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Bee",
+          "correctImage": "images/animals/bee.png",
+          "options": [
+            {"name": "Bee", "image": "images/animals/bee.png"},
+            {"name": "Spider", "image": "images/animals/spider.png"},
+            {"name": "Earthworm", "image": "images/animals/earthworm.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Beehive",
+          "correctImage": "images/animal-homes/beehive.png",
+          "options": [
+            {"name": "Beehive", "image": "images/animal-homes/beehive.png"},
+            {"name": "Leaf", "image": "images/animal-homes/leaf.png"},
+            {"name": "Dirt", "image": "images/animal-homes/dirt.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-3",
+      "bug": "Spider",
+      "home": "Spiderweb",
+      "story": "The spider spins a spiderweb. It catches food in the spiderweb. The spider stays there.",
+      "storyImage": "images/bug-stories/spider-spiderweb.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Spider",
+          "correctImage": "images/animals/spider.png",
+          "options": [
+            {"name": "Spider", "image": "images/animals/spider.png"},
+            {"name": "Mosquito", "image": "images/animals/mosquito.png"},
+            {"name": "Wasp", "image": "images/animals/wasp.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Spiderweb",
+          "correctImage": "images/animal-homes/spiderweb.png",
+          "options": [
+            {"name": "Spiderweb", "image": "images/animal-homes/spiderweb.png"},
+            {"name": "Puddle", "image": "images/nature/puddle.png"},
+            {"name": "Wasp Nest", "image": "images/animal-homes/wasp-nest.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-4",
+      "bug": "Wasp",
+      "home": "Wasp Nest",
+      "story": "The wasp flies to a wasp nest. It rests in the wasp nest. The wasp stays there.",
+      "storyImage": "images/bug-stories/wasp-wasp-nest.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Wasp",
+          "correctImage": "images/animals/wasp.png",
+          "options": [
+            {"name": "Wasp", "image": "images/animals/wasp.png"},
+            {"name": "Caterpillar", "image": "images/animals/caterpillar.png"},
+            {"name": "Ant", "image": "images/animals/ant.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Wasp Nest",
+          "correctImage": "images/animal-homes/wasp-nest.png",
+          "options": [
+            {"name": "Wasp Nest", "image": "images/animal-homes/wasp-nest.png"},
+            {"name": "Under a Rock", "image": "images/nature/rock.png"},
+            {"name": "Anthill", "image": "images/animal-homes/anthill.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-5",
+      "bug": "Earthworm",
+      "home": "Dirt",
+      "story": "The earthworm digs in the dirt. It eats the dirt. The earthworm stays there.",
+      "storyImage": "images/bug-stories/earthworm-dirt.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Earthworm",
+          "correctImage": "images/animals/earthworm.png",
+          "options": [
+            {"name": "Earthworm", "image": "images/animals/earthworm.png"},
+            {"name": "Beetle", "image": "images/animals/beetle.png"},
+            {"name": "Bee", "image": "images/animals/bee.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Dirt",
+          "correctImage": "images/animal-homes/dirt.png",
+          "options": [
+            {"name": "Dirt", "image": "images/animal-homes/dirt.png"},
+            {"name": "Flower", "image": "images/plants/daisy.png"},
+            {"name": "Beehive", "image": "images/animal-homes/beehive.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-6",
+      "bug": "Caterpillar",
+      "home": "Leaf",
+      "story": "The caterpillar crawls on a leaf. It eats the leaf. The caterpillar stays there.",
+      "storyImage": "images/bug-stories/caterpillar-leaf.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Caterpillar",
+          "correctImage": "images/animals/caterpillar.png",
+          "options": [
+            {"name": "Caterpillar", "image": "images/animals/caterpillar.png"},
+            {"name": "Grasshopper", "image": "images/animals/grasshopper.png"},
+            {"name": "Fly", "image": "images/animals/fly.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Leaf",
+          "correctImage": "images/animal-homes/leaf.png",
+          "options": [
+            {"name": "Leaf", "image": "images/animal-homes/leaf.png"},
+            {"name": "Tall Grass", "image": "images/nature/grass.png"},
+            {"name": "Spiderweb", "image": "images/animal-homes/spiderweb.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-7",
+      "bug": "Fly",
+      "home": "Garbage Can",
+      "story": "The fly lands on a garbage can. It looks for food in the garbage can. The fly stays there.",
+      "storyImage": "images/bug-stories/fly-garbage-can.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Fly",
+          "correctImage": "images/animals/fly.png",
+          "options": [
+            {"name": "Fly", "image": "images/animals/fly.png"},
+            {"name": "Butterfly", "image": "images/animals/butterfly.png"},
+            {"name": "Mosquito", "image": "images/animals/mosquito.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Garbage Can",
+          "correctImage": "images/animal-homes/garbage-can.png",
+          "options": [
+            {"name": "Garbage Can", "image": "images/animal-homes/garbage-can.png"},
+            {"name": "Puddle", "image": "images/nature/puddle.png"},
+            {"name": "Anthill", "image": "images/animal-homes/anthill.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-8",
+      "bug": "Mosquito",
+      "home": "Puddle",
+      "story": "The mosquito flies near a puddle. It lands on the puddle. The mosquito stays there.",
+      "storyImage": "images/bug-stories/mosquito-puddle.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Mosquito",
+          "correctImage": "images/animals/mosquito.png",
+          "options": [
+            {"name": "Mosquito", "image": "images/animals/mosquito.png"},
+            {"name": "Spider", "image": "images/animals/spider.png"},
+            {"name": "Beetle", "image": "images/animals/beetle.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Puddle",
+          "correctImage": "images/nature/puddle.png",
+          "options": [
+            {"name": "Puddle", "image": "images/nature/puddle.png"},
+            {"name": "Leaf", "image": "images/animal-homes/leaf.png"},
+            {"name": "Wasp Nest", "image": "images/animal-homes/wasp-nest.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-9",
+      "bug": "Beetle",
+      "home": "Under a Rock",
+      "story": "The beetle crawls under a rock. It hides under the rock. The beetle stays there.",
+      "storyImage": "images/bug-stories/beetle-rock.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Beetle",
+          "correctImage": "images/animals/beetle.png",
+          "options": [
+            {"name": "Beetle", "image": "images/animals/beetle.png"},
+            {"name": "Earthworm", "image": "images/animals/earthworm.png"},
+            {"name": "Ant", "image": "images/animals/ant.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Under a Rock",
+          "correctImage": "images/nature/rock.png",
+          "options": [
+            {"name": "Under a Rock", "image": "images/nature/rock.png"},
+            {"name": "Dirt", "image": "images/animal-homes/dirt.png"},
+            {"name": "Tall Grass", "image": "images/nature/grass.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-10",
+      "bug": "Grasshopper",
+      "home": "Tall Grass",
+      "story": "The grasshopper jumps in the tall grass. It eats the tall grass. The grasshopper stays there.",
+      "storyImage": "images/bug-stories/grasshopper-tall-grass.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Grasshopper",
+          "correctImage": "images/animals/grasshopper.png",
+          "options": [
+            {"name": "Grasshopper", "image": "images/animals/grasshopper.png"},
+            {"name": "Caterpillar", "image": "images/animals/caterpillar.png"},
+            {"name": "Bee", "image": "images/animals/bee.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Tall Grass",
+          "correctImage": "images/nature/grass.png",
+          "options": [
+            {"name": "Tall Grass", "image": "images/nature/grass.png"},
+            {"name": "Flower", "image": "images/plants/daisy.png"},
+            {"name": "Spiderweb", "image": "images/animal-homes/spiderweb.png"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug-story-11",
+      "bug": "Butterfly",
+      "home": "Flower",
+      "story": "The butterfly flutters to a flower. It drinks from the flower. The butterfly stays there.",
+      "storyImage": "images/bug-stories/butterfly-flower.png",
+      "questions": [
+        {
+          "prompt": "What bug?",
+          "correctAnswer": "Butterfly",
+          "correctImage": "images/animals/butterfly.png",
+          "options": [
+            {"name": "Butterfly", "image": "images/animals/butterfly.png"},
+            {"name": "Wasp", "image": "images/animals/wasp.png"},
+            {"name": "Fly", "image": "images/animals/fly.png"}
+          ]
+        },
+        {
+          "prompt": "Where does it live?",
+          "correctAnswer": "Flower",
+          "correctImage": "images/plants/daisy.png",
+          "options": [
+            {"name": "Flower", "image": "images/plants/daisy.png"},
+            {"name": "Garbage Can", "image": "images/animal-homes/garbage-can.png"},
+            {"name": "Anthill", "image": "images/animal-homes/anthill.png"}
+          ]
+        }
+      ]
+    }
+  ],
+  "summerSortingCategories": [
+    {
+      "categories": ["Summer Clothes", "Winter Clothes"],
+      "items": [
+        { "folder": "summer-images/objects", "img": "flip-flops.png", "name": "Flip Flops" },
+        { "folder": "summer-images/objects", "img": "sunglasses.png", "name": "Sunglasses" },
+        { "folder": "summer-images/objects", "img": "sun-hat.png", "name": "Sun Hat" },
+        { "folder": "summer-images/objects", "img": "bathing-suit-woman.png", "name": "Bathing Suit" },
+        { "folder": "clothing", "img": "shorts.png", "name": "Shorts" },
+        { "folder": "clothing", "img": "scarf.png", "name": "Scarf" },
+        { "folder": "clothing", "img": "mittens.png", "name": "Mittens" },
+        { "folder": "clothing", "img": "winter-coat.png", "name": "Winter Coat" },
+        { "folder": "clothing", "img": "winter-boots.png", "name": "Snow Boots" },
+        { "folder": "clothing", "img": "gloves.png", "name": "Gloves" }
+      ]
+    },
+    {
+      "categories": ["Summer Objects", "Winter Objects"],
+      "items": [
+        { "folder": "summer-images/objects", "img": "beach-ball.png", "name": "Beach Ball" },
+        { "folder": "summer-images/objects", "img": "sunscreen.png", "name": "Sunscreen" },
+        { "folder": "summer-images/objects", "img": "pool-noodle.png", "name": "Pool Noodle" },
+        { "folder": "summer-images/objects", "img": "sand-bucket.png", "name": "Sand Bucket" },
+        { "folder": "summer-images/objects", "img": "kite.png", "name": "Kite" },
+        { "folder": "summer-images/objects", "img": "beach-towel.png", "name": "Beach Towel" },
+        { "folder": "objects", "img": "ice_skates.jpg", "name": "Ice Skates" },
+        { "folder": "objects", "img": "hockey_stick.jpg", "name": "Hockey Stick" },
+        { "folder": "objects", "img": "snow-shovel.jpg", "name": "Snow Shovel" },
+        { "folder": "objects", "img": "skis.jpg", "name": "Skis" }
+      ]
+    },
+    {
+      "categories": ["Summer Foods & Drinks", "Summer Gear"],
+      "items": [
+        { "folder": "summer-images/objects", "img": "watermelon.png", "name": "Watermelon" },
+        { "folder": "summer-images/objects", "img": "ice-cream-cone.png", "name": "Ice Cream" },
+        { "folder": "summer-images/objects", "img": "popsicle.png", "name": "Popsicle" },
+        { "folder": "summer-images/objects", "img": "lemonade.png", "name": "Lemonade" },
+        { "folder": "summer-images/objects", "img": "cooler.png", "name": "Cooler" },
+        { "folder": "summer-images/objects", "img": "bicycle.png", "name": "Bicycle" },
+        { "folder": "summer-images/objects", "img": "fishing-pole.png", "name": "Fishing Pole" },
+        { "folder": "summer-images/objects", "img": "sand-shovel.png", "name": "Sand Shovel" },
+        { "folder": "objects", "img": "jump-rope.png", "name": "Jump Rope" },
+        { "folder": "objects", "img": "soccer-ball.png", "name": "Soccer Ball" }
+      ]
+    },
+    {
+      "categories": ["Summer Activities", "Winter Activities"],
+      "items": [
+        { "folder": "summer-images/verbs", "img": "swim.png", "name": "Swimming" },
+        { "folder": "summer-images/verbs", "img": "surf.png", "name": "Surfing" },
+        { "folder": "summer-images/verbs", "img": "dive.png", "name": "Diving" },
+        { "folder": "summer-images/verbs", "img": "fishing.png", "name": "Fishing" },
+        { "folder": "summer-images/verbs", "img": "grilling.png", "name": "Grilling" },
+        { "folder": "summer-images/verbs", "img": "relax.png", "name": "Relaxing" },
+        { "folder": "objects", "img": "sled.jpg", "name": "Sledding" },
+        { "folder": "objects", "img": "snowman.png", "name": "Snowman" },
+        { "folder": "objects", "img": "snowboard.jpg", "name": "Snowboarding" },
+        { "folder": "objects", "img": "snow_fort.png", "name": "Snow Fort" }
+      ]
+    },
+    {
+      "categories": ["Water Places", "Land Places"],
+      "items": [
+        { "folder": "summer-images/places", "img": "beach.png", "name": "Beach" },
+        { "folder": "summer-images/places", "img": "pool.png", "name": "Pool" },
+        { "folder": "summer-images/places", "img": "lake.png", "name": "Lake" },
+        { "folder": "summer-images/places", "img": "water-park.png", "name": "Water Park" },
+        { "folder": "summer-images/places", "img": "campground.png", "name": "Campground" },
+        { "folder": "summer-images/places", "img": "garden.png", "name": "Garden" },
+        { "folder": "summer-images/places", "img": "playground.png", "name": "Playground" },
+        { "folder": "summer-images/places", "img": "picnic.png", "name": "Picnic" },
+        { "folder": "summer-images/places", "img": "ice-cream-shop.png", "name": "Ice Cream Shop" }
+      ]
     }
   ]
 };
