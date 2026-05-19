@@ -780,6 +780,13 @@
       "type": "tool"
     },
     {
+      "id": "summer-describing",
+      "category": "vocabulary",
+      "title": "Summer Describing Nouns",
+      "sourceFile": "activities/vocabulary/summer-describing.html",
+      "type": "tool"
+    },
+    {
       "id": "sorting-functions-spring",
       "category": "vocabulary",
       "title": "Sorting Functions: Spring",

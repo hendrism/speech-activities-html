@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Describing Summer Nouns</title>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-hover: #0284c7;
+            --secondary: #f59e0b;
+            --bg: #e0f2fe;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #bae6fd;
+            --base-size: 18px;
+            --header-size: 1.8rem;
+        }
+
+        body {
+            font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            background-image: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 100%);
+            color: var(--text-main);
+            margin: 0;
+            padding-bottom: 60px;
+            font-size: var(--base-size);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            background: var(--card-bg);
+            border-bottom: 3px solid var(--secondary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            font-size: 1rem;
+            background: var(--card-bg);
+        }
+
+        .btn-outline {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover:not(:disabled) {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: var(--text-muted);
+            color: var(--text-muted);
+        }
+
+        /* --- Pagination Controls --- */
+        .pagination-container {
+            max-width: 800px;
+            margin: 2rem auto 1rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border-top: 6px solid var(--primary);
+        }
+
+        /* --- Content Areas --- */
+        .story-header {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .story-title {
+            font-size: var(--header-size);
+            font-weight: 800;
+            margin: 0;
+            color: var(--primary-hover);
+            text-transform: capitalize;
+        }
+
+        /* --- Image Placeholder --- */
+        .image-container {
+            width: 100%;
+            height: 280px;
+            background-color: #f8fafc;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            border: 2px solid var(--border);
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        .item-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 0.5rem;
+        }
+
+        .story-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 2.5rem;
+            background: #fffbeb;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border-left: 5px solid var(--secondary);
+            font-weight: 500;
+        }
+
+        /* --- Sentence Frame --- */
+        .frame-section {
+            background: #f0f9ff;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px dashed var(--primary);
+            text-align: center;
+        }
+
+        .frame-label {
+            display: block;
+            font-weight: 700;
+            color: var(--primary-hover);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .sentence-frame {
+            font-size: 1.4rem;
+            line-height: 2.5;
+            color: var(--text-main);
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .blank-input {
+            font-size: 1.4rem;
+            font-family: inherit;
+            color: var(--primary-hover);
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.5rem;
+            border: none;
+            border-bottom: 3px solid var(--primary);
+            background: transparent;
+            text-align: center;
+            min-width: 150px;
+            width: 150px;
+            max-width: 100%;
+            transition: all 0.2s;
+        }
+
+        .blank-input:focus {
+            outline: none;
+            background: white;
+            border-radius: 0.5rem;
+            border-bottom-color: var(--secondary);
+            box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.2);
+        }
+
+        .blank-input::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 600px) {
+            .sentence-frame {
+                font-size: 1.2rem;
+            }
+            .blank-input {
+                width: 120px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* --- Menu View --- */
+        .menu-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.2);
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .menu-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-controls">
+            <a href="../../index.html" class="btn btn-outline" style="border: none; color: var(--text-main);">← Hub</a>
+            <h1 style="font-size: 1.4rem; margin: 0; font-weight: 800; color: var(--primary-hover);">☀️ Summer Describing</h1>
+        </div>
+    </header>
+
+    <div class="pagination-container hidden" id="paginationContainer">
+        <button class="btn btn-outline" id="prevBtn">← Previous</button>
+        <div style="font-weight: 700; color: var(--text-muted); font-size: 1.2rem;" id="progressText">1 / 10</div>
+        <button class="btn btn-outline" id="nextBtn">Next →</button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Menu View -->
+        <div id="menuView" class="menu-view">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="card hidden" id="activityCard">
+            <div style="margin-bottom: 1.5rem;">
+                <button class="btn btn-outline" style="font-size: 0.9rem; padding: 0.4rem 0.8rem;" onclick="showMenu()">← Back to Menu</button>
+            </div>
+            <div class="story-header">
+                <h2 class="story-title" id="displayTitle">Item Title</h2>
+            </div>
+
+            <div class="image-container">
+                <img id="itemImage" class="item-image" src="" alt="">
+            </div>
+
+            <div class="story-text" id="displayText">
+                Description goes here...
+            </div>
+
+            <!-- Sentence Frame Output -->
+            <div class="frame-section">
+                <label class="frame-label">Complete the sentence:</label>
+                <div class="sentence-frame" id="sentenceFrameContainer">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- Data Structure ---
+        const activityData = {
+            items: [
+                {
+                    id: 1,
+                    title: "Beach Ball",
+                    image: "../../images/summer-images/objects/beach-ball.png",
+                    text: "A beach ball is a toy. It is round and colorful. It is blown up with air and floats easily on the water. People love to toss it back and forth at the pool.",
+                    frameStart: "A beach ball is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 2,
+                    title: "Popsicle",
+                    image: "../../images/summer-images/objects/popsicle.png",
+                    text: "A popsicle is a cold treat. It is sweet and freezing cold. It is made by freezing juice on a wooden stick. It is the perfect snack for a hot summer day.",
+                    frameStart: "A popsicle is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 3,
+                    title: "Sunglasses",
+                    image: "../../images/summer-images/objects/sunglasses.png",
+                    text: "Sunglasses are dark glasses. They protect your eyes. The dark lenses block the bright sunlight so you don't have to squint when you go outside.",
+                    frameStart: "Sunglasses are",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 4,
+                    title: "Watermelon",
+                    image: "../../images/summer-images/objects/watermelon.png",
+                    text: "A watermelon is a big fruit. It is green outside and red inside. It is heavy and grows on a vine. It is very sweet and full of refreshing juice.",
+                    frameStart: "A watermelon is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 5,
+                    title: "Sand Bucket",
+                    image: "../../images/summer-images/objects/sand-bucket.png",
+                    text: "A sand bucket is a plastic toy. It has a handle for carrying. We use it to scoop up wet sand to build tall sandcastles at the beach.",
+                    frameStart: "A sand bucket is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 6,
+                    title: "Sunscreen",
+                    image: "../../images/summer-images/objects/sunscreen.png",
+                    text: "Sunscreen is a white lotion. It protects your skin. We rub it all over our bodies to act like a shield against the sun's powerful rays.",
+                    frameStart: "Sunscreen is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 7,
+                    title: "Flip Flops",
+                    image: "../../images/summer-images/objects/flip-flops.png",
+                    text: "Flip flops are open shoes. They keep your feet cool. They have a strap that goes between your toes and make a slapping sound when you walk.",
+                    frameStart: "Flip flops are",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 8,
+                    title: "Pool Noodle",
+                    image: "../../images/summer-images/objects/pool-noodle.png",
+                    text: "A pool noodle is a long tube. It is made of soft foam. It is very squishy and helps you float on top of the water in the pool.",
+                    frameStart: "A pool noodle is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 9,
+                    title: "Cooler",
+                    image: "../../images/summer-images/objects/cooler.png",
+                    text: "A cooler is a strong box. It keeps things cold. If you fill it with ice, it is perfect for packing snacks and drinks to take to the beach.",
+                    frameStart: "A cooler is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 10,
+                    title: "Ice Cream Cone",
+                    image: "../../images/summer-images/objects/ice-cream-cone.png",
+                    text: "An ice cream cone is a sweet dessert. It is cold and creamy. It has scoops of ice cream sitting on top of a crunchy wafer cone that melts quickly.",
+                    frameStart: "An ice cream cone is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 11,
+                    title: "Bathing Suit",
+                    image: "../../images/summer-images/objects/bathing-suit-woman.png",
+                    text: "A bathing suit is clothing. It is stretchy and dries fast. You wear it when you go swimming so your regular clothes do not get wet.",
+                    frameStart: "A bathing suit is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 12,
+                    title: "Beach Towel",
+                    image: "../../images/summer-images/objects/beach-towel.png",
+                    text: "A beach towel is a large cloth. It is soft and dry. We use it to dry off after swimming or to lay on the warm sand at the beach.",
+                    frameStart: "A beach towel is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 13,
+                    title: "Bicycle",
+                    image: "../../images/summer-images/objects/bicycle.png",
+                    text: "A bicycle is a vehicle. It has two wheels and pedals. You ride it outside for fun or to travel around your neighborhood.",
+                    frameStart: "A bicycle has",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 14,
+                    title: "Fishing Pole",
+                    image: "../../images/summer-images/objects/fishing-pole.png",
+                    text: "A fishing pole is a long stick. It has a string and a hook. People use it to catch fish in a lake or river.",
+                    frameStart: "A fishing pole is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 15,
+                    title: "Kite",
+                    image: "../../images/summer-images/objects/kite.png",
+                    text: "A kite is a flying toy. It is made of light paper or fabric. You hold the string and let it fly high in the sky on a windy day.",
+                    frameStart: "A kite is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 16,
+                    title: "Lemonade",
+                    image: "../../images/summer-images/objects/lemonade.png",
+                    text: "Lemonade is a cold drink. It is sour and sweet. It is made with lemons, sugar, and water to help you cool off in the summer.",
+                    frameStart: "Lemonade is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 17,
+                    title: "Sand Shovel",
+                    image: "../../images/summer-images/objects/sand-shovel.png",
+                    text: "A sand shovel is a plastic tool. It has a handle and a scoop. You use it at the beach to dig holes and fill your bucket with wet sand.",
+                    frameStart: "A sand shovel is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                },
+                {
+                    id: 18,
+                    title: "Sun Hat",
+                    image: "../../images/summer-images/objects/sun-hat.png",
+                    text: "A sun hat is for your head. It has a wide brim. You wear it outside to keep the hot sun off of your face and out of your eyes.",
+                    frameStart: "A sun hat is",
+                    frameMiddle: "and",
+                    frameEnd: ".",
+                    placeholder1: "detail 1",
+                    placeholder2: "detail 2"
+                }
+            ]
+        };
+
+        // --- State ---
+        let currentIndex = 0;
+
+        // Object to store user input between item loads
+        const userData = {};
+
+        // --- DOM Elements ---
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressText = document.getElementById('progressText');
+
+        const menuView = document.getElementById('menuView');
+        const activityCard = document.getElementById('activityCard');
+        const paginationContainer = document.getElementById('paginationContainer');
+
+        const displayTitle = document.getElementById('displayTitle');
+        const displayText = document.getElementById('displayText');
+        const itemImage = document.getElementById('itemImage');
+        const sentenceFrameContainer = document.getElementById('sentenceFrameContainer');
+
+        // --- Initialization ---
+        function init() {
+            // Initialize empty answers for each item
+            activityData.items.forEach((item) => {
+                userData[item.id] = {
+                    input1: '',
+                    input2: ''
+                };
+            });
+
+            renderMenu();
+            setupEventListeners();
+        }
+
+        function renderMenu() {
+            menuView.innerHTML = activityData.items.map((item, index) => `
+                <div class="menu-card" onclick="loadItem(${index})">
+                    <img src="${item.image}" class="menu-img" alt="${item.title}">
+                    <h3 class="menu-title">${item.title}</h3>
+                </div>
+            `).join('');
+        }
+
+        function showMenu() {
+            // Save before returning to menu
+            if (activityCard.classList.contains('hidden') === false) {
+                saveCurrentInput();
+            }
+            activityCard.classList.add('hidden');
+            paginationContainer.classList.add('hidden');
+            menuView.classList.remove('hidden');
+        }
+
+        // --- Logic ---
+        function saveCurrentInput() {
+            const item = activityData.items[currentIndex];
+            const input1 = document.getElementById('blank1');
+            const input2 = document.getElementById('blank2');
+            if (input1 && input2) {
+                userData[item.id] = {
+                    input1: input1.value,
+                    input2: input2.value
+                };
+            }
+        }
+
+        function resizeInput(el) {
+            el.style.width = '150px';
+            if (el.scrollWidth > 150) {
+                el.style.width = (el.scrollWidth + 10) + 'px';
+            }
+        }
+
+        function loadItem(index) {
+            // Save current before switching
+            if (activityData.items[currentIndex]) {
+                saveCurrentInput();
+            }
+
+            currentIndex = index;
+            const item = activityData.items[index];
+
+            // Switch Views
+            menuView.classList.add('hidden');
+            activityCard.classList.remove('hidden');
+            paginationContainer.classList.remove('hidden');
+
+            // Update Progress
+            progressText.textContent = `${index + 1} / ${activityData.items.length}`;
+
+            // Render Content
+            displayTitle.textContent = item.title;
+            displayText.textContent = item.text;
+            itemImage.src = item.image;
+            itemImage.alt = item.title;
+
+            // Render Sentence Frame
+            sentenceFrameContainer.innerHTML = `
+                ${item.frameStart} 
+                <input type="text" class="blank-input" id="blank1" placeholder="${item.placeholder1}" autocomplete="off"> 
+                ${item.frameMiddle} 
+                <input type="text" class="blank-input" id="blank2" placeholder="${item.placeholder2}" autocomplete="off">${item.frameEnd}
+            `;
+
+            // Restore user data if any
+            const data = userData[item.id];
+            const blank1 = document.getElementById('blank1');
+            const blank2 = document.getElementById('blank2');
+            
+            blank1.value = data.input1;
+            blank2.value = data.input2;
+            
+            // Adjust widths after value is set
+            setTimeout(() => {
+                resizeInput(blank1);
+                resizeInput(blank2);
+            }, 0);
+
+            // Auto-save typing for resilience
+            blank1.addEventListener('input', function() {
+                saveCurrentInput();
+                resizeInput(this);
+            });
+            blank2.addEventListener('input', function() {
+                saveCurrentInput();
+                resizeInput(this);
+            });
+
+            // Update button states
+            prevBtn.disabled = (currentIndex === 0);
+            nextBtn.disabled = (currentIndex === activityData.items.length - 1);
+        }
+
+        function setupEventListeners() {
+            prevBtn.onclick = () => {
+                if (currentIndex > 0) loadItem(currentIndex - 1);
+            };
+
+            nextBtn.onclick = () => {
+                if (currentIndex < activityData.items.length - 1) loadItem(currentIndex + 1);
+            };
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+
+</html>
