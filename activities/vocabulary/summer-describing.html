@@ -175,7 +175,6 @@
             font-size: 1.4rem;
             line-height: 2.5;
             color: var(--text-main);
-            display: inline-block;
             font-weight: 600;
         }
 
@@ -192,7 +191,8 @@
             text-align: center;
             min-width: 150px;
             width: 150px;
-            max-width: 100%;
+            max-width: calc(100% - 2rem);
+            box-sizing: border-box;
             transition: all 0.2s;
         }
 
@@ -310,6 +310,11 @@
                 <label class="frame-label">Complete the sentence:</label>
                 <div class="sentence-frame" id="sentenceFrameContainer">
                     <!-- Populated by JS -->
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <button class="btn btn-outline" onclick="copySentence()" id="copyBtn">
+                        <span id="copyIcon">📋</span> Copy Sentence
+                    </button>
                 </div>
             </div>
         </div>
@@ -588,9 +593,28 @@
 
         function resizeInput(el) {
             el.style.width = '150px';
-            if (el.scrollWidth > 150) {
-                el.style.width = (el.scrollWidth + 10) + 'px';
+            let targetWidth = el.scrollWidth + 10;
+            let maxWidth = el.parentElement.clientWidth - 20;
+            
+            if (targetWidth > 150) {
+                el.style.width = Math.min(targetWidth, maxWidth) + 'px';
             }
+        }
+
+        function copySentence() {
+            const item = activityData.items[currentIndex];
+            const blank1 = document.getElementById('blank1').value || '___';
+            const blank2 = document.getElementById('blank2').value || '___';
+            const sentence = `${item.frameStart} ${blank1} ${item.frameMiddle} ${blank2}${item.frameEnd}`;
+            
+            navigator.clipboard.writeText(sentence).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '✅ Copied!';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                }, 2000);
+            });
         }
 
         function loadItem(index) {
