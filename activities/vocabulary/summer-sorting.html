@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summer Sorting</title>
+    <title>☀️ Summer Sorting</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="../../data/vocabulary.js"></script>
     <script src="../../js/data-loader.js"></script>
     <script src="../../js/utils.js"></script>
@@ -15,17 +19,25 @@
             --primary-dark: #0369a1;
             --secondary: #f59e0b;
             --secondary-light: #fde68a;
-            --background: #fffbf0;
+            --background: #fffdf5;
             --surface: #ffffff;
+            --surface-glass: rgba(255, 255, 255, 0.85);
             --text-main: #1e293b;
             --text-muted: #64748b;
             --border: #e2e8f0;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --success-dark: #065f46;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
             --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius-md: 14px;
+            --radius-lg: 24px;
+            --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 16px -2px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-premium: 0 25px 50px -12px rgba(245, 158, 11, 0.15);
+            --item-size: 95px;
         }
 
         * {
@@ -35,14 +47,15 @@
 
         body {
             font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--background);
+            background: radial-gradient(circle at 10% 20%, rgba(254, 252, 232, 0.6) 0%, rgba(255, 253, 245, 1) 90%);
             color: var(--text-main);
             margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem;
+            padding: 1.5rem;
+            overflow-x: hidden;
         }
 
         h1, h2, h3 {
@@ -50,201 +63,398 @@
             font-weight: 700;
         }
 
-        .header {
+        /* Views State Management */
+        .view-section {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        /* App Header */
+        .app-header {
             width: 100%;
             max-width: 1200px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            padding: 0.5rem 1rem;
         }
 
-        .app-title {
-            font-size: 1.5rem;
+        .app-title-main {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .progress-badge {
+            background: var(--surface);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 0.95rem;
             color: var(--primary-dark);
+            box-shadow: var(--shadow-sm);
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-weight: 700;
         }
 
-        .level-indicator {
-            background: var(--surface);
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .sidebar {
-            width: 250px;
-            background: var(--surface);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-            max-height: calc(100vh - 150px);
-        }
-
-        .sidebar-header {
-            padding: 1rem;
-            background: #fff7ed;
-            font-weight: 700;
-            color: #92400e;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 1px solid #fed7aa;
-        }
-
-        .sidebar-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            overflow-y: auto;
-        }
-
-        .sidebar-item {
-            padding: 12px 16px;
-            border-bottom: 1px solid #f8fafc;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar-item:hover {
-            background: #f0f9ff;
-            color: var(--primary);
-        }
-
-        .sidebar-item.active {
-            background: #e0f2fe;
-            color: var(--primary-dark);
-            border-left: 4px solid var(--primary);
-            font-weight: 600;
-        }
-
-        .activity-card {
-            background: var(--surface);
-            width: 100%;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            border: 1px solid var(--border);
-            animation: fadeIn 0.5s ease-out;
-            flex: 1;
-            min-height: 600px;
-        }
-
-        .instruction-banner {
-            background: #fef9c3;
-            color: #854d0e;
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
+        /* View 1: Main Menu Grid */
+        .menu-intro {
             text-align: center;
-            font-weight: 600;
-            border: 1px solid #fde68a;
+            margin-bottom: 3rem;
+            animation: slideDown 0.6s ease;
         }
 
-        .set-title {
-            font-size: 1.8rem;
-            color: var(--primary-dark);
-            text-align: center;
+        .menu-intro h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #7c2d12;
             margin-bottom: 0.5rem;
         }
 
-        .drop-zones-container {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 2rem;
+        .menu-intro p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin: 0;
         }
 
-        .drop-zone {
-            flex: 1;
-            background: #f0f9ff;
-            border: 2px dashed var(--primary-light);
-            border-radius: var(--radius-md);
-            min-height: 250px;
+        .sets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .set-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: all 0.2s;
+            justify-content: space-between;
+            min-height: 240px;
         }
 
-        .drop-zone.drag-over {
-            border-color: var(--primary);
-            background: #e0f2fe;
+        .set-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%);
         }
 
-        .drop-zone-header {
+        .set-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg), var(--shadow-premium);
+            border-color: var(--secondary-light);
+        }
+
+        .card-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .set-number-tag {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            background: #f1f5f9;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+        }
+
+        .completion-badge {
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .completion-badge.done {
+            background: var(--success-light);
+            color: var(--success-dark);
+        }
+
+        .completion-badge.todo {
+            background: #fffbeb;
+            color: #b45309;
+        }
+
+        .set-card-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .set-card-title .vs-divider {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .items-indicator {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .play-btn-circle {
+            width: 44px;
+            height: 44px;
+            background: #fff7ed;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.25rem;
+            transition: all 0.25s;
+            border: 1px solid #ffedd5;
+        }
+
+        .set-card:hover .play-btn-circle {
             background: var(--secondary);
             color: white;
-            padding: 0.75rem;
-            text-align: center;
-            font-weight: 700;
-            border-top-left-radius: var(--radius-md);
-            border-top-right-radius: var(--radius-md);
-            font-size: 1.2rem;
+            transform: scale(1.1);
+        }
+
+        /* View 2: Sorting Arena View (Two Column Grid) */
+        .back-btn-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-back {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s;
+        }
+
+        .btn-back:hover {
+            color: var(--primary);
+            border-color: var(--primary-light);
+            transform: translateX(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .arena-grid {
+            display: grid;
+            grid-template-columns: 1.7fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Left Column: Drop Zones */
+        .drop-zones-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .arena-drop-zone {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 3px dashed var(--border);
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .arena-drop-zone.drag-over {
+            border-color: var(--primary);
+            transform: scale(1.01);
+            box-shadow: var(--shadow-lg), 0 0 15px rgba(14, 165, 233, 0.15);
+        }
+
+        .drop-header {
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: white;
             text-shadow: 0 1px 2px rgba(0,0,0,0.15);
         }
 
-        .drop-zone-content {
+        .drop-content {
             flex: 1;
-            padding: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-content: flex-start;
-            justify-content: center;
-            min-height: 200px;
-        }
-
-        .source-pool {
-            background: white;
-            border: 2px solid var(--border);
-            border-radius: var(--radius-md);
             padding: 1.5rem;
-            min-height: 180px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(var(--item-size, 95px), 1fr));
+            gap: 1.25rem;
+            align-content: start;
+            min-height: 200px;
+            transition: background-color 0.2s;
+        }
+
+        /* Right Column: Sticky Source Pool */
+        .pool-column {
+            position: sticky;
+            top: 20px;
+            background: var(--surface-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 1.5rem;
-            justify-content: center;
-            align-content: center;
-            transition: all 0.2s;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
         }
 
-        .source-pool.drag-over {
-            border-color: var(--primary);
-            background: #f0f9ff;
+        .pool-header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
         }
 
+        .pool-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #7c2d12;
+        }
+
+        .pool-counter {
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: #fff7ed;
+            color: #c2410c;
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+            border: 1px solid #ffedd5;
+        }
+
+        .image-resizer {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            background: rgba(241, 245, 249, 0.5);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid #f1f5f9;
+        }
+
+        .slider-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .size-slider-bar {
+            width: 100%;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .source-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(var(--item-size, 95px), 1fr));
+            gap: 1rem;
+            min-height: 250px;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px dashed rgba(226, 232, 240, 0.8);
+            border-radius: var(--radius-md);
+            align-content: start;
+            transition: all 0.25s;
+        }
+
+        .source-grid.drag-over {
+            border-color: var(--primary-light);
+            background: rgba(224, 242, 254, 0.2);
+        }
+
+        /* Draggable Cards */
         .draggable-item {
-            width: var(--item-size, 130px);
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 0.6rem;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             cursor: grab;
-            transition: transform 0.2s, width 0.2s;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            user-select: none;
+            width: 100%;
+            aspect-ratio: 1 / 1.15;
         }
 
         .draggable-item:active {
@@ -252,138 +462,701 @@
         }
 
         .draggable-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        /* Click to Select UX state */
+        .draggable-item.selected {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.4), var(--shadow-md);
+            animation: pulse-border 1.5s infinite alternate;
+        }
+
+        /* Validation States */
+        .draggable-item.correct {
+            border-color: var(--success) !important;
+            background: #f0fdf4 !important;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.1) !important;
+            cursor: not-allowed !important;
+            pointer-events: none;
+        }
+
+        .draggable-item.correct::after {
+            content: '✓';
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 22px;
+            height: 22px;
+            background: var(--success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .draggable-item.incorrect {
+            border-color: var(--danger) !important;
+            background: #fef2f2 !important;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.1) !important;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .draggable-item.incorrect::after {
+            content: '✗';
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 22px;
+            height: 22px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .item-image {
-            width: var(--img-size, 100px);
-            height: var(--img-size, 100px);
-            object-fit: contain;
-            background: white;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-            padding: 0.25rem;
-            box-shadow: var(--shadow-sm);
-            pointer-events: none;
-            transition: width 0.2s, height 0.2s;
-        }
-
-        .item-label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-align: center;
-            color: var(--text-main);
-            pointer-events: none;
-        }
-
-        .nav-container {
             width: 100%;
-            max-width: 1200px;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1.5rem;
-        }
-
-        .nav-btn {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: var(--shadow-sm);
+            height: 70%;
+            object-fit: contain;
+            background: transparent;
+            pointer-events: none;
+            border-radius: 6px;
             transition: all 0.2s;
         }
 
-        .nav-btn:hover:not(:disabled) {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
+        .item-label {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: center;
+            color: var(--text-main);
+            pointer-events: none;
+            word-break: break-word;
+            margin-top: auto;
+        }
+
+        /* Action Buttons Area */
+        .bottom-actions {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 1.25rem 2rem;
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
         }
 
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
+        .progress-bar-container {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
         }
 
+        .progress-bar-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .progress-bar-track {
+            width: 100%;
+            height: 10px;
+            background: #f1f5f9;
+            border-radius: 50px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50px;
+            transition: width 0.4s ease;
+        }
+
+        .action-buttons-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-action {
+            padding: 0.8rem 1.6rem;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .btn-check {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-check:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md), 0 4px 12px rgba(16, 185, 129, 0.25);
+            filter: brightness(1.05);
+        }
+
+        .btn-check:disabled {
+            background: #e2e8f0;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .btn-reset {
+            background: #f1f5f9;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-reset:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        .btn-next-step {
+            background: linear-gradient(135deg, var(--secondary) 0%, #ea580c 100%);
+            color: white;
+            animation: bounce-scale 2s infinite;
+        }
+
+        .btn-next-step:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-md), 0 4px 12px rgba(245, 158, 11, 0.25);
+        }
+
+        /* Standard Overlay / Modal Success UI */
+        .celebration-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: var(--shadow-lg), 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 3rem;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            animation: scaleUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            border: 3px solid var(--secondary-light);
+        }
+
+        .modal-stars {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: starBounce 1s infinite alternate;
+        }
+
+        .modal-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #7c2d12;
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .modal-btn-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-modal-primary {
+            background: linear-gradient(135deg, var(--secondary) 0%, #ea580c 100%);
+            color: white;
+            padding: 0.9rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-modal-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg), 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-modal-secondary {
+            background: #f1f5f9;
+            color: var(--text-main);
+            padding: 0.9rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-modal-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        /* Canvas Overlay */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+            display: none;
+        }
+
+        /* Instructions Info */
+        .instruction-floating-banner {
+            background: #fffbeb;
+            border: 1px solid var(--secondary-light);
+            border-radius: var(--radius-md);
+            padding: 0.8rem 1.5rem;
+            color: #b45309;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0px rgba(14, 165, 233, 0.4), var(--shadow-sm); }
+            100% { box-shadow: 0 0 0 6px rgba(14, 165, 233, 0.7), var(--shadow-md); }
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        @keyframes starBounce {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-10px) scale(1.1); }
+        }
+
+        @keyframes bounce-scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+
+        /* Responsiveness adjustments */
+        @media (max-width: 900px) {
+            .arena-grid {
+                grid-template-columns: 1fr;
+            }
+            .pool-column {
+                position: relative;
+                top: 0;
+                max-height: none;
+                margin-top: 1rem;
+            }
         }
     </style>
 </head>
 
 <body class="category-vocabulary">
 
-    <div class="header">
-        <div class="app-title">
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Celebration Modal -->
+    <div class="celebration-modal" id="celebration-modal">
+        <div class="modal-content">
+            <div class="modal-stars">🎉🏆🎉</div>
+            <div class="modal-title">Spectacular!</div>
+            <div class="modal-text" id="modal-success-message">You sorted all the items perfectly! Let's keep exploring!</div>
+            <div class="modal-btn-row">
+                <button class="btn-modal-primary" id="modal-next-btn" onclick="goToNextSet()">Play Next Set →</button>
+                <button class="btn-modal-secondary" onclick="closeCelebrationModal()">Back to Sets Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Main Header -->
+    <div class="app-header">
+        <div class="app-title-main" onclick="showLandingMenu()" style="cursor: pointer;">
             <span>☀️</span> Summer Sorting
         </div>
-        <div class="level-indicator">
-            Set <span id="current-item-num">1</span> of 5
+        <div class="header-actions" id="arena-header-actions" style="display: none;">
+            <div class="progress-badge">
+                Set <span id="current-item-num">1</span> of 5
+            </div>
         </div>
     </div>
 
-    <div class="app-container">
-        <div class="sidebar">
-            <div class="sidebar-header">Category Sets</div>
-            <ul class="sidebar-list" id="sidebar-list"></ul>
+    <!-- VIEW 1: LANDING MENU SCREEN -->
+    <div id="view-landing" class="view-section active">
+        <div class="menu-intro">
+            <h2>Summer Sorting Challenges</h2>
+            <p>Select a matching card deck below to sort items into their correct summer & winter categories!</p>
+        </div>
+        <div class="sets-grid" id="sets-grid-container">
+            <!-- Dynamically populated sets cards -->
+        </div>
+    </div>
+
+    <!-- VIEW 2: SORTING GAME ARENA -->
+    <div id="view-game" class="view-section">
+        <div class="back-btn-container">
+            <button class="btn-back" onclick="showLandingMenu()">
+                ← Back to Sets Menu
+            </button>
         </div>
 
-        <div class="activity-card" id="activity-card">
-            <div class="instruction-banner">
-                ☀️ Sort the items by dragging them into the correct category box.
+        <div class="instruction-floating-banner">
+            💡 <strong>How to Play:</strong> Drag items into the boxes, or tap an item and then tap a box to quickly sort it! Double-click a sorted item to put it back.
+        </div>
+
+        <div class="arena-grid">
+            <!-- Left Side: Drop Zones -->
+            <div class="drop-zones-column" id="drop-zones-container">
+                <!-- Dynamically generated drop boxes -->
             </div>
 
-            <h2 class="set-title" id="set-title">Set Title</h2>
+            <!-- Right Side: Items Source Pool -->
+            <div class="pool-column">
+                <div class="pool-header-container">
+                    <h3 class="pool-title">
+                        🎒 Items to Sort
+                    </h3>
+                    <span class="pool-counter" id="pool-counter-el">10 remaining</span>
+                </div>
 
-            <div class="drop-zones-container" id="drop-zones-container"></div>
+                <div class="image-resizer">
+                    <div class="slider-label-row">
+                        <span>Card Size</span>
+                        <span id="slider-size-val">100px</span>
+                    </div>
+                    <input type="range" class="size-slider-bar" id="size-slider" min="70" max="150" value="95" oninput="updateItemSize(this.value)">
+                </div>
 
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
-                <h3 style="color: var(--text-muted); font-size: 1rem; margin: 0;">Items to Sort:</h3>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <label for="size-slider" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Image Size:</label>
-                    <input type="range" id="size-slider" min="80" max="250" value="100" oninput="updateImageSize(this.value)">
+                <div class="source-grid" id="source-pool" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+                    <!-- Shuffled items to sort -->
                 </div>
             </div>
-            <div class="source-pool" id="source-pool" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         </div>
-    </div>
 
-    <div class="nav-container">
-        <button class="nav-btn" id="prev-btn" onclick="prevItem()">← Previous Set</button>
-        <button class="nav-btn" id="next-btn" onclick="nextItem()">Next Set →</button>
+        <!-- Bottom Actions Row -->
+        <div class="bottom-actions">
+            <div class="progress-bar-container">
+                <div class="progress-bar-labels">
+                    <span>Arena Placement Progress</span>
+                    <span id="progress-percentage-label">0%</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progress-bar-fill-el"></div>
+                </div>
+            </div>
+
+            <div class="action-buttons-row">
+                <button class="btn-action btn-reset" onclick="resetCurrentArena()">
+                    Reset Arena
+                </button>
+                <button class="btn-action btn-check" id="check-btn" onclick="checkSortingAnswers()">
+                    Check My Work
+                </button>
+                <button class="btn-action btn-next-step" id="next-btn" style="display: none;" onclick="goToNextSet()">
+                    Next Set →
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Load global activity data from window context via loader
         const activityData = DataLoader.get("vocabulary", "summerSortingCategories");
 
+        // Lookup dictionary to validate correct matching
+        const correctMapping = {
+            // Set 1: Clothes
+            "Flip Flops": "Summer Clothes",
+            "Sunglasses": "Summer Clothes",
+            "Sun Hat": "Summer Clothes",
+            "Bathing Suit": "Summer Clothes",
+            "Shorts": "Summer Clothes",
+            "Scarf": "Winter Clothes",
+            "Mittens": "Winter Clothes",
+            "Winter Coat": "Winter Clothes",
+            "Snow Boots": "Winter Clothes",
+            "Gloves": "Winter Clothes",
+            // Set 2: Objects
+            "Beach Ball": "Summer Objects",
+            "Sunscreen": "Summer Objects",
+            "Pool Noodle": "Summer Objects",
+            "Sand Bucket": "Summer Objects",
+            "Kite": "Summer Objects",
+            "Beach Towel": "Summer Objects",
+            "Ice Skates": "Winter Objects",
+            "Hockey Stick": "Winter Objects",
+            "Snow Shovel": "Winter Objects",
+            "Skis": "Winter Objects",
+            // Set 3: Foods & Drinks vs Gear
+            "Watermelon": "Summer Foods & Drinks",
+            "Ice Cream": "Summer Foods & Drinks",
+            "Popsicle": "Summer Foods & Drinks",
+            "Lemonade": "Summer Foods & Drinks",
+            "Cooler": "Summer Foods & Drinks",
+            "Bicycle": "Summer Gear",
+            "Fishing Pole": "Summer Gear",
+            "Sand Shovel": "Summer Gear",
+            "Jump Rope": "Summer Gear",
+            "Soccer Ball": "Summer Gear",
+            // Set 4: Activities
+            "Swimming": "Summer Activities",
+            "Surfing": "Summer Activities",
+            "Diving": "Summer Activities",
+            "Fishing": "Summer Activities",
+            "Grilling": "Summer Activities",
+            "Relaxing": "Summer Activities",
+            "Sledding": "Winter Activities",
+            "Snowman": "Winter Activities",
+            "Snowboarding": "Winter Activities",
+            "Snow Fort": "Winter Activities",
+            // Set 5: Places
+            "Beach": "Water Places",
+            "Pool": "Water Places",
+            "Lake": "Water Places",
+            "Water Park": "Water Places",
+            "Campground": "Land Places",
+            "Garden": "Land Places",
+            "Playground": "Land Places",
+            "Picnic": "Land Places",
+            "Ice Cream Shop": "Land Places"
+        };
+
         let currentIndex = 0;
+        let selectedItemElement = null; // State for Click-to-Move UX
 
+        // Initial setup
         function init() {
-            renderSidebar();
-            loadItem(0);
-        }
-
-        function renderSidebar() {
-            const list = document.getElementById('sidebar-list');
-            list.innerHTML = activityData.map((item, index) => `
-                <li class="sidebar-item ${index === currentIndex ? 'active' : ''}"
-                    onclick="loadItem(${index})">
-                    ${item.categories.join(' / ')}
-                </li>
-            `).join('');
-        }
-
-        function updateSidebar() {
-            document.querySelectorAll('.sidebar-item').forEach((item, index) => {
-                item.classList.toggle('active', index === currentIndex);
+            renderLandingMenu();
+            // Clear selections on escape key
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') deselectItem();
             });
         }
 
+        // Render landing cards menu
+        function renderLandingMenu() {
+            const container = document.getElementById('sets-grid-container');
+            const completedSets = getCompletedSets();
+
+            container.innerHTML = activityData.map((item, index) => {
+                const isCompleted = completedSets.includes(index);
+                const titleStr = item.categories.join(' <span class="vs-divider">vs</span> ');
+                const themeLeft = getCategoryTheme(item.categories[0]);
+                const themeRight = getCategoryTheme(item.categories[1]);
+                
+                return `
+                    <div class="set-card" onclick="startSortingArena(${index})">
+                        <div class="card-header-info">
+                            <span class="set-number-tag">Set ${index + 1}</span>
+                            <span class="completion-badge ${isCompleted ? 'done' : 'todo'}">
+                                ${isCompleted ? '🌟 Completed!' : '⏳ Play Now'}
+                            </span>
+                        </div>
+                        
+                        <div class="set-card-title">
+                            ${titleStr}
+                        </div>
+                        
+                        <div class="card-footer">
+                            <span class="items-indicator">
+                                📦 ${item.items.length} items to sort
+                            </span>
+                            <div class="play-btn-circle">
+                                ➔
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Access progress storage
+        function getCompletedSets() {
+            try {
+                const stored = localStorage.getItem('summer_sorting_completed');
+                return stored ? JSON.parse(stored) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function markSetCompleted(index) {
+            try {
+                const completed = getCompletedSets();
+                if (!completed.includes(index)) {
+                    completed.push(index);
+                    localStorage.setItem('summer_sorting_completed', JSON.stringify(completed));
+                }
+            } catch (e) {
+                // Fail-safe silently
+            }
+        }
+
+        // Move to the Sorting Arena View
+        function startSortingArena(index) {
+            currentIndex = index;
+            deselectItem();
+            
+            // Set headers/indicator states
+            document.getElementById('current-item-num').innerText = index + 1;
+            document.getElementById('arena-header-actions').style.display = 'flex';
+            
+            // Load and build the arena contents
+            loadArenaContent(index);
+
+            // Change View
+            document.getElementById('view-landing').classList.remove('active');
+            document.getElementById('view-game').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Return to Landing Menu
+        function showLandingMenu() {
+            deselectItem();
+            document.getElementById('arena-header-actions').style.display = 'none';
+            document.getElementById('view-game').classList.remove('active');
+            document.getElementById('view-landing').classList.add('active');
+            renderLandingMenu(); // update stars
+        }
+
+        // Dynamic category theme mapping based on category names
+        function getCategoryTheme(cat) {
+            const c = cat.toLowerCase();
+            if (c.includes("summer clothes") || c.includes("summer objects") || c.includes("summer activities") || c.includes("summer foods")) {
+                return {
+                    bg: "linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)",
+                    border: "#f59e0b",
+                    headerBg: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+                    text: "#92400e",
+                    icon: "☀️"
+                };
+            }
+            if (c.includes("winter clothes") || c.includes("winter objects") || c.includes("winter activities")) {
+                return {
+                    bg: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)",
+                    border: "#0ea5e9",
+                    headerBg: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
+                    text: "#075985",
+                    icon: "❄️"
+                };
+            }
+            if (c.includes("gear")) {
+                return {
+                    bg: "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)",
+                    border: "#22c55e",
+                    headerBg: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                    text: "#166534",
+                    icon: "🎒"
+                };
+            }
+            if (c.includes("water")) {
+                return {
+                    bg: "linear-gradient(135deg, #ecfeff 0%, #cffafe 100%)",
+                    border: "#06b6d4",
+                    headerBg: "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)",
+                    text: "#155e75",
+                    icon: "🌊"
+                };
+            }
+            if (c.includes("land")) {
+                return {
+                    bg: "linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)",
+                    border: "#ef4444",
+                    headerBg: "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
+                    text: "#991b1b",
+                    icon: "🏕️"
+                };
+            }
+            // fallback fallback
+            return {
+                bg: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
+                border: "#64748b",
+                headerBg: "linear-gradient(135deg, #64748b 0%, #475569 100%)",
+                text: "#334155",
+                icon: "📁"
+            };
+        }
+
+        // Shuffle utility
         function shuffle(array) {
             let i = array.length, j;
             while (i !== 0) {
@@ -393,73 +1166,360 @@
             return array;
         }
 
-        function loadItem(index) {
-            currentIndex = index;
+        // Build Arena components
+        function loadArenaContent(index) {
             const data = activityData[index];
 
-            document.getElementById('current-item-num').innerText = index + 1;
-            document.getElementById('set-title').innerText = `Set ${index + 1}: ${data.categories.join(' / ')}`;
+            // Render category drops boxes
+            const dropZonesContainer = document.getElementById('drop-zones-container');
+            dropZonesContainer.innerHTML = data.categories.map(cat => {
+                const theme = getCategoryTheme(cat);
+                return `
+                    <div class="arena-drop-zone" data-category="${cat}" 
+                         style="background: ${theme.bg}; border-color: ${theme.border};" 
+                         ondrop="drop(event)" ondragover="allowDrop(event)" 
+                         ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"
+                         onclick="handleDropBoxClick(this)">
+                        <div class="drop-header" style="background: ${theme.headerBg}">
+                            <span>${theme.icon} ${cat}</span>
+                            <span class="header-count" id="count-${cat.replace(/\s+/g, '-')}">0 placed</span>
+                        </div>
+                        <div class="drop-content" data-category-inner="${cat}"></div>
+                    </div>
+                `;
+            }).join('');
 
-            document.getElementById('drop-zones-container').innerHTML = data.categories.map(cat => `
-                <div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
-                    <div class="drop-zone-header">${cat}</div>
-                    <div class="drop-zone-content"></div>
-                </div>
-            `).join('');
-
+            // Render source item cards
             const sourcePool = document.getElementById('source-pool');
-            sourcePool.innerHTML = shuffle([...data.items]).map((item, i) => `
-                <div class="draggable-item" draggable="true" ondragstart="drag(event)" id="drag-item-${i}">
+            const shuffledItems = shuffle([...data.items]);
+            
+            sourcePool.innerHTML = shuffledItems.map((item, i) => `
+                <div class="draggable-item" draggable="true" 
+                     ondragstart="drag(event)" 
+                     onclick="handleItemClick(event, this)"
+                     ondblclick="returnItemToPool(this)"
+                     id="drag-item-${i}" 
+                     data-name="${item.name}">
                     <img src="../../images/${item.folder}/${item.img}" alt="${item.name}" class="item-image" draggable="false">
                     <span class="item-label">${item.name}</span>
                 </div>
             `).join('');
 
-            document.getElementById('prev-btn').disabled = currentIndex === 0;
-            document.getElementById('next-btn').disabled = currentIndex === activityData.length - 1;
+            // Setup control buttons & progress bar
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('check-btn').style.display = 'inline-flex';
+            document.getElementById('check-btn').disabled = true;
 
-            updateSidebar();
+            // Apply size slider configuration
+            const sliderVal = document.getElementById('size-slider').value;
+            updateItemSize(sliderVal);
+            
+            updateArenaProgress();
         }
 
-        function updateImageSize(value) {
-            document.documentElement.style.setProperty('--img-size', `${value}px`);
-            document.documentElement.style.setProperty('--item-size', `${parseInt(value) + 30}px`);
+        // Update card image sizes dynamically
+        function updateItemSize(value) {
+            document.getElementById('slider-size-val').innerText = `${value}px`;
+            document.documentElement.style.setProperty('--item-size', `${value}px`);
         }
 
-        function prevItem() { if (currentIndex > 0) loadItem(currentIndex - 1); }
-        function nextItem() { if (currentIndex < activityData.length - 1) loadItem(currentIndex + 1); }
+        // Drag & Drop Functionality
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
 
-        function allowDrop(ev) { ev.preventDefault(); }
-
-        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); }
+        function drag(ev) {
+            deselectItem(); // Clear any click selection
+            ev.dataTransfer.setData("text", ev.target.id);
+            ev.target.classList.add('dragging');
+        }
 
         function dragEnter(ev) {
             ev.preventDefault();
             let t = ev.target;
-            while (t && !t.classList.contains('drop-zone') && !t.classList.contains('source-pool')) t = t.parentElement;
+            while (t && !t.classList.contains('arena-drop-zone') && !t.classList.contains('source-grid')) {
+                t = t.parentElement;
+            }
             if (t) t.classList.add('drag-over');
         }
 
         function dragLeave(ev) {
             let t = ev.target;
-            while (t && !t.classList.contains('drop-zone') && !t.classList.contains('source-pool')) t = t.parentElement;
+            while (t && !t.classList.contains('arena-drop-zone') && !t.classList.contains('source-grid')) {
+                t = t.parentElement;
+            }
             if (t) t.classList.remove('drag-over');
         }
 
         function drop(ev) {
             ev.preventDefault();
-            const el = document.getElementById(ev.dataTransfer.getData("text"));
+            const elId = ev.dataTransfer.getData("text");
+            const el = document.getElementById(elId);
+            if (!el) return;
+            el.classList.remove('dragging');
+
             let t = ev.target;
-            while (t && !t.classList.contains('drop-zone') && !t.classList.contains('source-pool')) t = t.parentElement;
+            while (t && !t.classList.contains('arena-drop-zone') && !t.classList.contains('source-grid')) {
+                t = t.parentElement;
+            }
+
             if (!t) return;
             t.classList.remove('drag-over');
-            if (t.classList.contains('drop-zone')) {
-                t.querySelector('.drop-zone-content').appendChild(el);
+
+            // Reset validation markings if they modify elements
+            el.classList.remove('correct', 'incorrect');
+
+            if (t.classList.contains('arena-drop-zone')) {
+                const innerContainer = t.querySelector('.drop-content');
+                innerContainer.appendChild(el);
             } else {
                 t.appendChild(el);
             }
+
+            updateArenaProgress();
         }
 
+        // Double-click returns element back to pool
+        function returnItemToPool(itemEl) {
+            if (itemEl.classList.contains('correct')) return; // locked
+
+            itemEl.classList.remove('correct', 'incorrect');
+            const sourcePool = document.getElementById('source-pool');
+            sourcePool.appendChild(itemEl);
+            updateArenaProgress();
+        }
+
+        // Accessible Tap-to-Sort Mechanics
+        function handleItemClick(event, itemEl) {
+            event.stopPropagation(); // Avoid triggering parent clicks
+            
+            // If item is locked in correct box, do nothing
+            if (itemEl.classList.contains('correct')) return;
+
+            if (selectedItemElement === itemEl) {
+                // Click again deselects
+                deselectItem();
+            } else {
+                deselectItem();
+                selectedItemElement = itemEl;
+                selectedItemElement.classList.add('selected');
+            }
+        }
+
+        function handleDropBoxClick(boxEl) {
+            if (!selectedItemElement) return;
+
+            // Reset markings
+            selectedItemElement.classList.remove('correct', 'incorrect');
+            
+            const innerContainer = boxEl.querySelector('.drop-content');
+            innerContainer.appendChild(selectedItemElement);
+            
+            deselectItem();
+            updateArenaProgress();
+        }
+
+        // Clicking blank spaces in source pool moves selected item back
+        document.getElementById('source-pool').addEventListener('click', (e) => {
+            if (selectedItemElement && e.target.id === 'source-pool') {
+                selectedItemElement.classList.remove('correct', 'incorrect');
+                document.getElementById('source-pool').appendChild(selectedItemElement);
+                deselectItem();
+                updateArenaProgress();
+            }
+        });
+
+        function deselectItem() {
+            if (selectedItemElement) {
+                selectedItemElement.classList.remove('selected');
+                selectedItemElement = null;
+            }
+        }
+
+        // Update progress counters, titles, badges, and validation checks
+        function updateArenaProgress() {
+            const data = activityData[currentIndex];
+            const totalItemsCount = data.items.length;
+            
+            // Count items in each drop zone
+            let totalPlaced = 0;
+            data.categories.forEach(cat => {
+                const dropBox = document.querySelector(`[data-category-inner="${cat}"]`);
+                const itemsCount = dropBox ? dropBox.children.length : 0;
+                totalPlaced += itemsCount;
+
+                const countBadge = document.getElementById(`count-${cat.replace(/\s+/g, '-')}`);
+                if (countBadge) {
+                    countBadge.innerText = `${itemsCount} placed`;
+                }
+            });
+
+            // Update remaining pool counter
+            const remainingCount = totalItemsCount - totalPlaced;
+            document.getElementById('pool-counter-el').innerText = `${remainingCount} remaining`;
+
+            // Progress bar and calculations
+            const percentage = Math.round((totalPlaced / totalItemsCount) * 100);
+            document.getElementById('progress-percentage-label').innerText = `${percentage}%`;
+            document.getElementById('progress-bar-fill-el').style.width = `${percentage}%`;
+
+            // Enable check work button only when all items are sorted
+            document.getElementById('check-btn').disabled = totalPlaced < totalItemsCount;
+        }
+
+        // Clear and reload
+        function resetCurrentArena() {
+            deselectItem();
+            loadArenaContent(currentIndex);
+        }
+
+        // Validate Sorting placements and prompt celebrations
+        function checkSortingAnswers() {
+            const data = activityData[currentIndex];
+            let allAreCorrect = true;
+            let correctCount = 0;
+
+            data.categories.forEach(cat => {
+                const dropBox = document.querySelector(`[data-category-inner="${cat}"]`);
+                if (!dropBox) return;
+
+                Array.from(dropBox.children).forEach(card => {
+                    const itemName = card.getAttribute('data-name');
+                    const correctCategory = correctMapping[itemName];
+
+                    card.classList.remove('correct', 'incorrect');
+
+                    if (correctCategory === cat) {
+                        card.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        card.classList.add('incorrect');
+                        allAreCorrect = false;
+                        
+                        // Briefly remove and re-add class to restart shake animation
+                        card.style.animation = 'none';
+                        card.offsetHeight; // trigger reflow
+                        card.style.animation = null; 
+                    }
+                });
+            });
+
+            if (allAreCorrect) {
+                // Lock progress
+                markSetCompleted(currentIndex);
+                
+                // Triggers celebration
+                startConfetti();
+                
+                setTimeout(() => {
+                    openCelebrationModal();
+                }, 800);
+            } else {
+                alert(`Almost there! Some items are not in the correct box. Check the red outlines and try shifting them!`);
+            }
+        }
+
+        // Celebration Modal Actions
+        function openCelebrationModal() {
+            const isLastSet = currentIndex === activityData.length - 1;
+            const nextBtn = document.getElementById('modal-next-btn');
+            
+            if (isLastSet) {
+                nextBtn.innerText = "Back to Main Menu";
+                nextBtn.setAttribute('onclick', 'showLandingMenu(); closeCelebrationModal();');
+                document.getElementById('modal-success-message').innerText = "Incredible Job! 🎉 You have successfully solved all the summer category sorting challenges! You are a master sorter!";
+            } else {
+                nextBtn.innerText = "Play Next Set →";
+                nextBtn.setAttribute('onclick', 'goToNextSet()');
+                document.getElementById('modal-success-message').innerText = `Amazing! You successfully completed Set ${currentIndex + 1}! Ready to take on the next sorting challenge?`;
+            }
+
+            document.getElementById('celebration-modal').style.display = 'flex';
+        }
+
+        function closeCelebrationModal() {
+            document.getElementById('celebration-modal').style.display = 'none';
+            
+            // Show the Next Set button on the bottom actions too as a shortcut
+            if (currentIndex < activityData.length - 1) {
+                document.getElementById('next-btn').style.display = 'inline-flex';
+                document.getElementById('check-btn').style.display = 'none';
+            }
+        }
+
+        function goToNextSet() {
+            closeCelebrationModal();
+            if (currentIndex < activityData.length - 1) {
+                startSortingArena(currentIndex + 1);
+            } else {
+                showLandingMenu();
+            }
+        }
+
+        // Canvas Confetti physics engine
+        function startConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.display = 'block';
+
+            const colors = ['#f59e0b', '#10b981', '#3b82f6', '#ec4899', '#8b5cf6', '#ef4444'];
+            const particles = [];
+            
+            for (let i = 0; i < 160; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 5 + 4,
+                    d: Math.random() * canvas.height,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.random() * 10 - 5,
+                    tiltAngleIncremental: Math.random() * 0.06 + 0.02,
+                    tiltAngle: 0
+                });
+            }
+
+            let animationFrame;
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let remaining = 0;
+                
+                particles.forEach((p, idx) => {
+                    p.tiltAngle += p.tiltAngleIncremental;
+                    p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                    p.x += Math.sin(p.tiltAngle);
+                    p.tilt = Math.sin(p.tiltAngle - idx / 3) * 15;
+
+                    if (p.y < canvas.height) {
+                        remaining++;
+                    }
+
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                    ctx.stroke();
+                });
+
+                if (remaining > 0) {
+                    animationFrame = requestAnimationFrame(draw);
+                } else {
+                    canvas.style.display = 'none';
+                }
+            }
+            
+            draw();
+            
+            // Clean-up timeout
+            setTimeout(() => {
+                cancelAnimationFrame(animationFrame);
+                canvas.style.display = 'none';
+            }, 6000);
+        }
+
+        // Initialize on load
         init();
     </script>
 </body>
